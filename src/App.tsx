@@ -729,16 +729,6 @@ export default function App() {
                                 delay: 2.0 + index * 0.1,
                               }}
                               viewport={{ once: true }}
-                              animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0.4, 0.7, 0.4],
-                              }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                delay: index * 0.3,
-                                ease: "easeInOut",
-                              }}
                               cx={stage.position.x}
                               cy={stage.position.y}
                               r="1.0"
