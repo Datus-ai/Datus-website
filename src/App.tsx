@@ -276,6 +276,38 @@ export default function App() {
               className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full ml-2"
             />
           </motion.div>
+          
+          {/* Open Source Badge */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex items-center"
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0 0 15px rgba(34, 211, 238, 0.2)",
+                  "0 0 25px rgba(34, 211, 238, 0.4)",
+                  "0 0 15px rgba(34, 211, 238, 0.2)"
+                ]
+              }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ scale: 1.1 }}
+              className="bg-gradient-to-r from-cyan-500/15 via-blue-500/15 to-purple-500/15 backdrop-blur-sm border border-cyan-400/30 px-4 py-2 rounded-full cursor-pointer"
+            >
+              <span className="text-sm font-medium text-cyan-300 flex items-center space-x-2">
+                <span>Soon to be Open Source</span>
+                <motion.span
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  🚀
+                </motion.span>
+              </span>
+            </motion.div>
+          </motion.div>
         </motion.nav>
 
         <div className="relative">
