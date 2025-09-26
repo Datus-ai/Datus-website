@@ -258,18 +258,15 @@ export default function App() {
             }}
           >
             <motion.div
-              animate={{ rotate: 360 }}
+              whileHover={{ scale: 1.05 }}
               transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "linear",
+                type: "spring",
+                stiffness: 400,
+                damping: 10,
               }}
             >
-              <Sparkles className="h-8 w-8 text-blue-400" />
+              <img src="/logo_dark.svg" alt="Datus" className="h-8 w-auto" />
             </motion.div>
-            <span className="text-xl font-semibold text-white">
-              Datus
-            </span>
             <motion.div
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -329,25 +326,6 @@ export default function App() {
               }}
               className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight"
             >
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 via-purple-400 to-violet-400"
-                animate={{
-                  backgroundPosition: [
-                    "0% 50%",
-                    "100% 50%",
-                    "0% 50%",
-                  ],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                style={{ backgroundSize: "300% 100%" }}
-              >
-                Datus
-              </motion.span>
-
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
