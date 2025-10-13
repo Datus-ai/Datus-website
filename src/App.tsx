@@ -21,6 +21,9 @@ import {
   TestTube,
   Monitor,
   FileText,
+  Github,
+  BookOpen,
+  BookText,
 } from "lucide-react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { motion } from "motion/react";
@@ -137,8 +140,7 @@ const connections = [
   { from: 6, to: 8 },
 ];
 
-export default function App() {
-  const scrollToLifecycle = () => {
+export default function App() {  const scrollToLifecycle = () => {
     document
       .getElementById("lifecycle-diagram")
       ?.scrollIntoView({ behavior: "smooth" });
@@ -275,36 +277,68 @@ export default function App() {
           </motion.div>
           
           {/* Open Source Badge */}
+          {/* Navigation Links */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex items-center"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="flex items-center space-x-6"
           >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.05, 1],
-                boxShadow: [
-                  "0 0 15px rgba(34, 211, 238, 0.2)",
-                  "0 0 25px rgba(34, 211, 238, 0.4)",
-                  "0 0 15px rgba(34, 211, 238, 0.2)"
-                ]
-              }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              whileHover={{ scale: 1.1 }}
-              className="bg-gradient-to-r from-cyan-500/15 via-blue-500/15 to-purple-500/15 backdrop-blur-sm border border-cyan-400/30 px-4 py-2 rounded-full cursor-pointer"
+            <motion.a
+              href="https://docs.datus.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <span className="text-sm font-medium text-cyan-300 flex items-center space-x-2">
-                <span>Soon to be Open Source</span>
-                <motion.span
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  🚀
-                </motion.span>
-              </span>
-            </motion.div>
+              <BookOpen className="h-5 w-5 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" />
+              <span className="font-medium">Docs</span>
+              <motion.div
+                className="w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </motion.a>
+
+            <motion.a
+              href="https://blog.datus.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <BookText className="h-5 w-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
+              <span className="font-medium">Blog</span>
+              <motion.div
+                className="w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </motion.a>
+
+            <motion.a
+              href="https://github.com/Datus-ai/Datus-agent"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Github className="h-5 w-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
+              <span className="font-medium">GitHub</span>
+              <motion.div
+                className="w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </motion.a>
           </motion.div>
+          
         </motion.nav>
 
         <div className="relative">
