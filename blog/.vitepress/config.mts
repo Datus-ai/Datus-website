@@ -5,7 +5,11 @@ export default defineConfig({
   description: 'Insights on AI-Native Data Engineering',
   // base: '/blog/', // Only needed for production deployment
 
-  appearance: 'dark', // Force dark mode to match main site
+  appearance: false, // Disable theme toggle
+
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }]
+  ],
 
   themeConfig: {
     logo: '/logo_dark.svg',

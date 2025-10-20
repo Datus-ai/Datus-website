@@ -3,13 +3,12 @@ layout: home
 
 hero:
   name: Datus Blog
-  text: The Future of Data Engineering
   tagline: Insights on context-driven analytics and the future of data systems
   actions:
     - theme: brand
       text: Read Latest Posts
       link: /posts/
-    - theme: alt
+    - theme: brand
       text: View on GitHub
       link: https://github.com/Datus-ai/Datus-agent
 
