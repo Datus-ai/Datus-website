@@ -1,0 +1,19 @@
+node_modules
+dist
+build
+
+# VitePress
+blog/.vitepress/cache
+blog/.vitepress/dist
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+
+# Env files
+.env
+.env.local

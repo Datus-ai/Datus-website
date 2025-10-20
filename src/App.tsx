@@ -1,33 +1,33 @@
-import React, { useMemo } from "react";
-import { Card } from "./components/ui/card";
-import { Badge } from "./components/ui/badge";
-import { Button } from "./components/ui/button";
 import {
-  ArrowRight,
-  Sparkles,
-  Database,
-  Zap,
-  Shield,
-  Brain,
-  Network,
   Archive,
+  ArrowRight,
+  BarChart3,
+  Brain,
+  CheckCircle,
+  Code,
+  Database,
+  FileText,
+  Monitor,
+  Network,
+  Rocket,
+  Settings,
+  Shield,
+  Sparkles,
+  Star,
+  TestTube,
   TreePine,
   TrendingUp,
-  Code,
-  CheckCircle,
-  Settings,
-  BarChart3,
-  Rocket,
-  TestTube,
-  Monitor,
-  FileText,
+  Zap,
+  Github,
 } from "lucide-react";
-import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { motion } from "motion/react";
+import React, { useEffect, useMemo, useState } from "react";
 import { DataLifecycleDiagram } from "./components/DataLifecycleDiagram";
 import DatusContextTriad from "./components/DatusContextTriad";
 import DatusLayeredStack from "./components/DatusLayeredStack";
 import DatusLayeredStackHorizontalOnly from "./components/DatusLayeredStackHorizontalOnly";
+import { Badge } from "./components/ui/badge";
+import { Card } from "./components/ui/card";
 
 // Calculate octagonal positions with perfect geometric precision
 const calculateOctagonPosition = (
@@ -138,6 +138,24 @@ const connections = [
 ];
 
 export default function App() {
+  const [starCount, setStarCount] = useState<number | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    fetch("https://api.github.com/repos/Datus-ai/Datus-agent")
+      .then((res) => res.json())
+      .then((data) => setStarCount(data.stargazers_count))
+      .catch(() => setStarCount(null));
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToLifecycle = () => {
     document
       .getElementById("lifecycle-diagram")
@@ -244,70 +262,102 @@ export default function App() {
         {/* Navigation */}
         <motion.nav
           initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 flex items-center justify-between px-8 py-6"
+          animate={{
+            y: 0,
+            opacity: 1,
+            backgroundColor: isScrolled
+              ? "rgba(15, 23, 42, 0.8)"
+              : "rgba(15, 23, 42, 0)"
+          }}
+          transition={{ duration: 0.3 }}
+          className={`fixed top-0 left-0 right-0 z-50 ${
+            isScrolled ? "backdrop-blur-xl border-b border-slate-700/50 shadow-lg shadow-black/5" : ""
+          }`}
         >
-          <motion.div
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 10,
-            }}
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 10,
-              }}
-            >
-              <img src="/logo_dark.svg" alt="Datus" className="h-8 w-auto" />
-            </motion.div>
-            <motion.div
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full ml-2"
-            />
-          </motion.div>
-          
-          {/* Open Source Badge */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex items-center"
-          >
-            <motion.div
-              animate={{ 
-                scale: [1, 1.05, 1],
-                boxShadow: [
-                  "0 0 15px rgba(34, 211, 238, 0.2)",
-                  "0 0 25px rgba(34, 211, 238, 0.4)",
-                  "0 0 15px rgba(34, 211, 238, 0.2)"
-                ]
-              }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              whileHover={{ scale: 1.1 }}
-              className="bg-gradient-to-r from-cyan-500/15 via-blue-500/15 to-purple-500/15 backdrop-blur-sm border border-cyan-400/30 px-4 py-2 rounded-full cursor-pointer"
-            >
-              <span className="text-sm font-medium text-cyan-300 flex items-center space-x-2">
-                <span>Soon to be Open Source</span>
-                <motion.span
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <motion.div
+                className="flex items-center space-x-3 flex-shrink-0"
+                whileHover={{ scale: 1.02 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10,
+                }}
+              >
+                <a href="/" className="flex items-center space-x-3">
+                  <img src="/logo_dark.svg" alt="Datus" className="h-9 w-auto" />
+                  <motion.div
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
+                  />
+                </a>
+              </motion.div>
+
+              {/* Right Side Navigation */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex items-center space-x-8"
+              >
+                {/* Navigation Links */}
+                {[
+                  { label: "Docs", href: "https://docs.datus.ai" },
+                  { label: "Blog", href: "http://localhost:5173" },
+                  {
+                    label: "Community",
+                    href: "https://join.slack.com/t/datusai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg",
+                  },
+                ].map((link, index) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative text-xl font-semibold text-slate-300 hover:text-white transition-colors duration-200"
+                    whileHover={{ scale: 1.05 }}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+
+                {/* GitHub Star Button */}
+                <motion.a
+                  href="https://github.com/Datus-ai/Datus-agent"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="group relative"
                 >
-                  🚀
-                </motion.span>
-              </span>
-            </motion.div>
-          </motion.div>
+                  <div className="flex items-center border border-slate-600/50 rounded-lg overflow-hidden hover:border-slate-500 transition-colors duration-200">
+                    {/* GitHub Icon Section */}
+                    <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-800/50 border-r border-slate-600/50 group-hover:bg-slate-700/50 transition-colors duration-200">
+                      <Github className="w-4 h-4 text-slate-300" />
+                      <span className="text-sm font-medium text-slate-300">Star</span>
+                    </div>
+                    {/* Star Count Section */}
+                    <div className="px-3 py-1.5 bg-slate-800/30 group-hover:bg-slate-700/30 transition-colors duration-200">
+                      <span className="text-sm font-semibold text-slate-300">
+                        {starCount !== null ? starCount.toLocaleString() : "—"}
+                      </span>
+                    </div>
+                  </div>
+                </motion.a>
+              </motion.div>
+            </div>
+          </div>
         </motion.nav>
 
-        <div className="relative">
+        <div className="relative pt-20">
           {/* Hero Tagline Section */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
