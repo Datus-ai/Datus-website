@@ -319,10 +319,8 @@ export default function App() {
                 </motion.a>
 
                 {/* Blog Link */}
-                {/* <motion.a
+                <motion.a
                   href="/blog/"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -337,7 +335,7 @@ export default function App() {
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
-                </motion.a> */}
+                </motion.a>
 
                 {/* GitHub Link */}
                 <motion.a
