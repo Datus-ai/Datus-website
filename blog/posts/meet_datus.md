@@ -2,27 +2,24 @@
 
 ## Why SQL agents keep breaking
 
-Most “SQL agents” fail for a simple reason: they don’t know your data well. LLMs don’t hallucinate because they can’t generate SQL—they hallucinate because they lack the living, governed context behind your schemas, metrics, lineage, and business rules. Data engineering also presents a far larger search space than coding assistants: multiple sources, evolving semantics, inconsistent naming, and legacy edge cases. Put a model in front of raw tables or static docs and you’ll get fragile joins, drifting definitions, and “works on demo, fails in prod.” No context, no reliability. Accuracy is the foundation; great data becomes the moat.
+Most so-called “SQL agents” fail for one simple reason: they don’t actually understand your data. LLMs don’t hallucinate for lack of SQL skills—they do when they lack the governed context behind your schemas, metrics, and business rules.
+Data engineering also presents a far larger search space than coding: multiple sources, evolving semantics, inconsistent naming, and legacy edge cases. Put a model in front of raw tables or static docs and you’ll get fragile joins, drifting definitions, and “works on demo, fails in prod.” No context, no reliability. Accuracy is the foundation; great data becomes the moat.
 
 Teams tried two extremes. On one side, pure RAG over dumps of documentation: quick to start, but brittle and hard to keep in sync. On the other hand, heavy knowledge graphs that aspire to encode everything: powerful in theory, but slow to build, costly to maintain, and difficult to evolve. Both approaches demand endless tuning; neither makes the agent learn naturally from your day-to-day work.
 
-## Contextual Data Engineering: why traditional data engineering doesn’t scale
-
-![Contextual Data Engineering](../assets/contextual_data_engineering.png)
-
-Traditional pipelines “end” at delivery: produce tables, publish dashboards, then move to the next request. But the questions never stop changing, and the semantics behind those questions evolve even faster. Context stays fragmented across notebooks, dashboards, ad-hoc SQL, and tribal memory—so every new request restarts the cycle.
-
-Contextual Data Engineering flips that pattern. The pipeline itself becomes a living map of your data system—continuously learning from historical SQL, feedback loops, and human corrections. Instead of delivering only data artifacts, you deliver an iterable context made of metadata, metrics, SQL history, and domain knowledge, with two-way recall and domain scoping. Agents then operate inside this governed context, getting more accurate the more they’re used.
-
 ## What is Datus?
 
-Datus is an open-source data engineering agent that builds evolvable context for your data systems. Unlike traditional tools that merely move data, Datus captures, learns, and evolves the knowledge surrounding your data—transforming metadata, reference SQL, semantic models, and metrics into a living knowledge base that grounds AI queries and eliminates hallucinations.
+[Datus](https://github.com/Datus-ai/Datus-agent) is an open-source data engineering agent that builds evolvable context for your data systems. Unlike traditional tools that merely move data, Datus captures, learns, and evolves the knowledge surrounding your data—transforming metadata, reference SQL, semantic models, and metrics into a living knowledge base that grounds AI queries and eliminates hallucinations.
+
+### Naming and open source
+
+The name Datus comes from the Latin word datum, meaning “something that has been given” — or more broadly, "granted knowledge". It shares the same root as data. Interestingly, in Filipino, datus also means “chief” or "leader". Datus is open source (Apache-2.0) because code alone isn’t the moat—clear architecture, well product sence, and conbined with community are. We want context formats, subagent scaffolds, and evaluation sets to be shared, improved, and standardized in the open. That’s how teams compound: by contributing adapters, domain packs, and hard test cases from real life. We need an open-source data engineering agent.
 
 ### Architecture
 
 ![Architecture](../assets/architecture.png)
 
-Datus is an open-source system that turns context into a first-class, programmable asset for data teams. It has three layers:
+Datus turns context into a first-class, programmable asset for data teams. It has three layers:
 
 1. Interface Layer
 
@@ -77,6 +74,16 @@ A subagent is a deployable unit: a curated scoped context + a vetted tool set + 
 Datus is open source (Apache-2.0) because code alone isn’t the moat—clear architecture, well product sence, and conbined with community are. We want context formats, subagent scaffolds, and evaluation sets to be shared, improved, and standardized in the open. That’s how teams compound: by contributing adapters, domain packs, and hard test cases from real life. We need an open-source data engineering agent.
 
 Open development also reflects how agents truly improve: by iterating context and evaluation together, across diverse domains and messy realities—not, not behind a closed demo. When context is programmable and versionable, accuracy becomes repeatable; when evaluations are shared, progress becomes measurable.
+
+## Contextual Data Engineering: why traditional data engineering doesn’t scale
+
+Traditional data engineering pipelines end at delivery—tables built, dashboards published, next request starts. But questions evolve faster than pipelines, and context stays scattered across notebooks, dashboards, ad-hoc SQL, and tribal knowledge.
+
+![Contextual Data Engineering](../assets/contextual_data_engineering.png)
+
+Contextual Data Engineering flips this model: the pipeline itself becomes a living map of your data system—continuously learning from historical SQL, feedback, and human corrections. Instead of just delivering data, you deliver an iterable context made of metadata, metrics, SQL history, and domain knowledge.
+
+Ultimately, Datus is about building this evolvable context—a living foundation that transforms how data engineering is done. Instead of merely developing tables or static pipelines, engineers can now design flexible, multi-functional, and extensible agents that continuously learn from feedback and evolve with their data systems. Datus bridges engineering precision with intelligent adaptability, turning context into the most valuable asset of modern data work.
 
 ## Getting started
 - [Installation and quickstart](https://docs.datus.ai/getting_started/Quickstart/)
