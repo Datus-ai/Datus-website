@@ -68,7 +68,6 @@
           "blog:preview": "vitepress preview blog",
           "build:all": "npm run build && npm run blog:build && npm run merge:builds",
           "merge:builds": "mkdir -p dist/blog && cp -r blog/.vitepress/dist/* dist/blog/",
-          "start": "bash start.sh",
           "preview": "vite preview --port 4173"
       }
   }

@@ -268,7 +268,7 @@ export default function App() {
             isScrolled ? "backdrop-blur-xl border-b border-slate-700/50 shadow-lg shadow-black/5" : ""
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+          <div className="w-full px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <motion.div
@@ -319,7 +319,7 @@ export default function App() {
                 </motion.a>
 
                 {/* Blog Link */}
-                <motion.a
+                {/* <motion.a
                   href="/blog/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -337,7 +337,7 @@ export default function App() {
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
-                </motion.a>
+                </motion.a> */}
 
                 {/* GitHub Link */}
                 <motion.a

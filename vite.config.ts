@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
   base: '/',
   publicDir: 'src/public', 
@@ -55,7 +55,19 @@ export default defineConfig({
     outDir: 'dist',
   },
   server: {
-    port: 3000,
+    port: 5173,
     open: true,
+    ...(mode === 'development' && {
+      proxy: {
+        '/blog': {
+          target: 'http://localhost:5174',
+          changeOrigin: true,
+          rewrite: (path) => path,
+        },
+      },
+    }),
   },
-});
+  preview: {
+    port: 4173,
+  },
+}));
