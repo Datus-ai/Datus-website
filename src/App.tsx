@@ -10,6 +10,7 @@ import {
   Database,
   FileText,
   Github,
+  MessageSquare,
   Monitor,
   Network,
   Rocket,
@@ -319,10 +320,8 @@ export default function App() {
                 </motion.a>
 
                 {/* Blog Link */}
-                {/* <motion.a
+                <motion.a
                   href="/blog/"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -337,7 +336,28 @@ export default function App() {
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
-                </motion.a> */}
+                </motion.a>
+
+                {/* Community Link */}
+                <motion.a
+                  href="https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.6 }}
+                >
+                  <MessageSquare className="h-5 w-5 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300" />
+                  <span className="font-medium">Community</span>
+                  <motion.div
+                    className="w-1 h-1 bg-indigo-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                </motion.a>
 
                 {/* GitHub Link */}
                 <motion.a
@@ -349,7 +369,7 @@ export default function App() {
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.6 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.7 }}
                 >
                   <Github className="h-5 w-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
                   <span className="font-medium">GitHub</span>
