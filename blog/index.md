@@ -26,7 +26,7 @@ features:
 
 ## Recent Posts
 
-- [Welcome to Datus Blog](/posts/welcome) - January 20, 2025
+- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus) - October 21, 2025
 
 ---
 

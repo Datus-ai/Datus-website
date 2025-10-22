@@ -30,17 +30,23 @@ jobs:
         
     - name: Install dependencies
       run: npm ci
-      
-    - name: Build
+
+    - name: Build main site
       run: npm run build
-      
+
+    - name: Build blog
+      run: npm run blog:build
+
+    - name: Merge builds
+      run: npm run merge:builds
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
-      
+
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: './build'
+        path: './dist'
         
   deploy:
     environment:
