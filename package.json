@@ -53,14 +53,19 @@
       "devDependencies": {
             "@types/node": "^20.10.0",
             "@vitejs/plugin-react-swc": "^3.10.2",
+            "concurrently": "^9.2.1",
             "vite": "6.3.5",
             "vitepress": "^1.6.4"
       },
       "scripts": {
-            "dev": "vite",
+            "dev": "concurrently \"npm run dev:site\" \"npm run dev:blog\" --names \"site,blog\" --prefix-colors \"cyan,magenta\"",
+            "dev:site": "vite",
+            "dev:blog": "vitepress dev blog --port 5173",
             "build": "vite build",
             "blog:dev": "vitepress dev blog",
             "blog:build": "vitepress build blog",
-            "blog:preview": "vitepress preview blog"
+            "blog:preview": "vitepress preview blog",
+            "build:all": "npm run build && npm run blog:build && npm run merge:builds",
+            "merge:builds": "mkdir -p dist/blog && cp -r blog/.vitepress/dist/* dist/blog/"
       }
 }

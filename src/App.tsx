@@ -7,18 +7,17 @@ import {
   Code,
   Database,
   FileText,
+  Github,
   Monitor,
   Network,
   Rocket,
   Settings,
   Shield,
   Sparkles,
-  Star,
   TestTube,
   TreePine,
   TrendingUp,
-  Zap,
-  Github,
+  Zap
 } from "lucide-react";
 import { motion } from "motion/react";
 import React, { useEffect, useMemo, useState } from "react";
@@ -306,10 +305,10 @@ export default function App() {
                 {/* Navigation Links */}
                 {[
                   { label: "Docs", href: "https://docs.datus.ai" },
-                  // { label: "Blog", href: "http://localhost:5173" },
+                  { label: "Blog", href: "/blog/" },
                   {
                     label: "Community",
-                    href: "https://join.slack.com/t/datusai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg",
+                    href: "https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg",
                   },
                 ].map((link, index) => (
                   <motion.a
