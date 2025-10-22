@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'Datus Blog',
   description: 'Insights on AI-Native Data Engineering',
-  // base: '/blog/', // Only needed for production deployment
+  base: '/blog/', // Required for GitHub Pages deployment
 
   appearance: false, // Disable theme toggle
 
@@ -24,7 +24,7 @@ export default defineConfig({
       {
         text: 'Recent Posts',
         items: [
-          { text: 'Welcome to Datus Blog', link: '/posts/welcome' }
+          { text: 'SQL agents are broken without context. Meet Datus.', link: '/posts/meet_datus' }
         ]
       }
     ],

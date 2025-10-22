@@ -2,11 +2,14 @@ import {
   Archive,
   ArrowRight,
   BarChart3,
+  BookOpen,
+  BookText,
   Brain,
   CheckCircle,
   Code,
   Database,
   FileText,
+  Github,
   Monitor,
   Network,
   Rocket,
@@ -18,7 +21,6 @@ import {
   TreePine,
   TrendingUp,
   Zap,
-  Github,
 } from "lucide-react";
 import { motion } from "motion/react";
 import React, { useEffect, useMemo, useState } from "react";
@@ -138,15 +140,7 @@ const connections = [
 ];
 
 export default function App() {
-  const [starCount, setStarCount] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    fetch("https://api.github.com/repos/Datus-ai/Datus-agent")
-      .then((res) => res.json())
-      .then((data) => setStarCount(data.stargazers_count))
-      .catch(() => setStarCount(null));
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -274,7 +268,7 @@ export default function App() {
             isScrolled ? "backdrop-blur-xl border-b border-slate-700/50 shadow-lg shadow-black/5" : ""
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+          <div className="w-full px-8 py-4">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <motion.div
@@ -301,56 +295,69 @@ export default function App() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex items-center space-x-8"
+                className="flex items-center space-x-6"
               >
-                {/* Navigation Links */}
-                {[
-                  { label: "Docs", href: "https://docs.datus.ai" },
-                  // { label: "Blog", href: "http://localhost:5173" },
-                  {
-                    label: "Community",
-                    href: "https://join.slack.com/t/datusai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg",
-                  },
-                ].map((link, index) => (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative text-xl font-semibold text-slate-300 hover:text-white transition-colors duration-200"
-                    whileHover={{ scale: 1.05 }}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
+                {/* Docs Link */}
+                <motion.a
+                  href="https://docs.datus.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.4 }}
+                >
+                  <BookOpen className="h-5 w-5 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" />
+                  <span className="font-medium">Docs</span>
+                  <motion.div
+                    className="w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                </motion.a>
 
-                {/* GitHub Star Button */}
+                {/* Blog Link */}
+                {/* <motion.a
+                  href="/blog/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.5 }}
+                >
+                  <BookText className="h-5 w-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
+                  <span className="font-medium">Blog</span>
+                  <motion.div
+                    className="w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                </motion.a> */}
+
+                {/* GitHub Link */}
                 <motion.a
                   href="https://github.com/Datus-ai/Datus-agent"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                  whileHover={{ scale: 1.02 }}
-                  className="group relative"
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.6 }}
                 >
-                  <div className="flex items-center border border-slate-600/50 rounded-lg overflow-hidden hover:border-slate-500 transition-colors duration-200">
-                    {/* GitHub Icon Section */}
-                    <div className="flex items-center space-x-2 px-3 py-1.5 bg-slate-800/50 border-r border-slate-600/50 group-hover:bg-slate-700/50 transition-colors duration-200">
-                      <Github className="w-4 h-4 text-slate-300" />
-                      <span className="text-sm font-medium text-slate-300">Star</span>
-                    </div>
-                    {/* Star Count Section */}
-                    <div className="px-3 py-1.5 bg-slate-800/30 group-hover:bg-slate-700/30 transition-colors duration-200">
-                      <span className="text-sm font-semibold text-slate-300">
-                        {starCount !== null ? starCount.toLocaleString() : "—"}
-                      </span>
-                    </div>
-                  </div>
+                  <Github className="h-5 w-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
+                  <span className="font-medium">GitHub</span>
+                  <motion.div
+                    className="w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
                 </motion.a>
               </motion.div>
             </div>
