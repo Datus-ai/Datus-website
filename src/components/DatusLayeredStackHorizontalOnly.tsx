@@ -180,7 +180,7 @@ export default function DatusLayeredStackHorizontalOnly() {
             <div ref={hubRef} className="relative">
               <div className="absolute -inset-5 rounded-2xl bg-gradient-to-tr from-cyan-500/20 via-white/5 to-indigo-500/20 blur-2xl" />
               <div className="relative rounded-2xl border border-white/10 bg-[#0B1020]/85 px-6 py-3 text-center">
-                <div className="text-sm font-semibold">Datus Client</div>
+                <div className="text-sm font-semibold text-white">Datus Client</div>
                 <div className="text-xs text-white/70">One client to connect everything · unified management & governance</div>
               </div>
             </div>
