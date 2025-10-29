@@ -8,7 +8,13 @@ export default defineConfig({
   appearance: false, // Disable theme toggle
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }]
+    ['link', { rel: 'icon', href: '/blog/favicon.svg', type: 'image/svg+xml' }],
+    // Google Analytics
+    ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP' }],
+    ['script', {}, `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EPVCH78EZP');`]
   ],
 
   themeConfig: {
