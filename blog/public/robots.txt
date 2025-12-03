@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Allow all pages to be crawled
+Allow: /data-engineering-agent/
+Allow: /posts/
+
+# Sitemap location (update this URL when sitemap is generated)
+Sitemap: https://datus.ai/blog/sitemap.xml
