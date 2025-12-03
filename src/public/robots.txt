@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Allow all content to be crawled
+Allow: /blog/
+Allow: /blog/data-engineering-agent/
+Allow: /blog/posts/
+
+# Sitemap location
+Sitemap: https://datus.ai/sitemap.xml
