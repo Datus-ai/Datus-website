@@ -45,4 +45,12 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Data Engineering Agent Articles -->
+  <url>
+    <loc>https://datus.ai/blog/data-engineering-agent/data-engineering-agent-layered-subagent.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
