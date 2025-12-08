@@ -28,6 +28,14 @@ export default defineConfig({
 
     sidebar: [
       {
+        text: 'Data Engineering Agent Series',
+        items: [
+          { text: 'Complete Guide', link: '/data-engineering-agent/' },
+          { text: 'What Is an Agent?', link: '/posts/what-is-data-engineering-agent' },
+          { text: 'Layered Subagent Architecture', link: '/data-engineering-agent/data-engineering-agent-layered-subagent' }
+        ]
+      },
+      {
         text: 'Recent Posts',
         items: [
           { text: 'SQL agents are broken without context. Meet Datus.', link: '/posts/meet_datus' }
