@@ -16,7 +16,7 @@ head:
       content: article
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/data-engineering-agent/
+      content: https://datus.ai/data-engineering-agent/
   - - meta
     - name: twitter:card
       content: summary_large_image
@@ -28,7 +28,7 @@ head:
       content: Learn how Data Engineering Agents use AI to automate data workflows, eliminate hallucinations, and build intelligent, context-aware data systems.
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/data-engineering-agent/
+      href: https://datus.ai/data-engineering-agent/
 ---
 
 # Data Engineering Agent: The Future of AI-Powered Data Workflows

@@ -67,7 +67,7 @@
           "blog:build": "vitepress build blog",
           "blog:preview": "vitepress preview blog",
           "build:all": "npm run build && npm run blog:build && npm run merge:builds",
-          "merge:builds": "mkdir -p dist/blog && cp -r blog/.vitepress/dist/* dist/blog/",
+          "merge:builds": "mkdir -p dist/blog && cp -r blog/.vitepress/dist/* dist/blog/ && mkdir -p dist/data-engineering-agent && cp blog/.vitepress/dist/data-engineering-agent/index.html dist/data-engineering-agent/ && node scripts/clean-landing-page.js",
           "preview": "vite preview --port 4173"
       }
   }
