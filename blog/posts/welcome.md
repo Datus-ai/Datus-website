@@ -1,11 +1,34 @@
 ---
 title: Welcome to Datus Blog
-description: Introducing the Datus blog - insights on AI-native data engineering
+description: Introducing the Datus blog with insights on AI-native data engineering, context engineering, and reliable data workflows.
 date: 2025-01-20
+lastmod: 2026-02-26
 author: Datus Team
 tags:
   - announcement
   - introduction
+head:
+  - - meta
+    - property: og:title
+      content: Welcome to Datus Blog
+  - - meta
+    - property: og:description
+      content: Introducing the Datus blog with insights on AI-native data engineering, context engineering, and reliable data workflows.
+  - - meta
+    - property: og:type
+      content: article
+  - - meta
+    - property: og:url
+      content: https://datus.ai/blog/posts/welcome
+  - - meta
+    - property: og:image
+      content: https://datus.ai/logo_dark.svg
+  - - meta
+    - name: twitter:card
+      content: summary_large_image
+  - - link
+    - rel: canonical
+      href: https://datus.ai/blog/posts/welcome
 ---
 
 # Welcome to Datus Blog

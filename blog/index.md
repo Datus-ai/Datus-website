@@ -1,5 +1,11 @@
 ---
 layout: home
+title: Datus Blog
+description: Insights on AI-native data engineering, contextual data systems, and reliable data agents.
+head:
+  - - link
+    - rel: canonical
+      href: https://datus.ai/blog/
 
 hero:
   name: Datus Blog

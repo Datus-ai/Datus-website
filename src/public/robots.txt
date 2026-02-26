@@ -1,10 +1,7 @@
 User-agent: *
 Allow: /
 
-# Allow all content to be crawled
-Allow: /blog/
-Allow: /blog/posts/
-Allow: /data-engineering-agent/
+# Block common utility paths if added in future
+Disallow: /404
 
-# Sitemap location
 Sitemap: https://datus.ai/sitemap.xml

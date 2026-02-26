@@ -3,12 +3,23 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'Datus Blog',
   description: 'Insights on AI-Native Data Engineering',
-  base: '/blog/', // Required for GitHub Pages deployment
+  lang: 'en-US',
+  base: '/blog/',
+  cleanUrls: true,
+  lastUpdated: true,
+  sitemap: {
+    hostname: 'https://datus.ai'
+  },
 
-  appearance: false, // Disable theme toggle
+  appearance: false,
 
   head: [
     ['link', { rel: 'icon', href: '/blog/favicon.svg', type: 'image/svg+xml' }],
+    ['meta', { name: 'robots', content: 'index, follow, max-image-preview:large' }],
+    ['meta', { property: 'og:site_name', content: 'Datus Blog' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:image', content: 'https://datus.ai/logo_dark.svg' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     // Google Analytics
     ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP' }],
     ['script', {}, `window.dataLayer = window.dataLayer || [];
@@ -31,7 +42,6 @@ export default defineConfig({
         text: 'Data Engineering Agent Series',
         items: [
           { text: 'Complete Guide', link: '/data-engineering-agent/' },
-          { text: 'What Is an Agent?', link: '/posts/what-is-data-engineering-agent' },
           { text: 'Layered Subagent Architecture', link: '/data-engineering-agent/data-engineering-agent-layered-subagent' }
         ]
       },
