@@ -1,26 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Datus</title>
+    <title>AI-Native SQL Client for Data Engineers | Datus</title>
+    <meta
+      name="description"
+      content="Datus is an AI-native SQL client for data engineers. Build faster pipelines, improve data quality, and unify modern data stack workflows with governance and observability."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Datus" />
 
-      <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <link rel="canonical" href="https://datus.ai/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-        gtag('config', 'G-EPVCH78EZP');
-      </script>
-    </head>
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Datus" />
+    <meta property="og:title" content="AI-Native SQL Client for Data Engineers | Datus" />
+    <meta
+      property="og:description"
+      content="Datus is an AI-native SQL client for data engineers. Build faster pipelines, improve data quality, and unify modern data stack workflows with governance and observability."
+    />
+    <meta property="og:url" content="https://datus.ai/" />
+    <meta property="og:image" content="https://datus.ai/og/home-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Datus AI-native SQL client" />
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI-Native SQL Client for Data Engineers | Datus" />
+    <meta
+      name="twitter:description"
+      content="Datus is an AI-native SQL client for data engineers. Build faster pipelines, improve data quality, and unify modern data stack workflows with governance and observability."
+    />
+    <meta name="twitter:image" content="https://datus.ai/og/home-1200x630.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Datus",
+        "url": "https://datus.ai/",
+        "logo": "https://datus.ai/logo_dark.svg",
+        "email": "contact@datus.ai",
+        "sameAs": [
+          "https://github.com/Datus-ai/Datus-agent",
+          "https://docs.datus.ai"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Datus",
+        "url": "https://datus.ai/"
+      }
+    </script>
+
+    <!-- Google tag (gtag.js) with Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        wait_for_update: 500,
+      });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP"></script>
+    <script>
+      gtag("js", new Date());
+      gtag("config", "G-EPVCH78EZP");
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
