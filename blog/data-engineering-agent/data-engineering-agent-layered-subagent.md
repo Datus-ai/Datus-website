@@ -16,13 +16,13 @@ head:
       content: https://datus.ai/images/layered-subagent-for-data-engineering-agent.jpeg
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/data-engineering-agent/data-engineering-agent-layered-subagent.html
+      content: https://datus.ai/blog/data-engineering-agent/data-engineering-agent-layered-subagent
   - - meta
     - name: twitter:card
       content: summary_large_image
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/data-engineering-agent/data-engineering-agent-layered-subagent.html
+      href: https://datus.ai/blog/data-engineering-agent/data-engineering-agent-layered-subagent
 ---
 
 # The Rise of Subagents: Why Data Engineering Agents Need a Layered Architecture
@@ -244,7 +244,6 @@ This is how AI becomes practical in enterprise analytics.
 
 
 - [Data Engineering Agent Complete Guide](/data-engineering-agent/)
-- [What Is a Data Engineering Agent?](/posts/what-is-data-engineering-agent)
 
 ## Next Steps
 

@@ -1,3 +1,12 @@
+---
+title: All Posts
+description: Browse all Datus blog posts on AI-native data engineering, context engineering, and data agent architecture.
+head:
+  - - link
+    - rel: canonical
+      href: https://datus.ai/blog/posts/
+---
+
 # All Posts
 
 ## 2025

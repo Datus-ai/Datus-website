@@ -18,8 +18,14 @@ head:
     - property: og:url
       content: https://datus.ai/data-engineering-agent/
   - - meta
+    - property: og:image
+      content: https://datus.ai/logo_dark.svg
+  - - meta
     - name: twitter:card
       content: summary_large_image
+  - - meta
+    - name: twitter:image
+      content: https://datus.ai/logo_dark.svg
   - - meta
     - name: twitter:title
       content: Data Engineering Agent - AI-Powered Data Pipeline Automation
