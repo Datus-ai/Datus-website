@@ -48,6 +48,9 @@ export default defineConfig({
       {
         text: 'Recent Posts',
         items: [
+          { text: 'What Is a Data Engineering Agent? A Practical Guide with Datus', link: '/posts/what-is-data-engineering-agent' },
+          { text: 'Data Engineering Agent Architecture: From Prototype to Production with Datus', link: '/posts/data-engineering-agent-architecture' },
+          { text: '7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)', link: '/posts/data-engineering-agent-use-cases' },
           { text: 'SQL agents are broken without context. Meet Datus.', link: '/posts/meet_datus' }
         ]
       }
