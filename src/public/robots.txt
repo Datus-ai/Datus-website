@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-# Block common utility paths if added in future
-Disallow: /404
-
 Sitemap: https://datus.ai/sitemap.xml

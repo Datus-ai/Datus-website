@@ -25,7 +25,10 @@
       content="Datus is an AI-native SQL client for data engineers. Build faster pipelines, improve data quality, and unify modern data stack workflows with governance and observability."
     />
     <meta property="og:url" content="https://datus.ai/" />
-    <meta property="og:image" content="https://datus.ai/logo_dark.svg" />
+    <meta property="og:image" content="https://datus.ai/og/home-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Datus AI-native SQL client" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +37,7 @@
       name="twitter:description"
       content="Datus is an AI-native SQL client for data engineers. Build faster pipelines, improve data quality, and unify modern data stack workflows with governance and observability."
     />
-    <meta name="twitter:image" content="https://datus.ai/logo_dark.svg" />
+    <meta name="twitter:image" content="https://datus.ai/og/home-1200x630.png" />
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -60,13 +63,22 @@
       }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP"></script>
+    <!-- Google tag (gtag.js) with Consent Mode v2 -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        wait_for_update: 500,
+      });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP"></script>
+    <script>
       gtag("js", new Date());
       gtag("config", "G-EPVCH78EZP");
     </script>
