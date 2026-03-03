@@ -8,7 +8,15 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   sitemap: {
-    hostname: 'https://datus.ai'
+    hostname: 'https://datus.ai',
+    transformItems(items) {
+      return items.map((item) => {
+        const raw = item.url || '/'
+        const normalized = raw.startsWith('/') ? raw : `/${raw}`
+        const url = normalized.startsWith('/blog/') ? normalized : `/blog${normalized}`
+        return { ...item, url }
+      })
+    }
   },
 
   appearance: false,
