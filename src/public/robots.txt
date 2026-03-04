@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://datus.ai/sitemap.xml
+Sitemap: https://datus.ai/blog/sitemap.xml
