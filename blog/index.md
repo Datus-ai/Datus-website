@@ -37,6 +37,12 @@ features:
 - [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases) - March 2, 2026
 - [SQL agents are broken without context. Meet Datus.](/posts/meet_datus) - October 21, 2025
 
+### Recommended Series
+
+- [Data Engineering Agent: The Complete Guide](/data-engineering-agent/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+- [Data Engineering Agent Architecture: From Prototype to Production](/posts/data-engineering-agent-architecture)
+
 ---
 
 ## Stay Connected

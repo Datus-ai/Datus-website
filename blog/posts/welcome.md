@@ -74,4 +74,18 @@ Datus is more than a tool—it's a new paradigm for data engineering. We're buil
 
 ---
 
+## Recommended Reading
+
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+- [Data Engineering Agent: The Complete Guide](/data-engineering-agent/)
+
+---
+
+## Continue Reading
+
+- Next: [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+
 Stay tuned for our next post where we'll dive into the fundamentals of context engineering!

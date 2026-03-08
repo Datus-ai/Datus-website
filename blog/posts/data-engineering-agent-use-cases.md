@@ -82,8 +82,20 @@ Start with one domain subagent and one measurable KPI, then expand only after we
 - Context + feedback is the real moat for data engineering agents.
 - Datus gives teams a practical way to turn AI into production capability.
 
+## Related Reading
+
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+
 ## Learn more
 
 - Datus GitHub: https://github.com/Datus-ai/Datus-agent
 - Docs: https://docs.datus.ai
 - Contextual data engineering: https://docs.datus.ai/getting_started/contextual_data_engineering/
+
+## Continue Reading
+
+- Previous: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- Next: [Data Engineering Agent: The Complete Guide](/data-engineering-agent/)

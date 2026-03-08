@@ -81,8 +81,20 @@ Because data work depends on business definitions, lineage, and historical decis
 ### Can Datus work with my existing stack?
 Yes. Datus is designed to integrate with modern warehouses, catalogs, and orchestration tools.
 
+## Related Reading
+
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+
 ## Start with Datus
 
 - GitHub: https://github.com/Datus-ai/Datus-agent
 - Docs: https://docs.datus.ai
 - Main site: https://datus.ai
+
+## Continue Reading
+
+- Previous: [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+- Next: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)

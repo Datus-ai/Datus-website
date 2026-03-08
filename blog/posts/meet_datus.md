@@ -114,8 +114,20 @@ Contextual Data Engineering flips this model: the pipeline itself becomes a livi
 
 Ultimately, Datus is about building this evolvable context—a living foundation that transforms how data engineering is done. Instead of merely developing tables or static pipelines, engineers can now design flexible, multi-functional, and extensible agents that continuously learn from feedback and evolve with their data systems. Datus bridges engineering precision with intelligent adaptability, turning context into the most valuable asset of modern data work.
 
+## Related Reading
+
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+
 ## Getting started
 - [Installation and quickstart](https://docs.datus.ai/getting_started/Quickstart/)
 - [Detailed conception and step by step tutorial of contextual data engineering](https://docs.datus.ai/getting_started/contextual_data_engineering/)
 - [Join the slack](https://datusai.slack.com/join/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg)
+
+## Continue Reading
+
+- Previous: [Welcome to the Datus Blog](/posts/welcome)
+- Next: [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
 

@@ -93,3 +93,15 @@ Clear structure helps both human readers and AI answer engines:
 - Production agents are architecture + context, not prompt-only systems.
 - Subagent scoping is essential for reliability.
 - Datus provides a practical blueprint to scale safely.
+
+## Related Reading
+
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+
+## Continue Reading
+
+- Previous: [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- Next: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
