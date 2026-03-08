@@ -9,6 +9,14 @@ head:
 
 # All Posts
 
+## Data Engineering Agent Series
+
+- [Data Engineering Agent: The Complete Guide](/data-engineering-agent/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+
 ## 2026
 
 ### March

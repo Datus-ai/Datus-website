@@ -41,6 +41,11 @@ head:
 
 Data Engineering Agents represent a paradigm shift in how organizations build, maintain, and scale data infrastructure. Unlike traditional ETL tools that simply move data from point A to point B, Data Engineering Agents leverage artificial intelligence to understand context, learn from interactions, and evolve with your data systems.
 
+If you're evaluating practical implementation paths, start with these companion guides:
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+
 ## What Is a Data Engineering Agent?
 
 A **Data Engineering Agent** is an AI-powered system that autonomously handles data engineering tasks by combining large language models (LLMs) with deep contextual understanding of your data infrastructure. Rather than following rigid, pre-programmed rules, these agents:
@@ -95,7 +100,7 @@ Data Engineering Agents improve through continuous feedback:
 
 #### 3. Subagent Architecture
 
-Rather than building one monolithic AI system, modern Data Engineering Agents use **subagents**—specialized agents scoped to specific domains:
+Rather than building one monolithic AI system, modern Data Engineering Agents use **subagents**—specialized agents scoped to specific domains. If you want a deep dive specifically on this pattern, read [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent).
 
 - **Retention Analytics Subagent**: Focused on user retention metrics, cohort analysis
 - **Financial Reporting Subagent**: Handles revenue, costs, margin calculations
@@ -268,7 +273,7 @@ Data Engineering Agents **preserve and evolve knowledge**:
 
 ### Start Small, Prove Value, Scale
 
-Don't try to build a comprehensive agent for all data on day one.
+Don't try to build a comprehensive agent for all data on day one. For a concrete rollout blueprint, see [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture).
 
 **Recommended Approach**:
 
@@ -668,6 +673,9 @@ Ready to transform your data workflows with AI-powered agents?
 ### Learn More
 
 - [SQL agents are broken without context. Meet Datus.](/posts/meet_datus) - Deep dive into why context matters
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent) - Business + technical primer
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture) - Architecture and rollout path
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases) - Practical scenarios and ROI
 - [Contextual Data Engineering Tutorial](https://docs.datus.ai/getting_started/contextual_data_engineering/) - Step-by-step guide
 - [Architecture Overview](https://docs.datus.ai/concepts/architecture/) - Technical details
 
