@@ -23,7 +23,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import React, { useEffect, useMemo, useState } from "react";
 import { DataLifecycleDiagram } from "./components/DataLifecycleDiagram";
 import DatusContextTriad from "./components/DatusContextTriad";

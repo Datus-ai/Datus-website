@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 // --- Sample data (replace with your own) ---
 const CATALOG = ["DataHub", "Amundsen", "Unity Catalog", "AWS Glue"];

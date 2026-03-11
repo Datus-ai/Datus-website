@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Card } from "./ui/card";
 import { Sparkles, Cpu } from "lucide-react";
 import { phases, actors } from "../constants/data";
