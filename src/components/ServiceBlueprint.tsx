@@ -53,7 +53,7 @@ export function ServiceBlueprint({ id = "service-blueprint" }: ServiceBlueprintP
             Service Blueprint
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Comprehensive view of how AI automation integrates into traditional data engineering workflows
+            A system-level view of how a data engineering agent works across context, workflows, validation, orchestration, and delivery.
           </p>
         </motion.div>
 
@@ -308,7 +308,7 @@ export function ServiceBlueprint({ id = "service-blueprint" }: ServiceBlueprintP
             className="inline-block p-4 rounded-xl shadow-lg"
           >
             <p className="text-white font-medium">
-              🚀 Ready to transform your data engineering workflow with AI?
+              🚀 Ready to move from AI tooling to agentic data engineering?
             </p>
           </motion.div>
         </motion.div>

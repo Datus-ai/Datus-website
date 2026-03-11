@@ -235,8 +235,7 @@ export function OptimizedLifecycleSection() {
               viewport={{ once: true }}
               className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
             >
-              From SQL development and data quality to monitoring and documentation—experience 
-              the complete data engineering workflow with AI-native automation and human-in-the-loop collaboration.
+              From SQL development and validation to orchestration, monitoring, and documentation—see how a data engineering agent can operate across the workflow with structured context and human-in-the-loop control.
             </motion.p>
           </motion.div>
 

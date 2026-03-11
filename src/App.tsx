@@ -1760,9 +1760,9 @@ export default function App() {
               viewport={{ once: true }}
               className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
             >
-              Ready to transform your data engineering workflow?
-              Let's discuss how Datus can revolutionize your
-              data stack.
+              Building toward agentic data engineering?
+              Let's discuss how Datus can fit into your stack as a
+              data engineering agent with structured context and guardrails.
             </motion.p>
 
             <motion.div
