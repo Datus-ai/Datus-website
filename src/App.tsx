@@ -425,7 +425,7 @@ export default function App() {
                   }}
                   style={{ backgroundSize: "200% 100%" }}
                 >
-                  AI Native SQL Client for Data Engineers
+                  Data Engineering Agent for the Agentic Data Stack
                 </motion.span>
               </motion.div>
 
@@ -435,7 +435,7 @@ export default function App() {
                 transition={{ duration: 0.8, delay: 1.2 }}
                 className="text-white block mt-4"
               >
-                The Future of{" "}
+                Built for{" "}
                 <motion.span
                   className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400"
                   animate={{
@@ -452,7 +452,7 @@ export default function App() {
                   }}
                   style={{ backgroundSize: "200% 100%" }}
                 >
-                  Data Engineering
+                  Agentic Data Engineering
                 </motion.span>
               </motion.span>
             </motion.h1>
