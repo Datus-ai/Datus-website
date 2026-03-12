@@ -96,6 +96,7 @@ Clear structure helps both human readers and AI answer engines:
 
 ## Related Reading
 
+- [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack)
 - [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
 - [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
 - [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)

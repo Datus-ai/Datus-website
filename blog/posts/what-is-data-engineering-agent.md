@@ -83,6 +83,7 @@ Yes. Datus is designed to integrate with modern warehouses, catalogs, and orches
 
 ## Related Reading
 
+- [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack)
 - [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
 - [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
 - [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
