@@ -425,7 +425,7 @@ export default function App() {
                   }}
                   style={{ backgroundSize: "200% 100%" }}
                 >
-                  AI Native SQL Client for Data Engineers
+                  Data Engineering Agent for the Agentic Data Stack
                 </motion.span>
               </motion.div>
 
@@ -435,7 +435,7 @@ export default function App() {
                 transition={{ duration: 0.8, delay: 1.2 }}
                 className="text-white block mt-4"
               >
-                The Future of{" "}
+                Built for{" "}
                 <motion.span
                   className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400"
                   animate={{
@@ -452,7 +452,7 @@ export default function App() {
                   }}
                   style={{ backgroundSize: "200% 100%" }}
                 >
-                  Data Engineering
+                  Agentic Data Engineering
                 </motion.span>
               </motion.span>
             </motion.h1>
@@ -1760,9 +1760,9 @@ export default function App() {
               viewport={{ once: true }}
               className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
             >
-              Ready to transform your data engineering workflow?
-              Let's discuss how Datus can revolutionize your
-              data stack.
+              Building toward agentic data engineering?
+              Let's discuss how Datus can fit into your stack as a
+              data engineering agent with structured context and guardrails.
             </motion.p>
 
             <motion.div
