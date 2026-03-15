@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Datus Blog
-description: Insights on AI-native data engineering, contextual data systems, and reliable data agents.
+description: Insights on AI-native data engineering, agentic workflows, MCP-enabled tooling, and semantic reliability.
 head:
   - - link
     - rel: canonical
@@ -9,45 +9,93 @@ head:
 
 hero:
   name: Datus Blog
-  tagline: Insights on context-driven analytics and the future of data systems
+  tagline: A structured content system for agentic data engineering, AI pipeline automation, MCP tooling, and semantic reliability
   actions:
     - theme: brand
-      text: Read Latest Posts
+      text: Explore All Posts
       link: /posts/
-    - theme: brand
-      text: View on GitHub
-      link: https://github.com/Datus-ai/Datus-agent
+    - theme: alt
+      text: Read the Docs
+      link: https://docs.datus.ai
 
 features:
-  - icon: 🚀
-    title: Product Updates
-    details: Latest features, releases, and roadmap updates from the Datus team
-  - icon: 📊
-    title: Technical Deep Dives
-    details: In-depth explorations of context engineering, AI agents, and data workflows
-  - icon: 💡
-    title: Best Practices
-    details: Real-world case studies and proven patterns for data engineering teams
+  - icon: 🧭
+    title: Pillar Articles
+    details: Start with the four cornerstone pieces that define Datus's point of view and topic clusters.
+  - icon: 🧱
+    title: Topic Clusters
+    details: Each supporting article deepens a specific cluster instead of competing for the same search intent.
+  - icon: ⚙️
+    title: Production Reality
+    details: We focus on workflows, tooling, context, reliability, and operational tradeoffs—not generic AI fluff.
 ---
 
-## Recent Posts
+## Featured Pillar Articles
 
-- [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack) - March 11, 2026
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent) - March 2, 2026
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture) - March 2, 2026
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases) - March 2, 2026
-- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus) - October 21, 2025
+### 1. Agentic Data Engineering
+- [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
 
-### Recommended Series
+### 2. AI Data Pipeline Automation
+- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
+
+### 3. MCP / Tooling / Runtime
+- **How MCP Changes Data Workflow Automation** — coming soon
+
+### 4. Semantic Context / Reliability
+- **Why AI Agents Need Semantic Context to Work Reliably** — coming soon
+
+## Topic Clusters
+
+### Agentic Data Engineering
+**Pillar**
+- [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
+
+**Supporting**
+- **Why Data Engineering Needs Agents, Not Just Copilots** — coming soon
+- **What Autonomous Data Engineering Actually Looks Like in Practice** — coming soon
+- **The Operating Model of an Agentic Data Team** — coming soon
+
+### AI Data Pipeline Automation
+**Pillar**
+- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
+
+**Supporting**
+- **Agentic ETL: What Changes Beyond Traditional ETL** — coming soon
+- **How to Automate Data Pipelines with AI Agents** — coming soon
+- **Where AI Helps Most in Data Pipeline Operations** — coming soon
+- **Designing Reliable AI-Driven Data Pipelines** — coming soon
+
+### MCP / Tooling / Runtime
+**Pillar**
+- **How MCP Changes Data Workflow Automation** — coming soon
+
+**Supporting**
+- **Using MCP Extensions in Data Engineering Workflows** — coming soon
+- **Why Tool Access Matters for Data Agents** — coming soon
+- **How to Connect AI Agents to Data Systems Safely** — coming soon
+- **From Prompting to Tool-Using Agents in Data Engineering** — coming soon
+
+### Semantic Context / Reliability / Metrics
+**Pillar**
+- **Why AI Agents Need Semantic Context to Work Reliably** — coming soon
+
+**Supporting**
+- **Semantic Modeling for Agentic Analytics Workflows** — coming soon
+- **MetricFlow and the Future of Agentic Analytics** — coming soon
+- **How Structured Context Improves AI Agent Output** — coming soon
+- **Why Reliable Data Agents Need More Than Good Prompts** — coming soon
+
+## Existing Foundations
 
 - [Data Engineering Agent: The Complete Guide](/data-engineering-agent/)
 - [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
-- [Data Engineering Agent Architecture: From Prototype to Production](/posts/data-engineering-agent-architecture)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
 
----
+## Start Here
 
-## Stay Connected
-
-- ⭐ [Star us on GitHub](https://github.com/Datus-ai/Datus-agent)
 - 📖 [Read the Documentation](https://docs.datus.ai)
-- 💬 [Join our Slack Community](https://join.slack.com/t/datusai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg)
+- ⚡ [Explore the Quickstart](https://docs.datus.ai)
+- ⭐ [Star Datus on GitHub](https://github.com/Datus-ai/Datus-agent)

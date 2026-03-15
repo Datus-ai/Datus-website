@@ -47,20 +47,32 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Data Engineering Agent Series',
+        text: 'Featured Pillar Articles',
         items: [
-          { text: 'Complete Guide', link: '/data-engineering-agent/' },
-          { text: 'Layered Subagent Architecture', link: '/data-engineering-agent/data-engineering-agent-layered-subagent' }
+          { text: 'Agentic Data Engineering vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
+          { text: 'AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' }
         ]
       },
       {
-        text: 'Recent Posts',
+        text: 'Agentic Data Engineering',
         items: [
-          { text: 'AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' },
-          { text: 'Agentic Data Engineering vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
+          { text: 'Pillar: Agentic Data Engineering vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
           { text: 'What Is a Data Engineering Agent? A Practical Guide with Datus', link: '/posts/what-is-data-engineering-agent' },
           { text: 'Data Engineering Agent Architecture: From Prototype to Production with Datus', link: '/posts/data-engineering-agent-architecture' },
-          { text: '7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)', link: '/posts/data-engineering-agent-use-cases' },
+          { text: '7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)', link: '/posts/data-engineering-agent-use-cases' }
+        ]
+      },
+      {
+        text: 'AI Data Pipeline Automation',
+        items: [
+          { text: 'Pillar: AI Data Pipeline Automation', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' }
+        ]
+      },
+      {
+        text: 'Foundations',
+        items: [
+          { text: 'Data Engineering Agent: Complete Guide', link: '/data-engineering-agent/' },
+          { text: 'Layered Subagent Architecture', link: '/data-engineering-agent/data-engineering-agent-layered-subagent' },
           { text: 'SQL agents are broken without context. Meet Datus.', link: '/posts/meet_datus' }
         ]
       }
