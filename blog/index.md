@@ -42,7 +42,7 @@ features:
 - [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation)
 
 ### 4. Semantic Context / Reliability
-- **Why AI Agents Need Semantic Context to Work Reliably** — coming soon
+- [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
 
 ## Topic Clusters
 

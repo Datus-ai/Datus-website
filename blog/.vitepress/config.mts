@@ -50,7 +50,9 @@ export default defineConfig({
         text: 'Featured Pillar Articles',
         items: [
           { text: 'Agentic Data Engineering vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
-          { text: 'AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' }
+          { text: 'AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' },
+          { text: 'How MCP Changes Data Workflow Automation', link: '/posts/how-mcp-changes-data-workflow-automation' },
+          { text: 'Why AI Agents Need Semantic Context to Work Reliably', link: '/posts/why-ai-agents-need-semantic-context-to-work-reliably' }
         ]
       },
       {
@@ -72,6 +74,12 @@ export default defineConfig({
         text: 'MCP / Tooling / Runtime',
         items: [
           { text: 'Pillar: How MCP Changes Data Workflow Automation', link: '/posts/how-mcp-changes-data-workflow-automation' }
+        ]
+      },
+      {
+        text: 'Semantic Context / Reliability',
+        items: [
+          { text: 'Pillar: Why AI Agents Need Semantic Context to Work Reliably', link: '/posts/why-ai-agents-need-semantic-context-to-work-reliably' }
         ]
       },
       {
