@@ -35,9 +35,6 @@ These are the four cornerstone articles that define the main Datus blog clusters
 
 **Supporting**
 - [Agentic ETL: What Changes Beyond Traditional ETL](/posts/agentic-etl-what-changes-beyond-traditional-etl)
-- **How to Automate Data Pipelines with AI Agents** — coming soon
-- **Where AI Helps Most in Data Pipeline Operations** — coming soon
-- **Designing Reliable AI-Driven Data Pipelines** — coming soon
 
 ## Cluster C — MCP / Tooling / Runtime
 
@@ -46,9 +43,6 @@ These are the four cornerstone articles that define the main Datus blog clusters
 
 **Supporting**
 - [Using MCP Extensions in Data Engineering Workflows](/posts/using-mcp-extensions-in-data-engineering-workflows)
-- **Why Tool Access Matters for Data Agents** — coming soon
-- **How to Connect AI Agents to Data Systems Safely** — coming soon
-- **From Prompting to Tool-Using Agents in Data Engineering** — coming soon
 
 ## Cluster D — Semantic Context / Reliability / Metrics
 
@@ -57,7 +51,6 @@ These are the four cornerstone articles that define the main Datus blog clusters
 
 **Supporting**
 - [Semantic Modeling for Agentic Analytics Workflows](/posts/semantic-modeling-for-agentic-analytics-workflows)
-- **MetricFlow and the Future of Agentic Analytics** — coming soon
 - [How Structured Context Improves AI Agent Output](/posts/how-structured-context-improves-ai-agent-output)
 - [Why Reliable Data Agents Need More Than Good Prompts](/posts/why-reliable-data-agents-need-more-than-good-prompts)
 
