@@ -42,6 +42,7 @@ head:
 Data Engineering Agents represent a paradigm shift in how organizations build, maintain, and scale data infrastructure. Unlike traditional ETL tools that simply move data from point A to point B, Data Engineering Agents leverage artificial intelligence to understand context, learn from interactions, and evolve with your data systems.
 
 If you're evaluating practical implementation paths, start with these companion guides:
+- [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
 - [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack)
 - [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
 - [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)

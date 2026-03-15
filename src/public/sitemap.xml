@@ -30,8 +30,15 @@
 
   <url>
     <loc>https://datus.ai/blog/posts/</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/agentic-data-engineering-vs-traditional-data-engineering</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
