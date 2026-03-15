@@ -322,5 +322,5 @@ If the environment is small, stable, heavily regulated, or not yet well-modeled,
 ## Start with Datus
 
 - GitHub: https://github.com/Datus-ai/Datus-agent
-- Docs: https://docs.datus.ai
+- Docs: [Datus Docs](https://docs.datus.ai)
 - Main site: https://datus.ai

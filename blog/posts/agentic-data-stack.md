@@ -174,7 +174,7 @@ If you're exploring how metadata, semantics, lineage, and orchestration can beco
 ## Start with Datus
 
 - GitHub: https://github.com/Datus-ai/Datus-agent
-- Docs: https://docs.datus.ai
+- Docs: [Datus Docs](https://docs.datus.ai)
 - Main site: https://datus.ai
 
 ## Continue Reading

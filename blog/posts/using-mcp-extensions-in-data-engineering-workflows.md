@@ -301,7 +301,7 @@ If your goal is reliable automation in production data systems, that is the stan
 
 If you are exploring tool-using agents for production data workflows, start with the MCP and extension guidance in the Datus docs and map the workflow before you expose the tools.
 
-- Explore MCP and extension documentation on `docs.datus.ai`
+- Explore [MCP and extension documentation](https://docs.datus.ai/cli/mcp_extensions/)
 - Read **How MCP Changes Data Workflow Automation** to see where this article fits in the broader MCP/tooling cluster
 
 ## FAQ

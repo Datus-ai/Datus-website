@@ -278,7 +278,7 @@ That is not extra infrastructure. It is the operating substrate for production-g
 
 ## Start with Datus
 
-- Docs: https://docs.datus.ai
-- Semantic context and workflow docs: https://docs.datus.ai
+- Docs: [Datus Docs](https://docs.datus.ai)
+- Semantic context and workflow docs: [Datus Docs](https://docs.datus.ai)
 - GitHub: https://github.com/Datus-ai/Datus-agent
 - Main site: https://datus.ai

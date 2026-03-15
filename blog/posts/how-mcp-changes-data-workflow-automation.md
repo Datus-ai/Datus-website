@@ -288,10 +288,10 @@ That is why MCP matters now. It does not make data workflow automation effortles
 
 ## Continue exploring
 
-- **Read the docs:** https://docs.datus.ai/integration/mcp/
-- **Explore MCP extensions:** https://docs.datus.ai/cli/mcp_extensions/
-- **See workflow concepts:** https://docs.datus.ai/workflow/introduction/
-- **Read about contextual data engineering:** https://docs.datus.ai/getting_started/contextual_data_engineering/
+- **Read the docs:** [MCP docs](https://docs.datus.ai/integration/mcp/)
+- **Explore MCP extensions:** [MCP extensions](https://docs.datus.ai/cli/mcp_extensions/)
+- **See workflow concepts:** [Workflow introduction](https://docs.datus.ai/workflow/introduction/)
+- **Read about contextual data engineering:** [Contextual Data Engineering](https://docs.datus.ai/getting_started/contextual_data_engineering/)
 
 ## Related Reading
 
@@ -302,7 +302,7 @@ That is why MCP matters now. It does not make data workflow automation effortles
 
 ## Start with Datus
 
-- MCP docs: https://docs.datus.ai/integration/mcp/
-- MCP extensions: https://docs.datus.ai/cli/mcp_extensions/
+- MCP docs: [MCP docs](https://docs.datus.ai/integration/mcp/)
+- MCP extensions: [MCP extensions](https://docs.datus.ai/cli/mcp_extensions/)
 - GitHub: https://github.com/Datus-ai/Datus-agent
 - Main site: https://datus.ai

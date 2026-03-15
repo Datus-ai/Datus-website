@@ -62,7 +62,7 @@ A deployable setup usually includes:
 - Context layer: catalog + semantic + reference SQL
 - Tool layer: warehouse, lineage, scheduler, docs
 
-See Datus docs: https://docs.datus.ai
+See [Datus Docs](https://docs.datus.ai)
 
 ## Key takeaways
 
@@ -92,7 +92,7 @@ Yes. Datus is designed to integrate with modern warehouses, catalogs, and orches
 ## Start with Datus
 
 - GitHub: https://github.com/Datus-ai/Datus-agent
-- Docs: https://docs.datus.ai
+- Docs: [Datus Docs](https://docs.datus.ai)
 - Main site: https://datus.ai
 
 ## Continue Reading

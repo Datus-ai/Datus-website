@@ -339,7 +339,7 @@ If you are building toward production-grade automation, that is the bar. Not gen
 
 ## Next steps
 
-- Start with the Datus quickstart and workflow docs: https://docs.datus.ai/
+- Start with the [Datus quickstart and workflow docs](https://docs.datus.ai/)
 - Then read the supporting article: How to Automate Data Pipelines with AI Agents
 - Related reading: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
 
@@ -352,6 +352,6 @@ If you are building toward production-grade automation, that is the bar. Not gen
 
 ## Start with Datus
 
-- Docs: https://docs.datus.ai
+- Docs: [Datus Docs](https://docs.datus.ai)
 - GitHub: https://github.com/Datus-ai/Datus-agent
 - Main site: https://datus.ai

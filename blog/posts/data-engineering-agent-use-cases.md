@@ -93,8 +93,8 @@ Start with one domain subagent and one measurable KPI, then expand only after we
 ## Learn more
 
 - Datus GitHub: https://github.com/Datus-ai/Datus-agent
-- Docs: https://docs.datus.ai
-- Contextual data engineering: https://docs.datus.ai/getting_started/contextual_data_engineering/
+- Docs: [Datus Docs](https://docs.datus.ai)
+- Contextual data engineering: [Contextual Data Engineering](https://docs.datus.ai/getting_started/contextual_data_engineering/)
 
 ## Continue Reading
 
