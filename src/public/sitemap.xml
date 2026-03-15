@@ -50,6 +50,13 @@
   </url>
 
   <url>
+    <loc>https://datus.ai/blog/posts/how-mcp-changes-data-workflow-automation</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://datus.ai/blog/posts/meet_datus</loc>
     <lastmod>2026-03-03</lastmod>
     <changefreq>monthly</changefreq>

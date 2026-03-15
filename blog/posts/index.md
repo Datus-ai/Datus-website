@@ -15,7 +15,7 @@ These are the four cornerstone articles that define the main Datus blog clusters
 
 - [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
 - [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
-- **How MCP Changes Data Workflow Automation** — coming soon
+- [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation)
 - **Why AI Agents Need Semantic Context to Work Reliably** — coming soon
 
 ## Cluster A — Agentic Data Engineering
@@ -42,7 +42,7 @@ These are the four cornerstone articles that define the main Datus blog clusters
 ## Cluster C — MCP / Tooling / Runtime
 
 **Pillar**
-- **How MCP Changes Data Workflow Automation** — coming soon
+- [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation) - March 16, 2026
 
 **Supporting**
 - **Using MCP Extensions in Data Engineering Workflows** — coming soon

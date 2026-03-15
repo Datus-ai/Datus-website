@@ -39,7 +39,7 @@ features:
 - [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
 
 ### 3. MCP / Tooling / Runtime
-- **How MCP Changes Data Workflow Automation** — coming soon
+- [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation)
 
 ### 4. Semantic Context / Reliability
 - **Why AI Agents Need Semantic Context to Work Reliably** — coming soon

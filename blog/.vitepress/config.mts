@@ -69,6 +69,12 @@ export default defineConfig({
         ]
       },
       {
+        text: 'MCP / Tooling / Runtime',
+        items: [
+          { text: 'Pillar: How MCP Changes Data Workflow Automation', link: '/posts/how-mcp-changes-data-workflow-automation' }
+        ]
+      },
+      {
         text: 'Foundations',
         items: [
           { text: 'Data Engineering Agent: Complete Guide', link: '/data-engineering-agent/' },
