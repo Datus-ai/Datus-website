@@ -56,6 +56,7 @@ export default defineConfig({
       {
         text: 'Recent Posts',
         items: [
+          { text: 'AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' },
           { text: 'Agentic Data Engineering vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
           { text: 'What Is a Data Engineering Agent? A Practical Guide with Datus', link: '/posts/what-is-data-engineering-agent' },
           { text: 'Data Engineering Agent Architecture: From Prototype to Production with Datus', link: '/posts/data-engineering-agent-architecture' },

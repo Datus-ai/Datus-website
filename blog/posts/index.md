@@ -21,6 +21,7 @@ head:
 
 ### March
 
+- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs) - March 16, 2026
 - [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering) - March 16, 2026
 - [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack) - March 11, 2026
 - [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent) - March 2, 2026

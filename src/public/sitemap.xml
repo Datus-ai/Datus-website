@@ -36,6 +36,13 @@
   </url>
 
   <url>
+    <loc>https://datus.ai/blog/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://datus.ai/blog/posts/agentic-data-engineering-vs-traditional-data-engineering</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
