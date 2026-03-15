@@ -263,11 +263,11 @@ Not more fluent output.
 
 More grounded output.
 
-## CTA
+## Next steps
 
-- **Read next:** [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
-- **Related:** [Why Reliable Data Agents Need More Than Good Prompts](/posts/why-reliable-data-agents-need-more-than-good-prompts)
-- **Explore:** Datus docs for semantic models, metrics, and workflow context at `docs.datus.ai`
+- [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
+- [Why Reliable Data Agents Need More Than Good Prompts](/posts/why-reliable-data-agents-need-more-than-good-prompts)
+- Explore Datus docs for semantic models, metrics, and workflow context at `docs.datus.ai`
 
 ## FAQ
 
@@ -291,6 +291,4 @@ Because small semantic errors in metrics, joins, lineage, or model selection can
 
 Yes. They give agents a more stable representation of business meaning, which improves consistency across prompts, users, and workflows.
 
-## hero_image_prompt
-
-A clean, modern editorial illustration for a B2B data infrastructure blog: an AI agent operating between two states, left side showing chaotic unstructured prompts, tangled tables, broken charts, and ambiguous metrics; right side showing structured context with semantic models, governed metrics, lineage graphs, and workflow guardrails leading to reliable outputs. Visual style should be minimal, technical, credible, and polished. Use deep blues, white, and subtle teal accents. No cartoonish robots, no hype aesthetics, no sci-fi excess. Emphasize clarity, system structure, and production-grade data workflows.
+ean, modern editorial illustration for a B2B data infrastructure blog: an AI agent operating between two states, left side showing chaotic unstructured prompts, tangled tables, broken charts, and ambiguous metrics; right side showing structured context with semantic models, governed metrics, lineage graphs, and workflow guardrails leading to reliable outputs. Visual style should be minimal, technical, credible, and polished. Use deep blues, white, and subtle teal accents. No cartoonish robots, no hype aesthetics, no sci-fi excess. Emphasize clarity, system structure, and production-grade data workflows.

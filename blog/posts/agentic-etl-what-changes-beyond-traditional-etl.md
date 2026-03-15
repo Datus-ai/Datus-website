@@ -263,12 +263,12 @@ That is a more useful model for production data workflows.
 
 It also aligns with where data teams are heading: not toward black-box autonomy, but toward systems that combine structured context, workflow-aware execution, and practical guardrails.
 
-## CTA: Keep the next step practical
+## Next steps
 
 If this article maps to what your team is seeing, the next useful step is not more AI hype. It is a clearer architecture for reliable automation.
 
-- **Primary CTA:** Read the pillar article on **AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs**
-- **Secondary CTA:** Explore workflow docs and pipeline examples to see how context, validation, and execution can work together in real data workflows
+- Read the pillar article on **AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs**
+- Explore workflow docs and pipeline examples to see how context, validation, and execution can work together in real data workflows
 
 ## FAQ
 
@@ -300,6 +300,4 @@ That does not remove the need for engineering discipline. It raises the value of
 
 The teams that benefit most will be the ones that treat agentic ETL as a reliability and execution architecture, not as a shortcut.
 
----
-
-**hero_image_prompt:** "Create a clean, technical hero image for a B2B data engineering article titled 'Agentic ETL: What Changes Beyond Traditional ETL'. Show a modern data pipeline control plane with flowing nodes for extract, transform, validate, lineage, semantic context, and workflow state. Contrast a rigid linear ETL path on one side with a context-aware adaptive agentic workflow on the other. Visual style: minimal, high-trust, systems-oriented, dark-on-light or subtle dark UI accents, suitable for an enterprise AI data platform blog. No cartoon robots, no hype visuals, no consumer AI aesthetic."
+engineering article titled 'Agentic ETL: What Changes Beyond Traditional ETL'. Show a modern data pipeline control plane with flowing nodes for extract, transform, validate, lineage, semantic context, and workflow state. Contrast a rigid linear ETL path on one side with a context-aware adaptive agentic workflow on the other. Visual style: minimal, high-trust, systems-oriented, dark-on-light or subtle dark UI accents, suitable for an enterprise AI data platform blog. No cartoon robots, no hype visuals, no consumer AI aesthetic."

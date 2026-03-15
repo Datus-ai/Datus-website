@@ -339,14 +339,14 @@ Reliable data agents are built, not merely prompted. They are grounded in semant
 
 Prompting still has a role. It is just not the foundation.
 
-## CTA
+## Next steps
 
 If you are building data agents for real workflows, start with the reliability layers first:
 
-- **Read:** [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
-- **Read:** [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation)
-- **Related:** [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
-- **Docs:** Explore the Datus docs to see how structured context, workflow-aware execution, and production guardrails fit together.
+- [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
+- [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation)
+- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
+- Explore the Datus docs to see how structured context, workflow-aware execution, and production guardrails fit together.
 
 ## FAQ
 

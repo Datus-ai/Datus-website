@@ -462,9 +462,9 @@ To go deeper on this topic cluster:
 - Read **Why Data Engineering Needs Agents, Not Just Copilots** for the argument behind agent-based workflow design
 - Read **What Autonomous Data Engineering Actually Looks Like in Practice** for concrete workflow examples
 
-## CTA
+## Next steps
 
-If you’re evaluating how to operationalize agentic data engineering, start by mapping one workflow end to end: context, review, approval, execution, and validation. Then compare that design to a platform approach built around structured context and execution with guardrails. **Read the docs** and **see the architecture** before you expand autonomy.
+If you’re evaluating how to operationalize agentic data engineering, start by mapping one workflow end to end: context, review, approval, execution, and validation. Then compare that design to a platform approach built around structured context and execution with guardrails. Read the docs and see the architecture before you expand autonomy.
 
 ## FAQ
 
@@ -492,6 +492,3 @@ Start with repeatable, bounded, reviewable workflows such as impact analysis, va
 
 Reliability comes from structured context, clear permissions, risk-based review, workflow guardrails, and ongoing evaluation. Good prompts help, but they are not enough on their own.
 
-## Hero image prompt
-
-Create a clean editorial-style hero image for a B2B data infrastructure article about “The Operating Model of an Agentic Data Team.” Show a modern data team coordinating with AI agents across a workflow board or systems map. Include subtle visual cues for metadata, lineage, semantic models, approvals, review loops, and guarded execution. Tone should feel credible, calm, and technical rather than futuristic hype. Use a minimal palette with deep blue, slate, white, and a small accent color. No robots, no sci-fi clichés, no glowing brains, no consumer-AI imagery. Landscape composition suitable for a blog hero banner.

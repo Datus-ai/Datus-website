@@ -297,12 +297,12 @@ The strongest implementations start narrow, stay structured, and treat governanc
 
 If your goal is reliable automation in production data systems, that is the standard worth holding.
 
-## CTA
+## Next steps
 
 If you are exploring tool-using agents for production data workflows, start with the MCP and extension guidance in the Datus docs and map the workflow before you expose the tools.
 
-- **Primary CTA:** Explore MCP and extension documentation on `docs.datus.ai`
-- **Secondary CTA:** Read **How MCP Changes Data Workflow Automation** to see where this article fits in the broader MCP/tooling cluster
+- Explore MCP and extension documentation on `docs.datus.ai`
+- Read **How MCP Changes Data Workflow Automation** to see where this article fits in the broader MCP/tooling cluster
 
 ## FAQ
 
@@ -325,7 +325,3 @@ Start with read-heavy workflows such as incident investigation, impact analysis,
 ### What tools should be connected first?
 
 Begin with the systems most relevant to the target workflow. In many teams, that means metadata, lineage, orchestration, semantic definitions, and quality signals before broader write access to production systems.
-
-## hero_image_prompt
-
-A clean, modern editorial hero image for a B2B data engineering article about MCP extensions in data workflows: a systems-oriented scene showing an AI agent interface connected through controlled extension nodes to a data catalog, semantic layer, orchestration engine, warehouse, lineage graph, and observability dashboard; visual style is technical, minimal, credible, and production-grade; dark-on-light or subtle blue-neutral palette; no futuristic sci-fi clichés, no humanoid robots, no magic effects; emphasize structured context, safe tool access, and governed workflow execution.

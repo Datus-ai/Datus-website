@@ -226,5 +226,5 @@ If your team wants better agent performance in analytics, don’t start by writi
 
 ## Continue exploring
 
-- **Primary CTA:** Explore Datus semantic and metrics documentation to see how structured context supports reliable analytics workflows.
-- **Secondary CTA:** Read **Why AI Agents Need Semantic Context to Work Reliably** for the broader reliability framework behind agentic data workflows.
+- Explore Datus semantic and metrics documentation to see how structured context supports reliable analytics workflows.
+- Read **Why AI Agents Need Semantic Context to Work Reliably** for the broader reliability framework behind agentic data workflows.

@@ -257,10 +257,6 @@ It needs systems that can understand context, coordinate steps, and help move wo
 
 ## Continue reading
 
-- **Primary CTA:** Read **Agentic Data Engineering vs Traditional Data Engineering**
-- **Secondary CTA:** Read **SQL agents are broken without context. Meet Datus.**
-- **Related topic:** Explore **How MCP Changes Data Workflow Automation**
-
-## Hero image prompt
-
-A modern data platform control room with engineers collaborating alongside visible AI agents, layered interface panels showing metadata, lineage graphs, semantic models, workflow steps, and guarded execution states; contrast a small chat-style copilot window with a larger multi-step agent workflow system; clean enterprise SaaS illustration style, blue and graphite palette, precise, technical, forward-looking, no sci-fi fantasy, no humanoid robots, landscape 16:9.
+- Read **Agentic Data Engineering vs Traditional Data Engineering**
+- Read **SQL agents are broken without context. Meet Datus.**
+- Explore **How MCP Changes Data Workflow Automation**

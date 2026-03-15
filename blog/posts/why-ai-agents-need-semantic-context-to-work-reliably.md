@@ -266,8 +266,8 @@ That is not extra infrastructure. It is the operating substrate for production-g
 
 ## Next steps
 
-- **Primary CTA:** Read **Semantic Modeling for Agentic Analytics Workflows**
-- **Secondary CTA:** Explore the semantic layer and MetricFlow-related sections in **Datus Docs**
+- Read **Semantic Modeling for Agentic Analytics Workflows**
+- Explore the semantic layer and MetricFlow-related sections in **Datus Docs**
 
 ## Related Reading
 

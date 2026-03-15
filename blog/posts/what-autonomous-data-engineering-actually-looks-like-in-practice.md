@@ -326,10 +326,10 @@ If you are mapping the category in more detail, the most useful next reads are:
 - **The Operating Model of an Agentic Data Team** for team structure, governance, and responsibilities
 - **Agentic ETL: What Changes Beyond Traditional ETL** for workflow-level changes in pipeline automation
 
-## CTA
+## Next steps
 
-- **Primary:** Read **Agentic Data Engineering vs Traditional Data Engineering**
-- **Secondary:** Read **The Operating Model of an Agentic Data Team**
+- Read **Agentic Data Engineering vs Traditional Data Engineering**
+- Read **The Operating Model of an Agentic Data Team**
 
 ## FAQ
 
@@ -353,6 +353,3 @@ No. It changes where engineers spend time. The goal is to reduce repetitive coor
 
 Reliability comes from structured context, semantic clarity, lineage awareness, bounded permissions, workflow-aware execution, validation, and human oversight. Better prompting alone is not enough.
 
-## hero_image_prompt
-
-Create a modern editorial hero image for a B2B data engineering article titled “What Autonomous Data Engineering Actually Looks Like in Practice.” Show a realistic operating model rather than sci-fi automation: a calm control-plane view of a modern data stack with metadata, semantic models, lineage graphs, orchestrated workflows, dashboards, and human review checkpoints connected by AI agents. The image should emphasize bounded execution, structured context, and workflow continuity. Style: precise, professional, minimal, systems-oriented, high-trust. Color palette: deep blue, slate, white, subtle cyan accents. No humanoid robots, no magic effects, no exaggerated futuristic visuals. Use clean UI panels, graph motifs, and negative space suitable for a blog hero overlay.
