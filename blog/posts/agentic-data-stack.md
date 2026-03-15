@@ -6,13 +6,13 @@ lastmod: 2026-03-12
 head:
   - - meta
     - name: keywords
-      content: agentic data stack, data engineering agent, ai sql client, agentic data systems, Datus
+      content: "agentic data stack, data engineering agent, ai sql client, agentic data systems, Datus"
   - - meta
     - property: og:title
       content: From Human-First Data Systems to the Agentic Data Stack
   - - meta
     - property: og:description
-      content: Learn why the next phase of data infrastructure is the Agentic Data Stack, and why Datus is positioning as a data engineering agent rather than an AI SQL client.
+      content: "Learn why the next phase of data infrastructure is the Agentic Data Stack, and why Datus is positioning as a data engineering agent rather than an AI SQL client."
   - - meta
     - property: og:type
       content: article

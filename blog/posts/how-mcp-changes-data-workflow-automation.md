@@ -6,13 +6,13 @@ lastmod: 2026-03-16
 head:
   - - meta
     - name: keywords
-      content: MCP data workflow automation, MCP extensions, Model Context Protocol, tooling for AI agents
+      content: "MCP data workflow automation, MCP extensions, Model Context Protocol, tooling for AI agents"
   - - meta
     - property: og:title
       content: "How MCP Changes Data Workflow Automation"
   - - meta
     - property: og:description
-      content: Learn how MCP changes data workflow automation through structured tool access, safer execution paths, and tighter integration with real data systems.
+      content: "Learn how MCP changes data workflow automation through structured tool access, safer execution paths, and tighter integration with real data systems."
   - - meta
     - property: og:type
       content: article

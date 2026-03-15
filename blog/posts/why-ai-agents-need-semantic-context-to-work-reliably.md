@@ -6,13 +6,13 @@ lastmod: 2026-03-16
 head:
   - - meta
     - name: keywords
-      content: semantic context for AI agents, AI agent reliability, structured context, context for data agents
+      content: "semantic context for AI agents, AI agent reliability, structured context, context for data agents"
   - - meta
     - property: og:title
       content: "Why AI Agents Need Semantic Context to Work Reliably"
   - - meta
     - property: og:description
-      content: Semantic context gives AI agents the definitions, relationships, and operational constraints they need to reason reliably across real data systems.
+      content: "Semantic context gives AI agents the definitions, relationships, and operational constraints they need to reason reliably across real data systems."
   - - meta
     - property: og:type
       content: article

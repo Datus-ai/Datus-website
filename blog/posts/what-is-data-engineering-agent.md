@@ -6,13 +6,13 @@ lastmod: 2026-03-02
 head:
   - - meta
     - name: keywords
-      content: data engineering agent, data engineer ai agent, Datus, context engineering, AI SQL agent
+      content: "data engineering agent, data engineer ai agent, Datus, context engineering, AI SQL agent"
   - - meta
     - property: og:title
       content: What Is a Data Engineering Agent? A Practical Guide with Datus
   - - meta
     - property: og:description
-      content: Understand the core architecture of a data engineering agent and how Datus uses context to improve reliability.
+      content: "Understand the core architecture of a data engineering agent and how Datus uses context to improve reliability."
   - - meta
     - property: og:type
       content: article

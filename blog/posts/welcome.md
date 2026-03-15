@@ -13,7 +13,7 @@ head:
       content: Welcome to Datus Blog
   - - meta
     - property: og:description
-      content: Introducing the Datus blog with insights on AI-native data engineering, context engineering, and reliable data workflows.
+      content: "Introducing the Datus blog with insights on AI-native data engineering, context engineering, and reliable data workflows."
   - - meta
     - property: og:type
       content: article

@@ -6,13 +6,13 @@ lastmod: 2026-03-16
 head:
   - - meta
     - name: keywords
-      content: AI data pipeline automation, data pipeline automation, AI pipeline automation
+      content: "AI data pipeline automation, data pipeline automation, AI pipeline automation"
   - - meta
     - property: og:title
       content: "AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs"
   - - meta
     - property: og:description
-      content: Learn where AI data pipeline automation works, how to design the architecture, and what tradeoffs matter before scaling it.
+      content: "Learn where AI data pipeline automation works, how to design the architecture, and what tradeoffs matter before scaling it."
   - - meta
     - property: og:type
       content: article

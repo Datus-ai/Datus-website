@@ -6,13 +6,13 @@ lastmod: 2026-03-16
 head:
   - - meta
     - name: keywords
-      content: agentic data engineering, data engineering agent, traditional data engineering, autonomous data engineering
+      content: "agentic data engineering, data engineering agent, traditional data engineering, autonomous data engineering"
   - - meta
     - property: og:title
       content: Agentic Data Engineering vs Traditional Data Engineering
   - - meta
     - property: og:description
-      content: Compare agentic data engineering and traditional data engineering across workflows, context, automation, and reliability.
+      content: "Compare agentic data engineering and traditional data engineering across workflows, context, automation, and reliability."
   - - meta
     - property: og:type
       content: article

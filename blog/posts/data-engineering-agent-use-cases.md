@@ -6,13 +6,13 @@ lastmod: 2026-03-02
 head:
   - - meta
     - name: keywords
-      content: data engineering agent use cases, Datus, AI data workflows, SQL agent, data quality automation
+      content: "data engineering agent use cases, Datus, AI data workflows, SQL agent, data quality automation"
   - - meta
     - property: og:title
       content: 7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)
   - - meta
     - property: og:description
-      content: Discover seven practical use cases where Datus-powered data engineering agents deliver measurable value.
+      content: "Discover seven practical use cases where Datus-powered data engineering agents deliver measurable value."
   - - meta
     - property: og:type
       content: article

@@ -64,6 +64,62 @@
   </url>
 
   <url>
+    <loc>https://datus.ai/blog/posts/why-data-engineering-needs-agents-not-just-copilots</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/agentic-etl-what-changes-beyond-traditional-etl</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/using-mcp-extensions-in-data-engineering-workflows</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/semantic-modeling-for-agentic-analytics-workflows</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/what-autonomous-data-engineering-actually-looks-like-in-practice</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/the-operating-model-of-an-agentic-data-team</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/how-structured-context-improves-ai-agent-output</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://datus.ai/blog/posts/why-reliable-data-agents-need-more-than-good-prompts</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://datus.ai/blog/posts/meet_datus</loc>
     <lastmod>2026-03-03</lastmod>
     <changefreq>monthly</changefreq>

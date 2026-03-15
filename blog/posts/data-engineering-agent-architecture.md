@@ -6,13 +6,13 @@ lastmod: 2026-03-02
 head:
   - - meta
     - name: keywords
-      content: data engineering agent architecture, Datus architecture, AI data engineering, subagent architecture
+      content: "data engineering agent architecture, Datus architecture, AI data engineering, subagent architecture"
   - - meta
     - property: og:title
       content: "Data Engineering Agent Architecture: From Prototype to Production with Datus"
   - - meta
     - property: og:description
-      content: Learn how to design a production-ready data engineering agent architecture using Datus.
+      content: "Learn how to design a production-ready data engineering agent architecture using Datus."
   - - meta
     - property: og:type
       content: article
