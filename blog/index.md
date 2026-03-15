@@ -67,7 +67,7 @@ features:
 
 ### MCP / Tooling / Runtime
 **Pillar**
-- **How MCP Changes Data Workflow Automation** — coming soon
+- [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation)
 
 **Supporting**
 - [Using MCP Extensions in Data Engineering Workflows](/posts/using-mcp-extensions-in-data-engineering-workflows)
@@ -77,7 +77,7 @@ features:
 
 ### Semantic Context / Reliability / Metrics
 **Pillar**
-- **Why AI Agents Need Semantic Context to Work Reliably** — coming soon
+- [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
 
 **Supporting**
 - [Semantic Modeling for Agentic Analytics Workflows](/posts/semantic-modeling-for-agentic-analytics-workflows)
