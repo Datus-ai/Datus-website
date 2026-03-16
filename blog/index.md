@@ -9,7 +9,7 @@ head:
 
 hero:
   name: Datus Blog
-  tagline: How we think about data engineering agents, structured context, and turning workflows into reliable execution.
+  tagline: "How we think about data engineering agents, structured context, and turning workflows into reliable execution."
   actions:
     - theme: brand
       text: Start Reading
@@ -21,13 +21,13 @@ hero:
 features:
   - icon: ✍️
     title: Product point of view
-    details: This is where we write through the ideas behind Datus, from category framing to workflow design.
+    details: "This is where we write through the ideas behind Datus, from category framing to workflow design."
   - icon: 🧭
     title: Context, semantics, and control
-    details: The through-line is simple: useful agents need structured context, explicit semantics, and clear execution boundaries.
+    details: "The through-line is simple: useful agents need structured context, explicit semantics, and clear execution boundaries."
   - icon: ⚙️
     title: Built from workflow reality
-    details: We care about how systems behave in production—tooling, review loops, orchestration, metrics, and guardrails.
+    details: "We care about how systems behave in production—tooling, review loops, orchestration, metrics, and guardrails."
 ---
 
 ## Start here
