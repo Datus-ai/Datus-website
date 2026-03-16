@@ -9,7 +9,7 @@ head:
 
 hero:
   name: Datus Blog
-  tagline: Writing from the Datus team on data engineering agents, workflow systems, and what reliable execution actually requires.
+  tagline: How we think about data engineering agents, structured context, and turning workflows into reliable execution.
   actions:
     - theme: brand
       text: Start Reading
@@ -20,19 +20,19 @@ hero:
 
 features:
   - icon: ✍️
-    title: Product essays
-    details: We use the blog to explain how we think about data engineering agents, not just to ship announcements.
+    title: Product point of view
+    details: This is where we write through the ideas behind Datus, from category framing to workflow design.
   - icon: 🧭
-    title: Category and architecture
-    details: Some posts define the category. Others get into workflows, tooling, MCP, metrics, and semantic models.
+    title: Context, semantics, and control
+    details: The through-line is simple: useful agents need structured context, explicit semantics, and clear execution boundaries.
   - icon: ⚙️
-    title: Built for real systems
-    details: The emphasis is on context, execution, and operational reality—not generic AI commentary.
+    title: Built from workflow reality
+    details: We care about how systems behave in production—tooling, review loops, orchestration, metrics, and guardrails.
 ---
 
 ## Start here
 
-If this is your first time here, start with the pieces that explain how we think.
+If this is your first time here, start with the pieces that explain the Datus point of view.
 
 - [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack)
 - [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)

@@ -36,7 +36,7 @@ If you want the quickest way in, start with the category pieces first, then move
 - [Using MCP Extensions in Data Engineering Workflows](/posts/using-mcp-extensions-in-data-engineering-workflows)
 - [Agentic ETL: What Changes Beyond Traditional ETL](/posts/agentic-etl-what-changes-beyond-traditional-etl)
 
-## Reliability and context
+## Context and reliability
 
 - [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably) — March 16, 2026
 - [Semantic Modeling for Agentic Analytics Workflows](/posts/semantic-modeling-for-agentic-analytics-workflows)
@@ -53,3 +53,4 @@ If you want the quickest way in, start with the category pieces first, then move
 
 - [Data Engineering Agent: The Complete Guide](/data-engineering-agent/)
 - [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+ering-agent-layered-subagent)
