@@ -20,6 +20,10 @@ If you want the quickest way in, start with the category pieces first, then move
 - [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
 - [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
 
+## Product releases
+
+- [Datus 0.2.6 Release: Equipping the Agent with a Brain](/posts/datus-0-2-6-release-equipping-the-agent-with-a-brain) — March 20, 2026
+
 ## Product and category
 
 - [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack) — March 11, 2026

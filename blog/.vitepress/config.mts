@@ -85,6 +85,7 @@ export default defineConfig({
       {
         text: 'Foundations',
         items: [
+          { text: 'Datus 0.2.6 Release: Equipping the Agent with a Brain', link: '/posts/datus-0-2-6-release-equipping-the-agent-with-a-brain' },
           { text: 'Data Engineering Agent: Complete Guide', link: '/data-engineering-agent/' },
           { text: 'Layered Subagent Architecture', link: '/data-engineering-agent/data-engineering-agent-layered-subagent' },
           { text: 'SQL agents are broken without context. Meet Datus.', link: '/posts/meet_datus' }
