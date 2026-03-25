@@ -22,6 +22,8 @@ export default defineConfig({
   appearance: false,
 
   head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', { rel: 'icon', href: '/blog/favicon.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'robots', content: 'index, follow, max-image-preview:large' }],
     ['meta', { property: 'og:site_name', content: 'Datus Blog' }],
@@ -47,48 +49,65 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Featured Pillar Articles',
+        text: 'What is Datus',
         items: [
-          { text: 'Agentic Data Engineering vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
-          { text: 'AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' },
-          { text: 'How MCP Changes Data Workflow Automation', link: '/posts/how-mcp-changes-data-workflow-automation' },
-          { text: 'Why AI Agents Need Semantic Context to Work Reliably', link: '/posts/why-ai-agents-need-semantic-context-to-work-reliably' }
+          { text: 'The General Chat Agent', link: '/posts/meet-the-general-chat-agent' },
+          { text: 'Meet Datus', link: '/posts/meet_datus' },
+          { text: 'What Is a Data Engineering Agent?', link: '/posts/what-is-data-engineering-agent' },
+          { text: 'From Human-First to the Agentic Data Stack', link: '/posts/agentic-data-stack' }
         ]
       },
       {
-        text: 'Agentic Data Engineering',
+        text: 'Why agents, not copilots',
         items: [
-          { text: 'Pillar: Agentic Data Engineering vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
-          { text: 'What Is a Data Engineering Agent? A Practical Guide with Datus', link: '/posts/what-is-data-engineering-agent' },
-          { text: 'Data Engineering Agent Architecture: From Prototype to Production with Datus', link: '/posts/data-engineering-agent-architecture' },
-          { text: '7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)', link: '/posts/data-engineering-agent-use-cases' }
+          { text: 'Agents, Not Just Copilots', link: '/posts/why-data-engineering-needs-agents-not-just-copilots' },
+          { text: 'Agentic vs Traditional Data Engineering', link: '/posts/agentic-data-engineering-vs-traditional-data-engineering' },
+          { text: 'Autonomous Data Engineering in Practice', link: '/posts/what-autonomous-data-engineering-actually-looks-like-in-practice' }
         ]
       },
       {
-        text: 'AI Data Pipeline Automation',
+        text: 'Architecture and pipelines',
         items: [
-          { text: 'Pillar: AI Data Pipeline Automation', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' }
+          { text: 'Storage Layer: Built for Every Environment', link: '/posts/datus-storage-layer' },
+          { text: 'Agent Architecture: Prototype to Production', link: '/posts/data-engineering-agent-architecture' },
+          { text: 'AI Data Pipeline Automation', link: '/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs' },
+          { text: 'Agentic ETL: What Changes', link: '/posts/agentic-etl-what-changes-beyond-traditional-etl' }
         ]
       },
       {
-        text: 'MCP / Tooling / Runtime',
+        text: 'Why context is everything',
         items: [
-          { text: 'Pillar: How MCP Changes Data Workflow Automation', link: '/posts/how-mcp-changes-data-workflow-automation' }
+          { text: 'Semantic Context for Reliable Agents', link: '/posts/why-ai-agents-need-semantic-context-to-work-reliably' },
+          { text: 'Structured Context Improves Agent Output', link: '/posts/how-structured-context-improves-ai-agent-output' },
+          { text: 'Semantic Modeling for Agentic Analytics', link: '/posts/semantic-modeling-for-agentic-analytics-workflows' },
+          { text: 'More Than Good Prompts', link: '/posts/why-reliable-data-agents-need-more-than-good-prompts' }
         ]
       },
       {
-        text: 'Semantic Context / Reliability',
+        text: 'Tooling and integrations',
         items: [
-          { text: 'Pillar: Why AI Agents Need Semantic Context to Work Reliably', link: '/posts/why-ai-agents-need-semantic-context-to-work-reliably' }
+          { text: 'How MCP Changes Data Workflows', link: '/posts/how-mcp-changes-data-workflow-automation' },
+          { text: 'Using MCP Extensions', link: '/posts/using-mcp-extensions-in-data-engineering-workflows' }
         ]
       },
       {
-        text: 'Foundations',
+        text: 'In practice',
         items: [
-          { text: 'Datus 0.2.6 Release: Equipping the Agent with a Brain', link: '/posts/datus-0-2-6-release-equipping-the-agent-with-a-brain' },
+          { text: '7 High-Impact Agent Use Cases', link: '/posts/data-engineering-agent-use-cases' },
+          { text: 'Operating Model of an Agentic Data Team', link: '/posts/the-operating-model-of-an-agentic-data-team' }
+        ]
+      },
+      {
+        text: 'Reference',
+        items: [
           { text: 'Data Engineering Agent: Complete Guide', link: '/data-engineering-agent/' },
-          { text: 'Layered Subagent Architecture', link: '/data-engineering-agent/data-engineering-agent-layered-subagent' },
-          { text: 'SQL agents are broken without context. Meet Datus.', link: '/posts/meet_datus' }
+          { text: 'Layered Subagent Architecture', link: '/data-engineering-agent/data-engineering-agent-layered-subagent' }
+        ]
+      },
+      {
+        text: 'Releases',
+        items: [
+          { text: 'Datus 0.2.6: Agent with a Brain', link: '/posts/datus-0-2-6-release-equipping-the-agent-with-a-brain' }
         ]
       }
     ],
