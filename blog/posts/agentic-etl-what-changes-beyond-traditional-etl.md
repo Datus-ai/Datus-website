@@ -1,6 +1,6 @@
 ---
 title: "Agentic ETL: What Changes Beyond Traditional ETL"
-description: "Learn what changes when ETL becomes agentic, from context-aware planning and validation to workflow-state reasoning, guardrails, and reliable human-in-the-loop automation."
+description: "What changes when ETL becomes agentic — context-aware planning, validation, guardrails, and human-in-the-loop automation."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:

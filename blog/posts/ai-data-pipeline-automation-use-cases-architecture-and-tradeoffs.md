@@ -1,6 +1,6 @@
 ---
 title: "AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs"
-description: "Learn what AI data pipeline automation is, where it works, how to design the architecture, and which tradeoffs matter before moving from manual workflows to reliable automation."
+description: "What AI data pipeline automation is, how to design the architecture, and which tradeoffs matter for reliable automation."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:

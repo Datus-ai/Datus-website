@@ -1,6 +1,6 @@
 ---
 title: "Datus 0.2.6 Release: Equipping the Agent with a Brain"
-description: "Datus 0.2.6 introduces a more general chat agent, stronger planning and clarification workflows, deeper data exploration, a pluggable storage architecture, and broader support across the data ecosystem."
+description: "Datus 0.2.6 introduces a general chat agent, stronger planning workflows, deeper exploration, and pluggable storage."
 date: 2026-03-20
 lastmod: 2026-03-20
 head:

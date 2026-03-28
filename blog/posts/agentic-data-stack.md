@@ -1,6 +1,6 @@
 ---
 title: From Human-First Data Systems to the Agentic Data Stack
-description: Why the next phase of data infrastructure is not just AI SQL tooling, but the rise of the Agentic Data Stack—and why Datus is positioning itself as a data engineering agent.
+description: Why the next phase of data infrastructure is the Agentic Data Stack — and why Datus is built as a data engineering agent.
 date: 2026-03-11
 lastmod: 2026-03-12
 head:

@@ -1,6 +1,6 @@
 ---
 title: "Meet the General Chat Agent: Your Data Co-Pilot That Actually Thinks"
-description: "Datus introduces the General Chat Agent — a conversational data co-pilot that goes beyond SQL generation to support exploration, investigation, documentation, and knowledge-building across the full arc of data work."
+description: "The General Chat Agent goes beyond SQL generation to support exploration, investigation, and knowledge-building."
 date: 2026-03-25
 lastmod: 2026-03-25
 author: Datus Team

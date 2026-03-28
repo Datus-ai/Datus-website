@@ -1,6 +1,6 @@
 ---
 title: "Why Reliable Data Agents Need More Than Good Prompts"
-description: "Reliable data agents depend on more than prompt quality. Learn how structured context, workflow state, metrics, semantic models, and guardrails make agentic data workflows trustworthy."
+description: "Reliable data agents need structured context, workflow state, metrics, and guardrails — not just good prompts."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:

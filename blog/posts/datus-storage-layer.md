@@ -1,6 +1,6 @@
 ---
 title: "Datus Storage Layer: A Foundation Built for Every Environment"
-description: "Datus introduces a pluggable storage adapter layer that separates relational and vector storage from the agent core — enabling enterprise deployments, portable knowledge bases, and backend flexibility without forking."
+description: "Pluggable storage adapters that separate relational and vector storage from the agent core for enterprise flexibility."
 date: 2026-03-25
 lastmod: 2026-03-25
 author: Datus Team

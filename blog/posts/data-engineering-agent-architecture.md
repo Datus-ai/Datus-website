@@ -1,5 +1,5 @@
 ---
-title: "Data Engineering Agent Architecture: From Prototype to Production with Datus"
+title: "Data Engineering Agent Architecture: Prototype to Production"
 description: A practical architecture blueprint for data engineering agents, with Datus patterns for context, subagents, and governed execution.
 date: 2026-03-02
 lastmod: 2026-03-02

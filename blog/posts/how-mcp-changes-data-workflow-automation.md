@@ -1,6 +1,6 @@
 ---
 title: "How MCP Changes Data Workflow Automation"
-description: "Learn how MCP changes data workflow automation by giving AI agents structured tool access, safer execution paths, and tighter integration with real data systems."
+description: "How MCP gives AI agents structured tool access, safer execution, and tighter integration with real data systems."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:

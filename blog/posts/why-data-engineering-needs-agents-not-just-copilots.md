@@ -1,6 +1,6 @@
 ---
 title: "Why Data Engineering Needs Agents, Not Just Copilots"
-description: "Data engineering teams need more than copilots that suggest code or answer questions. Learn why agents matter, how they differ, and what agentic data engineering looks like in practice."
+description: "Why data engineering needs autonomous agents, not just copilots — and what agentic workflows look like in practice."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:
