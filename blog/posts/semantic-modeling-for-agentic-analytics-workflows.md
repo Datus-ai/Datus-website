@@ -1,6 +1,6 @@
 ---
 title: "Semantic Modeling for Agentic Analytics Workflows"
-description: "How semantic modeling grounds AI agents in shared metric definitions to improve agentic analytics reliability."
+description: "Learn how semantic modeling improves agentic analytics by grounding AI agents in shared metric definitions and governed business context."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:
@@ -12,7 +12,7 @@ head:
       content: "Semantic Modeling for Agentic Analytics Workflows"
   - - meta
     - property: og:description
-      content: "Learn how semantic modeling improves reliability, consistency, and output quality in agentic analytics workflows by grounding AI agents in shared metric definitions and governed business context."
+      content: "Learn how semantic modeling improves agentic analytics by grounding AI agents in shared metric definitions and governed business context."
   - - meta
     - property: og:type
       content: article

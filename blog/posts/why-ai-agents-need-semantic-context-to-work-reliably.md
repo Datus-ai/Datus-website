@@ -1,6 +1,6 @@
 ---
 title: "Why AI Agents Need Semantic Context to Work Reliably"
-description: "Semantic context gives AI agents the definitions and constraints they need to reason reliably. Here’s what breaks without it."
+description: "Learn why semantic context helps AI agents reason reliably across data systems by grounding definitions, relationships, and constraints."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:
@@ -12,7 +12,7 @@ head:
       content: "Why AI Agents Need Semantic Context to Work Reliably"
   - - meta
     - property: og:description
-      content: "Semantic context gives AI agents the definitions, relationships, and operational constraints they need to reason reliably across real data systems."
+      content: "Learn why semantic context helps AI agents reason reliably across data systems by grounding definitions, relationships, and constraints."
   - - meta
     - property: og:type
       content: article

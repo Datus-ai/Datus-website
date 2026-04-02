@@ -1,6 +1,6 @@
 ---
 title: "Using MCP Extensions in Data Engineering Workflows"
-description: "How to use MCP extensions to give data engineering agents controlled tool access and safer execution paths."
+description: "Learn how MCP extensions give data engineering agents controlled tool access, safer execution paths, and more reliable automation."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:
@@ -12,7 +12,7 @@ head:
       content: "Using MCP Extensions in Data Engineering Workflows"
   - - meta
     - property: og:description
-      content: "Learn how to use MCP extensions in data engineering workflows to give agents controlled tool access, safer execution paths, and more reliable automation across real data systems."
+      content: "Learn how MCP extensions give data engineering agents controlled tool access, safer execution paths, and more reliable automation."
   - - meta
     - property: og:type
       content: article

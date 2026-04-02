@@ -1,6 +1,6 @@
 ---
 title: Data Engineering Agent - AI-Powered Data Pipeline Automation
-description: Discover how Data Engineering Agents transform data workflows with AI-driven automation, context awareness, and intelligent pipeline management. Learn about benefits, challenges, and solutions.
+description: Learn how data engineering agents automate pipeline work with context, workflow awareness, and governed execution.
 head:
   - - meta
     - name: keywords
@@ -10,7 +10,7 @@ head:
       content: Data Engineering Agent - AI-Powered Data Pipeline Automation
   - - meta
     - property: og:description
-      content: Comprehensive guide to Data Engineering Agents - AI-powered systems that automate data pipelines, understand context, and transform how teams build and maintain data infrastructure.
+      content: Learn how data engineering agents automate pipeline work with context, workflow awareness, and governed execution.
   - - meta
     - property: og:type
       content: article
@@ -31,7 +31,7 @@ head:
       content: Data Engineering Agent - AI-Powered Data Pipeline Automation
   - - meta
     - name: twitter:description
-      content: Learn how Data Engineering Agents use AI to automate data workflows, eliminate hallucinations, and build intelligent, context-aware data systems.
+      content: Learn how data engineering agents automate pipeline work with context, workflow awareness, and governed execution.
   - - link
     - rel: canonical
       href: https://datus.ai/blog/data-engineering-agent/

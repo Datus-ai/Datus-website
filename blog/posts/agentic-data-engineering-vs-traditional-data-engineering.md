@@ -1,6 +1,6 @@
 ---
 title: Agentic Data Engineering vs Traditional Data Engineering
-description: How agentic data engineering differs from traditional approaches across workflows, tooling, team structure, and reliability.
+description: Compare agentic and traditional data engineering across workflows, tooling, team structure, and reliability in production.
 date: 2026-03-16
 lastmod: 2026-03-16
 head:
@@ -12,7 +12,7 @@ head:
       content: Agentic Data Engineering vs Traditional Data Engineering
   - - meta
     - property: og:description
-      content: "Compare agentic data engineering and traditional data engineering across workflows, context, automation, and reliability."
+      content: "Compare agentic and traditional data engineering across workflows, tooling, team structure, and reliability in production."
   - - meta
     - property: og:type
       content: article

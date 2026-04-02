@@ -13,6 +13,7 @@ head:
 
 The problem, the product, and the thesis behind it.
 
+- [Make Data Agents Usable: Ask, Explore, and Control with Confidence](/posts/make-data-agents-truly-usable-ask-explore-and-control-with-confidence) — Apr 2, 2026
 - [Meet the General Chat Agent: Your Data Co-Pilot That Actually Thinks](/posts/meet-the-general-chat-agent) — Mar 25, 2026
 - [SQL Agents Are Broken Without Context. Meet Datus.](/posts/meet_datus) — Oct 21, 2025
 - [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent) — Mar 2, 2026
@@ -48,6 +49,7 @@ Semantic models, structured context, and what makes agents reliable.
 
 MCP, extensions, and how agents connect to real data systems.
 
+- [Beyond SQL: How Datus Integrates With Your Entire Data Toolchain](/posts/beyond-sql-how-datus-integrates-with-your-entire-data-toolchain) — Apr 2, 2026
 - [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation) — Mar 16, 2026
 - [Using MCP Extensions in Data Engineering Workflows](/posts/using-mcp-extensions-in-data-engineering-workflows) — Mar 16, 2026
 

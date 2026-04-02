@@ -1,6 +1,6 @@
 ---
 title: "How Structured Context Improves AI Agent Output"
-description: "How structured context reduces ambiguity and grounds AI agent reasoning in metrics and semantic models."
+description: "Learn how structured context improves AI agent output by grounding reasoning in metrics, semantics, and workflow state."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:
@@ -12,7 +12,7 @@ head:
       content: "How Structured Context Improves AI Agent Output"
   - - meta
     - property: og:description
-      content: "Learn how structured context improves AI agent output by reducing ambiguity, grounding reasoning in metrics and semantic models, and making data workflows more reliable."
+      content: "Learn how structured context improves AI agent output by grounding reasoning in metrics, semantics, and workflow state."
   - - meta
     - property: og:type
       content: article

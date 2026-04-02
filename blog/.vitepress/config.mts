@@ -26,10 +26,12 @@ export default defineConfig({
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', { rel: 'icon', href: '/blog/favicon.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'robots', content: 'index, follow, max-image-preview:large' }],
+    ['meta', { property: 'og:locale', content: 'en_US' }],
     ['meta', { property: 'og:site_name', content: 'Datus Blog' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:image', content: 'https://datus.ai/logo_dark.svg' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:site', content: '@DatusAI' }],
     // Google Analytics
     ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP' }],
     ['script', {}, `window.dataLayer = window.dataLayer || [];

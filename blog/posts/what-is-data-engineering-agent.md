@@ -12,7 +12,7 @@ head:
       content: What Is a Data Engineering Agent? A Practical Guide with Datus
   - - meta
     - property: og:description
-      content: "Understand the core architecture of a data engineering agent and how Datus uses context to improve reliability."
+      content: "Learn what a data engineering agent is, why context matters, and how Datus turns AI into reliable, production-ready data workflows."
   - - meta
     - property: og:type
       content: article

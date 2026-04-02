@@ -1,6 +1,6 @@
 ---
 title: "What Autonomous Data Engineering Actually Looks Like in Practice"
-description: "Autonomous data engineering as a practical operating model: structured context, bounded actions, and human review."
+description: "See what autonomous data engineering looks like in practice with structured context, bounded agent actions, human review, and workflow automation."
 date: 2026-03-16
 lastmod: 2026-03-16
 head:
@@ -12,7 +12,7 @@ head:
       content: "What Autonomous Data Engineering Actually Looks Like in Practice"
   - - meta
     - property: og:description
-      content: "Autonomous data engineering works best as a practical operating model: structured context, bounded agent actions, human review, and workflow automation across real data systems."
+      content: "See what autonomous data engineering looks like in practice with structured context, bounded agent actions, human review, and workflow automation."
   - - meta
     - property: og:type
       content: article
@@ -352,4 +352,3 @@ No. It changes where engineers spend time. The goal is to reduce repetitive coor
 ### What makes autonomous data engineering reliable?
 
 Reliability comes from structured context, semantic clarity, lineage awareness, bounded permissions, workflow-aware execution, validation, and human oversight. Better prompting alone is not enough.
-

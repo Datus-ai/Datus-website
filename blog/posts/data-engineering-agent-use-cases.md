@@ -12,7 +12,7 @@ head:
       content: 7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)
   - - meta
     - property: og:description
-      content: "Discover seven practical use cases where Datus-powered data engineering agents deliver measurable value."
+      content: "Explore practical data engineering agent use cases and how Datus helps teams improve speed, quality, and governance."
   - - meta
     - property: og:type
       content: article

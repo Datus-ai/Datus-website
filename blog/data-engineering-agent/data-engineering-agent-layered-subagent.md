@@ -1,16 +1,16 @@
 ---
-title: The Rise of Subagents - Why Data Engineering Agents Need a Layered Architecture
-description: Learn why a layered subagent architecture is essential for building reliable data engineering agents. Discover how foundational abilities combine with scoped context to eliminate hallucinations.
+title: Why Data Engineering Agents Need Layered Subagents
+description: Learn why layered subagents make data engineering agents more reliable by combining reusable reasoning skills with scoped context.
 keywords: data engineering agent, subagent architecture, AI agents, LLM data engineering, agent design patterns
 date: 2025-12-08
 lastmod: 2025-12-08
 head:
   - - meta
     - property: og:title
-      content: The Rise of Subagents - Why Data Engineering Agents Need a Layered Architecture
+      content: Why Data Engineering Agents Need Layered Subagents
   - - meta
     - property: og:description
-      content: Learn why a layered subagent architecture is essential for building reliable data engineering agents.
+      content: Learn why layered subagents make data engineering agents more reliable by combining reusable reasoning skills with scoped context.
   - - meta
     - property: og:image
       content: https://datus.ai/images/layered-subagent-for-data-engineering-agent.jpeg
@@ -270,4 +270,3 @@ The Subagent Architecture turns AI from a black box into a **programmable, relia
 
 This layered architecture is not just an optimization—
 it is the *only scalable way* to build production-grade data engineering agents.
-
