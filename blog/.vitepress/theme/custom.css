@@ -577,7 +577,7 @@ div[class*='language-'] .line span[style*="color"] {
   display: flex;
   gap: var(--space-md);
   width: max-content;
-  animation: marquee 60s linear infinite;
+  animation: marquee 72s linear infinite;
 }
 
 /* Pause on hover */
@@ -670,7 +670,7 @@ div[class*='language-'] .line span[style*="color"] {
   }
 
   .blog-home .latest-track {
-    animation-duration: 45s;
+    animation-duration: 54s;
   }
 }
 

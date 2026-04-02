@@ -3,6 +3,8 @@ import { withBase } from 'vitepress'
 
 // All posts with dates, sorted newest first — used to compute "latest"
 const allPosts = [
+  { title: 'Make Data Agents Usable: Ask, Explore, and Control with Confidence', description: 'Ask User, session management, Explore, and action display make Datus agents easier to trust and control.', date: '2026-04-02', display: 'Apr 2, 2026', tag: 'Product', link: '/posts/make-data-agents-truly-usable-ask-explore-and-control-with-confidence' },
+  { title: 'Beyond SQL: How Datus Integrates With Your Entire Data Toolchain', description: 'How MCP and Skills connect Datus to your data catalog, metric layer, scripts, and quality workflows.', date: '2026-04-02', display: 'Apr 2, 2026', tag: 'Tooling', link: '/posts/beyond-sql-how-datus-integrates-with-your-entire-data-toolchain' },
   { title: 'Meet the General Chat Agent: Your Data Co-Pilot That Actually Thinks', description: 'A conversational data co-pilot that supports exploration, investigation, documentation, and knowledge-building.', date: '2026-03-25', display: 'Mar 25, 2026', tag: 'Product', link: '/posts/meet-the-general-chat-agent' },
   { title: 'Datus Storage Layer: A Foundation Built for Every Environment', description: 'A pluggable storage adapter layer for enterprise deployments, portable knowledge bases, and backend flexibility.', date: '2026-03-25', display: 'Mar 25, 2026', tag: 'Architecture', link: '/posts/datus-storage-layer' },
   { title: 'Datus 0.2.6: Equipping the Agent with a Brain', description: 'A more general chat agent, stronger planning, deeper exploration, pluggable storage, and broader ecosystem support.', date: '2026-03-20', display: 'Mar 20, 2026', tag: 'Release', link: '/posts/datus-0-2-6-release-equipping-the-agent-with-a-brain' },
@@ -17,11 +19,10 @@ const allPosts = [
   { title: '7 High-Impact Data Engineering Agent Use Cases', description: 'Practical use cases and how Datus helps teams improve speed, quality, and governance.', date: '2026-03-02', display: 'Mar 2, 2026', tag: 'Practice', link: '/posts/data-engineering-agent-use-cases' },
 ]
 
-// Posts from the last 30 days
-const now = new Date('2026-03-25')
-const thirtyDaysAgo = new Date(now)
-thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
-const latestPosts = allPosts.filter(p => new Date(p.date) >= thirtyDaysAgo)
+const latestPosts = allPosts
+  .slice()
+  .sort((a, b) => new Date(b.date) - new Date(a.date))
+  .slice(0, 5)
 
 const sections = [
   {
