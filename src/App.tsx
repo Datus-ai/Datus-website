@@ -38,7 +38,7 @@ const calculateOctagonPosition = (
   index: number,
   centerX = 50,
   centerY = 50,
-  radius = 32,
+  radius = 30,
 ) => {
   const angle = (index * 2 * Math.PI) / 8 - Math.PI / 2; // Start from top
   return {
@@ -861,7 +861,13 @@ export default function App() {
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   One engineer can run the modern data stack
                   <br className="hidden md:block" /> with{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
+                  <span
+                    className="text-cyan-300"
+                    style={{
+                      textShadow:
+                        "0 0 24px rgba(34,211,238,0.35), 0 0 2px rgba(34,211,238,0.5)",
+                    }}
+                  >
                     10× productivity
                   </span>
                 </h2>
@@ -1033,7 +1039,7 @@ export default function App() {
                       }}
                     />
 
-                    <div className="relative w-full max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[750px] aspect-square p-[0px] mx-[10px] my-[0px]">
+                    <div className="relative w-full max-w-[460px] md:max-w-[540px] lg:max-w-[620px] xl:max-w-[660px] aspect-square p-[0px] mx-[10px] my-[0px]">
                       {/* Connection Lines */}
                       <svg
                         className="absolute inset-0 w-full h-full pointer-events-none z-10"
@@ -1156,12 +1162,90 @@ export default function App() {
                         </defs>
                       </svg>
 
-                      {/* Stage Cards */}
+                      {/* Center hub — anchors the orbit so the middle isn't visually empty.
+                          Wrapping div holds the position+translate (Framer Motion would otherwise
+                          overwrite the inline transform on the motion.div). */}
+                      <div
+                        className="absolute z-15 pointer-events-none"
+                        style={{
+                          left: "50%",
+                          top: "50%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.4,
+                          type: "spring",
+                          stiffness: 200,
+                        }}
+                        viewport={{ once: true }}
+                        className="relative"
+                      >
+                        {/* Pulse rings */}
+                        {[0, 1, 2].map((i) => (
+                          <motion.div
+                            key={i}
+                            className="absolute top-1/2 left-1/2 rounded-full border border-cyan-400/30"
+                            style={{
+                              width: `${88 + i * 36}px`,
+                              height: `${88 + i * 36}px`,
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            animate={{
+                              scale: [1, 1.25, 1],
+                              opacity: [0.5, 0, 0.5],
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              delay: i * 1.2,
+                              ease: "easeOut",
+                            }}
+                          />
+                        ))}
+                        {/* Hub badge */}
+                        <div
+                          className="relative w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center"
+                          style={{
+                            background:
+                              "radial-gradient(circle at 30% 30%, rgba(165,243,252,0.95) 0%, rgba(34,211,238,0.92) 35%, rgba(99,102,241,0.92) 70%, rgba(139,92,246,0.95) 100%)",
+                            boxShadow:
+                              "0 12px 40px -10px rgba(99,102,241,0.6), 0 0 0 1px rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.4)",
+                          }}
+                        >
+                          <Sparkles
+                            className="w-7 h-7 md:w-9 md:h-9 text-white drop-shadow"
+                            strokeWidth={2.2}
+                          />
+                        </div>
+                        <div
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 whitespace-nowrap text-[10px] md:text-xs font-semibold tracking-[0.18em] uppercase"
+                          style={{ color: "rgba(203,213,225,0.85)" }}
+                        >
+                          Datus Agent
+                        </div>
+                      </motion.div>
+                      </div>
+
+                      {/* Stage Cards — wrapping div holds position+translate
+                          (Framer Motion overwrites inline transform otherwise) */}
                       {lifecycleStages.map((stage, index) => {
                         const IconComponent = stage.icon;
                         return (
-                          <motion.div
+                          <div
                             key={stage.id}
+                            className="absolute z-20"
+                            style={{
+                              left: `${stage.position.x}%`,
+                              top: `${stage.position.y}%`,
+                              transform: "translate(-50%, -50%)",
+                            }}
+                          >
+                          <motion.div
                             initial={{ scale: 0, opacity: 0 }}
                             whileInView={{
                               scale: 1,
@@ -1175,13 +1259,7 @@ export default function App() {
                             }}
                             viewport={{ once: true }}
                             whileHover={{ scale: 1.05, y: -5 }}
-                            className="absolute z-20"
-                            style={{
-                              left: `${stage.position.x}%`,
-                              top: `${stage.position.y}%`,
-                              transform:
-                                "translate(-50%, -50%)",
-                            }}
+                            className="relative"
                           >
                             <Card className="bg-white/95 backdrop-blur border-2 border-slate-200 p-2 md:p-3 rounded-lg md:rounded-xl shadow-lg hover:shadow-xl hover:border-blue-300 transition-all duration-300 w-28 sm:w-32 md:w-36 lg:w-40 cursor-pointer group relative">
                               {/* Connection node indicator */}
@@ -1220,6 +1298,7 @@ export default function App() {
                               </div>
                             </Card>
                           </motion.div>
+                          </div>
                         );
                       })}
                     </div>
