@@ -29,6 +29,7 @@ import { DataLifecycleDiagram } from "./components/DataLifecycleDiagram";
 import DatusContextTriad from "./components/DatusContextTriad";
 import DatusLayeredStack from "./components/DatusLayeredStack";
 import DatusLayeredStackHorizontalOnly from "./components/DatusLayeredStackHorizontalOnly";
+import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
 import { Badge } from "./components/ui/badge";
 import { Card } from "./components/ui/card";
 
@@ -37,7 +38,7 @@ const calculateOctagonPosition = (
   index: number,
   centerX = 50,
   centerY = 50,
-  radius = 32,
+  radius = 30,
 ) => {
   const angle = (index * 2 * Math.PI) / 8 - Math.PI / 2; // Start from top
   return {
@@ -401,48 +402,22 @@ export default function App() {
                 type: "spring",
                 stiffness: 100,
               }}
-              className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-5xl mx-auto"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="text-2xl md:text-3xl lg:text-4xl text-slate-300 mt-6 mb-4"
-              >
-                <motion.span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-purple-200"
-                  animate={{
-                    backgroundPosition: [
-                      "0% 50%",
-                      "100% 50%",
-                      "0% 50%",
-                    ],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  style={{ backgroundSize: "200% 100%" }}
-                >
-                  Data Engineering Agent for the Agentic Data Stack
-                </motion.span>
-              </motion.div>
-
               <motion.span
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="text-white block mt-4"
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="text-white block"
               >
-                Built for{" "}
+                Datus is the{" "}
                 <motion.span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400"
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300"
                   animate={{
                     backgroundPosition: [
-                      "100% 50%",
                       "0% 50%",
                       "100% 50%",
+                      "0% 50%",
                     ],
                   }}
                   transition={{
@@ -452,10 +427,301 @@ export default function App() {
                   }}
                   style={{ backgroundSize: "200% 100%" }}
                 >
-                  Agentic Data Engineering
-                </motion.span>
+                  open-source data engineering agent
+                </motion.span>{" "}
+                that builds{" "}
+                <motion.span
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+                  animate={{
+                    backgroundPosition: [
+                      "100% 50%",
+                      "0% 50%",
+                      "100% 50%",
+                    ],
+                  }}
+                  transition={{
+                    duration: 7,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  style={{ backgroundSize: "200% 100%" }}
+                >
+                  evolvable context
+                </motion.span>{" "}
+                for your data systems.
               </motion.span>
             </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="mt-8 max-w-3xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed"
+            >
+              From one-man data teams to enterprise agent teams, Datus turns
+              data work into reliable, reusable agent systems.
+            </motion.p>
+
+            {/* Hero CTAs — three pillars, unified shell. Differentiation only via per-pillar accent color + chip on primary. */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
+              style={{
+                margin: "3rem auto 0",
+                maxWidth: 760,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+                columnGap: "1.75rem",
+                rowGap: "0.9rem",
+                justifyItems: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* Primary — GitHub. Same shell as the others; subtle cyan wash + chip do the hierarchy. */}
+              <a
+                href="https://github.com/Datus-ai/Datus-agent"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  position: "relative",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.55rem",
+                  height: 48,
+                  paddingLeft: "1.25rem",
+                  paddingRight: "0.6rem",
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(8,145,178,0.18) 0%, rgba(15,23,42,0.55) 100%)",
+                  border: "1px solid rgba(56,189,248,0.4)",
+                  color: "#E2E8F0",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  letterSpacing: "-0.005em",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)",
+                  transition:
+                    "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.borderColor =
+                    "rgba(56,189,248,0.7)";
+                  e.currentTarget.style.color = "#ffffff";
+                  e.currentTarget.style.boxShadow =
+                    "inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 24px -8px rgba(56,189,248,0.45)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.borderColor =
+                    "rgba(56,189,248,0.4)";
+                  e.currentTarget.style.color = "#E2E8F0";
+                  e.currentTarget.style.boxShadow =
+                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)";
+                }}
+              >
+                <Github
+                  size={16}
+                  strokeWidth={2.2}
+                  style={{ color: "#67E8F9" }}
+                />
+                <span>Star on GitHub</span>
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 4,
+                    marginLeft: 4,
+                    padding: "3px 8px",
+                    borderRadius: 6,
+                    background: "rgba(8,145,178,0.22)",
+                    border: "1px solid rgba(56,189,248,0.25)",
+                    color: "#E2E8F0",
+                    fontFamily:
+                      "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontSize: 11,
+                    fontWeight: 600,
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  <span style={{ color: "#ffd84d" }}>★</span>
+                  1.1k
+                </span>
+              </a>
+
+              {/* Secondary — Studio. Same shell, violet accent. */}
+              <a
+                href="https://studio.datus.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  position: "relative",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.55rem",
+                  height: 48,
+                  padding: "0 1.25rem",
+                  borderRadius: 10,
+                  background:
+                    "linear-gradient(180deg, rgba(15,23,42,0.7) 0%, rgba(15,23,42,0.5) 100%)",
+                  border: "1px solid rgba(148,163,184,0.18)",
+                  color: "#E2E8F0",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  letterSpacing: "-0.005em",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)",
+                  transition:
+                    "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.borderColor =
+                    "rgba(167,139,250,0.7)";
+                  e.currentTarget.style.color = "#ffffff";
+                  e.currentTarget.style.boxShadow =
+                    "inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 24px -8px rgba(167,139,250,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.borderColor =
+                    "rgba(148,163,184,0.18)";
+                  e.currentTarget.style.color = "#E2E8F0";
+                  e.currentTarget.style.boxShadow =
+                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)";
+                }}
+              >
+                <Sparkles
+                  size={16}
+                  strokeWidth={2}
+                  style={{ color: "#C4B5FD" }}
+                />
+                <span>Try Datus Studio</span>
+                <ArrowRight
+                  size={14}
+                  strokeWidth={2.2}
+                  style={{ color: "#C4B5FD", opacity: 0.9 }}
+                />
+              </a>
+
+              {/* Tertiary — Enterprise. Same shell, pink accent. Opens inquiry dialog. */}
+              <EnterpriseInquiryDialog>
+                <button
+                  type="button"
+                  style={{
+                    position: "relative",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.55rem",
+                    height: 48,
+                    padding: "0 1.25rem",
+                    borderRadius: 10,
+                    background:
+                      "linear-gradient(180deg, rgba(15,23,42,0.7) 0%, rgba(15,23,42,0.5) 100%)",
+                    border: "1px solid rgba(148,163,184,0.18)",
+                    color: "#E2E8F0",
+                    fontSize: 14,
+                    fontWeight: 600,
+                    letterSpacing: "-0.005em",
+                    backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
+                    boxShadow:
+                      "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)",
+                    cursor: "pointer",
+                    fontFamily: "inherit",
+                    transition:
+                      "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.borderColor =
+                      "rgba(244,114,182,0.7)";
+                    e.currentTarget.style.color = "#ffffff";
+                    e.currentTarget.style.boxShadow =
+                      "inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 24px -8px rgba(244,114,182,0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.borderColor =
+                      "rgba(148,163,184,0.18)";
+                    e.currentTarget.style.color = "#E2E8F0";
+                    e.currentTarget.style.boxShadow =
+                      "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)";
+                  }}
+                >
+                  <span>Talk to Enterprise</span>
+                  <ArrowRight
+                    size={14}
+                    strokeWidth={2.2}
+                    style={{ color: "#F9A8D4", opacity: 0.9 }}
+                  />
+                </button>
+              </EnterpriseInquiryDialog>
+            </motion.div>
+
+            {/* Meta strip — same grid as buttons so each spec aligns under its CTA */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.8 }}
+              style={{
+                margin: "1.25rem auto 0",
+                maxWidth: 760,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+                columnGap: "1.75rem",
+                rowGap: "0.4rem",
+                justifyItems: "center",
+                alignItems: "center",
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                fontSize: 11,
+                letterSpacing: "0.04em",
+                color: "rgba(148,163,184,0.72)",
+              }}
+            >
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <span
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: 999,
+                    background: "#22D3EE",
+                    boxShadow: "0 0 8px rgba(34,211,238,0.7)",
+                  }}
+                />
+                <span>Open source · Apache 2.0</span>
+              </span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <span
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: 999,
+                    background: "#A78BFA",
+                    boxShadow: "0 0 8px rgba(167,139,250,0.55)",
+                  }}
+                />
+                <span>Free playground · no install</span>
+              </span>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <span
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: 999,
+                    background: "#F472B6",
+                    boxShadow: "0 0 8px rgba(244,114,182,0.55)",
+                  }}
+                />
+                <span>Managed Service</span>
+              </span>
+            </motion.div>
 
             {/* Floating accent elements */}
             {[...Array(6)].map((_, i) => (
@@ -592,8 +858,18 @@ export default function App() {
                 viewport={{ once: true }}
                 className="text-center mb-12"
               >
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Built for Data Engineering Excellence
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  One engineer can run the modern data stack
+                  <br className="hidden md:block" /> with{" "}
+                  <span
+                    className="text-cyan-300"
+                    style={{
+                      textShadow:
+                        "0 0 24px rgba(34,211,238,0.35), 0 0 2px rgba(34,211,238,0.5)",
+                    }}
+                  >
+                    10× productivity
+                  </span>
                 </h2>
               </motion.div>
 
@@ -601,31 +877,31 @@ export default function App() {
                 {[
                   {
                     icon: (
-                      <Zap className="h-8 w-8 text-cyan-400" />
+                      <Network className="h-8 w-8 text-cyan-400" />
                     ),
-                    title: "Lightweight CLI Experience",
+                    title: "Operate the full data system, not just one tool",
                     description:
-                      "Up to 3× more efficient than traditional workflows, with seamless human-in-the-loop collaboration",
+                      "Connect and operate services across the modern data stack — warehouses, catalogs, semantic layers, BI, schedulers — through a single agent",
                     gradient: "from-cyan-500/20 to-blue-500/20",
                   },
                   {
                     icon: (
                       <Database className="h-8 w-8 text-blue-400" />
                     ),
-                    title: "Full Data Engineering Lifecycle",
+                    title: "Manage the full data engineering lifecycle",
                     description:
-                      "From SQL development and data quality to metric management, modeling optimization, SQL review, and job deployment",
+                      "Turn workflows into reusable skills and manage them end to end — from SQL development and quality checks to deployment and monitoring",
                     gradient:
                       "from-blue-500/20 to-purple-500/20",
                   },
                   {
                     icon: (
-                      <Brain className="h-8 w-8 text-purple-400" />
+                      <Shield className="h-8 w-8 text-purple-400" />
                     ),
                     title:
-                      "Context Engineering for Data Engineers",
+                      "Improve agent stability with validation loops",
                     description:
-                      "Purpose-built mechanisms to manage and continuously evolve data engineering context",
+                      "Make data agents more reliable through testing, feedback, and iterative refinement — the harness engineering production needs",
                     gradient:
                       "from-purple-500/20 to-pink-500/20",
                   },
@@ -763,7 +1039,7 @@ export default function App() {
                       }}
                     />
 
-                    <div className="relative w-full max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[750px] aspect-square p-[0px] mx-[10px] my-[0px]">
+                    <div className="relative w-full max-w-[460px] md:max-w-[540px] lg:max-w-[620px] xl:max-w-[660px] aspect-square p-[0px] mx-[10px] my-[0px]">
                       {/* Connection Lines */}
                       <svg
                         className="absolute inset-0 w-full h-full pointer-events-none z-10"
@@ -886,12 +1162,90 @@ export default function App() {
                         </defs>
                       </svg>
 
-                      {/* Stage Cards */}
+                      {/* Center hub — anchors the orbit so the middle isn't visually empty.
+                          Wrapping div holds the position+translate (Framer Motion would otherwise
+                          overwrite the inline transform on the motion.div). */}
+                      <div
+                        className="absolute z-15 pointer-events-none"
+                        style={{
+                          left: "50%",
+                          top: "50%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.4,
+                          type: "spring",
+                          stiffness: 200,
+                        }}
+                        viewport={{ once: true }}
+                        className="relative"
+                      >
+                        {/* Pulse rings */}
+                        {[0, 1, 2].map((i) => (
+                          <motion.div
+                            key={i}
+                            className="absolute top-1/2 left-1/2 rounded-full border border-cyan-400/30"
+                            style={{
+                              width: `${88 + i * 36}px`,
+                              height: `${88 + i * 36}px`,
+                              transform: "translate(-50%, -50%)",
+                            }}
+                            animate={{
+                              scale: [1, 1.25, 1],
+                              opacity: [0.5, 0, 0.5],
+                            }}
+                            transition={{
+                              duration: 4,
+                              repeat: Infinity,
+                              delay: i * 1.2,
+                              ease: "easeOut",
+                            }}
+                          />
+                        ))}
+                        {/* Hub badge */}
+                        <div
+                          className="relative w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center"
+                          style={{
+                            background:
+                              "radial-gradient(circle at 30% 30%, rgba(165,243,252,0.95) 0%, rgba(34,211,238,0.92) 35%, rgba(99,102,241,0.92) 70%, rgba(139,92,246,0.95) 100%)",
+                            boxShadow:
+                              "0 12px 40px -10px rgba(99,102,241,0.6), 0 0 0 1px rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.4)",
+                          }}
+                        >
+                          <Sparkles
+                            className="w-7 h-7 md:w-9 md:h-9 text-white drop-shadow"
+                            strokeWidth={2.2}
+                          />
+                        </div>
+                        <div
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 whitespace-nowrap text-[10px] md:text-xs font-semibold tracking-[0.18em] uppercase"
+                          style={{ color: "rgba(203,213,225,0.85)" }}
+                        >
+                          Datus Agent
+                        </div>
+                      </motion.div>
+                      </div>
+
+                      {/* Stage Cards — wrapping div holds position+translate
+                          (Framer Motion overwrites inline transform otherwise) */}
                       {lifecycleStages.map((stage, index) => {
                         const IconComponent = stage.icon;
                         return (
-                          <motion.div
+                          <div
                             key={stage.id}
+                            className="absolute z-20"
+                            style={{
+                              left: `${stage.position.x}%`,
+                              top: `${stage.position.y}%`,
+                              transform: "translate(-50%, -50%)",
+                            }}
+                          >
+                          <motion.div
                             initial={{ scale: 0, opacity: 0 }}
                             whileInView={{
                               scale: 1,
@@ -905,13 +1259,7 @@ export default function App() {
                             }}
                             viewport={{ once: true }}
                             whileHover={{ scale: 1.05, y: -5 }}
-                            className="absolute z-20"
-                            style={{
-                              left: `${stage.position.x}%`,
-                              top: `${stage.position.y}%`,
-                              transform:
-                                "translate(-50%, -50%)",
-                            }}
+                            className="relative"
                           >
                             <Card className="bg-white/95 backdrop-blur border-2 border-slate-200 p-2 md:p-3 rounded-lg md:rounded-xl shadow-lg hover:shadow-xl hover:border-blue-300 transition-all duration-300 w-28 sm:w-32 md:w-36 lg:w-40 cursor-pointer group relative">
                               {/* Connection node indicator */}
@@ -950,6 +1298,7 @@ export default function App() {
                               </div>
                             </Card>
                           </motion.div>
+                          </div>
                         );
                       })}
                     </div>
