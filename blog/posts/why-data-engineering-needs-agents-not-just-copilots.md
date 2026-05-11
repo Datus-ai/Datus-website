@@ -260,3 +260,10 @@ It needs systems that can understand context, coordinate steps, and help move wo
 - Read **Agentic Data Engineering vs Traditional Data Engineering**
 - Read **SQL agents are broken without context. Meet Datus.**
 - Explore **How MCP Changes Data Workflow Automation**
+
+## Start with Datus
+
+- Studio: [Datus Studio Overview](https://studio.datus.ai/overview)
+- GitHub: https://github.com/Datus-ai/Datus-agent
+- Docs: [Datus Docs](https://docs.datus.ai)
+- Main site: https://datus.ai

@@ -270,3 +270,10 @@ The Subagent Architecture turns AI from a black box into a **programmable, relia
 
 This layered architecture is not just an optimization—
 it is the *only scalable way* to build production-grade data engineering agents.
+
+## Start with Datus
+
+- Studio: [Datus Studio Overview](https://studio.datus.ai/overview)
+- GitHub: https://github.com/Datus-ai/Datus-agent
+- Docs: [Datus Docs](https://docs.datus.ai)
+- Main site: https://datus.ai

@@ -320,6 +320,27 @@ export default function App() {
                   />
                 </motion.a>
 
+                {/* Studio Link */}
+                <motion.a
+                  href="https://studio.datus.ai/overview"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.45 }}
+                >
+                  <Sparkles className="h-5 w-5 text-violet-400 group-hover:text-violet-300 transition-colors duration-300" />
+                  <span className="font-medium">Studio</span>
+                  <motion.div
+                    className="w-1 h-1 bg-violet-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                </motion.a>
+
                 {/* Blog Link */}
                 <motion.a
                   href="/blog/"
@@ -328,7 +349,7 @@ export default function App() {
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.55 }}
                 >
                   <BookText className="h-5 w-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
                   <span className="font-medium">Blog</span>
@@ -349,7 +370,7 @@ export default function App() {
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.6 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.65 }}
                 >
                   <MessageSquare className="h-5 w-5 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300" />
                   <span className="font-medium">Community</span>
@@ -370,7 +391,7 @@ export default function App() {
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.7 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.75 }}
                 >
                   <Github className="h-5 w-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
                   <span className="font-medium">GitHub</span>
@@ -555,7 +576,7 @@ export default function App() {
 
               {/* Secondary — Studio. Same shell, violet accent. */}
               <a
-                href="https://studio.datus.ai"
+                href="https://studio.datus.ai/overview"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

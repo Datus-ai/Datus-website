@@ -352,3 +352,10 @@ No. It changes where engineers spend time. The goal is to reduce repetitive coor
 ### What makes autonomous data engineering reliable?
 
 Reliability comes from structured context, semantic clarity, lineage awareness, bounded permissions, workflow-aware execution, validation, and human oversight. Better prompting alone is not enough.
+
+## Start with Datus
+
+- Studio: [Datus Studio Overview](https://studio.datus.ai/overview)
+- GitHub: https://github.com/Datus-ai/Datus-agent
+- Docs: [Datus Docs](https://docs.datus.ai)
+- Main site: https://datus.ai
