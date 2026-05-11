@@ -35,6 +35,8 @@ jobs:
       run: npm ci
 
     - name: Build main site
+      env:
+        VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
       run: npm run build
 
     - name: Build blog
