@@ -46,6 +46,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'All Posts', link: '/posts/' },
+      { text: 'Studio', link: 'https://studio.datus.ai/overview' },
       { text: 'Main Site', link: 'https://datus.ai/' }
     ],
 

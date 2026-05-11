@@ -352,6 +352,7 @@ If you are building toward production-grade automation, that is the bar. Not gen
 
 ## Start with Datus
 
+- Studio: [Datus Studio Overview](https://studio.datus.ai/overview)
 - Docs: [Datus Docs](https://docs.datus.ai)
 - GitHub: https://github.com/Datus-ai/Datus-agent
 - Main site: https://datus.ai

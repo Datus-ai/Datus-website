@@ -139,6 +139,7 @@ const sections = [
       <a :href="withBase('/posts/')" class="bottom-link">All posts</a>
       <a href="https://docs.datus.ai" class="bottom-link">Docs</a>
       <a href="https://github.com/Datus-ai/Datus-agent" class="bottom-link">GitHub</a>
+      <a href="https://studio.datus.ai/overview" class="bottom-link">Studio</a>
       <a href="https://datus.ai" class="bottom-link">Main site</a>
     </div>
   </div>
