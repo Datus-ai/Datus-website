@@ -33,6 +33,83 @@ import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
 import { Badge } from "./components/ui/badge";
 import { Card } from "./components/ui/card";
 
+const GITHUB_REPO = "Datus-ai/Datus-agent";
+const GITHUB_STARS_FALLBACK = 1248;
+const GITHUB_STARS_CACHE_KEY = "datus:github-stars";
+const GITHUB_STARS_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+
+const formatStarCount = (count: number): string => {
+  if (count < 1000) return String(count);
+  const thousands = count / 1000;
+  // 1248 -> "1.2k", 12480 -> "12k"
+  return thousands >= 10
+    ? `${Math.round(thousands)}k`
+    : `${thousands.toFixed(1)}k`;
+};
+
+const useGitHubStars = (
+  repo: string,
+  fallback: number,
+): number => {
+  const [stars, setStars] = useState<number>(() => {
+    if (typeof window === "undefined") return fallback;
+    try {
+      const raw = window.localStorage.getItem(GITHUB_STARS_CACHE_KEY);
+      if (!raw) return fallback;
+      const cached = JSON.parse(raw) as { count: number; ts: number };
+      if (typeof cached.count === "number") return cached.count;
+    } catch {
+      // ignore — fall through to fallback
+    }
+    return fallback;
+  });
+
+  useEffect(() => {
+    let cancelled = false;
+
+    try {
+      const raw = window.localStorage.getItem(GITHUB_STARS_CACHE_KEY);
+      if (raw) {
+        const cached = JSON.parse(raw) as { count: number; ts: number };
+        if (
+          typeof cached.ts === "number" &&
+          Date.now() - cached.ts < GITHUB_STARS_TTL_MS
+        ) {
+          return; // cache still fresh; skip fetch
+        }
+      }
+    } catch {
+      // ignore cache read errors
+    }
+
+    fetch(`https://api.github.com/repos/${repo}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (cancelled || !data) return;
+        const count = data.stargazers_count;
+        if (typeof count !== "number") return;
+        setStars(count);
+        try {
+          window.localStorage.setItem(
+            GITHUB_STARS_CACHE_KEY,
+            JSON.stringify({ count, ts: Date.now() }),
+          );
+        } catch {
+          // ignore quota/serialization errors
+        }
+      })
+      .catch(() => {
+        // network/rate-limit failure — keep existing value (cache or fallback)
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [repo]);
+
+  return stars;
+};
+
 // Calculate octagonal positions with perfect geometric precision
 const calculateOctagonPosition = (
   index: number,
@@ -143,6 +220,7 @@ const connections = [
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const githubStars = useGitHubStars(GITHUB_REPO, GITHUB_STARS_FALLBACK);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -570,7 +648,7 @@ export default function App() {
                   }}
                 >
                   <span style={{ color: "#ffd84d" }}>★</span>
-                  1.1k
+                  {formatStarCount(githubStars)}
                 </span>
               </a>
 
