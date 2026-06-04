@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import React, { useEffect, useMemo, useState } from "react";
-import { DataLifecycleDiagram } from "./components/DataLifecycleDiagram";
+import Footer from "./components/Footer";
 import DatusContextTriad from "./components/DatusContextTriad";
 import DatusLayeredStack from "./components/DatusLayeredStack";
 import DatusLayeredStackHorizontalOnly from "./components/DatusLayeredStackHorizontalOnly";
@@ -2366,8 +2366,7 @@ export default function App() {
         </div>
       </motion.div>
 
-      {/* Data Lifecycle Diagram */}
-      <DataLifecycleDiagram />
+      <Footer />
     </div>
   );
 }

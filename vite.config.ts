@@ -2,8 +2,30 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
+// Locally mirror GitHub Pages behavior: redirect the clean URL `/glossary`
+// to `/glossary/` so the MPA entry (glossary/index.html) is served in dev/preview
+// instead of falling back to the root SPA.
+const glossaryCleanUrl = () => {
+  const redirect = (server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) => {
+    server.middlewares.use((req, res, next) => {
+      if (req.url === '/glossary' || req.url === '/glossary?') {
+        res.statusCode = 301;
+        res.setHeader('Location', '/glossary/');
+        res.end();
+        return;
+      }
+      next();
+    });
+  };
+  return {
+    name: 'glossary-clean-url',
+    configureServer: redirect,
+    configurePreviewServer: redirect,
+  };
+};
+
 export default defineConfig(({ mode }) => ({
-  plugins: [react()],
+  plugins: [react(), glossaryCleanUrl()],
   base: '/',
   publicDir: 'src/public', 
   resolve: {
@@ -53,6 +75,12 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: 'esnext',
     outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        glossary: path.resolve(__dirname, 'glossary/index.html'),
+      },
+    },
   },
   server: {
     port: 5173,

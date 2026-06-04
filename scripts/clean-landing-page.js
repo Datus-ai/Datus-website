@@ -14,6 +14,7 @@ const path = require('path');
 const root = process.cwd();
 const requiredFiles = [
   path.join(root, 'dist', 'index.html'),
+  path.join(root, 'dist', 'glossary', 'index.html'),
   path.join(root, 'dist', 'blog', 'index.html'),
   path.join(root, 'dist', 'data-engineering-agent', 'index.html'),
 ];
