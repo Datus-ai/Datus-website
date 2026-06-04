@@ -56,8 +56,31 @@ export default defineConfig({
         items: [
           { text: 'The General Chat Agent', link: '/posts/meet-the-general-chat-agent' },
           { text: 'Meet Datus', link: '/posts/meet_datus' },
-          { text: 'What Is a Data Engineering Agent?', link: '/posts/what-is-data-engineering-agent' },
           { text: 'From Human-First to the Agentic Data Stack', link: '/posts/agentic-data-stack' }
+        ]
+      },
+      {
+        text: 'Data Engineering Agent',
+        items: [
+          { text: 'What Is a Data Engineering Agent? (2026 Comparison)', link: '/posts/what-is-data-engineering-agent-2026' },
+          { text: 'What Is a Data Engineering Agent? (Practical Guide)', link: '/posts/what-is-data-engineering-agent' },
+          { text: 'Contextual Data Engineering', link: '/posts/contextual-data-engineering' },
+          { text: 'Best Data Engineering Agents in 2026', link: '/posts/best-data-engineering-agents-2026' },
+          { text: 'Open Source Data Engineering Agents', link: '/posts/open-source-data-engineering-agents' },
+          { text: 'Build Your First Agent in 15 Minutes', link: '/posts/build-your-first-data-engineering-agent' },
+          { text: 'Data Engineering Agent vs. Claude Code', link: '/posts/data-engineering-agent-vs-claude-code' },
+          { text: 'Data Engineering Agent vs. SQL Copilot', link: '/posts/data-engineering-agent-vs-sql-copilot' },
+          { text: 'One-Person Data Team', link: '/posts/one-person-data-team' },
+          { text: 'How a Context Engine Improves Accuracy', link: '/posts/context-engine-data-engineering-agent-accuracy' },
+          { text: 'MCP and Data Engineering', link: '/posts/mcp-data-engineering' },
+          { text: 'Enterprise Data Engineering Agent', link: '/posts/enterprise-data-engineering-agent' },
+          { text: 'Subagents: Domain-Specific Data Agents', link: '/posts/subagents-domain-specific-data-agents' }
+        ]
+      },
+      {
+        text: 'Semantic Layer',
+        items: [
+          { text: 'What Is a Semantic Layer?', link: '/posts/what-is-semantic-layer' }
         ]
       },
       {

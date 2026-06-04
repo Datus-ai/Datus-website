@@ -16,8 +16,31 @@ The problem, the product, and the thesis behind it.
 - [Make Data Agents Usable: Ask, Explore, and Control with Confidence](/posts/make-data-agents-truly-usable-ask-explore-and-control-with-confidence) — Apr 2, 2026
 - [Meet the General Chat Agent: Your Data Co-Pilot That Actually Thinks](/posts/meet-the-general-chat-agent) — Mar 25, 2026
 - [SQL Agents Are Broken Without Context. Meet Datus.](/posts/meet_datus) — Oct 21, 2025
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent) — Mar 2, 2026
 - [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack) — Mar 11, 2026
+
+## Data Engineering Agent
+
+The category, the comparisons, and how to build with one — our core cluster.
+
+- [What Is a Data Engineering Agent? Definition, Examples & a 2026 Comparison](/posts/what-is-data-engineering-agent-2026) — May 31, 2026
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent) — Mar 2, 2026
+- [Contextual Data Engineering: Why Every Agent Needs Evolvable Context](/posts/contextual-data-engineering) — Jun 1, 2026
+- [Best Data Engineering Agents in 2026: An Honest Comparison](/posts/best-data-engineering-agents-2026) — Jun 2, 2026
+- [Open Source Data Engineering Agents](/posts/open-source-data-engineering-agents) — Jun 2, 2026
+- [How to Build Your First Data Engineering Agent in 15 Minutes](/posts/build-your-first-data-engineering-agent) — Jun 3, 2026
+- [Data Engineering Agent vs. Claude Code: When to Use Which](/posts/data-engineering-agent-vs-claude-code) — Jun 3, 2026
+- [Data Engineering Agent vs. SQL Copilot: What's the Real Difference?](/posts/data-engineering-agent-vs-sql-copilot) — Jun 4, 2026
+- [One-Person Data Team: How a Data Engineering Agent Multiplies Your Output](/posts/one-person-data-team) — Jun 4, 2026
+- [How a Context Engine Makes Data Engineering Agents More Accurate](/posts/context-engine-data-engineering-agent-accuracy) — Jun 1, 2026
+- [MCP and Data Engineering: The Protocol That Connects Your Entire Stack](/posts/mcp-data-engineering) — Jun 2, 2026
+- [What an Enterprise Data Engineering Agent Actually Needs](/posts/enterprise-data-engineering-agent) — Jun 3, 2026
+- [Subagents: How to Ship Domain-Specific Data Agents Without Training a Model](/posts/subagents-domain-specific-data-agents) — Jun 4, 2026
+
+## Semantic Layer
+
+What a semantic layer is, and how it differs from a metric layer or catalog.
+
+- [What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer](/posts/what-is-semantic-layer) — May 31, 2026
 
 ## Why agents, not copilots
 

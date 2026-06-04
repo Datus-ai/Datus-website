@@ -3,6 +3,19 @@ import { withBase } from 'vitepress'
 
 // All posts with dates, sorted newest first — used to compute "latest"
 const allPosts = [
+  { title: 'What Is a Data Engineering Agent? Definition, Examples & a 2026 Comparison', description: 'Four products now ship as a data engineering agent — but they are not the same thing. Definition, side-by-side comparison, and where persistent context separates agents from chat windows.', date: '2026-05-31', display: 'May 31, 2026', tag: 'Research', link: '/posts/what-is-data-engineering-agent-2026' },
+  { title: 'What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer', description: 'The business translation layer between raw tables and analysts: what it includes, how it differs from metric layers and catalogs, and why static models break under AI agents.', date: '2026-05-31', display: 'May 31, 2026', tag: 'Glossary', link: '/posts/what-is-semantic-layer' },
+  { title: 'Contextual Data Engineering: Why Every Data Engineering Agent Needs Evolvable Context', description: 'Contextual data engineering explained: schemas, semantics, and feedback loops for durable data agents.', date: '2026-06-01', display: 'Jun 1, 2026', tag: 'Research', link: '/posts/contextual-data-engineering' },
+  { title: 'Best Data Engineering Agents in 2026: An Honest Comparison', description: 'Best data engineering agents in 2026 compared by stack fit, context, openness, and enterprise readiness.', date: '2026-06-02', display: 'Jun 2, 2026', tag: 'Comparison', link: '/posts/best-data-engineering-agents-2026' },
+  { title: 'Open Source Data Engineering Agents: Why They Exist, When to Use One, and What Your Options Are', description: 'Open-source data engineering agents compared: Datus, Wren AI, Altimate, and when self-hosting is worth it.', date: '2026-06-02', display: 'Jun 2, 2026', tag: 'Comparison', link: '/posts/open-source-data-engineering-agents' },
+  { title: 'How to Build Your First Data Engineering Agent in 15 Minutes', description: 'Build a first data engineering agent with Datus: install, ask questions, generate context, and create a subagent.', date: '2026-06-03', display: 'Jun 3, 2026', tag: 'Product', link: '/posts/build-your-first-data-engineering-agent' },
+  { title: 'Data Engineering Agent vs. Claude Code: When to Use Which', description: 'Data engineering agent vs Claude Code: when persistent data context matters and when a coding agent is enough.', date: '2026-06-03', display: 'Jun 3, 2026', tag: 'Comparison', link: '/posts/data-engineering-agent-vs-claude-code' },
+  { title: 'Data Engineering Agent vs. SQL Copilot: What\'s the Real Difference?', description: 'Data engineering agent vs SQL copilot: persistence, feedback, team context, and when each tool fits.', date: '2026-06-04', display: 'Jun 4, 2026', tag: 'Comparison', link: '/posts/data-engineering-agent-vs-sql-copilot' },
+  { title: 'One-Person Data Team: How a Data Engineering Agent Multiplies Your Output', description: 'How a one-person data team uses a data engineering agent to reduce SQL translation work and ship self-service analytics.', date: '2026-06-04', display: 'Jun 4, 2026', tag: 'Product', link: '/posts/one-person-data-team' },
+  { title: 'How a Context Engine Makes Data Engineering Agents More Accurate', description: 'How a context engine improves data engineering agent accuracy with schemas, validated SQL, and feedback loops.', date: '2026-06-01', display: 'Jun 1, 2026', tag: 'Research', link: '/posts/context-engine-data-engineering-agent-accuracy' },
+  { title: 'MCP and Data Engineering: The Protocol That Connects Your Entire Stack', description: 'MCP for data engineering: how agents connect to databases, orchestrators, quality tools, and context services.', date: '2026-06-02', display: 'Jun 2, 2026', tag: 'Research', link: '/posts/mcp-data-engineering' },
+  { title: 'What an Enterprise Data Engineering Agent Actually Needs', description: 'Enterprise data engineering agent requirements: shared context, RBAC, auditability, reliability, and governance.', date: '2026-06-03', display: 'Jun 3, 2026', tag: 'Research', link: '/posts/enterprise-data-engineering-agent' },
+  { title: 'Subagents: How to Ship Domain-Specific Data Agents Without Training a Model', description: 'Subagents explained: domain-specific data agents built from scoped context, feedback, and governed access.', date: '2026-06-04', display: 'Jun 4, 2026', tag: 'Product', link: '/posts/subagents-domain-specific-data-agents' },
   { title: 'Make Data Agents Usable: Ask, Explore, and Control with Confidence', description: 'Ask User, session management, Explore, and action display make Datus agents easier to trust and control.', date: '2026-04-02', display: 'Apr 2, 2026', tag: 'Product', link: '/posts/make-data-agents-truly-usable-ask-explore-and-control-with-confidence' },
   { title: 'Beyond SQL: How Datus Integrates With Your Entire Data Toolchain', description: 'How MCP and Skills connect Datus to your data catalog, metric layer, scripts, and quality workflows.', date: '2026-04-02', display: 'Apr 2, 2026', tag: 'Tooling', link: '/posts/beyond-sql-how-datus-integrates-with-your-entire-data-toolchain' },
   { title: 'Meet the General Chat Agent: Your Data Co-Pilot That Actually Thinks', description: 'A conversational data co-pilot that supports exploration, investigation, documentation, and knowledge-building.', date: '2026-03-25', display: 'Mar 25, 2026', tag: 'Product', link: '/posts/meet-the-general-chat-agent' },
@@ -31,8 +44,33 @@ const sections = [
     posts: [
       { title: 'Meet the General Chat Agent: Your Data Co-Pilot That Actually Thinks', date: 'Mar 25, 2026', link: '/posts/meet-the-general-chat-agent' },
       { title: 'SQL Agents Are Broken Without Context. Meet Datus.', date: 'Oct 21, 2025', link: '/posts/meet_datus' },
-      { title: 'What Is a Data Engineering Agent?', date: 'Mar 2, 2026', link: '/posts/what-is-data-engineering-agent' },
       { title: 'From Human-First Data Systems to the Agentic Data Stack', date: 'Mar 11, 2026', link: '/posts/agentic-data-stack' },
+    ]
+  },
+  {
+    label: 'Data Engineering Agent',
+    description: 'The category, the comparisons, and how to build with one — our core cluster.',
+    posts: [
+      { title: 'What Is a Data Engineering Agent? Definition, Examples & a 2026 Comparison', date: 'May 31, 2026', link: '/posts/what-is-data-engineering-agent-2026' },
+      { title: 'What Is a Data Engineering Agent? A Practical Guide with Datus', date: 'Mar 2, 2026', link: '/posts/what-is-data-engineering-agent' },
+      { title: 'Contextual Data Engineering: Why Every Agent Needs Evolvable Context', date: 'Jun 1, 2026', link: '/posts/contextual-data-engineering' },
+      { title: 'Best Data Engineering Agents in 2026: An Honest Comparison', date: 'Jun 2, 2026', link: '/posts/best-data-engineering-agents-2026' },
+      { title: 'Open Source Data Engineering Agents', date: 'Jun 2, 2026', link: '/posts/open-source-data-engineering-agents' },
+      { title: 'How to Build Your First Data Engineering Agent in 15 Minutes', date: 'Jun 3, 2026', link: '/posts/build-your-first-data-engineering-agent' },
+      { title: 'Data Engineering Agent vs. Claude Code: When to Use Which', date: 'Jun 3, 2026', link: '/posts/data-engineering-agent-vs-claude-code' },
+      { title: 'Data Engineering Agent vs. SQL Copilot: What\'s the Real Difference?', date: 'Jun 4, 2026', link: '/posts/data-engineering-agent-vs-sql-copilot' },
+      { title: 'One-Person Data Team: How a Data Engineering Agent Multiplies Your Output', date: 'Jun 4, 2026', link: '/posts/one-person-data-team' },
+      { title: 'How a Context Engine Makes Data Engineering Agents More Accurate', date: 'Jun 1, 2026', link: '/posts/context-engine-data-engineering-agent-accuracy' },
+      { title: 'MCP and Data Engineering: The Protocol That Connects Your Entire Stack', date: 'Jun 2, 2026', link: '/posts/mcp-data-engineering' },
+      { title: 'What an Enterprise Data Engineering Agent Actually Needs', date: 'Jun 3, 2026', link: '/posts/enterprise-data-engineering-agent' },
+      { title: 'Subagents: How to Ship Domain-Specific Data Agents Without Training a Model', date: 'Jun 4, 2026', link: '/posts/subagents-domain-specific-data-agents' },
+    ]
+  },
+  {
+    label: 'Semantic Layer',
+    description: 'What a semantic layer is, and how it differs from a metric layer or catalog.',
+    posts: [
+      { title: 'What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer', date: 'May 31, 2026', link: '/posts/what-is-semantic-layer' },
     ]
   },
   {
