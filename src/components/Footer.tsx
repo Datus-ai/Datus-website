@@ -71,10 +71,7 @@ const Footer = () => {
       </div>
 
       <div className="site-footer__bar">
-        <span>© {year} Datus</span>
-        <a href="https://github.com/Datus-ai/Datus-agent/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">
-          Apache 2.0 License
-        </a>
+        <span>© {year} DatusAI, Inc.</span>
       </div>
     </footer>
   );
