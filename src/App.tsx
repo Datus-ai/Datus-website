@@ -25,7 +25,6 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import React, { useEffect, useMemo, useState } from "react";
-import { DataLifecycleDiagram } from "./components/DataLifecycleDiagram";
 import Footer from "./components/Footer";
 import DatusContextTriad from "./components/DatusContextTriad";
 import DatusLayeredStack from "./components/DatusLayeredStack";
@@ -434,25 +433,6 @@ export default function App() {
                   <span className="font-medium">Blog</span>
                   <motion.div
                     className="w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.a>
-
-                {/* Glossary Link */}
-                <motion.a
-                  href="/glossary"
-                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.6 }}
-                >
-                  <FileText className="h-5 w-5 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" />
-                  <span className="font-medium">Glossary</span>
-                  <motion.div
-                    className="w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
@@ -2385,9 +2365,6 @@ export default function App() {
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Data Lifecycle Diagram */}
-      <DataLifecycleDiagram />
 
       <Footer />
     </div>
