@@ -35,12 +35,33 @@ The category, the comparisons, and how to build with one — our core cluster.
 - [MCP and Data Engineering: The Protocol That Connects Your Entire Stack](/posts/mcp-data-engineering) — Jun 2, 2026
 - [What an Enterprise Data Engineering Agent Actually Needs](/posts/enterprise-data-engineering-agent) — Jun 3, 2026
 - [Subagents: How to Ship Domain-Specific Data Agents Without Training a Model](/posts/subagents-domain-specific-data-agents) — Jun 4, 2026
+- [Best Data Engineering Agents in 2026: An Honest Comparison](/posts/best-data-engineering-agents) — Jun 10, 2026
+- [AI-Native Data Platforms: Why the Next Generation Needs Agents, Not Just Copilots](/posts/ai-native-data-platforms) — Jun 10, 2026
+- [Platform-Native Data Engineering Agents Compared: Cortex Code, Genie Code, and BigQuery DE Agent](/posts/platform-native-data-agents-compared) — Jun 10, 2026
 
 ## Semantic Layer
 
-What a semantic layer is, and how it differs from a metric layer or catalog.
+What a semantic layer is, and how it differs from a metric layer, model, ontology, or catalog.
 
 - [What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer](/posts/what-is-semantic-layer) — May 31, 2026
+- [What Is a Metric Layer? Definition, Examples & How It Differs From a Semantic Layer](/posts/what-is-metric-layer) — Jun 8, 2026
+- [What Is a Semantic Model? Definition, Examples & How It Differs From a Semantic View](/posts/what-is-semantic-model) — Jun 8, 2026
+- [Semantic Layer vs Ontology: What's the Difference and Why It Matters for AI Agents](/posts/semantic-layer-vs-ontology) — Jun 9, 2026
+- [Open Semantic Interchange (OSI): What the New Standard Means for Data Engineering and AI Agents](/posts/open-semantic-interchange-osi) — Jun 9, 2026
+- [dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers](/posts/dbt-semantic-layer-metricflow) — Jun 9, 2026
+- [Cube.dev: From Semantic Layer Pioneer to Agentic Analytics Platform](/posts/cube-agentic-analytics) — Jun 9, 2026
+- [GoodData: How a 17-Year BI Company Became an AI-Native Analytics Platform](/posts/what-is-gooddata) — Jun 10, 2026
+
+## Glossary
+
+Core data engineering terms — defined, with how they connect to agents and context.
+
+- [What Is Text-to-SQL? Definition, How It Works & Why Context Matters](/posts/what-is-text-to-sql) — Jun 7, 2026
+- [What Is Schema Linking? Definition, Challenges & How Agents Map NL to Columns](/posts/what-is-schema-linking) — Jun 7, 2026
+- [What Is RAG for Data Engineering? Retrieval, Context & Agent Accuracy](/posts/rag-data-engineering) — Jun 7, 2026
+- [What Is a Data Catalog? Definition, Tools & How It Differs From Agent Context](/posts/what-is-data-catalog) — Jun 7, 2026
+- [What Is Data Mesh? Definition, Principles & How Domain Agents Map to It](/posts/what-is-data-mesh) — Jun 8, 2026
+- [What Is a Data Agent? How It Differs From a Data Engineering Agent](/posts/what-is-data-agent) — Jun 8, 2026
 
 ## Why agents, not copilots
 
