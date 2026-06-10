@@ -74,13 +74,34 @@ export default defineConfig({
           { text: 'How a Context Engine Improves Accuracy', link: '/posts/context-engine-data-engineering-agent-accuracy' },
           { text: 'MCP and Data Engineering', link: '/posts/mcp-data-engineering' },
           { text: 'Enterprise Data Engineering Agent', link: '/posts/enterprise-data-engineering-agent' },
-          { text: 'Subagents: Domain-Specific Data Agents', link: '/posts/subagents-domain-specific-data-agents' }
+          { text: 'Subagents: Domain-Specific Data Agents', link: '/posts/subagents-domain-specific-data-agents' },
+          { text: 'Best Data Engineering Agents: An Honest Comparison', link: '/posts/best-data-engineering-agents' },
+          { text: 'AI-Native Data Platforms', link: '/posts/ai-native-data-platforms' },
+          { text: 'Platform-Native Agents Compared', link: '/posts/platform-native-data-agents-compared' }
         ]
       },
       {
         text: 'Semantic Layer',
         items: [
-          { text: 'What Is a Semantic Layer?', link: '/posts/what-is-semantic-layer' }
+          { text: 'What Is a Semantic Layer?', link: '/posts/what-is-semantic-layer' },
+          { text: 'What Is a Metric Layer?', link: '/posts/what-is-metric-layer' },
+          { text: 'What Is a Semantic Model?', link: '/posts/what-is-semantic-model' },
+          { text: 'Semantic Layer vs Ontology', link: '/posts/semantic-layer-vs-ontology' },
+          { text: 'Open Semantic Interchange (OSI)', link: '/posts/open-semantic-interchange-osi' },
+          { text: 'dbt Semantic Layer & MetricFlow', link: '/posts/dbt-semantic-layer-metricflow' },
+          { text: 'Cube: From Semantic Layer to Agentic Analytics', link: '/posts/cube-agentic-analytics' },
+          { text: 'GoodData: AI-Native Analytics', link: '/posts/what-is-gooddata' }
+        ]
+      },
+      {
+        text: 'Glossary',
+        items: [
+          { text: 'What Is Text-to-SQL?', link: '/posts/what-is-text-to-sql' },
+          { text: 'What Is Schema Linking?', link: '/posts/what-is-schema-linking' },
+          { text: 'What Is RAG for Data Engineering?', link: '/posts/rag-data-engineering' },
+          { text: 'What Is a Data Catalog?', link: '/posts/what-is-data-catalog' },
+          { text: 'What Is Data Mesh?', link: '/posts/what-is-data-mesh' },
+          { text: 'What Is a Data Agent?', link: '/posts/what-is-data-agent' }
         ]
       },
       {
