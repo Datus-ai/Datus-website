@@ -146,7 +146,7 @@ export default function ProductPageTemplate({ data }: { data: ProductPageData })
       )}
 
       {/* Closing CTA / form */}
-      <section className="section">
+      <section className="section" id="contact" style={{ scrollMarginTop: "var(--nav-h)" }}>
         <div className="container">
           <div className="card" style={{
             textAlign: data.formSlot ? "left" : "center",

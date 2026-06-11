@@ -122,6 +122,17 @@ function Hero() {
                 </span>
               </a>
             </div>
+
+            <div style={{ marginTop: 16 }}>
+              <EnterpriseInquiryDialog>
+                <button
+                  className="link-arrow"
+                  style={{ background: "transparent", border: 0, padding: 0, cursor: "pointer", fontFamily: "inherit" }}
+                >
+                  Building for a team? Talk to a human <ArrowRight size={15} />
+                </button>
+              </EnterpriseInquiryDialog>
+            </div>
           </div>
 
           <HeroTerminal />
@@ -319,9 +330,14 @@ function ProductForms() {
               Shared context, governance, SSO, and long-running agent teams —
               deployed in your environment.
             </p>
-            <a className="link-arrow" href="/products/enterprise/" style={{ marginTop: 18 }}>
-              Contact us <ArrowRight size={15} />
-            </a>
+            <EnterpriseInquiryDialog>
+              <button
+                className="link-arrow"
+                style={{ background: "transparent", border: 0, padding: 0, marginTop: 18, cursor: "pointer", fontFamily: "inherit" }}
+              >
+                Contact us <ArrowRight size={15} />
+              </button>
+            </EnterpriseInquiryDialog>
           </div>
         </div>
       </div>

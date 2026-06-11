@@ -6,6 +6,10 @@ export const enterprisePage: ProductPageData = {
   positioning: "Shared context, governance, and long-running agents for teams.",
   subhead:
     "Give your data org one evolving context engine, governed access, and reliable long-running agents — deployed in your environment. Scale data output without scaling headcount.",
+  heroCtas: [
+    { label: "Talk to us", href: "#contact", variant: "primary" },
+    { label: "Email us", href: "mailto:contact@datus.ai", variant: "ghost" },
+  ],
   problem: {
     heading: "Reusable systems, not repeated manual effort.",
     body: "Individual productivity is the start. The enterprise value is turning every solved problem into shared, versioned context your whole team — and its agents — can reuse, safely and auditably.",
