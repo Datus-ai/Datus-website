@@ -22,6 +22,7 @@ The problem, the product, and the thesis behind it.
 
 The category, the comparisons, and how to build with one — our core cluster.
 
+- [How Datus Turns AI-Generated SQL into Trusted Data](/posts/sql-was-never-the-hard-part) — Jun 11, 2026
 - [What Is a Data Engineering Agent? Definition, Examples & a 2026 Comparison](/posts/what-is-data-engineering-agent-2026) — May 31, 2026
 - [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent) — Mar 2, 2026
 - [Contextual Data Engineering: Why Every Agent Needs Evolvable Context](/posts/contextual-data-engineering) — Jun 1, 2026

@@ -62,6 +62,7 @@ export default defineConfig({
       {
         text: 'Data Engineering Agent',
         items: [
+          { text: 'SQL Was Never the Hard Part', link: '/posts/sql-was-never-the-hard-part' },
           { text: 'What Is a Data Engineering Agent? (2026 Comparison)', link: '/posts/what-is-data-engineering-agent-2026' },
           { text: 'What Is a Data Engineering Agent? (Practical Guide)', link: '/posts/what-is-data-engineering-agent' },
           { text: 'Contextual Data Engineering', link: '/posts/contextual-data-engineering' },
