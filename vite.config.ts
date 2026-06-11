@@ -38,7 +38,7 @@ const cleanUrls = () => {
   };
 };
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   plugins: [react(), cleanUrls()],
   base: '/',
   publicDir: 'src/public', 
@@ -104,15 +104,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 5173,
     open: true,
-    ...(mode === 'development' && {
-      proxy: {
-        '/blog': {
-          target: 'http://localhost:5174',
-          changeOrigin: true,
-          rewrite: (path) => path,
-        },
-      },
-    }),
   },
   preview: {
     port: 4173,
