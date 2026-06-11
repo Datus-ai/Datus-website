@@ -3,6 +3,7 @@ import { withBase } from 'vitepress'
 
 // All posts with dates, sorted newest first — used to compute "latest"
 const allPosts = [
+  { title: 'SQL Was Never the Hard Part: How Datus Turns AI-Generated SQL into Data You Can Trust', description: 'Why reliable AI data engineering needs knowledge, planning, review, controlled execution, and reconciliation, not just SQL generation.', date: '2026-06-11', display: 'Jun 11, 2026', tag: 'Practice', link: '/posts/sql-was-never-the-hard-part' },
   { title: 'What Is a Data Engineering Agent? Definition, Examples & a 2026 Comparison', description: 'Four products now ship as a data engineering agent — but they are not the same thing. Definition, side-by-side comparison, and where persistent context separates agents from chat windows.', date: '2026-05-31', display: 'May 31, 2026', tag: 'Research', link: '/posts/what-is-data-engineering-agent-2026' },
   { title: 'What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer', description: 'The business translation layer between raw tables and analysts: what it includes, how it differs from metric layers and catalogs, and why static models break under AI agents.', date: '2026-05-31', display: 'May 31, 2026', tag: 'Glossary', link: '/posts/what-is-semantic-layer' },
   { title: 'Contextual Data Engineering: Why Every Data Engineering Agent Needs Evolvable Context', description: 'Contextual data engineering explained: schemas, semantics, and feedback loops for durable data agents.', date: '2026-06-01', display: 'Jun 1, 2026', tag: 'Research', link: '/posts/contextual-data-engineering' },
@@ -67,6 +68,7 @@ const sections = [
     label: 'Data Engineering Agent',
     description: 'The category, the comparisons, and how to build with one — our core cluster.',
     posts: [
+      { title: 'SQL Was Never the Hard Part: How Datus Turns AI-Generated SQL into Data You Can Trust', date: 'Jun 11, 2026', link: '/posts/sql-was-never-the-hard-part' },
       { title: 'What Is a Data Engineering Agent? Definition, Examples & a 2026 Comparison', date: 'May 31, 2026', link: '/posts/what-is-data-engineering-agent-2026' },
       { title: 'What Is a Data Engineering Agent? A Practical Guide with Datus', date: 'Mar 2, 2026', link: '/posts/what-is-data-engineering-agent' },
       { title: 'Contextual Data Engineering: Why Every Agent Needs Evolvable Context', date: 'Jun 1, 2026', link: '/posts/contextual-data-engineering' },

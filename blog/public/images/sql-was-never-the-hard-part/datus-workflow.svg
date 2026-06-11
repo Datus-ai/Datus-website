@@ -1,0 +1,100 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b45309"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#15803d"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="600" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="600" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#0f172a">Datus Data Development Workflow</text>
+  <text x="600" y="70" text-anchor="middle" font-size="15" fill="#64748b">knowledge → plan → review → execute → reconcile</text>
+
+  <!-- Inputs -->
+  <rect x="120" y="100" width="300" height="58" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="270" y="124" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">ref_sql/</text>
+  <text x="270" y="144" text-anchor="middle" font-size="12.5" fill="#64748b">historical SQL of the project</text>
+
+  <rect x="460" y="100" width="380" height="58" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="650" y="124" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">docs/…requirements.md</text>
+  <text x="650" y="144" text-anchor="middle" font-size="12.5" fill="#64748b">business source of truth</text>
+
+  <!-- Input arrows -->
+  <line x1="270" y1="158" x2="148" y2="232" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="650" y1="158" x2="380" y2="232" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="650" y1="158" x2="610" y2="232" stroke="#475569" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+
+  <!-- Stage boxes -->
+  <!-- 1 project-set-up -->
+  <rect x="40" y="238" width="200" height="128" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="140" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">PHASE 1</text>
+  <text x="140" y="294" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">project-set-up</text>
+  <text x="140" y="318" text-anchor="middle" font-size="13" fill="#334155">Initialize Knowledge</text>
+  <text x="140" y="346" text-anchor="middle" font-size="11" fill="#64748b">lineage · rules · conventions</text>
+
+  <!-- 2 etl-plan -->
+  <rect x="270" y="238" width="200" height="128" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="370" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">PHASE 2</text>
+  <text x="370" y="294" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">etl-plan</text>
+  <text x="370" y="318" text-anchor="middle" font-size="13" fill="#334155">Plan &amp; Approve</text>
+  <text x="370" y="346" text-anchor="middle" font-size="11" fill="#64748b">no SQL before approval</text>
+
+  <!-- 3 sql-review -->
+  <rect x="500" y="238" width="200" height="128" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="600" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">PHASE 3</text>
+  <text x="600" y="294" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">sql-review</text>
+  <text x="600" y="318" text-anchor="middle" font-size="13" fill="#334155">Review SQL</text>
+  <text x="600" y="346" text-anchor="middle" font-size="11" fill="#64748b">dialect · NULL · types · scope</text>
+
+  <!-- 4 execute-job -->
+  <rect x="730" y="238" width="200" height="128" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="830" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#2563eb">PHASE 4</text>
+  <text x="830" y="294" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">execute-job</text>
+  <text x="830" y="318" text-anchor="middle" font-size="13" fill="#334155">Execute Jobs</text>
+  <text x="830" y="346" text-anchor="middle" font-size="11" fill="#64748b">staging + mart in PostgreSQL</text>
+
+  <!-- 5 data-compare -->
+  <rect x="960" y="238" width="200" height="128" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <text x="1060" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#b45309">PHASE 5</text>
+  <text x="1060" y="294" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">data-compare</text>
+  <text x="1060" y="318" text-anchor="middle" font-size="13" fill="#334155">Reconcile</text>
+  <text x="1060" y="346" text-anchor="middle" font-size="11" fill="#64748b">vs expected table · no hard-coding</text>
+
+  <!-- Pipeline arrows -->
+  <line x1="240" y1="302" x2="266" y2="302" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="470" y1="302" x2="496" y2="302" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="700" y1="302" x2="726" y2="302" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="930" y1="302" x2="956" y2="302" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Human gate badge on etl-plan -->
+  <rect x="315" y="226" width="110" height="24" rx="12" fill="#0f172a"/>
+  <text x="370" y="242" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">human gate</text>
+
+  <!-- Feedback loop: data-compare -> execute-job -->
+  <path d="M 1040 366 C 1010 430, 880 430, 852 370" fill="none" stroke="#b45309" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrowAmber)"/>
+  <text x="947" y="448" text-anchor="middle" font-size="12.5" font-weight="600" fill="#b45309">compare → diagnose → fix SQL → rerun</text>
+
+  <!-- Acceptance box -->
+  <line x1="1110" y1="366" x2="1110" y2="496" stroke="#15803d" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  <rect x="690" y="500" width="470" height="64" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="925" y="526" text-anchor="middle" font-size="14.5" font-weight="700" fill="#15803d">✓ marts.pendo__product_adoption_summary reconciled</text>
+  <text x="925" y="548" text-anchor="middle" font-size="12.5" fill="#166534">24,995 rows · 13 columns · &lt;1e-9 tolerance · 0 bidirectional diffs</text>
+
+  <!-- Knowledge base note under step 1 -->
+  <rect x="40" y="500" width="430" height="64" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="255" y="526" text-anchor="middle" font-size="13" font-weight="700" fill="#334155">Project knowledge base</text>
+  <text x="255" y="548" text-anchor="middle" font-size="12" fill="#64748b">AGENTS.md · business_knowledge · technical_standards · table_lineage</text>
+  <line x1="140" y1="366" x2="140" y2="496" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="152" y="440" font-size="11.5" fill="#64748b">generates</text>
+
+  <!-- Knowledge base feeds later stages -->
+  <path d="M 470 532 C 560 532, 600 460, 600 372" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text x="520" y="500" font-size="11.5" fill="#64748b">grounds every step</text>
+</svg>
