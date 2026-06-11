@@ -25,8 +25,7 @@ import { CONTACT_EMAIL, GITHUB_URL, STUDIO_URL } from "./config/nav";
 import { formatStarCount, useGitHubStars } from "./hooks/useGitHubStars";
 
 /* ---------------------------------- Hero ---------------------------------- */
-const INSTALL_CMD =
-  "curl -fsSL https://raw.githubusercontent.com/datus-ai/datus-agent/main/install.sh | sh";
+const INSTALL_CMD = "curl -fsSL https://datus.ai/install.sh | sh";
 
 /** The install command — click to copy, with a brief confirmation. */
 function CopyCommand() {
@@ -136,7 +135,7 @@ function Hero() {
             alignItems: "center",
             marginTop: 32,
             color: "var(--ink-muted)",
-            fontSize: "clamp(10.5px, 1.05vw, 13px)",
+            fontSize: 13.5,
             fontFamily: "var(--font-mono)",
           }}
         >
