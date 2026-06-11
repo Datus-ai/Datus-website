@@ -54,6 +54,14 @@
 }
 
 /* ----------------------------- base ----------------------------- */
+/* Minimal reset — the static blog pages load only this stylesheet (no Tailwind
+   preflight), so normalize body margin and native control styling here. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .site-root {
   background:
     radial-gradient(1100px 600px at 78% -8%, rgba(64, 45, 243, 0.22), transparent 60%),
@@ -154,6 +162,7 @@
   height: 44px;
   padding: 0 20px;
   border-radius: var(--r-sm);
+  font-family: inherit;
   font-weight: 600;
   font-size: 14.5px;
   border: 1px solid transparent;
@@ -237,6 +246,11 @@
   height: 36px;
   padding: 0 12px;
   border-radius: var(--r-sm);
+  /* reset native <button> styling (Products/Community triggers) for blog pages
+     that don't load Tailwind preflight */
+  background: transparent;
+  border: 0;
+  font-family: inherit;
   color: var(--ink-dim);
   font-size: 14.5px;
   font-weight: 500;
@@ -418,6 +432,31 @@
   .site-nav__burger { display: inline-flex; }
   .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .hero-grid { grid-template-columns: 1fr !important; }
+
+  /* static blog nav: burger toggles `.open` (React nav uses its own menu) */
+  .site-nav.open .site-nav__links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    padding: 12px 16px 18px;
+    background: var(--panel-solid);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .site-nav.open .nav-dd__menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: 0;
+    padding-left: 12px;
+    min-width: 0;
+  }
 }
 @media (max-width: 640px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }

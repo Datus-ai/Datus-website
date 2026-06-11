@@ -2,7 +2,9 @@ import {
   ArrowRight,
   Boxes,
   Building2,
+  Check,
   CheckCircle2,
+  Copy,
   Database,
   GitBranch,
   Github,
@@ -15,6 +17,7 @@ import {
   Terminal,
   Workflow,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import SiteLayout from "./components/SiteLayout";
 import RotatingPrompt from "./components/RotatingPrompt";
 import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
@@ -22,80 +25,165 @@ import { CONTACT_EMAIL, GITHUB_URL, STUDIO_URL } from "./config/nav";
 import { formatStarCount, useGitHubStars } from "./hooks/useGitHubStars";
 
 /* ---------------------------------- Hero ---------------------------------- */
+const INSTALL_CMD =
+  "curl -fsSL https://raw.githubusercontent.com/datus-ai/datus-agent/main/install.sh | sh";
+
+/** The install command — click to copy, with a brief confirmation. */
+function CopyCommand() {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      title="Copy install command"
+      onClick={() => {
+        navigator.clipboard
+          ?.writeText(INSTALL_CMD)
+          .then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          })
+          .catch(() => {});
+      }}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 6,
+        whiteSpace: "nowrap",
+        background: "transparent",
+        border: 0,
+        padding: 0,
+        cursor: "pointer",
+        color: "inherit",
+        fontFamily: "inherit",
+        fontSize: "inherit",
+      }}
+    >
+      <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} />
+      {INSTALL_CMD}
+      {copied ? (
+        <Check size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} />
+      ) : (
+        <Copy size={13} style={{ color: "var(--ink-faint)", flexShrink: 0 }} />
+      )}
+    </button>
+  );
+}
+
 function Hero() {
   const stars = useGitHubStars();
   return (
     <section className="section" style={{ paddingTop: 72, paddingBottom: 64 }}>
-      <div
-        className="container hero-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.05fr 0.95fr",
-          gap: 48,
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <span className="eyebrow">
-            <Sparkles size={13} /> Open source · Apache-2.0
-          </span>
-          <h1
-            style={{
-              fontSize: "clamp(34px, 5vw, 60px)",
-              lineHeight: 1.04,
-              letterSpacing: "-0.03em",
-              fontWeight: 750,
-              margin: "20px 0 0",
-            }}
-          >
-            The open-source{" "}
-            <span className="grad-text">data engineering agent</span> for
-            building evolvable context.
-          </h1>
-          <p className="lead" style={{ maxWidth: 540 }}>
-            From one-man data teams to enterprise agent teams, Datus turns data
-            work into reliable, reusable agent systems — semantic-centric and
-            end-to-end.
-          </p>
-
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
-            <a className="btn btn-primary btn-lg" href={STUDIO_URL}>
-              Get started — free <ArrowRight size={17} />
-            </a>
-            <a
-              className="btn btn-ghost btn-lg"
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+      <div className="container">
+        <div
+          className="hero-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.05fr 0.95fr",
+            gap: 48,
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <span className="eyebrow">
+              <Sparkles size={13} /> Open source · Apache-2.0
+            </span>
+            <h1
+              style={{
+                fontSize: "clamp(34px, 5vw, 60px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.03em",
+                fontWeight: 750,
+                margin: "20px 0 0",
+              }}
             >
-              <Github size={17} />
-              Star on GitHub
-              <span style={{ color: "var(--term-amber)", display: "inline-flex", alignItems: "center", gap: 4 }}>
-                <Star size={13} fill="currentColor" /> {formatStarCount(stars)}
-              </span>
-            </a>
+              The open-source{" "}
+              <span className="grad-text">data engineering agent</span> for
+              building evolvable context.
+            </h1>
+            <p className="lead" style={{ maxWidth: 540 }}>
+              From one-man data teams to enterprise agent teams, Datus turns data
+              work into reliable, reusable agent systems — semantic-centric and
+              end-to-end.
+            </p>
+
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
+              <a className="btn btn-primary btn-lg" href={STUDIO_URL}>
+                Get started — free <ArrowRight size={17} />
+              </a>
+              <a
+                className="btn btn-ghost btn-lg"
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={17} />
+                Star on GitHub
+                <span style={{ color: "var(--term-amber)", display: "inline-flex", alignItems: "center", gap: 4 }}>
+                  <Star size={13} fill="currentColor" /> {formatStarCount(stars)}
+                </span>
+              </a>
+            </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              gap: 20,
-              flexWrap: "wrap",
-              marginTop: 26,
-              color: "var(--ink-muted)",
-              fontSize: 13.5,
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            <span><CheckCircle2 size={13} style={{ verticalAlign: "-2px", color: "var(--term-green)" }} /> pip install datus-agent</span>
-            <span><CheckCircle2 size={13} style={{ verticalAlign: "-2px", color: "var(--term-green)" }} /> Bring your own warehouse</span>
-            <span><CheckCircle2 size={13} style={{ verticalAlign: "-2px", color: "var(--term-green)" }} /> Bring your own model</span>
-          </div>
+          <HeroTerminal />
         </div>
 
-        <HeroTerminal />
+        <div
+          style={{
+            display: "flex",
+            gap: 18,
+            flexWrap: "wrap",
+            alignItems: "center",
+            marginTop: 32,
+            color: "var(--ink-muted)",
+            fontSize: "clamp(10.5px, 1.05vw, 13px)",
+            fontFamily: "var(--font-mono)",
+          }}
+        >
+          <CopyCommand />
+          <span style={{ whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own warehouse
+          </span>
+          <span style={{ whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own model
+          </span>
+        </div>
       </div>
     </section>
+  );
+}
+
+const WAREHOUSES = [
+  "snowflake", "bigquery", "redshift", "starrocks",
+  "clickhouse", "trino", "postgresql", "mysql",
+];
+
+/** Slowly cross-fades the warehouse name in the init command. */
+function RotatingWarehouse() {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const hold = setTimeout(() => setVisible(false), 2200);
+    return () => clearTimeout(hold);
+  }, [index]);
+
+  useEffect(() => {
+    if (visible) return;
+    const swap = setTimeout(() => {
+      setIndex((i) => (i + 1) % WAREHOUSES.length);
+      setVisible(true);
+    }, 320);
+    return () => clearTimeout(swap);
+  }, [visible]);
+
+  return (
+    <span
+      className="term__cmd"
+      style={{ transition: "opacity 0.32s ease", opacity: visible ? 1 : 0 }}
+    >
+      {WAREHOUSES[index]}
+    </span>
   );
 }
 
@@ -106,19 +194,16 @@ function HeroTerminal() {
         <span className="term__dot term__dot--r" />
         <span className="term__dot term__dot--y" />
         <span className="term__dot term__dot--g" />
-        <span className="term__title">datus — agent session</span>
+        <span className="term__title">datus-agent</span>
       </div>
       <div className="term__body">
         <div className="term__line">
           <span className="term__prompt">$ </span>
-          <span className="term__cmd">datus init --warehouse snowflake</span>
+          <span className="term__cmd">datus init --warehouse </span>
+          <RotatingWarehouse />
         </div>
         <div className="term__line term__dim">
-          ↳ connected · indexed schemas · semantic model drafted
-        </div>
-        <div className="term__line" style={{ marginTop: 10 }}>
-          <span className="term__prompt">$ </span>
-          <span className="term__cmd">datus chat</span>
+          ↳ connected · indexed schemas · semantic model · context initialized
         </div>
         <div className="term__line term__ok">
           ✓ context engine ready — schemas, metrics, validated SQL
@@ -126,9 +211,15 @@ function HeroTerminal() {
         <div className="term__line" style={{ marginTop: 10 }}>
           <RotatingPrompt />
         </div>
-        <div className="term__line term__dim" style={{ marginTop: 10 }}>
+        <div className="term__line term__dim" style={{ marginTop: 10, whiteSpace: "nowrap", fontSize: 11.5 }}>
           plan → generate → validate → review → ship
           <span className="term__cy"> · captured to memory</span>
+        </div>
+        <div className="term__line term__am" style={{ marginTop: 10, whiteSpace: "nowrap", fontSize: 11.5 }}>
+          ↻ self-evolve — extract &amp; update knowledge from feedback &amp; benchmark
+        </div>
+        <div className="term__line term__dim" style={{ fontSize: 11.5 }}>
+          · subagent-level memory
         </div>
       </div>
     </div>
@@ -163,7 +254,7 @@ function Pillars() {
       <div className="container">
         <div className="section-head">
           <span className="eyebrow"><Layers size={13} /> Why Datus</span>
-          <h2 className="h2">One story, two paths, three pillars.</h2>
+          <h2 className="h2">Ship more data work, trust every result, scale to a team.</h2>
           <p className="lead">
             Whether you are a solo engineer or an enterprise data org, Datus is
             the same system — it just scales with you.

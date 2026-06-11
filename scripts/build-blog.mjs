@@ -20,6 +20,16 @@ const SITE = "https://datus.ai";
 const GA_ID = "G-EPVCH78EZP";
 const GITHUB_URL = "https://github.com/Datus-ai/Datus-agent";
 const STUDIO_URL = "https://studio.datus.ai/overview?utm_source=datus.ai&utm_medium=blog&utm_campaign=get_started";
+const SLACK_URL = "https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg";
+const DOCS_URL = "https://docs.datus.ai";
+
+// Mirrors src/config/nav.ts so the static blog nav matches the React SiteNav.
+const PRODUCTS_NAV = [
+  { label: "Datus CLI", href: "/products/cli/", desc: "Run the modern data stack from your terminal." },
+  { label: "VS Code Extension", href: "/products/vscode/", desc: "Bring context and agents into your editor." },
+  { label: "Datus Studio", href: "/products/studio/", desc: "The easiest way to start — free, no setup." },
+  { label: "Enterprise", href: "/products/enterprise/", desc: "Shared context, governance, long-running agents." },
+];
 
 const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
 md.use(anchor, { permalink: anchor.permalink.headerLink() });
@@ -108,25 +118,43 @@ function extractKeywords(data) {
 }
 
 /* ------------------------------- chrome ------------------------------- */
+// Inline lucide SVGs so the static nav matches the React SiteNav icons exactly.
+const SVG = {
+  chevron: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
+  github: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>',
+  star: '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  burger: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>',
+};
+
 function navHtml() {
+  const products = PRODUCTS_NAV.map((p) =>
+    `<a class="nav-dd__item" href="${p.href}"><span class="nav-dd__item-title">${esc(p.label)}</span><span class="nav-dd__item-desc">${esc(p.desc)}</span></a>`).join("");
+  const community = [["GitHub", GITHUB_URL], ["Slack", SLACK_URL], ["Docs", DOCS_URL]].map(([l, h]) =>
+    `<a class="nav-dd__item" href="${h}" target="_blank" rel="noopener noreferrer"><span class="nav-dd__item-title">${l}</span></a>`).join("");
   return `<header class="site-nav"><div class="site-nav__inner">
   <a class="site-nav__logo" href="/" aria-label="Datus home"><img src="/logo_dark.svg" alt="Datus" /></a>
   <nav class="site-nav__links" aria-label="Primary">
-    <div class="nav-dd"><button class="nav-link" type="button">Products ▾</button>
-      <div class="nav-dd__menu">
-        <a class="nav-dd__item" href="/products/cli/"><span class="nav-dd__item-title">Datus CLI</span></a>
-        <a class="nav-dd__item" href="/products/vscode/"><span class="nav-dd__item-title">VS Code Extension</span></a>
-        <a class="nav-dd__item" href="/products/studio/"><span class="nav-dd__item-title">Datus Studio</span></a>
-        <a class="nav-dd__item" href="/products/enterprise/"><span class="nav-dd__item-title">Enterprise</span></a>
-      </div></div>
+    <div class="nav-dd"><button class="nav-link" type="button">Products ${SVG.chevron}</button>
+      <div class="nav-dd__menu">${products}</div></div>
     <a class="nav-link" href="/integrations/">Integrations</a>
     <a class="nav-link" href="/pricing/">Pricing</a>
     <a class="nav-link" href="/blog/">Blog</a>
+    <div class="nav-dd"><button class="nav-link" type="button">Community ${SVG.chevron}</button>
+      <div class="nav-dd__menu">${community}</div></div>
   </nav>
   <div class="site-nav__spacer"></div>
-  <a class="nav-ghost-btn" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ GitHub</a>
+  <a class="nav-ghost-btn" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">${SVG.github}<span class="star">${SVG.star}</span><span id="gh-stars">1.2k</span></a>
   <a class="btn btn-primary btn-sm" href="${STUDIO_URL}">Get started</a>
+  <button class="site-nav__burger" type="button" aria-label="Menu" onclick="this.closest('.site-nav').classList.toggle('open')">${SVG.burger}</button>
 </div></header>`;
+}
+
+// Live GitHub star count (mirrors src/hooks/useGitHubStars.ts) for nav parity.
+function navScript() {
+  return `<script>(function(){var K="datus:github-stars",T=216e5;function f(c){if(c<1000)return""+c;var t=c/1000;return t>=10?Math.round(t)+"k":t.toFixed(1)+"k";}
+function s(c){var e=document.getElementById("gh-stars");if(e)e.textContent=f(c);}
+try{var r=JSON.parse(localStorage.getItem(K));if(r&&typeof r.count==="number"){s(r.count);if(r.ts&&Date.now()-r.ts<T)return;}}catch(e){}
+fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){return x.ok?x.json():null}).then(function(d){if(!d||typeof d.stargazers_count!=="number")return;s(d.stargazers_count);try{localStorage.setItem(K,JSON.stringify({count:d.stargazers_count,ts:Date.now()}))}catch(e){}}).catch(function(){});})();</script>`;
 }
 
 function footerHtml() {
@@ -166,7 +194,7 @@ function shell({ title, description, canonical, head = "", body }) {
 <meta name="twitter:card" content="summary_large_image" />
 ${head}
 ${gaHtml()}
-</head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div></body></html>`;
+</head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div>${navScript()}</body></html>`;
 }
 
 /* ------------------------------- pages ------------------------------- */
@@ -206,7 +234,6 @@ function indexPage(posts) {
     ? [...CATEGORIES, { label: "More essays", description: "", slugs: extras }]
     : CATEGORIES;
 
-  const total = posts.size;
   const sections = cats.map((cat) => {
     const items = cat.slugs.filter((s) => posts.has(s)).map((s) => posts.get(s));
     if (!items.length) return "";
@@ -227,7 +254,7 @@ function indexPage(posts) {
       <span class="eyebrow">Datus Blog</span>
       <h1 style="font-size:clamp(32px,4.6vw,52px);line-height:1.06;letter-spacing:-0.03em;font-weight:750;margin:18px 0 0">
         A working catalog on agents, semantics, and context.</h1>
-      <p class="lead">Essays and guides on data engineering agents, semantic layers, MCP, and text-to-SQL — ${total} articles and counting.</p>
+      <p class="lead">Essays and guides on data engineering agents, semantic layers, MCP, and text-to-SQL.</p>
       <div class="blog-tabs">${tabs}</div>
     </div></section>
     <div class="container" style="max-width:880px">${sections}</div>`;
