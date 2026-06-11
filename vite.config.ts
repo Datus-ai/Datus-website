@@ -2,15 +2,29 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
-// Locally mirror GitHub Pages behavior: redirect the clean URL `/glossary`
-// to `/glossary/` so the MPA entry (glossary/index.html) is served in dev/preview
-// instead of falling back to the root SPA.
-const glossaryCleanUrl = () => {
+// Every MPA entry served from a directory. Used both for the rollup inputs and
+// the clean-URL redirect plugin below, so the two never drift apart.
+const MPA_ROUTES = [
+  'glossary',
+  'products/cli',
+  'products/vscode',
+  'products/studio',
+  'products/enterprise',
+  'integrations',
+  'pricing',
+];
+
+// Locally mirror GitHub Pages behavior: redirect a clean URL like `/products/cli`
+// to `/products/cli/` so the MPA entry (products/cli/index.html) is served in
+// dev/preview instead of falling back to the root SPA.
+const cleanUrls = () => {
   const redirect = (server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) => {
     server.middlewares.use((req, res, next) => {
-      if (req.url === '/glossary' || req.url === '/glossary?') {
+      const url = (req.url || '').replace(/\?$/, '');
+      const target = url.replace(/^\//, '');
+      if (MPA_ROUTES.includes(target)) {
         res.statusCode = 301;
-        res.setHeader('Location', '/glossary/');
+        res.setHeader('Location', `/${target}/`);
         res.end();
         return;
       }
@@ -18,14 +32,14 @@ const glossaryCleanUrl = () => {
     });
   };
   return {
-    name: 'glossary-clean-url',
+    name: 'clean-urls',
     configureServer: redirect,
     configurePreviewServer: redirect,
   };
 };
 
 export default defineConfig(({ mode }) => ({
-  plugins: [react(), glossaryCleanUrl()],
+  plugins: [react(), cleanUrls()],
   base: '/',
   publicDir: 'src/public', 
   resolve: {
@@ -78,7 +92,12 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
-        glossary: path.resolve(__dirname, 'glossary/index.html'),
+        ...Object.fromEntries(
+          MPA_ROUTES.map((route) => [
+            route.replace(/\//g, '-'),
+            path.resolve(__dirname, `${route}/index.html`),
+          ]),
+        ),
       },
     },
   },
