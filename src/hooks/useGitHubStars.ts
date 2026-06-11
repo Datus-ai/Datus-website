@@ -25,18 +25,10 @@ export const useGitHubStars = (
   repo: string = GITHUB_REPO,
   fallback: number = GITHUB_STARS_FALLBACK,
 ): number => {
-  const [stars, setStars] = useState<number>(() => {
-    if (typeof window === "undefined") return fallback;
-    try {
-      const raw = window.localStorage.getItem(GITHUB_STARS_CACHE_KEY);
-      if (!raw) return fallback;
-      const cached = JSON.parse(raw) as { count: number; ts: number };
-      if (typeof cached.count === "number") return cached.count;
-    } catch {
-      // ignore — fall through to fallback
-    }
-    return fallback;
-  });
+  // Always start from the static fallback so the server-prerendered HTML and
+  // the client's first render match (no hydration mismatch). The cached value
+  // is applied in the effect below, after hydration.
+  const [stars, setStars] = useState<number>(fallback);
 
   useEffect(() => {
     let cancelled = false;
@@ -45,6 +37,7 @@ export const useGitHubStars = (
       const raw = window.localStorage.getItem(GITHUB_STARS_CACHE_KEY);
       if (raw) {
         const cached = JSON.parse(raw) as { count: number; ts: number };
+        if (typeof cached.count === "number") setStars(cached.count);
         if (
           typeof cached.ts === "number" &&
           Date.now() - cached.ts < GITHUB_STARS_TTL_MS
