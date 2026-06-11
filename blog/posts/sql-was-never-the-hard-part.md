@@ -1,5 +1,5 @@
 ---
-title: "SQL Was Never the Hard Part: How Datus Turns AI-Generated SQL into Data You Can Trust"
+title: "How Datus Turns AI-Generated SQL into Trusted Data"
 description: "Why reliable AI data engineering needs knowledge, planning, review, controlled execution, and reconciliation, not just SQL generation."
 date: 2026-06-11
 lastmod: 2026-06-11
@@ -15,7 +15,7 @@ head:
       content: "AI-generated SQL, data engineering agent, agentic data engineering, SQL reconciliation, data quality, Datus workflow"
   - - meta
     - property: og:title
-      content: "SQL Was Never the Hard Part: How Datus Turns AI-Generated SQL into Data You Can Trust"
+      content: "How Datus Turns AI-Generated SQL into Trusted Data"
   - - meta
     - property: og:description
       content: "Why reliable AI data engineering needs knowledge, planning, review, controlled execution, and reconciliation, not just SQL generation."
@@ -27,7 +27,7 @@ head:
       content: https://datus.ai/blog/images/sql-was-never-the-hard-part/datus-workflow.svg
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/posts/sql-was-never-the-hard-part
+      content: https://datus.ai/blog/posts/sql-was-never-the-hard-part.html
   - - meta
     - name: twitter:card
       content: summary_large_image
@@ -36,10 +36,10 @@ head:
       content: https://datus.ai/blog/images/sql-was-never-the-hard-part/datus-workflow.svg
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/posts/sql-was-never-the-hard-part
+      href: https://datus.ai/blog/posts/sql-was-never-the-hard-part.html
 ---
 
-# SQL Was Never the Hard Part: How Datus Turns AI-Generated SQL into Data You Can Trust
+# How Datus Turns AI-Generated SQL into Trusted Data
 
 *Why we built data development around knowledge, plans, reviews, and reconciliation, not just generation.*
 
