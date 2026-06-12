@@ -15,7 +15,17 @@ const root = process.cwd();
 const requiredFiles = [
   path.join(root, 'dist', 'index.html'),
   path.join(root, 'dist', 'glossary', 'index.html'),
+  path.join(root, 'dist', 'products', 'cli', 'index.html'),
+  path.join(root, 'dist', 'products', 'vscode', 'index.html'),
+  path.join(root, 'dist', 'products', 'studio', 'index.html'),
+  path.join(root, 'dist', 'products', 'enterprise', 'index.html'),
+  path.join(root, 'dist', 'integrations', 'index.html'),
+  path.join(root, 'dist', 'pricing', 'index.html'),
   path.join(root, 'dist', 'blog', 'index.html'),
+  path.join(root, 'dist', 'blog', 'blog.css'),
+  // a representative migrated post (short URL) + its legacy redirect stub
+  path.join(root, 'dist', 'blog', 'what-is-text-to-sql', 'index.html'),
+  path.join(root, 'dist', 'blog', 'posts', 'what-is-text-to-sql', 'index.html'),
   path.join(root, 'dist', 'data-engineering-agent', 'index.html'),
 ];
 
