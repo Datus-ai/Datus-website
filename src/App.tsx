@@ -209,7 +209,7 @@ function HeroTerminal() {
       <div className="term__body">
         <div className="term__line">
           <span className="term__prompt">$ </span>
-          <span className="term__cmd">datus init --warehouse </span>
+          <span className="term__cmd">datus init --datasource </span>
           <RotatingWarehouse />
         </div>
         <div className="term__line term__dim">

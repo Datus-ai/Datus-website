@@ -32,7 +32,7 @@ export const cliPage: ProductPageData = {
     heading: "Up and running in 5 minutes",
     steps: [
       { label: "Install", body: "Python 3.10+ required.", code: "pip install datus-agent" },
-      { label: "Initialize", body: "Connect a warehouse and index your schemas.", code: "datus init --warehouse snowflake" },
+      { label: "Initialize", body: "Connect a data source and index your schemas.", code: "datus init --datasource snowflake" },
       { label: "Chat", body: "Ask a question and let the agent plan, generate, and validate.", code: "datus chat" },
     ],
     note: "Want sample data? The docs include a demo dataset to try the full workflow end-to-end.",
