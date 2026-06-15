@@ -3,7 +3,7 @@ import type { ProductPageData } from "../../../components/ProductPageTemplate";
 import { GITHUB_URL } from "../../../config/nav";
 
 const MARKETPLACE_URL =
-  "https://marketplace.visualstudio.com/search?term=datus&target=VSCode";
+  "https://marketplace.visualstudio.com/items?itemName=datus-ai.datus-studio";
 
 export const vscodePage: ProductPageData = {
   eyebrow: "Datus for VS Code",
