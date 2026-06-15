@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+import { existsSync, statSync, readFileSync } from 'node:fs';
 
 // Every MPA entry served from a directory. Used both for the rollup inputs and
 // the clean-URL redirect plugin below, so the two never drift apart.
@@ -38,8 +39,50 @@ const cleanUrls = () => {
   };
 };
 
+// The blog (and its sitemap) is a build-time artifact emitted into dist/ by
+// scripts/build-blog.mjs — `vite dev` has no /blog route and would otherwise
+// fall back to the root SPA, showing the homepage at /blog/. This serves the
+// generated blog from dist/ in dev so the Blog nav link works after a build
+// (run `npm run build:all` once). Edits to posts need a rebuild to show up.
+const MIME: Record<string, string> = {
+  '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
+  '.xml': 'application/xml', '.svg': 'image/svg+xml', '.png': 'image/png',
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.json': 'application/json', '.txt': 'text/plain',
+};
+const serveBuiltBlog = () => {
+  const DIST = path.resolve(__dirname, 'dist');
+  let warned = false;
+  const resolveFile = (urlPath: string): string | null => {
+    const p = (urlPath.split('?')[0] || '').replace(/\/$/, '') || '/blog';
+    for (const cand of [path.join(DIST, p), path.join(DIST, p, 'index.html')]) {
+      if (existsSync(cand) && statSync(cand).isFile()) return cand;
+    }
+    return null;
+  };
+  return {
+    name: 'serve-built-blog',
+    configureServer(server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) {
+      server.middlewares.use((req, res, next) => {
+        const url = req.url || '';
+        if (!/^\/blog(\/|$|\?)/.test(url)) return next();
+        const file = resolveFile(url);
+        if (!file) {
+          if (!warned) {
+            warned = true;
+            // eslint-disable-next-line no-console
+            console.warn('[serve-built-blog] no built blog in dist/ — run `npm run build:all` to preview /blog in dev.');
+          }
+          return next();
+        }
+        res.setHeader('Content-Type', MIME[path.extname(file)] || 'application/octet-stream');
+        res.end(readFileSync(file));
+      });
+    },
+  };
+};
+
 export default defineConfig(() => ({
-  plugins: [react(), cleanUrls()],
+  plugins: [react(), cleanUrls(), serveBuiltBlog()],
   base: '/',
   publicDir: 'src/public', 
   resolve: {
