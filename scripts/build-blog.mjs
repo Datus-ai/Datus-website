@@ -403,20 +403,40 @@ function isoDate(d, fallback) {
   return isNaN(date) ? fallback : date.toISOString().slice(0, 10);
 }
 
-function buildSitemap(posts, refs = []) {
-  const now = "2026-06-11";
-  const marketing = [
-    "/", "/products/cli/", "/products/vscode/", "/products/studio/", "/products/enterprise/",
-    "/integrations/", "/pricing/", "/glossary/", "/blog/",
-  ].map((u) => ({ loc: u, lastmod: now }));
-  const blog = [...posts.values()].map((p) => ({
-    loc: `/blog/${p.slug}/`,
-    lastmod: isoDate(p.lastmod, now),
-  }));
-  const references = refs.map((r) => ({ loc: r.urlPath, lastmod: now }));
-  const body = [...marketing, ...blog, ...references].map((u) =>
+const BUILD_DATE = "2026-06-11";
+
+// Wrap {loc, lastmod} entries into a <urlset> document.
+function urlset(entries) {
+  const body = entries.map((u) =>
     `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod}</lastmod></url>`).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+}
+
+// Marketing pages — stable, low-churn URLs.
+function buildPagesSitemap() {
+  const entries = [
+    "/", "/products/cli/", "/products/vscode/", "/products/studio/", "/products/enterprise/",
+    "/integrations/", "/pricing/", "/glossary/",
+  ].map((loc) => ({ loc, lastmod: BUILD_DATE }));
+  return urlset(entries);
+}
+
+// Blog section — the index, every post (with its real lastmod), and the
+// standalone reference pages.
+function buildBlogSitemap(posts, refs = []) {
+  const entries = [
+    { loc: "/blog/", lastmod: BUILD_DATE },
+    ...[...posts.values()].map((p) => ({ loc: `/blog/${p.slug}/`, lastmod: isoDate(p.lastmod, BUILD_DATE) })),
+    ...refs.map((r) => ({ loc: r.urlPath, lastmod: BUILD_DATE })),
+  ];
+  return urlset(entries);
+}
+
+// Top-level index that points crawlers at the child sitemaps.
+function buildSitemapIndex(children) {
+  const body = children.map((loc) =>
+    `  <sitemap><loc>${SITE}${loc}</loc><lastmod>${BUILD_DATE}</lastmod></sitemap>`).join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</sitemapindex>\n`;
 }
 
 function main() {
@@ -439,10 +459,13 @@ function main() {
 
   const refs = buildReferencePages();
 
-  // sitemap (overwrites the static one with marketing + blog URLs)
-  write(join(DIST, "sitemap.xml"), buildSitemap(posts, refs));
+  // Sitemaps: a top-level index + a child per section. Overwrites the static
+  // fallback sitemap.xml copied from src/public.
+  write(join(DIST, "sitemap-pages.xml"), buildPagesSitemap());
+  write(join(DIST, "blog", "sitemap.xml"), buildBlogSitemap(posts, refs));
+  write(join(DIST, "sitemap.xml"), buildSitemapIndex(["/sitemap-pages.xml", "/blog/sitemap.xml"]));
 
-  console.log(`[build-blog] generated ${posts.size} posts + ${refs.length} reference pages + index + redirects`);
+  console.log(`[build-blog] generated ${posts.size} posts + ${refs.length} reference pages + index + redirects + sitemap index`);
 }
 
 main();
