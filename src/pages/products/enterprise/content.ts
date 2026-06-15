@@ -7,7 +7,7 @@ export const enterprisePage: ProductPageData = {
   subhead:
     "Give your data org one evolving context engine, governed access, and reliable long-running agents — deployed in your environment. Scale data output without scaling headcount.",
   heroCtas: [
-    { label: "Talk to us", href: "#contact", variant: "primary" },
+    { label: "Contact us", href: "#contact", variant: "primary" },
     { label: "Email us", href: "mailto:contact@datus.ai", variant: "ghost" },
   ],
   problem: {
@@ -28,7 +28,7 @@ export const enterprisePage: ProductPageData = {
     { icon: GitBranch, title: "Long-running agents", body: "Agents that run continuously — monitoring, maintaining, and improving data systems over time." },
   ],
   closingCta: {
-    heading: "Talk to us about Enterprise & BYOC",
+    heading: "Contact us about Enterprise & BYOC",
     body: "Tell us about your stack and what you're trying to do. We'll get back within one business day.",
   },
 };

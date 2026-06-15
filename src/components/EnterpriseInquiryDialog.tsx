@@ -292,7 +292,7 @@ export function EnterpriseInquiryDialog({
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  Talk to us about Enterprise & BYOC
+                  Contact us about Enterprise & BYOC
                 </h3>
               </DialogPrimitive.Title>
               <p

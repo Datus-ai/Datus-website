@@ -129,7 +129,7 @@ function Hero() {
                   className="link-arrow"
                   style={{ background: "transparent", border: 0, padding: 0, cursor: "pointer", fontFamily: "inherit" }}
                 >
-                  Building for a team? Talk to a human <ArrowRight size={15} />
+                  Building for a team? Contact us <ArrowRight size={15} />
                 </button>
               </EnterpriseInquiryDialog>
             </div>
@@ -486,7 +486,7 @@ function EnterpriseCta() {
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
             <EnterpriseInquiryDialog>
               <button className="btn btn-primary btn-lg">
-                Talk to us <ArrowRight size={17} />
+                Contact us <ArrowRight size={17} />
               </button>
             </EnterpriseInquiryDialog>
             <a className="btn btn-ghost btn-lg" href={`mailto:${CONTACT_EMAIL}`}>
