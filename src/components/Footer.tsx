@@ -33,7 +33,7 @@ const Footer = () => {
               <li><a href="/integrations/">Integrations</a></li>
               <li><a href="/pricing/">Pricing</a></li>
               <li><a href="/blog/">Blog</a></li>
-              <li><a href="/glossary">Glossary</a></li>
+              <li><a href="/glossary/">Glossary</a></li>
               <li>
                 <a href="https://docs.datus.ai" target="_blank" rel="noopener noreferrer">
                   Docs

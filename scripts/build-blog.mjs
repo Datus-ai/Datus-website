@@ -76,6 +76,16 @@ const CATEGORIES = [
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
   .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+// The post template already renders the title as the page <h1>. Render the body
+// so each post has exactly one <h1> (duplicate top-level headings are an on-page
+// SEO issue): drop a leading markdown H1 (the redundant title), then demote any
+// remaining body H1 -> H2 — several posts (mis)use single '#' for section
+// headings, which would otherwise emit multiple <h1>s.
+function renderBody(content) {
+  const stripped = content.replace(/^\s*#\s+.+\r?\n+/, "");
+  return md.render(stripped).replace(/<(\/?)h1\b/g, "<$1h2");
+}
+
 function fmtDate(d) {
   if (!d) return "";
   const date = new Date(d);
@@ -100,7 +110,7 @@ function readPosts() {
       date: data.date || "",
       lastmod: data.lastmod || data.date || "",
       keywords: extractKeywords(data),
-      html: md.render(content),
+      html: renderBody(content),
     });
   }
   return posts;
@@ -164,7 +174,7 @@ function footerHtml() {
   <nav style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted)">
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
-    <a href="/blog/">Blog</a><a href="/glossary">Glossary</a>
+    <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a>
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
   <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
@@ -178,7 +188,15 @@ gtag("consent","default",{ad_storage:"denied",analytics_storage:"denied",ad_user
 <script>gtag("js",new Date());gtag("config","${GA_ID}");</script>`;
 }
 
-function shell({ title, description, canonical, head = "", body }) {
+function shell({
+  title, description, canonical, head = "", body,
+  type = "website", image = `${SITE}/og/home-1200x630.png`,
+  published = "", modified = "",
+}) {
+  const articleMeta = type === "article"
+    ? (published ? `<meta property="article:published_time" content="${published}" />` : "")
+      + (modified ? `<meta property="article:modified_time" content="${modified}" />` : "")
+    : "";
   return `<!DOCTYPE html>
 <html lang="en-US"><head>
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -188,10 +206,13 @@ function shell({ title, description, canonical, head = "", body }) {
 <link rel="canonical" href="${canonical}" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="stylesheet" href="/blog/blog.css" />
-<meta property="og:type" content="website" /><meta property="og:site_name" content="Datus" />
+<meta property="og:type" content="${type}" /><meta property="og:site_name" content="Datus" /><meta property="og:locale" content="en_US" />
 <meta property="og:title" content="${esc(title)}" /><meta property="og:description" content="${esc(description)}" />
-<meta property="og:url" content="${canonical}" /><meta property="og:image" content="${SITE}/og/home-1200x630.png" />
+<meta property="og:url" content="${canonical}" /><meta property="og:image" content="${image}" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />${articleMeta}
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${esc(title)}" /><meta name="twitter:description" content="${esc(description)}" />
+<meta name="twitter:image" content="${image}" />
 ${head}
 ${gaHtml()}
 </head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div>${navScript()}</body></html>`;
@@ -224,7 +245,12 @@ function postPage(post) {
       <a class="btn btn-ghost btn-lg" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ Star on GitHub</a>
     </div>
   </div></article>`;
-  return shell({ title: `${post.title} | Datus Blog`, description: post.description, canonical, head, body });
+  return shell({
+    title: `${post.title} | Datus Blog`, description: post.description, canonical, head, body,
+    type: "article",
+    published: post.date ? new Date(post.date).toISOString() : "",
+    modified: post.lastmod ? new Date(post.lastmod).toISOString() : "",
+  });
 }
 
 function indexPage(posts) {
@@ -340,7 +366,7 @@ function buildReferencePages() {
       slug: "", title: data.title || "Data Engineering Agent",
       description: data.description || "", author: data.author || "",
       date: data.date || "", lastmod: data.lastmod || data.date || "",
-      keywords: extractKeywords(data), html: md.render(content),
+      keywords: extractKeywords(data), html: renderBody(content),
     };
     const body = `<article class="section" style="padding-top:48px"><div class="container" style="max-width:760px">
       <a class="link-arrow" href="/blog/" style="margin-bottom:20px">← All posts</a>
@@ -349,7 +375,12 @@ function buildReferencePages() {
       <div class="post-cta"><a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Try Studio free</a>
       <a class="btn btn-ghost btn-lg" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ Star on GitHub</a></div>
     </div></article>`;
-    const html = shell({ title: `${post.title} | Datus`, description: post.description, canonical, body });
+    const html = shell({
+      title: `${post.title} | Datus`, description: post.description, canonical, body,
+      type: "article",
+      published: post.date ? new Date(post.date).toISOString() : "",
+      modified: post.lastmod ? new Date(post.lastmod).toISOString() : "",
+    });
     write(join(DIST, "blog", "data-engineering-agent", sub, "index.html"), html);
     out.push({ urlPath, isIndex, html });
   }
@@ -365,16 +396,26 @@ function write(file, content) {
   writeFileSync(file, content);
 }
 
+// YYYY-MM-DD for sitemap <lastmod>; falls back to the build date.
+function isoDate(d, fallback) {
+  if (!d) return fallback;
+  const date = new Date(d);
+  return isNaN(date) ? fallback : date.toISOString().slice(0, 10);
+}
+
 function buildSitemap(posts, refs = []) {
   const now = "2026-06-11";
-  const urls = [
+  const marketing = [
     "/", "/products/cli/", "/products/vscode/", "/products/studio/", "/products/enterprise/",
-    "/integrations/", "/pricing/", "/glossary", "/blog/",
-    ...[...posts.keys()].map((s) => `/blog/${s}/`),
-    ...refs.map((r) => r.urlPath),
-  ];
-  const body = urls.map((u) =>
-    `  <url><loc>${SITE}${u}</loc><lastmod>${now}</lastmod></url>`).join("\n");
+    "/integrations/", "/pricing/", "/glossary/", "/blog/",
+  ].map((u) => ({ loc: u, lastmod: now }));
+  const blog = [...posts.values()].map((p) => ({
+    loc: `/blog/${p.slug}/`,
+    lastmod: isoDate(p.lastmod, now),
+  }));
+  const references = refs.map((r) => ({ loc: r.urlPath, lastmod: now }));
+  const body = [...marketing, ...blog, ...references].map((u) =>
+    `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod}</lastmod></url>`).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
 
