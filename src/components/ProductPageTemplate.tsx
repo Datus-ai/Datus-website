@@ -1,6 +1,6 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import SiteLayout from "./SiteLayout";
 
 export interface ProductCTA {
@@ -30,10 +30,25 @@ export interface ProductPageData {
   problem: { heading: string; body: string; bullets?: string[] };
   capabilities: Capability[];
   quickstart?: { heading: string; steps: QuickstartStep[]; note?: string };
+  /** Optional enterprise semantic-layer value section, rendered before the closing CTA. */
+  semanticLayer?: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    lifecycle?: string[];
+    cards: Capability[];
+    highlight?: string;
+    link?: ProductCTA;
+  };
   closingCta: { heading: string; body?: string; ctas?: ProductCTA[] };
   /** Enterprise injects its inline form here instead of CTA buttons. */
   formSlot?: ReactNode;
 }
+
+// Lifecycle stage colors, in order: draft → trusted → certified → sunset → archived.
+const LIFECYCLE_TONES = [
+  "var(--ink-faint)", "var(--term-green)", "var(--brand-bright)", "var(--term-amber)", "var(--ink-muted)",
+];
 
 function CtaButton({ cta }: { cta: ProductCTA }) {
   const cls = `btn btn-lg ${cta.variant === "ghost" ? "btn-ghost" : "btn-primary"}`;
@@ -141,6 +156,76 @@ export default function ProductPageTemplate({ data }: { data: ProductPageData })
               ))}
             </div>
             {data.quickstart.note && <p className="muted" style={{ marginTop: 16, fontSize: 14 }}>{data.quickstart.note}</p>}
+          </div>
+        </section>
+      )}
+
+      {/* Enterprise semantic-layer value */}
+      {data.semanticLayer && (
+        <section
+          className="section"
+          style={{
+            background: "radial-gradient(900px 420px at 50% 0%, var(--brand-soft), transparent 70%), rgba(11,18,48,0.4)",
+            borderBlock: "1px solid var(--line)",
+          }}
+        >
+          <div className="container">
+            <div className="section-head">
+              <span className="eyebrow">{data.semanticLayer.eyebrow}</span>
+              <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>{data.semanticLayer.heading}</h2>
+              <p className="lead" style={{ maxWidth: 760 }}>{data.semanticLayer.body}</p>
+            </div>
+
+            {data.semanticLayer.lifecycle && (
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, marginBottom: 32 }}>
+                {data.semanticLayer.lifecycle.map((stage, i, arr) => {
+                  const tone = LIFECYCLE_TONES[i] ?? "var(--ink-muted)";
+                  return (
+                    <Fragment key={stage}>
+                      <span style={{
+                        padding: "5px 13px", borderRadius: 999, fontSize: 12.5, fontWeight: 650,
+                        color: tone, border: `1px solid ${tone}`, background: "rgba(124,137,196,0.08)",
+                      }}>
+                        {stage}
+                      </span>
+                      {i < arr.length - 1 && <ArrowRight size={14} style={{ color: "var(--ink-faint)" }} />}
+                    </Fragment>
+                  );
+                })}
+              </div>
+            )}
+
+            <div className="grid grid-2">
+              {data.semanticLayer.cards.map((c) => (
+                <div className="card" key={c.title}>
+                  {c.icon && <span className="card__icon"><c.icon size={20} /></span>}
+                  <h3 className="card__title">{c.title}</h3>
+                  <p className="card__body">{c.body}</p>
+                </div>
+              ))}
+            </div>
+
+            {data.semanticLayer.highlight && (
+              <div style={{
+                marginTop: 24, padding: "22px 26px", borderRadius: "var(--r-lg)",
+                background: "var(--panel-solid)", border: "1px solid var(--line-strong)",
+              }}>
+                <p style={{ margin: 0, fontSize: 16, lineHeight: 1.65, color: "var(--ink-dim)" }}>
+                  {data.semanticLayer.highlight}
+                </p>
+              </div>
+            )}
+
+            {data.semanticLayer.link && (
+              <a
+                className="link-arrow"
+                href={data.semanticLayer.link.href}
+                {...(data.semanticLayer.link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                style={{ marginTop: 24 }}
+              >
+                {data.semanticLayer.link.label} <ArrowRight size={15} />
+              </a>
+            )}
           </div>
         </section>
       )}

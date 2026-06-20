@@ -4,8 +4,8 @@ import { CONTACT_EMAIL } from "../config/nav";
 import { useFormspree } from "../hooks/useFormspree";
 
 const DATA_STACKS = [
-  "Snowflake", "Databricks", "BigQuery", "StarRocks", "ClickHouse",
-  "Doris", "Greenplum", "PostgreSQL", "Other",
+  "Snowflake", "Databricks", "BigQuery", "Redshift", "StarRocks", "ClickHouse",
+  "Doris", "Greenplum", "PostgreSQL", "MySQL", "Hive", "Spark", "Trino", "Other",
 ];
 
 const labelStyle: React.CSSProperties = {

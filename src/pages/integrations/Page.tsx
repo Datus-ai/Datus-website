@@ -8,6 +8,8 @@ interface Category {
   label: string;
   blurb: string;
   items: string[];
+  /** Adapter repo for this category — used for the browse + open-an-issue links. */
+  repo?: string;
 }
 
 const CATEGORIES: Category[] = [
@@ -16,7 +18,11 @@ const CATEGORIES: Category[] = [
     icon: Database,
     label: "Data sources",
     blurb: "Connect the warehouses and databases you already run.",
-    items: ["Snowflake", "Databricks", "PostgreSQL", "StarRocks", "ClickHouse", "Doris", "Greenplum"],
+    items: [
+      "Snowflake", "Databricks", "Redshift", "StarRocks", "ClickHouse", "Doris", "Greenplum",
+      "PostgreSQL", "MySQL", "Hive", "Spark", "Trino", "SQLAlchemy",
+    ],
+    repo: "https://github.com/Datus-ai/datus-db-adapters",
   },
   {
     id: "llms",
@@ -31,6 +37,7 @@ const CATEGORIES: Category[] = [
     label: "Semantic layer",
     blurb: "Support your existing semantics, and build new ones when they're missing.",
     items: ["MetricFlow (built-in)", "Open Semantic Interchange (OSI)"],
+    repo: "https://github.com/Datus-ai/datus-semantic-adapter",
   },
   {
     id: "schedulers",
@@ -38,6 +45,7 @@ const CATEGORIES: Category[] = [
     label: "Schedulers",
     blurb: "Ship agent-built jobs into your orchestration.",
     items: ["Airflow"],
+    repo: "https://github.com/Datus-ai/datus-scheduler-adapters",
   },
   {
     id: "bi",
@@ -45,6 +53,7 @@ const CATEGORIES: Category[] = [
     label: "BI",
     blurb: "Push metrics and dashboards to your BI tools.",
     items: ["Superset", "Grafana"],
+    repo: "https://github.com/Datus-ai/datus-bi-adapters",
   },
 ];
 
@@ -97,9 +106,16 @@ export default function IntegrationsPage() {
                 </div>
               ))}
             </div>
-            <a className="link-arrow" href={`${GITHUB_URL}/issues/new`} target="_blank" rel="noopener noreferrer" style={{ marginTop: 22 }}>
-              <Github size={15} /> Don't see yours? Open an issue <ArrowRight size={14} />
-            </a>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 24, marginTop: 22 }}>
+              {cat.repo && (
+                <a className="link-arrow" href={cat.repo} target="_blank" rel="noopener noreferrer">
+                  <Github size={15} /> Browse {cat.label} adapters <ArrowRight size={14} />
+                </a>
+              )}
+              <a className="link-arrow" href={`${cat.repo ?? GITHUB_URL}/issues/new`} target="_blank" rel="noopener noreferrer">
+                <Github size={15} /> Don't see yours? Open an issue <ArrowRight size={14} />
+              </a>
+            </div>
           </div>
         </section>
       ))}

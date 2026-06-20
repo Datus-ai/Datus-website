@@ -8,7 +8,7 @@ export const enterprisePage: ProductPageData = {
     "Give your data org one evolving context engine, governed access, and reliable long-running agents — deployed in your environment. Scale data output without scaling headcount.",
   heroCtas: [
     { label: "Contact us", href: "#contact", variant: "primary" },
-    { label: "Email us", href: "mailto:contact@datus.ai", variant: "ghost" },
+    { label: "Try cloud version first", href: "/products/studio/", variant: "ghost" },
   ],
   problem: {
     heading: "Reusable systems, not repeated manual effort.",
