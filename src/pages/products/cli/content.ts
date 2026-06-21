@@ -56,7 +56,7 @@ export const cliHero = {
   eyebrow: "Open source · Apache-2.0",
   title: "Better Claude Code for data engineers.",
   subhead:
-    "Everything you love about Claude Code — skills, MCP, self-evolving memory — rebuilt for the data stack. Model-neutral, governed, and wired into your warehouse from the first command.",
+    "Everything you love about Claude Code, skills, MCP, self-evolving memory, rebuilt for the data stack. Model-neutral, governed, and wired into your warehouse from the first command.",
   ctas: [
     { label: "Quickstart", href: QUICKSTART_URL, external: true, variant: "primary" },
     { label: "View on GitHub", href: GITHUB_URL, external: true, variant: "ghost" },
@@ -64,16 +64,16 @@ export const cliHero = {
   ] as CliCta[],
 };
 
-// Section 0 — parity with Claude Code's general agent capabilities.
+// Section 0, parity with Claude Code's general agent capabilities.
 export const parity = {
   eyebrow: "Claude Code parity",
   heading: "All of Claude Code's power, in your data terminal.",
-  body: "Datus CLI keeps the general agent capabilities you already rely on — and adds nothing you have to relearn.",
+  body: "Datus CLI keeps the general agent capabilities you already rely on, and adds nothing you have to relearn.",
   cards: [
     {
       icon: RefreshCw,
       title: "Self-evolving agent",
-      body: "Skills, knowledge, and memory that iterate on their own — every run sharpens the next.",
+      body: "Skills, knowledge, and memory that iterate on their own, every run sharpens the next.",
       links: [{ label: "Knowledge base", href: `${DOCS_03}/cli/build_kb_command/` }],
     },
     {
@@ -81,24 +81,24 @@ export const parity = {
       title: "MCP & Skills, in full",
       body: "Complete support for the MCP ecosystem and the Skill system. Bring any tool, ship any skill.",
       links: [
-        { label: "MCP", href: `${DOCS_03}/integration/mcp/` },
+        { label: "MCP", href: `${DOCS_03}/cli/mcp_extensions/` },
         { label: "Skills", href: `${DOCS_03}/integration/skills/` },
       ],
     },
     {
       icon: MessagesSquare,
       title: "IM Gateway",
-      body: "Drive the agent from where your team already works — Slack and Lark channel integration built in.",
+      body: "Drive the agent from where your team already works, Slack and Lark channel integration built in.",
       links: [{ label: "IM Gateway", href: `${DOCS_03}/gateway/introduction/` }],
     },
   ] as FeatureCard[],
 };
 
-// Differentiator 1 — model neutrality.
+// Differentiator 1, model neutrality.
 export const modelNeutral = {
   eyebrow: "Where Datus goes further · 01",
   heading: "Model-neutral by design.",
-  body: "Not locked to one vendor. Route each subagent to the model that fits its job — or run an all-Claude lineup. See the full supported-models list in the docs.",
+  body: "Not locked to one vendor. Route each subagent to the model that fits its job, or run an all-Claude lineup. See the full supported-models list in the docs.",
   docsLabel: "Supported models",
   docsHref: MODELS_DOCS_URL,
   routes: [
@@ -111,10 +111,10 @@ export const modelNeutral = {
     { value: "90%", label: "of the quality" },
     { value: "50%", label: "faster" },
   ],
-  note: "Prefer one family? Mix Claude Haiku, Sonnet, Opus, and Fable across the same agents — your call.",
+  note: "Prefer one family? Mix Claude Haiku, Sonnet, Opus, and Fable across the same agents, your call.",
 };
 
-// Differentiator 2 — permissions & guardrails.
+// Differentiator 2, permissions & guardrails.
 export const guardrails = {
   eyebrow: "Where Datus goes further · 02",
   heading: "Guardrails the data stack actually needs.",
@@ -123,7 +123,7 @@ export const guardrails = {
     {
       icon: KeyRound,
       title: "Tool permission modes",
-      body: "How much power the agent gets — set per session or per subagent:",
+      body: "How much power the agent gets, set per session or per subagent:",
       modes: [
         { name: "normal", scope: "Read-only", body: "Explore, query, and plan. Nothing gets written.", tone: "ok" },
         { name: "auto", scope: "Editing", body: "Edits and ships within its lane, no prompt per step.", tone: "warn" },
@@ -134,7 +134,7 @@ export const guardrails = {
     {
       icon: ScanEye,
       title: "Query-time scoping",
-      body: "What a subagent can see at run time — scope it down to just:",
+      body: "What a subagent can see at run time, scope it down to just:",
       items: [
         { label: "Metrics", desc: "Only the metric definitions in play" },
         { label: "Reference SQL", desc: "Curated example queries to learn from" },
@@ -158,21 +158,21 @@ export const guardrails = {
   ] as GuardrailPillar[],
 };
 
-// Differentiator 3 — big-data ecosystem.
+// Differentiator 3, big-data ecosystem.
 export const ecosystem = {
   eyebrow: "Where Datus goes further · 03",
   heading: "Built for the big-data ecosystem.",
-  body: "Warehouses, semantic layers, schedulers, BI — Datus plugs into the stack you already run, and its built-in skills and subagents cover the whole development lifecycle.",
+  body: "Warehouses, semantic layers, schedulers, BI, Datus plugs into the stack you already run, and its built-in skills and subagents cover the whole development lifecycle.",
   cards: [
     {
       icon: Database,
       title: "Connect your stack",
-      body: "Snowflake, Databricks, StarRocks, ClickHouse, MetricFlow, Airflow, Superset, Grafana — and more.",
+      body: "Snowflake, Databricks, StarRocks, ClickHouse, MetricFlow, Airflow, Superset, Grafana, and more.",
     },
     {
       icon: Workflow,
       title: "Full-lifecycle skills",
-      body: "Built-in skills and subagents take you from exploration to metrics to production ETL — end to end.",
+      body: "Built-in skills and subagents take you from exploration to metrics to production ETL, end to end.",
     },
     {
       icon: Layers,
@@ -191,4 +191,10 @@ export const closing = {
     { label: "Quickstart", href: QUICKSTART_URL, external: true, variant: "primary" },
     { label: "View on GitHub", href: GITHUB_URL, external: true, variant: "ghost" },
   ] as CliCta[],
+};
+
+export const claudeCodeNote = {
+  text: "Fine, we know you still love Claude Code, you can use datus-mcp right inside it.",
+  linkLabel: "Learn how",
+  href: `${DOCS_03}/integration/mcp/#claude-code`,
 };

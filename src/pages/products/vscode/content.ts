@@ -16,10 +16,10 @@ export const vscodePage: ProductPageData = {
   ],
   problem: {
     heading: "Local-first, in the editor you already use.",
-    body: "The extension is just a thin UI — it holds no models or credentials. Every capability is served by the Datus-agent web server running on your own machine, so nothing about your data or connections leaves your control.",
+    body: "The extension is just a thin UI, it holds no models or credentials. Every capability is served by the Datus-agent web server running on your own machine, so nothing about your data or connections leaves your control.",
     bullets: [
       "Works in VS Code, Cursor, and other VS Code-compatible editors",
-      "Your data stays fully local — nothing is sent to a cloud",
+      "Your data stays fully local, nothing is sent to a cloud",
       "Bring and configure any model you want",
       "Database credentials live in your local Datus-agent, never in the extension",
     ],
@@ -27,7 +27,7 @@ export const vscodePage: ProductPageData = {
   capabilities: [
     { icon: Code2, title: "Inline SQL", body: "Generate, run, and chart SQL from natural language without leaving your editor." },
     { icon: Database, title: "Catalog & context explorer", body: "Browse the database catalog, context, and subagents in a side tree." },
-    { icon: MessageSquare, title: "Studio chat panel", body: "Chat with the same Datus-agent backend — Plan mode confirms high-risk queries before they run." },
+    { icon: MessageSquare, title: "Studio chat panel", body: "Chat with the same Datus-agent backend, Plan mode confirms high-risk queries before they run." },
     { icon: Lock, title: "Credentials stay local", body: "The extension stores no secrets; your local Datus-agent serves every model and datasource." },
     { icon: Workflow, title: "Same lifecycle", body: "Plan → generate → validate → review, mirrored from the CLI workflow." },
     { icon: Sparkles, title: "Shared context", body: "Reuses the same context engine and knowledge base as the CLI and Studio." },

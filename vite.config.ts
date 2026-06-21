@@ -13,6 +13,7 @@ const MPA_ROUTES = [
   'products/enterprise',
   'integrations',
   'pricing',
+  'faq',
 ];
 
 // Locally mirror GitHub Pages behavior: redirect a clean URL like `/products/cli`

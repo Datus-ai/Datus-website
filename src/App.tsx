@@ -27,7 +27,7 @@ import { formatStarCount, useGitHubStars } from "./hooks/useGitHubStars";
 /* ---------------------------------- Hero ---------------------------------- */
 const INSTALL_CMD = "curl -fsSL https://datus.ai/install.sh | sh";
 
-/** The install command — click to copy, with a brief confirmation. */
+/** The install command, click to copy, with a brief confirmation. */
 function CopyCommand() {
   const [copied, setCopied] = useState(false);
   return (
@@ -101,13 +101,13 @@ function Hero() {
             </h1>
             <p className="lead" style={{ maxWidth: 540 }}>
               From one-man data teams to enterprise agent teams, Datus turns data
-              work into reliable, reusable agent systems — semantic-centric and
+              work into reliable, reusable agent systems, semantic-centric and
               end-to-end.
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
               <a className="btn btn-primary btn-lg" href={STUDIO_URL}>
-                Get started — free <ArrowRight size={17} />
+                Get started, free <ArrowRight size={17} />
               </a>
               <a
                 className="btn btn-ghost btn-lg"
@@ -216,7 +216,7 @@ function HeroTerminal() {
           ↳ connected · indexed schemas · semantic model · context initialized
         </div>
         <div className="term__line term__ok">
-          ✓ context engine ready — schemas, metrics, validated SQL
+          ✓ context engine ready, schemas, metrics, validated SQL
         </div>
         <div className="term__line" style={{ marginTop: 10 }}>
           <RotatingPrompt />
@@ -226,7 +226,7 @@ function HeroTerminal() {
           <span className="term__cy"> · captured to memory</span>
         </div>
         <div className="term__line term__am" style={{ marginTop: 10, whiteSpace: "nowrap", fontSize: 11.5 }}>
-          ↻ self-evolve — extract &amp; update knowledge from feedback &amp; benchmark
+          ↻ self-evolve, extract &amp; update knowledge from feedback &amp; benchmark
         </div>
         <div className="term__line term__dim" style={{ fontSize: 11.5 }}>
           · subagent-level memory
@@ -267,7 +267,7 @@ function Pillars() {
           <h2 className="h2">Ship more data work, trust every result, scale to a team.</h2>
           <p className="lead">
             Whether you are a solo engineer or an enterprise data org, Datus is
-            the same system — it just scales with you.
+            the same system, it just scales with you.
           </p>
         </div>
         <div className="grid grid-3">
@@ -314,9 +314,9 @@ function ProductForms() {
           </div>
           <div className="card" style={{ borderColor: "var(--brand)", boxShadow: "var(--shadow-brand)" }}>
             <span className="card__icon" style={{ background: "linear-gradient(180deg,var(--brand-bright),var(--brand))", color: "#fff" }}><Sparkles size={20} /></span>
-            <h3 className="card__title">Cloud Personal — Studio</h3>
+            <h3 className="card__title">Cloud Personal, Studio</h3>
             <p className="card__body">
-              The easiest way to start and explore. No install, no setup — a
+              The easiest way to start and explore. No install, no setup, a
               hosted Datus workspace, free during early access.
             </p>
             <a className="link-arrow" href={STUDIO_URL} style={{ marginTop: 18 }}>
@@ -327,7 +327,7 @@ function ProductForms() {
             <span className="card__icon"><ShieldCheck size={20} /></span>
             <h3 className="card__title">Enterprise</h3>
             <p className="card__body">
-              Shared context, governance, SSO, and long-running agent teams —
+              Shared context, governance, SSO, and long-running agent teams, 
               deployed in your environment.
             </p>
             <EnterpriseInquiryDialog>
@@ -360,7 +360,7 @@ function Integrations() {
           <span className="eyebrow"><Database size={13} /> Works with your stack</span>
           <h2 className="h2">Plugs into the tools you already run.</h2>
           <p className="lead">
-            Warehouses, models, semantic layers, schedulers and BI — connected,
+            Warehouses, models, semantic layers, schedulers and BI, connected,
             not replaced.
           </p>
         </div>
@@ -395,7 +395,7 @@ function Integrations() {
 /* -------------------------------- Context --------------------------------- */
 const LOOP = [
   { icon: Terminal, title: "Capture", body: "Every query, schema, metric and review becomes structured context as the agent works." },
-  { icon: Database, title: "Memory", body: "Context is stored as an evolving knowledge graph — semantics, validated SQL, and skills." },
+  { icon: Database, title: "Memory", body: "Context is stored as an evolving knowledge graph, semantics, validated SQL, and skills." },
   { icon: RefreshCw, title: "Evolve", body: "The agent reuses and refines that memory, getting more accurate with every run." },
 ];
 

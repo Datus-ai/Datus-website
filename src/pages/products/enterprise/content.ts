@@ -5,14 +5,14 @@ export const enterprisePage: ProductPageData = {
   eyebrow: "Datus Enterprise",
   positioning: "Shared context, governance, and long-running agents for teams.",
   subhead:
-    "Give your data org one evolving context engine, governed access, and reliable long-running agents — deployed in your environment. Scale data output without scaling headcount.",
+    "Give your data org one evolving context engine, governed access, and reliable long-running agents, deployed in your environment. Scale data output without scaling headcount.",
   heroCtas: [
     { label: "Contact us", href: "#contact", variant: "primary" },
     { label: "Try cloud version first", href: "/products/studio/", variant: "ghost" },
   ],
   problem: {
     heading: "Reusable systems, not repeated manual effort.",
-    body: "Individual productivity is the start. The enterprise value is turning every solved problem into shared, versioned context your whole team — and its agents — can reuse, safely and auditably.",
+    body: "Individual productivity is the start. The enterprise value is turning every solved problem into shared, versioned context your whole team, and its agents, can reuse, safely and auditably.",
     bullets: [
       "An org-level data context engine with versioning",
       "Governance: access control, sandboxing, and approvals",
@@ -20,12 +20,12 @@ export const enterprisePage: ProductPageData = {
     ],
   },
   capabilities: [
-    { icon: Network, title: "Data context engine", body: "An org-level, versioned knowledge graph of semantics, metrics, and validated SQL — shared across every agent and engineer." },
+    { icon: Network, title: "Data context engine", body: "An org-level, versioned knowledge graph of semantics, metrics, and validated SQL, shared across every agent and engineer." },
     { icon: ShieldCheck, title: "Governance & safety", body: "Role-based access control, sandboxed execution, and human approval gates for sensitive actions." },
     { icon: History, title: "Versioning & audit", body: "Every change to context and every agent action is versioned and auditable." },
     { icon: Lock, title: "SSO & deployment", body: "SSO, BYOC, and deployment inside your own cloud and network boundary." },
     { icon: Users, title: "Agent teams", body: "Domain-specific subagents that collaborate on a shared context graph across the org." },
-    { icon: GitBranch, title: "Long-running agents", body: "Agents that run continuously — monitoring, maintaining, and improving data systems over time." },
+    { icon: GitBranch, title: "Long-running agents", body: "Agents that run continuously, monitoring, maintaining, and improving data systems over time." },
   ],
   closingCta: {
     heading: "Contact us about Enterprise & BYOC",

@@ -6,6 +6,7 @@ import StudioPage from "./pages/products/studio/Page";
 import EnterprisePage from "./pages/products/enterprise/Page";
 import IntegrationsPage from "./pages/integrations/Page";
 import PricingPage from "./pages/pricing/Page";
+import FaqPage from "./pages/faq/Page";
 
 /**
  * SSR entry for build-time prerendering. Loaded via Vite's ssrLoadModule in
@@ -25,6 +26,7 @@ export const ROUTES: { out: string; node: JSX.Element }[] = [
   { out: "products/enterprise/index.html", node: <EnterprisePage /> },
   { out: "integrations/index.html", node: <IntegrationsPage /> },
   { out: "pricing/index.html", node: <PricingPage /> },
+  { out: "faq/index.html", node: <FaqPage /> },
 ];
 
 export function render(node: JSX.Element): string {

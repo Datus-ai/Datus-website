@@ -174,7 +174,7 @@ function footerHtml() {
   <nav style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted)">
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
-    <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a>
+    <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
   <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
@@ -416,7 +416,7 @@ function urlset(entries) {
 function buildPagesSitemap() {
   const entries = [
     "/", "/products/cli/", "/products/vscode/", "/products/studio/", "/products/enterprise/",
-    "/integrations/", "/pricing/", "/glossary/",
+    "/integrations/", "/pricing/", "/glossary/", "/faq/",
   ].map((loc) => ({ loc, lastmod: BUILD_DATE }));
   return urlset(entries);
 }

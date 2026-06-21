@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import SiteLayout from "../../../components/SiteLayout";
 import {
-  cliHero, closing, ecosystem, guardrails, modelNeutral, parity,
+  claudeCodeNote, cliHero, closing, ecosystem, guardrails, modelNeutral, parity,
   type CliCta, type DocLink, type FeatureCard,
 } from "./content";
 
@@ -88,7 +88,7 @@ export default function CliPage() {
         </div>
       </section>
 
-      {/* Section 0 — Claude Code parity */}
+      {/* Section 0, Claude Code parity */}
       <section className="section" style={{ background: panelBg, borderBlock: sectionBorder }}>
         <div className="container">
           <div className="section-head">
@@ -100,7 +100,7 @@ export default function CliPage() {
         </div>
       </section>
 
-      {/* Differentiator 01 — Model neutral */}
+      {/* Differentiator 01, Model neutral */}
       <section className="section">
         <div className="container">
           <div className="section-head">
@@ -150,7 +150,7 @@ export default function CliPage() {
         </div>
       </section>
 
-      {/* Differentiator 02 — Guardrails */}
+      {/* Differentiator 02, Guardrails */}
       <section className="section" style={{ background: panelBg, borderBlock: sectionBorder }}>
         <div className="container">
           <div className="section-head">
@@ -201,8 +201,8 @@ export default function CliPage() {
         </div>
       </section>
 
-      {/* Differentiator 03 — Ecosystem */}
-      <section className="section">
+      {/* Differentiator 03, Ecosystem */}
+      <section className="section" style={{ paddingBottom: 64 }}>
         <div className="container">
           <div className="section-head">
             <span className="eyebrow">{ecosystem.eyebrow}</span>
@@ -217,8 +217,19 @@ export default function CliPage() {
       </section>
 
       {/* Closing CTA */}
-      <section className="section" id="contact" style={{ scrollMarginTop: "var(--nav-h)" }}>
+      <section className="section" id="contact" style={{ scrollMarginTop: "var(--nav-h)", paddingTop: 0 }}>
         <div className="container">
+          <p className="muted" style={{ marginTop: 0, marginBottom: 64, fontSize: 18, lineHeight: 1.6, textAlign: "center" }}>
+            {claudeCodeNote.text}{" "}
+            <a
+              href={claudeCodeNote.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--brand-bright)", fontWeight: 600, whiteSpace: "nowrap" }}
+            >
+              {claudeCodeNote.linkLabel}&nbsp;↗
+            </a>
+          </p>
           <div className="card" style={{
             textAlign: "center",
             padding: "48px 32px",

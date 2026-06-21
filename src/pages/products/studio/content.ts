@@ -11,7 +11,7 @@ const ENTERPRISE_URL = "/products/enterprise/";
 
 export const studioPage: ProductPageData = {
   eyebrow: "Datus Studio · Cloud",
-  positioning: "The easiest way to start and explore Datus — hosted, free.",
+  positioning: "The easiest way to start and explore Datus, hosted, free.",
   subhead:
     "No install, no config. Connect your warehouse and watch a data engineering agent build context, write validated SQL, and answer real questions in minutes.",
   heroCtas: [
@@ -21,15 +21,15 @@ export const studioPage: ProductPageData = {
   ],
   problem: {
     heading: "See it work before you install anything.",
-    body: "The hardest part of adopting an agent is the setup — and the doubt that it will actually help. Studio removes both: a hosted Datus workspace you can open right now, with sample data or your own.",
+    body: "The hardest part of adopting an agent is the setup, and the doubt that it will actually help. Studio removes both: a hosted Datus workspace you can open right now, with sample data or your own.",
     bullets: [
-      "Zero local setup — runs in your browser",
+      "Zero local setup, runs in your browser",
       "Bring your own warehouse, or explore with sample data",
       "Free during early access",
     ],
   },
   capabilities: [
-    { icon: Cloud, title: "Hosted workspace", body: "A managed Datus environment — no Python, no Docker, no version pinning. Just sign in and go." },
+    { icon: Cloud, title: "Hosted workspace", body: "A managed Datus environment, no Python, no Docker, no version pinning. Just sign in and go." },
     { icon: Zap, title: "Connect in minutes", body: "Point Studio at your warehouse and it indexes schemas and drafts a semantic model automatically." },
     { icon: MessageSquare, title: "Chat + subagents", body: "Ask questions in natural language, generate validated SQL, and spin up domain-specific subagents." },
     { icon: Sparkles, title: "Evolving context", body: "Every interaction is captured into memory, so accuracy improves the more you use it." },
@@ -38,13 +38,13 @@ export const studioPage: ProductPageData = {
   semanticLayer: {
     eyebrow: "Enterprise Semantic Layer",
     heading: "When you're ready, your metrics become a governed company asset.",
-    body: "Most metric platforms fail because they try to unify everything before delivering value. Datus flips it: metrics grow bottom-up from the SQL, dashboards, and reports your team already trusts — then converge into one governed semantic layer across the whole org.",
+    body: "Most metric platforms fail because they try to unify everything before delivering value. Datus flips it: metrics grow bottom-up from the SQL, dashboards, and reports your team already trusts, then converge into one governed semantic layer across the whole org.",
     lifecycle: ["Unverified", "Verified", "Certified", "Deprecated", "Archived"],
     cards: [
       {
         icon: GitBranch,
         title: "One source of truth",
-        body: "Every workspace in your org shares a single metric tree — the one place a metric is defined, searched, and trusted.",
+        body: "Every workspace in your org shares a single metric tree, the one place a metric is defined, searched, and trusted.",
       },
       {
         icon: BadgeCheck,
@@ -59,11 +59,11 @@ export const studioPage: ProductPageData = {
       {
         icon: Boxes,
         title: "Open, never locked in",
-        body: "An OSI-aligned semantic layer that isn't bound to any BI tool or warehouse — with DB / BI adaptors for on-prem deployment.",
+        body: "An OSI-aligned semantic layer that isn't bound to any BI tool or warehouse, with DB / BI adaptors for on-prem deployment.",
       },
     ],
     highlight:
-      "Enterprise ontology isn't hand-drawn — it grows from the metrics your business actually queries, dashboards, and validates. The metric is the cornerstone of your data ontology.",
+      "Enterprise ontology isn't hand-drawn, it grows from the metrics your business actually queries, dashboards, and validates. The metric is the cornerstone of your data ontology.",
     link: { label: "Explore Datus Enterprise", href: ENTERPRISE_URL },
   },
   closingCta: {

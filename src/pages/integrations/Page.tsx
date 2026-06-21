@@ -8,7 +8,7 @@ interface Category {
   label: string;
   blurb: string;
   items: string[];
-  /** Adapter repo for this category — used for the browse + open-an-issue links. */
+  /** Adapter repo for this category, used for the browse + open-an-issue links. */
   repo?: string;
 }
 
@@ -28,7 +28,7 @@ const CATEGORIES: Category[] = [
     id: "llms",
     icon: BrainCircuit,
     label: "LLMs",
-    blurb: "Bring your own model — hosted or local.",
+    blurb: "Bring your own model, hosted or local.",
     items: ["OpenAI", "Anthropic", "DeepSeek", "Qwen", "Local models"],
   },
   {
@@ -68,7 +68,7 @@ export default function IntegrationsPage() {
           </h1>
           <p className="lead" style={{ maxWidth: 640 }}>
             Datus works with the warehouses, models, semantic layers, schedulers,
-            and BI tools you already use. We list only what's really supported —
+            and BI tools you already use. We list only what's really supported, 
             if something's missing, open an issue.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 24 }}>
