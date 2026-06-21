@@ -190,7 +190,7 @@ gtag("consent","default",{ad_storage:"denied",analytics_storage:"denied",ad_user
 
 function shell({
   title, description, canonical, head = "", body,
-  type = "website", image = `${SITE}/og/home-1200x630.png`,
+  type = "website", image = `${SITE}/og/blog-post-1200x630.png`,
   published = "", modified = "",
 }) {
   const articleMeta = type === "article"
@@ -288,6 +288,7 @@ function indexPage(posts) {
     title: "Datus Blog — AI-Native Data Engineering",
     description: "Essays and guides on data engineering agents, semantic layers, MCP, text-to-SQL, and evolvable context — from the team building Datus.",
     canonical: `${SITE}/blog/`, body,
+    image: `${SITE}/og/blog-index-1200x630.png`,
   });
 }
 
