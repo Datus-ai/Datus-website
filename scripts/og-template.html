@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; }
@@ -21,9 +21,9 @@
     display: flex;
     flex-direction: column;
     background:
-      radial-gradient(900px 520px at 82% 8%, rgba(255,255,255,0.28), rgba(255,255,255,0) 60%),
-      radial-gradient(700px 600px at 0% 100%, rgba(124,58,237,0.55), rgba(124,58,237,0) 60%),
-      linear-gradient(135deg, #402DF3 0%, #5B21E6 52%, #6D28D9 100%);
+      radial-gradient(820px 480px at 84% 6%, rgba(120,134,255,0.32), rgba(120,134,255,0) 60%),
+      radial-gradient(820px 660px at 4% 104%, rgba(11,21,66,0.85), rgba(11,21,66,0) 62%),
+      linear-gradient(150deg, #402DF3 0%, #211A86 50%, #0B1542 100%);
     isolation: isolate;
   }
   /* faint dot grid texture */
@@ -35,9 +35,32 @@
     background-size: 34px 34px;
     -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0) 70%);
             mask-image: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0) 70%);
-    z-index: -1;
+    z-index: 0;
   }
+  /* faint SQL terminal watermark — bottom-right, fades toward the headline */
+  .term {
+    position: absolute;
+    right: 64px;
+    bottom: 132px;
+    font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 25px;
+    line-height: 1.62;
+    white-space: pre;
+    text-align: left;
+    color: rgba(206,214,255,0.20);
+    -webkit-mask-image: linear-gradient(112deg, transparent 0%, #000 50%, #000 100%);
+            mask-image: linear-gradient(112deg, transparent 0%, #000 50%, #000 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .term .dots { letter-spacing: 6px; color: rgba(206,214,255,0.28); }
+  .term .kw { color: rgba(140,162,255,0.62); font-weight: 600; }
+  .term .pr { color: rgba(150,176,255,0.72); }
+  .term .st { color: rgba(150,230,185,0.52); }
+  .term .ok { color: rgba(130,235,175,0.55); }
   .top {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -59,6 +82,8 @@
   }
   .eyebrow.hidden { display: none; }
   .content {
+    position: relative;
+    z-index: 1;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -84,6 +109,8 @@
   }
   .subtitle.hidden { display: none; }
   .foot {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     gap: 14px;
@@ -97,6 +124,12 @@
 </head>
 <body>
   <div class="card">
+    <div class="term" aria-hidden="true"><span class="dots">● ● ●</span>  datus-cli
+<span class="pr">datus ❯</span> <span class="kw">SELECT</span> metric, <span class="kw">SUM</span>(value) <span class="kw">AS</span> total
+        <span class="kw">FROM</span> revenue.daily
+       <span class="kw">WHERE</span> ds &gt;= <span class="st">'2026-01-01'</span>
+    <span class="kw">GROUP BY</span> metric <span class="kw">ORDER BY</span> total <span class="kw">DESC</span>;
+<span class="ok">✓ 1,204 rows · 0.42s</span></div>
     <div class="top">
       <svg class="logo" viewBox="0 0 504 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Datus">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M180.47 29.48 L200.74 29.48 A44.20 44.20 0 0 1 200.74 117.88 L180.47 117.88 Z M196.47 45.48 L200.74 45.48 A28.20 28.20 0 0 1 200.74 101.88 L196.47 101.88 Z" fill="white"/>
