@@ -1,7 +1,0 @@
-# Netlify build config.
-# The full build runs vite, prerenders the marketing pages, and statically
-# generates the blog — a plain `vite build` would skip prerender + blog and
-# wipe dist/, so always use build:all.
-[build]
-  command = "npm run build:all"
-  publish = "dist"
