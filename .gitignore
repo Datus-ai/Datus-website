@@ -20,4 +20,3 @@ yarn-debug.log*
 .gstack/
 
 # Local Netlify folder
-.netlify
