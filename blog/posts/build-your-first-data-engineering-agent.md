@@ -34,7 +34,7 @@ head:
 
 You do not need a procurement approval. You do not need a cloud budget. You do not need to know how LLMs work. You need a terminal, Python 3.12 or later, and roughly 15 minutes if your environment is ready. By the end of this guide, you will have a working <a href="https://datus.ai/glossary">data engineering agent</a> connected to a real database, a generated semantic model, and a scoped chatbot you can share with a teammate.
 
-We will use Datus for this tutorial because it is free (Apache 2.0), installs with a single pip command, and ships with a built-in tutorial dataset so you do not need to connect a production warehouse to try it. If you want to understand what a data engineering agent is before building one, start with [what is a data engineering agent](/posts/what-is-data-engineering-agent-2026).
+We will use Datus for this tutorial because it is free (Apache 2.0), installs with a single pip command, and ships with a built-in tutorial dataset so you do not need to connect a production warehouse to try it. If you want to understand what a data engineering agent is before building one, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
 
 ## TL;DR
 
@@ -124,7 +124,7 @@ This shows you the database structure the agent has learned: databases → schem
 @subject
 ```
 
-This shows you the business-domain view: topics the agent has inferred, metrics it has identified, and reference SQL it has captured from your queries. This is the [contextual data engineering](/posts/contextual-data-engineering) layer—the institutional memory that makes the next query more accurate than the first.
+This shows you the business-domain view: topics the agent has inferred, metrics it has identified, and reference SQL it has captured from your queries. This is the [contextual data engineering](/blog/contextual-data-engineering/) layer—the institutional memory that makes the next query more accurate than the first.
 
 **Explore a specific table:**
 
@@ -150,7 +150,7 @@ The agent will scan the California Schools schema and produce a semantic model i
 
 You can edit this model—add business definitions, correct wrong inferences, mark deprecated columns—and the corrections will feed back into the context engine, making future queries more accurate.
 
-For a deeper understanding of semantic models and how they relate to agent accuracy, see [what is a semantic layer](/posts/what-is-semantic-layer).
+For a deeper understanding of semantic models and how they relate to agent accuracy, see [what is a semantic layer](/blog/what-is-semantic-layer/).
 
 ## Step 6: Create a subagent
 
@@ -278,7 +278,7 @@ The same context engine powers both. The CLI is your cockpit; the subagent chat 
 - **Connect your real warehouse:** Run `datus-agent configure` and add your Snowflake, BigQuery, or Postgres credentials. The agent will inspect your actual schemas and begin building context from your real data environment.
 - **Bootstrap from historical SQL:** Run `datus-agent bootstrap-kb /path/to/sql/files` to seed the Context Engine with your team's existing query patterns. The agent will learn which tables, joins, and metrics your team actually uses—not just what the schema says.
 - **Set up feedback collection:** Share your subagent link with analysts and encourage them to upvote correct answers and report issues. Every feedback signal makes the context stronger.
-- **Read the deep dives:** [Contextual data engineering](/posts/contextual-data-engineering) for the theory behind the Context Engine, [best data engineering agents 2026](/posts/best-data-engineering-agents-2026) for the full landscape, and [open source data engineering agents](/posts/open-source-data-engineering-agents) for the case for self-hosting.
+- **Read the deep dives:** [Contextual data engineering](/blog/contextual-data-engineering/) for the theory behind the Context Engine, [best data engineering agents 2026](/blog/best-data-engineering-agents-2026/) for the full landscape, and [open source data engineering agents](/blog/open-source-data-engineering-agents/) for the case for self-hosting.
 
 Try <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> for a zero-install version of everything in this tutorial—connect a warehouse, ask questions, and watch context build in your browser.
 
@@ -294,14 +294,14 @@ The California Schools dataset is representative—it has multiple tables, joins
 
 ### How does the agent handle corrections when it generates wrong SQL?
 
-When you receive an incorrect result in Datus Chat, you can file an issue report describing what was wrong. The correction flows back into the Context Engine: the agent notes which join path, filter condition, or metric definition produced the error, and it adjusts future queries to avoid the same mistake. Over time, the agent's accuracy improves—not because the underlying LLM changed, but because the context it operates on accumulated corrections. This is the feedback loop central to [contextual data engineering](/posts/contextual-data-engineering).
+When you receive an incorrect result in Datus Chat, you can file an issue report describing what was wrong. The correction flows back into the Context Engine: the agent notes which join path, filter condition, or metric definition produced the error, and it adjusts future queries to avoid the same mistake. Over time, the agent's accuracy improves—not because the underlying LLM changed, but because the context it operates on accumulated corrections. This is the feedback loop central to [contextual data engineering](/blog/contextual-data-engineering/).
 
 ### Can I run this on my company's data without sending anything to a third party?
 
-Yes. Datus is self-hosted (Apache 2.0). When you run `datus-agent` locally, all data—your queries, your schemas, the agent's context—stays on your machine. When you use Datus Studio (the browser version), your queries are sent to Datus's cloud for processing. For teams with strict data residency requirements, self-hosting the open-source version is the recommended path. See [open source data engineering agents](/posts/open-source-data-engineering-agents) for more on the self-hosting tradeoff.
+Yes. Datus is self-hosted (Apache 2.0). When you run `datus-agent` locally, all data—your queries, your schemas, the agent's context—stays on your machine. When you use Datus Studio (the browser version), your queries are sent to Datus's cloud for processing. For teams with strict data residency requirements, self-hosting the open-source version is the recommended path. See [open source data engineering agents](/blog/open-source-data-engineering-agents/) for more on the self-hosting tradeoff.
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition and how agents differ from copilots
-- [Contextual data engineering](/posts/contextual-data-engineering) — the three-layer context model behind the agent you just built
-- [Open source data engineering agents](/posts/open-source-data-engineering-agents) — why self-hosting matters for data infrastructure
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition and how agents differ from copilots
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the three-layer context model behind the agent you just built
+- [Open source data engineering agents](/blog/open-source-data-engineering-agents/) — why self-hosting matters for data infrastructure

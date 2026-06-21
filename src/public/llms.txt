@@ -1,0 +1,43 @@
+# Datus
+
+> Datus is a context-aware data engineering agent. It connects to your warehouse, learns your semantic layer, and turns natural language into trustworthy SQL and production data pipelines — so a one-person data team can move like ten.
+
+Datus pairs large language models with a persistent semantic context engine (metrics, schema links, lineage, and governance) so agents produce reliable, explainable results instead of plausible-but-wrong SQL. It ships as a CLI, a VS Code extension, a hosted Studio, and an Enterprise platform.
+
+## Products
+
+- [Datus CLI](https://datus.ai/products/cli/): Run the modern data stack from your terminal — agentic SQL, pipelines, and context.
+- [VS Code Extension](https://datus.ai/products/vscode/): Bring context and data agents into your editor.
+- [Datus Studio](https://datus.ai/products/studio/): The easiest way to start — free, hosted, no setup.
+- [Enterprise](https://datus.ai/products/enterprise/): Shared context, governance, and long-running agents for teams.
+
+## Resources
+
+- [Integrations](https://datus.ai/integrations/): Warehouses, catalogs, and tools Datus connects to.
+- [Pricing](https://datus.ai/pricing/): Plans for individuals, teams, and enterprise.
+- [Glossary](https://datus.ai/glossary/): Definitions for data engineering, semantic layer, and agent concepts.
+- [FAQ](https://datus.ai/faq/): Common questions about Datus.
+- [Documentation](https://docs.datus.ai): Product and API docs.
+
+## Blog
+
+- [Blog](https://datus.ai/blog/): All essays on agentic data engineering, semantic layers, and the agentic data stack.
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](https://datus.ai/blog/what-is-data-engineering-agent/): Business and technical primer.
+- [Data Engineering Agent Architecture for Production](https://datus.ai/blog/data-engineering-agent-architecture/): Architecture and rollout path from prototype to production.
+- [Why Data Engineering Agents Need Layered Subagents](https://datus.ai/blog/data-engineering-agent/data-engineering-agent-layered-subagent/): The layered subagent pattern for domain-scoped agents.
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](https://datus.ai/blog/data-engineering-agent-use-cases/): Practical scenarios and ROI.
+- [From Human-First Data Systems to the Agentic Data Stack](https://datus.ai/blog/agentic-data-stack/): How the data stack changes when agents are first-class users.
+- [SQL Agents Are Broken Without Context. Meet Datus.](https://datus.ai/blog/meet_datus/): Why semantic context is the missing piece for reliable agents.
+- [What Is a Semantic Layer?](https://datus.ai/blog/what-is-semantic-layer/): Definition, examples, and how it differs from a metric layer.
+- [What Is Text-to-SQL?](https://datus.ai/blog/what-is-text-to-sql/): How it works and why context matters.
+- [MCP and Data Engineering](https://datus.ai/blog/mcp-data-engineering/): The protocol that connects your entire data stack.
+
+## Community
+
+- [GitHub](https://github.com/Datus-ai/Datus-agent): Open-source Datus agent.
+- [Slack](https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg): Community and support.
+
+## Optional
+
+- [Sitemap](https://datus.ai/sitemap.xml): Full list of marketing pages.
+- [Blog sitemap](https://datus.ai/blog/sitemap.xml): Full list of blog posts.

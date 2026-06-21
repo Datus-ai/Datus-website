@@ -36,7 +36,7 @@ Every SQL copilot and every data engineering agent will generate a query from a 
 
 A SQL copilot is a clever stranger. It can write a brilliant query on first meeting. But it forgets you the moment the session ends. A <a href="https://datus.ai/glossary">data engineering agent</a> is a coworker. It gets better at your data the longer it works with you.
 
-This article explains what that difference actually means in practice—and why it matters for any team running more than a few queries a week. If you are new to the category, start with [what is a data engineering agent](/posts/what-is-data-engineering-agent-2026).
+This article explains what that difference actually means in practice—and why it matters for any team running more than a few queries a week. If you are new to the category, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
 
 ## TL;DR
 
@@ -68,7 +68,7 @@ A SQL copilot can write a `SELECT` statement with `GROUP BY` and `WHERE` clauses
 
 A human data engineer learns these rules over weeks and applies them unconsciously. A SQL copilot has no mechanism to learn them at all. It treats every query as a fresh problem, because it has nowhere to store what it learned from the last one.
 
-This is the architectural gap: **a copilot generates. An agent generates, captures feedback, and accumulates context.** The first query from both might be similar. The hundredth query from an agent with a [persistent context engine](/posts/contextual-data-engineering) will be materially more accurate than the hundredth query from a copilot—not because the underlying model improved, but because the context it operates on accumulated.
+This is the architectural gap: **a copilot generates. An agent generates, captures feedback, and accumulates context.** The first query from both might be similar. The hundredth query from an agent with a [persistent context engine](/blog/contextual-data-engineering/) will be materially more accurate than the hundredth query from a copilot—not because the underlying model improved, but because the context it operates on accumulated.
 
 ## 3. The three things a data engineering agent has that a SQL copilot lacks
 
@@ -88,7 +88,7 @@ A copilot has no feedback loop. Upvotes, corrections, and usage patterns are los
 
 A data engineering agent can package a scoped subset of context—roughly 10 tables, 20 metrics, 30 validated SQL patterns—into a subagent: a domain-specific chatbot that an analyst or business user can query without knowing SQL. The subagent inherits the context's accuracy and is scoped so it cannot access tables outside its domain. A finance subagent knows finance's definition of revenue. An operations subagent knows operations' definition. Both draw from the same context engine.
 
-A copilot generates SQL for one person. An agent packages context for a team. For a comparison of how different agents handle this, see the [best data engineering agents comparison](/posts/best-data-engineering-agents-2026).
+A copilot generates SQL for one person. An agent packages context for a team. For a comparison of how different agents handle this, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
 
 ## 4. How to tell which you are using
 
@@ -118,7 +118,7 @@ A SQL copilot helps you write queries. A data engineering agent helps you build 
 
 The difference is not about which one is "smarter." The most advanced LLM in the world, used as a copilot with no persistent context, will make the same mistakes on the hundredth query that it made on the first. A modest LLM, backed by a context engine that has accumulated six months of validated SQL, business rules, and feedback history from real usage, will outperform it on the data that matters.
 
-This is the core insight of [contextual data engineering](/posts/contextual-data-engineering): in data work, context compounds. For repeated, team-scale data work, the tool that remembers has a structural advantage over the tool that forgets.
+This is the core insight of [contextual data engineering](/blog/contextual-data-engineering/): in data work, context compounds. For repeated, team-scale data work, the tool that remembers has a structural advantage over the tool that forgets.
 
 Try <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> to see the difference between generating queries and building context—ask ten questions against a connected warehouse and watch what the agent learns.
 
@@ -138,6 +138,6 @@ Not necessarily. If the copilot is meeting your needs—you use it for ad-hoc qu
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition
-- [Contextual data engineering](/posts/contextual-data-engineering) — the three-layer model behind persistent context
-- [Data engineering agent vs. Claude Code](/posts/data-engineering-agent-vs-claude-code) — another comparison that turns competitors into complements
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the three-layer model behind persistent context
+- [Data engineering agent vs. Claude Code](/blog/data-engineering-agent-vs-claude-code/) — another comparison that turns competitors into complements

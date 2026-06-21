@@ -32,9 +32,9 @@ head:
 ---
 # What an Enterprise Data Engineering Agent Actually Needs
 
-A [data engineering agent](/posts/what-is-data-engineering-agent-2026) that works for a single engineer on a single laptop is a productivity tool. A data engineering agent that works for fifty engineers, three hundred analysts, and a security team that audits every database query is infrastructure. The gap between the two is not a matter of scale. It is a matter of architecture.
+A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that works for a single engineer on a single laptop is a productivity tool. A data engineering agent that works for fifty engineers, three hundred analysts, and a security team that audits every database query is infrastructure. The gap between the two is not a matter of scale. It is a matter of architecture.
 
-This article outlines the six requirements that separate an agent suitable for enterprise deployment from one suitable for personal use—and what each requirement means in practice. For the broader agent landscape, see the [best data engineering agents comparison](/posts/best-data-engineering-agents-2026).
+This article outlines the six requirements that separate an agent suitable for enterprise deployment from one suitable for personal use—and what each requirement means in practice. For the broader agent landscape, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
 
 ## TL;DR
 
@@ -48,7 +48,7 @@ For a personal agent, context lives on one machine. If the engineer's laptop die
 
 For an enterprise, context is an organizational asset. If the agent has accumulated six months of validated SQL, business rules, and metric definitions across three teams, losing that context is a business continuity problem. The context must be shared across the organization (so the finance team's subagent and the marketing team's subagent draw from the same validated source of truth), backed up, and versioned (so teams can trace how a metric definition changed in week 12 and whether queries generated before the change need to be re-run).
 
-This is the architectural difference between local storage and a shared context store. Local storage is simpler. A shared, versioned context store requires database infrastructure, conflict resolution, and access patterns that support concurrent reads and writes from multiple subagents. For the theory behind this, see [contextual data engineering](/posts/contextual-data-engineering).
+This is the architectural difference between local storage and a shared context store. Local storage is simpler. A shared, versioned context store requires database infrastructure, conflict resolution, and access patterns that support concurrent reads and writes from multiple subagents. For the theory behind this, see [contextual data engineering](/blog/contextual-data-engineering/).
 
 ## 2. Access control at the subagent level
 
@@ -79,7 +79,7 @@ This requires a different reliability model. A personal agent that crashes mid-q
 - **Alerting** when an agent task fails or produces anomalous results
 - **Resource isolation** so one team's long-running agent does not degrade another team's interactive queries
 
-This is the operational layer that separates a CLI tool from an infrastructure service. It is also where integration with existing orchestration tools (Airflow, Dagster, Prefect) through [MCP](/posts/mcp-data-engineering) becomes valuable—not every agent needs to build its own scheduler.
+This is the operational layer that separates a CLI tool from an infrastructure service. It is also where integration with existing orchestration tools (Airflow, Dagster, Prefect) through [MCP](/blog/mcp-data-engineering/) becomes valuable—not every agent needs to build its own scheduler.
 
 ## 5. Integration with existing governance
 
@@ -103,7 +103,7 @@ A data engineering agent's commercial model should answer three questions:
 - **What does Enterprise add, and is it worth the money?** SSO, audit logging, shared context store, RBAC, SLA, long-running agent support. These are features enterprises need and will pay for.
 - **Is the vendor sustainable?** AI data tooling changes quickly. Enterprise buyers evaluating agents in 2026 should look for active maintenance, a clear revenue model, and a roadmap that does not depend on community goodwill alone.
 
-For the open-source perspective on this, see [open source data engineering agents](/posts/open-source-data-engineering-agents).
+For the open-source perspective on this, see [open source data engineering agents](/blog/open-source-data-engineering-agents/).
 
 ## 7. The enterprise readiness checklist
 
@@ -148,6 +148,6 @@ Common enterprise expectations include SOC 2 Type II for vendor controls, GDPR r
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition
-- [Contextual data engineering](/posts/contextual-data-engineering) — the context architecture that enterprises need
-- [Open source data engineering agents](/posts/open-source-data-engineering-agents) — the self-hosting option for enterprises with strict data residency requirements
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the context architecture that enterprises need
+- [Open source data engineering agents](/blog/open-source-data-engineering-agents/) — the self-hosting option for enterprises with strict data residency requirements

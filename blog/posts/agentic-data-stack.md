@@ -63,7 +63,7 @@ This is why the category starts to break down as soon as the scope expands from 
 
 ## What makes a data engineering agent different
 
-A [data engineering agent](/posts/what-is-data-engineering-agent) is not just a better query assistant.
+A [data engineering agent](/blog/what-is-data-engineering-agent/) is not just a better query assistant.
 
 A real agent needs a richer operating environment. It needs access to structured context and the ability to reason across the system it is acting inside.
 
@@ -165,11 +165,11 @@ If you're exploring how metadata, semantics, lineage, and orchestration can beco
 
 ## Related Reading
 
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
-- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
-- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/blog/data-engineering-agent/data-engineering-agent-layered-subagent/)
+- [SQL agents are broken without context. Meet Datus.](/blog/meet_datus/)
 
 ## Start with Datus
 
@@ -179,5 +179,5 @@ If you're exploring how metadata, semantics, lineage, and orchestration can beco
 
 ## Continue Reading
 
-- Previous: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
-- Next: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- Previous: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
+- Next: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)

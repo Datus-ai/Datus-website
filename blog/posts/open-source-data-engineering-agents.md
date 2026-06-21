@@ -36,7 +36,7 @@ Not every category needs an open-source option. Most people do not need an open-
 
 Data engineering is different. The agent you choose will have credentials to your warehouse. It will read your schemas, generate your SQL, and—in some configurations—execute queries against production data. It will become part of your data infrastructure the way dbt or Airflow is part of your infrastructure. When a tool sits that deep in your stack, the questions that matter are not just about features. They are about control, auditability, and what happens if the vendor changes direction.
 
-This article explains why open-source data engineering agents exist as a category, when the tradeoff of self-hosting is worth it, and how to choose among the three leading open-source options. For the full landscape including closed-source and platform-embedded agents, see the [best data engineering agents comparison](/posts/best-data-engineering-agents-2026).
+This article explains why open-source data engineering agents exist as a category, when the tradeoff of self-hosting is worth it, and how to choose among the three leading open-source options. For the full landscape including closed-source and platform-embedded agents, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
 
 ## TL;DR
 
@@ -71,7 +71,7 @@ Open-source agents are stack-agnostic by design. They connect to multiple wareho
 
 ### Community sustainability: the agent outlives any single company
 
-AI data tools can change direction quickly: repos can slow down, companies can pivot, and commercial offerings can replace community-first roadmaps. Closed-source agents can disappear when the company runs out of money; open-source agents can survive a vendor shift only if the community and maintenance model are strong enough. For more on the competitive dynamics driving this cycle, see [the DE agent category overview](/posts/what-is-data-engineering-agent-2026).
+AI data tools can change direction quickly: repos can slow down, companies can pivot, and commercial offerings can replace community-first roadmaps. Closed-source agents can disappear when the company runs out of money; open-source agents can survive a vendor shift only if the community and maintenance model are strong enough. For more on the competitive dynamics driving this cycle, see [the DE agent category overview](/blog/what-is-data-engineering-agent-2026/).
 
 This is not an argument that open-source is always better. It is an argument that the stakes in data engineering agent selection are high enough to make open source worth considering. If the agent will become part of your core infrastructure, you should own the infrastructure.
 
@@ -97,7 +97,7 @@ Wren AI is the most mature open-source option by community size. Its core is an 
 
 **Best for:** Teams that already have a well-maintained semantic layer (or are willing to build one) and want to add an AI query interface on top. The MDL modeling tools are more polished than any other open-source agent's, and the community is larger, which means more tutorials, more answered questions, and faster bug fixes.
 
-**Tradeoffs:** The semantic model is static—you build it once, and the agent queries against it. There is no feedback loop that updates the model based on usage. If a query surfaces a missing dimension or an incorrect join, the fix requires a human to update the model manually. For teams whose context evolves faster than their modeling sprints, this static model becomes a bottleneck. This is the central philosophical difference between Wren AI and Datus: Wren AI treats context as a model you build; Datus treats context as an asset that grows with usage. For the theoretical underpinning, see [contextual data engineering](/posts/contextual-data-engineering).
+**Tradeoffs:** The semantic model is static—you build it once, and the agent queries against it. There is no feedback loop that updates the model based on usage. If a query surfaces a missing dimension or an incorrect join, the fix requires a human to update the model manually. For teams whose context evolves faster than their modeling sprints, this static model becomes a bottleneck. This is the central philosophical difference between Wren AI and Datus: Wren AI treats context as a model you build; Datus treats context as an asset that grows with usage. For the theoretical underpinning, see [contextual data engineering](/blog/contextual-data-engineering/).
 
 ### Altimate — Agentic dbt Harness
 
@@ -186,6 +186,6 @@ If the license is permissive (Apache 2.0, MIT), you can fork the repository and 
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition and four-agent comparison
-- [Best data engineering agents in 2026](/posts/best-data-engineering-agents-2026) — full landscape comparison including closed-source and platform agents
-- [Contextual data engineering](/posts/contextual-data-engineering) — the three-layer context model that separates durable agents from chat windows
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition and four-agent comparison
+- [Best data engineering agents in 2026](/blog/best-data-engineering-agents-2026/) — full landscape comparison including closed-source and platform agents
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the three-layer context model that separates durable agents from chat windows

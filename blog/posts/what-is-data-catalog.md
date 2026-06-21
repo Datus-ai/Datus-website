@@ -42,7 +42,7 @@ A **data catalog** inventories and describes data assets — tables, columns, ow
 - A **data catalog** answers **what exists, who owns it, and where it came from** — optimized for human discovery.
 - Popular platforms include <a href="https://datahubproject.io/" rel="nofollow noopener">DataHub</a>, <a href="https://atlan.com/" rel="nofollow noopener">Atlan</a>, and <a href="https://www.selectstar.com/" rel="nofollow noopener">Select Star</a> — plus native features in cloud warehouses.
 - **Data dictionary** = column-level definitions; **catalog** = searchable asset graph with governance metadata.
-- A **[semantic layer](/posts/what-is-semantic-layer)** adds executable metric logic; catalogs rarely encode "net revenue" computation completely.
+- A **[semantic layer](/blog/what-is-semantic-layer/)** adds executable metric logic; catalogs rarely encode "net revenue" computation completely.
 - A catalog alone is not an AI grounding layer — agents need **executable context** (reference SQL, semantic models, feedback) layered on top of catalog metadata to generate correct queries reliably.
 
 ## 1. Data catalog: a working definition
@@ -77,7 +77,7 @@ A catalog tells you **`fact_orders` exists**. A semantic layer tells you **how t
 
 The progression from catalog to context engine is a progression from descriptive metadata to executable knowledge. A catalog entry for `fact_orders.net_amount` says "Net order amount in USD." A semantic layer definition says "Net revenue = SUM(net_amount) WHERE order_status IN ('completed', 'shipped')." A context engine, retrieving from reference SQL, adds "last quarter, the CFO's revenue query used `dim_fiscal_calendar.fiscal_quarter` rather than `DATE_TRUNC('quarter', order_date)` because the company's fiscal calendar offsets by two weeks — and if you use calendar quarters, the numbers will not match the board deck." That third piece of knowledge — the join authority on the time dimension — lives in neither the catalog nor the semantic layer but is the difference between a correct answer and a plausible-looking wrong answer.
 
-[Contextual data engineering](/posts/contextual-data-engineering) walks through those layers for agents.
+[Contextual data engineering](/blog/contextual-data-engineering/) walks through those layers for agents.
 
 ## 3. Why organizations buy data catalogs
 
@@ -99,7 +99,7 @@ Many 2025–2026 products advertise "AI on the catalog." Typical pattern:
 2. Chat UI retrieves snippets
 3. Model suggests tables or generates SQL
 
-That is [RAG for data engineering](/posts/rag-data-engineering) with catalog documents as the corpus. Quality limits:
+That is [RAG for data engineering](/blog/rag-data-engineering/) with catalog documents as the corpus. Quality limits:
 
 - Descriptions are **empty or stale** on half of columns
 - **Metric logic** lives in dbt repos, not catalog fields
@@ -108,7 +108,7 @@ That is [RAG for data engineering](/posts/rag-data-engineering) with catalog doc
 
 Consider a real scenario: a 500-person SaaS company deploys Atlan, populates it with dbt-generated descriptions, and adds an AI chat feature on top. An analyst asks "monthly churn rate by product line" and the AI retrieves `dim_product_line.name` and `fact_subscription.churn_flag` from the catalog. It generates SQL that divides churned subscriptions by total subscriptions — a reasonable formula but wrong for this company, which defines churn rate as "subscriptions cancelled divided by subscriptions at risk of churn (active at month start)," meaning the denominator excludes new subscriptions added mid-month. The catalog had the right tables. It did not have the metric's business logic — which lived in a dbt model file 17 directories deep, unindexed by the catalog's AI feature. The AI produced a confident wrong answer because retrieval found tables but missed the metric definition that would have produced the correct denominator.
 
-Improving AI query success requires **reference SQL**, **semantic models**, and **feedback loops** — the context engine pattern in [how a context engine improves accuracy](/posts/context-engine-data-engineering-agent-accuracy).
+Improving AI query success requires **reference SQL**, **semantic models**, and **feedback loops** — the context engine pattern in [how a context engine improves accuracy](/blog/context-engine-data-engineering-agent-accuracy/).
 
 ## 5. Data catalog vs context engine
 
@@ -130,7 +130,7 @@ The coexistence model is not either-or. Many enterprises run a catalog for organ
 
 Agents need lineage to assess **blast radius** ("if I change this column, what breaks?") and to choose **trusted paths**. Context engines build implicit lineage relationships through catalog structure and reference SQL co-occurrence patterns — full enterprise lineage visualization remains a common roadmap item across the category.
 
-For agents, the bar is often lower than a perfect enterprise graph: **knowing which tables co-occur in validated queries** already improves [schema linking](/posts/what-is-schema-linking). If every validated query involving "revenue" co-occurs with `fact_orders` and `dim_fiscal_calendar`, those co-occurrence patterns function as lightweight lineage — the agent learns that revenue questions should not touch `fact_payments` even without a formal lineage graph saying "revenue does not flow through payments."
+For agents, the bar is often lower than a perfect enterprise graph: **knowing which tables co-occur in validated queries** already improves [schema linking](/blog/what-is-schema-linking/). If every validated query involving "revenue" co-occurs with `fact_orders` and `dim_fiscal_calendar`, those co-occurrence patterns function as lightweight lineage — the agent learns that revenue questions should not touch `fact_payments` even without a formal lineage graph saying "revenue does not flow through payments."
 
 ## 7. Evaluation checklist: catalog maturity for AI readiness
 
@@ -176,7 +176,7 @@ Yes — and this is the most common architecture in enterprises running both. Th
 
 ### How does a data catalog relate to a semantic layer?
 
-Catalogs document **what exists** — the inventory of tables, columns, and pipelines. Semantic layers define **how to compute business metrics** — the formula for "net revenue" or "monthly active users." Agents need both: the catalog to find tables, the semantic layer to compute correctly, and institutional knowledge (reference SQL, feedback) to handle everything neither catalog nor semantic layer encodes. See [what is a semantic layer](/posts/what-is-semantic-layer).
+Catalogs document **what exists** — the inventory of tables, columns, and pipelines. Semantic layers define **how to compute business metrics** — the formula for "net revenue" or "monthly active users." Agents need both: the catalog to find tables, the semantic layer to compute correctly, and institutional knowledge (reference SQL, feedback) to handle everything neither catalog nor semantic layer encodes. See [what is a semantic layer](/blog/what-is-semantic-layer/).
 
 ### What's the most common mistake when betting AI on a catalog?
 
@@ -184,9 +184,9 @@ Assuming that catalog coverage equals AI readiness. A catalog with 100% table co
 
 ## Related articles
 
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — executable business logic above catalog metadata
-- [How a context engine improves agent accuracy](/posts/context-engine-data-engineering-agent-accuracy) — beyond catalog browsing
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent) — operationalizes context, not just inventory
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — executable business logic above catalog metadata
+- [How a context engine improves agent accuracy](/blog/context-engine-data-engineering-agent-accuracy/) — beyond catalog browsing
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — operationalizes context, not just inventory
 
 ---
 

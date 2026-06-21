@@ -33,7 +33,7 @@ head:
 
 # dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers
 
-Last year, defining a new metric in a dbt project worked like this: write the transformation SQL in a dbt model, document the business logic in a YAML description field (if you remembered), repeat the same logic in Looker's LookML for the dashboard layer, and hope that whoever queries the data six months later understands that `mktg_analytics.fact_attrib_daily.attrib_windows_30d_v2` means "30-day attribution window revenue." The metric existed in four places — the dbt model, the docs, the LookML, and the analyst's head — and keeping them synchronized was a manual process that everyone agreed was valuable and nobody had time to maintain. MetricFlow — the open-source engine behind dbt's Semantic Layer — changes this by making metric definitions a standalone, governed artifact: define `net_revenue` once in YAML, and every BI tool, notebook, API, and AI agent queries the same definition. This article explains how MetricFlow works, what it does well, where it hits its limits, and how it fits into a broader architecture that includes [data engineering agents](/posts/what-is-data-engineering-agent).
+Last year, defining a new metric in a dbt project worked like this: write the transformation SQL in a dbt model, document the business logic in a YAML description field (if you remembered), repeat the same logic in Looker's LookML for the dashboard layer, and hope that whoever queries the data six months later understands that `mktg_analytics.fact_attrib_daily.attrib_windows_30d_v2` means "30-day attribution window revenue." The metric existed in four places — the dbt model, the docs, the LookML, and the analyst's head — and keeping them synchronized was a manual process that everyone agreed was valuable and nobody had time to maintain. MetricFlow — the open-source engine behind dbt's Semantic Layer — changes this by making metric definitions a standalone, governed artifact: define `net_revenue` once in YAML, and every BI tool, notebook, API, and AI agent queries the same definition. This article explains how MetricFlow works, what it does well, where it hits its limits, and how it fits into a broader architecture that includes [data engineering agents](/blog/what-is-data-engineering-agent/).
 
 ## TL;DR
 
@@ -195,6 +195,6 @@ Yes. Datus `/gen_semantic_model` and `/gen_metrics` generate MetricFlow-compatib
 
 ## Related articles
 
-- [What is a metric layer?](/posts/what-is-metric-layer) — the KPI catalog MetricFlow implements
-- [What is a semantic model?](/posts/what-is-semantic-model) — the building block MetricFlow queries
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — the full business dictionary
+- [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog MetricFlow implements
+- [What is a semantic model?](/blog/what-is-semantic-model/) — the building block MetricFlow queries
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the full business dictionary

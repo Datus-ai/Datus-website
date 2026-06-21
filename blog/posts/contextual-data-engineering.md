@@ -36,7 +36,7 @@ The largest cost in data engineering is not writing SQL. It is re-learning the s
 
 This is not a tooling problem. It is a context problem. And it is the problem that **contextual data engineering** is designed to solve.
 
-If you have read [what a data engineering agent is](/posts/what-is-data-engineering-agent-2026), you already know the rough shape of what follows. That article argued that the deepest split between today's data engineering agents is how they handle context. This article gives the idea its own name and its own definition.
+If you have read [what a data engineering agent is](/blog/what-is-data-engineering-agent-2026/), you already know the rough shape of what follows. That article argued that the deepest split between today's data engineering agents is how they handle context. This article gives the idea its own name and its own definition.
 
 ## TL;DR
 
@@ -153,7 +153,7 @@ It is worth being precise about what contextual data engineering is not, because
 
 **It is not a semantic layer—but it reinforces one.** A semantic layer defines governed metrics, dimensions, and joins. It is essential infrastructure. But it is static at runtime: defined in Git, deployed on a schedule, consumed by BI tools. Contextual data engineering adds a fast feedback buffer on top: validated ad-hoc SQL, deprecation notes, usage patterns, and corrections that have not yet been promoted to the formal semantic layer. The two are complementary: the semantic layer provides the governed foundation; the context layer captures the institutional knowledge that moves faster than governance cycles.
 
-For more on this relationship, see [what is a semantic layer](/posts/what-is-semantic-layer).
+For more on this relationship, see [what is a semantic layer](/blog/what-is-semantic-layer/).
 
 ## 7. What a contextual data engineering system looks like in practice
 
@@ -209,6 +209,6 @@ No—it makes your documentation more accurate over time. Traditional documentat
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition this article builds on
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — the governed semantics that contextual systems extend
-- [How a Context Engine improves accuracy](/posts/context-engine-data-engineering-agent-accuracy) — the architecture behind context retrieval and feedback
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition this article builds on
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the governed semantics that contextual systems extend
+- [How a Context Engine improves accuracy](/blog/context-engine-data-engineering-agent-accuracy/) — the architecture behind context retrieval and feedback

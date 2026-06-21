@@ -96,13 +96,13 @@ Clear structure helps both human readers and AI answer engines:
 
 ## Related Reading
 
-- [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack)
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
-- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
-- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+- [From Human-First Data Systems to the Agentic Data Stack](/blog/agentic-data-stack/)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/blog/data-engineering-agent/data-engineering-agent-layered-subagent/)
+- [SQL agents are broken without context. Meet Datus.](/blog/meet_datus/)
 
 ## Continue Reading
 
-- Previous: [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- Next: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- Previous: [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- Next: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)

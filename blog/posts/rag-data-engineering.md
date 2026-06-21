@@ -71,7 +71,7 @@ High-value retrieval sources:
 
 | Source | Retrieved content | Helps with |
 | --- | --- | --- |
-| **Table/column metadata** | Names, types, keys | [Schema linking](/posts/what-is-schema-linking) |
+| **Table/column metadata** | Names, types, keys | [Schema linking](/blog/what-is-schema-linking/) |
 | **Semantic layer exports** | Metric YAML, dimensions | Business terms → logic |
 | **Reference SQL** | Past correct queries | Join paths, filters, grain |
 | **Issue / feedback notes** | Corrections, deprecations | Institutional memory |
@@ -95,7 +95,7 @@ Step 7 separates **agent RAG** from demo RAG. Without feedback into the index, r
 
 Let's trace this pipeline with a real scenario. An analyst asks "month-over-month new customer ARPU by acquisition channel." The indexing step (1) has already chunked the Finance domain's schema, the Marketing domain's attribution tables, and 40 validated reference SQL queries tagged with "customer" and "ARPU." The query step (2) runs a hybrid search: keyword search matches "ARPU" against metadata and SQL text, while vector search finds semantically similar questions like "average revenue per user by signup source." The ranking step (3) surfaces the top 15 chunks — including a reference SQL query from last month that computed new customer ARPU using `fact_subscription.first_payment / COUNT(DISTINCT dim_user.user_id)` — and filters out chunks from the Sales domain that use a different ARPU definition. The compose step (4) assembles a prompt with the Finance domain rules, the retrieved reference SQL as few-shot examples, and the analyst's question. The generate step (5) produces SQL that uses the same join path and filter logic as the reference example. The validate step (6) executes the query and compares the result count against a cached approximate answer from the BI dashboard. The re-index step (7) stores this validated query as a new retrieval candidate for future ARPU questions — so next month's ARPU question retrieves an even richer set of examples.
 
-[Contextual data engineering](/posts/contextual-data-engineering) describes that evolution loop as the operating system for agents.
+[Contextual data engineering](/blog/contextual-data-engineering/) describes that evolution loop as the operating system for agents.
 
 ## 5. Failure modes specific to data RAG
 
@@ -117,11 +117,11 @@ New column not indexed; model never sees it. Mitigation: catalog sync jobs and i
 
 ### No execution grounding
 
-Model cites retrieved SQL but does not run it. Mitigation: agent tools that execute, inspect errors, and retry — as in [build your first data engineering agent](/posts/build-your-first-data-engineering-agent). The retrieval provides a plausible join path; execution validates whether that path actually works on today's data. Without execution, the RAG pipeline is a citation engine, not a verification engine — it tells the model what someone did last month without checking whether that approach still applies.
+Model cites retrieved SQL but does not run it. Mitigation: agent tools that execute, inspect errors, and retry — as in [build your first data engineering agent](/blog/build-your-first-data-engineering-agent/). The retrieval provides a plausible join path; execution validates whether that path actually works on today's data. Without execution, the RAG pipeline is a citation engine, not a verification engine — it tells the model what someone did last month without checking whether that approach still applies.
 
 ## 6. RAG and the semantic layer
 
-A [semantic layer](/posts/what-is-semantic-layer) is a high-quality retrieval source for **certified metrics**. It is incomplete for **ad-hoc validated SQL** and **tribal rules** that never became YAML.
+A [semantic layer](/blog/what-is-semantic-layer/) is a high-quality retrieval source for **certified metrics**. It is incomplete for **ad-hoc validated SQL** and **tribal rules** that never became YAML.
 
 | Context source | Strength | Gap |
 | --- | --- | --- |
@@ -144,7 +144,7 @@ Common vector backends used in data RAG pipelines include LanceDB, pgvector, and
 
 When a general-purpose agent calls a data tool via <a href="https://modelcontextprotocol.io/" rel="nofollow noopener">MCP</a>, the **data side** still needs RAG — the host model does not magically know your warehouse. The data tool must expose the same retrieval index to the MCP client that it uses for its own generations.
 
-See [MCP and data engineering](/posts/mcp-data-engineering) for the integration pattern.
+See [MCP and data engineering](/blog/mcp-data-engineering/) for the integration pattern.
 
 ## 9. A RAG failure timeline: how stale retrieval produces wrong SQL
 
@@ -162,7 +162,7 @@ This pattern — stale index producing confident wrong answers — is the most c
 
 ## Conclusion
 
-**RAG for data engineering** is not "connect a PDF to ChatGPT." It is a governed retrieval layer over schema, semantics, and validated SQL that makes [text-to-SQL](/posts/what-is-text-to-sql) and agents accurate at scale. The differentiator is not retrieval itself — everyone has embeddings in 2026 — but whether retrieved context **updates with production feedback** and **respects domain scope**. That is the move from demo RAG to contextual data engineering.
+**RAG for data engineering** is not "connect a PDF to ChatGPT." It is a governed retrieval layer over schema, semantics, and validated SQL that makes [text-to-SQL](/blog/what-is-text-to-sql/) and agents accurate at scale. The differentiator is not retrieval itself — everyone has embeddings in 2026 — but whether retrieved context **updates with production feedback** and **respects domain scope**. That is the move from demo RAG to contextual data engineering.
 
 ## Frequently asked questions
 
@@ -184,9 +184,9 @@ Usually **stale or noisy indexes**, **no scope**, and **no feedback loop** — n
 
 ## Related articles
 
-- [What is text-to-SQL?](/posts/what-is-text-to-sql) — generation task RAG supports
-- [What is schema linking?](/posts/what-is-schema-linking) — retrieval quality determines link quality
-- [How a context engine improves agent accuracy](/posts/context-engine-data-engineering-agent-accuracy) — RAG as part of persistent context
+- [What is text-to-SQL?](/blog/what-is-text-to-sql/) — generation task RAG supports
+- [What is schema linking?](/blog/what-is-schema-linking/) — retrieval quality determines link quality
+- [How a context engine improves agent accuracy](/blog/context-engine-data-engineering-agent-accuracy/) — RAG as part of persistent context
 
 ---
 

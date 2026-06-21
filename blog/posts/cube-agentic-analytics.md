@@ -33,7 +33,7 @@ head:
 
 # Cube.dev: From Semantic Layer Pioneer to Agentic Analytics Platform
 
-In 2019, Cube was an open-source framework for building analytics dashboards — a React component library with a caching layer. By 2022, it had repositioned as a headless semantic layer — the dashboards were still there, but the real product was the API that served governed metrics to any frontend. In June 2025, it launched D3, a platform built around AI agents that consume those metrics — not as an add-on feature, but as the primary interface. That arc — from dashboard framework to semantic infrastructure to agentic platform — is not a pivot. It is a thesis playing out in three acts: the dashboard is a commodity, the semantic layer is the durable asset, and AI agents are its natural consumers. This article traces Cube's evolution, examines its architecture, and explains what its trajectory toward agentic analytics means for the [data engineering agent](/posts/what-is-data-engineering-agent) category — including where Cube and Datus converge and where they make fundamentally different architectural bets.
+In 2019, Cube was an open-source framework for building analytics dashboards — a React component library with a caching layer. By 2022, it had repositioned as a headless semantic layer — the dashboards were still there, but the real product was the API that served governed metrics to any frontend. In June 2025, it launched D3, a platform built around AI agents that consume those metrics — not as an add-on feature, but as the primary interface. That arc — from dashboard framework to semantic infrastructure to agentic platform — is not a pivot. It is a thesis playing out in three acts: the dashboard is a commodity, the semantic layer is the durable asset, and AI agents are its natural consumers. This article traces Cube's evolution, examines its architecture, and explains what its trajectory toward agentic analytics means for the [data engineering agent](/blog/what-is-data-engineering-agent/) category — including where Cube and Datus converge and where they make fundamentally different architectural bets.
 
 ## TL;DR
 
@@ -111,7 +111,7 @@ Cube and Datus are moving toward the same destination — a world where AI agent
 | **Caching strategy** | CubeStore (Rust OLAP) — materialized pre-aggregation | Context caching — validated SQL and semantic models reused across queries |
 | **Feedback loop** | Query-level — agent-generated SQL validated by semantic constraints | Continuous — user upvotes, issue reports, and corrections feed back into context evolution |
 
-The two are not direct competitors — they occupy different tiers of the data agent stack (see [what is a data agent](/posts/what-is-data-agent)). Cube is the **consumer tier**: a platform for serving governed metrics to any tool, including AI agents. Datus is the **producer tier**: a system for building and continuously evolving the context that both human analysts and AI agents consume.
+The two are not direct competitors — they occupy different tiers of the data agent stack (see [what is a data agent](/blog/what-is-data-agent/)). Cube is the **consumer tier**: a platform for serving governed metrics to any tool, including AI agents. Datus is the **producer tier**: a system for building and continuously evolving the context that both human analysts and AI agents consume.
 
 In a fully realized architecture, they are complementary: Datus generates and evolves semantic models and metrics; Cube serves them through APIs with caching, access control, and multi-tool distribution. An organization could use both — Datus for context creation and evolution, Cube for context distribution and consumption.
 
@@ -119,7 +119,7 @@ In a fully realized architecture, they are complementary: Datus generates and ev
 
 Cube's evolution from dashboard framework → headless semantic layer → agentic analytics platform is not a unique path — it reflects a broader market pattern:
 
-**Signal 1: The semantic layer is infrastructure, not a feature.** Cube bet its entire product on this thesis years ago, and the market has validated it. When Databricks Ventures invested $25M in Cube, they were investing in semantic infrastructure — not dashboard tooling. The OSI standard (see [Open Semantic Interchange explained](/posts/open-semantic-interchange-osi)) further validates this: metrics are becoming portable infrastructure, not tool-specific features.
+**Signal 1: The semantic layer is infrastructure, not a feature.** Cube bet its entire product on this thesis years ago, and the market has validated it. When Databricks Ventures invested $25M in Cube, they were investing in semantic infrastructure — not dashboard tooling. The OSI standard (see [Open Semantic Interchange explained](/blog/open-semantic-interchange-osi/)) further validates this: metrics are becoming portable infrastructure, not tool-specific features.
 
 **Signal 2: AI agents need a governed semantic layer to be trustworthy.** Cube's "LLMs query semantic layers, not databases" argument is increasingly the consensus. Giving an AI agent raw database access produces confident wrong answers. Routing agent queries through a governed semantic layer produces answers grounded in certified business logic. This is not a Cube-specific insight — it is an architectural requirement for any production AI analytics deployment.
 
@@ -161,6 +161,6 @@ Not directly — they occupy different tiers of the data agent stack. Cube is th
 
 ## Related articles
 
-- [dbt Semantic Layer & MetricFlow: A Complete Guide](/posts/dbt-semantic-layer-metricflow) — the Git-managed alternative to Cube
-- [What is a metric layer?](/posts/what-is-metric-layer) — the concept Cube implements
-- [Open Semantic Interchange (OSI) explained](/posts/open-semantic-interchange-osi) — the standard that makes semantics portable
+- [dbt Semantic Layer & MetricFlow: A Complete Guide](/blog/dbt-semantic-layer-metricflow/) — the Git-managed alternative to Cube
+- [What is a metric layer?](/blog/what-is-metric-layer/) — the concept Cube implements
+- [Open Semantic Interchange (OSI) explained](/blog/open-semantic-interchange-osi/) — the standard that makes semantics portable

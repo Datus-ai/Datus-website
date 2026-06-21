@@ -33,14 +33,14 @@ head:
 
 # AI-Native Data Platforms: Why the Next Generation Needs Data Engineering Agents, Not Just Copilots
 
-Every major data platform now has an AI feature — a copilot, a chat interface, an assistant. But bolting a text-to-SQL chatbot onto a warehouse does not make a platform **AI-native**. An AI-native data platform is one where AI agents are not features added to the product — they are **the architecture through which the product operates**. And the central infrastructure component of that architecture is not a better model or a smarter copilot — it is a [data engineering agent](/posts/what-is-data-engineering-agent) that builds and evolves the context all other agents depend on. This article defines the category, separates AI-native from AI-augmented, and explains what the transition means for data teams.
+Every major data platform now has an AI feature — a copilot, a chat interface, an assistant. But bolting a text-to-SQL chatbot onto a warehouse does not make a platform **AI-native**. An AI-native data platform is one where AI agents are not features added to the product — they are **the architecture through which the product operates**. And the central infrastructure component of that architecture is not a better model or a smarter copilot — it is a [data engineering agent](/blog/what-is-data-engineering-agent/) that builds and evolves the context all other agents depend on. This article defines the category, separates AI-native from AI-augmented, and explains what the transition means for data teams.
 
 ## TL;DR
 
 - An **AI-native data platform** is one where AI agents are the primary operating model — generating queries, building context, managing pipelines, and orchestrating workflows — not a bolt-on chat interface added to a traditional platform.
 - Most "AI features" in data platforms today are **AI-augmented**, not AI-native: a copilot sidebar in a SQL editor, a natural-language dashboard builder, a documentation generator. These add AI to existing workflows rather than restructuring the workflow around AI.
 - The defining characteristic of an AI-native platform: **the platform gets better with every agent interaction** — context accumulates, accuracy improves, and downstream agents inherit richer grounding.
-- The missing infrastructure layer is a **data engineering agent**: an AI system whose primary job is not answering questions but building and evolving the context — [semantic models](/posts/what-is-semantic-model), [metric definitions](/posts/what-is-metric-layer), reference SQL, validation rules — that makes all other agents more accurate.
+- The missing infrastructure layer is a **data engineering agent**: an AI system whose primary job is not answering questions but building and evolving the context — [semantic models](/blog/what-is-semantic-model/), [metric definitions](/blog/what-is-metric-layer/), reference SQL, validation rules — that makes all other agents more accurate.
 - Datus is purpose-built for this: a data engineering agent that generates context from schema and SQL, refines it through feedback, and packages it into domain-scoped Subagents — the producer tier in an AI-native data architecture.
 
 ## 1. AI-augmented vs AI-native: the distinction that matters
@@ -152,6 +152,6 @@ A **data engineering agent** is the producer tier — the system that builds and
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent) — the producer tier in detail
-- [What is a data agent?](/posts/what-is-data-agent) — the full taxonomy of data agents
-- [Contextual Data Engineering: Why Your Agent Needs Evolvable Context](/posts/contextual-data-engineering) — the core concept
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — the producer tier in detail
+- [What is a data agent?](/blog/what-is-data-agent/) — the full taxonomy of data agents
+- [Contextual Data Engineering: Why Your Agent Needs Evolvable Context](/blog/contextual-data-engineering/) — the core concept

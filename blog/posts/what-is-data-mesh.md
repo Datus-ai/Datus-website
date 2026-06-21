@@ -93,7 +93,7 @@ Mesh-aligned agent design:
 | Self-serve platform | Engineers spin up Subagents without retraining a monolith |
 | Federated governance | Global policies (PII, audit) + domain rules in Subagent config |
 
-Read [subagents: domain-specific data agents](/posts/subagents-domain-specific-data-agents) for the delivery model.
+Read [subagents: domain-specific data agents](/blog/subagents-domain-specific-data-agents/) for the delivery model.
 
 ## 5. Mesh-aligned agent design: domain scoping as implementation
 
@@ -122,7 +122,7 @@ Federated governance applies at the platform level: global policies for PII dete
 
 ## 7. Data mesh vs contextual data engineering
 
-Mesh answers **who owns and publishes** data products. [Contextual data engineering](/posts/contextual-data-engineering) answers **how agent context evolves** after those products ship.
+Mesh answers **who owns and publishes** data products. [Contextual data engineering](/blog/contextual-data-engineering/) answers **how agent context evolves** after those products ship.
 
 Together: domains publish products; agents **learn from usage** within each domain's scoped context; promoted learnings flow back into semantic models and reference SQL — faster than quarterly central modeling alone. This is how mesh thinking about ownership combines with agent thinking about continuous learning — each domain's context evolves at the speed of its own usage, not at the speed of a central modeling team's quarterly planning cycle.
 
@@ -170,9 +170,9 @@ Data contracts formalize the interface between data producers and consumers — 
 
 ## Related articles
 
-- [Subagents: domain-specific data agents](/posts/subagents-domain-specific-data-agents) — mesh-aligned delivery unit
-- [Contextual data engineering](/posts/contextual-data-engineering) — evolving context per domain
-- [What is a data catalog?](/posts/what-is-data-catalog) — shared discovery layer under domain products
+- [Subagents: domain-specific data agents](/blog/subagents-domain-specific-data-agents/) — mesh-aligned delivery unit
+- [Contextual data engineering](/blog/contextual-data-engineering/) — evolving context per domain
+- [What is a data catalog?](/blog/what-is-data-catalog/) — shared discovery layer under domain products
 
 ---
 

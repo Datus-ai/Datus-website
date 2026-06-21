@@ -295,10 +295,10 @@ That is why MCP matters now. It does not make data workflow automation effortles
 
 ## Related Reading
 
-- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
-- [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/blog/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs/)
+- [Agentic Data Engineering vs Traditional Data Engineering](/blog/agentic-data-engineering-vs-traditional-data-engineering/)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
 
 ## Start with Datus
 

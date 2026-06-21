@@ -265,8 +265,8 @@ More grounded output.
 
 ## Next steps
 
-- [Why AI Agents Need Semantic Context to Work Reliably](/posts/why-ai-agents-need-semantic-context-to-work-reliably)
-- [Why Reliable Data Agents Need More Than Good Prompts](/posts/why-reliable-data-agents-need-more-than-good-prompts)
+- [Why AI Agents Need Semantic Context to Work Reliably](/blog/why-ai-agents-need-semantic-context-to-work-reliably/)
+- [Why Reliable Data Agents Need More Than Good Prompts](/blog/why-reliable-data-agents-need-more-than-good-prompts/)
 - Explore [Datus Docs](https://docs.datus.ai) for semantic models, metrics, and workflow context
 
 ## FAQ
