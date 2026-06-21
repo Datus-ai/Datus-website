@@ -71,6 +71,11 @@ const GlossaryPage = () => {
                 <article key={t.slug} id={t.slug} className="glossary-card">
                   <h3 className="glossary-card__term">{t.term}</h3>
                   <p className="glossary-card__def">{t.definition}</p>
+                  {t.article && (
+                    <a className="glossary-card__link" href={t.article}>
+                      Read the full guide →
+                    </a>
+                  )}
                 </article>
               ))}
             </div>

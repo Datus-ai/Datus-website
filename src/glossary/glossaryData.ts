@@ -5,6 +5,8 @@ export interface GlossaryTerm {
   term: string;
   slug: string;
   definition: string;
+  /** Optional link to a full glossary article for this term. */
+  article?: string;
 }
 
 export interface GlossaryCategory {
@@ -37,6 +39,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "lakehouse",
         definition:
           "A hybrid that puts warehouse-style table semantics (ACID, schema, time travel) directly on top of a data lake via open formats like Iceberg, Delta, or Hudi.",
+        article: "/blog/what-is-lakehouse/",
       },
       {
         term: "Data Mesh",
