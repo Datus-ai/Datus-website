@@ -19,7 +19,7 @@ head:
       content: article
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/posts/what-is-lakehouse
+      content: https://datus.ai/blog/what-is-lakehouse/
   - - meta
     - property: og:image
       content: https://datus.ai/logo_dark.svg
@@ -28,7 +28,7 @@ head:
       content: summary_large_image
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/posts/what-is-lakehouse
+      href: https://datus.ai/blog/what-is-lakehouse/
 ---
 
 # What Is a Lakehouse? Definition, Architecture & Open Table Formats Explained
