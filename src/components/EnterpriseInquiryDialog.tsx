@@ -69,8 +69,10 @@ function blurRing(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
 
 export function EnterpriseInquiryDialog({
   children,
+  source = "datus.ai homepage — Talk to Enterprise",
 }: {
   children: React.ReactNode;
+  source?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -100,7 +102,7 @@ export function EnterpriseInquiryDialog({
       company: form.company.trim(),
       role: form.role.trim(),
       message: form.message.trim(),
-      source: "datus.ai homepage — Talk to Enterprise",
+      source,
     };
 
     try {
@@ -292,7 +294,7 @@ export function EnterpriseInquiryDialog({
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  Talk to us about Enterprise & BYOC
+                  Contact us about Enterprise & BYOC
                 </h3>
               </DialogPrimitive.Title>
               <p

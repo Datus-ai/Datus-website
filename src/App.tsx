@@ -1,2372 +1,514 @@
 import {
-  Archive,
   ArrowRight,
-  BarChart3,
-  BookOpen,
-  BookText,
-  Brain,
-  CheckCircle,
-  Code,
+  Boxes,
+  Building2,
+  Check,
+  CheckCircle2,
+  Copy,
   Database,
-  FileText,
+  GitBranch,
   Github,
-  MessageSquare,
-  Monitor,
-  Network,
+  Layers,
+  RefreshCw,
   Rocket,
-  Settings,
-  Shield,
+  ShieldCheck,
   Sparkles,
   Star,
-  TestTube,
-  TreePine,
-  TrendingUp,
-  Zap,
+  Terminal,
+  Workflow,
 } from "lucide-react";
-import { motion } from "motion/react";
-import React, { useEffect, useMemo, useState } from "react";
-import Footer from "./components/Footer";
-import DatusContextTriad from "./components/DatusContextTriad";
-import DatusLayeredStack from "./components/DatusLayeredStack";
-import DatusLayeredStackHorizontalOnly from "./components/DatusLayeredStackHorizontalOnly";
+import { useEffect, useState } from "react";
+import SiteLayout from "./components/SiteLayout";
+import RotatingPrompt from "./components/RotatingPrompt";
 import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
-import { Badge } from "./components/ui/badge";
-import { Card } from "./components/ui/card";
+import { CONTACT_EMAIL, GITHUB_URL, STUDIO_URL } from "./config/nav";
+import { formatStarCount, useGitHubStars } from "./hooks/useGitHubStars";
 
-const GITHUB_REPO = "Datus-ai/Datus-agent";
-const GITHUB_STARS_FALLBACK = 1248;
-const GITHUB_STARS_CACHE_KEY = "datus:github-stars";
-const GITHUB_STARS_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+/* ---------------------------------- Hero ---------------------------------- */
+const INSTALL_CMD = "curl -fsSL https://datus.ai/install.sh | sh";
 
-const formatStarCount = (count: number): string => {
-  if (count < 1000) return String(count);
-  const thousands = count / 1000;
-  // 1248 -> "1.2k", 12480 -> "12k"
-  return thousands >= 10
-    ? `${Math.round(thousands)}k`
-    : `${thousands.toFixed(1)}k`;
-};
-
-const useGitHubStars = (
-  repo: string,
-  fallback: number,
-): number => {
-  const [stars, setStars] = useState<number>(() => {
-    if (typeof window === "undefined") return fallback;
-    try {
-      const raw = window.localStorage.getItem(GITHUB_STARS_CACHE_KEY);
-      if (!raw) return fallback;
-      const cached = JSON.parse(raw) as { count: number; ts: number };
-      if (typeof cached.count === "number") return cached.count;
-    } catch {
-      // ignore — fall through to fallback
-    }
-    return fallback;
-  });
-
-  useEffect(() => {
-    let cancelled = false;
-
-    try {
-      const raw = window.localStorage.getItem(GITHUB_STARS_CACHE_KEY);
-      if (raw) {
-        const cached = JSON.parse(raw) as { count: number; ts: number };
-        if (
-          typeof cached.ts === "number" &&
-          Date.now() - cached.ts < GITHUB_STARS_TTL_MS
-        ) {
-          return; // cache still fresh; skip fetch
-        }
-      }
-    } catch {
-      // ignore cache read errors
-    }
-
-    fetch(`https://api.github.com/repos/${repo}`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (cancelled || !data) return;
-        const count = data.stargazers_count;
-        if (typeof count !== "number") return;
-        setStars(count);
-        try {
-          window.localStorage.setItem(
-            GITHUB_STARS_CACHE_KEY,
-            JSON.stringify({ count, ts: Date.now() }),
-          );
-        } catch {
-          // ignore quota/serialization errors
-        }
-      })
-      .catch(() => {
-        // network/rate-limit failure — keep existing value (cache or fallback)
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [repo]);
-
-  return stars;
-};
-
-// Calculate octagonal positions with perfect geometric precision
-const calculateOctagonPosition = (
-  index: number,
-  centerX = 50,
-  centerY = 50,
-  radius = 30,
-) => {
-  const angle = (index * 2 * Math.PI) / 8 - Math.PI / 2; // Start from top
-  return {
-    x: centerX + radius * Math.cos(angle),
-    y: centerY + radius * Math.sin(angle),
-  };
-};
-
-const lifecycleStages = [
-  {
-    id: 1,
-    title: "SQL Development",
-    icon: Code,
-    color: "from-cyan-500 to-blue-500",
-    iconColor: "text-cyan-400",
-    description:
-      "Write, optimize, and version SQL queries with AI assistance",
-    position: calculateOctagonPosition(0), // Top
-  },
-  {
-    id: 2,
-    title: "Data Quality",
-    icon: CheckCircle,
-    color: "from-blue-500 to-indigo-500",
-    iconColor: "text-blue-400",
-    description:
-      "Automated quality checks and validation rules",
-    position: calculateOctagonPosition(1), // Top-right
-  },
-  {
-    id: 3,
-    title: "Metric Management",
-    icon: BarChart3,
-    color: "from-indigo-500 to-purple-500",
-    iconColor: "text-indigo-400",
-    description: "Define, track, and version business metrics",
-    position: calculateOctagonPosition(2), // Right
-  },
-  {
-    id: 4,
-    title: "Modeling Optimization",
-    icon: Settings,
-    color: "from-purple-500 to-pink-500",
-    iconColor: "text-purple-400",
-    description:
-      "Optimize data models for performance and cost",
-    position: calculateOctagonPosition(3), // Bottom-right
-  },
-  {
-    id: 5,
-    title: "SQL Review",
-    icon: TestTube,
-    color: "from-pink-500 to-red-500",
-    iconColor: "text-pink-400",
-    description:
-      "Peer review and automated code quality analysis",
-    position: calculateOctagonPosition(4), // Bottom
-  },
-  {
-    id: 6,
-    title: "Job Deployment",
-    icon: Rocket,
-    color: "from-red-500 to-orange-500",
-    iconColor: "text-red-400",
-    description: "Deploy and schedule data processing jobs",
-    position: calculateOctagonPosition(5), // Bottom-left
-  },
-  {
-    id: 7,
-    title: "Monitoring",
-    icon: Monitor,
-    color: "from-orange-500 to-yellow-500",
-    iconColor: "text-orange-400",
-    description: "Real-time monitoring and alerting",
-    position: calculateOctagonPosition(6), // Left
-  },
-  {
-    id: 8,
-    title: "Documentation",
-    icon: FileText,
-    color: "from-yellow-500 to-cyan-500",
-    iconColor: "text-yellow-400",
-    description: "Auto-generated documentation and lineage",
-    position: calculateOctagonPosition(7), // Top-left
-  },
-];
-
-const connections = [
-  { from: 1, to: 2 },
-  { from: 2, to: 3 },
-  { from: 3, to: 4 },
-  { from: 4, to: 5 },
-  { from: 5, to: 6 },
-  { from: 6, to: 7 },
-  { from: 7, to: 8 },
-  { from: 8, to: 1 },
-  { from: 1, to: 3 },
-  { from: 2, to: 4 },
-  { from: 5, to: 7 },
-  { from: 6, to: 8 },
-];
-
-export default function App() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const githubStars = useGitHubStars(GITHUB_REPO, GITHUB_STARS_FALLBACK);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToLifecycle = () => {
-    document
-      .getElementById("lifecycle-diagram")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  // Memoize connection calculations for better performance
-  const connectionPaths = useMemo(() => {
-    return connections
-      .map((connection, index) => {
-        const fromStage = lifecycleStages.find(
-          (s) => s.id === connection.from,
-        );
-        const toStage = lifecycleStages.find(
-          (s) => s.id === connection.to,
-        );
-        if (!fromStage || !toStage) return null;
-
-        return {
-          key: `${connection.from}-${connection.to}`,
-          fromX: fromStage.position.x,
-          fromY: fromStage.position.y,
-          toX: toStage.position.x,
-          toY: toStage.position.y,
-          index,
-        };
-      })
-      .filter(Boolean);
-  }, []);
-
+/** The install command, click to copy, with a brief confirmation. */
+function CopyCommand() {
+  const [copied, setCopied] = useState(false);
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Animated Background Particles */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(25)].map((_, i) => {
-          const colors = [
-            "bg-cyan-400/20",
-            "bg-blue-400/20",
-            "bg-indigo-400/20",
-            "bg-purple-400/20",
-            "bg-violet-400/20",
-          ];
-          const sizes = ["w-1 h-1", "w-2 h-2", "w-1.5 h-1.5"];
-          return (
-            <motion.div
-              key={i}
-              className={`absolute ${colors[i % colors.length]} ${sizes[i % sizes.length]} rounded-full`}
-              initial={{
-                x:
-                  Math.random() *
-                  (typeof window !== "undefined"
-                    ? window.innerWidth
-                    : 1000),
-                y:
-                  Math.random() *
-                  (typeof window !== "undefined"
-                    ? window.innerHeight
-                    : 1000),
-              }}
-              animate={{
-                x:
-                  Math.random() *
-                  (typeof window !== "undefined"
-                    ? window.innerWidth
-                    : 1000),
-                y:
-                  Math.random() *
-                  (typeof window !== "undefined"
-                    ? window.innerHeight
-                    : 1000),
-              }}
-              transition={{
-                duration: Math.random() * 25 + 15,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          );
-        })}
-      </div>
+    <button
+      type="button"
+      title="Copy install command"
+      onClick={() => {
+        navigator.clipboard
+          ?.writeText(INSTALL_CMD)
+          .then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          })
+          .catch(() => {});
+      }}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 6,
+        whiteSpace: "nowrap",
+        background: "transparent",
+        border: 0,
+        padding: 0,
+        cursor: "pointer",
+        color: "inherit",
+        fontFamily: "inherit",
+        fontSize: "inherit",
+      }}
+    >
+      <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} />
+      {INSTALL_CMD}
+      {copied ? (
+        <Check size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} />
+      ) : (
+        <Copy size={13} style={{ color: "var(--ink-faint)", flexShrink: 0 }} />
+      )}
+    </button>
+  );
+}
 
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-        {/* Enhanced animated background for hero */}
-        <div className="absolute inset-0 opacity-50">
-          <motion.div
-            className="h-full w-full"
-            animate={{
-              background: [
-                "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-              ],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-
-        {/* Navigation */}
-        <motion.nav
-          initial={{ y: -100, opacity: 0 }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            backgroundColor: isScrolled
-              ? "rgba(15, 23, 42, 0.8)"
-              : "rgba(15, 23, 42, 0)"
+function Hero() {
+  const stars = useGitHubStars();
+  return (
+    <section className="section" style={{ paddingTop: 72, paddingBottom: 64 }}>
+      <div className="container">
+        <div
+          className="hero-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.05fr 0.95fr",
+            gap: 48,
+            alignItems: "center",
           }}
-          transition={{ duration: 0.3 }}
-          className={`fixed top-0 left-0 right-0 z-50 ${
-            isScrolled ? "backdrop-blur-xl border-b border-slate-700/50 shadow-lg shadow-black/5" : ""
-          }`}
         >
-          <div className="w-full px-8 py-4">
-            <div className="flex items-center justify-between">
-              {/* Logo */}
-              <motion.div
-                className="flex items-center space-x-3 flex-shrink-0"
-                whileHover={{ scale: 1.02 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 10,
-                }}
-              >
-                <a href="/" className="flex items-center space-x-3">
-                  <img src="/logo_dark.svg" alt="Datus" className="h-9 w-auto" />
-                  <motion.div
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
-                  />
-                </a>
-              </motion.div>
-
-              {/* Right Side Navigation */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex items-center space-x-6"
-              >
-                {/* Docs Link */}
-                <motion.a
-                  href="https://docs.datus.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.4 }}
-                >
-                  <BookOpen className="h-5 w-5 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" />
-                  <span className="font-medium">Docs</span>
-                  <motion.div
-                    className="w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.a>
-
-                {/* Studio Link */}
-                <motion.a
-                  href="https://studio.datus.ai/overview"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.45 }}
-                >
-                  <Sparkles className="h-5 w-5 text-violet-400 group-hover:text-violet-300 transition-colors duration-300" />
-                  <span className="font-medium">Studio</span>
-                  <motion.div
-                    className="w-1 h-1 bg-violet-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.a>
-
-                {/* Blog Link */}
-                <motion.a
-                  href="/blog/"
-                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.55 }}
-                >
-                  <BookText className="h-5 w-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
-                  <span className="font-medium">Blog</span>
-                  <motion.div
-                    className="w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.a>
-
-                {/* Community Link */}
-                <motion.a
-                  href="https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.65 }}
-                >
-                  <MessageSquare className="h-5 w-5 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300" />
-                  <span className="font-medium">Community</span>
-                  <motion.div
-                    className="w-1 h-1 bg-indigo-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.a>
-
-                {/* GitHub Link */}
-                <motion.a
-                  href="https://github.com/Datus-ai/Datus-agent"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors duration-300 group"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10, delay: 0.75 }}
-                >
-                  <Github className="h-5 w-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
-                  <span className="font-medium">GitHub</span>
-                  <motion.div
-                    className="w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.a>
-              </motion.div>
-            </div>
-          </div>
-        </motion.nav>
-
-        <div className="relative pt-20">
-          {/* Hero Tagline Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="px-8 py-24 text-center relative z-10"
-          >
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 1.2,
-                delay: 0.5,
-                type: "spring",
-                stiffness: 100,
-              }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-5xl mx-auto"
-            >
-              <motion.span
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="text-white block"
-              >
-                Datus is the{" "}
-                <motion.span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300"
-                  animate={{
-                    backgroundPosition: [
-                      "0% 50%",
-                      "100% 50%",
-                      "0% 50%",
-                    ],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  style={{ backgroundSize: "200% 100%" }}
-                >
-                  open-source data engineering agent
-                </motion.span>{" "}
-                that builds{" "}
-                <motion.span
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
-                  animate={{
-                    backgroundPosition: [
-                      "100% 50%",
-                      "0% 50%",
-                      "100% 50%",
-                    ],
-                  }}
-                  transition={{
-                    duration: 7,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  style={{ backgroundSize: "200% 100%" }}
-                >
-                  evolvable context
-                </motion.span>{" "}
-                for your data systems.
-              </motion.span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="mt-8 max-w-3xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed"
-            >
-              From one-man data teams to enterprise agent teams, Datus turns
-              data work into reliable, reusable agent systems.
-            </motion.p>
-
-            {/* Hero CTAs — three pillars, unified shell. Differentiation only via per-pillar accent color + chip on primary. */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.5 }}
+          <div>
+            <span className="eyebrow">
+              <Sparkles size={13} /> Open source · Apache-2.0
+            </span>
+            <h1
               style={{
-                margin: "3rem auto 0",
-                maxWidth: 760,
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
-                columnGap: "1.75rem",
-                rowGap: "0.9rem",
-                justifyItems: "center",
-                alignItems: "center",
+                fontSize: "clamp(34px, 5vw, 60px)",
+                lineHeight: 1.04,
+                letterSpacing: "-0.03em",
+                fontWeight: 750,
+                margin: "20px 0 0",
               }}
             >
-              {/* Primary — GitHub. Same shell as the others; subtle cyan wash + chip do the hierarchy. */}
+              The open-source{" "}
+              <span className="grad-text">data engineering agent</span> for
+              building evolvable context.
+            </h1>
+            <p className="lead" style={{ maxWidth: 540 }}>
+              From one-man data teams to enterprise agent teams, Datus turns data
+              work into reliable, reusable agent systems, semantic-centric and
+              end-to-end.
+            </p>
+
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
+              <a className="btn btn-primary btn-lg" href={STUDIO_URL}>
+                Get started, free <ArrowRight size={17} />
+              </a>
               <a
-                href="https://github.com/Datus-ai/Datus-agent"
+                className="btn btn-ghost btn-lg"
+                href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  position: "relative",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.55rem",
-                  height: 48,
-                  paddingLeft: "1.25rem",
-                  paddingRight: "0.6rem",
-                  borderRadius: 10,
-                  background:
-                    "linear-gradient(180deg, rgba(8,145,178,0.18) 0%, rgba(15,23,42,0.55) 100%)",
-                  border: "1px solid rgba(56,189,248,0.4)",
-                  color: "#E2E8F0",
-                  fontSize: 14,
-                  fontWeight: 600,
-                  letterSpacing: "-0.005em",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)",
-                  transition:
-                    "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.borderColor =
-                    "rgba(56,189,248,0.7)";
-                  e.currentTarget.style.color = "#ffffff";
-                  e.currentTarget.style.boxShadow =
-                    "inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 24px -8px rgba(56,189,248,0.45)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.borderColor =
-                    "rgba(56,189,248,0.4)";
-                  e.currentTarget.style.color = "#E2E8F0";
-                  e.currentTarget.style.boxShadow =
-                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)";
-                }}
               >
-                <Github
-                  size={16}
-                  strokeWidth={2.2}
-                  style={{ color: "#67E8F9" }}
-                />
-                <span>Star on GitHub</span>
-                <span
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 4,
-                    marginLeft: 4,
-                    padding: "3px 8px",
-                    borderRadius: 6,
-                    background: "rgba(8,145,178,0.22)",
-                    border: "1px solid rgba(56,189,248,0.25)",
-                    color: "#E2E8F0",
-                    fontFamily:
-                      "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  <span style={{ color: "#ffd84d" }}>★</span>
-                  {formatStarCount(githubStars)}
+                <Github size={17} />
+                Star on GitHub
+                <span style={{ color: "var(--term-amber)", display: "inline-flex", alignItems: "center", gap: 4 }}>
+                  <Star size={13} fill="currentColor" /> {formatStarCount(stars)}
                 </span>
               </a>
+            </div>
 
-              {/* Secondary — Studio. Same shell, violet accent. */}
-              <a
-                href="https://studio.datus.ai/overview"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  position: "relative",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.55rem",
-                  height: 48,
-                  padding: "0 1.25rem",
-                  borderRadius: 10,
-                  background:
-                    "linear-gradient(180deg, rgba(15,23,42,0.7) 0%, rgba(15,23,42,0.5) 100%)",
-                  border: "1px solid rgba(148,163,184,0.18)",
-                  color: "#E2E8F0",
-                  fontSize: 14,
-                  fontWeight: 600,
-                  letterSpacing: "-0.005em",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)",
-                  transition:
-                    "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.borderColor =
-                    "rgba(167,139,250,0.7)";
-                  e.currentTarget.style.color = "#ffffff";
-                  e.currentTarget.style.boxShadow =
-                    "inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 24px -8px rgba(167,139,250,0.4)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.borderColor =
-                    "rgba(148,163,184,0.18)";
-                  e.currentTarget.style.color = "#E2E8F0";
-                  e.currentTarget.style.boxShadow =
-                    "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)";
-                }}
-              >
-                <Sparkles
-                  size={16}
-                  strokeWidth={2}
-                  style={{ color: "#C4B5FD" }}
-                />
-                <span>Try Datus Studio</span>
-                <ArrowRight
-                  size={14}
-                  strokeWidth={2.2}
-                  style={{ color: "#C4B5FD", opacity: 0.9 }}
-                />
-              </a>
-
-              {/* Tertiary — Enterprise. Same shell, pink accent. Opens inquiry dialog. */}
+            <div style={{ marginTop: 16 }}>
               <EnterpriseInquiryDialog>
                 <button
-                  type="button"
-                  style={{
-                    position: "relative",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.55rem",
-                    height: 48,
-                    padding: "0 1.25rem",
-                    borderRadius: 10,
-                    background:
-                      "linear-gradient(180deg, rgba(15,23,42,0.7) 0%, rgba(15,23,42,0.5) 100%)",
-                    border: "1px solid rgba(148,163,184,0.18)",
-                    color: "#E2E8F0",
-                    fontSize: 14,
-                    fontWeight: 600,
-                    letterSpacing: "-0.005em",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    boxShadow:
-                      "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)",
-                    cursor: "pointer",
-                    fontFamily: "inherit",
-                    transition:
-                      "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.borderColor =
-                      "rgba(244,114,182,0.7)";
-                    e.currentTarget.style.color = "#ffffff";
-                    e.currentTarget.style.boxShadow =
-                      "inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 24px -8px rgba(244,114,182,0.4)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.borderColor =
-                      "rgba(148,163,184,0.18)";
-                    e.currentTarget.style.color = "#E2E8F0";
-                    e.currentTarget.style.boxShadow =
-                      "inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px -8px rgba(0,0,0,0.5)";
-                  }}
+                  className="link-arrow"
+                  style={{ background: "transparent", border: 0, padding: 0, cursor: "pointer", fontFamily: "inherit" }}
                 >
-                  <span>Talk to Enterprise</span>
-                  <ArrowRight
-                    size={14}
-                    strokeWidth={2.2}
-                    style={{ color: "#F9A8D4", opacity: 0.9 }}
-                  />
+                  Building for a team? Contact us <ArrowRight size={15} />
                 </button>
               </EnterpriseInquiryDialog>
-            </motion.div>
-
-            {/* Meta strip — same grid as buttons so each spec aligns under its CTA */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.8 }}
-              style={{
-                margin: "1.25rem auto 0",
-                maxWidth: 760,
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
-                columnGap: "1.75rem",
-                rowGap: "0.4rem",
-                justifyItems: "center",
-                alignItems: "center",
-                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-                fontSize: 11,
-                letterSpacing: "0.04em",
-                color: "rgba(148,163,184,0.72)",
-              }}
-            >
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                <span
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: 999,
-                    background: "#22D3EE",
-                    boxShadow: "0 0 8px rgba(34,211,238,0.7)",
-                  }}
-                />
-                <span>Open source · Apache 2.0</span>
-              </span>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                <span
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: 999,
-                    background: "#A78BFA",
-                    boxShadow: "0 0 8px rgba(167,139,250,0.55)",
-                  }}
-                />
-                <span>Free playground · no install</span>
-              </span>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                <span
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: 999,
-                    background: "#F472B6",
-                    boxShadow: "0 0 8px rgba(244,114,182,0.55)",
-                  }}
-                />
-                <span>Managed Service</span>
-              </span>
-            </motion.div>
-
-            {/* Floating accent elements */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className={`absolute w-2 h-2 rounded-full ${
-                  i % 3 === 0
-                    ? "bg-cyan-400/40"
-                    : i % 3 === 1
-                      ? "bg-blue-400/40"
-                      : "bg-purple-400/40"
-                } border border-white/30`}
-                style={{
-                  top: `${30 + i * 15}%`,
-                  left: `${20 + i * 10}%`,
-                  transform: `rotate(${i * 60}deg)`,
-                }}
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.4, 0.8, 0.4],
-                  rotate: [0, 360],
-                }}
-                transition={{
-                  duration: 4 + i,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-
-            {/* Subtle glow effect */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none"
-              animate={{
-                background: [
-                  "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
-                  "radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 70%)",
-                  "radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%)",
-                  "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
-                ],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </motion.div>
-
-          {/* Features Section */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="px-8 py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden"
-          >
-            {/* Enhanced animated background for features */}
-            <div className="absolute inset-0 opacity-50">
-              <motion.div
-                className="h-full w-full"
-                animate={{
-                  background: [
-                    "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                  ],
-                }}
-                transition={{
-                  duration: 15,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
             </div>
+          </div>
 
-            {/* Floating particles similar to context section */}
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(12)].map((_, i) => {
-                const colors = [
-                  "bg-cyan-400/10",
-                  "bg-blue-400/10",
-                  "bg-purple-400/10",
-                  "bg-violet-400/10",
-                ];
-                const sizes = ["w-3 h-3", "w-4 h-4", "w-2 h-2"];
-                return (
-                  <motion.div
-                    key={i}
-                    className={`absolute ${colors[i % colors.length]} ${sizes[i % sizes.length]} rounded-full border border-white/20`}
-                    initial={{
-                      x:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerWidth
-                          : 1000),
-                      y:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerHeight
-                          : 1000),
-                    }}
-                    animate={{
-                      x:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerWidth
-                          : 1000),
-                      y:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerHeight
-                          : 1000),
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.7, 0.3],
-                    }}
-                    transition={{
-                      duration: Math.random() * 20 + 10,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  />
-                );
-              })}
-            </div>
+          <HeroTerminal />
+        </div>
 
-            <div className="max-w-7xl mx-auto relative z-10">
-              <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  One engineer can run the modern data stack
-                  <br className="hidden md:block" /> with{" "}
-                  <span
-                    className="text-cyan-300"
-                    style={{
-                      textShadow:
-                        "0 0 24px rgba(34,211,238,0.35), 0 0 2px rgba(34,211,238,0.5)",
-                    }}
-                  >
-                    10× productivity
-                  </span>
-                </h2>
-              </motion.div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {[
-                  {
-                    icon: (
-                      <Network className="h-8 w-8 text-cyan-400" />
-                    ),
-                    title: "Operate the full data system, not just one tool",
-                    description:
-                      "Connect and operate services across the modern data stack — warehouses, catalogs, semantic layers, BI, schedulers — through a single agent",
-                    gradient: "from-cyan-500/20 to-blue-500/20",
-                  },
-                  {
-                    icon: (
-                      <Database className="h-8 w-8 text-blue-400" />
-                    ),
-                    title: "Manage the full data engineering lifecycle",
-                    description:
-                      "Turn workflows into reusable skills and manage them end to end — from SQL development and quality checks to deployment and monitoring",
-                    gradient:
-                      "from-blue-500/20 to-purple-500/20",
-                  },
-                  {
-                    icon: (
-                      <Shield className="h-8 w-8 text-purple-400" />
-                    ),
-                    title:
-                      "Improve agent stability with validation loops",
-                    description:
-                      "Make data agents more reliable through testing, feedback, and iterative refinement — the harness engineering production needs",
-                    gradient:
-                      "from-purple-500/20 to-pink-500/20",
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ y: 50, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{
-                      duration: 0.6,
-                      delay: index * 0.2,
-                    }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -10, scale: 1.02 }}
-                  >
-                    <Card
-                      className={`bg-slate-800 border-slate-700 p-6 relative overflow-hidden hover:border-slate-600 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10`}
-                    >
-                      <motion.div
-                        className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 hover:opacity-100 transition-opacity duration-300`}
-                      />
-                      <div className="space-y-4 relative z-10">
-                        <motion.div
-                          className="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center group-hover:bg-slate-600 transition-colors duration-300"
-                          whileHover={{
-                            rotate: 360,
-                            scale: 1.1,
-                          }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          {feature.icon}
-                        </motion.div>
-                        <h3 className="text-xl font-semibold text-white">
-                          {feature.title}
-                        </h3>
-                        <p className="text-slate-300">
-                          {feature.description}
-                        </p>
-                      </div>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Data Engineering Workflow Visualization */}
-              <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.4,
-                  type: "spring",
-                  stiffness: 80,
-                }}
-                viewport={{ once: true }}
-                className="mt-6 relative"
-              >
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-center mb-4"
-                >
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    Complete Data Engineering Workflow
-                  </h3>
-                  <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-                    End-to-end lifecycle management from SQL
-                    development to job deployment
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{
-                    duration: 0.4,
-                    type: "spring",
-                    stiffness: 300,
-                  }}
-                  className="relative group max-w-5xl mx-auto"
-                >
-                  {/* Animated glow effect */}
-                  <motion.div
-                    className="absolute -inset-6 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 via-purple-500/20 to-violet-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    animate={{
-                      background: [
-                        "radial-gradient(circle at 25% 25%, rgba(6, 182, 212, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)",
-                        "radial-gradient(circle at 75% 25%, rgba(59, 130, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 25% 75%, rgba(168, 85, 247, 0.3) 0%, transparent 50%)",
-                        "radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%), radial-gradient(circle at 0% 100%, rgba(6, 182, 212, 0.3) 0%, transparent 50%)",
-                        "radial-gradient(circle at 25% 25%, rgba(6, 182, 212, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-
-                  {/* Main container */}
-                  <motion.div
-                    className="relative bg-gradient-to-br from-slate-800/80 to-slate-700/60 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/50 shadow-2xl overflow-hidden"
-                    animate={{
-                      borderColor: [
-                        "rgba(71, 85, 105, 0.5)",
-                        "rgba(59, 130, 246, 0.4)",
-                        "rgba(139, 92, 246, 0.4)",
-                        "rgba(6, 182, 212, 0.4)",
-                        "rgba(71, 85, 105, 0.5)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 10,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    {/* Background pattern */}
-                    <motion.div
-                      className="absolute inset-0 opacity-10"
-                      animate={{
-                        background: [
-                          "radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.4) 0%, transparent 40%)",
-                          "radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.4) 0%, transparent 40%)",
-                          "radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.4) 0%, transparent 40%)",
-                          "radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.4) 0%, transparent 40%)",
-                          "radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.4) 0%, transparent 40%)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 12,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-
-                    <div className="relative w-full max-w-[460px] md:max-w-[540px] lg:max-w-[620px] xl:max-w-[660px] aspect-square p-[0px] mx-[10px] my-[0px]">
-                      {/* Connection Lines */}
-                      <svg
-                        className="absolute inset-0 w-full h-full pointer-events-none z-10"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 100 100"
-                        preserveAspectRatio="xMidYMid meet"
-                      >
-                        {/* Main octagonal connections */}
-                        {connectionPaths.map(
-                          (path) =>
-                            path && (
-                              <motion.line
-                                key={path.key}
-                                initial={{
-                                  pathLength: 0,
-                                  opacity: 0,
-                                }}
-                                whileInView={{
-                                  pathLength: 1,
-                                  opacity: 0.5,
-                                }}
-                                transition={{
-                                  duration: 0.8,
-                                  delay: 1.5 + path.index * 0.1,
-                                }}
-                                viewport={{ once: true }}
-                                x1={path.fromX}
-                                y1={path.fromY}
-                                x2={path.toX}
-                                y2={path.toY}
-                                stroke="url(#connectionGradient)"
-                                strokeWidth="0.4"
-                                strokeDasharray="2,2"
-                                vectorEffect="non-scaling-stroke"
-                              />
-                            ),
-                        )}
-
-                        {/* Connection nodes/points */}
-                        {lifecycleStages.map((stage, index) => (
-                          <motion.g key={`node-${stage.id}`}>
-                            <motion.circle
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{
-                                scale: 1,
-                                opacity: 0.4,
-                              }}
-                              transition={{
-                                duration: 0.5,
-                                delay: 2.0 + index * 0.1,
-                              }}
-                              viewport={{ once: true }}
-                              cx={stage.position.x}
-                              cy={stage.position.y}
-                              r="1.0"
-                              fill="url(#nodeGradient)"
-                              className="drop-shadow-sm"
-                            />
-                            <motion.circle
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{
-                                scale: 1,
-                                opacity: 0.8,
-                              }}
-                              transition={{
-                                duration: 0.5,
-                                delay: 2.2 + index * 0.1,
-                              }}
-                              viewport={{ once: true }}
-                              cx={stage.position.x}
-                              cy={stage.position.y}
-                              r="0.5"
-                              fill="#ffffff"
-                              className="drop-shadow-sm"
-                            />
-                          </motion.g>
-                        ))}
-
-                        <defs>
-                          <linearGradient
-                            id="connectionGradient"
-                            x1="0%"
-                            y1="0%"
-                            x2="100%"
-                            y2="100%"
-                          >
-                            <stop
-                              offset="0%"
-                              stopColor="#3B82F6"
-                              stopOpacity="0.8"
-                            />
-                            <stop
-                              offset="50%"
-                              stopColor="#8B5CF6"
-                              stopOpacity="0.8"
-                            />
-                            <stop
-                              offset="100%"
-                              stopColor="#06B6D4"
-                              stopOpacity="0.8"
-                            />
-                          </linearGradient>
-                          <radialGradient
-                            id="nodeGradient"
-                            cx="50%"
-                            cy="50%"
-                            r="50%"
-                          >
-                            <stop
-                              offset="0%"
-                              stopColor="#ffffff"
-                              stopOpacity="0.9"
-                            />
-                            <stop
-                              offset="100%"
-                              stopColor="#3B82F6"
-                              stopOpacity="0.8"
-                            />
-                          </radialGradient>
-                        </defs>
-                      </svg>
-
-                      {/* Center hub — anchors the orbit so the middle isn't visually empty.
-                          Wrapping div holds the position+translate (Framer Motion would otherwise
-                          overwrite the inline transform on the motion.div). */}
-                      <div
-                        className="absolute z-15 pointer-events-none"
-                        style={{
-                          left: "50%",
-                          top: "50%",
-                          transform: "translate(-50%, -50%)",
-                        }}
-                      >
-                      <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{
-                          duration: 0.8,
-                          delay: 0.4,
-                          type: "spring",
-                          stiffness: 200,
-                        }}
-                        viewport={{ once: true }}
-                        className="relative"
-                      >
-                        {/* Pulse rings */}
-                        {[0, 1, 2].map((i) => (
-                          <motion.div
-                            key={i}
-                            className="absolute top-1/2 left-1/2 rounded-full border border-cyan-400/30"
-                            style={{
-                              width: `${88 + i * 36}px`,
-                              height: `${88 + i * 36}px`,
-                              transform: "translate(-50%, -50%)",
-                            }}
-                            animate={{
-                              scale: [1, 1.25, 1],
-                              opacity: [0.5, 0, 0.5],
-                            }}
-                            transition={{
-                              duration: 4,
-                              repeat: Infinity,
-                              delay: i * 1.2,
-                              ease: "easeOut",
-                            }}
-                          />
-                        ))}
-                        {/* Hub badge */}
-                        <div
-                          className="relative w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center"
-                          style={{
-                            background:
-                              "radial-gradient(circle at 30% 30%, rgba(165,243,252,0.95) 0%, rgba(34,211,238,0.92) 35%, rgba(99,102,241,0.92) 70%, rgba(139,92,246,0.95) 100%)",
-                            boxShadow:
-                              "0 12px 40px -10px rgba(99,102,241,0.6), 0 0 0 1px rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.4)",
-                          }}
-                        >
-                          <Sparkles
-                            className="w-7 h-7 md:w-9 md:h-9 text-white drop-shadow"
-                            strokeWidth={2.2}
-                          />
-                        </div>
-                        <div
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 whitespace-nowrap text-[10px] md:text-xs font-semibold tracking-[0.18em] uppercase"
-                          style={{ color: "rgba(203,213,225,0.85)" }}
-                        >
-                          Datus Agent
-                        </div>
-                      </motion.div>
-                      </div>
-
-                      {/* Stage Cards — wrapping div holds position+translate
-                          (Framer Motion overwrites inline transform otherwise) */}
-                      {lifecycleStages.map((stage, index) => {
-                        const IconComponent = stage.icon;
-                        return (
-                          <div
-                            key={stage.id}
-                            className="absolute z-20"
-                            style={{
-                              left: `${stage.position.x}%`,
-                              top: `${stage.position.y}%`,
-                              transform: "translate(-50%, -50%)",
-                            }}
-                          >
-                          <motion.div
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{
-                              scale: 1,
-                              opacity: 1,
-                            }}
-                            transition={{
-                              duration: 0.6,
-                              delay: 0.8 + index * 0.1,
-                              type: "spring",
-                              stiffness: 300,
-                            }}
-                            viewport={{ once: true }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            className="relative"
-                          >
-                            <Card className="bg-white/95 backdrop-blur border-2 border-slate-200 p-2 md:p-3 rounded-lg md:rounded-xl shadow-lg hover:shadow-xl hover:border-blue-300 transition-all duration-300 w-28 sm:w-32 md:w-36 lg:w-40 cursor-pointer group relative">
-                              {/* Connection node indicator */}
-                              <motion.div
-                                className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-60"
-                                animate={{
-                                  scale: [1, 1.3, 1],
-                                  opacity: [0.6, 0.9, 0.6],
-                                }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  delay: index * 0.2,
-                                  ease: "easeInOut",
-                                }}
-                              />
-                              <div className="text-center space-y-2">
-                                <motion.div
-                                  className={`w-7 h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-gradient-to-br ${stage.color} rounded-lg flex items-center justify-center mx-auto shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
-                                  whileHover={{
-                                    rotate: 360,
-                                    scale: 1.1,
-                                  }}
-                                  transition={{ duration: 0.5 }}
-                                >
-                                  <IconComponent className="h-3 w-3 md:h-4 md:w-4 lg:h-5 lg:w-5 text-white" />
-                                </motion.div>
-                                <div className="space-y-1">
-                                  <h3 className="font-semibold text-slate-800 text-xs leading-tight">
-                                    {stage.title}
-                                  </h3>
-                                  <p className="text-xs text-slate-600 leading-relaxed hidden lg:block">
-                                    {stage.description}
-                                  </p>
-                                </div>
-                              </div>
-                            </Card>
-                          </motion.div>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    {/* Floating workflow indicators */}
-                    {[...Array(4)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className={`absolute w-3 h-3 rounded-full ${
-                          i === 0
-                            ? "bg-cyan-400/60 border-cyan-300/40"
-                            : i === 1
-                              ? "bg-blue-400/60 border-blue-300/40"
-                              : i === 2
-                                ? "bg-purple-400/60 border-purple-300/40"
-                                : "bg-violet-400/60 border-violet-300/40"
-                        } border-2`}
-                        style={{
-                          top: `${15 + i * 20}%`,
-                          right: `${-2 + Math.sin(i) * 3}%`,
-                        }}
-                        animate={{
-                          scale: [1, 1.4, 1],
-                          opacity: [0.6, 1, 0.6],
-                          y: [0, -15, 0],
-                          x: [0, Math.cos(i * 45) * 5, 0],
-                        }}
-                        transition={{
-                          duration: 3 + i * 0.5,
-                          repeat: Infinity,
-                          delay: i * 0.8,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                viewport={{ once: true }}
-                className="text-center mt-16"
-              ></motion.div>
-            </div>
-          </motion.div>
-
-          {/* Context That Builds Itself Section */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="px-8 py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden"
-          >
-            {/* Enhanced animated background */}
-            <div className="absolute inset-0 opacity-50">
-              <motion.div
-                className="h-full w-full"
-                animate={{
-                  background: [
-                    "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                  ],
-                }}
-                transition={{
-                  duration: 15,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
-
-            {/* Floating context particles */}
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(12)].map((_, i) => {
-                const colors = [
-                  "bg-cyan-400/10",
-                  "bg-blue-400/10",
-                  "bg-purple-400/10",
-                  "bg-violet-400/10",
-                ];
-                const sizes = ["w-3 h-3", "w-4 h-4", "w-2 h-2"];
-                return (
-                  <motion.div
-                    key={i}
-                    className={`absolute ${colors[i % colors.length]} ${sizes[i % sizes.length]} rounded-full border border-white/20`}
-                    initial={{
-                      x:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerWidth
-                          : 1000),
-                      y:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerHeight
-                          : 1000),
-                    }}
-                    animate={{
-                      x:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerWidth
-                          : 1000),
-                      y:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerHeight
-                          : 1000),
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.7, 0.3],
-                    }}
-                    transition={{
-                      duration: Math.random() * 20 + 10,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  />
-                );
-              })}
-            </div>
-
-            <div className="max-w-7xl mx-auto relative z-10">
-              <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="text-center mb-16"
-              >
-                <motion.h2
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-4xl font-bold text-white mb-6"
-                >
-                  Context That Builds Itself
-                </motion.h2>
-
-                <motion.p
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="text-xl text-slate-300 max-w-3xl mx-auto"
-                >
-                  Intelligent context accumulation that learns
-                  and evolves with your data engineering
-                  workflows
-                </motion.p>
-              </motion.div>
-
-              <div className="grid lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    icon: (
-                      <Archive className="h-8 w-8 text-cyan-400" />
-                    ),
-                    title: "Automatic Context Capture",
-                    description:
-                      "Store and recall historical SQL, table structures, metrics, and semantic layers on demand",
-                    gradient:
-                      "from-cyan-500/20 via-blue-500/10 to-cyan-500/5",
-                    borderGradient:
-                      "from-cyan-500/30 to-blue-500/30",
-                    delay: 0,
-                  },
-                  {
-                    icon: (
-                      <TreePine className="h-8 w-8 text-blue-400" />
-                    ),
-                    title: "Enhanced Long-term Memory",
-                    description:
-                      "Dual recall (Tree + Vector) enables continuous accumulation of reusable knowledge",
-                    gradient:
-                      "from-blue-500/20 via-indigo-500/10 to-purple-500/5",
-                    borderGradient:
-                      "from-blue-500/30 to-purple-500/30",
-                    delay: 0.2,
-                  },
-                  {
-                    icon: (
-                      <TrendingUp className="h-8 w-8 text-purple-400" />
-                    ),
-                    title: "Evolving Context Engineering",
-                    description:
-                      "Incrementally builds context by learning from historical data to continuously improve accuracy",
-                    gradient:
-                      "from-purple-500/20 via-violet-500/10 to-purple-500/5",
-                    borderGradient:
-                      "from-purple-500/30 to-violet-500/30",
-                    delay: 0.4,
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{
-                      y: 60,
-                      opacity: 0,
-                      rotateX: -10,
-                    }}
-                    whileInView={{
-                      y: 0,
-                      opacity: 1,
-                      rotateX: 0,
-                    }}
-                    transition={{
-                      duration: 0.8,
-                      delay: feature.delay,
-                      type: "spring",
-                      stiffness: 100,
-                    }}
-                    viewport={{ once: true }}
-                    whileHover={{
-                      y: -15,
-                      scale: 1.03,
-                      rotateX: 5,
-                    }}
-                    className="group cursor-pointer"
-                  >
-                    <Card className="bg-slate-800/60 backdrop-blur-sm border-0 p-8 relative overflow-hidden h-full">
-                      {/* Animated border gradient */}
-                      <motion.div
-                        className={`absolute inset-0 bg-gradient-to-br ${feature.borderGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg`}
-                        animate={{
-                          background: [
-                            `linear-gradient(45deg, ${feature.borderGradient.split(" ")[1]} 0%, ${feature.borderGradient.split(" ")[3]} 100%)`,
-                            `linear-gradient(225deg, ${feature.borderGradient.split(" ")[1]} 0%, ${feature.borderGradient.split(" ")[3]} 100%)`,
-                            `linear-gradient(45deg, ${feature.borderGradient.split(" ")[1]} 0%, ${feature.borderGradient.split(" ")[3]} 100%)`,
-                          ],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                        }}
-                      />
-
-                      {/* Inner card */}
-                      <div className="relative bg-slate-800/90 rounded-lg p-6 h-full backdrop-blur-sm m-0.5">
-                        {/* Background gradient overlay */}
-                        <motion.div
-                          className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg`}
-                        />
-
-                        <div className="space-y-6 relative z-10">
-                          {/* Animated icon container */}
-                          <motion.div
-                            className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-600 rounded-xl flex items-center justify-center group-hover:from-slate-600 group-hover:to-slate-500 transition-all duration-300"
-                            whileHover={{
-                              rotate: [0, -10, 10, -10, 0],
-                              scale: 1.1,
-                            }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            <motion.div
-                              animate={{
-                                scale: [1, 1.05, 1],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: index * 0.5,
-                              }}
-                            >
-                              {feature.icon}
-                            </motion.div>
-                          </motion.div>
-
-                          <div className="space-y-3">
-                            <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-purple-300 transition-all duration-300">
-                              {feature.title}
-                            </h3>
-                            <p className="text-slate-300 group-hover:text-slate-200 transition-colors duration-300 leading-relaxed">
-                              {feature.description}
-                            </p>
-                          </div>
-
-                          {/* Connecting lines animation */}
-                          <motion.div
-                            className="absolute bottom-4 right-4 w-6 h-6 opacity-30 group-hover:opacity-60 transition-opacity duration-300"
-                            animate={{
-                              rotate: [0, 90, 180, 270, 360],
-                            }}
-                            transition={{
-                              duration: 8,
-                              repeat: Infinity,
-                              ease: "linear",
-                              delay: index * 1,
-                            }}
-                          >
-                            <Network className="w-full h-full text-cyan-400" />
-                          </motion.div>
-                        </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Context Triad Visualization */}
-              <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.6,
-                  type: "spring",
-                  stiffness: 80,
-                }}
-                viewport={{ once: true }}
-                className="mt-16 relative"
-              >
-                <DatusContextTriad />
-              </motion.div>
-
-              {/* Context flow visualization */}
-            </div>
-          </motion.div>
-
-          {/* Modern Data Stack Section */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="px-8 py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden"
-          >
-            {/* Enhanced animated background */}
-            <div className="absolute inset-0 opacity-50">
-              <motion.div
-                className="h-full w-full"
-                animate={{
-                  background: [
-                    "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)",
-                    "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                  ],
-                }}
-                transition={{
-                  duration: 15,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
-
-            {/* Floating particles */}
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(15)].map((_, i) => {
-                const colors = [
-                  "bg-cyan-400/10",
-                  "bg-blue-400/10",
-                  "bg-purple-400/10",
-                  "bg-violet-400/10",
-                ];
-                const sizes = ["w-2 h-2", "w-3 h-3", "w-1 h-1"];
-                return (
-                  <motion.div
-                    key={i}
-                    className={`absolute ${colors[i % colors.length]} ${sizes[i % sizes.length]} rounded-full border border-white/20`}
-                    initial={{
-                      x:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerWidth
-                          : 1000),
-                      y:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerHeight
-                          : 1000),
-                    }}
-                    animate={{
-                      x:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerWidth
-                          : 1000),
-                      y:
-                        Math.random() *
-                        (typeof window !== "undefined"
-                          ? window.innerHeight
-                          : 1000),
-                      scale: [1, 1.3, 1],
-                      opacity: [0.3, 0.8, 0.3],
-                    }}
-                    transition={{
-                      duration: Math.random() * 25 + 15,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  />
-                );
-              })}
-            </div>
-
-            <div className="max-w-7xl mx-auto relative z-10">
-              <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="text-center mb-16"
-              >
-                <motion.h2
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-4xl font-bold text-white mb-6"
-                >
-                  Your Entire Modern Data Stack, All in One
-                  Place
-                </motion.h2>
-
-                <motion.p
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="text-xl text-slate-300 max-w-3xl mx-auto"
-                >
-                  Unify your entire data infrastructure with
-                  intelligent automation and seamless
-                  integration across all platforms
-                </motion.p>
-              </motion.div>
-
-              <div className="grid lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    icon: (
-                      <Network className="h-8 w-8 text-cyan-400" />
-                    ),
-                    title: "One Client to Connect It All",
-                    description:
-                      "Catalog services, data warehouses, job schedulers, semantic layers, and BI tools in a single place",
-                    gradient:
-                      "from-cyan-500/20 via-blue-500/10 to-cyan-500/5",
-                    borderGradient:
-                      "from-cyan-500/30 to-blue-500/30",
-                    delay: 0,
-                  },
-                  {
-                    icon: (
-                      <Shield className="h-8 w-8 text-blue-400" />
-                    ),
-                    title: "Built-in Data Governance",
-                    description:
-                      "Shift from reactive fixes to proactive, standardized practices baked into data engineering development",
-                    gradient:
-                      "from-blue-500/20 via-indigo-500/10 to-purple-500/5",
-                    borderGradient:
-                      "from-blue-500/30 to-purple-500/30",
-                    delay: 0.2,
-                  },
-                  {
-                    icon: (
-                      <Code className="h-8 w-8 text-purple-400" />
-                    ),
-                    title: "Dialect Support Across Platforms",
-                    description:
-                      "Seamlessly handle SQL and metric dialects across different warehouses and semantic layers",
-                    gradient:
-                      "from-purple-500/20 via-violet-500/10 to-purple-500/5",
-                    borderGradient:
-                      "from-purple-500/30 to-violet-500/30",
-                    delay: 0.4,
-                  },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{
-                      y: 60,
-                      opacity: 0,
-                      rotateX: -10,
-                    }}
-                    whileInView={{
-                      y: 0,
-                      opacity: 1,
-                      rotateX: 0,
-                    }}
-                    transition={{
-                      duration: 0.8,
-                      delay: feature.delay,
-                      type: "spring",
-                      stiffness: 100,
-                    }}
-                    viewport={{ once: true }}
-                    whileHover={{
-                      y: -15,
-                      scale: 1.03,
-                      rotateX: 5,
-                    }}
-                    className="group cursor-pointer"
-                  >
-                    <Card className="bg-slate-800/60 backdrop-blur-sm border-0 p-8 relative overflow-hidden h-full">
-                      {/* Animated border gradient */}
-                      <motion.div
-                        className={`absolute inset-0 bg-gradient-to-br ${feature.borderGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg`}
-                        animate={{
-                          background: [
-                            `linear-gradient(45deg, ${feature.borderGradient.split(" ")[1]} 0%, ${feature.borderGradient.split(" ")[3]} 100%)`,
-                            `linear-gradient(225deg, ${feature.borderGradient.split(" ")[1]} 0%, ${feature.borderGradient.split(" ")[3]} 100%)`,
-                            `linear-gradient(45deg, ${feature.borderGradient.split(" ")[1]} 0%, ${feature.borderGradient.split(" ")[3]} 100%)`,
-                          ],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                        }}
-                      />
-
-                      {/* Inner card */}
-                      <div className="relative bg-slate-800/90 rounded-lg p-6 h-full backdrop-blur-sm m-0.5">
-                        {/* Background gradient overlay */}
-                        <motion.div
-                          className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg`}
-                        />
-
-                        <div className="space-y-6 relative z-10">
-                          {/* Animated icon container */}
-                          <motion.div
-                            className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-600 rounded-xl flex items-center justify-center group-hover:from-slate-600 group-hover:to-slate-500 transition-all duration-300"
-                            whileHover={{
-                              rotate: [0, -10, 10, -10, 0],
-                              scale: 1.1,
-                            }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            <motion.div
-                              animate={{
-                                scale: [1, 1.05, 1],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: index * 0.5,
-                              }}
-                            >
-                              {feature.icon}
-                            </motion.div>
-                          </motion.div>
-
-                          <div className="space-y-3">
-                            <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-purple-300 transition-all duration-300">
-                              {feature.title}
-                            </h3>
-                            <p className="text-slate-300 group-hover:text-slate-200 transition-colors duration-300 leading-relaxed">
-                              {feature.description}
-                            </p>
-                          </div>
-
-                          {/* Connecting lines animation */}
-                          <motion.div
-                            className="absolute bottom-4 right-4 w-6 h-6 opacity-30 group-hover:opacity-60 transition-opacity duration-300"
-                            animate={{
-                              rotate: [0, 90, 180, 270, 360],
-                            }}
-                            transition={{
-                              duration: 8,
-                              repeat: Infinity,
-                              ease: "linear",
-                              delay: index * 1,
-                            }}
-                          >
-                            <Sparkles className="w-full h-full text-cyan-400" />
-                          </motion.div>
-                        </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Data Stack Architecture Diagram */}
-              <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.6,
-                  type: "spring",
-                  stiffness: 80,
-                }}
-                viewport={{ once: true }}
-                className="mt-20 relative"
-              >
-                <DatusLayeredStack />
-              </motion.div>
-
-              {/* Horizontal Extensibility Diagram */}
-              <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.8,
-                  type: "spring",
-                  stiffness: 80,
-                }}
-                viewport={{ once: true }}
-                className="mt-16 relative"
-              >
-                <DatusLayeredStackHorizontalOnly />
-              </motion.div>
-
-              {/* Integration visualization */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
-                viewport={{ once: true }}
-                className="mt-16 text-center"
-              >
-                <motion.div
-                  className="inline-flex items-center space-x-8 bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50"
-                  whileHover={{
-                    scale: 1.02,
-                    backgroundColor: "rgba(30, 41, 59, 0.6)",
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {["Connect", "Govern", "Scale"].map(
-                    (step, index) => (
-                      <React.Fragment key={step}>
-                        <motion.div
-                          className="flex items-center space-x-3"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{
-                            duration: 0.6,
-                            delay: 1 + index * 0.2,
-                          }}
-                          viewport={{ once: true }}
-                        >
-                          <motion.div
-                            className={`w-3 h-3 rounded-full ${
-                              index === 0
-                                ? "bg-cyan-400"
-                                : index === 1
-                                  ? "bg-blue-400"
-                                  : "bg-purple-400"
-                            }`}
-                            animate={{
-                              scale: [1, 1.2, 1],
-                              opacity: [0.7, 1, 0.7],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: index * 0.5,
-                            }}
-                          />
-                          <span className="text-slate-300 font-medium">
-                            {step}
-                          </span>
-                        </motion.div>
-                        {index < 2 && (
-                          <motion.div
-                            animate={{
-                              x: [0, 10, 0],
-                              opacity: [0.5, 1, 0.5],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: index * 0.5,
-                            }}
-                          >
-                            <ArrowRight className="h-4 w-4 text-slate-500" />
-                          </motion.div>
-                        )}
-                      </React.Fragment>
-                    ),
-                  )}
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
+        <div
+          style={{
+            display: "flex",
+            gap: 18,
+            flexWrap: "wrap",
+            alignItems: "center",
+            marginTop: 32,
+            color: "var(--ink-muted)",
+            fontSize: 13.5,
+            fontFamily: "var(--font-mono)",
+          }}
+        >
+          <CopyCommand />
+          <span style={{ whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own warehouse
+          </span>
+          <span style={{ whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own model
+          </span>
         </div>
       </div>
+    </section>
+  );
+}
 
-      {/* Contact Us Section */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-        className="px-8 py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden"
-      >
-        {/* Enhanced animated background */}
-        <div className="absolute inset-0 opacity-50">
-          <motion.div
-            className="h-full w-full"
-            animate={{
-              background: [
-                "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)",
-              ],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
+const WAREHOUSES = [
+  "snowflake", "bigquery", "redshift", "starrocks",
+  "clickhouse", "trino", "postgresql", "mysql",
+];
+
+/** Slowly cross-fades the warehouse name in the init command. */
+function RotatingWarehouse() {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const hold = setTimeout(() => setVisible(false), 2200);
+    return () => clearTimeout(hold);
+  }, [index]);
+
+  useEffect(() => {
+    if (visible) return;
+    const swap = setTimeout(() => {
+      setIndex((i) => (i + 1) % WAREHOUSES.length);
+      setVisible(true);
+    }, 320);
+    return () => clearTimeout(swap);
+  }, [visible]);
+
+  return (
+    <span
+      className="term__cmd"
+      style={{ transition: "opacity 0.32s ease", opacity: visible ? 1 : 0 }}
+    >
+      {WAREHOUSES[index]}
+    </span>
+  );
+}
+
+function HeroTerminal() {
+  return (
+    <div className="term">
+      <div className="term__bar">
+        <span className="term__dot term__dot--r" />
+        <span className="term__dot term__dot--y" />
+        <span className="term__dot term__dot--g" />
+        <span className="term__title">datus-agent</span>
+      </div>
+      <div className="term__body">
+        <div className="term__line">
+          <span className="term__prompt">$ </span>
+          <span className="term__cmd">datus init --datasource </span>
+          <RotatingWarehouse />
         </div>
-
-        {/* Floating particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(8)].map((_, i) => {
-            const colors = [
-              "bg-cyan-400/10",
-              "bg-blue-400/10",
-              "bg-purple-400/10",
-              "bg-violet-400/10",
-            ];
-            const sizes = ["w-2 h-2", "w-3 h-3", "w-1 h-1"];
-            return (
-              <motion.div
-                key={i}
-                className={`absolute ${colors[i % colors.length]} ${sizes[i % sizes.length]} rounded-full border border-white/20`}
-                initial={{
-                  x:
-                    Math.random() *
-                    (typeof window !== "undefined"
-                      ? window.innerWidth
-                      : 1000),
-                  y:
-                    Math.random() *
-                    (typeof window !== "undefined"
-                      ? window.innerHeight
-                      : 1000),
-                }}
-                animate={{
-                  x:
-                    Math.random() *
-                    (typeof window !== "undefined"
-                      ? window.innerWidth
-                      : 1000),
-                  y:
-                    Math.random() *
-                    (typeof window !== "undefined"
-                      ? window.innerHeight
-                      : 1000),
-                  scale: [1, 1.3, 1],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: Math.random() * 25 + 15,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-            );
-          })}
+        <div className="term__line term__dim">
+          ↳ connected · indexed schemas · semantic model · context initialized
         </div>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <motion.h2
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-white mb-6"
-            >
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400"
-                animate={{
-                  backgroundPosition: [
-                    "0% 50%",
-                    "100% 50%",
-                    "0% 50%",
-                  ],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                style={{ backgroundSize: "200% 100%" }}
-              >
-                Get in Touch
-              </motion.span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
-            >
-              Building toward agentic data engineering?
-              Let's discuss how Datus can fit into your stack as a
-              data engineering agent with structured context and guardrails.
-            </motion.p>
-
-            <motion.div
-              initial={{ y: 40, opacity: 0, scale: 0.95 }}
-              whileInView={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.6,
-                type: "spring",
-                stiffness: 100,
-              }}
-              viewport={{ once: true }}
-              className="mt-12"
-            >
-              <Card className="bg-slate-800/60 backdrop-blur-sm border-0 p-8 relative overflow-hidden mx-auto max-w-md">
-                {/* Animated border gradient */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-purple-500/30 opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-lg"
-                  animate={{
-                    background: [
-                      "linear-gradient(45deg, rgba(6, 182, 212, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%)",
-                      "linear-gradient(225deg, rgba(59, 130, 246, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%)",
-                      "linear-gradient(45deg, rgba(6, 182, 212, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%)",
-                    ],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
-
-                {/* Inner card */}
-                <div className="relative bg-slate-800/90 rounded-lg p-6 backdrop-blur-sm m-0.5">
-                  <div className="space-y-6 text-center">
-                    {/* Animated email icon */}
-                    <motion.div
-                      className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto shadow-xl"
-                      animate={{
-                        rotate: [0, 5, -5, 0],
-                        scale: [1, 1.05, 1],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.1, 1],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                        }}
-                      >
-                        <span className="text-2xl">✉️</span>
-                      </motion.div>
-                    </motion.div>
-
-                    <div className="space-y-3">
-                      <h3 className="text-xl font-semibold text-white">
-                        Contact Us
-                      </h3>
-
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{
-                          duration: 0.2,
-                          type: "spring",
-                          stiffness: 400,
-                        }}
-                      >
-                        <a
-                          href="mailto:contact@datus.ai"
-                          className="inline-flex items-center space-x-2 text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 hover:from-cyan-400 hover:to-purple-400 transition-all duration-300"
-                        >
-                          <motion.span
-                            animate={{
-                              backgroundPosition: [
-                                "0% 50%",
-                                "100% 50%",
-                                "0% 50%",
-                              ],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                            }}
-                            style={{
-                              backgroundSize: "200% 100%",
-                            }}
-                            className="bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent"
-                          >
-                            contact@datus.ai
-                          </motion.span>
-                        </a>
-                      </motion.div>
-                    </div>
-
-                    {/* Connecting sparkles animation */}
-                    <motion.div
-                      className="absolute top-4 right-4 w-6 h-6 opacity-40"
-                      animate={{
-                        rotate: [0, 180, 360],
-                        scale: [1, 1.2, 1],
-                      }}
-                      transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    >
-                      <Sparkles className="w-full h-full text-cyan-400" />
-                    </motion.div>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            {/* Call to action badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-4 mt-8"
-            >
-              {[
-                { text: "Enterprise Solutions", icon: "🏢" },
-                { text: "Technical Partnerships", icon: "🤝" },
-                { text: "Demo Requests", icon: "📊" },
-              ].map((badge, index) => (
-                <motion.div
-                  key={badge.text}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 1 + index * 0.1,
-                  }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="group"
-                >
-                  <Badge className="bg-slate-700/60 text-slate-300 border-slate-600/50 px-4 py-2 text-sm backdrop-blur-sm hover:bg-slate-600/60 hover:border-blue-400/50 transition-all duration-300">
-                    <span className="mr-2">{badge.icon}</span>
-                    {badge.text}
-                  </Badge>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+        <div className="term__line term__ok">
+          ✓ context engine ready, schemas, metrics, validated SQL
         </div>
-      </motion.div>
-
-      <Footer />
+        <div className="term__line" style={{ marginTop: 10 }}>
+          <RotatingPrompt />
+        </div>
+        <div className="term__line term__dim" style={{ marginTop: 10, whiteSpace: "nowrap", fontSize: 11.5 }}>
+          plan → generate → validate → review → ship
+          <span className="term__cy"> · captured to memory</span>
+        </div>
+        <div className="term__line term__am" style={{ marginTop: 10, whiteSpace: "nowrap", fontSize: 11.5 }}>
+          ↻ self-evolve, extract &amp; update knowledge from feedback &amp; benchmark
+        </div>
+        <div className="term__line term__dim" style={{ fontSize: 11.5 }}>
+          · subagent-level memory
+        </div>
+      </div>
     </div>
+  );
+}
+
+/* --------------------------------- Pillars -------------------------------- */
+const PILLARS = [
+  {
+    icon: Rocket,
+    title: "Run the modern data stack with 10× productivity",
+    body: "One engineer operates the full data system across the full lifecycle, with validation loops that keep output trustworthy.",
+    points: ["Full data system", "Full lifecycle", "Validation loops"],
+  },
+  {
+    icon: RefreshCw,
+    title: "Build evolvable context, for better accuracy",
+    body: "Semantics become durable context. Chatbots evolve from usage, and skills improve every time the agent runs.",
+    points: ["Semantics → context", "Chatbots that evolve", "Skills improve with usage"],
+  },
+  {
+    icon: Building2,
+    title: "Scale from personal productivity to enterprise agent teams",
+    body: "Long-running agents with control, safety, and versioning, sharing one context knowledge graph across the team.",
+    points: ["Long-running agents", "Control, safety, versioning", "Shared context graph"],
+  },
+];
+
+function Pillars() {
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow"><Layers size={13} /> Why Datus</span>
+          <h2 className="h2">Ship more data work, trust every result, scale to a team.</h2>
+          <p className="lead">
+            Whether you are a solo engineer or an enterprise data org, Datus is
+            the same system, it just scales with you.
+          </p>
+        </div>
+        <div className="grid grid-3">
+          {PILLARS.map((p) => (
+            <div className="card" key={p.title}>
+              <span className="card__icon"><p.icon size={20} /></span>
+              <h3 className="card__title">{p.title}</h3>
+              <p className="card__body">{p.body}</p>
+              <ul style={{ listStyle: "none", margin: "16px 0 0", padding: 0, display: "grid", gap: 8 }}>
+                {p.points.map((pt) => (
+                  <li key={pt} style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13.5, color: "var(--ink-dim)" }}>
+                    <CheckCircle2 size={14} style={{ color: "var(--brand-bright)", flexShrink: 0 }} /> {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------- Product forms ------------------------------ */
+function ProductForms() {
+  return (
+    <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
+      <div className="container">
+        <div className="section-head center">
+          <span className="eyebrow"><Boxes size={13} /> Three ways to run Datus</span>
+          <h2 className="h2">Start free. Scale when you are ready.</h2>
+        </div>
+        <div className="grid grid-3">
+          <div className="card">
+            <span className="card__icon"><Github size={20} /></span>
+            <h3 className="card__title">Open Source</h3>
+            <p className="card__body">
+              The full Datus CLI and VS Code extension. Self-host, bring your own
+              warehouse and model. Apache-2.0.
+            </p>
+            <a className="link-arrow" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ marginTop: 18 }}>
+              View on GitHub <ArrowRight size={15} />
+            </a>
+          </div>
+          <div className="card" style={{ borderColor: "var(--brand)", boxShadow: "var(--shadow-brand)" }}>
+            <span className="card__icon" style={{ background: "linear-gradient(180deg,var(--brand-bright),var(--brand))", color: "#fff" }}><Sparkles size={20} /></span>
+            <h3 className="card__title">Cloud Personal, Studio</h3>
+            <p className="card__body">
+              The easiest way to start and explore. No install, no setup, a
+              hosted Datus workspace, free during early access.
+            </p>
+            <a className="link-arrow" href={STUDIO_URL} style={{ marginTop: 18 }}>
+              Try Studio free <ArrowRight size={15} />
+            </a>
+          </div>
+          <div className="card">
+            <span className="card__icon"><ShieldCheck size={20} /></span>
+            <h3 className="card__title">Enterprise</h3>
+            <p className="card__body">
+              Shared context, governance, SSO, and long-running agent teams, 
+              deployed in your environment.
+            </p>
+            <EnterpriseInquiryDialog>
+              <button
+                className="link-arrow"
+                style={{ background: "transparent", border: 0, padding: 0, marginTop: 18, cursor: "pointer", fontFamily: "inherit" }}
+              >
+                Contact us <ArrowRight size={15} />
+              </button>
+            </EnterpriseInquiryDialog>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ Integrations ------------------------------ */
+const INTEGRATIONS = [
+  "Snowflake", "Databricks", "PostgreSQL", "StarRocks", "ClickHouse",
+  "Doris", "Greenplum", "OpenAI", "Anthropic", "DeepSeek", "Qwen",
+  "MetricFlow", "Airflow", "Superset", "Grafana",
+];
+
+function Integrations() {
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="section-head center">
+          <span className="eyebrow"><Database size={13} /> Works with your stack</span>
+          <h2 className="h2">Plugs into the tools you already run.</h2>
+          <p className="lead">
+            Warehouses, models, semantic layers, schedulers and BI, connected,
+            not replaced.
+          </p>
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
+          {INTEGRATIONS.map((name) => (
+            <span
+              key={name}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 13.5,
+                color: "var(--ink-dim)",
+                padding: "9px 16px",
+                borderRadius: 999,
+                border: "1px solid var(--line)",
+                background: "var(--panel)",
+              }}
+            >
+              {name}
+            </span>
+          ))}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 28 }}>
+          <a className="link-arrow" href="/integrations/">
+            See all integrations <ArrowRight size={15} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------- Context --------------------------------- */
+const LOOP = [
+  { icon: Terminal, title: "Capture", body: "Every query, schema, metric and review becomes structured context as the agent works." },
+  { icon: Database, title: "Memory", body: "Context is stored as an evolving knowledge graph, semantics, validated SQL, and skills." },
+  { icon: RefreshCw, title: "Evolve", body: "The agent reuses and refines that memory, getting more accurate with every run." },
+];
+
+function Context() {
+  return (
+    <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
+      <div className="container">
+        <div className="section-head center">
+          <span className="eyebrow"><RefreshCw size={13} /> Context that builds itself</span>
+          <h2 className="h2">Capture → Memory → Evolve</h2>
+          <p className="lead">
+            Datus doesn't just answer once. It accumulates the context your data
+            systems need to become reliable.
+          </p>
+        </div>
+        <div className="grid grid-3">
+          {LOOP.map((s, i) => (
+            <div className="card" key={s.title}>
+              <span className="card__icon"><s.icon size={20} /></span>
+              <h3 className="card__title">
+                <span style={{ fontFamily: "var(--font-mono)", color: "var(--brand-bright)", marginRight: 8 }}>0{i + 1}</span>
+                {s.title}
+              </h3>
+              <p className="card__body">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------- Differentiation ---------------------------- */
+const COMPARE = [
+  { vs: "vs Claude Code", line: "Coding agents write code. Datus builds and evolves the data context they need to be reliable on your warehouse." },
+  { vs: "vs Cortex & Genie", line: "Platform-native agents lock you to one warehouse. Datus is open and cross-stack, with portable context." },
+  { vs: "vs ChatBI", line: "ChatBI answers a question and forgets. Datus captures semantics and validation into durable, reusable memory." },
+  { vs: "vs Semantic Layer", line: "A semantic layer is static config. Datus supports your existing one and builds new semantics when it's missing." },
+];
+
+function Differentiation() {
+  return (
+    <section className="section">
+      <div className="container">
+        <div className="section-head">
+          <span className="eyebrow"><GitBranch size={13} /> Where Datus fits</span>
+          <h2 className="h2">
+            The open-source system that builds and evolves the data context those
+            tools need to become reliable.
+          </h2>
+        </div>
+        <div className="grid grid-2">
+          {COMPARE.map((c) => (
+            <div className="card" key={c.vs}>
+              <h3 className="card__title" style={{ fontFamily: "var(--font-mono)", color: "var(--brand-bright)", fontSize: 15 }}>{c.vs}</h3>
+              <p className="card__body">{c.line}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ Enterprise CTA ---------------------------- */
+function EnterpriseCta() {
+  return (
+    <section className="section">
+      <div className="container">
+        <div
+          className="card"
+          style={{
+            textAlign: "center",
+            padding: "56px 32px",
+            background:
+              "radial-gradient(700px 300px at 50% -20%, var(--brand-soft), transparent 70%), var(--panel)",
+            borderColor: "var(--line-strong)",
+          }}
+        >
+          <span className="eyebrow"><Workflow size={13} /> For data teams</span>
+          <h2 className="h2" style={{ marginTop: 14 }}>
+            Reliable, auditable, collaborative agent teams.
+          </h2>
+          <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
+            Give your org a shared context engine, governed access, and
+            long-running agents. Scale data output without scaling headcount.
+          </p>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
+            <EnterpriseInquiryDialog>
+              <button className="btn btn-primary btn-lg">
+                Contact us <ArrowRight size={17} />
+              </button>
+            </EnterpriseInquiryDialog>
+            <a className="btn btn-ghost btn-lg" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function App() {
+  return (
+    <SiteLayout>
+      <Hero />
+      <Pillars />
+      <ProductForms />
+      <Integrations />
+      <Context />
+      <Differentiation />
+      <EnterpriseCta />
+    </SiteLayout>
   );
 }

@@ -12,7 +12,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Datus" />
 
-    <link rel="canonical" href="https://datus.ai/glossary" />
+    <link rel="canonical" href="https://datus.ai/glossary/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph -->
@@ -24,8 +24,10 @@
       property="og:description"
       content="Plain-language definitions of 46 data engineering concepts — semantic layer, lakehouse, schema linking, MCP, RAG, and more."
     />
-    <meta property="og:url" content="https://datus.ai/glossary" />
-    <meta property="og:image" content="https://datus.ai/logo_dark.svg" />
+    <meta property="og:url" content="https://datus.ai/glossary/" />
+    <meta property="og:image" content="https://datus.ai/og/home-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +36,7 @@
       name="twitter:description"
       content="Plain-language definitions of 46 data engineering concepts Datus agents work with day to day."
     />
-    <meta name="twitter:image" content="https://datus.ai/logo_dark.svg" />
+    <meta name="twitter:image" content="https://datus.ai/og/home-1200x630.png" />
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -43,283 +45,283 @@
   "@type": "DefinedTermSet",
   "name": "Datus Data Engineering Glossary",
   "description": "Plain-language definitions of the 46 data engineering concepts Datus agents work with, across architecture, modeling, storage, processing, governance, AI, and observability.",
-  "url": "https://datus.ai/glossary",
+  "url": "https://datus.ai/glossary/",
   "hasDefinedTerm": [
     {
       "@type": "DefinedTerm",
       "name": "Data Warehouse",
       "description": "A central, query-optimized store for structured analytical data. Schema is defined up front and data is loaded in cleaned form for BI and reporting.",
-      "url": "https://datus.ai/glossary#data-warehouse"
+      "url": "https://datus.ai/glossary/#data-warehouse"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Lake",
       "description": "Object storage that holds raw files — JSON, CSV, Parquet, logs — in their original form. Cheap and flexible, but requires discipline to stay queryable.",
-      "url": "https://datus.ai/glossary#data-lake"
+      "url": "https://datus.ai/glossary/#data-lake"
     },
     {
       "@type": "DefinedTerm",
       "name": "Lakehouse",
       "description": "A hybrid that puts warehouse-style table semantics (ACID, schema, time travel) directly on top of a data lake via open formats like Iceberg, Delta, or Hudi.",
-      "url": "https://datus.ai/glossary#lakehouse"
+      "url": "https://datus.ai/glossary/#lakehouse"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Mesh",
       "description": "An organizational pattern where domain teams own their data as products, instead of a central team owning one monolithic warehouse.",
-      "url": "https://datus.ai/glossary#data-mesh"
+      "url": "https://datus.ai/glossary/#data-mesh"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Fabric",
       "description": "A metadata-driven layer that stitches together distributed data sources so they can be queried and governed as if they were one system.",
-      "url": "https://datus.ai/glossary#data-fabric"
+      "url": "https://datus.ai/glossary/#data-fabric"
     },
     {
       "@type": "DefinedTerm",
       "name": "Medallion Architecture",
       "description": "A layered convention — Bronze (raw), Silver (cleaned), Gold (aggregated) — popularized by Databricks for incrementally refining lakehouse data.",
-      "url": "https://datus.ai/glossary#medallion-architecture"
+      "url": "https://datus.ai/glossary/#medallion-architecture"
     },
     {
       "@type": "DefinedTerm",
       "name": "Lambda vs Kappa",
       "description": "Two streaming architectures. Lambda runs batch and streaming pipelines in parallel; Kappa treats everything as a single streaming pipeline and replays history when needed.",
-      "url": "https://datus.ai/glossary#lambda-vs-kappa"
+      "url": "https://datus.ai/glossary/#lambda-vs-kappa"
     },
     {
       "@type": "DefinedTerm",
       "name": "Semantic Layer",
       "description": "A shared definition of business entities and metrics (revenue, active user, churn) that sits between raw tables and consumers. Ensures every dashboard, notebook, and AI agent computes the same number the same way.",
-      "url": "https://datus.ai/glossary#semantic-layer"
+      "url": "https://datus.ai/glossary/#semantic-layer"
     },
     {
       "@type": "DefinedTerm",
       "name": "Metric Layer",
       "description": "A narrower form of the semantic layer focused specifically on metric definitions — typically expressed in YAML or a DSL like MetricFlow or Cube.",
-      "url": "https://datus.ai/glossary#metric-layer"
+      "url": "https://datus.ai/glossary/#metric-layer"
     },
     {
       "@type": "DefinedTerm",
       "name": "Dimensional Modeling",
       "description": "Kimball-style design that splits data into fact tables (events, measurements) and dimension tables (who/what/where). Star and snowflake schemas are its two main shapes.",
-      "url": "https://datus.ai/glossary#dimensional-modeling"
+      "url": "https://datus.ai/glossary/#dimensional-modeling"
     },
     {
       "@type": "DefinedTerm",
       "name": "Star Schema",
       "description": "A fact table surrounded by denormalized dimension tables. Simple, fast for BI, and the most common warehouse layout.",
-      "url": "https://datus.ai/glossary#star-schema"
+      "url": "https://datus.ai/glossary/#star-schema"
     },
     {
       "@type": "DefinedTerm",
       "name": "Slowly Changing Dimensions",
       "description": "Patterns for tracking how dimension values change over time. Type 1 overwrites, Type 2 keeps history with valid-from/valid-to columns, Type 3 keeps a previous-value column.",
-      "url": "https://datus.ai/glossary#slowly-changing-dimensions"
+      "url": "https://datus.ai/glossary/#slowly-changing-dimensions"
     },
     {
       "@type": "DefinedTerm",
       "name": "One Big Table (OBT)",
       "description": "A modeling style that pre-joins facts and dimensions into a single wide table. Trades storage and flexibility for query simplicity and speed on columnar engines.",
-      "url": "https://datus.ai/glossary#one-big-table"
+      "url": "https://datus.ai/glossary/#one-big-table"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Vault",
       "description": "A modeling approach using hubs (business keys), links (relationships), and satellites (descriptive attributes). Optimized for auditability and frequent schema change.",
-      "url": "https://datus.ai/glossary#data-vault"
+      "url": "https://datus.ai/glossary/#data-vault"
     },
     {
       "@type": "DefinedTerm",
       "name": "Columnar Storage",
       "description": "Storing data by column instead of by row, so analytical queries that touch a few fields over millions of rows only read what they need.",
-      "url": "https://datus.ai/glossary#columnar-storage"
+      "url": "https://datus.ai/glossary/#columnar-storage"
     },
     {
       "@type": "DefinedTerm",
       "name": "Parquet",
       "description": "An open columnar file format with compression and predicate pushdown. The de facto interchange format between warehouses, lakes, and processing engines.",
-      "url": "https://datus.ai/glossary#parquet"
+      "url": "https://datus.ai/glossary/#parquet"
     },
     {
       "@type": "DefinedTerm",
       "name": "Apache Iceberg",
       "description": "An open table format that adds schema evolution, hidden partitioning, and snapshot isolation on top of Parquet files in object storage.",
-      "url": "https://datus.ai/glossary#apache-iceberg"
+      "url": "https://datus.ai/glossary/#apache-iceberg"
     },
     {
       "@type": "DefinedTerm",
       "name": "Delta Lake",
       "description": "A table format from Databricks that layers an ACID transaction log on Parquet, enabling MERGE, time travel, and streaming reads on a data lake.",
-      "url": "https://datus.ai/glossary#delta-lake"
+      "url": "https://datus.ai/glossary/#delta-lake"
     },
     {
       "@type": "DefinedTerm",
       "name": "Apache Hudi",
       "description": "An open table format focused on upserts and incremental processing — designed for use cases where records change frequently after they land.",
-      "url": "https://datus.ai/glossary#apache-hudi"
+      "url": "https://datus.ai/glossary/#apache-hudi"
     },
     {
       "@type": "DefinedTerm",
       "name": "OLAP vs OLTP",
       "description": "OLTP systems (Postgres, MySQL) optimize for many small reads and writes from applications. OLAP systems (Snowflake, ClickHouse, BigQuery) optimize for large scans and aggregations across history.",
-      "url": "https://datus.ai/glossary#olap-vs-oltp"
+      "url": "https://datus.ai/glossary/#olap-vs-oltp"
     },
     {
       "@type": "DefinedTerm",
       "name": "ETL vs ELT",
       "description": "ETL transforms data before loading it into the warehouse; ELT loads raw data first and transforms it inside the warehouse using SQL. ELT dominates the modern stack thanks to cheap warehouse compute.",
-      "url": "https://datus.ai/glossary#etl-vs-elt"
+      "url": "https://datus.ai/glossary/#etl-vs-elt"
     },
     {
       "@type": "DefinedTerm",
       "name": "Batch vs Streaming",
       "description": "Batch jobs run on a schedule over a chunk of data; streaming jobs process events continuously as they arrive. Most platforms now mix both.",
-      "url": "https://datus.ai/glossary#batch-vs-streaming"
+      "url": "https://datus.ai/glossary/#batch-vs-streaming"
     },
     {
       "@type": "DefinedTerm",
       "name": "Change Data Capture (CDC)",
       "description": "Streaming row-level inserts, updates, and deletes out of an operational database in near real time, usually by reading its transaction log.",
-      "url": "https://datus.ai/glossary#change-data-capture"
+      "url": "https://datus.ai/glossary/#change-data-capture"
     },
     {
       "@type": "DefinedTerm",
       "name": "Backfill",
       "description": "Re-running a pipeline over historical data — typically after a logic change, a schema fix, or to populate a new column for past dates.",
-      "url": "https://datus.ai/glossary#backfill"
+      "url": "https://datus.ai/glossary/#backfill"
     },
     {
       "@type": "DefinedTerm",
       "name": "Idempotency",
       "description": "A property of a pipeline step where running it twice produces the same result as running it once. Critical for safe retries and backfills.",
-      "url": "https://datus.ai/glossary#idempotency"
+      "url": "https://datus.ai/glossary/#idempotency"
     },
     {
       "@type": "DefinedTerm",
       "name": "Materialized View",
       "description": "A query whose result is physically stored and kept fresh by the engine. Speeds up repeated reads at the cost of storage and write overhead.",
-      "url": "https://datus.ai/glossary#materialized-view"
+      "url": "https://datus.ai/glossary/#materialized-view"
     },
     {
       "@type": "DefinedTerm",
       "name": "dbt",
       "description": "A framework for defining transformations as version-controlled SQL models that run inside the warehouse. Now the standard for the T in ELT.",
-      "url": "https://datus.ai/glossary#dbt"
+      "url": "https://datus.ai/glossary/#dbt"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Catalog",
       "description": "A searchable inventory of tables, columns, owners, and documentation across the data platform. Answers “what data do we have and where does it live?”",
-      "url": "https://datus.ai/glossary#data-catalog"
+      "url": "https://datus.ai/glossary/#data-catalog"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Contract",
       "description": "A machine-checked agreement between a data producer and its consumers, specifying schema, semantics, freshness, and ownership of a dataset.",
-      "url": "https://datus.ai/glossary#data-contract"
+      "url": "https://datus.ai/glossary/#data-contract"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Lineage",
       "description": "The graph of how data flows from source systems through transformations to final tables and dashboards. Used for impact analysis and debugging.",
-      "url": "https://datus.ai/glossary#data-lineage"
+      "url": "https://datus.ai/glossary/#data-lineage"
     },
     {
       "@type": "DefinedTerm",
       "name": "PII & Data Masking",
       "description": "Personally Identifiable Information — names, emails, IDs — that must be protected. Masking replaces or hashes these values so analysts can work safely.",
-      "url": "https://datus.ai/glossary#pii-data-masking"
+      "url": "https://datus.ai/glossary/#pii-data-masking"
     },
     {
       "@type": "DefinedTerm",
       "name": "RBAC",
       "description": "Role-Based Access Control. Permissions are granted to roles (analyst, engineer, exec) and users inherit access by being assigned a role.",
-      "url": "https://datus.ai/glossary#rbac"
+      "url": "https://datus.ai/glossary/#rbac"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Quality",
       "description": "The set of checks — freshness, completeness, uniqueness, validity, distribution — that confirm a table is fit to use before it powers a decision.",
-      "url": "https://datus.ai/glossary#data-quality"
+      "url": "https://datus.ai/glossary/#data-quality"
     },
     {
       "@type": "DefinedTerm",
       "name": "Text-to-SQL",
       "description": "Generating SQL from a natural-language question grounded in a real schema. Quality depends heavily on schema linking, business context, and feedback loops.",
-      "url": "https://datus.ai/glossary#text-to-sql"
+      "url": "https://datus.ai/glossary/#text-to-sql"
     },
     {
       "@type": "DefinedTerm",
       "name": "Schema Linking",
       "description": "The step where the model figures out which tables and columns a question is actually about, before any SQL is written. Often the single biggest accuracy lever.",
-      "url": "https://datus.ai/glossary#schema-linking"
+      "url": "https://datus.ai/glossary/#schema-linking"
     },
     {
       "@type": "DefinedTerm",
       "name": "Retrieval-Augmented Generation (RAG)",
       "description": "Pulling relevant context — table docs, prior queries, glossary entries — into the model's prompt at query time, instead of relying on what it memorized during training.",
-      "url": "https://datus.ai/glossary#retrieval-augmented-generation"
+      "url": "https://datus.ai/glossary/#retrieval-augmented-generation"
     },
     {
       "@type": "DefinedTerm",
       "name": "Model Context Protocol (MCP)",
       "description": "An open protocol for exposing tools, data, and context to LLM clients like Claude, Cursor, and IDEs. Lets one server power many AI front ends.",
-      "url": "https://datus.ai/glossary#model-context-protocol"
+      "url": "https://datus.ai/glossary/#model-context-protocol"
     },
     {
       "@type": "DefinedTerm",
       "name": "Embedding",
       "description": "A numerical vector representation of text (or a table, or a query) that places semantically similar items near each other. The backbone of vector search.",
-      "url": "https://datus.ai/glossary#embedding"
+      "url": "https://datus.ai/glossary/#embedding"
     },
     {
       "@type": "DefinedTerm",
       "name": "Vector Search",
       "description": "Finding the items whose embeddings are closest to a query embedding. Used to retrieve relevant tables, examples, and documentation for AI agents.",
-      "url": "https://datus.ai/glossary#vector-search"
+      "url": "https://datus.ai/glossary/#vector-search"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Engineering Agent",
       "description": "An LLM-driven system that plans and executes data workflows end-to-end — schema discovery, SQL generation, validation, and iteration — instead of just autocompleting a single query.",
-      "url": "https://datus.ai/glossary#data-engineering-agent"
+      "url": "https://datus.ai/glossary/#data-engineering-agent"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data Observability",
       "description": "Continuous monitoring of the health of tables and pipelines across five pillars: freshness, volume, schema, distribution, and lineage.",
-      "url": "https://datus.ai/glossary#data-observability"
+      "url": "https://datus.ai/glossary/#data-observability"
     },
     {
       "@type": "DefinedTerm",
       "name": "Freshness",
       "description": "How recently a table was updated relative to its expected cadence. A daily table that hasn't moved in 36 hours is a freshness incident.",
-      "url": "https://datus.ai/glossary#freshness"
+      "url": "https://datus.ai/glossary/#freshness"
     },
     {
       "@type": "DefinedTerm",
       "name": "Volume Checks",
       "description": "Alerts when a table's row count for a period falls far outside its historical range — usually the first sign that an upstream job partially failed.",
-      "url": "https://datus.ai/glossary#volume-checks"
+      "url": "https://datus.ai/glossary/#volume-checks"
     },
     {
       "@type": "DefinedTerm",
       "name": "Schema Drift",
       "description": "An unannounced change to a column's type, name, or presence. Often breaks downstream models silently until someone reads a NULL chart.",
-      "url": "https://datus.ai/glossary#schema-drift"
+      "url": "https://datus.ai/glossary/#schema-drift"
     },
     {
       "@type": "DefinedTerm",
       "name": "Anomaly Detection",
       "description": "Statistical or ML-based checks that flag unexpected shifts in a metric or distribution, instead of relying on hand-written thresholds.",
-      "url": "https://datus.ai/glossary#anomaly-detection"
+      "url": "https://datus.ai/glossary/#anomaly-detection"
     },
     {
       "@type": "DefinedTerm",
       "name": "Data SLA / SLO",
       "description": "An explicit promise about a dataset — e.g. “this table is fresh by 6am UTC 99% of days.” Borrowed from software reliability practice.",
-      "url": "https://datus.ai/glossary#data-sla-slo"
+      "url": "https://datus.ai/glossary/#data-sla-slo"
     }
   ]
 }

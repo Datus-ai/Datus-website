@@ -1,7 +1,7 @@
 import "./Footer.css";
 
 const Footer = () => {
-  const year = 2026;
+  const year = new Date().getFullYear();
 
   return (
     <footer className="site-footer">
@@ -18,34 +18,27 @@ const Footer = () => {
 
         <nav className="site-footer__cols" aria-label="Footer">
           <div className="site-footer__col">
-            <h3 className="site-footer__heading">Product</h3>
+            <h3 className="site-footer__heading">Products</h3>
             <ul>
-              <li>
-                <a href="https://studio.datus.ai/overview" target="_blank" rel="noopener noreferrer">
-                  Datus Studio
-                </a>
-              </li>
-              <li>
-                <a href="https://docs.datus.ai" target="_blank" rel="noopener noreferrer">
-                  Docs
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
-              </li>
+              <li><a href="/products/cli/">Datus CLI</a></li>
+              <li><a href="/products/vscode/">VS Code Extension</a></li>
+              <li><a href="/products/studio/">Datus Studio</a></li>
+              <li><a href="/products/enterprise/">Enterprise</a></li>
             </ul>
           </div>
 
           <div className="site-footer__col">
-            <h3 className="site-footer__heading">Learn</h3>
+            <h3 className="site-footer__heading">Resources</h3>
             <ul>
+              <li><a href="/integrations/">Integrations</a></li>
+              <li><a href="/pricing/">Pricing</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/glossary/">Glossary</a></li>
+              <li><a href="/faq/">FAQ</a></li>
               <li>
-                <a href="/glossary">Glossary</a>
-              </li>
-              <li>
-                <a href="/blog/">Blog</a>
+                <a href="https://docs.datus.ai" target="_blank" rel="noopener noreferrer">
+                  Docs
+                </a>
               </li>
             </ul>
           </div>
@@ -53,8 +46,11 @@ const Footer = () => {
           <div className="site-footer__col">
             <h3 className="site-footer__heading">Company</h3>
             <ul>
+              <li><a href="mailto:contact@datus.ai">Contact</a></li>
               <li>
-                <a href="mailto:contact@datus.ai">Contact</a>
+                <a href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
               </li>
               <li>
                 <a
