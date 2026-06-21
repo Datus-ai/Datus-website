@@ -68,8 +68,8 @@ export default function IntegrationsPage() {
           </h1>
           <p className="lead" style={{ maxWidth: 640 }}>
             Datus works with the warehouses, models, semantic layers, schedulers,
-            and BI tools you already use. We list only what's really supported, 
-            if something's missing, open an issue.
+            and BI tools you already use. We list only what's really supported.
+            If something's missing, open an issue.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 24 }}>
             {CATEGORIES.map((c) => (

@@ -1,5 +1,6 @@
 import { ArrowRight, HelpCircle } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
+import { SLACK_URL } from "../../config/nav";
 import { faqProducts, faqs } from "./content";
 
 export default function FaqPage() {
@@ -88,6 +89,9 @@ export default function FaqPage() {
               </a>
               <a className="btn btn-ghost btn-lg" href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
                 View on GitHub
+              </a>
+              <a className="btn btn-ghost btn-lg" href={SLACK_URL} target="_blank" rel="noopener noreferrer">
+                Ask in Slack
               </a>
             </div>
           </div>

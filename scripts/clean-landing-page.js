@@ -21,6 +21,7 @@ const requiredFiles = [
   path.join(root, 'dist', 'products', 'enterprise', 'index.html'),
   path.join(root, 'dist', 'integrations', 'index.html'),
   path.join(root, 'dist', 'pricing', 'index.html'),
+  path.join(root, 'dist', 'faq', 'index.html'),
   path.join(root, 'dist', 'blog', 'index.html'),
   path.join(root, 'dist', 'blog', 'blog.css'),
   // a representative migrated post (short URL) + its legacy redirect stub
