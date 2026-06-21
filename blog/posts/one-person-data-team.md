@@ -36,7 +36,7 @@ The modern data stack was designed for teams. dbt, Airflow, Snowflake, Looker, M
 
 That one person is not underperforming. They are outnumbered. The bottleneck is not their speed; it is the volume of context-switching, the repetitive nature of data requests, and the impossibility of being the sole carrier of institutional knowledge about the warehouse.
 
-A [data engineering agent](/posts/what-is-data-engineering-agent-2026) changes the math. Not by replacing the engineer, but by handling the repetitive work, accumulating context so the engineer does not have to re-explain the same tables every week, and delivering self-service access to people who would otherwise file tickets. This article explains how—and what it actually looks like in daily practice.
+A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) changes the math. Not by replacing the engineer, but by handling the repetitive work, accumulating context so the engineer does not have to re-explain the same tables every week, and delivering self-service access to people who would otherwise file tickets. This article explains how—and what it actually looks like in daily practice.
 
 ## TL;DR
 
@@ -58,7 +58,7 @@ A data engineering agent does not solve all of these problems. But it takes aim 
 
 ## 2. How an agent changes the daily workflow
 
-Here is what a typical week looks like for a solo data engineer, before and after adopting an agent with a [persistent context engine](/posts/contextual-data-engineering).
+Here is what a typical week looks like for a solo data engineer, before and after adopting an agent with a [persistent context engine](/blog/contextual-data-engineering/).
 
 ### Before: the ticket treadmill
 
@@ -96,7 +96,7 @@ A <a href="https://datus.ai/glossary">data engineering agent</a> with a context 
 
 With an agent, the context engine stores every validated query, every corrected definition, and every business rule. When a new request arrives, the agent retrieves relevant context before generating SQL—so the first attempt is already grounded in what the team has learned. The finance subagent does not need to be told, every time, that "net revenue excludes refunds and uses locked FX rates." It knows, because that rule is in its context.
 
-This is [contextual data engineering](/posts/contextual-data-engineering) in practice: the agent does not just answer questions. It accumulates the institutional knowledge that makes answers consistently correct. For a one-person team, this is the difference between being the bottleneck and being the enabler.
+This is [contextual data engineering](/blog/contextual-data-engineering/) in practice: the agent does not just answer questions. It accumulates the institutional knowledge that makes answers consistently correct. For a one-person team, this is the difference between being the bottleneck and being the enabler.
 
 ## 4. What the agent does not replace
 
@@ -129,7 +129,7 @@ The path from ticket treadmill to agent-assisted team:
 
 The goal is not to automate yourself out of a job. It is to automate the part of the job that is not engineering—the translation, the repetition, the re-explaining—so you can spend your time on the engineering that moves the company forward.
 
-Try <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> to see how an agent handles domain-specific context, or follow the [15-minute tutorial](/posts/build-your-first-data-engineering-agent) to set one up yourself.
+Try <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> to see how an agent handles domain-specific context, or follow the [15-minute tutorial](/blog/build-your-first-data-engineering-agent/) to set one up yourself.
 
 ## Frequently asked questions
 
@@ -147,6 +147,6 @@ The analyst files an issue report describing what was wrong. The correction flow
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition
-- [Contextual data engineering](/posts/contextual-data-engineering) — the feedback loop that makes one-person teams work
-- [Build your first data engineering agent](/posts/build-your-first-data-engineering-agent) — a 15-minute tutorial
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the feedback loop that makes one-person teams work
+- [Build your first data engineering agent](/blog/build-your-first-data-engineering-agent/) — a 15-minute tutorial

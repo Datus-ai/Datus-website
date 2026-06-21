@@ -126,7 +126,7 @@ GoodData occupies a different tier of the data agent stack than Datus:
 | **Deployment** | Cloud platform (SaaS), multi-tenant | Open-source core (Apache 2.0) + Cloud Personal + Enterprise |
 | **AI approach** | Semantic-grounded AI on top of existing platform | AI as the operating model — context evolves with every agent interaction |
 
-The relationship is complementary, not competitive: GoodData provides a mature, governed semantic consumption layer. Datus provides a context creation and evolution layer. A team could use Datus to generate and evolve [semantic models](/posts/what-is-semantic-model) and metrics, and GoodData to serve them through governed APIs with multi-tenant access control — the creation tier and the distribution tier working together.
+The relationship is complementary, not competitive: GoodData provides a mature, governed semantic consumption layer. Datus provides a context creation and evolution layer. A team could use Datus to generate and evolve [semantic models](/blog/what-is-semantic-model/) and metrics, and GoodData to serve them through governed APIs with multi-tenant access control — the creation tier and the distribution tier working together.
 
 ## 5. What data teams can learn from GoodData's arc
 
@@ -162,6 +162,6 @@ Not directly. GoodData is a **semantic consumption and distribution platform** �
 
 ## Related articles
 
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — the infrastructure GoodData built its platform on
-- [What is a metric layer?](/posts/what-is-metric-layer) — the KPI catalog MAQL implements
-- [AI-Native Data Platforms: Why the Next Generation Needs Data Engineering Agents](/posts/ai-native-data-platforms) — the category GoodData.AI is entering
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the infrastructure GoodData built its platform on
+- [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog MAQL implements
+- [AI-Native Data Platforms: Why the Next Generation Needs Data Engineering Agents](/blog/ai-native-data-platforms/) — the category GoodData.AI is entering

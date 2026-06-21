@@ -105,7 +105,7 @@ Key characteristics that make MetricFlow the reference implementation:
 - **Multi-engine** — generates queries for Snowflake, BigQuery, Databricks, Postgres, and DuckDB from the same metric definitions.
 - **API-consumable** — dbt Cloud exposes a query API so BI tools, notebooks, and agents can request metric values without knowing SQL.
 
-MetricFlow's limitation — and this is where agent-driven approaches differ — is that it is **engineer-maintained and batch-updated**. A new ad-hoc query that surfaces a missing edge case has no path into MetricFlow YAML until someone opens a PR. In a team running a [data engineering agent](/posts/what-is-data-engineering-agent), validated production SQL and user feedback can feed back into metric definitions continuously — closing the loop between discovery and governance.
+MetricFlow's limitation — and this is where agent-driven approaches differ — is that it is **engineer-maintained and batch-updated**. A new ad-hoc query that surfaces a missing edge case has no path into MetricFlow YAML until someone opens a PR. In a team running a [data engineering agent](/blog/what-is-data-engineering-agent/), validated production SQL and user feedback can feed back into metric definitions continuously — closing the loop between discovery and governance.
 
 ## 4. Cube and the headless BI metric layer
 
@@ -200,6 +200,6 @@ Dramatically. The #1 failure mode of text-to-SQL is not SQL syntax — it's **se
 
 ## Related articles
 
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — the full business dictionary that contains the metric layer
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent) — how agents operationalize metric definitions
-- [What is text-to-SQL?](/posts/what-is-text-to-sql) — the generation layer grounded in metric definitions
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the full business dictionary that contains the metric layer
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — how agents operationalize metric definitions
+- [What is text-to-SQL?](/blog/what-is-text-to-sql/) — the generation layer grounded in metric definitions

@@ -341,14 +341,14 @@ If you are building toward production-grade automation, that is the bar. Not gen
 
 - Start with the [Datus quickstart and workflow docs](https://docs.datus.ai/)
 - Then read the supporting article: How to Automate Data Pipelines with AI Agents
-- Related reading: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- Related reading: [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)
 
 ## Related Reading
 
-- [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
+- [Agentic Data Engineering vs Traditional Data Engineering](/blog/agentic-data-engineering-vs-traditional-data-engineering/)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)
 
 ## Start with Datus
 

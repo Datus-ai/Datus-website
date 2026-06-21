@@ -277,7 +277,7 @@ That matters because agentic data engineering only becomes useful when context c
 
 If you’re mapping this space in more detail, the next useful reads are:
 
-- [What Is a Data Engineering Agent?](/posts/what-is-data-engineering-agent) for the core definition layer
+- [What Is a Data Engineering Agent?](/blog/what-is-data-engineering-agent/) for the core definition layer
 - Data Engineering Agent Architecture: From Prototype to Production with Datus for implementation patterns
 - 7 High-Impact Data Engineering Agent Use Cases (Powered by Datus) for workflow-level examples
 - The Layered Subagent Architecture for Data Engineering Agents for team and system design
@@ -314,10 +314,10 @@ If the environment is small, stable, heavily regulated, or not yet well-modeled,
 
 ## Related Reading
 
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
-- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/blog/data-engineering-agent/data-engineering-agent-layered-subagent/)
 
 ## Start with Datus
 

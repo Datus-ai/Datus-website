@@ -76,13 +76,13 @@ Weak linking poisons step 3: the model confidently joins tables that never shoul
 
 In practice, schema linking and intent parsing interact more than the linear pipeline suggests. Parsing "revenue by channel" requires some schema awareness to recognize that "revenue" is a metric requiring aggregation and "channel" is a dimension requiring grouping — but if the parser pre-commits to the wrong interpretation of "channel" before seeing the schema, the linker receives a poisoned input. Production systems often iterate between steps 1 and 2 rather than executing them sequentially.
 
-See [what is text-to-SQL](/posts/what-is-text-to-sql) for the full pipeline.
+See [what is text-to-SQL](/blog/what-is-text-to-sql/) for the full pipeline.
 
 ## 3. Why schema linking breaks in production
 
 ### Schema size and noise
 
-Enterprise warehouses expose thousands of tables. Dumping full DDL into a prompt exceeds context windows and dilutes signal. Retrieval must surface **relevant** fragments — a RAG problem discussed in [RAG for data engineering](/posts/rag-data-engineering). The noise problem is asymmetric: including one irrelevant table in the prompt is mildly wasteful; including one table that is relevant but incorrectly described is catastrophically misleading. A catalog entry that lists `dim_customer.status` as "customer status (active, inactive, churned)" when the column actually stores billing status codes (1, 2, 3, 7) causes the linker to select the table for every "churned" query while misinterpreting what "churned" means in that context.
+Enterprise warehouses expose thousands of tables. Dumping full DDL into a prompt exceeds context windows and dilutes signal. Retrieval must surface **relevant** fragments — a RAG problem discussed in [RAG for data engineering](/blog/rag-data-engineering/). The noise problem is asymmetric: including one irrelevant table in the prompt is mildly wasteful; including one table that is relevant but incorrectly described is catastrophically misleading. A catalog entry that lists `dim_customer.status` as "customer status (active, inactive, churned)" when the column actually stores billing status codes (1, 2, 3, 7) causes the linker to select the table for every "churned" query while misinterpreting what "churned" means in that context.
 
 ### Ambiguous naming
 
@@ -94,7 +94,7 @@ Users to orders to subscriptions can traverse several foreign-key graphs. Only o
 
 ### Business language ≠ column names
 
-Analysts say "ARPU" and "net revenue"; schemas say `avg_rev_per_sub_v3`. A [semantic layer](/posts/what-is-semantic-layer) bridges that gap with governed metrics and dimensions. But a semantic layer only bridges what has been formally modeled. When an analyst asks "what percentage of our power users churned after the pricing change," none of "power users," "churned," or "after the pricing change" have formal metric definitions — they are ad-hoc concepts that exist in tribal knowledge and reference SQL, not in YAML. Schema linking must handle both the governed path (metrics from the semantic layer) and the ungoverned path (ad-hoc phrases mapped through reference SQL and contextual inference).
+Analysts say "ARPU" and "net revenue"; schemas say `avg_rev_per_sub_v3`. A [semantic layer](/blog/what-is-semantic-layer/) bridges that gap with governed metrics and dimensions. But a semantic layer only bridges what has been formally modeled. When an analyst asks "what percentage of our power users churned after the pricing change," none of "power users," "churned," or "after the pricing change" have formal metric definitions — they are ad-hoc concepts that exist in tribal knowledge and reference SQL, not in YAML. Schema linking must handle both the governed path (metrics from the semantic layer) and the ungoverned path (ad-hoc phrases mapped through reference SQL and contextual inference).
 
 ### Drift and deprecation
 
@@ -114,7 +114,7 @@ The durable pattern combines **retrieval**, **governed semantics**, and **valida
 
 ## 5. Physical vs semantic linking
 
-**Physical linking** uses catalog metadata: table names, column types, foreign keys. Tools like <a href="https://datahubproject.io/" rel="nofollow noopener">DataHub</a> and <a href="https://atlan.com/" rel="nofollow noopener">Atlan</a> excel at inventory — see [what is a data catalog](/posts/what-is-data-catalog) for how that differs from agent context.
+**Physical linking** uses catalog metadata: table names, column types, foreign keys. Tools like <a href="https://datahubproject.io/" rel="nofollow noopener">DataHub</a> and <a href="https://atlan.com/" rel="nofollow noopener">Atlan</a> excel at inventory — see [what is a data catalog](/blog/what-is-data-catalog/) for how that differs from agent context.
 
 **Semantic linking** maps business terms to metric definitions and entity relationships — often via MetricFlow, Cube, or LookML.
 
@@ -183,9 +183,9 @@ Partially. Startup-stage linking — small schemas, one domain, active maintenan
 
 ## Related articles
 
-- [What is text-to-SQL?](/posts/what-is-text-to-sql) — where schema linking fits in the pipeline
-- [RAG for data engineering](/posts/rag-data-engineering) — retrieval that feeds linking
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — governed business terms for linking
+- [What is text-to-SQL?](/blog/what-is-text-to-sql/) — where schema linking fits in the pipeline
+- [RAG for data engineering](/blog/rag-data-engineering/) — retrieval that feeds linking
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed business terms for linking
 
 ---
 

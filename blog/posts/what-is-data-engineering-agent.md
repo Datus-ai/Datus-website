@@ -83,11 +83,11 @@ Yes. Datus is designed to integrate with modern warehouses, catalogs, and orches
 
 ## Related Reading
 
-- [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack)
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
-- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
-- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+- [From Human-First Data Systems to the Agentic Data Stack](/blog/agentic-data-stack/)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/blog/data-engineering-agent/data-engineering-agent-layered-subagent/)
+- [SQL agents are broken without context. Meet Datus.](/blog/meet_datus/)
 
 ## Start with Datus
 
@@ -97,5 +97,5 @@ Yes. Datus is designed to integrate with modern warehouses, catalogs, and orches
 
 ## Continue Reading
 
-- Previous: [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
-- Next: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- Previous: [SQL agents are broken without context. Meet Datus.](/blog/meet_datus/)
+- Next: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)

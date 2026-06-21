@@ -84,11 +84,11 @@ Start with one domain subagent and one measurable KPI, then expand only after we
 
 ## Related Reading
 
-- [From Human-First Data Systems to the Agentic Data Stack](/posts/agentic-data-stack)
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
-- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
-- [SQL agents are broken without context. Meet Datus.](/posts/meet_datus)
+- [From Human-First Data Systems to the Agentic Data Stack](/blog/agentic-data-stack/)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/blog/data-engineering-agent/data-engineering-agent-layered-subagent/)
+- [SQL agents are broken without context. Meet Datus.](/blog/meet_datus/)
 
 ## Learn more
 
@@ -98,5 +98,5 @@ Start with one domain subagent and one measurable KPI, then expand only after we
 
 ## Continue Reading
 
-- Previous: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
+- Previous: [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
 - Next: [Data Engineering Agent: The Complete Guide](/data-engineering-agent/)

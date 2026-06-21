@@ -271,10 +271,10 @@ That is not extra infrastructure. It is the operating substrate for production-g
 
 ## Related Reading
 
-- [How MCP Changes Data Workflow Automation](/posts/how-mcp-changes-data-workflow-automation)
-- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/posts/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs)
-- [Agentic Data Engineering vs Traditional Data Engineering](/posts/agentic-data-engineering-vs-traditional-data-engineering)
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- [How MCP Changes Data Workflow Automation](/blog/how-mcp-changes-data-workflow-automation/)
+- [AI Data Pipeline Automation: Use Cases, Architecture, and Tradeoffs](/blog/ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs/)
+- [Agentic Data Engineering vs Traditional Data Engineering](/blog/agentic-data-engineering-vs-traditional-data-engineering/)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
 
 ## Start with Datus
 

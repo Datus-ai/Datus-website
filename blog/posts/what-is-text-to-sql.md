@@ -70,7 +70,7 @@ The pipeline most teams implement — explicitly or inside a vendor product — 
 
 The four-stage decomposition matters because different failure modes demand different fixes. Intent parsing errors need better disambiguation prompts or user clarification loops. Schema linking errors — the dominant failure category in production — need richer metadata, aliases, and reference SQL, not a bigger language model. Synthesis errors need structural constraints like join authority graphs. Validation errors need execution loops and result inspection. A team that treats all four failure categories as "the model got it wrong" will spend cycles on model upgrades when the real bottleneck lives in stages 2 and 4.
 
-For a deep dive on the second stage, see [what is schema linking](/posts/what-is-schema-linking).
+For a deep dive on the second stage, see [what is schema linking](/blog/what-is-schema-linking/).
 
 ## 2. Text-to-SQL vs NL2SQL vs SQL copilot
 
@@ -83,11 +83,11 @@ These terms overlap in marketing but differ in scope:
 | **SQL copilot** | IDE or chat assist that **suggests** SQL; often **no persistent schema memory** or execution loop |
 | **Data engineering agent** | Broader system: text-to-SQL **plus** context persistence, workflows, feedback, and multi-step data work |
 
-A SQL copilot can produce excellent one-off queries. A [data engineering agent](/posts/what-is-data-engineering-agent) treats text-to-SQL as a **repeatable production capability** — the same question next month should benefit from corrections made last month.
+A SQL copilot can produce excellent one-off queries. A [data engineering agent](/blog/what-is-data-engineering-agent/) treats text-to-SQL as a **repeatable production capability** — the same question next month should benefit from corrections made last month.
 
 The distinction becomes operational quickly. If a VP of Sales asks "month-over-month pipeline growth by region" and gets the right answer in March, she expects the same question in April to produce a comparable answer — not a different SQL that happened to feel right to the model that day. Copilots optimized for assistive drafting don't carry corrections forward. Agents optimized for repeatable answers must persist every validated mapping, join path, and filter as state. This persistence requirement — not model quality — is what separates the two categories in production.
 
-For how agents differ from copilots at the product level, read [data engineering agent vs. SQL copilot](/posts/data-engineering-agent-vs-sql-copilot).
+For how agents differ from copilots at the product level, read [data engineering agent vs. SQL copilot](/blog/data-engineering-agent-vs-sql-copilot/).
 
 ## 3. What context text-to-SQL systems need
 
@@ -103,11 +103,11 @@ Minimum context for reliable text-to-SQL:
 | **Business rules** | Deprecations, PII boundaries, "never use table X" |
 | **Feedback history** | Corrections from prior runs |
 
-Without semantics, models guess from column names — `amt_usd_net_v2` is not self-explanatory. A [semantic layer](/posts/what-is-semantic-layer) supplies governed metrics; a **context engine** adds validated ad-hoc SQL and usage-based corrections on top.
+Without semantics, models guess from column names — `amt_usd_net_v2` is not self-explanatory. A [semantic layer](/blog/what-is-semantic-layer/) supplies governed metrics; a **context engine** adds validated ad-hoc SQL and usage-based corrections on top.
 
 The hierarchy matters here. A physical schema tells the model `fact_orders` has a column called `amount_usd`. A semantic definition tells the model that "net revenue" means `SUM(amount_usd) WHERE status != 'refunded' AND account_type != 'TEST'`. Reference SQL tells the model that last week's CFO asked a similar question and the answer used `fiscal_calendar_v2`, not `calendar_date`. Feedback history tells the model that three months ago, Marketing complained that "channel" mapped to `dim_sales_channel` instead of `dim_marketing_channel`, and the correction was recorded. Each layer of context addresses failure modes the layer below cannot catch.
 
-Retrieval-augmented generation (RAG) is how many systems inject that context at query time. See [RAG for data engineering](/posts/rag-data-engineering).
+Retrieval-augmented generation (RAG) is how many systems inject that context at query time. See [RAG for data engineering](/blog/rag-data-engineering/).
 
 ## 4. How accuracy is measured (and why benchmarks mislead)
 
@@ -154,7 +154,7 @@ Text-to-SQL alone does not make an agent. Agents add:
 - **Integration** — MCP clients, orchestrators, CI workflows. Text-to-SQL embedded in a dbt pull request can validate that a model change does not break downstream SQL.
 - **Governance** — scoped tables, rules, audit trails (especially in enterprise deployments). Every query leaves a trace from question to SQL to tables used to result.
 
-[Contextual data engineering](/posts/contextual-data-engineering) describes the operating model: every text-to-SQL run strengthens context for the next run. In practice, this means the system's accuracy graph slopes upward over time within a domain — not because the model was upgraded, but because every correction is stored and every validated query is indexed as a retrieval candidate for future questions. A stateless copilot's accuracy graph is flat forever.
+[Contextual data engineering](/blog/contextual-data-engineering/) describes the operating model: every text-to-SQL run strengthens context for the next run. In practice, this means the system's accuracy graph slopes upward over time within a domain — not because the model was upgraded, but because every correction is stored and every validated query is indexed as a retrieval candidate for future questions. A stateless copilot's accuracy graph is flat forever.
 
 ## 7. A text-to-SQL failure, step by step
 
@@ -219,9 +219,9 @@ ChatGPT generates SQL from its training data — it knows what `SELECT` syntax l
 
 ## Related articles
 
-- [What is schema linking?](/posts/what-is-schema-linking) — the bottleneck inside most text-to-SQL failures
-- [RAG for data engineering](/posts/rag-data-engineering) — how retrieval supplies context at query time
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — governed metrics text-to-SQL should ground on
+- [What is schema linking?](/blog/what-is-schema-linking/) — the bottleneck inside most text-to-SQL failures
+- [RAG for data engineering](/blog/rag-data-engineering/) — how retrieval supplies context at query time
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed metrics text-to-SQL should ground on
 
 ---
 

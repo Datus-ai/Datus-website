@@ -32,11 +32,11 @@ head:
 ---
 # Subagents: How to Ship Domain-Specific Data Agents Without Training a Model
 
-A [data engineering agent](/posts/what-is-data-engineering-agent-2026) that can answer any question about your entire warehouse sounds powerful. In practice, it is a liability. Give an agent unrestricted access to every table, every metric, and every schema, and it will produce answers that are technically correct and organizationally wrong—using the operations team's definition of revenue when finance asked the question, or joining through a deprecated path because nobody told the agent not to.
+A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that can answer any question about your entire warehouse sounds powerful. In practice, it is a liability. Give an agent unrestricted access to every table, every metric, and every schema, and it will produce answers that are technically correct and organizationally wrong—using the operations team's definition of revenue when finance asked the question, or joining through a deprecated path because nobody told the agent not to.
 
 A subagent solves this by scoping the problem. Instead of one agent that knows everything, you create many subagents, each knowing exactly what one domain needs: roughly 10 tables, 20 metrics, 30 validated SQL references, and a set of standing business rules. Each subagent is a self-contained, shareable chatbot that delivers accurate answers within its domain—and stays silent outside it.
 
-This article explains what subagents are, how they work, and why they are the delivery unit that separates a <a href="https://datus.ai/glossary">data engineering agent</a> from a smart SQL writer. For the philosophy behind scoped context, see [contextual data engineering](/posts/contextual-data-engineering).
+This article explains what subagents are, how they work, and why they are the delivery unit that separates a <a href="https://datus.ai/glossary">data engineering agent</a> from a smart SQL writer. For the philosophy behind scoped context, see [contextual data engineering](/blog/contextual-data-engineering/).
 
 ## TL;DR
 
@@ -97,7 +97,7 @@ After a period of active use, the engineer reviews feedback patterns, promotes v
 
 When the subagent is mature—high accuracy, stable scope, low rate of corrections—it can be exported as an HTTP API. Other systems (dashboards, internal tools, downstream agents) query the API to get grounded, accurate answers. The subagent has graduated from a chatbot to an infrastructure service.
 
-This lifecycle reflects a broader philosophy about how data work should scale: an engineer builds context, an agent delivers it, users refine it, and the system gets more valuable the longer it runs. For more on this philosophy, see [one-person data team](/posts/one-person-data-team).
+This lifecycle reflects a broader philosophy about how data work should scale: an engineer builds context, an agent delivers it, users refine it, and the system gets more valuable the longer it runs. For more on this philosophy, see [one-person data team](/blog/one-person-data-team/).
 
 ## 4. Why subagents are the right delivery unit
 
@@ -137,7 +137,7 @@ The fastest path from zero to a working subagent:
 
 The pattern compounds: each subagent makes the context engine stronger, which makes the next subagent easier to create. The tenth subagent takes a fraction of the time the first one took.
 
-Try <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> to see the subagent lifecycle in action—connect a warehouse, create a scoped subagent, and share it with a teammate. Or follow the [15-minute tutorial](/posts/build-your-first-data-engineering-agent) to build one from the CLI.
+Try <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> to see the subagent lifecycle in action—connect a warehouse, create a scoped subagent, and share it with a teammate. Or follow the [15-minute tutorial](/blog/build-your-first-data-engineering-agent/) to build one from the CLI.
 
 ## Frequently asked questions
 
@@ -159,6 +159,6 @@ A well-scoped subagent should recognize out-of-scope questions and respond with 
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition
-- [Contextual data engineering](/posts/contextual-data-engineering) — the context model that powers subagents
-- [One-person data team](/posts/one-person-data-team) — how subagents scale a solo engineer's output
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the context model that powers subagents
+- [One-person data team](/blog/one-person-data-team/) — how subagents scale a solo engineer's output

@@ -33,7 +33,7 @@ head:
 
 # What Is a Data Agent? How It Differs From a Data Engineering Agent
 
-If you attended three data conferences in 2026, you heard at least a dozen tools described as "AI agents for data." One generates SQL from natural language. One monitors pipeline health and suggests fixes. One auto-generates dashboards. One discovers metadata across catalogs. One builds and evolves the context that all the others depend on. They share a label and almost nothing else — not architecture, not user, not failure mode, not the problem they actually solve. This article proposes a six-type taxonomy that separates them by what they actually do, maps the consumer/producer tier architecture that connects them, and explains why one type — the [data engineering agent](/posts/what-is-data-engineering-agent) — matters more for long-term accuracy than the other five combined.
+If you attended three data conferences in 2026, you heard at least a dozen tools described as "AI agents for data." One generates SQL from natural language. One monitors pipeline health and suggests fixes. One auto-generates dashboards. One discovers metadata across catalogs. One builds and evolves the context that all the others depend on. They share a label and almost nothing else — not architecture, not user, not failure mode, not the problem they actually solve. This article proposes a six-type taxonomy that separates them by what they actually do, maps the consumer/producer tier architecture that connects them, and explains why one type — the [data engineering agent](/blog/what-is-data-engineering-agent/) — matters more for long-term accuracy than the other five combined.
 
 ## TL;DR
 
@@ -221,6 +221,6 @@ No — and teams that try to find a single agent that covers all six types will 
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent) — the producer-tier subclass in detail
-- [What is text-to-SQL?](/posts/what-is-text-to-sql) — the core capability behind query agents
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — the context tier that agents consume
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — the producer-tier subclass in detail
+- [What is text-to-SQL?](/blog/what-is-text-to-sql/) — the core capability behind query agents
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the context tier that agents consume

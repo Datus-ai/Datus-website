@@ -32,9 +32,9 @@ head:
 ---
 # How a Context Engine Makes Data Engineering Agents More Accurate
 
-Every [data engineering agent](/posts/what-is-data-engineering-agent-2026) uses an LLM to generate SQL. The LLM is not the differentiator. Any modern model—GPT-4o, Claude, Gemini, DeepSeek—can produce syntactically correct SQL against a well-described schema. The accuracy gap between agents is not about which model they use. It is about what context they give the model before asking it to generate a query.
+Every [data engineering agent](/blog/what-is-data-engineering-agent-2026/) uses an LLM to generate SQL. The LLM is not the differentiator. Any modern model—GPT-4o, Claude, Gemini, DeepSeek—can produce syntactically correct SQL against a well-described schema. The accuracy gap between agents is not about which model they use. It is about what context they give the model before asking it to generate a query.
 
-A context engine is the component that prepares, retrieves, and continuously updates that context. This article explains how it works, why it is the single largest lever for agent accuracy, and what separates a well-designed context engine from a thin wrapper around a model API. For the theoretical foundation, see [contextual data engineering](/posts/contextual-data-engineering).
+A context engine is the component that prepares, retrieves, and continuously updates that context. This article explains how it works, why it is the single largest lever for agent accuracy, and what separates a well-designed context engine from a thin wrapper around a model API. For the theoretical foundation, see [contextual data engineering](/blog/contextual-data-engineering/).
 
 ## TL;DR
 
@@ -95,7 +95,7 @@ To be precise about what makes a context engine different from adjacent concepts
 
 - **It is not a data catalog.** A <a href="https://datus.ai/glossary">data catalog</a> inventories assets for human discovery. A context engine organizes context for machine retrieval at query time. The catalog tells a person where to look. The context engine tells an agent what to use.
 
-- **It is not a semantic layer.** A [semantic layer](/posts/what-is-semantic-layer) defines governed metrics and dimensions. A context engine includes semantic definitions but extends them with validated SQL, deprecation notes, feedback history, and business rules that move faster than governance cycles. The semantic layer is the certified foundation; the context engine is the living layer on top.
+- **It is not a semantic layer.** A [semantic layer](/blog/what-is-semantic-layer/) defines governed metrics and dimensions. A context engine includes semantic definitions but extends them with validated SQL, deprecation notes, feedback history, and business rules that move faster than governance cycles. The semantic layer is the certified foundation; the context engine is the living layer on top.
 
 - **It is not a vector database.** Some context engines use vector search for retrieval—finding semantically similar queries and schemas. But a context engine is more than its retrieval mechanism. It includes the inspection logic that builds context, the organizational model that structures it, the feedback loop that updates it, and the delivery mechanisms that package it for consumption.
 
@@ -124,7 +124,7 @@ The questions that predict long-term accuracy are:
 
 The answers to these questions determine whether the agent's accuracy plateaus at its demo-quality baseline or improves toward production reliability over weeks of real use. A stronger LLM paired with shallow context will still plateau on ambiguous warehouse-specific questions. A modest LLM paired with a deep context engine can outperform it on repeated domain patterns because it has better local facts.
 
-For a practical comparison of how different agents handle these questions, see the [best data engineering agents comparison](/posts/best-data-engineering-agents-2026).
+For a practical comparison of how different agents handle these questions, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
 
 ## Conclusion
 
@@ -132,7 +132,7 @@ A context engine is the slow brain of a data engineering agent: the component th
 
 The agents that will define this category are the ones that invest in context infrastructure: deep schema inspection, dual-dimension context organization, feedback-driven updates, and reference SQL pattern storage. Agents that treat the LLM as the whole product can produce brilliant demos and still plateau. Agents that treat context as the product have a clearer path to improving on repeated production workloads.
 
-This is the practical implication of [contextual data engineering](/posts/contextual-data-engineering): accuracy is not a feature of the model. It is a property of the context.
+This is the practical implication of [contextual data engineering](/blog/contextual-data-engineering/): accuracy is not a feature of the model. It is a property of the context.
 
 Try <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> to see a context engine in action—ask ten questions against a connected warehouse and watch how the answers improve.
 
@@ -152,6 +152,6 @@ Partially. A well-maintained dbt project or semantic layer provides excellent sc
 
 ## Related articles
 
-- [Contextual data engineering](/posts/contextual-data-engineering) — the three-layer model behind context engines
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — definitions, implementations, and the gap agents fill
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the three-layer model behind context engines
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — definitions, implementations, and the gap agents fill

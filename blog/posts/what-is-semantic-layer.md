@@ -33,7 +33,7 @@ head:
 
 # What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer
 
-A **semantic layer** is a business representation of data that maps physical tables and columns to stable business concepts — metrics, dimensions, entities, and relationships — so analysts and applications can query by *revenue* and *region* instead of `fact_orders.amount_usd` and `dim_geo.region_code`. It sits between raw storage and every consumer of data: BI tools, APIs, notebooks, and increasingly **AI agents**. This glossary entry gives a practical definition, walks through common implementations, and explains where semantic layers end — and where a [data engineering agent](/posts/what-is-data-engineering-agent-2026) that *operationalizes* those definitions begins.
+A **semantic layer** is a business representation of data that maps physical tables and columns to stable business concepts — metrics, dimensions, entities, and relationships — so analysts and applications can query by *revenue* and *region* instead of `fact_orders.amount_usd` and `dim_geo.region_code`. It sits between raw storage and every consumer of data: BI tools, APIs, notebooks, and increasingly **AI agents**. This glossary entry gives a practical definition, walks through common implementations, and explains where semantic layers end — and where a [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that *operationalizes* those definitions begins.
 
 ## TL;DR
 
@@ -163,7 +163,7 @@ Concrete compatibility paths:
 
 In practice today, this means Datus ingests existing metric YAML (MetricFlow-compatible), generates new semantic models alongside them, and scopes Subagents to specific domain contexts. Full cross-layer orchestration — unified governance across Cube, MetricFlow, and LookML from a single control plane — is the architectural direction, not the shipped feature set.
 
-For the full agent-side definition, read [what is a data engineering agent](/posts/what-is-data-engineering-agent-2026).
+For the full agent-side definition, read [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
 
 ## 7. When you need a semantic layer — signals, not dogma
 
@@ -232,4 +232,4 @@ Incrementally is the only way that sticks. Start with one team, one domain, and 
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — how agents differ from copilots and where context fits
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — how agents differ from copilots and where context fits

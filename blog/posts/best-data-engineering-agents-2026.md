@@ -36,7 +36,7 @@ At this point, eight different products call themselves a **data engineering age
 
 One lives inside a cloud console. One is a SaaS capability for martech teams. One is a community prompt you paste into a terminal. One is an open-source framework that treats context as infrastructure. Three more occupy the independent space between. They all claim to "turn natural language into data work," and technically, they all do. But the differences that matter—who is allowed to use it, what it actually has access to, and what it remembers tomorrow—are invisible on product pages.
 
-The best data engineering agent depends on your stack: single-warehouse teams are best served by platform-native agents; multi-warehouse teams need stack-agnostic, context-persistent alternatives. This guide compares the eight most notable options side by side and gives you a decision framework—no demo video required. If you are new to the category, start with [what a data engineering agent is](/posts/what-is-data-engineering-agent-2026).
+The best data engineering agent depends on your stack: single-warehouse teams are best served by platform-native agents; multi-warehouse teams need stack-agnostic, context-persistent alternatives. This guide compares the eight most notable options side by side and gives you a decision framework—no demo video required. If you are new to the category, start with [what a data engineering agent is](/blog/what-is-data-engineering-agent-2026/).
 
 ## TL;DR
 
@@ -47,7 +47,7 @@ The best data engineering agent depends on your stack: single-warehouse teams ar
 
 ## 1. The four categories, briefly
 
-Before listing products, it helps to understand that the eight agents fall into four categories with fundamentally different design philosophies. For a detailed breakdown of these categories, see [the category definition article](/posts/what-is-data-engineering-agent-2026). Here is the short version:
+Before listing products, it helps to understand that the eight agents fall into four categories with fundamentally different design philosophies. For a detailed breakdown of these categories, see [the category definition article](/blog/what-is-data-engineering-agent-2026/). Here is the short version:
 
 **Platform-embedded agents** (BigQuery DEA, Snowflake Cortex Code) live inside a single cloud platform. They are deeply integrated with their host's metadata, IAM, and billing. They are the path of least resistance when your entire data life happens inside that platform. They are not an option when it does not.
 
@@ -92,7 +92,7 @@ This is a community-maintained persona configuration for Claude Code—a prompt 
 
 ### Datus
 
-Datus is the open-source agent built around a persistent [Context Engine](/posts/contextual-data-engineering)—a dual-dimension context store (physical catalog tree + logical subject tree) that treats every successful query as training data for the next one. It runs as a CLI, chat, API, or hosted Studio, and connects to ten database types (Snowflake, BigQuery, Postgres, DuckDB, StarRocks, and more). Its subagent system packages scoped context into domain-specific chatbots. In Datus's Lakehouse deployment narrative, context feedback is tied to materially higher self-service usage and faster repeated query work. Datus is strongest for teams with multi-warehouse stacks who want an agent that accumulates institutional knowledge rather than rediscovering it on every query.
+Datus is the open-source agent built around a persistent [Context Engine](/blog/contextual-data-engineering/)—a dual-dimension context store (physical catalog tree + logical subject tree) that treats every successful query as training data for the next one. It runs as a CLI, chat, API, or hosted Studio, and connects to ten database types (Snowflake, BigQuery, Postgres, DuckDB, StarRocks, and more). Its subagent system packages scoped context into domain-specific chatbots. In Datus's Lakehouse deployment narrative, context feedback is tied to materially higher self-service usage and faster repeated query work. Datus is strongest for teams with multi-warehouse stacks who want an agent that accumulates institutional knowledge rather than rediscovering it on every query.
 
 ### Wren AI
 
@@ -183,6 +183,6 @@ Yes, several. Datus is Apache 2.0 (free CLI + free Cloud Personal tier). Wren AI
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition and four-agent comparison
-- [Contextual data engineering](/posts/contextual-data-engineering) — the three-layer context model beneath every durable agent
-- [Open source data engineering agents](/posts/open-source-data-engineering-agents) — auditability, self-hosting, and the case for open source
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition and four-agent comparison
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the three-layer context model beneath every durable agent
+- [Open source data engineering agents](/blog/open-source-data-engineering-agents/) — auditability, self-hosting, and the case for open source

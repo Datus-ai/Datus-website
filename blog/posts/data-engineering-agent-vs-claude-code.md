@@ -36,7 +36,7 @@ Claude Code is one of the best general-purpose coding agents available. It can w
 
 This distinction is not a dig at Claude Code. It is an acknowledgment that data engineering has requirements that general-purpose coding agents were not built to handle: persistent schema knowledge across sessions, validated SQL patterns that compound in accuracy, business metric definitions that survive beyond a single conversation, and delivery mechanisms that turn context into something a non-engineer can use.
 
-This article explains the real differences, the scenarios where each tool wins, and the pattern that turns them from competitors into complements. For a broader comparison of available agents, see the [best data engineering agents in 2026](/posts/best-data-engineering-agents-2026).
+This article explains the real differences, the scenarios where each tool wins, and the pattern that turns them from competitors into complements. For a broader comparison of available agents, see the [best data engineering agents in 2026](/blog/best-data-engineering-agents-2026/).
 
 ## TL;DR
 
@@ -58,7 +58,7 @@ Data engineering tasks are different. The most important context is not in the r
 - "Filter out `account_type = 'test'` on all revenue queries"
 - "The `status` column was deprecated in March; use `status_v2`"
 
-A human engineer learns these rules over weeks and applies them unconsciously. A [data engineering agent](/posts/what-is-data-engineering-agent-2026) with a persistent context engine learns them the same way—not in a single prompt, but across sessions, as it sees which queries were upvoted, which were corrected, and which patterns repeat. Claude Code cannot do this because it does not have anywhere to put that knowledge between sessions.
+A human engineer learns these rules over weeks and applies them unconsciously. A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) with a persistent context engine learns them the same way—not in a single prompt, but across sessions, as it sees which queries were upvoted, which were corrected, and which patterns repeat. Claude Code cannot do this because it does not have anywhere to put that knowledge between sessions.
 
 ## 2. When Claude Code is the right tool
 
@@ -84,7 +84,7 @@ A dedicated data engineering agent wins when the task requires context that outl
 
 **The team is larger than one person.** When multiple people query the same data, persistent shared context becomes essential—not optional. Without it, two analysts querying "revenue" get two different numbers because they are using two different definitions, two different join paths, and two different filter conditions. A data engineering agent provides a single source of context truth that every query is grounded in.
 
-**Accuracy improvement over time matters.** If the first query is expected to be merely plausible and the hundredth query should be grounded in corrected team patterns, you need a feedback loop. Claude Code starts every session at the same baseline accuracy. A [contextual data engineering](/posts/contextual-data-engineering) agent improves baseline accuracy every time a user confirms or corrects a result.
+**Accuracy improvement over time matters.** If the first query is expected to be merely plausible and the hundredth query should be grounded in corrected team patterns, you need a feedback loop. Claude Code starts every session at the same baseline accuracy. A [contextual data engineering](/blog/contextual-data-engineering/) agent improves baseline accuracy every time a user confirms or corrects a result.
 
 ## 4. The complementary pattern: DE agent as the context layer for Claude Code
 
@@ -143,7 +143,7 @@ Start with the tool that matches your primary workflow. If you spend most of you
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition
-- [Contextual data engineering](/posts/contextual-data-engineering) — why context persistence is the core differentiator
-- [Best data engineering agents in 2026](/posts/best-data-engineering-agents-2026) — full landscape comparison
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
+- [Contextual data engineering](/blog/contextual-data-engineering/) — why context persistence is the core differentiator
+- [Best data engineering agents in 2026](/blog/best-data-engineering-agents-2026/) — full landscape comparison
                                                                    

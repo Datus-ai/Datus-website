@@ -33,7 +33,7 @@ head:
 
 # Semantic Layer vs Ontology: What's the Difference and Why It Matters for AI Agents
 
-An AI agent is asked: "Which customer segments contributed most to revenue growth last quarter, and how do they relate to our product lines?" It identifies the `net_revenue` metric from the [semantic layer](/posts/what-is-semantic-layer), slices it by `customer_segment`, and returns a number. The SQL is flawless. The result is wrong — because the agent joined customers to contracts through a billing relationship instead of the ownership relationship, conflated physical products (SKUs in a warehouse) with SaaS products (plan tiers in a subscription table), and attributed revenue from multi-product contracts entirely to the first product on the invoice. The semantic layer ensured the metric was computed correctly. What was missing — and what caused every downstream error — was an **ontology**: a formal model of what kinds of things exist in this business domain and how they relate to each other. This article defines each concept, maps where they overlap and where they diverge, and explains why the distinction stops being academic the moment you deploy an AI agent against real enterprise data.
+An AI agent is asked: "Which customer segments contributed most to revenue growth last quarter, and how do they relate to our product lines?" It identifies the `net_revenue` metric from the [semantic layer](/blog/what-is-semantic-layer/), slices it by `customer_segment`, and returns a number. The SQL is flawless. The result is wrong — because the agent joined customers to contracts through a billing relationship instead of the ownership relationship, conflated physical products (SKUs in a warehouse) with SaaS products (plan tiers in a subscription table), and attributed revenue from multi-product contracts entirely to the first product on the invoice. The semantic layer ensured the metric was computed correctly. What was missing — and what caused every downstream error — was an **ontology**: a formal model of what kinds of things exist in this business domain and how they relate to each other. This article defines each concept, maps where they overlap and where they diverge, and explains why the distinction stops being academic the moment you deploy an AI agent against real enterprise data.
 
 ## TL;DR
 
@@ -54,7 +54,7 @@ A semantic layer is the business translation of physical data. It defines:
 
 The semantic layer is **implementation-aware**. It knows that `net_revenue` lives in the `fact_orders` table, filtered by `order_status = 'completed'`, aggregated as `SUM(revenue_usd - refund_usd)`. It is a practical, executable mapping from business language to database operations.
 
-For a thorough treatment, see [what is a semantic layer](/posts/what-is-semantic-layer).
+For a thorough treatment, see [what is a semantic layer](/blog/what-is-semantic-layer/).
 
 ## 2. Ontology: definition and role
 
@@ -189,6 +189,6 @@ Datus's **Subject Tree** serves an ontology-like function: it organizes business
 
 ## Related articles
 
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — the execution layer
-- [What is a semantic model?](/posts/what-is-semantic-model) — the building block of the semantic layer
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent) — how agents operationalize both layers
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the execution layer
+- [What is a semantic model?](/blog/what-is-semantic-model/) — the building block of the semantic layer
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — how agents operationalize both layers

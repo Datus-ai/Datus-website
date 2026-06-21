@@ -34,7 +34,7 @@ head:
 
 The Model Context Protocol (MCP), introduced by Anthropic and maintained as an open protocol, is the closest thing the AI agent ecosystem has to a shared connector standard. It standardizes how agents discover and use external tools—databases, APIs, file systems, orchestrators—through a client-server model that works across vendors. For data engineering, it matters because it turns a fragmented stack of tools that do not talk to each other into a set of composable capabilities that an agent can orchestrate.
 
-This article explains what MCP means for data engineering specifically, how agents use it as both clients and servers, and where the protocol's current limitations leave room for native tooling. If you are new to the agent side, start with [what is a data engineering agent](/posts/what-is-data-engineering-agent-2026).
+This article explains what MCP means for data engineering specifically, how agents use it as both clients and servers, and where the protocol's current limitations leave room for native tooling. If you are new to the agent side, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
 
 ## TL;DR
 
@@ -71,7 +71,7 @@ A data engineering agent exposes its own capabilities as an MCP server, making i
 - **Claude Code queries Datus context:** Claude Code, working on a data pipeline refactor, calls Datus's MCP server to retrieve validated join paths and metric definitions—so the code it generates is grounded in the team's actual data context.
 - **A dashboard tool queries agent context:** A BI tool calls the agent's MCP server to retrieve metric definitions, ensuring that dashboard KPIs match the definitions the agent uses.
 
-This pattern is about making the agent's accumulated knowledge available to the rest of the ecosystem. The context engine becomes a shared service, not a silo. For more on how this complements general-purpose agents, see [data engineering agent vs. Claude Code](/posts/data-engineering-agent-vs-claude-code).
+This pattern is about making the agent's accumulated knowledge available to the rest of the ecosystem. The context engine becomes a shared service, not a silo. For more on how this complements general-purpose agents, see [data engineering agent vs. Claude Code](/blog/data-engineering-agent-vs-claude-code/).
 
 ## 3. The MCP data engineering ecosystem in 2026
 
@@ -106,7 +106,7 @@ This is not a criticism of MCP. It is a design tradeoff inherent in any abstract
 
 The most strategically interesting MCP pattern for data engineering is not "agent calls database through MCP." It is "agent exposes its accumulated context through MCP."
 
-A [context engine](/posts/contextual-data-engineering) that has accumulated six months of validated SQL, business rules, and feedback history is a valuable asset. MCP turns that asset into a service. Instead of the context being locked inside one agent, it becomes available to every tool that speaks MCP:
+A [context engine](/blog/contextual-data-engineering/) that has accumulated six months of validated SQL, business rules, and feedback history is a valuable asset. MCP turns that asset into a service. Instead of the context being locked inside one agent, it becomes available to every tool that speaks MCP:
 
 - Claude Code generates a dbt model and retrieves the correct join path from the context engine.
 - A dashboard tool retrieves metric definitions to ensure consistency.
@@ -124,7 +124,7 @@ Questions worth asking:
 - **MCP Server:** Does the agent expose its context engine through MCP? Can other agents query the accumulated context—validated SQL, metrics, business rules?
 - **Core vs. MCP boundary:** Which capabilities are native (fast, deep, integrated) and which are MCP-mediated (broad, flexible, slower)? A clear boundary is a sign of architectural maturity; treating everything as MCP-mediated is a sign the agent has no native depth.
 
-For a comparison of how current agents handle this boundary, see the [best data engineering agents comparison](/posts/best-data-engineering-agents-2026).
+For a comparison of how current agents handle this boundary, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
 
 ## Source notes
 
@@ -154,6 +154,6 @@ MCP servers run with the permissions of the process that hosts them. When an age
 
 ## Related articles
 
-- [What is a data engineering agent?](/posts/what-is-data-engineering-agent-2026) — the category definition
-- [Contextual data engineering](/posts/contextual-data-engineering) — the context model that MCP makes available to other agents
-- [Data engineering agent vs. Claude Code](/posts/data-engineering-agent-vs-claude-code) — the MCP-mediated complementary architecture
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
+- [Contextual data engineering](/blog/contextual-data-engineering/) — the context model that MCP makes available to other agents
+- [Data engineering agent vs. Claude Code](/blog/data-engineering-agent-vs-claude-code/) — the MCP-mediated complementary architecture

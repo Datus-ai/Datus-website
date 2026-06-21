@@ -126,7 +126,7 @@ Data engineering is a long-running discipline. The same warehouse is queried tho
 
 Platform-embedded agents partially solve this by leaning on their host's catalog. That works for schema metadata; it does not cover validated SQL, business definitions, or the institutional memory of which queries were trusted. Prompt-based agents don't solve it at all — they begin every session in the same blank state.
 
-A context-first agent treats every successful run as training data for the next one. The semantic model grows. The library of validated metrics grows. The set of business rules the agent will never violate grows. Over weeks, the agent stops being a chatty SQL writer and starts being something closer to a junior engineer who has actually worked on your codebase. For what "semantic layer" means in this stack — and how it differs from a metric layer or catalog — see [what is a semantic layer](/posts/what-is-semantic-layer). Datus describes this broader approach as contextual data engineering — treating data context as a first-class, evolvable asset rather than a one-time modeling exercise.
+A context-first agent treats every successful run as training data for the next one. The semantic model grows. The library of validated metrics grows. The set of business rules the agent will never violate grows. Over weeks, the agent stops being a chatty SQL writer and starts being something closer to a junior engineer who has actually worked on your codebase. For what "semantic layer" means in this stack — and how it differs from a metric layer or catalog — see [what is a semantic layer](/blog/what-is-semantic-layer/). Datus describes this broader approach as contextual data engineering — treating data context as a first-class, evolvable asset rather than a one-time modeling exercise.
 
 > An agent without persistent context is a clever stranger. An agent with persistent context is a coworker.
 
@@ -166,4 +166,4 @@ More than column names. A useful data engineering agent needs four layers of con
 
 ## Related articles
 
-- [What is a semantic layer?](/posts/what-is-semantic-layer) — definitions, implementations, and how semantics relate to agents
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — definitions, implementations, and how semantics relate to agents

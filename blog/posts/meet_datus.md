@@ -116,10 +116,10 @@ Ultimately, Datus is about building this evolvable context—a living foundation
 
 ## Related Reading
 
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
-- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/posts/data-engineering-agent-architecture)
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/posts/data-engineering-agent-use-cases)
-- [The Layered Subagent Architecture for Data Engineering Agents](/data-engineering-agent/data-engineering-agent-layered-subagent)
+- [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
+- [Data Engineering Agent Architecture: From Prototype to Production with Datus](/blog/data-engineering-agent-architecture/)
+- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](/blog/data-engineering-agent-use-cases/)
+- [The Layered Subagent Architecture for Data Engineering Agents](/blog/data-engineering-agent/data-engineering-agent-layered-subagent/)
 
 ## Getting started
 - [Installation and quickstart](https://docs.datus.ai/getting_started/Quickstart/)
@@ -128,5 +128,5 @@ Ultimately, Datus is about building this evolvable context—a living foundation
 
 ## Continue Reading
 
-- Previous: [Welcome to the Datus Blog](/posts/welcome)
-- Next: [What Is a Data Engineering Agent? A Practical Guide with Datus](/posts/what-is-data-engineering-agent)
+- Previous: [Welcome to the Datus Blog](/blog/welcome/)
+- Next: [What Is a Data Engineering Agent? A Practical Guide with Datus](/blog/what-is-data-engineering-agent/)
