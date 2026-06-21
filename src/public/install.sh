@@ -3,7 +3,7 @@
 # Installs the latest (or a pinned) release from PyPI.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/datus-ai/datus-agent/main/install.sh | sh
+#   curl -fsSL https://datus.ai/install.sh | sh
 #
 # For a development install from GitHub source, use install-dev.sh instead.
 #
@@ -238,7 +238,7 @@ To install additional Python packages into the global venv:
   (equivalent to ${VENV_DIR}/bin/pip install <package>)
 
 Upgrade later:
-  curl -fsSL https://raw.githubusercontent.com/datus-ai/datus-agent/main/install.sh | sh
+  curl -fsSL https://datus.ai/install.sh | sh
 
 EOF
 }

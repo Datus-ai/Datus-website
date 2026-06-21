@@ -168,7 +168,7 @@ fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){retu
 }
 
 function footerHtml() {
-  const year = 2026;
+  const year = new Date().getFullYear();
   return `<footer class="site-foot"><div class="container" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center">
   <a href="/" aria-label="Datus home"><img src="/logo_dark.svg" alt="Datus" style="height:24px"/></a>
   <nav style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted)">
@@ -224,8 +224,8 @@ function postPage(post) {
   const jsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     headline: post.title, description: post.description,
-    datePublished: post.date ? new Date(post.date).toISOString() : undefined,
-    dateModified: post.lastmod ? new Date(post.lastmod).toISOString() : undefined,
+    datePublished: safeIso(post.date) || undefined,
+    dateModified: safeIso(post.lastmod) || undefined,
     author: post.author ? { "@type": "Person", name: post.author } : { "@type": "Organization", name: "Datus" },
     publisher: { "@type": "Organization", name: "Datus", logo: { "@type": "ImageObject", url: `${SITE}/logo_dark.svg` } },
     mainEntityOfPage: canonical,
@@ -248,8 +248,8 @@ function postPage(post) {
   return shell({
     title: `${post.title} | Datus Blog`, description: post.description, canonical, head, body,
     type: "article",
-    published: post.date ? new Date(post.date).toISOString() : "",
-    modified: post.lastmod ? new Date(post.lastmod).toISOString() : "",
+    published: safeIso(post.date),
+    modified: safeIso(post.lastmod),
   });
 }
 
@@ -378,8 +378,8 @@ function buildReferencePages() {
     const html = shell({
       title: `${post.title} | Datus`, description: post.description, canonical, body,
       type: "article",
-      published: post.date ? new Date(post.date).toISOString() : "",
-      modified: post.lastmod ? new Date(post.lastmod).toISOString() : "",
+      published: safeIso(post.date),
+      modified: safeIso(post.lastmod),
     });
     write(join(DIST, "blog", "data-engineering-agent", sub, "index.html"), html);
     out.push({ urlPath, isIndex, html });
@@ -394,6 +394,13 @@ function buildReferencePages() {
 function write(file, content) {
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, content);
+}
+
+// Full ISO datetime if d is a valid date, else "" (guards against bad frontmatter).
+function safeIso(d) {
+  if (!d) return "";
+  const date = new Date(d);
+  return isNaN(date) ? "" : date.toISOString();
 }
 
 // YYYY-MM-DD for sitemap <lastmod>; falls back to the build date.

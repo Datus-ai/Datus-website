@@ -402,7 +402,7 @@ body {
   line-height: 1.75;
   color: var(--ink-dim);
 }
-.term__line { white-space: pre-wrap; word-break: break-word; }
+.term__line { white-space: pre-wrap; overflow-wrap: anywhere; }
 .term__prompt { color: var(--brand-bright); }
 .term__cmd { color: #fff; }
 .term__ok { color: var(--term-green); }

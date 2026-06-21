@@ -1,7 +1,7 @@
 import "./Footer.css";
 
 const Footer = () => {
-  const year = 2026;
+  const year = new Date().getFullYear();
 
   return (
     <footer className="site-footer">

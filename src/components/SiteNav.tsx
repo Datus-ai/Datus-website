@@ -15,6 +15,7 @@ function extAttrs(external?: boolean) {
 }
 
 function NavEntry({ item }: { item: NavItem }) {
+  const [open, setOpen] = useState(false);
   if (!item.children) {
     return (
       <a className="nav-link" href={item.href} {...extAttrs(item.external)}>
@@ -22,9 +23,17 @@ function NavEntry({ item }: { item: NavItem }) {
       </a>
     );
   }
+  // Visibility is driven by CSS (:hover / :focus-within); we only mirror that
+  // into aria-expanded so assistive tech knows the menu's open/closed state.
   return (
-    <div className="nav-dd">
-      <button className="nav-link" type="button" aria-haspopup="true">
+    <div
+      className="nav-dd"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false); }}
+    >
+      <button className="nav-link" type="button" aria-haspopup="menu" aria-expanded={open}>
         {item.label}
         <ChevronDown size={15} />
       </button>

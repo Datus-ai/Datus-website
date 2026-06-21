@@ -22,8 +22,8 @@ const MPA_ROUTES = [
 const cleanUrls = () => {
   const redirect = (server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) => {
     server.middlewares.use((req, res, next) => {
-      const url = (req.url || '').replace(/\?$/, '');
-      const target = url.replace(/^\//, '');
+      const pathname = (req.url || '').split('?')[0] || '';
+      const target = pathname.replace(/^\/|\/$/g, '');
       if (MPA_ROUTES.includes(target)) {
         res.statusCode = 301;
         res.setHeader('Location', `/${target}/`);
@@ -52,10 +52,14 @@ const MIME: Record<string, string> = {
 };
 const serveBuiltBlog = () => {
   const DIST = path.resolve(__dirname, 'dist');
+  const BLOG_ROOT = path.resolve(DIST, 'blog');
   let warned = false;
   const resolveFile = (urlPath: string): string | null => {
     const p = (urlPath.split('?')[0] || '').replace(/\/$/, '') || '/blog';
-    for (const cand of [path.join(DIST, p), path.join(DIST, p, 'index.html')]) {
+    // Resolve and confine to dist/blog so `..` segments can't escape the dir.
+    const base = path.resolve(DIST, `.${p}`);
+    if (base !== BLOG_ROOT && !base.startsWith(BLOG_ROOT + path.sep)) return null;
+    for (const cand of [base, path.join(base, 'index.html')]) {
       if (existsSync(cand) && statSync(cand).isFile()) return cand;
     }
     return null;

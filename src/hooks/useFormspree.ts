@@ -29,11 +29,13 @@ export function useFormspree() {
           const text = await res.text().catch(() => "");
           throw new Error(text || `Submission failed (${res.status})`);
         }
-      } else {
+      } else if (import.meta.env.DEV) {
         await new Promise((r) => setTimeout(r, 600));
         if (typeof console !== "undefined") {
           console.warn("[useFormspree] VITE_FORMSPREE_ENDPOINT not set — simulating success.", payload);
         }
+      } else {
+        throw new Error("Form submission is unavailable right now. Please email contact@datus.ai.");
       }
       setStatus("success");
     } catch (err) {

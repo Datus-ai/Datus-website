@@ -57,10 +57,19 @@ export default function RotatingPrompt() {
   }, [text, phase, index]);
 
   return (
-    <span className="term__line" aria-live="polite">
-      <span className="term__prompt">datus&nbsp;&gt;&nbsp;</span>
-      <span className="term__cmd">{text}</span>
-      <span className="cursor" />
+    <span className="term__line">
+      {/* Announce the stable phrase once per cycle; hide the per-char animation from AT. */}
+      <span
+        aria-live="polite"
+        style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap", border: 0 }}
+      >
+        {PHRASES[index]}
+      </span>
+      <span aria-hidden="true">
+        <span className="term__prompt">datus&nbsp;&gt;&nbsp;</span>
+        <span className="term__cmd">{text}</span>
+        <span className="cursor" />
+      </span>
     </span>
   );
 }

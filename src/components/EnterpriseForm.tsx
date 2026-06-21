@@ -64,7 +64,7 @@ export default function EnterpriseForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate style={{ marginTop: 26, display: "grid", gap: 16, maxWidth: 560 }}>
+    <form onSubmit={handleSubmit} style={{ marginTop: 26, display: "grid", gap: 16, maxWidth: 560 }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
         <div>
           <label style={labelStyle} htmlFor="ent-name">Full name *</label>

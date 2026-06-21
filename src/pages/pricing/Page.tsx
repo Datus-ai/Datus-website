@@ -57,7 +57,7 @@ function CtaFor({ tier }: { tier: Tier }) {
   const cls = `btn btn-lg ${tier.featured ? "btn-primary" : "btn-ghost"}`;
   if (tier.cta.dialog) {
     return (
-      <EnterpriseInquiryDialog>
+      <EnterpriseInquiryDialog source="datus.ai pricing — Contact us">
         <button className={cls} style={{ width: "100%" }}>{tier.cta.label}</button>
       </EnterpriseInquiryDialog>
     );
