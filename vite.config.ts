@@ -23,12 +23,17 @@ const cleanUrls = () => {
   const redirect = (server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) => {
     server.middlewares.use((req, res, next) => {
       const pathname = (req.url || '').split('?')[0] || '';
-      const target = pathname.replace(/^\/|\/$/g, '');
-      if (MPA_ROUTES.includes(target)) {
-        res.statusCode = 301;
-        res.setHeader('Location', `/${target}/`);
-        res.end();
-        return;
+      // Only redirect the bare clean URL (`/faq`) to its dir form (`/faq/`).
+      // A path that already ends in `/` is the canonical form and must be
+      // served as-is — redirecting it would loop `/faq/` -> `/faq/` forever.
+      if (!pathname.endsWith('/')) {
+        const target = pathname.replace(/^\//, '');
+        if (MPA_ROUTES.includes(target)) {
+          res.statusCode = 301;
+          res.setHeader('Location', `/${target}/`);
+          res.end();
+          return;
+        }
       }
       next();
     });
