@@ -73,8 +73,10 @@ export default function FAQ({
           {lead && <p className="lead" style={{ marginTop: 10 }}>{lead}</p>}
         </div>
         <div className="faq__list">
-          {items.map((item) => (
-            <details className="faq__item" key={item.q}>
+          {items.map((item, i) => (
+            // First item open by default — signals the section has content and
+            // lowers the click cost; the rest stay collapsed for scannability.
+            <details className="faq__item" key={item.q} open={i === 0}>
               <summary className="faq__summary">
                 <h3 className="faq__q">{item.q}</h3>
                 <span className="faq__icon" aria-hidden="true" />
