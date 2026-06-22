@@ -1,6 +1,8 @@
 import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import SiteLayout from "../../../components/SiteLayout";
 import Breadcrumb from "../../../components/Breadcrumb";
+import FAQ from "../../../components/FAQ";
+import { cliFaq } from "./faq";
 import {
   claudeCodeNote, cliHero, closing, ecosystem, guardrails, modelNeutral, parity,
   type CliCta, type DocLink, type FeatureCard,
@@ -224,6 +226,13 @@ export default function CliPage() {
           </a>
         </div>
       </section>
+
+      {/* FAQ */}
+      <FAQ
+        items={cliFaq}
+        currentUrl="/products/cli/"
+        lead="Install, models, Subagents, and how the CLI relates to Studio."
+      />
 
       {/* Closing CTA */}
       <section className="section" id="contact" style={{ scrollMarginTop: "var(--nav-h)", paddingTop: 0 }}>
