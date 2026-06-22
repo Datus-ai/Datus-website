@@ -63,6 +63,42 @@
   padding: 0 24px 96px;
 }
 
+/* ---------- Breadcrumb ---------- */
+.glossary-breadcrumb {
+  padding: 20px 0 0;
+}
+.glossary-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12.5px;
+  font-family: ui-monospace, "SF Mono", "Menlo", monospace;
+}
+.glossary-breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.glossary-breadcrumb a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.glossary-breadcrumb a:hover {
+  color: #f8fafc;
+}
+.glossary-breadcrumb [aria-current="page"] {
+  color: #cbd5e1;
+}
+.glossary-breadcrumb__sep {
+  color: #64748b;
+  user-select: none;
+}
+
 /* ---------- Hero ---------- */
 .glossary-hero {
   padding: 80px 0 40px;

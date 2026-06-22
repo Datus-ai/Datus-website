@@ -32,6 +32,19 @@ const GlossaryPage = () => {
       </header>
 
       <main className="glossary-main">
+        {/* Breadcrumb */}
+        <nav className="glossary-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li>
+              <a href="/">Home</a>
+              <span className="glossary-breadcrumb__sep" aria-hidden="true">/</span>
+            </li>
+            <li>
+              <span aria-current="page">Glossary</span>
+            </li>
+          </ol>
+        </nav>
+
         {/* Hero */}
         <section className="glossary-hero">
           <p className="glossary-hero__eyebrow">Glossary</p>

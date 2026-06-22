@@ -1,5 +1,6 @@
 import { ArrowRight, BarChart3, Boxes, BrainCircuit, CalendarClock, Database, Github } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
+import Breadcrumb from "../../components/Breadcrumb";
 import { GITHUB_URL } from "../../config/nav";
 
 interface Category {
@@ -60,6 +61,10 @@ const CATEGORIES: Category[] = [
 export default function IntegrationsPage() {
   return (
     <SiteLayout>
+      <Breadcrumb
+        currentUrl="/integrations/"
+        items={[{ label: "Home", href: "/" }, { label: "Integrations" }]}
+      />
       <section className="section" style={{ paddingTop: 72, paddingBottom: 40 }}>
         <div className="container" style={{ maxWidth: 880 }}>
           <span className="eyebrow"><Database size={13} /> Integrations</span>

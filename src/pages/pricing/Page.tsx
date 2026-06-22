@@ -1,5 +1,6 @@
 import { ArrowRight, Check } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
+import Breadcrumb from "../../components/Breadcrumb";
 import { EnterpriseInquiryDialog } from "../../components/EnterpriseInquiryDialog";
 import { GITHUB_URL, STUDIO_URL } from "../../config/nav";
 
@@ -73,6 +74,10 @@ function CtaFor({ tier }: { tier: Tier }) {
 export default function PricingPage() {
   return (
     <SiteLayout>
+      <Breadcrumb
+        currentUrl="/pricing/"
+        items={[{ label: "Home", href: "/" }, { label: "Pricing" }]}
+      />
       <section className="section" style={{ paddingTop: 72, paddingBottom: 40 }}>
         <div className="container section-head center" style={{ marginBottom: 44 }}>
           <span className="eyebrow">Pricing</span>
