@@ -2,6 +2,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Fragment, type ReactNode } from "react";
 import SiteLayout from "./SiteLayout";
+import Breadcrumb, { type Crumb } from "./Breadcrumb";
 
 export interface ProductCTA {
   label: string;
@@ -61,9 +62,18 @@ function CtaButton({ cta }: { cta: ProductCTA }) {
   );
 }
 
-export default function ProductPageTemplate({ data }: { data: ProductPageData }) {
+export default function ProductPageTemplate({
+  data,
+  breadcrumb,
+}: {
+  data: ProductPageData;
+  breadcrumb?: { items: Crumb[]; currentUrl: string };
+}) {
   return (
     <SiteLayout>
+      {breadcrumb && (
+        <Breadcrumb items={breadcrumb.items} currentUrl={breadcrumb.currentUrl} />
+      )}
       {/* Hero */}
       <section className="section" style={{ paddingTop: 72, paddingBottom: 56 }}>
         <div className="container" style={{ maxWidth: 880 }}>

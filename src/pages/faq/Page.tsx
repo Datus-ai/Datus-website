@@ -1,11 +1,16 @@
 import { ArrowRight, HelpCircle } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
+import Breadcrumb from "../../components/Breadcrumb";
 import { SLACK_URL } from "../../config/nav";
 import { faqProducts, faqs } from "./content";
 
 export default function FaqPage() {
   return (
     <SiteLayout>
+      <Breadcrumb
+        currentUrl="/faq/"
+        items={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
+      />
       {/* Hero */}
       <section className="section" style={{ paddingTop: 72, paddingBottom: 40 }}>
         <div className="container" style={{ maxWidth: 880 }}>

@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import SiteLayout from "../../../components/SiteLayout";
+import Breadcrumb from "../../../components/Breadcrumb";
 import {
   claudeCodeNote, cliHero, closing, ecosystem, guardrails, modelNeutral, parity,
   type CliCta, type DocLink, type FeatureCard,
@@ -66,6 +67,14 @@ const sectionBorder = "1px solid var(--line)";
 export default function CliPage() {
   return (
     <SiteLayout>
+      <Breadcrumb
+        currentUrl="/products/cli/"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Products", noSchema: true },
+          { label: "Datus CLI" },
+        ]}
+      />
       {/* Hero */}
       <section className="section" style={{ paddingTop: 72, paddingBottom: 56 }}>
         <div className="container">

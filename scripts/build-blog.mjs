@@ -109,6 +109,7 @@ function readPosts() {
       author: data.author || "",
       date: data.date || "",
       lastmod: data.lastmod || data.date || "",
+      breadcrumbLabel: data.breadcrumbLabel || "",
       keywords: extractKeywords(data),
       html: renderBody(content),
     });
@@ -218,6 +219,50 @@ ${gaHtml()}
 </head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div>${navScript()}</body></html>`;
 }
 
+/* ----------------------------- breadcrumbs ----------------------------- */
+// Mirrors src/components/Breadcrumb.tsx so static blog pages and React pages
+// emit identical markup + schema. Items: { label, href?, noSchema? }.
+// The terminal (current) item omits href; positions count only schema-visible
+// items so an unlinked node (noSchema) doesn't leave a gap.
+const abs = (h) => (h.startsWith("http") ? h : `${SITE}${h}`);
+
+// Safe JSON-LD <script> body: escape every `<` so a label containing
+// "</script>" (or "<!--") can't break out of the script element. The output is
+// still valid JSON. Mirrors ldJson() in src/components/Breadcrumb.tsx.
+const ldJson = (obj) => JSON.stringify(obj).replace(/</g, "\\u003c");
+
+function crumbJsonLd(items, currentUrl) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${abs(currentUrl)}#breadcrumb`,
+    itemListElement: items.filter((it) => !it.noSchema).map((it, i) => {
+      const node = { "@type": "ListItem", position: i + 1, name: it.label };
+      if (it.href) node.item = abs(it.href);
+      return node;
+    }),
+  };
+}
+
+// Visible nav + matching JSON-LD as one block. Reuses the shared .breadcrumb
+// styles from site.css (bundled into blog.css).
+function breadcrumbHtml(items, currentUrl) {
+  const lis = items.map((it, i) => {
+    const isLast = i === items.length - 1;
+    const inner = it.href && !isLast
+      ? `<a class="breadcrumb__link" href="${it.href}">${esc(it.label)}</a>`
+      : `<span class="breadcrumb__current"${isLast ? ' aria-current="page"' : ""}>${esc(it.label)}</span>`;
+    const sep = isLast ? "" : `<span class="breadcrumb__sep" aria-hidden="true">/</span>`;
+    return `<li class="breadcrumb__item">${inner}${sep}</li>`;
+  }).join("");
+  return `<nav aria-label="Breadcrumb" class="breadcrumb"><ol class="breadcrumb__list">${lis}</ol></nav>`
+    + `<script type="application/ld+json">${ldJson(crumbJsonLd(items, currentUrl))}</script>`;
+}
+
+// slug -> Title Case ("data-engineering-agent" -> "Data Engineering Agent").
+const titleCase = (slug) => slug.split(/[-_]/).filter(Boolean)
+  .map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+
 /* ------------------------------- pages ------------------------------- */
 function postPage(post) {
   const canonical = `${SITE}/blog/${post.slug}/`;
@@ -234,9 +279,14 @@ function postPage(post) {
     (post.keywords ? `<meta name="keywords" content="${esc(post.keywords)}" />\n` : "") +
     `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
   const meta = [post.author, fmtDate(post.date)].filter(Boolean).join(" · ");
-  const body = `<article class="section" style="padding-top:48px">
+  const crumbs = breadcrumbHtml([
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog/" },
+    { label: post.breadcrumbLabel || post.title },
+  ], canonical);
+  const body = `<article class="section" style="padding-top:32px">
   <div class="container" style="max-width:760px">
-    <a class="link-arrow" href="/blog/" style="margin-bottom:20px">← All posts</a>
+    ${crumbs}
     <h1 class="post-title">${esc(post.title)}</h1>
     ${meta ? `<p class="post-meta">${esc(meta)}</p>` : ""}
     <div class="prose">${post.html}</div>
@@ -275,8 +325,13 @@ function indexPage(posts) {
 
   const tabs = cats.map((c) => `<a class="blog-tab" href="#${slugify(c.label)}">${esc(c.label)}</a>`).join("");
 
-  const body = `<section class="section" style="padding-top:64px;padding-bottom:32px">
+  const crumbs = breadcrumbHtml([
+    { label: "Home", href: "/" },
+    { label: "Blog" },
+  ], "/blog/");
+  const body = `<section class="section" style="padding-top:40px;padding-bottom:32px">
     <div class="container" style="max-width:880px">
+      ${crumbs}
       <span class="eyebrow">Datus Blog</span>
       <h1 style="font-size:clamp(32px,4.6vw,52px);line-height:1.06;letter-spacing:-0.03em;font-weight:750;margin:18px 0 0">
         A working catalog on agents, semantics, and context.</h1>
@@ -353,7 +408,9 @@ function blogCss() {
 // pages (not under posts/). Re-render them through the same pipeline so their
 // indexed URLs keep working after VitePress is removed.
 function buildReferencePages() {
-  const dir = join(ROOT, "blog", "data-engineering-agent");
+  const HUB_SLUG = "data-engineering-agent";
+  const hubHref = `/blog/${HUB_SLUG}/`;
+  const dir = join(ROOT, "blog", HUB_SLUG);
   if (!existsSync(dir)) return [];
   const out = [];
   const files = readdirSync(dir).filter((f) => f.endsWith(".md"));
@@ -361,7 +418,7 @@ function buildReferencePages() {
     const { data, content } = matter(readFileSync(join(dir, file), "utf8"));
     const isIndex = file === "index.md";
     const sub = isIndex ? "" : `${file.replace(/\.md$/, "")}/`;
-    const urlPath = `/blog/data-engineering-agent/${sub}`;
+    const urlPath = `/blog/${HUB_SLUG}/${sub}`;
     const canonical = `${SITE}${urlPath}`;
     const post = {
       slug: "", title: data.title || "Data Engineering Agent",
@@ -369,8 +426,20 @@ function buildReferencePages() {
       date: data.date || "", lastmod: data.lastmod || data.date || "",
       keywords: extractKeywords(data), html: renderBody(content),
     };
-    const body = `<article class="section" style="padding-top:48px"><div class="container" style="max-width:760px">
-      <a class="link-arrow" href="/blog/" style="margin-bottom:20px">← All posts</a>
+    // Hub label is the directory in Title Case (not the long SEO <title>),
+    // overridable per file via frontmatter `hubLabel`.
+    const hubLabel = data.hubLabel || titleCase(HUB_SLUG);
+    const crumbs = breadcrumbHtml(isIndex
+      // Hub landing page: terminal is the clean hub label (spec §2.5), not the
+      // long SEO <title>.
+      ? [{ label: "Home", href: "/" }, { label: "Blog", href: "/blog/" },
+         { label: data.breadcrumbLabel || hubLabel }]
+      // Nested article: hub node links up, terminal is the article title.
+      : [{ label: "Home", href: "/" }, { label: "Blog", href: "/blog/" },
+         { label: hubLabel, href: hubHref }, { label: data.breadcrumbLabel || post.title }],
+      canonical);
+    const body = `<article class="section" style="padding-top:32px"><div class="container" style="max-width:760px">
+      ${crumbs}
       <h1 class="post-title">${esc(post.title)}</h1>
       <div class="prose">${post.html}</div>
       <div class="post-cta"><a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Try Studio free</a>
@@ -382,12 +451,12 @@ function buildReferencePages() {
       published: safeIso(post.date),
       modified: safeIso(post.lastmod),
     });
-    write(join(DIST, "blog", "data-engineering-agent", sub, "index.html"), html);
+    write(join(DIST, "blog", HUB_SLUG, sub, "index.html"), html);
     out.push({ urlPath, isIndex, html });
   }
   // Keep the root /data-engineering-agent/ copy (was duplicated by the old build).
   const idx = out.find((p) => p.isIndex);
-  if (idx) write(join(DIST, "data-engineering-agent", "index.html"), idx.html);
+  if (idx) write(join(DIST, HUB_SLUG, "index.html"), idx.html);
   return out;
 }
 

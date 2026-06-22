@@ -93,6 +93,30 @@ body {
   padding-inline: 24px;
 }
 
+/* breadcrumb — shared by React marketing pages and the static blog generator */
+.breadcrumb { padding-top: 18px; margin-bottom: 18px; }
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.breadcrumb__item { display: inline-flex; align-items: center; gap: 8px; }
+.breadcrumb__link {
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.breadcrumb__link:hover { color: var(--ink); }
+.breadcrumb__current { color: var(--ink-dim); }
+.breadcrumb__sep { color: var(--ink-faint); user-select: none; }
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
