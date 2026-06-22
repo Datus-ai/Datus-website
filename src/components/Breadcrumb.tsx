@@ -18,6 +18,11 @@ export type Crumb = {
 const toAbsolute = (href: string) =>
   href.startsWith("http") ? href : `${SITE}${href}`;
 
+// Safe JSON-LD <script> body: escape every `<` so a label containing
+// "</script>" (or "<!--") can't break out of the script element. The output is
+// still valid JSON. Mirrors ldJson() in scripts/build-blog.mjs.
+const ldJson = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c");
+
 export function breadcrumbJsonLd(items: Crumb[], currentUrl: string) {
   const schemaItems = items.filter((it) => !it.noSchema);
   return {
@@ -78,7 +83,7 @@ export default function Breadcrumb({
       </div>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }}
       />
     </nav>
   );

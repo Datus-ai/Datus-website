@@ -226,6 +226,11 @@ ${gaHtml()}
 // items so an unlinked node (noSchema) doesn't leave a gap.
 const abs = (h) => (h.startsWith("http") ? h : `${SITE}${h}`);
 
+// Safe JSON-LD <script> body: escape every `<` so a label containing
+// "</script>" (or "<!--") can't break out of the script element. The output is
+// still valid JSON. Mirrors ldJson() in src/components/Breadcrumb.tsx.
+const ldJson = (obj) => JSON.stringify(obj).replace(/</g, "\\u003c");
+
 function crumbJsonLd(items, currentUrl) {
   return {
     "@context": "https://schema.org",
@@ -251,7 +256,7 @@ function breadcrumbHtml(items, currentUrl) {
     return `<li class="breadcrumb__item">${inner}${sep}</li>`;
   }).join("");
   return `<nav aria-label="Breadcrumb" class="breadcrumb"><ol class="breadcrumb__list">${lis}</ol></nav>`
-    + `<script type="application/ld+json">${JSON.stringify(crumbJsonLd(items, currentUrl))}</script>`;
+    + `<script type="application/ld+json">${ldJson(crumbJsonLd(items, currentUrl))}</script>`;
 }
 
 // slug -> Title Case ("data-engineering-agent" -> "Data Engineering Agent").
@@ -413,7 +418,7 @@ function buildReferencePages() {
     const { data, content } = matter(readFileSync(join(dir, file), "utf8"));
     const isIndex = file === "index.md";
     const sub = isIndex ? "" : `${file.replace(/\.md$/, "")}/`;
-    const urlPath = `/blog/data-engineering-agent/${sub}`;
+    const urlPath = `/blog/${HUB_SLUG}/${sub}`;
     const canonical = `${SITE}${urlPath}`;
     const post = {
       slug: "", title: data.title || "Data Engineering Agent",
@@ -446,12 +451,12 @@ function buildReferencePages() {
       published: safeIso(post.date),
       modified: safeIso(post.lastmod),
     });
-    write(join(DIST, "blog", "data-engineering-agent", sub, "index.html"), html);
+    write(join(DIST, "blog", HUB_SLUG, sub, "index.html"), html);
     out.push({ urlPath, isIndex, html });
   }
   // Keep the root /data-engineering-agent/ copy (was duplicated by the old build).
   const idx = out.find((p) => p.isIndex);
-  if (idx) write(join(DIST, "data-engineering-agent", "index.html"), idx.html);
+  if (idx) write(join(DIST, HUB_SLUG, "index.html"), idx.html);
   return out;
 }
 
