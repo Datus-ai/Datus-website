@@ -263,6 +263,48 @@ function breadcrumbHtml(items, currentUrl) {
 const titleCase = (slug) => slug.split(/[-_]/).filter(Boolean)
   .map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
+const stripTags = (s = "") => s.replace(/<[^>]*>/g, "");
+const decodeEntities = (s = "") => s
+  .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+  .replace(/&quot;/g, '"').replace(/&#0?39;/g, "'").replace(/&#x27;/gi, "'");
+
+// Pull an existing "## Frequently asked questions" section out of the rendered
+// post HTML and turn it into FAQPage Q&A. The answer text is taken verbatim from
+// the rendered HTML so the schema stays byte-identical to the visible DOM
+// (schema parity — see datus-faq-spec.md §二.2). Returns [] when absent.
+function extractFaq(html) {
+  // markdown-it-anchor wraps each heading's text in a header link, so match on
+  // the visible text inside the <h2>.
+  const h2 = html.match(/<h2\b[^>]*>(?:(?!<\/h2>)[\s\S])*?frequently asked questions(?:(?!<\/h2>)[\s\S])*?<\/h2>/i);
+  if (!h2) return [];
+  const rest = html.slice(h2.index + h2[0].length);
+  const nextH2 = rest.search(/<h2\b/i);
+  const block = nextH2 === -1 ? rest : rest.slice(0, nextH2);
+  const items = [];
+  const re = /<h3\b[^>]*>([\s\S]*?)<\/h3>([\s\S]*?)(?=<h3\b|$)/gi;
+  let m;
+  while ((m = re.exec(block)) !== null) {
+    const q = decodeEntities(stripTags(m[1])).replace(/\s+/g, " ").trim();
+    const a = m[2].trim();
+    if (q && a) items.push({ q, a });
+  }
+  return items;
+}
+
+function faqPageJsonLd(items, canonical) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${canonical}#faq`,
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.q,
+      // Answer HTML is rendered markdown; escaped by ldJson() when serialized.
+      acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+  };
+}
+
 /* ------------------------------- pages ------------------------------- */
 function postPage(post) {
   const canonical = `${SITE}/blog/${post.slug}/`;
@@ -275,9 +317,16 @@ function postPage(post) {
     publisher: { "@type": "Organization", name: "Datus", logo: { "@type": "ImageObject", url: `${SITE}/logo_dark.svg` } },
     mainEntityOfPage: canonical,
   };
+  // Posts that already ship a "## Frequently asked questions" section get a
+  // parity FAQPage emitted from that rendered HTML. Spec wants >= 2 questions.
+  const faqItems = extractFaq(post.html);
+  const faqLd = faqItems.length >= 2
+    ? `\n<script type="application/ld+json">${ldJson(faqPageJsonLd(faqItems, canonical))}</script>`
+    : "";
   const head =
     (post.keywords ? `<meta name="keywords" content="${esc(post.keywords)}" />\n` : "") +
-    `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
+    `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` +
+    faqLd;
   const meta = [post.author, fmtDate(post.date)].filter(Boolean).join(" · ");
   const crumbs = breadcrumbHtml([
     { label: "Home", href: "/" },

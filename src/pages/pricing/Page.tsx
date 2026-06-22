@@ -1,8 +1,10 @@
 import { ArrowRight, Check } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
+import FAQ from "../../components/FAQ";
 import { EnterpriseInquiryDialog } from "../../components/EnterpriseInquiryDialog";
 import { GITHUB_URL, STUDIO_URL } from "../../config/nav";
+import { pricingFaq } from "./faq";
 
 interface Tier {
   name: string;
@@ -125,6 +127,12 @@ export default function PricingPage() {
           </p>
         </div>
       </section>
+
+      <FAQ
+        items={pricingFaq}
+        currentUrl="/pricing/"
+        lead="Free tiers, Enterprise quotes, the open-source license, and LLM billing."
+      />
     </SiteLayout>
   );
 }

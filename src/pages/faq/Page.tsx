@@ -1,6 +1,7 @@
 import { ArrowRight, HelpCircle } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
+import FAQ from "../../components/FAQ";
 import { SLACK_URL } from "../../config/nav";
 import { faqProducts, faqs } from "./content";
 
@@ -50,30 +51,12 @@ export default function FaqPage() {
       </section>
 
       {/* Common questions */}
-      <section className="section">
-        <div className="container" style={{ maxWidth: 820 }}>
-          <div className="section-head">
-            <span className="eyebrow">Common questions</span>
-            <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>Datus, answered.</h2>
-          </div>
-          <div style={{ display: "grid", gap: 0 }}>
-            {faqs.map((item, i) => (
-              <div
-                key={item.q}
-                style={{
-                  paddingBlock: 24,
-                  borderTop: i === 0 ? "none" : "1px solid var(--line)",
-                }}
-              >
-                <h3 style={{ fontSize: 18, fontWeight: 650, margin: 0, letterSpacing: "-0.01em" }}>{item.q}</h3>
-                <p style={{ marginTop: 10, marginBottom: 0, color: "var(--ink-dim)", fontSize: 15.5, lineHeight: 1.65 }}>
-                  {item.a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FAQ
+        items={faqs}
+        currentUrl="/faq/"
+        eyebrow="Common questions"
+        heading="Datus, answered."
+      />
 
       {/* Closing CTA */}
       <section className="section" style={{ paddingTop: 0 }}>

@@ -1,7 +1,9 @@
 import { ArrowRight, BarChart3, Boxes, BrainCircuit, CalendarClock, Database, Github } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
+import FAQ from "../../components/FAQ";
 import { GITHUB_URL } from "../../config/nav";
+import { integrationsFaq } from "./faq";
 
 interface Category {
   id: string;
@@ -124,6 +126,12 @@ export default function IntegrationsPage() {
           </div>
         </section>
       ))}
+
+      <FAQ
+        items={integrationsFaq}
+        currentUrl="/integrations/"
+        lead="Supported databases, semantic models, MCP, custom adapters, and BI tools."
+      />
     </SiteLayout>
   );
 }

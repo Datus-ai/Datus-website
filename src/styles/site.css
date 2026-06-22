@@ -394,6 +394,65 @@ body {
 .card__title { font-size: 17px; font-weight: 650; margin: 0 0 8px; }
 .card__body { color: var(--ink-muted); font-size: 14.5px; line-height: 1.6; margin: 0; }
 
+/* ------------------------------- faq ------------------------------- */
+/* Shared accordion (see src/components/FAQ.tsx). Native <details>/<summary>:
+   answers live in the DOM even when collapsed, so they stay indexable. */
+.faq__list {
+  border-top: 1px solid var(--line);
+}
+.faq__item {
+  border-bottom: 1px solid var(--line);
+}
+.faq__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 4px;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.15s ease;
+}
+.faq__summary::-webkit-details-marker { display: none; }
+.faq__summary:hover .faq__q { color: var(--ink); }
+.faq__q {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--ink-dim);
+  margin: 0;
+  transition: color 0.15s ease;
+}
+.faq__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+.faq__icon::before,
+.faq__icon::after {
+  content: "";
+  position: absolute;
+  background: var(--brand-bright);
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.faq__icon::before { top: 7px; left: 0; width: 16px; height: 2px; }
+.faq__icon::after { top: 0; left: 7px; width: 2px; height: 16px; }
+.faq__item[open] .faq__icon::after { transform: scaleY(0); opacity: 0; }
+.faq__item[open] .faq__q { color: var(--ink); }
+.faq__a {
+  padding: 0 4px 24px;
+  max-width: 70ch;
+}
+.faq__a p {
+  color: var(--ink-muted);
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 0;
+}
+.faq__a a { color: var(--brand-bright); }
+
 /* ----------------------------- terminal ----------------------------- */
 .term {
   background: linear-gradient(180deg, #0c1330 0%, #080d22 100%);
