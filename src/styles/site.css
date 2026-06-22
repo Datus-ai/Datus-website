@@ -94,7 +94,7 @@ body {
 }
 
 /* breadcrumb — shared by React marketing pages and the static blog generator */
-.breadcrumb { padding-top: 18px; }
+.breadcrumb { padding-top: 18px; margin-bottom: 18px; }
 .breadcrumb__list {
   display: flex;
   flex-wrap: wrap;
