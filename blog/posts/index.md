@@ -63,6 +63,8 @@ Core data engineering terms — defined, with how they connect to agents and con
 - [What Is a Data Catalog? Definition, Tools & How It Differs From Agent Context](/blog/what-is-data-catalog/) — Jun 7, 2026
 - [What Is Data Mesh? Definition, Principles & How Domain Agents Map to It](/blog/what-is-data-mesh/) — Jun 8, 2026
 - [What Is a Data Agent? How It Differs From a Data Engineering Agent](/blog/what-is-data-agent/) — Jun 8, 2026
+- [What Is a Data Warehouse? Definition, Architecture & How It Differs From a Data Lake](/blog/what-is-data-warehouse/) — Jun 24, 2026
+- [What Is a Data Lake? Definition, Architecture & Data Lake vs Data Warehouse](/blog/what-is-data-lake/) — Jun 24, 2026
 
 ## Why agents, not copilots
 
