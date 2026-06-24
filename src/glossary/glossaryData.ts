@@ -27,12 +27,14 @@ export const glossary: GlossaryCategory[] = [
         slug: "data-warehouse",
         definition:
           "A central, query-optimized store for structured analytical data. Schema is defined up front and data is loaded in cleaned form for BI and reporting.",
+        article: "/blog/what-is-data-warehouse/",
       },
       {
         term: "Data Lake",
         slug: "data-lake",
         definition:
           "Object storage that holds raw files — JSON, CSV, Parquet, logs — in their original form. Cheap and flexible, but requires discipline to stay queryable.",
+        article: "/blog/what-is-data-lake/",
       },
       {
         term: "Lakehouse",
@@ -46,6 +48,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "data-mesh",
         definition:
           "An organizational pattern where domain teams own their data as products, instead of a central team owning one monolithic warehouse.",
+        article: "/blog/what-is-data-mesh/",
       },
       {
         term: "Data Fabric",
