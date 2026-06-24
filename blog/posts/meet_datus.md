@@ -46,7 +46,7 @@ The name Datus comes from the Latin word datum, meaning “something that has be
 
 ### Architecture
 
-![Architecture](../assets/architecture.png)
+![Architecture](/images/meet_datus/architecture.png)
 
 Datus turns context into a first-class, programmable asset for data teams. It has three layers:
 
@@ -74,7 +74,7 @@ Plugs into your existing stack: LLMs, data warehouses, catalog/lineage, semantic
 
 Engineers publish a subagent via CLI → analysts use it in Chat and submit feedback → feedback updates the Context Engine and regression sets → once stable, the subagent is exposed via API and orchestrated with schedulers → external systems keep supplying facts/semantics, and the loop repeats.
 
-![User Journey](../assets/user_journey.png)
+![User Journey](/images/meet_datus/user_journey.png)
 
 For example, data engineers start by seeding a small domain. They chat against the context, correct mistakes, capture “bad cases,” and publish a subagent for analysts to self-serve. Feedback flows back into the context; weekly regression keeps accuracy honest. As the subagent stabilizes, teams expose it as an API for other agents and services. (This mirrors how early users moved from “please fetch this” support to minutes-level self-service.)
 
@@ -82,7 +82,7 @@ For example, data engineers start by seeding a small domain. They chat against t
 
 ### The Context Engine
 
-![Context Engine](../assets/context_engine.png)
+![Context Engine](/images/meet_datus/context_engine.png)
 
 Datus organizes context along two axes:
 
@@ -94,7 +94,7 @@ With the Datus CLI, you browse/edit via @catalog and @subject, batch-bootstrap a
 
 - Subagents: domain-aware agents (or chatbots) that run with scoped context, minimizing hallucination and improving accuracy via feedback and continuous evaluation.
 
-![Subagent System](../assets/subagent.png)
+![Subagent System](/images/meet_datus/subagent.png)
 
 A subagent is a deployable unit: a curated scoped context + a vetted tool set + rules/policies for a specific business scenario. Think “Retention Analytics subagent” or “Store Operations subagent.” Typical contents might be ~10 key tables, ~20 metrics, ~30 reference SQLs and a few rules—most auto-extracted from history and success cases, then refined by engineers. Datus treats the feedback loop as part of the runtime: chat interactions create evaluations; evaluations refine context; refined context raises accuracy. Over time, subagents can be delivered as a chatbot to analysts and as stable APIs to other agents/microservices.
 
@@ -108,7 +108,7 @@ Open development also reflects how agents truly improve: by iterating context an
 
 Traditional data engineering pipelines end at delivery—tables built, dashboards published, next request starts. But questions evolve faster than pipelines, and context stays scattered across notebooks, dashboards, ad-hoc SQL, and tribal knowledge.
 
-![Contextual Data Engineering](../assets/contextual_data_engineering.png)
+![Contextual Data Engineering](/images/meet_datus/contextual_data_engineering.png)
 
 Contextual Data Engineering flips this model: the pipeline itself becomes a living map of your data system—continuously learning from historical SQL, feedback, and human corrections. Instead of just delivering data, you deliver an iterable context made of metadata, metrics, SQL history, and domain knowledge.
 
