@@ -5,7 +5,7 @@
 //
 // Output is written into dist/ (run after `vite build`).
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, cpSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
@@ -15,6 +15,10 @@ import anchor from "markdown-it-anchor";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
 const POSTS_DIR = join(ROOT, "blog", "posts");
+// The blog's static assets (images, favicon, logo) — the old VitePress public
+// dir, referenced from posts at the site root (e.g. /images/...). vite's
+// publicDir is src/public, so nothing else copies these into dist/.
+const PUBLIC_DIR = join(ROOT, "blog", "public");
 const DIST = join(ROOT, "dist");
 const SITE = "https://datus.ai";
 const GA_ID = "G-EPVCH78EZP";
@@ -571,6 +575,15 @@ function main() {
     process.exit(1);
   }
   const posts = readPosts();
+
+  // Copy blog static assets (blog/public/* -> dist/*) so post images resolve at
+  // the site root. Without this, every /images/... reference 404s in production.
+  // Runs after `vite build` (which populates dist/ from src/public), so the only
+  // overlap is logo_dark.svg (byte-identical); favicon.svg + images are additive.
+  if (existsSync(PUBLIC_DIR)) {
+    cpSync(PUBLIC_DIR, DIST, { recursive: true });
+  }
+
   write(join(DIST, "blog", "blog.css"), blogCss());
 
   for (const post of posts.values()) {

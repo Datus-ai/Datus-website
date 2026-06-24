@@ -53,7 +53,8 @@ const cleanUrls = () => {
 const MIME: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
   '.xml': 'application/xml', '.svg': 'image/svg+xml', '.png': 'image/png',
-  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.json': 'application/json', '.txt': 'text/plain',
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.webp': 'image/webp',
+  '.json': 'application/json', '.txt': 'text/plain',
 };
 const serveBuiltBlog = () => {
   const DIST = path.resolve(__dirname, 'dist');
@@ -91,8 +92,31 @@ const serveBuiltBlog = () => {
   };
 };
 
+// Blog post images (and favicon/logo) live in blog/public/ and are referenced
+// at the site root (e.g. /images/...). In production scripts/build-blog.mjs
+// copies them into dist/, but vite's publicDir is src/public, so `vite dev`
+// has no route for them — requests fall through to the SPA fallback and render
+// as broken images. Serve any request that maps to a real file under
+// blog/public/ straight from source (no rebuild needed when an image changes).
+const serveBlogPublic = () => {
+  const PUBLIC = path.resolve(__dirname, 'blog/public');
+  const handler = (server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) => {
+    server.middlewares.use((req, res, next) => {
+      const pathname = (req.url || '').split('?')[0].split('#')[0];
+      if (!pathname || pathname.endsWith('/')) return next();
+      const file = path.resolve(PUBLIC, decodeURIComponent(pathname).replace(/^\/+/, ''));
+      // Confine to blog/public so `..` segments can't escape the dir.
+      if (file !== PUBLIC && !file.startsWith(PUBLIC + path.sep)) return next();
+      if (!existsSync(file) || !statSync(file).isFile()) return next();
+      res.setHeader('Content-Type', MIME[path.extname(file)] || 'application/octet-stream');
+      res.end(readFileSync(file));
+    });
+  };
+  return { name: 'serve-blog-public', configureServer: handler, configurePreviewServer: handler };
+};
+
 export default defineConfig(() => ({
-  plugins: [react(), cleanUrls(), serveBuiltBlog()],
+  plugins: [react(), cleanUrls(), serveBuiltBlog(), serveBlogPublic()],
   base: '/',
   publicDir: 'src/public', 
   resolve: {
