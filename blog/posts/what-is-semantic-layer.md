@@ -104,7 +104,7 @@ semantic_model:
       expr: dim_geo.region_name
 ```
 
-Strength: metrics live in the same repo as transformations; weakness: still primarily **engineer-maintained** and **batch-updated** through PRs — a new ad-hoc query that surfaces a missing dimension or edge case has no path back into this YAML until an engineer opens a PR. This gap is the central tension between static semantic layers and agent-driven data work.
+Strength: metrics live in the same repo as transformations; weakness: still primarily **engineer-maintained** and **batch-updated** through PRs — a new ad-hoc query that surfaces a missing dimension or edge case has no path back into this YAML until an engineer opens a PR. This gap is the central tension between static semantic layers and agent-driven data work. For how MetricFlow compares to the portable OSI standard, see [OSI vs MetricFlow](/blog/osi-vs-metricflow/).
 
 ### Cube
 
