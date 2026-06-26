@@ -76,6 +76,11 @@ const CATEGORIES = [
     slugs: ["datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
 ];
 
+// slug -> category label, for the hero eyebrow badge. First category wins.
+const SLUG_CATEGORY = new Map();
+for (const c of CATEGORIES) for (const s of c.slugs) if (!SLUG_CATEGORY.has(s)) SLUG_CATEGORY.set(s, c.label);
+const categoryFor = (slug) => SLUG_CATEGORY.get(slug) || "";
+
 /* ------------------------------- helpers ------------------------------- */
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
   .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -114,6 +119,8 @@ function readPosts() {
       date: data.date || "",
       lastmod: data.lastmod || data.date || "",
       breadcrumbLabel: data.breadcrumbLabel || "",
+      heroImage: data.heroImage || data.cover || "",
+      heroImageAlt: data.heroImageAlt || "",
       keywords: extractKeywords(data),
       html: renderBody(content),
     });
@@ -139,6 +146,10 @@ const SVG = {
   github: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>',
   star: '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
   burger: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>',
+  x: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+  linkedin: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S.02 4.881.02 3.5C.02 2.12 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.982 0H8.014v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0V24H24V13.869c0-7.88-8.922-7.593-11.018-3.714V8z"/></svg>',
+  link: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+  check: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
 };
 
 function navHtml() {
@@ -309,6 +320,127 @@ function faqPageJsonLd(items, canonical) {
   };
 }
 
+/* ----------------------- table of contents ----------------------- */
+// markdown-it-anchor gives every heading an `id`; renderBody demotes body H1->H2
+// so top-level sections are all <h2 id="..."><a class="header-anchor">Text</a>.
+// Pull those into a flat list for the sticky left-rail TOC (lovable-style).
+function extractHeadings(html) {
+  const re = /<h2\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/gi;
+  const items = [];
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const id = m[1];
+    const text = decodeEntities(stripTags(m[2])).replace(/\s+/g, " ").trim();
+    if (id && text) items.push({ id, text });
+  }
+  return items;
+}
+
+// Sticky left sidebar: section links + share row. `canonical` feeds the share
+// intents. Only rendered when a post has enough sections (see articleBody).
+function tocAside(headings, canonical) {
+  const links = headings.map((h) =>
+    `<a class="post-toc__link" href="#${h.id}">${esc(h.text)}</a>`).join("");
+  return `<aside class="post-toc"><div class="post-toc__inner">
+    <nav class="post-toc__nav" aria-label="Table of contents">${links}</nav>
+    ${shareBlock(canonical)}
+  </div></aside>`;
+}
+
+function shareBlock(canonical) {
+  const url = encodeURIComponent(canonical);
+  const x = `https://twitter.com/intent/tweet?url=${url}`;
+  const ln = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+  return `<div class="post-share"><span class="post-share__label">Share</span>
+    <div class="post-share__row">
+      <button class="post-share__btn" type="button" data-copy aria-label="Copy link"><span class="post-share__ico">${SVG.link}</span><span class="post-share__ico post-share__ico--done">${SVG.check}</span></button>
+      <a class="post-share__btn" href="${x}" target="_blank" rel="noopener noreferrer" aria-label="Share on X"><span class="post-share__ico">${SVG.x}</span></a>
+      <a class="post-share__btn" href="${ln}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><span class="post-share__ico">${SVG.linkedin}</span></a>
+    </div></div>`;
+}
+
+// TOC behaviour: scroll-spy that highlights the section the reader is in, plus
+// the copy-link button. Anchor navigation itself is native (CSS scroll-behavior
+// + scroll-margin-top handle the smooth scroll and sticky-nav offset). rAF-
+// throttled getBoundingClientRect — robust regardless of offsetParent nesting.
+function tocScript() {
+  return `<script>(function(){
+var links=[].slice.call(document.querySelectorAll('.post-toc__link'));
+// Use the raw fragment as the id: markdown-it-anchor percent-encodes ?/: into the
+// id itself (e.g. id="...%3F"), so the href fragment already equals the id — do
+// NOT decode, or getElementById misses headings whose title has ?/: etc.
+var heads=links.map(function(l){var id=l.getAttribute('href').slice(1);return{l:l,el:document.getElementById(id)};}).filter(function(x){return x.el;});
+var navEl=document.querySelector('.site-nav');
+// Spy line sits a little below the scroll-margin landing point (nav + 24) so a
+// section just navigated to is reliably counted as current (avoids off-by-1px).
+var OFF=(navEl?navEl.offsetHeight:64)+40;
+if(heads.length){var active=null,ticking=false;
+function update(){ticking=false;var cur=heads[0];for(var i=0;i<heads.length;i++){if(heads[i].el.getBoundingClientRect().top<=OFF)cur=heads[i];else break;}if(active===cur.l)return;if(active)active.classList.remove('is-active');active=cur.l;active.classList.add('is-active');}
+function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
+window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);update();}
+var cp=document.querySelector('.post-share__btn[data-copy]');
+if(cp)cp.addEventListener('click',function(){try{navigator.clipboard.writeText(location.href);cp.classList.add('is-copied');setTimeout(function(){cp.classList.remove('is-copied');},1400);}catch(e){}});
+})();</script>`;
+}
+
+// Rough read-time from the rendered body (~200 wpm), e.g. "8 min read".
+function readTime(html) {
+  const words = stripTags(html).trim().split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1, Math.round(words / 200))} min read`;
+}
+
+// Promote a leading "## TL;DR" section into a highlighted callout card (lovable-
+// style). markdown-it-anchor slugs "TL;DR" to id="tl%3Bdr"; wrap from that <h2>
+// up to the next <h2>. No-op when the post has no TL;DR section.
+function wrapTldr(html) {
+  return html.replace(/<h2\s+id="tl%3Bdr"[\s\S]*?(?=<h2\b|$)/i,
+    (m) => `<div class="prose-callout">${m}</div>`);
+}
+
+// If the body opens with a lone image (markdown "![alt](src)" right after the
+// title), lift it out as the hero cover and drop it from the prose so it isn't
+// rendered twice. Returns the (possibly trimmed) html plus the image src/alt.
+function extractLeadImage(html) {
+  const m = html.match(/^\s*<p>\s*<img\b[^>]*?\bsrc="([^"]+)"[^>]*>\s*<\/p>\s*/i);
+  if (!m) return { image: "", alt: "", html };
+  const altM = m[0].match(/\balt="([^"]*)"/i);
+  return { image: m[1], alt: altM ? altM[1] : "", html: html.slice(m[0].length) };
+}
+
+// Full-width hero at the top of an article: eyebrow + byline, title, lead, and
+// an optional cover image. With an image it's a two-column layout (text +
+// media); without, title-only. Mirrors the reference.
+function heroHtml({ eyebrow, byline, title, lead, image, imageAlt }) {
+  const meta = (eyebrow || byline)
+    ? `<div class="post-hero__meta">${eyebrow ? `<span class="eyebrow">${esc(eyebrow)}</span>` : ""}${byline ? `<span class="post-hero__byline">${esc(byline)}</span>` : ""}</div>`
+    : "";
+  const text = `<div class="post-hero__text">${meta}<h1 class="post-title">${esc(title)}</h1>${lead ? `<p class="post-hero__lead">${esc(lead)}</p>` : ""}</div>`;
+  if (image) {
+    return `<header class="post-hero post-hero--media">${text}<div class="post-hero__media"><img class="post-hero__img" src="${esc(image)}" alt="${esc(imageAlt || title)}" /></div></header>`;
+  }
+  return `<header class="post-hero">${text}</header>`;
+}
+
+// Shared article shell for both blog posts and the reference hub pages: a full-
+// width breadcrumb and hero, then a two-column grid (sticky TOC + content). The
+// TOC is dropped for short posts (< 3 sections) and the layout collapses to one
+// column. `inner` is the prose/cta markup for the right column.
+function articleBody({ crumbs, hero = "", inner, html, canonical }) {
+  const headings = extractHeadings(html);
+  const hasToc = headings.length >= 3;
+  const cls = hasToc ? "post-layout" : "post-layout post-layout--solo";
+  const body = `<article class="section" style="padding-top:32px">
+    <div class="container post-container">
+      ${crumbs}
+      ${hero}
+      <div class="${cls}">
+        ${hasToc ? tocAside(headings, canonical) : ""}
+        <div class="post-main">${inner}</div>
+      </div>
+    </div></article>`;
+  return hasToc ? body + tocScript() : body;
+}
+
 /* ------------------------------- pages ------------------------------- */
 function postPage(post) {
   const canonical = `${SITE}/blog/${post.slug}/`;
@@ -331,23 +463,27 @@ function postPage(post) {
     (post.keywords ? `<meta name="keywords" content="${esc(post.keywords)}" />\n` : "") +
     `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` +
     faqLd;
-  const meta = [post.author, fmtDate(post.date)].filter(Boolean).join(" · ");
+  const byline = [fmtDate(post.date), readTime(post.html), post.author ? `By ${post.author}` : ""]
+    .filter(Boolean).join("  ·  ");
   const crumbs = breadcrumbHtml([
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog/" },
     { label: post.breadcrumbLabel || post.title },
   ], canonical);
-  const body = `<article class="section" style="padding-top:32px">
-  <div class="container" style="max-width:760px">
-    ${crumbs}
-    <h1 class="post-title">${esc(post.title)}</h1>
-    ${meta ? `<p class="post-meta">${esc(meta)}</p>` : ""}
-    <div class="prose">${post.html}</div>
+  // Frontmatter heroImage wins; otherwise promote a leading body image to the hero.
+  const cover = post.heroImage
+    ? { image: post.heroImage, alt: post.heroImageAlt, html: post.html }
+    : extractLeadImage(post.html);
+  const hero = heroHtml({
+    eyebrow: categoryFor(post.slug), byline, title: post.title, lead: post.description,
+    image: cover.image, imageAlt: cover.alt,
+  });
+  const inner = `<div class="prose">${wrapTldr(cover.html)}</div>
     <div class="post-cta">
       <a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Try Studio free</a>
       <a class="btn btn-ghost btn-lg" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ Star on GitHub</a>
-    </div>
-  </div></article>`;
+    </div>`;
+  const body = articleBody({ crumbs, hero, inner, html: cover.html, canonical });
   return shell({
     title: `${post.title} | Datus Blog`, description: post.description, canonical, head, body,
     type: "article",
@@ -429,7 +565,7 @@ function blogCss() {
 .post-row__desc{font-size:14px;color:var(--ink-muted);margin:5px 0 0;line-height:1.55;max-width:66ch}
 .post-row__date{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-faint);white-space:nowrap;flex-shrink:0}
 /* article */
-.post-title{font-size:clamp(28px,3.6vw,42px);line-height:1.12;letter-spacing:-0.02em;font-weight:750;margin:14px 0 0}
+.post-title{font-size:clamp(30px,4.2vw,48px);line-height:1.08;letter-spacing:-0.025em;font-weight:750;margin:14px 0 0}
 .post-meta{font-family:var(--font-mono);font-size:13px;color:var(--ink-faint);margin:14px 0 0}
 .post-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:48px;padding-top:32px;border-top:1px solid var(--line)}
 .prose{margin-top:32px;color:var(--ink-dim);font-size:16.5px;line-height:1.75}
@@ -451,6 +587,60 @@ function blogCss() {
 .prose th,.prose td{border:1px solid var(--line-strong);padding:10px 12px;text-align:left}
 .prose th{background:var(--panel);color:var(--ink);font-weight:650}
 .prose hr{border:none;border-top:1px solid var(--line);margin:36px 0}
+.prose h2,.prose h3,.prose h4{scroll-margin-top:calc(var(--nav-h) + 24px)}
+/* Smooth anchor navigation for TOC links (native; site.css resets to auto under
+   prefers-reduced-motion). scroll-margin-top above offsets the sticky nav. */
+html{scroll-behavior:smooth}
+/* article layout — sticky left-rail TOC (lovable-style), current color system */
+/* site.css sets .site-root{overflow-x:hidden}, which makes it a scroll container
+   and breaks position:sticky for the nav + TOC. overflow-x:clip clips the same
+   decorative horizontal overflow without establishing a scroll container, so
+   sticky works. Scoped to blog.css (blog pages only; React bundles site.css). */
+.site-root{overflow-x:clip}
+.post-container{max-width:1080px}
+/* No align-items:start — the TOC cell must stretch to the full row height so the
+   sticky inner has travel room for the whole article (else it scrolls away). */
+.post-layout{display:grid;grid-template-columns:236px minmax(0,1fr);gap:56px}
+.post-layout--solo{display:block;max-width:760px;margin-inline:auto}
+.post-main{min-width:0}
+/* hero — full-width title region above the TOC/content grid */
+.post-hero{margin:10px 0 44px}
+.post-hero--media{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
+.post-hero__text{max-width:780px;min-width:0}
+.post-hero__meta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px}
+.post-hero__byline{font-family:var(--font-mono);font-size:13px;color:var(--ink-faint)}
+.post-hero .post-title{margin:0}
+.post-hero__lead{color:var(--ink-dim);font-size:clamp(16px,1.5vw,19px);line-height:1.62;margin:20px 0 0;max-width:62ch}
+.post-hero__media{min-width:0}
+.post-hero__img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid var(--line-strong);box-shadow:var(--shadow)}
+/* TL;DR callout card (lovable-style) */
+.prose-callout{background:var(--panel-2);border:1px solid var(--line-strong);border-radius:16px;padding:26px 30px;margin:0 0 36px}
+.prose-callout>h2:first-child{margin-top:0;scroll-margin-top:calc(var(--nav-h) + 40px)}
+.prose-callout>*:last-child{margin-bottom:0}
+.prose-callout ul li::marker,.prose-callout ol li::marker{color:var(--brand-bright)}
+.post-toc__inner{position:sticky;top:calc(var(--nav-h) + 28px);max-height:calc(100vh - var(--nav-h) - 56px);overflow-y:auto;display:flex;flex-direction:column;gap:22px;padding-top:6px}
+.post-toc__nav{display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.post-toc__link{font-size:14.5px;line-height:1.45;color:var(--ink-muted);padding:8px 0 8px 16px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s ease,border-color .15s ease}
+.post-toc__link:hover{color:var(--ink)}
+.post-toc__link.is-active{color:var(--ink);border-left-color:var(--brand-bright);font-weight:600}
+.post-share{display:flex;flex-direction:column;gap:10px}
+.post-share__label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+.post-share__row{display:flex;gap:8px}
+.post-share__btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink-muted);cursor:pointer;transition:color .15s ease,border-color .15s ease,background .15s ease}
+.post-share__btn:hover{color:var(--ink);border-color:var(--brand-bright);background:var(--brand-soft)}
+.post-share__ico{display:inline-flex}
+.post-share__ico--done{display:none;color:var(--term-green)}
+.post-share__btn.is-copied .post-share__ico{display:none}
+.post-share__btn.is-copied .post-share__ico--done{display:inline-flex}
+@media (max-width:1024px){
+  .post-layout{grid-template-columns:1fr;gap:0}
+  .post-toc{display:none}
+  .post-main{max-width:760px;margin-inline:auto}
+}
+@media (max-width:900px){
+  .post-hero--media{grid-template-columns:1fr;gap:24px}
+  .post-hero--media .post-hero__media{order:-1}
+}
 @media (max-width:640px){.post-row{flex-direction:column;gap:6px}.post-row__date{order:-1}}
 `;
   return base + "\n" + prose;
@@ -477,6 +667,7 @@ function buildReferencePages() {
       slug: "", title: data.title || "Data Engineering Agent",
       description: data.description || "", author: data.author || "",
       date: data.date || "", lastmod: data.lastmod || data.date || "",
+      heroImage: data.heroImage || data.cover || "", heroImageAlt: data.heroImageAlt || "",
       keywords: extractKeywords(data), html: renderBody(content),
     };
     // Hub label is the directory in Title Case (not the long SEO <title>),
@@ -491,13 +682,19 @@ function buildReferencePages() {
       : [{ label: "Home", href: "/" }, { label: "Blog", href: "/blog/" },
          { label: hubLabel, href: hubHref }, { label: data.breadcrumbLabel || post.title }],
       canonical);
-    const body = `<article class="section" style="padding-top:32px"><div class="container" style="max-width:760px">
-      ${crumbs}
-      <h1 class="post-title">${esc(post.title)}</h1>
-      <div class="prose">${post.html}</div>
+    const byline = [fmtDate(post.date), readTime(post.html), post.author ? `By ${post.author}` : ""]
+      .filter(Boolean).join("  ·  ");
+    const cover = post.heroImage
+      ? { image: post.heroImage, alt: post.heroImageAlt, html: post.html }
+      : extractLeadImage(post.html);
+    const hero = heroHtml({
+      eyebrow: isIndex ? "" : hubLabel, byline, title: post.title, lead: post.description,
+      image: cover.image, imageAlt: cover.alt,
+    });
+    const inner = `<div class="prose">${wrapTldr(cover.html)}</div>
       <div class="post-cta"><a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Try Studio free</a>
-      <a class="btn btn-ghost btn-lg" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ Star on GitHub</a></div>
-    </div></article>`;
+      <a class="btn btn-ghost btn-lg" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ Star on GitHub</a></div>`;
+    const body = articleBody({ crumbs, hero, inner, html: cover.html, canonical });
     const html = shell({
       title: `${post.title} | Datus`, description: post.description, canonical, body,
       type: "article",
