@@ -1,6 +1,6 @@
 ---
 title: "OSI vs MetricFlow: Semantic Standard vs Execution Engine"
-description: "OSI vs MetricFlow compared: Open Semantic Interchange is the portable semantic standard; MetricFlow is dbt's execution engine. How they differ and when to use each."
+description: "OSI vs MetricFlow: Open Semantic Interchange is the portable semantic standard; MetricFlow is dbt's execution engine—how they differ and when to use each."
 author: "Harrison Zhao"
 date: 2026-06-25
 lastmod: 2026-06-25
@@ -13,7 +13,7 @@ head:
       content: "OSI vs MetricFlow: Semantic Standard vs Execution Engine"
   - - meta
     - property: og:description
-      content: "OSI vs MetricFlow compared: Open Semantic Interchange is the portable semantic standard; MetricFlow is dbt's execution engine. How they differ and when to use each."
+      content: "OSI vs MetricFlow: Open Semantic Interchange is the portable semantic standard; MetricFlow is dbt's execution engine—how they differ and when to use each."
   - - meta
     - property: og:type
       content: article
