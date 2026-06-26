@@ -4,6 +4,8 @@ description: "OSI vs MetricFlow: Open Semantic Interchange is the portable seman
 author: "Harrison Zhao"
 date: 2026-06-25
 lastmod: 2026-06-25
+heroImage: /images/osi-vs-metricflow.svg
+heroImageAlt: "OSI vs MetricFlow — OSI is the portable specification, MetricFlow is the execution engine, shown side by side and as one pipeline."
 head:
   - - meta
     - name: keywords
