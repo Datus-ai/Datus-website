@@ -128,6 +128,18 @@ Both OSI and MetricFlow address how semantics are **represented** and **executed
 
 This is the gap [data engineering agents](/blog/what-is-data-engineering-agent-2026/) target. The durable pattern is a layered one: a portable standard (OSI) for distribution, an execution engine (MetricFlow) for runtime, and an evolvable [context](/blog/contextual-data-engineering/) layer that bootstraps definitions from historical SQL, validates them through feedback, and promotes proven ad-hoc queries into the formal model. *(Disclosure: this layered "context" approach is the problem space Datus works in — it complements OSI and MetricFlow rather than replacing either.)* Treat OSI as the interchange rails and MetricFlow as the execution engine; the open question every team still owns is how those definitions stay accurate over time.
 
+## 7. Common misconceptions
+
+A few recurring misreadings make this comparison harder than it needs to be.
+
+**"OSI is a Snowflake product."** Snowflake initiated and leads the working group, but the specification is Apache 2.0 and vendor-neutral by design, with Databricks, Google, AWS, dbt Labs, and 60+ organizations participating. Treating it as a single-vendor play misreads both the licensing and the incentive structure — a portability standard only works if competing platforms adopt it, which is precisely why the membership is so broad.
+
+**"Adopting OSI means replacing MetricFlow."** The opposite is closer to the truth. OSI standardizes the interchange format while MetricFlow remains a way to author and execute, and dbt's ability to parse OSI documents alongside native semantics means the two coexist in a single project. Moving to OSI is an export/import exercise, not an engine swap, so framing adoption as "OSI instead of MetricFlow" usually leads teams to over-scope the work.
+
+**"MetricFlow requires the paid dbt platform."** MetricFlow is open-source and runs in dbt Core through the CLI for authoring and local query execution. What the commercial dbt platform adds is the hosted Semantic Layer APIs — GraphQL, JDBC, the Python SDK — and managed BI integrations. Those matter for metrics-as-API patterns, but they are not a prerequisite for defining metrics or compiling them into SQL.
+
+**"A portable, executable metric is automatically a correct metric."** Neither tool validates that a definition matches business reality. They guarantee that the definition travels (OSI) and runs (MetricFlow) — not that `net_revenue` excludes the right test accounts or recognizes revenue on the right date. Correctness is a governance and validation problem that sits upstream of both, which is why review processes and feedback loops still matter no matter which tools you standardize on. It is also why "OSI vs MetricFlow" is rarely a single buying decision: the realistic question is not *which one*, but whether you need portability, execution, or both.
+
 ## Conclusion
 
 "OSI vs MetricFlow" dissolves into clarity the moment you pin down the acronym. In the **Open Semantic Interchange** reading — the only one that makes the comparison meaningful — OSI is the portable standard and MetricFlow is the execution engine, and the right architecture usually uses both. In the networking-model or AWS-OpenSearch-Ingestion readings, there is no contest to be had; they are different layers of the stack. The broader lesson holds regardless of interpretation: semantic definitions are infrastructure, infrastructure should be portable *and* executable, and the part no standard fully solves — keeping those definitions current — is where the next layer of tooling earns its place.
