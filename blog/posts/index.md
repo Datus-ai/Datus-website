@@ -49,6 +49,7 @@ What a semantic layer is, and how it differs from a metric layer, model, ontolog
 - [What Is a Semantic Model? Definition, Examples & How It Differs From a Semantic View](/blog/what-is-semantic-model/) — Jun 8, 2026
 - [Semantic Layer vs Ontology: What's the Difference and Why It Matters for AI Agents](/blog/semantic-layer-vs-ontology/) — Jun 9, 2026
 - [Open Semantic Interchange (OSI): What the New Standard Means for Data Engineering and AI Agents](/blog/open-semantic-interchange-osi/) — Jun 9, 2026
+- [OSI vs MetricFlow: Semantic Standard vs Execution Engine](/blog/osi-vs-metricflow/) — Jun 25, 2026
 - [dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers](/blog/dbt-semantic-layer-metricflow/) — Jun 9, 2026
 - [Cube.dev: From Semantic Layer Pioneer to Agentic Analytics Platform](/blog/cube-agentic-analytics/) — Jun 9, 2026
 - [GoodData: How a 17-Year BI Company Became an AI-Native Analytics Platform](/blog/what-is-gooddata/) — Jun 10, 2026

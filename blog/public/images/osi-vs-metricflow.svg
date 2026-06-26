@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" font-family="'Comic Sans MS','Segoe Print','Bradley Hand',cursive">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#e8590c"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#495057"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="640" fill="#ffffff"/>
+
+  <!-- title -->
+  <text x="600" y="50" text-anchor="middle" font-size="34" fill="#1e1e1e" font-weight="bold">OSI vs MetricFlow</text>
+  <text x="600" y="83" text-anchor="middle" font-size="20" fill="#495057">Specification vs Execution Engine — complementary, not substitutes</text>
+
+  <!-- OSI box -->
+  <rect x="60" y="108" width="500" height="292" rx="14" fill="#e7f5ff" stroke="#1971c2" stroke-width="3"/>
+  <text x="85" y="148" font-size="23" fill="#1971c2" font-weight="bold">OSI — Open Semantic Interchange</text>
+  <text x="85" y="180" font-size="19" fill="#1e1e1e" font-weight="bold">The SPECIFICATION  (the contract)</text>
+  <text x="85" y="224" font-size="18" fill="#1e1e1e">• Portable, vendor-neutral standard</text>
+  <text x="85" y="252" font-size="18" fill="#1e1e1e">• Apache 2.0 · launched Sep 2025 · 60+ orgs</text>
+  <text x="85" y="280" font-size="18" fill="#1e1e1e">• Defines metrics, dimensions,</text>
+  <text x="105" y="306" font-size="18" fill="#1e1e1e">datasets, relationships  (JSON / YAML)</text>
+  <text x="85" y="342" font-size="18" fill="#e03131">✗ Does NOT execute queries</text>
+
+  <!-- MetricFlow box -->
+  <rect x="640" y="108" width="500" height="292" rx="14" fill="#ebfbee" stroke="#2f9e44" stroke-width="3"/>
+  <text x="665" y="148" font-size="23" fill="#2f9e44" font-weight="bold">MetricFlow — dbt Labs</text>
+  <text x="665" y="180" font-size="19" fill="#1e1e1e" font-weight="bold">The EXECUTION ENGINE  (the runtime)</text>
+  <text x="665" y="224" font-size="18" fill="#1e1e1e">• Compiles semantics → warehouse SQL</text>
+  <text x="665" y="252" font-size="18" fill="#1e1e1e">• Semantic graph + automatic joins</text>
+  <text x="665" y="280" font-size="18" fill="#1e1e1e">• CLI / GraphQL / JDBC / Python SDK</text>
+  <text x="665" y="306" font-size="18" fill="#1e1e1e">• Snowflake, BigQuery, Databricks, …</text>
+  <text x="665" y="342" font-size="18" fill="#e03131">✗ Needs definitions to run</text>
+
+  <!-- center arrow OSI -> MetricFlow -->
+  <line x1="566" y1="254" x2="634" y2="254" stroke="#e8590c" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="600" y="240" text-anchor="middle" font-size="14" fill="#e8590c">definition →</text>
+
+  <!-- pipeline label -->
+  <text x="60" y="458" font-size="18" fill="#495057" font-weight="bold">How they fit together in one pipeline</text>
+
+  <!-- pipeline boxes -->
+  <rect x="60" y="475" width="196" height="78" rx="12" fill="#e7f5ff" stroke="#1971c2" stroke-width="2.5"/>
+  <text x="158" y="510" text-anchor="middle" font-size="16" fill="#1e1e1e">Author semantics</text>
+  <text x="158" y="533" text-anchor="middle" font-size="15" fill="#495057">(OSI / dbt YAML)</text>
+
+  <line x1="258" y1="514" x2="279" y2="514" stroke="#495057" stroke-width="2.5" marker-end="url(#ag)"/>
+
+  <rect x="281" y="475" width="196" height="78" rx="12" fill="#f1f3f5" stroke="#495057" stroke-width="2.5"/>
+  <text x="379" y="510" text-anchor="middle" font-size="16" fill="#1e1e1e">dbt parse →</text>
+  <text x="379" y="533" text-anchor="middle" font-size="15" fill="#495057">semantic_manifest</text>
+
+  <line x1="479" y1="514" x2="500" y2="514" stroke="#495057" stroke-width="2.5" marker-end="url(#ag)"/>
+
+  <rect x="502" y="475" width="196" height="78" rx="12" fill="#ebfbee" stroke="#2f9e44" stroke-width="2.5"/>
+  <text x="600" y="510" text-anchor="middle" font-size="16" fill="#1e1e1e">MetricFlow</text>
+  <text x="600" y="533" text-anchor="middle" font-size="15" fill="#495057">planner + SQL</text>
+
+  <line x1="700" y1="514" x2="721" y2="514" stroke="#495057" stroke-width="2.5" marker-end="url(#ag)"/>
+
+  <rect x="723" y="475" width="196" height="78" rx="12" fill="#f1f3f5" stroke="#495057" stroke-width="2.5"/>
+  <text x="821" y="510" text-anchor="middle" font-size="16" fill="#1e1e1e">Warehouse</text>
+  <text x="821" y="533" text-anchor="middle" font-size="15" fill="#495057">Snowflake / BQ / …</text>
+
+  <line x1="921" y1="514" x2="942" y2="514" stroke="#495057" stroke-width="2.5" marker-end="url(#ag)"/>
+
+  <rect x="944" y="475" width="196" height="78" rx="12" fill="#fff9db" stroke="#f08c00" stroke-width="2.5"/>
+  <text x="1042" y="510" text-anchor="middle" font-size="16" fill="#1e1e1e">Consumers</text>
+  <text x="1042" y="533" text-anchor="middle" font-size="15" fill="#495057">BI · API · agents</text>
+
+  <!-- tagline -->
+  <text x="600" y="608" text-anchor="middle" font-size="17" fill="#1e1e1e">OSI is the contract · MetricFlow is the runtime · use both</text>
+</svg>

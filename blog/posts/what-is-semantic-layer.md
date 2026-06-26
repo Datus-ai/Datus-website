@@ -33,7 +33,7 @@ head:
 
 # What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer
 
-A **semantic layer** is a business representation of data that maps physical tables and columns to stable business concepts — metrics, dimensions, entities, and relationships — so analysts and applications can query by *revenue* and *region* instead of `fact_orders.amount_usd` and `dim_geo.region_code`. It sits between raw storage and every consumer of data: BI tools, APIs, notebooks, and increasingly **AI agents**. This glossary entry gives a practical definition, walks through common implementations, and explains where semantic layers end — and where a [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that *operationalizes* those definitions begins.
+A **semantic layer** is a business representation of data that maps physical tables and columns to stable business concepts — metrics, dimensions, entities, and relationships — so analysts and applications can query by *revenue* and *region* instead of `fact_orders.amount_usd` and `dim_geo.region_code`. It sits between raw storage and every consumer of data: BI tools, APIs, notebooks, and increasingly **AI agents**. This [glossary](/glossary#semantic-layer) entry gives a practical definition, walks through common implementations, and explains where semantic layers end — and where a [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that *operationalizes* those definitions begins.
 
 ## TL;DR
 
@@ -104,7 +104,7 @@ semantic_model:
       expr: dim_geo.region_name
 ```
 
-Strength: metrics live in the same repo as transformations; weakness: still primarily **engineer-maintained** and **batch-updated** through PRs — a new ad-hoc query that surfaces a missing dimension or edge case has no path back into this YAML until an engineer opens a PR. This gap is the central tension between static semantic layers and agent-driven data work.
+Strength: metrics live in the same repo as transformations; weakness: still primarily **engineer-maintained** and **batch-updated** through PRs — a new ad-hoc query that surfaces a missing dimension or edge case has no path back into this YAML until an engineer opens a PR. This gap is the central tension between static semantic layers and agent-driven data work. For how MetricFlow compares to the portable OSI standard, see [OSI vs MetricFlow](/blog/osi-vs-metricflow/).
 
 ### Cube
 
@@ -116,7 +116,7 @@ LookML defines dimensions, measures, and join relationships in a Looker project.
 
 ### Warehouse-native semantic models
 
-Snowflake Semantic Views, BigQuery semantic layers, and similar platform features embed semantics closer to storage. Strength: IAM and performance co-location; weakness: **platform lock-in** — semantics do not travel when you add a second warehouse.
+Snowflake Semantic Views, BigQuery semantic layers, and similar platform features embed semantics closer to storage. Strength: IAM and performance co-location; weakness: **platform lock-in** — semantics do not travel when you add a second warehouse. This portability gap is exactly what the emerging [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) standard — a vendor-neutral interchange format backed by Snowflake, dbt Labs, Databricks, and 60+ others — is designed to close.
 
 ### Roll-your-own: views + docs + metric repo
 
@@ -232,4 +232,7 @@ Incrementally is the only way that sticks. Start with one team, one domain, and 
 
 ## Related articles
 
+- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the emerging open standard that makes the semantic layer portable across tools
+- [What is a metric layer?](/blog/what-is-metric-layer/) — the metrics-focused subset of a semantic layer
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — how agents differ from copilots and where context fits
+- [Datus glossary](/glossary#semantic-layer) — short definitions for semantic layer and 40+ related data engineering terms
