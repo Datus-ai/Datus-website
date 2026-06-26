@@ -79,12 +79,14 @@ export const glossary: GlossaryCategory[] = [
         slug: "semantic-layer",
         definition:
           "A shared definition of business entities and metrics (revenue, active user, churn) that sits between raw tables and consumers. Ensures every dashboard, notebook, and AI agent computes the same number the same way.",
+        article: "/blog/what-is-semantic-layer/",
       },
       {
         term: "Metric Layer",
         slug: "metric-layer",
         definition:
           "A narrower form of the semantic layer focused specifically on metric definitions — typically expressed in YAML or a DSL like MetricFlow or Cube.",
+        article: "/blog/what-is-metric-layer/",
       },
       {
         term: "Dimensional Modeling",

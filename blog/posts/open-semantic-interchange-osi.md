@@ -33,12 +33,12 @@ head:
 
 # Open Semantic Interchange (OSI): What the New Standard Means for Data Engineering and AI Agents
 
-Until January 2026, if your team defined `net_revenue` in MetricFlow inside a dbt project, that definition was trapped in the dbt ecosystem. Your Looker dashboard had a separate copy — same metric name, independently maintained logic. Your Python analytics stack had a third. Your AI agent, deprived of any of these, queried raw schema and guessed at the business logic. Three copies of the same metric, three maintenance surfaces, three opportunities to drift — and each new consumption tool added another. The **Open Semantic Interchange (OSI)** specification — finalized in January 2026 under Apache 2.0 with over 30 participating organizations — is the industry's answer to this fragmentation. It does not replace MetricFlow, Cube, or LookML. It provides an interchange format so a metric authored in any of them can be consumed by all of them. This article explains what OSI standardizes, who is behind it, and why portable semantics change the architecture conversation for [data engineering agents](/blog/what-is-data-engineering-agent/) — not by solving every problem, but by making the problems that remain more visible.
+Until recently, if your team defined `net_revenue` in MetricFlow inside a dbt project, that definition was trapped in the dbt ecosystem. Your Looker dashboard had a separate copy — same metric name, independently maintained logic. Your Python analytics stack had a third. Your AI agent, deprived of any of these, queried raw schema and guessed at the business logic. Three copies of the same metric, three maintenance surfaces, three opportunities to drift — and each new consumption tool added another. The **Open Semantic Interchange (OSI)** is the industry's answer to this fragmentation: launched by Snowflake and partners in September 2025 and developed in the open under Apache 2.0, it is a vendor-neutral standard for the [semantic layer](/blog/what-is-semantic-layer/) — backed by 60+ organizations and growing. It does not replace MetricFlow, Cube, or LookML. It provides an interchange format so a metric authored in any of them can be consumed by all of them. This article explains what OSI standardizes, who is behind it, and why portable semantics change the architecture conversation for [data engineering agents](/blog/what-is-data-engineering-agent/) — not by solving every problem, but by making the problems that remain more visible.
 
 ## TL;DR
 
-- **OSI** (Open Semantic Interchange) is an Apache 2.0–licensed specification that defines a standard format for semantic metadata — metrics, dimensions, datasets, relationships, and business context — so definitions authored in one tool can be consumed in another without re-authoring.
-- It is led by **Snowflake**, with **dbt Labs, Databricks, Google BigQuery, Cube, AtScale, Qlik, Atlan, Collibra, DataHub, and 20+ others** in the working group.
+- **OSI** (Open Semantic Interchange) is an emerging, Apache 2.0–licensed standard for the **semantic layer** — a vendor-neutral format for semantic metadata (metrics, dimensions, datasets, relationships, and business context) so definitions authored in one tool can be consumed in another without re-authoring.
+- It is led by **Snowflake**, with **dbt Labs, Databricks, Google, AWS, Cube, AtScale, Qlik, Atlan, Collibra, DataHub, Salesforce, and 50+ others** in the working group.
 - OSI does **not** replace existing semantic layers (Cube, MetricFlow, LookML). It provides an **interchange format** — a common language they can all speak. Think USB-C for semantics, not a new semantic layer product.
 - For data engineering, OSI means **metric definitions become portable infrastructure**, not tool-specific configuration. For AI agents, it means governed, machine-readable business context available across platforms.
 - The limit of OSI — and where agent-driven approaches add value — is that OSI standardizes the **exchange format**, not the **evolution cycle**. Semantics still need to be authored, validated, and kept current. Data engineering agents that generate, validate, and refine semantic definitions are the natural complement: OSI provides the rails; agents provide the fuel.
@@ -67,7 +67,7 @@ Critically, OSI separates **definition** from **implementation**. A metric defin
 
 ## 3. Who is behind OSI
 
-The working group is unusually broad for a standards initiative in the data space. As of early 2026:
+The working group is unusually broad for a standards initiative in the data space. As of mid-2026, 60+ organizations have joined — with Google and AWS added in November 2025 and a Financial Services Semantic Working Group launched in June 2026:
 
 | Category | Participants |
 | --- | --- |
@@ -166,3 +166,4 @@ Now, for architectural direction. Start building semantic infrastructure with th
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the business dictionary OSI makes portable
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog OSI standardizes
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — how agents operationalize semantics
+- [Datus glossary](/glossary#modeling) — short definitions for the semantic layer, metric layer, and 40+ related terms
