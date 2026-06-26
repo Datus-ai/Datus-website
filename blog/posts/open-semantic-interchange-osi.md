@@ -163,6 +163,7 @@ Now, for architectural direction. Start building semantic infrastructure with th
 
 ## Related articles
 
+- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — how the portable standard pairs with dbt's execution engine
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the business dictionary OSI makes portable
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog OSI standardizes
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — how agents operationalize semantics
