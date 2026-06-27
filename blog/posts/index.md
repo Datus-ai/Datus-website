@@ -66,6 +66,7 @@ Core data engineering terms — defined, with how they connect to agents and con
 - [What Is a Data Agent? How It Differs From a Data Engineering Agent](/blog/what-is-data-agent/) — Jun 8, 2026
 - [What Is a Data Warehouse? Definition, Architecture & How It Differs From a Data Lake](/blog/what-is-data-warehouse/) — Jun 24, 2026
 - [What Is a Data Lake? Definition, Architecture & Data Lake vs Data Warehouse](/blog/what-is-data-lake/) — Jun 24, 2026
+- [What Is a Lakehouse Catalog? Hive, Glue, Unity, Polaris & Horizon](/blog/what-is-lakehouse-catalog/) — Jun 26, 2026
 
 ## Why agents, not copilots
 

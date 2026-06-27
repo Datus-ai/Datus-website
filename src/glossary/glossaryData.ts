@@ -155,6 +155,13 @@ export const glossary: GlossaryCategory[] = [
           "An open table format focused on upserts and incremental processing — designed for use cases where records change frequently after they land.",
       },
       {
+        term: "Lakehouse Catalog",
+        slug: "lakehouse-catalog",
+        definition:
+          "The engine-facing metadata service that maps table names to their schema and file locations so query engines can run SQL over a lakehouse. Implementations include the Hive Metastore, AWS Glue, Databricks Unity Catalog, Apache Polaris, and Snowflake Horizon.",
+        article: "/blog/what-is-lakehouse-catalog/",
+      },
+      {
         term: "OLAP vs OLTP",
         slug: "olap-vs-oltp",
         definition:
