@@ -141,6 +141,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "apache-iceberg",
         definition:
           "An open table format that adds schema evolution, hidden partitioning, and snapshot isolation on top of Parquet files in object storage.",
+        article: "/blog/what-is-apache-iceberg/",
       },
       {
         term: "Delta Lake",
@@ -153,6 +154,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "apache-hudi",
         definition:
           "An open table format focused on upserts and incremental processing — designed for use cases where records change frequently after they land.",
+        article: "/blog/what-is-apache-hudi/",
       },
       {
         term: "Lakehouse Catalog",
