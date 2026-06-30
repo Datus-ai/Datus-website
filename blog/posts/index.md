@@ -67,6 +67,12 @@ Core data engineering terms — defined, with how they connect to agents and con
 - [What Is a Data Warehouse? Definition, Architecture & How It Differs From a Data Lake](/blog/what-is-data-warehouse/) — Jun 24, 2026
 - [What Is a Data Lake? Definition, Architecture & Data Lake vs Data Warehouse](/blog/what-is-data-lake/) — Jun 24, 2026
 - [What Is a Lakehouse Catalog? Hive, Glue, Unity, Polaris & Horizon](/blog/what-is-lakehouse-catalog/) — Jun 26, 2026
+- [What Is a Data Contract? Definition, Schema Enforcement & Examples](/blog/what-is-data-contract/) — Jun 29, 2026
+- [What Is MCP? Model Context Protocol for Data Engineering Explained](/blog/what-is-mcp-data-engineering/) — Jun 29, 2026
+- [What Is an Embedding? Definition, Vectors & Why AI Needs Them](/blog/what-is-embedding-ai/) — Jun 30, 2026
+- [What Is Medallion Architecture? Bronze, Silver & Gold Layers](/blog/what-is-medallion-architecture/) — Jun 30, 2026
+- [What Is Apache Iceberg? Table Format, Features & Iceberg vs Delta Lake](/blog/what-is-apache-iceberg/) — Jun 30, 2026
+- [What Is Apache Hudi? Upserts, Copy-on-Write vs Merge-on-Read & CDC](/blog/what-is-apache-hudi/) — Jun 30, 2026
 
 ## Why agents, not copilots
 
