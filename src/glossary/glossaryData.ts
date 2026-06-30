@@ -226,12 +226,14 @@ export const glossary: GlossaryCategory[] = [
         slug: "data-catalog",
         definition:
           "A searchable inventory of tables, columns, owners, and documentation across the data platform. Answers “what data do we have and where does it live?”",
+        article: "/blog/what-is-data-catalog/",
       },
       {
         term: "Data Contract",
         slug: "data-contract",
         definition:
           "A machine-checked agreement between a data producer and its consumers, specifying schema, semantics, freshness, and ownership of a dataset.",
+        article: "/blog/what-is-data-contract/",
       },
       {
         term: "Data Lineage",
@@ -268,24 +270,28 @@ export const glossary: GlossaryCategory[] = [
         slug: "text-to-sql",
         definition:
           "Generating SQL from a natural-language question grounded in a real schema. Quality depends heavily on schema linking, business context, and feedback loops.",
+        article: "/blog/what-is-text-to-sql/",
       },
       {
         term: "Schema Linking",
         slug: "schema-linking",
         definition:
           "The step where the model figures out which tables and columns a question is actually about, before any SQL is written. Often the single biggest accuracy lever.",
+        article: "/blog/what-is-schema-linking/",
       },
       {
         term: "Retrieval-Augmented Generation (RAG)",
         slug: "retrieval-augmented-generation",
         definition:
           "Pulling relevant context — table docs, prior queries, glossary entries — into the model's prompt at query time, instead of relying on what it memorized during training.",
+        article: "/blog/rag-data-engineering/",
       },
       {
         term: "Model Context Protocol (MCP)",
         slug: "model-context-protocol",
         definition:
           "An open protocol for exposing tools, data, and context to LLM clients like Claude, Cursor, and IDEs. Lets one server power many AI front ends.",
+        article: "/blog/what-is-mcp-data-engineering/",
       },
       {
         term: "Embedding",
@@ -304,6 +310,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "data-engineering-agent",
         definition:
           "An LLM-driven system that plans and executes data workflows end-to-end — schema discovery, SQL generation, validation, and iteration — instead of just autocompleting a single query.",
+        article: "/blog/what-is-data-engineering-agent/",
       },
     ],
   },

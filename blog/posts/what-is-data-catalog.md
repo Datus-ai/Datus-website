@@ -43,7 +43,7 @@ A **data catalog** inventories and describes data assets — tables, columns, ow
 - Popular platforms include <a href="https://datahubproject.io/" rel="nofollow noopener">DataHub</a>, <a href="https://atlan.com/" rel="nofollow noopener">Atlan</a>, and <a href="https://www.selectstar.com/" rel="nofollow noopener">Select Star</a> — plus native features in cloud warehouses.
 - **Data dictionary** = column-level definitions; **catalog** = searchable asset graph with governance metadata.
 - A **[semantic layer](/blog/what-is-semantic-layer/)** adds executable metric logic; catalogs rarely encode "net revenue" computation completely.
-- A catalog alone is not an AI grounding layer — agents need **executable context** (reference SQL, semantic models, feedback) layered on top of catalog metadata to generate correct queries reliably.
+- A catalog alone is not an AI grounding layer — agents need **executable context** (reference SQL, [semantic models](/blog/what-is-semantic-model/), feedback) layered on top of catalog metadata to generate correct queries reliably.
 
 ## 1. Data catalog: a working definition
 
@@ -84,7 +84,7 @@ The progression from catalog to context engine is a progression from descriptive
 Common drivers:
 
 - **Self-serve friction** — analysts cannot find trusted tables. The symptom is Slack messages to the data team that start with "where do I find..." — a catalog eliminates those messages by making table discovery self-service.
-- **Governance programs** — GDPR, SOX, internal data contracts need ownership tags. A catalog assignment of "PII: yes" on `dim_customer.email` enables automated policy enforcement at the metadata layer before any query touches the data.
+- **Governance programs** — GDPR, SOX, internal [data contracts](/blog/what-is-data-contract/) need ownership tags. A catalog assignment of "PII: yes" on `dim_customer.email` enables automated policy enforcement at the metadata layer before any query touches the data.
 - **Cloud migration** — new warehouse, lost oral history. A team migrating from Redshift to Snowflake discovers that 60% of their tables have no description and 40% have no known owner. The catalog becomes an archaeology tool before it becomes a governance tool.
 - **Cost control** — identify unused tables and duplicate pipelines. A catalog's popularity metrics reveal that `fact_orders_v1`, `fact_orders_v2`, and `fact_orders_v3` are all still queried weekly — by different teams, using different definitions, producing revenue numbers that differ by up to 5%.
 - **AI initiatives** — leadership assumes catalogs automatically fix NL2SQL (they do not, without more context). This is the fastest-growing driver in 2026 and also the most commonly misunderstood. A catalog populated with table descriptions does not upgrade to a text-to-SQL grounding layer by adding a chatbot on top. It needs executable context — reference SQL, join authority, grain definitions — that catalogs were not designed to store.

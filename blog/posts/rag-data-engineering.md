@@ -40,7 +40,7 @@ head:
 ## TL;DR
 
 - **RAG** = **retrieve** relevant documents → **inject** into prompt → **generate** SQL or explanations.
-- In data engineering, retrieval targets **schemas, semantic models, reference SQL, and runbooks** — not generic web pages.
+- In data engineering, retrieval targets **schemas, [semantic models](/blog/what-is-semantic-model/), reference SQL, and runbooks** — not generic web pages.
 - Bad retrieval causes **confident wrong SQL** — worse than admitting "I don't know."
 - RAG in a **session** is not enough; production systems need **durable indexes** that update with feedback.
 - Production data RAG uses structured context navigation and vector search over institutional SQL to inject the right schema, metrics, and reference queries into each generation — not a one-size-fits-all retrieval dump.
