@@ -86,7 +86,7 @@ Enterprise warehouses expose thousands of tables. Dumping full DDL into a prompt
 
 ### Ambiguous naming
 
-`value`, `status`, `type`, and `amount` appear on dozens of tables. Human engineers disambiguate with documentation and memory; models without aliases guess. In a typical SaaS data warehouse, `amount` appears on 40+ tables — `fact_invoices.amount`, `fact_payments.amount`, `fact_refunds.amount`, `dim_contract.amount`, and so on. A human engineer knows that "monthly revenue amount" means `fact_invoices.amount` with a date filter, not `dim_contract.amount`. A model without linking context sees five candidate `amount` columns and picks the one with the most semantic similarity to the prompt — which might be `fact_payments.amount` because "revenue" and "payments" are close in embedding space, even though payments includes one-time charges that are not revenue.
+`value`, `status`, `type`, and `amount` appear on dozens of tables. Human engineers disambiguate with documentation and memory; models without aliases guess. In a typical SaaS [data warehouse](/blog/what-is-data-warehouse/), `amount` appears on 40+ tables — `fact_invoices.amount`, `fact_payments.amount`, `fact_refunds.amount`, `dim_contract.amount`, and so on. A human engineer knows that "monthly revenue amount" means `fact_invoices.amount` with a date filter, not `dim_contract.amount`. A model without linking context sees five candidate `amount` columns and picks the one with the most semantic similarity to the prompt — which might be `fact_payments.amount` because "revenue" and "payments" are close in embedding space, even though payments includes one-time charges that are not revenue.
 
 ### Multiple valid join paths
 

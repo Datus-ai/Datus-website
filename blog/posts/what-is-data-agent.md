@@ -39,9 +39,9 @@ If you attended three data conferences in 2026, you heard at least a dozen tools
 
 - A **data agent** is any AI system that interacts with data — querying, analyzing, monitoring, or discovering — using natural language and data context.
 - The category spans a wide range: text-to-SQL chatbots, AI data analysts, pipeline agents, catalog agents, BI agents, and data engineering agents.
-- A **data engineering agent** is the **builder subclass** — it does not just answer questions from data; it builds and evolves the context (semantic models, metrics, reference SQL, validation rules) that makes all other data agents more accurate.
+- A **data engineering agent** is the **builder subclass** — it does not just answer questions from data; it builds and evolves the context ([semantic models](/blog/what-is-semantic-model/), metrics, reference SQL, validation rules) that makes all other data agents more accurate.
 - Most data agents are **consumers** of data context. Data engineering agents are **producers and maintainers** of data context. This is the fundamental architectural distinction.
-- Datus is a data engineering agent: it builds evolvable context for data systems, and exposes that context to other data agents (chatbots, BI tools, external agents) through Subagents, APIs, and MCP.
+- Datus is a data engineering agent: it builds evolvable context for data systems, and exposes that context to other data agents (chatbots, BI tools, external agents) through Subagents, APIs, and [MCP](/blog/what-is-mcp-data-engineering/).
 
 ## 1. Data agent: a working definition
 

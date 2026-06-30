@@ -68,7 +68,7 @@ Mesh is not "delete the data platform team." It shifts them from **authoring eve
 
 | Idea | Center of gravity | Typical slogan |
 | --- | --- | --- |
-| **Data warehouse / lakehouse** | Central storage and compute | "One copy of truth in the platform" |
+| **[Data warehouse](/blog/what-is-data-warehouse/) / [lakehouse](/blog/what-is-lakehouse/)** | Central storage and compute | "One copy of truth in the platform" |
 | **Data fabric** | Metadata-driven **integration layer** across silos | "Connect everything automatically" |
 | **Data mesh** | **Domain products** on shared infrastructure | "Domains own their data products" |
 
@@ -166,7 +166,7 @@ Yes, if the platform enables **per-domain context and delivery** (Subagents, ACL
 
 ### What's the relationship between data mesh and data contracts?
 
-Data contracts formalize the interface between data producers and consumers — schema structure, SLAs, semantics, and deprecation policies. They are a practical implementation mechanism for the "data as a product" principle in mesh. A data product without a contract is a table with good intentions. A data product with a contract says: here is the schema, here is the freshness SLA (updated by 9am ET daily), here are the semantics (this column means X, not Y), and here is the deprecation policy (backward-compatible for 90 days after a breaking change). Subagents consume data contracts as context — a Subagent configured with a domain's data contracts knows not just which tables to query but what guarantees those tables carry.
+[Data contracts](/blog/what-is-data-contract/) formalize the interface between data producers and consumers — schema structure, SLAs, semantics, and deprecation policies. They are a practical implementation mechanism for the "data as a product" principle in mesh. A data product without a contract is a table with good intentions. A data product with a contract says: here is the schema, here is the freshness SLA (updated by 9am ET daily), here are the semantics (this column means X, not Y), and here is the deprecation policy (backward-compatible for 90 days after a breaking change). Subagents consume data contracts as context — a Subagent configured with a domain's data contracts knows not just which tables to query but what guarantees those tables carry.
 
 ## Related articles
 
