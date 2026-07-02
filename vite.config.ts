@@ -6,6 +6,7 @@ import { existsSync, statSync, readFileSync } from 'node:fs';
 // Every MPA entry served from a directory. Used both for the rollup inputs and
 // the clean-URL redirect plugin below, so the two never drift apart.
 const MPA_ROUTES = [
+  'datafun',
   'glossary',
   'products/cli',
   'products/vscode',

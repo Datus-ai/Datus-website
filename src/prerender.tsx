@@ -1,5 +1,6 @@
 import { renderToString } from "react-dom/server";
 import App from "./App";
+import DatafunPage from "./pages/datafun/Page";
 import CliPage from "./pages/products/cli/Page";
 import VscodePage from "./pages/products/vscode/Page";
 import StudioPage from "./pages/products/studio/Page";
@@ -20,6 +21,7 @@ import FaqPage from "./pages/faq/Page";
  */
 export const ROUTES: { out: string; node: JSX.Element }[] = [
   { out: "index.html", node: <App /> },
+  { out: "datafun/index.html", node: <DatafunPage /> },
   { out: "products/cli/index.html", node: <CliPage /> },
   { out: "products/vscode/index.html", node: <VscodePage /> },
   { out: "products/studio/index.html", node: <StudioPage /> },
