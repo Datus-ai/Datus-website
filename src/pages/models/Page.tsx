@@ -114,7 +114,7 @@ export default function ModelsPage() {
               margin: "20px 0 0",
             }}
           >
-            Supported <Mark tone="var(--term-cyan)">LLM providers</Mark>
+            Supported <Mark tone="var(--term-cyan)">LLM Providers</Mark>
           </h1>
           <p className="lead" style={{ maxWidth: 680 }}>
             Six first-party LLM providers (OpenAI, Anthropic Claude, Google Gemini, DeepSeek, Qwen,
@@ -174,7 +174,7 @@ export default function ModelsPage() {
       <CatalogSection alt>
         <SectionHead
           eyebrow="Strategy"
-          title={<>Per-node <Mark tone="var(--term-green)">strategy</Mark> guide</>}
+          title={<>Per-Node <Mark tone="var(--term-green)">strategy</Mark> guide</>}
           lead="Recommended provider tier for each workflow stage. Combine with the pipeline YAML below to wire the routing."
         />
         <div className="grid grid-3">
@@ -188,7 +188,7 @@ export default function ModelsPage() {
       <CatalogSection>
         <SectionHead
           eyebrow="Embeddings"
-          title={<>Embedding models for <Mark tone="var(--term-amber)">context recall</Mark></>}
+          title={<>Embedding Models for <Mark tone="var(--term-amber)">Context Recall</Mark></>}
           lead="Vectorize text and queries for semantic search, retrieval, and context matching."
         />
         <div className="grid grid-4">
@@ -212,7 +212,7 @@ export default function ModelsPage() {
       <CatalogSection alt>
         <SectionHead
           eyebrow="Observability"
-          title={<>LLM <Mark tone="var(--term-pink)">observability</Mark></>}
+          title={<>LLM <Mark tone="var(--term-pink)">Observability</Mark></>}
           lead="Trace every prompt in production or debug locally as YAML — pick the surface that fits your workflow."
         />
         <div className="grid grid-3">
@@ -237,7 +237,7 @@ export default function ModelsPage() {
             <div style={{ flex: "1 1 320px", minWidth: 280 }}>
               <span className="eyebrow">Per-node routing</span>
               <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,32px)" }}>
-                Per-node <Mark tone="var(--term-cyan)">model assignment</Mark>
+                Per-Node <Mark tone="var(--term-cyan)">Model Assignment</Mark>
               </h2>
               <p className="lead" style={{ marginTop: 10 }}>
                 Use different providers for different workflow steps. Route schema linking to a
@@ -275,7 +275,7 @@ export default function ModelsPage() {
             }}
           >
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Route the <Mark tone="var(--term-cyan)">right model</Mark> at every step
+              Route the <Mark tone="var(--term-cyan)">Right Model</Mark> at Every Step
             </h2>
             <p className="lead" style={{ marginInline: "auto", maxWidth: 620 }}>
               Configure planners, coders and rerankers per provider — Anthropic, OpenAI, Gemini, or

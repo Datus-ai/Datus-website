@@ -131,7 +131,7 @@ export default function DatabasesPage() {
               margin: "20px 0 0",
             }}
           >
-            Supported <Mark tone="var(--term-cyan)">databases</Mark>
+            Supported <Mark tone="var(--term-cyan)">Databases</Mark>
           </h1>
           <p className="lead" style={{ maxWidth: 680 }}>
             Eleven native database adapters, from embedded SQLite and DuckDB to cloud warehouses
@@ -173,7 +173,7 @@ export default function DatabasesPage() {
       <CatalogSection>
         <SectionHead
           eyebrow="One interface"
-          title={<>Four <Mark tone="var(--term-amber)">categories</Mark>, one interface</>}
+          title={<>Four <Mark tone="var(--term-amber)">Categories</Mark>, one interface</>}
           lead="Every adapter implements the same CRUD, DDL, metadata and sampling contract — so subagents work identically across your OLTP, warehouse and lake engines."
         />
         <div className="grid grid-4">
@@ -223,7 +223,7 @@ export default function DatabasesPage() {
             <div style={{ flex: "1 1 320px", minWidth: 280 }}>
               <span className="eyebrow">Migration</span>
               <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,32px)" }}>
-                Cross-database <Mark tone="var(--term-green)">migration</Mark> hints
+                Cross-database <Mark tone="var(--term-green)">Migration</Mark> hints
               </h2>
               <p className="lead" style={{ marginTop: 10 }}>
                 Every adapter implements MigrationTargetMixin so subagents can generate DDL for the
@@ -271,7 +271,7 @@ export default function DatabasesPage() {
             }}
           >
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Connect your <Mark tone="var(--term-cyan)">warehouse</Mark> in minutes
+              Connect Your <Mark tone="var(--term-cyan)">Warehouse</Mark> in Minutes
             </h2>
             <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
               Native adapters for Snowflake, Postgres, MySQL and more — drop in credentials and the
