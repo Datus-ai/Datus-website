@@ -541,8 +541,13 @@ body {
     min-width: 0;
   }
 }
+@media (max-width: 920px) {
+  .split-grid { grid-template-columns: 1fr !important; }
+}
 @media (max-width: 640px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .ps-grid { grid-template-columns: 1fr !important; }
   .container { padding-inline: 18px; }
 }
 

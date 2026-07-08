@@ -1,27 +1,26 @@
 import {
   ArrowRight,
-  Boxes,
-  Building2,
   Check,
   CheckCircle2,
   Copy,
-  Database,
-  GitBranch,
   Github,
-  Layers,
-  RefreshCw,
-  Rocket,
-  ShieldCheck,
   Sparkles,
   Star,
-  Terminal,
-  Workflow,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import SiteLayout from "./components/SiteLayout";
 import RotatingPrompt from "./components/RotatingPrompt";
 import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
-import { CONTACT_EMAIL, GITHUB_URL, STUDIO_URL } from "./config/nav";
+import FAQ, { type FaqItem } from "./components/FAQ";
+import {
+  CatalogSection,
+  FeatureCard,
+  Mark,
+  panelBg,
+  sectionBorder,
+  toneAt,
+} from "./components/catalog";
+import { DOCS_URL, GITHUB_URL, STUDIO_URL } from "./config/nav";
 import { formatStarCount, useGitHubStars } from "./hooks/useGitHubStars";
 
 /* ---------------------------------- Hero ---------------------------------- */
@@ -95,14 +94,14 @@ function Hero() {
                 margin: "20px 0 0",
               }}
             >
-              The open-source{" "}
-              <span className="grad-text">data engineering agent</span> for
-              building evolvable context.
+              The Open-Source{" "}
+              <span className="grad-text">Data Engineering Agent</span>
             </h1>
-            <p className="lead" style={{ maxWidth: 540 }}>
-              From one-man data teams to enterprise agent teams, Datus turns data
-              work into reliable, reusable agent systems, semantic-centric and
-              end-to-end.
+            <p className="lead" style={{ maxWidth: 560 }}>
+              Datus is the open-source data engineering agent for the modern data
+              stack — one AI data engineering agent that connects your warehouse,
+              catalog, semantic layer and BI, grounded in an evolvable context
+              engine your team owns. Apache 2.0 · self-host or free playground.
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
@@ -204,7 +203,7 @@ function HeroTerminal() {
         <span className="term__dot term__dot--r" />
         <span className="term__dot term__dot--y" />
         <span className="term__dot term__dot--g" />
-        <span className="term__title">datus-agent</span>
+        <span className="term__title">agent.run</span>
       </div>
       <div className="term__body">
         <div className="term__line">
@@ -236,232 +235,612 @@ function HeroTerminal() {
   );
 }
 
-/* --------------------------------- Pillars -------------------------------- */
-const PILLARS = [
-  {
-    icon: Rocket,
-    title: "Run the modern data stack with 10× productivity",
-    body: "One engineer operates the full data system across the full lifecycle, with validation loops that keep output trustworthy.",
-    points: ["Full data system", "Full lifecycle", "Validation loops"],
-  },
-  {
-    icon: RefreshCw,
-    title: "Build evolvable context, for better accuracy",
-    body: "Semantics become durable context. Chatbots evolve from usage, and skills improve every time the agent runs.",
-    points: ["Semantics → context", "Chatbots that evolve", "Skills improve with usage"],
-  },
-  {
-    icon: Building2,
-    title: "Scale from personal productivity to enterprise agent teams",
-    body: "Long-running agents with control, safety, and versioning, sharing one context knowledge graph across the team.",
-    points: ["Long-running agents", "Control, safety, versioning", "Shared context graph"],
-  },
-];
-
-function Pillars() {
+/* ------------------------------ Social proof ------------------------------ */
+function SocialProofBar() {
+  const stars = useGitHubStars();
+  const items = [
+    { value: `${formatStarCount(stars)}+`, label: "GitHub stars" },
+    { value: "Apache 2.0", label: "Open source" },
+    { value: "Self-host · Cloud", label: "Your infra or ours" },
+    { value: "Built by DEs", label: "For data engineering teams" },
+  ];
   return (
-    <section className="section">
+    <section className="section" style={{ paddingBlock: 0 }}>
       <div className="container">
-        <div className="section-head">
-          <span className="eyebrow"><Layers size={13} /> Why Datus</span>
-          <h2 className="h2">Ship more data work, trust every result, scale to a team.</h2>
-          <p className="lead">
-            Whether you are a solo engineer or an enterprise data org, Datus is
-            the same system, it just scales with you.
-          </p>
-        </div>
-        <div className="grid grid-3">
-          {PILLARS.map((p) => (
-            <div className="card" key={p.title}>
-              <span className="card__icon"><p.icon size={20} /></span>
-              <h3 className="card__title">{p.title}</h3>
-              <p className="card__body">{p.body}</p>
-              <ul style={{ listStyle: "none", margin: "16px 0 0", padding: 0, display: "grid", gap: 8 }}>
-                {p.points.map((pt) => (
-                  <li key={pt} style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13.5, color: "var(--ink-dim)" }}>
-                    <CheckCircle2 size={14} style={{ color: "var(--brand-bright)", flexShrink: 0 }} /> {pt}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ----------------------------- Product forms ------------------------------ */
-function ProductForms() {
-  return (
-    <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
-      <div className="container">
-        <div className="section-head center">
-          <span className="eyebrow"><Boxes size={13} /> Three ways to run Datus</span>
-          <h2 className="h2">Start free. Scale when you are ready.</h2>
-        </div>
-        <div className="grid grid-3">
-          <div className="card">
-            <span className="card__icon"><Github size={20} /></span>
-            <h3 className="card__title">Open Source</h3>
-            <p className="card__body">
-              The full Datus CLI and VS Code extension. Self-host, bring your own
-              warehouse and model. Apache-2.0.
-            </p>
-            <a className="link-arrow" href={GITHUB_URL} target="_blank" rel="noopener noreferrer" style={{ marginTop: 18 }}>
-              View on GitHub <ArrowRight size={15} />
-            </a>
-          </div>
-          <div className="card" style={{ borderColor: "var(--brand)", boxShadow: "var(--shadow-brand)" }}>
-            <span className="card__icon" style={{ background: "linear-gradient(180deg,var(--brand-bright),var(--brand))", color: "#fff" }}><Sparkles size={20} /></span>
-            <h3 className="card__title">Cloud Personal, Studio</h3>
-            <p className="card__body">
-              The easiest way to start and explore. No install, no setup, a
-              hosted Datus workspace, free during early access.
-            </p>
-            <a className="link-arrow" href={STUDIO_URL} style={{ marginTop: 18 }}>
-              Try Studio free <ArrowRight size={15} />
-            </a>
-          </div>
-          <div className="card">
-            <span className="card__icon"><ShieldCheck size={20} /></span>
-            <h3 className="card__title">Enterprise</h3>
-            <p className="card__body">
-              Shared context, governance, SSO, and long-running agent teams, 
-              deployed in your environment.
-            </p>
-            <EnterpriseInquiryDialog>
-              <button
-                className="link-arrow"
-                style={{ background: "transparent", border: 0, padding: 0, marginTop: 18, cursor: "pointer", fontFamily: "inherit" }}
-              >
-                Contact us <ArrowRight size={15} />
-              </button>
-            </EnterpriseInquiryDialog>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------ Integrations ------------------------------ */
-const INTEGRATIONS = [
-  "Snowflake", "Databricks", "PostgreSQL", "StarRocks", "ClickHouse",
-  "Doris", "Greenplum", "OpenAI", "Anthropic", "DeepSeek", "Qwen",
-  "MetricFlow", "Airflow", "Superset", "Grafana",
-];
-
-function Integrations() {
-  return (
-    <section className="section">
-      <div className="container">
-        <div className="section-head center">
-          <span className="eyebrow"><Database size={13} /> Works with your stack</span>
-          <h2 className="h2">Plugs into the tools you already run.</h2>
-          <p className="lead">
-            Warehouses, models, semantic layers, schedulers and BI, connected,
-            not replaced.
-          </p>
-        </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
-          {INTEGRATIONS.map((name) => (
-            <span
-              key={name}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            border: sectionBorder,
+            borderRadius: 14,
+            background: panelBg,
+            overflow: "hidden",
+          }}
+          className="proof-grid"
+        >
+          {items.map((it, i) => (
+            <div
+              key={it.label}
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 13.5,
-                color: "var(--ink-dim)",
-                padding: "9px 16px",
-                borderRadius: 999,
-                border: "1px solid var(--line)",
-                background: "var(--panel)",
+                padding: "20px 18px",
+                textAlign: "center",
+                borderLeft: i > 0 ? sectionBorder : undefined,
               }}
             >
-              {name}
-            </span>
+              <div style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.01em" }}>{it.value}</div>
+              <div
+                style={{
+                  marginTop: 6,
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10.5,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "var(--ink-faint)",
+                }}
+              >
+                {it.label}
+              </div>
+            </div>
           ))}
-        </div>
-        <div style={{ textAlign: "center", marginTop: 28 }}>
-          <a className="link-arrow" href="/integrations/">
-            See all integrations <ArrowRight size={15} />
-          </a>
         </div>
       </div>
     </section>
   );
 }
 
-/* -------------------------------- Context --------------------------------- */
-const LOOP = [
-  { icon: Terminal, title: "Capture", body: "Every query, schema, metric and review becomes structured context as the agent works." },
-  { icon: Database, title: "Memory", body: "Context is stored as an evolving knowledge graph, semantics, validated SQL, and skills." },
-  { icon: RefreshCw, title: "Evolve", body: "The agent reuses and refines that memory, getting more accurate with every run." },
+/* --------------------------- Problem → Solution --------------------------- */
+const PROBLEM_ROWS = [
+  {
+    problem: "Copilots answer, they don't execute",
+    solution: "One data engineering agent that plans, runs, validates and deploys real work",
+  },
+  {
+    problem: "NL2SQL hallucinates joins and metrics",
+    solution: "Grounded in an evolvable context engine — the memory layer every data engineering agent needs",
+  },
+  {
+    problem: "Five glued-together tools still miss the context",
+    solution: "One client, one memory, one autonomous data engineering operator across the stack",
+  },
 ];
 
-function Context() {
+function ProblemSolution() {
   return (
-    <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
-      <div className="container">
-        <div className="section-head center">
-          <span className="eyebrow"><RefreshCw size={13} /> Context that builds itself</span>
-          <h2 className="h2">Capture → Memory → Evolve</h2>
-          <p className="lead">
-            Datus doesn't just answer once. It accumulates the context your data
-            systems need to become reliable.
+    <CatalogSection>
+      <div className="section-head center">
+        <span className="eyebrow">Why Datus</span>
+        <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
+          Why Teams Switch to a <Mark tone="var(--term-cyan)">Data Engineering Agent</Mark>
+        </h2>
+        <p className="lead" style={{ marginTop: 10 }}>
+          Copilots and NL2SQL solve one prompt at a time. A data engineering agent owns the
+          lifecycle — plan, write, run, validate, deploy, monitor.
+        </p>
+      </div>
+
+      <div
+        style={{
+          marginTop: 36,
+          border: sectionBorder,
+          borderRadius: 16,
+          overflow: "hidden",
+        }}
+      >
+        <div className="ps-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+          <div
+            style={{
+              padding: "12px 24px",
+              background: "rgba(11,18,48,0.4)",
+              borderBottom: sectionBorder,
+              fontFamily: "var(--font-mono)",
+              fontSize: 10.5,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "var(--ink-faint)",
+            }}
+          >
+            The problem
+          </div>
+          <div
+            style={{
+              padding: "12px 24px",
+              background: "var(--panel)",
+              borderBottom: sectionBorder,
+              borderLeft: sectionBorder,
+              fontFamily: "var(--font-mono)",
+              fontSize: 10.5,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "var(--ink-faint)",
+            }}
+          >
+            Datus Agent
+          </div>
+          {PROBLEM_ROWS.map((r, i) => {
+            const last = i === PROBLEM_ROWS.length - 1;
+            return (
+              <div key={i} style={{ display: "contents" }}>
+                <div
+                  style={{
+                    padding: "22px 24px",
+                    background: "rgba(11,18,48,0.25)",
+                    color: "var(--ink-muted)",
+                    lineHeight: 1.6,
+                    borderBottom: last ? undefined : sectionBorder,
+                  }}
+                >
+                  {r.problem}
+                </div>
+                <div
+                  style={{
+                    padding: "22px 24px",
+                    background: "var(--panel)",
+                    color: "var(--ink)",
+                    lineHeight: 1.6,
+                    borderLeft: sectionBorder,
+                    borderBottom: last ? undefined : sectionBorder,
+                  }}
+                >
+                  {r.solution}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </CatalogSection>
+  );
+}
+
+/* ----------------------------- Three layers ------------------------------- */
+const LAYERS = [
+  {
+    name: "Delivery",
+    caption: "How teams reach the agent",
+    chips: ["CLI", "Studio", "Chatbot", "MCP"],
+    width: "78%",
+  },
+  {
+    name: "Intelligence",
+    caption: "How the agent thinks",
+    chips: ["Subagents", "Planner", "Reviewer", "Skills"],
+    width: "90%",
+  },
+  {
+    name: "Data Layer",
+    caption: "What the agent stands on",
+    chips: ["Context Engine", "Tree + Vector Memory", "Lineage", "Semantic"],
+    width: "100%",
+  },
+];
+
+function LayerStack() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      {LAYERS.map((layer, i) => {
+        const tone = toneAt(i);
+        return (
+          <div
+            key={layer.name}
+            className="card"
+            style={{
+              width: layer.width,
+              padding: "16px 20px",
+              borderColor: tone,
+              background: `color-mix(in oklab, ${tone} 12%, var(--panel))`,
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+              <h3 style={{ margin: 0, fontSize: 16.5, fontWeight: 700, letterSpacing: "-0.01em" }}>{layer.name}</h3>
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "var(--ink-faint)",
+                }}
+              >
+                L{LAYERS.length - i}
+              </span>
+            </div>
+            <p style={{ margin: "2px 0 0", fontSize: 12, color: "var(--ink-muted)" }}>{layer.caption}</p>
+            <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 6 }}>
+              {layer.chips.map((c) => (
+                <span
+                  key={c}
+                  style={{
+                    padding: "4px 8px",
+                    borderRadius: 6,
+                    border: sectionBorder,
+                    background: "rgba(11,18,48,0.45)",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 10,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "var(--ink-dim)",
+                  }}
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ThreeLayers() {
+  return (
+    <CatalogSection alt>
+      <div className="split-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
+        <div>
+          <span className="eyebrow">Architecture</span>
+          <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
+            A Data Engineering Agent in <Mark tone="var(--term-amber)">Three Layers</Mark>
+          </h2>
+          <p className="lead" style={{ marginTop: 10 }}>
+            Delivery on top, Intelligence in the middle, a Data Layer underneath. Three stacked
+            layers that turn Datus from a chat wrapper into a production-ready data engineering
+            agent.
           </p>
         </div>
-        <div className="grid grid-3">
-          {LOOP.map((s, i) => (
-            <div className="card" key={s.title}>
-              <span className="card__icon"><s.icon size={20} /></span>
-              <h3 className="card__title">
-                <span style={{ fontFamily: "var(--font-mono)", color: "var(--brand-bright)", marginRight: 8 }}>0{i + 1}</span>
-                {s.title}
-              </h3>
-              <p className="card__body">{s.body}</p>
-            </div>
-          ))}
-        </div>
+        <LayerStack />
       </div>
-    </section>
+    </CatalogSection>
   );
 }
 
-/* ----------------------------- Differentiation ---------------------------- */
-const COMPARE = [
-  { vs: "vs Claude Code", line: "Coding agents write code. Datus builds and evolves the data context they need to be reliable on your warehouse." },
-  { vs: "vs Cortex & Genie", line: "Platform-native agents lock you to one warehouse. Datus is open and cross-stack, with portable context." },
-  { vs: "vs ChatBI", line: "ChatBI answers a question and forgets. Datus captures semantics and validation into durable, reusable memory." },
-  { vs: "vs Semantic Layer", line: "A semantic layer is static config. Datus supports your existing one and builds new semantics when it's missing." },
+/* ------------------------------- Lifecycle -------------------------------- */
+const PHASES = [
+  "SQL Dev",
+  "Data Quality",
+  "Metric Mgmt",
+  "Modeling",
+  "SQL Review",
+  "Deploy",
+  "Monitor",
+  "Docs",
 ];
 
-function Differentiation() {
+function Lifecycle() {
   return (
-    <section className="section">
-      <div className="container">
-        <div className="section-head">
-          <span className="eyebrow"><GitBranch size={13} /> Where Datus fits</span>
-          <h2 className="h2">
-            The open-source system that builds and evolves the data context those
-            tools need to become reliable.
-          </h2>
+    <CatalogSection>
+      <div className="split-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 10,
+          }}
+        >
+          {PHASES.map((p, i) => {
+            const tone = toneAt(i);
+            return (
+              <div
+                key={p}
+                className="card"
+                style={{ padding: "14px 16px", display: "flex", alignItems: "center", gap: 10 }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 12,
+                    fontWeight: 650,
+                    color: tone,
+                  }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>{p}</span>
+              </div>
+            );
+          })}
         </div>
-        <div className="grid grid-2">
-          {COMPARE.map((c) => (
-            <div className="card" key={c.vs}>
-              <h3 className="card__title" style={{ fontFamily: "var(--font-mono)", color: "var(--brand-bright)", fontSize: 15 }}>{c.vs}</h3>
-              <p className="card__body">{c.line}</p>
-            </div>
-          ))}
+        <div>
+          <span className="eyebrow">Lifecycle</span>
+          <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
+            Agentic Data Engineering Across the <Mark tone="var(--term-cyan)">Full Lifecycle</Mark>
+          </h2>
+          <p className="lead" style={{ marginTop: 10 }}>
+            From SQL development to monitoring — eight lifecycle phases orbit one Datus agent,
+            giving your team autonomous data engineering in a single, always-in-context workflow.
+          </p>
         </div>
       </div>
-    </section>
+    </CatalogSection>
   );
 }
 
-/* ------------------------------ Enterprise CTA ---------------------------- */
-function EnterpriseCta() {
+/* ------------------------------- Use cases -------------------------------- */
+const USE_CASES = [
+  {
+    title: "Ad-Hoc Analytics Without the SQL Bottleneck",
+    body:
+      "Analysts ask business questions in natural language. The data engineering agent grounds each query in your catalog and metric definitions, then returns validated SQL plus the numbers — no waiting on a data engineer.",
+  },
+  {
+    title: "Production Pipelines That Stay in Context",
+    body:
+      "Engineers draft, review and deploy dbt-style models with an agent that already knows the warehouse, lineage and past failures. Reviews shrink from days to a working session.",
+  },
+  {
+    title: "Self-Serve BI Grounded in the Semantic Layer",
+    body:
+      "The Datus agent reads your semantic layer and BI metrics, so answers in Slack, Feishu or Studio match what leadership sees in dashboards. One source of truth, many surfaces.",
+  },
+  {
+    title: "Data Quality and Monitoring on Autopilot",
+    body:
+      "The data engineering agent watches freshness, schema drift and metric anomalies across pipelines, then explains what broke and proposes a fix in the same thread where the work happens.",
+  },
+];
+
+function UseCases() {
+  return (
+    <CatalogSection alt>
+      <div className="section-head center">
+        <span className="eyebrow">Use cases</span>
+        <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
+          What Teams <Mark tone="var(--term-amber)">Actually Ship</Mark> With Datus
+        </h2>
+        <p className="lead" style={{ marginTop: 10 }}>
+          Four workflows that show up on day one — same data engineering agent, same context,
+          different jobs to be done.
+        </p>
+      </div>
+      <div className="grid grid-2" style={{ marginTop: 8 }}>
+        {USE_CASES.map((u, i) => (
+          <FeatureCard key={u.title} tone={toneAt(i)} title={u.title} body={u.body} />
+        ))}
+      </div>
+    </CatalogSection>
+  );
+}
+
+/* -------------------------------- Surfaces -------------------------------- */
+const SURFACES = [
+  {
+    name: "Studio",
+    tagline:
+      "A managed cloud workspace where data teams chat with their warehouse directly in the browser. Schema-aware suggestions, shared notebooks, and one-click result exports mean anyone can explore data without installing a thing.",
+    start: "open studio.datus.ai",
+    href: STUDIO_URL,
+    external: true,
+  },
+  {
+    name: "CLI",
+    tagline:
+      "An interactive terminal REPL built for data engineers who live in the shell. Install with pip, authenticate once, and run natural-language queries, SQL diffs, and batch jobs straight from your command line or CI pipeline.",
+    start: "pip install datus-agent",
+    href: "/products/cli/",
+    external: false,
+  },
+  {
+    name: "Chatbot",
+    tagline:
+      "Embed the agent in Slack, Feishu, or Microsoft Teams so every channel becomes a self-serve data interface. Ask questions in plain language, get charts and summaries back, and approve or schedule follow-ups without leaving the conversation.",
+    start: "/datus in Slack",
+    href: DOCS_URL,
+    external: true,
+  },
+  {
+    name: "MCP Server",
+    tagline:
+      "Expose your entire Datus context and toolset over the Model Context Protocol. Plug it into Claude, Cursor, or Windsurf so your AI assistant understands your warehouse schema, metrics, and policies without constant copy-paste.",
+    start: "datus mcp serve",
+    href: DOCS_URL,
+    external: true,
+  },
+];
+
+function Surfaces() {
+  return (
+    <CatalogSection>
+      <div className="section-head center">
+        <span className="eyebrow">Get started</span>
+        <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
+          One Agent, Four <Mark tone="var(--term-green)">Surfaces to Pick From</Mark>
+        </h2>
+        <p className="lead" style={{ marginTop: 10 }}>
+          Same data engineering agent, same context — four surfaces (Studio, CLI, Chatbot, MCP) so
+          every data engineer can start where they already work.
+        </p>
+      </div>
+      <div className="grid grid-2" style={{ marginTop: 8 }}>
+        {SURFACES.map((s, i) => {
+          const tone = toneAt(i);
+          return (
+            <a
+              key={s.name}
+              className="card"
+              href={s.href}
+              target={s.external ? "_blank" : undefined}
+              rel={s.external ? "noopener noreferrer" : undefined}
+              style={{ display: "flex", flexDirection: "column", textDecoration: "none", color: "inherit" }}
+            >
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    letterSpacing: "0.16em",
+                    color: "var(--ink-faint)",
+                  }}
+                >
+                  {String(i + 1).padStart(2, "0")} / {String(SURFACES.length).padStart(2, "0")}
+                </span>
+                <div style={{ height: 6, width: 40, borderRadius: 3, background: tone }} />
+              </div>
+              <h3 className="card__title" style={{ marginTop: 16, fontSize: 20 }}>{s.name}</h3>
+              <p className="card__body" style={{ marginTop: 8 }}>{s.tagline}</p>
+              <p
+                style={{
+                  marginTop: 16,
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 12.5,
+                  color: "var(--ink-dim)",
+                }}
+              >
+                <span style={{ color: "var(--ink-faint)" }}>▸</span> {s.start}
+              </p>
+            </a>
+          );
+        })}
+      </div>
+    </CatalogSection>
+  );
+}
+
+/* ------------------------------ Stack logos ------------------------------- */
+const MODEL_GROUP = {
+  label: "Model",
+  items: ["OpenAI", "Anthropic", "Gemini", "DeepSeek", "Qwen", "Ollama", "Bedrock"],
+};
+
+const STACK_GROUPS: { label: string; items: string[] }[] = [
+  { label: "Warehouse", items: ["Snowflake", "BigQuery", "Redshift", "Postgres", "DuckDB"] },
+  { label: "Modeling", items: ["dbt", "SQLMesh"] },
+  { label: "Semantic Layer", items: ["Cube", "dbt Semantic Layer", "LookML"] },
+  { label: "Catalog", items: ["DataHub", "OpenMetadata", "Unity Catalog"] },
+  { label: "BI", items: ["Metabase", "Superset", "Tableau"] },
+  { label: "Orchestration", items: ["Airflow", "Dagster", "Prefect"] },
+];
+
+function StackPill({ label }: { label: string }) {
+  return (
+    <span
+      style={{
+        padding: "5px 11px",
+        borderRadius: 8,
+        border: sectionBorder,
+        background: "rgba(11,18,48,0.45)",
+        fontFamily: "var(--font-mono)",
+        fontSize: 11.5,
+        color: "var(--ink-dim)",
+      }}
+    >
+      {label}
+    </span>
+  );
+}
+
+function GroupLabel({ label, right }: { label: string; right?: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: 10.5,
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+          color: "var(--ink-faint)",
+        }}
+      >
+        {label}
+      </span>
+      {right && (
+        <>
+          <span style={{ flex: 1, height: 1, background: "var(--line)" }} />
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: 10.5,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "var(--ink-faint)",
+            }}
+          >
+            {right}
+          </span>
+        </>
+      )}
+    </div>
+  );
+}
+
+function StackLogos() {
+  return (
+    <CatalogSection alt>
+      <div className="section-head center">
+        <span className="eyebrow">Integrations</span>
+        <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
+          Works With Your <Mark tone="var(--term-pink)">Modern Data Stack</Mark>
+        </h2>
+        <p className="lead" style={{ marginTop: 10 }}>
+          Point the Datus data engineering agent at what you already run. Governance and dialect
+          handling for every warehouse ship in the box.
+        </p>
+      </div>
+
+      {/* Model gets a full-width card — BYO model is the #1 integration */}
+      <div className="card" style={{ marginTop: 8, padding: 20 }}>
+        <GroupLabel label={MODEL_GROUP.label} right="BYO" />
+        <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 8 }}>
+          {MODEL_GROUP.items.map((item) => (
+            <StackPill key={item} label={item} />
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-3" style={{ marginTop: 20 }}>
+        {STACK_GROUPS.map((g) => (
+          <div key={g.label} className="card" style={{ padding: 20 }}>
+            <GroupLabel label={g.label} />
+            <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {g.items.map((item) => (
+                <StackPill key={item} label={item} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ textAlign: "center", marginTop: 28 }}>
+        <a className="link-arrow" href="/integrations/">
+          See all integrations <ArrowRight size={15} />
+        </a>
+      </div>
+    </CatalogSection>
+  );
+}
+
+/* ---------------------------------- FAQ ----------------------------------- */
+const HOME_FAQS: FaqItem[] = [
+  {
+    q: "What is a data engineering agent?",
+    a: "A data engineering agent is an AI system that owns data work end to end — not just answering questions, but planning, writing SQL, running pipelines, validating results, deploying models and monitoring what it shipped. Unlike a text-to-SQL copilot, a data engineering agent is grounded in your warehouse, catalog and semantic layer, and it keeps that context across every run.",
+  },
+  {
+    q: "What is Datus and how is it different from a text-to-SQL chatbot?",
+    a: "Datus is the open-source data engineering agent. A chatbot stops at translating a prompt into SQL. The Datus agent orchestrates Catalog, SQL, Pipeline and BI subagents on a shared context engine to plan, run, validate, deploy and monitor real data work end to end.",
+  },
+  {
+    q: "Why does a data engineering agent need an evolvable context engine?",
+    a: "Without grounded context, any data engineering agent will hallucinate joins and metrics. Datus captures historical SQL, table structures, metrics and semantic definitions, stores them in a dual Tree + Vector memory, and incrementally refines that context from real usage — every run makes the next answer more accurate.",
+  },
+  {
+    q: "How do I try the Datus data engineering agent — Studio, CLI, Chatbot or MCP?",
+    a: "Studio is the free hosted playground in your browser. Data engineers usually start with the CLI for terminal-native workflows. The Chatbot embeds the data engineering agent in Slack or Feishu, and the MCP server plugs Datus context into Claude, Cursor or Windsurf. All four surfaces share the same agent and context engine.",
+  },
+  {
+    q: "Is the open-source Datus agent really free?",
+    a: "Yes. The open-source Datus data engineering agent is Apache 2.0 and free to self-host — you bring the model and the warehouse. Datus Studio hosts the same agent in the browser as a free playground. Enterprise adds SSO, RBAC, SQL Policy and private / VPC deployment.",
+  },
+  {
+    q: "How does Datus compare to Databricks Genie or Snowflake Cortex?",
+    a: "Warehouse-native copilots are tied to one platform; open-source NL2SQL projects usually stop at query translation. Datus is a warehouse-agnostic data engineering agent that covers the full lifecycle — SQL, data quality, deployment, monitoring — with a shared context engine, not just a query layer.",
+  },
+  {
+    q: "What can I automate with an agentic data engineering workflow?",
+    a: "Anything that today ping-pongs between SQL editor, dbt project, catalog and BI. An agentic data engineering workflow can draft and review models, run and validate queries, catch schema drift, patch broken pipelines and answer stakeholder questions from the semantic layer — all in one thread, with the data engineering agent keeping context across steps.",
+  },
+];
+
+/* ------------------------------- Closing CTA ------------------------------ */
+function ClosingCta() {
   return (
     <section className="section">
       <div className="container">
@@ -475,22 +854,19 @@ function EnterpriseCta() {
             borderColor: "var(--line-strong)",
           }}
         >
-          <span className="eyebrow"><Workflow size={13} /> For data teams</span>
-          <h2 className="h2" style={{ marginTop: 14 }}>
-            Reliable, auditable, collaborative agent teams.
+          <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
+            Ready to let the <Mark tone="var(--term-amber)">data engineering agent</Mark> run?
           </h2>
           <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
-            Give your org a shared context engine, governed access, and
-            long-running agents. Scale data output without scaling headcount.
+            Open Datus Studio free in your browser, or self-host the open-source agent on your own
+            warehouse in minutes.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
-            <EnterpriseInquiryDialog>
-              <button className="btn btn-primary btn-lg">
-                Contact us <ArrowRight size={17} />
-              </button>
-            </EnterpriseInquiryDialog>
-            <a className="btn btn-ghost btn-lg" href={`mailto:${CONTACT_EMAIL}`}>
-              {CONTACT_EMAIL}
+            <a className="btn btn-primary btn-lg" href={STUDIO_URL}>
+              Get started <ArrowRight size={17} />
+            </a>
+            <a className="btn btn-ghost btn-lg" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+              <Github size={17} /> Star on GitHub
             </a>
           </div>
         </div>
@@ -503,12 +879,19 @@ export default function App() {
   return (
     <SiteLayout>
       <Hero />
-      <Pillars />
-      <ProductForms />
-      <Integrations />
-      <Context />
-      <Differentiation />
-      <EnterpriseCta />
+      <SocialProofBar />
+      <ProblemSolution />
+      <ThreeLayers />
+      <Lifecycle />
+      <UseCases />
+      <Surfaces />
+      <StackLogos />
+      <FAQ
+        items={HOME_FAQS}
+        currentUrl="/"
+        lead="Data engineering agents, the Datus context engine, surfaces, pricing and how Datus compares."
+      />
+      <ClosingCta />
     </SiteLayout>
   );
 }
