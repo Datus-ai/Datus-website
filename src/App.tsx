@@ -633,8 +633,8 @@ const SURFACES: Surface[] = [
     tagline: (
       <>
         Embed the agent in Slack, Feishu, or Microsoft Teams so every channel becomes a{" "}
-        <A href="/products/chatbot/">self-serve data interface</A>. Ask questions in plain language,
-        get charts and summaries back, and approve or schedule follow-ups without leaving the
+        <A href="/integrations/">self-serve data interface</A>. Ask questions in plain language, get
+        charts and summaries back, and approve or schedule follow-ups without leaving the
         conversation.
       </>
     ),
@@ -646,7 +646,7 @@ const SURFACES: Surface[] = [
     tagline: (
       <>
         Expose your entire Datus context and toolset over the{" "}
-        <A href="/products/mcp/">Model Context Protocol</A>. Plug it into Claude, Cursor, or Windsurf
+        <A href="/integrations/">Model Context Protocol</A>. Plug it into Claude, Cursor, or Windsurf
         so your AI assistant understands your warehouse schema, metrics, and policies without
         constant copy-paste.
       </>
