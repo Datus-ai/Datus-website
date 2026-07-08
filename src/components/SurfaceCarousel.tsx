@@ -12,10 +12,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export type Surface = {
   id: string;
   name: string;
-  tagline: string;
+  /** May contain an inline anchor linking to the surface's deep-dive page. */
+  tagline: ReactNode;
   start: string;
-  href: string;
-  external?: boolean;
 };
 
 const mono = "var(--font-mono)";
@@ -368,16 +367,6 @@ export function SurfaceCarousel({ items }: { items: Surface[] }) {
                 <p style={{ margin: "20px 0 0", fontFamily: mono, fontSize: 12.5, color: "var(--ink-dim)" }}>
                   <span style={{ color: "var(--ink-faint)" }}>▸</span> {s.start}
                 </p>
-                <div style={{ marginTop: 22 }}>
-                  <a
-                    className="link-arrow"
-                    href={s.href}
-                    target={s.external ? "_blank" : undefined}
-                    rel={s.external ? "noopener noreferrer" : undefined}
-                  >
-                    Explore {s.name} <ChevronRight size={15} />
-                  </a>
-                </div>
               </div>
               <div style={{ padding: "clamp(20px,2.4vw,36px)", display: "flex", flexDirection: "column", justifyContent: "center", background: "var(--bg, transparent)" }}>
                 <SurfaceMock id={s.id} />

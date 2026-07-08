@@ -7,7 +7,7 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import SiteLayout from "./components/SiteLayout";
 import RotatingPrompt from "./components/RotatingPrompt";
 import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
@@ -22,8 +22,23 @@ import {
   sectionBorder,
   toneAt,
 } from "./components/catalog";
-import { DOCS_URL, GITHUB_URL, STUDIO_URL } from "./config/nav";
+import { GITHUB_URL, STUDIO_URL } from "./config/nav";
 import { formatStarCount, useGitHubStars } from "./hooks/useGitHubStars";
+
+/* --------------------------- Inline anchor link --------------------------- */
+/** Subtle in-copy internal link — used to weave anchor text to related pages. */
+function A({ href, external, children }: { href: string; external?: boolean; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      style={{ color: "var(--brand-bright)", textDecoration: "underline", textUnderlineOffset: 2 }}
+    >
+      {children}
+    </a>
+  );
+}
 
 /* ---------------------------------- Hero ---------------------------------- */
 const INSTALL_CMD = "curl -fsSL https://datus.ai/install.sh | sh";
@@ -153,10 +168,10 @@ function Hero() {
         >
           <CopyCommand />
           <span style={{ whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own warehouse
+            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own <A href="/databases/">warehouse</A>
           </span>
           <span style={{ whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own model
+            <CheckCircle2 size={13} style={{ color: "var(--term-green)", flexShrink: 0 }} /> Bring your own <A href="/models/">model</A>
           </span>
         </div>
       </div>
@@ -291,7 +306,7 @@ function SocialProofBar() {
 }
 
 /* --------------------------- Problem → Solution --------------------------- */
-const PROBLEM_ROWS = [
+const PROBLEM_ROWS: { problem: string; solution: ReactNode }[] = [
   {
     problem: "Copilots answer, they don't execute",
     solution: "One data engineering agent that plans, runs, validates and deploys real work",
@@ -302,7 +317,12 @@ const PROBLEM_ROWS = [
   },
   {
     problem: "Five glued-together tools still miss the context",
-    solution: "One client, one memory, one autonomous data engineering operator across the stack",
+    solution: (
+      <>
+        <A href="/products/cli/">One client</A>, one memory, one autonomous data engineering
+        operator across the stack
+      </>
+    ),
   },
 ];
 
@@ -485,8 +505,8 @@ function ThreeLayers() {
           </h2>
           <p className="lead" style={{ marginTop: 10 }}>
             Delivery on top, Intelligence in the middle, a Data Layer underneath. Three stacked
-            layers that turn Datus from a chat wrapper into a production-ready data engineering
-            agent.
+            layers that turn Datus from a chat wrapper into a{" "}
+            <A href="/products/enterprise/">production-ready data engineering agent</A>.
           </p>
         </div>
         <LayerStack />
@@ -508,7 +528,8 @@ function Lifecycle() {
           </h2>
           <p className="lead" style={{ marginTop: 10 }}>
             From SQL development to monitoring — eight lifecycle phases orbit one Datus agent,
-            giving your team autonomous data engineering in a single, always-in-context workflow.
+            giving your team autonomous data engineering in a{" "}
+            <A href="/products/studio/">single, always-in-context workflow</A>.
           </p>
         </div>
       </div>
@@ -517,26 +538,44 @@ function Lifecycle() {
 }
 
 /* ------------------------------- Use cases -------------------------------- */
-const USE_CASES = [
+const USE_CASES: { title: string; body: ReactNode }[] = [
   {
     title: "Ad-Hoc Analytics Without the SQL Bottleneck",
-    body:
-      "Analysts ask business questions in natural language. The data engineering agent grounds each query in your catalog and metric definitions, then returns validated SQL plus the numbers — no waiting on a data engineer.",
+    body: (
+      <>
+        Analysts ask business questions in natural language. The data engineering agent grounds each
+        query in your <A href="/integrations/">catalog</A> and metric definitions, then returns
+        validated SQL plus the numbers — no waiting on a data engineer.
+      </>
+    ),
   },
   {
     title: "Production Pipelines That Stay in Context",
-    body:
-      "Engineers draft, review and deploy dbt-style models with an agent that already knows the warehouse, lineage and past failures. Reviews shrink from days to a working session.",
+    body: (
+      <>
+        Engineers draft, review and deploy dbt-style models with an agent that already knows the
+        warehouse, lineage and past failures. Reviews shrink from days to a working session.
+      </>
+    ),
   },
   {
     title: "Self-Serve BI Grounded in the Semantic Layer",
-    body:
-      "The Datus agent reads your semantic layer and BI metrics, so answers in Slack, Feishu or Studio match what leadership sees in dashboards. One source of truth, many surfaces.",
+    body: (
+      <>
+        The Datus agent reads your semantic layer and BI metrics, so answers in Slack, Feishu or
+        Studio match what leadership sees in dashboards. One source of truth, many surfaces.
+      </>
+    ),
   },
   {
     title: "Data Quality and Monitoring on Autopilot",
-    body:
-      "The data engineering agent watches freshness, schema drift and metric anomalies across pipelines, then explains what broke and proposes a fix in the same thread where the work happens.",
+    body: (
+      <>
+        The data engineering agent watches freshness, schema drift and metric anomalies across
+        pipelines, then explains what broke and proposes a fix in the same thread where the work
+        happens.
+      </>
+    ),
   },
 ];
 
@@ -567,38 +606,52 @@ const SURFACES: Surface[] = [
   {
     id: "studio",
     name: "Studio",
-    tagline:
-      "A managed cloud workspace where data teams chat with their warehouse directly in the browser. Schema-aware suggestions, shared notebooks, and one-click result exports mean anyone can explore data without installing a thing.",
+    tagline: (
+      <>
+        A <A href="/products/studio/">managed cloud workspace</A> where data teams chat with their
+        warehouse directly in the browser. Schema-aware suggestions, shared notebooks, and one-click
+        result exports mean anyone can explore data without installing a thing.
+      </>
+    ),
     start: "open studio.datus.ai",
-    href: STUDIO_URL,
-    external: true,
   },
   {
     id: "cli",
     name: "CLI",
-    tagline:
-      "An interactive terminal REPL built for data engineers who live in the shell. Install with pip, authenticate once, and run natural-language queries, SQL diffs, and batch jobs straight from your command line or CI pipeline.",
+    tagline: (
+      <>
+        An <A href="/products/cli/">interactive terminal REPL</A> built for data engineers who live
+        in the shell. Install with pip, authenticate once, and run natural-language queries, SQL
+        diffs, and batch jobs straight from your command line or CI pipeline.
+      </>
+    ),
     start: "pip install datus-agent",
-    href: "/products/cli/",
-    external: false,
   },
   {
     id: "chatbot",
     name: "Chatbot",
-    tagline:
-      "Embed the agent in Slack, Feishu, or Microsoft Teams so every channel becomes a self-serve data interface. Ask questions in plain language, get charts and summaries back, and approve or schedule follow-ups without leaving the conversation.",
+    tagline: (
+      <>
+        Embed the agent in Slack, Feishu, or Microsoft Teams so every channel becomes a{" "}
+        <A href="/integrations/">self-serve data interface</A>. Ask questions in plain language, get
+        charts and summaries back, and approve or schedule follow-ups without leaving the
+        conversation.
+      </>
+    ),
     start: "/datus in Slack",
-    href: DOCS_URL,
-    external: true,
   },
   {
     id: "mcp",
     name: "MCP Server",
-    tagline:
-      "Expose your entire Datus context and toolset over the Model Context Protocol. Plug it into Claude, Cursor, or Windsurf so your AI assistant understands your warehouse schema, metrics, and policies without constant copy-paste.",
+    tagline: (
+      <>
+        Expose your entire Datus context and toolset over the{" "}
+        <A href="/integrations/">Model Context Protocol</A>. Plug it into Claude, Cursor, or Windsurf
+        so your AI assistant understands your warehouse schema, metrics, and policies without
+        constant copy-paste.
+      </>
+    ),
     start: "datus mcp serve",
-    href: DOCS_URL,
-    external: true,
   },
 ];
 
@@ -784,15 +837,12 @@ function ClosingCta() {
             Ready to let the <Mark tone="var(--term-amber)">data engineering agent</Mark> run?
           </h2>
           <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
-            Open Datus Studio free in your browser, or self-host the open-source agent on your own
-            warehouse in minutes.
+            Open Datus Studio <A href="/pricing/">free in your browser</A>, or self-host the
+            open-source agent on your own warehouse in minutes.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
             <a className="btn btn-primary btn-lg" href={STUDIO_URL}>
               Get started <ArrowRight size={17} />
-            </a>
-            <a className="btn btn-ghost btn-lg" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-              <Github size={17} /> Star on GitHub
             </a>
           </div>
         </div>
@@ -817,6 +867,11 @@ export default function App() {
         currentUrl="/"
         lead="Data engineering agents, the Datus context engine, surfaces, pricing and how Datus compares."
       />
+      <div className="container" style={{ textAlign: "center", marginTop: -8 }}>
+        <a className="link-arrow" href="/faq/">
+          Browse all FAQs <ArrowRight size={15} />
+        </a>
+      </div>
       <ClosingCta />
     </SiteLayout>
   );
