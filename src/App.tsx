@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import SiteLayout from "./components/SiteLayout";
 import RotatingPrompt from "./components/RotatingPrompt";
 import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
+import { LifecycleOrbit } from "./components/LifecycleOrbit";
+import { SurfaceCarousel, type Surface } from "./components/SurfaceCarousel";
 import FAQ, { type FaqItem } from "./components/FAQ";
 import {
   CatalogSection,
@@ -494,51 +496,11 @@ function ThreeLayers() {
 }
 
 /* ------------------------------- Lifecycle -------------------------------- */
-const PHASES = [
-  "SQL Dev",
-  "Data Quality",
-  "Metric Mgmt",
-  "Modeling",
-  "SQL Review",
-  "Deploy",
-  "Monitor",
-  "Docs",
-];
-
 function Lifecycle() {
   return (
     <CatalogSection>
       <div className="split-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 10,
-          }}
-        >
-          {PHASES.map((p, i) => {
-            const tone = toneAt(i);
-            return (
-              <div
-                key={p}
-                className="card"
-                style={{ padding: "14px 16px", display: "flex", alignItems: "center", gap: 10 }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 12,
-                    fontWeight: 650,
-                    color: tone,
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>{p}</span>
-              </div>
-            );
-          })}
-        </div>
+        <LifecycleOrbit />
         <div>
           <span className="eyebrow">Lifecycle</span>
           <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
@@ -601,8 +563,9 @@ function UseCases() {
 }
 
 /* -------------------------------- Surfaces -------------------------------- */
-const SURFACES = [
+const SURFACES: Surface[] = [
   {
+    id: "studio",
     name: "Studio",
     tagline:
       "A managed cloud workspace where data teams chat with their warehouse directly in the browser. Schema-aware suggestions, shared notebooks, and one-click result exports mean anyone can explore data without installing a thing.",
@@ -611,6 +574,7 @@ const SURFACES = [
     external: true,
   },
   {
+    id: "cli",
     name: "CLI",
     tagline:
       "An interactive terminal REPL built for data engineers who live in the shell. Install with pip, authenticate once, and run natural-language queries, SQL diffs, and batch jobs straight from your command line or CI pipeline.",
@@ -619,6 +583,7 @@ const SURFACES = [
     external: false,
   },
   {
+    id: "chatbot",
     name: "Chatbot",
     tagline:
       "Embed the agent in Slack, Feishu, or Microsoft Teams so every channel becomes a self-serve data interface. Ask questions in plain language, get charts and summaries back, and approve or schedule follow-ups without leaving the conversation.",
@@ -627,6 +592,7 @@ const SURFACES = [
     external: true,
   },
   {
+    id: "mcp",
     name: "MCP Server",
     tagline:
       "Expose your entire Datus context and toolset over the Model Context Protocol. Plug it into Claude, Cursor, or Windsurf so your AI assistant understands your warehouse schema, metrics, and policies without constant copy-paste.",
@@ -649,47 +615,7 @@ function Surfaces() {
           every data engineer can start where they already work.
         </p>
       </div>
-      <div className="grid grid-2" style={{ marginTop: 8 }}>
-        {SURFACES.map((s, i) => {
-          const tone = toneAt(i);
-          return (
-            <a
-              key={s.name}
-              className="card"
-              href={s.href}
-              target={s.external ? "_blank" : undefined}
-              rel={s.external ? "noopener noreferrer" : undefined}
-              style={{ display: "flex", flexDirection: "column", textDecoration: "none", color: "inherit" }}
-            >
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    letterSpacing: "0.16em",
-                    color: "var(--ink-faint)",
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")} / {String(SURFACES.length).padStart(2, "0")}
-                </span>
-                <div style={{ height: 6, width: 40, borderRadius: 3, background: tone }} />
-              </div>
-              <h3 className="card__title" style={{ marginTop: 16, fontSize: 20 }}>{s.name}</h3>
-              <p className="card__body" style={{ marginTop: 8 }}>{s.tagline}</p>
-              <p
-                style={{
-                  marginTop: 16,
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 12.5,
-                  color: "var(--ink-dim)",
-                }}
-              >
-                <span style={{ color: "var(--ink-faint)" }}>▸</span> {s.start}
-              </p>
-            </a>
-          );
-        })}
-      </div>
+      <SurfaceCarousel items={SURFACES} />
     </CatalogSection>
   );
 }
