@@ -145,8 +145,24 @@ export default function ModelsPage() {
         </div>
       </CatalogSection>
 
-      {/* AUTH MATRIX */}
+      {/* TABLE VIEW */}
       <CatalogSection>
+        <SpecTable
+          filename="agent.yml"
+          columns={[{ label: "Provider" }, { label: "Type" }, { label: "Notes" }]}
+          rows={providers.map((p) => ({
+            key: p.key,
+            cells: [
+              <span style={{ fontSize: 14, fontWeight: 650, color: "var(--ink)" }}>{p.name}</span>,
+              <InlineCode>{p.type}</InlineCode>,
+              <span style={{ color: "var(--ink-muted)" }}>{p.notes}</span>,
+            ],
+          }))}
+        />
+      </CatalogSection>
+
+      {/* AUTH MATRIX */}
+      <CatalogSection alt>
         <SectionHead
           eyebrow="Authentication"
           title={<><Mark tone="var(--term-amber)">Authentication</Mark> matrix</>}
@@ -171,7 +187,7 @@ export default function ModelsPage() {
       </CatalogSection>
 
       {/* PER-NODE STRATEGY */}
-      <CatalogSection alt>
+      <CatalogSection>
         <SectionHead
           eyebrow="Strategy"
           title={<>Per-Node <Mark tone="var(--term-green)">strategy</Mark> guide</>}
@@ -185,7 +201,7 @@ export default function ModelsPage() {
       </CatalogSection>
 
       {/* EMBEDDING MODELS */}
-      <CatalogSection>
+      <CatalogSection alt>
         <SectionHead
           eyebrow="Embeddings"
           title={<>Embedding Models for <Mark tone="var(--term-amber)">Context Recall</Mark></>}
@@ -209,7 +225,7 @@ export default function ModelsPage() {
       </CatalogSection>
 
       {/* LLM OBSERVABILITY */}
-      <CatalogSection alt>
+      <CatalogSection>
         <SectionHead
           eyebrow="Observability"
           title={<>LLM <Mark tone="var(--term-pink)">Observability</Mark></>}
@@ -231,7 +247,7 @@ export default function ModelsPage() {
       </CatalogSection>
 
       {/* PER-NODE MODEL ASSIGNMENT */}
-      <CatalogSection>
+      <CatalogSection alt>
         <div className="card" style={{ padding: "32px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 32, alignItems: "flex-start" }}>
             <div style={{ flex: "1 1 320px", minWidth: 280 }}>
