@@ -6,6 +6,8 @@ import VscodePage from "./pages/products/vscode/Page";
 import StudioPage from "./pages/products/studio/Page";
 import EnterprisePage from "./pages/products/enterprise/Page";
 import IntegrationsPage from "./pages/integrations/Page";
+import DatabasesPage from "./pages/databases/Page";
+import ModelsPage from "./pages/models/Page";
 import PricingPage from "./pages/pricing/Page";
 import FaqPage from "./pages/faq/Page";
 
@@ -27,6 +29,8 @@ export const ROUTES: { out: string; node: JSX.Element }[] = [
   { out: "products/studio/index.html", node: <StudioPage /> },
   { out: "products/enterprise/index.html", node: <EnterprisePage /> },
   { out: "integrations/index.html", node: <IntegrationsPage /> },
+  { out: "databases/index.html", node: <DatabasesPage /> },
+  { out: "models/index.html", node: <ModelsPage /> },
   { out: "pricing/index.html", node: <PricingPage /> },
   { out: "faq/index.html", node: <FaqPage /> },
 ];

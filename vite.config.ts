@@ -13,6 +13,8 @@ const MPA_ROUTES = [
   'products/studio',
   'products/enterprise',
   'integrations',
+  'databases',
+  'models',
   'pricing',
   'faq',
 ];

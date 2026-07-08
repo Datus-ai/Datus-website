@@ -48,9 +48,27 @@ export const PRODUCTS: NavLink[] = [
   },
 ];
 
+export const INTEGRATIONS: NavLink[] = [
+  {
+    label: "All Integrations",
+    href: "/integrations/",
+    description: "Storage, semantic, BI, MCP, skills, tracing.",
+  },
+  {
+    label: "Databases",
+    href: "/databases/",
+    description: "SQLite, Postgres, Snowflake, Spark…",
+  },
+  {
+    label: "Models",
+    href: "/models/",
+    description: "OpenAI, Claude, Gemini, DeepSeek…",
+  },
+];
+
 export const NAV: NavItem[] = [
   { label: "Products", children: PRODUCTS },
-  { label: "Integrations", href: "/integrations/" },
+  { label: "Integrations", children: INTEGRATIONS },
   { label: "Pricing", href: "/pricing/" },
   { label: "Blog", href: "/blog/", external: true },
   {
