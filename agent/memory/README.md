@@ -15,7 +15,7 @@ angle. If a topic is only partially covered, either pick another direction or
 write a genuinely different angle and note how it differs.
 
 ## Record format (append to the "New posts (written by this agent)" section)
-```
+```markdown
 ### <slug>
 - Title: <full title>
 - Target keyword: <primary keyword>

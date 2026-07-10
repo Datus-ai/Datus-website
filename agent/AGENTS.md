@@ -42,7 +42,7 @@ files, one post = one branch = one PR, keep the operator updated in 中文.
 | Local preview URL | `http://localhost:4173/blog/<slug>/` |
 | Glossary source (directions) | `src/glossary/glossaryData.ts` |
 | Blog build script (categories live here) | `scripts/build-blog.mjs` → `CATEGORIES` |
-| Sitemap | `src/public/sitemap.xml` |
+| Sitemap | **auto-generated** by `build-blog.mjs` → `dist/blog/sitemap.xml` (referenced from the `dist/sitemap.xml` index). Do NOT hand-edit `src/public/sitemap.xml` for posts. |
 | Images (optional) | `blog/public/images/<slug>/…`, referenced as `/blog/images/<slug>/…` |
 
 **Build is static.** `npm run dev` (vite) does NOT render blog posts — they only
@@ -81,18 +81,11 @@ Create `blog/posts/<slug>.md` following `knowledge/blog-standard.md` exactly:
 - **Internal links:** 3–6 to existing posts using `/blog/<slug>/`, plus link the matching `/glossary/` where relevant. Only link posts that exist (check `blog/posts/`).
 
 ### Step 4 — Wire it into the site
-1. **Sitemap** — add to `src/public/sitemap.xml`:
-   ```xml
-   <url>
-     <loc>https://datus.ai/blog/<slug>/</loc>
-     <lastmod>YYYY-MM-DD</lastmod>
-     <changefreq>monthly</changefreq>
-     <priority>0.7</priority>
-   </url>
-   ```
-2. **Blog category** — add the slug to the right category's `slugs` array in `scripts/build-blog.mjs` `CATEGORIES` (glossary terms → the `"Glossary"` or `"Semantic Layer"` category). (If skipped it lands in "More essays" — prefer the right home.)
-3. **Glossary cross-link** — in `src/glossary/glossaryData.ts`, set the term's `article: "/blog/<slug>/"` so the glossary page links to the new post (internal-link + SEO win).
-4. **Reciprocal internal links** — add a "Related articles" link to the new post from 1–2 closely related existing posts if natural.
+> **Sitemap: nothing to do by hand.** `build-blog.mjs` regenerates `dist/blog/sitemap.xml` from the posts it discovers and refreshes the `dist/sitemap.xml` index — do NOT edit `src/public/sitemap.xml` for a post. You'll verify the generated sitemap in Step 5.
+
+1. **Blog category** — add the slug to the right category's `slugs` array in `scripts/build-blog.mjs` `CATEGORIES` (glossary terms → the `"Glossary"` or `"Semantic Layer"` category). (If skipped it lands in "More essays" — prefer the right home.)
+2. **Glossary cross-link** — in `src/glossary/glossaryData.ts`, set the term's `article: "/blog/<slug>/"` so the glossary page links to the new post (internal-link + SEO win).
+3. **Reciprocal internal links** — add a "Related articles" link to the new post from 1–2 closely related existing posts if natural.
 
 ### Step 5 — Build & preview locally, open the page
 ```bash
@@ -105,12 +98,19 @@ open "http://localhost:4173/blog/<slug>/"
 ```
 Verify before handing off: page renders, title/hero correct, internal links resolve, no broken images, FAQ shows, view-source shows the meta + JSON-LD. Fix anything broken before continuing.
 
+Also confirm the post made it into the **generated** sitemap (source of truth — no manual sitemap file to edit):
+```bash
+grep -q "https://datus.ai/blog/<slug>/" dist/blog/sitemap.xml && echo "✓ in blog sitemap"
+grep -q "/blog/sitemap.xml" dist/sitemap.xml && echo "✓ index references blog sitemap"
+```
+
 ### Step 6 — Open a PR
 ```bash
 git checkout -b blog/<slug>
 # stage ONLY the files this post touched — never `git add -A`:
-git add blog/posts/<slug>.md src/public/sitemap.xml scripts/build-blog.mjs src/glossary/glossaryData.ts
+git add blog/posts/<slug>.md scripts/build-blog.mjs src/glossary/glossaryData.ts
 #   (+ blog/public/images/<slug>/ if you added images, + any related post you edited)
+#   Note: do NOT stage sitemaps — they're generated into dist/ at build time.
 git commit -m "blog: <Title>"
 git push -u origin blog/<slug>
 gh pr create --base main --title "blog: <Title>" --body "<what/why, target keyword, sources, local URL>"
@@ -118,7 +118,7 @@ gh pr create --base main --title "blog: <Title>" --body "<what/why, target keywo
 The repo auto-deploys to GitHub Pages when the PR is merged to `main` (`.github/workflows/deploy.yml` runs `build:all`). The operator merges.
 
 ### Step 7 — Record it in memory
-Append a record to `memory/covered-topics.md` (see `memory/README.md` for the format): slug, title, target keyword, angle, source direction, key sources, PR link, date. This is what prevents duplicate posts next time.
+Append a record to `memory/covered-topics.md` using the **full** format in `memory/README.md` — every field: slug, Title, Target keyword, Angle, Source direction, Key sources, **Internal links added**, **Glossary updated (yes/no)**, PR link **+ Status (open/merged)**, Date. This is what prevents duplicate posts next time.
 
 ### Step 8 — Report to the operator (中文)
 Send: chosen direction + rationale, the sources you researched, the local review URL, and the PR link.
@@ -143,7 +143,7 @@ Send: chosen direction + rationale, the sources you researched, the local review
 - [ ] Frontmatter complete; description 150–160 chars; title < ~60 chars with the keyword.
 - [ ] House structure + voice; single H1; TL;DR; FAQ (≥2 Q); Related articles; disclosure lines.
 - [ ] 3–6 internal links to existing posts (`/blog/<slug>/`) + glossary cross-link set.
-- [ ] Sitemap + build-blog category + glossaryData `article` updated.
+- [ ] build-blog category + glossaryData `article` updated; post URL present in generated `dist/blog/sitemap.xml` (no manual sitemap edit).
 - [ ] `npm run build:all` succeeds; page verified at `http://localhost:4173/blog/<slug>/`.
 - [ ] Only relevant files staged (no `.idea/`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`).
 - [ ] PR opened on `Datus-ai/Datus-website`; memory record appended; 中文 summary sent.

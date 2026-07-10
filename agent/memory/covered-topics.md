@@ -1,8 +1,12 @@
 # Covered Topics Ledger
 
 Authoritative list of what's already published, so we never write a duplicate.
-**Read this before choosing a direction.** Seeded Jul 2026 from the 60 existing
-posts. Append new posts under "New posts (written by this agent)".
+**Read this before choosing a direction.** Seeded Jul 2026 from every post that
+existed then — the `blog/posts/*.md` articles plus the two
+`blog/data-engineering-agent/` pillar pages. The `index.md` listing pages are
+excluded; the non-article utility entries are still listed below under "Utility
+(not articles)" for completeness. Append new posts under "New posts (written by
+this agent)".
 
 ---
 
@@ -104,4 +108,4 @@ Catalog, Data Catalog, Text-to-SQL, Schema Linking, RAG, Data Engineering Agent.
 ---
 
 ## New posts (written by this agent)
-<!-- Append records here per memory/README.md format. Newest first. -->
+<!-- Append records here (chronological order) per memory/README.md format. -->
