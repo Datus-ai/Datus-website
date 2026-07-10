@@ -90,10 +90,11 @@ this agent)".
 ## Glossary coverage (src/glossary/glossaryData.ts)
 **Covered (term has a working `article`):** Data Warehouse, Data Lake, Lakehouse,
 Data Mesh, Semantic Layer, Metric Layer, Apache Iceberg, Apache Hudi, Lakehouse
-Catalog, Data Catalog, Text-to-SQL, Schema Linking, RAG, Data Engineering Agent.
+Catalog, Data Catalog, Text-to-SQL, Schema Linking, RAG, Data Engineering Agent,
+Data Contract, Medallion Architecture.
 
 **⚠ Broken glossary links (article set but post missing → OPEN, high priority to fill):**
-- Data Contract → `/blog/what-is-data-contract/` (no post) — write `what-is-data-contract`.
+- ~~Data Contract → `/blog/what-is-data-contract/`~~ — FILLED (PR #55, 2026-07-10).
 - MCP → `/blog/what-is-mcp-data-engineering/` (no post; a different `mcp-data-engineering` exists) — write `what-is-mcp-data-engineering` OR repoint the glossary link.
 
 **Open directions (no article):** see `knowledge/glossary-directions.md` (31 terms).
@@ -109,3 +110,25 @@ Catalog, Data Catalog, Text-to-SQL, Schema Linking, RAG, Data Engineering Agent.
 
 ## New posts (written by this agent)
 <!-- Append records here (chronological order) per memory/README.md format. -->
+
+### what-is-data-contract
+- Title: What Is a Data Contract? Definition, Schema Enforcement & Examples
+- Target keyword: data contract (what is a data contract, schema enforcement, ODCS, dbt contracts, data contract vs data quality test)
+- Angle: strict machine-checkable definition + ODCS/dbt examples + breaking-change walkthrough + honest contract-vs-test/registry/catalog/semantic-layer table + dbt platform constraint matrix; agent angle = contracts are the governed floor, evolvable context is the living layer above
+- Source direction: broken glossary link `data-contract` (article was set, post missing; linked 3× from what-is-data-catalog / what-is-data-mesh / index)
+- Key sources: bitol.io ODCS v3.1.0; docs.getdbt.com/docs/mesh/govern/model-contracts; datacontract.com; en.wikipedia.org/wiki/Data_contract; Gartner Hype Cycle for Data Management 2025
+- Internal links added: what-is-data-mesh, what-is-data-catalog, what-is-semantic-layer, what-is-schema-linking, contextual-data-engineering, subagents-domain-specific-data-agents, what-is-data-engineering-agent-2026 (reciprocal links from catalog/mesh already existed)
+- Glossary updated: yes (article already set to /blog/what-is-data-contract/ — now resolves)
+- PR: https://github.com/Datus-ai/Datus-website/pull/55   Status: open
+- Date: 2026-07-10
+
+### what-is-medallion-architecture
+- Title: What Is Medallion Architecture? Bronze, Silver & Gold Layers
+- Target keyword: medallion architecture (what is medallion architecture, bronze silver gold, medallion lakehouse architecture, multi-hop architecture, gold layer vs semantic layer)
+- Angle: crisp Bronze/Silver/Gold definition + what actually belongs in each layer (real objects, MV example) + honest anti-patterns section (3-layers-for-everything, gold sprawl/metric drift, propagated quality debt, producer-centric) + Gold-vs-semantic-layer contrast + the whitespace: a "which layer should an AI agent query?" decision table (Gold=KPI, Silver=causal diagnosis, Bronze=reconcile); agent angle = medallion organizes data quality, evolvable context organizes meaning on top (which table is authoritative)
+- Source direction: referenced-but-unwritten glossary term `medallion-architecture` — link already advertised in blog index (Jun 30, 2026) + linked from what-is-apache-hudi; glossary term had no article
+- Key sources: learn.microsoft.com/azure/databricks/lakehouse/medallion (updated 2026-05-07); databricks.com/glossary/medallion-architecture; lakshmanok.medium.com (bronze/silver/gold + Platinum layer + "keep Gold small"); moderndata101/matterbeam criticism (producer-centric, tech-homogeneity)
+- Internal links added: what-is-lakehouse, what-is-data-lake, what-is-data-warehouse, what-is-apache-iceberg, what-is-apache-hudi, what-is-semantic-layer, what-is-schema-linking, contextual-data-engineering, what-is-data-engineering-agent-2026, what-is-data-contract (reciprocal links added from what-is-lakehouse + what-is-data-lake; what-is-apache-hudi already linked)
+- Glossary updated: yes (set article: /blog/what-is-medallion-architecture/ on Medallion Architecture term)
+- PR: <pending>   Status: open
+- Date: 2026-07-10
