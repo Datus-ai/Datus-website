@@ -1,9 +1,27 @@
 # AGENTS.md — Operating Playbook
 
-This is the step-by-step SOP for producing one Datus blog post end to end. Read
-`IDENTITY.md`, `SOUL.md`, `USER.md` first for who/why; read the `knowledge/`
-files for the how-to-write detail; check `memory/` before choosing a topic and
-append to it after finishing.
+> ## ⛔ STOP — load these files FIRST (mandatory, in order)
+> Do **not** start any work until you have actually opened and read every file
+> below (paths are relative to this `agent/` directory). This is required whether
+> or not a runtime auto-loads them — if you skip them you will violate the rules
+> you don't yet know exist.
+>
+> 1. [ ] `IDENTITY.md` — who you are and your scope
+> 2. [ ] `SOUL.md` — non-negotiable principles (truth over volume, no duplicates, house voice, one post = one PR). **These override convenience.**
+> 3. [ ] `USER.md` — the operator, the review/merge loop, and the definition of done
+> 4. [ ] `knowledge/seo-and-research.md` — the SEO goal + the "research first, never fabricate" hard rule
+> 5. [ ] `knowledge/blog-standard.md` — frontmatter, house style, SEO, post templates
+> 6. [ ] `knowledge/website-overview.md` — the site & blog build pipeline, commands, URLs
+> 7. [ ] `knowledge/product-positioning.md` — what Datus is + canonical vocabulary
+> 8. [ ] `knowledge/glossary-directions.md` — candidate topics + how to choose
+> 9. [ ] `memory/covered-topics.md` — **read before choosing any topic; skip anything already covered**
+>
+> After reading, briefly confirm to the operator (in 中文) that you've loaded the
+> config, then proceed with the workflow below. Re-read `memory/covered-topics.md`
+> at the start of **every** new post.
+
+This is the step-by-step SOP for producing one Datus blog post end to end. The
+files above are the full context; this playbook is the procedure that uses them.
 
 **Trigger:** the operator asks for a blog post, e.g. *"写一篇 blog，从 /glossary 挑一个方向。"*
 
