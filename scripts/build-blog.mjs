@@ -55,7 +55,7 @@ const CATEGORIES = [
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
     slugs: ["what-is-text-to-sql", "what-is-schema-linking", "rag-data-engineering", "what-is-data-catalog",
       "what-is-data-mesh", "what-is-data-agent", "what-is-lakehouse", "what-is-lakehouse-catalog",
-      "what-is-data-warehouse", "what-is-data-lake"] },
+      "what-is-data-warehouse", "what-is-data-lake", "what-is-data-contract"] },
   { label: "Why agents, not copilots", description: "The shift from assistive AI to autonomous data workflows.",
     slugs: ["why-data-engineering-needs-agents-not-just-copilots",
       "agentic-data-engineering-vs-traditional-data-engineering",
