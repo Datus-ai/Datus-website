@@ -15,6 +15,8 @@ const MPA_ROUTES = [
   'integrations',
   'databases',
   'models',
+  'mcp',
+  'chatbot',
   'pricing',
   'faq',
 ];

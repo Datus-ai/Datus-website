@@ -47,6 +47,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://datus.ai/mcp/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://datus.ai/chatbot/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://datus.ai/pricing/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
