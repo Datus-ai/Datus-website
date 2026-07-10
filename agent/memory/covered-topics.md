@@ -130,5 +130,5 @@ Data Contract, Medallion Architecture.
 - Key sources: learn.microsoft.com/azure/databricks/lakehouse/medallion (updated 2026-05-07); databricks.com/glossary/medallion-architecture; lakshmanok.medium.com (bronze/silver/gold + Platinum layer + "keep Gold small"); moderndata101/matterbeam criticism (producer-centric, tech-homogeneity)
 - Internal links added: what-is-lakehouse, what-is-data-lake, what-is-data-warehouse, what-is-apache-iceberg, what-is-apache-hudi, what-is-semantic-layer, what-is-schema-linking, contextual-data-engineering, what-is-data-engineering-agent-2026, what-is-data-contract (reciprocal links added from what-is-lakehouse + what-is-data-lake; what-is-apache-hudi already linked)
 - Glossary updated: yes (set article: /blog/what-is-medallion-architecture/ on Medallion Architecture term)
-- PR: <pending>   Status: open
+- PR: https://github.com/Datus-ai/Datus-website/pull/56   Status: open
 - Date: 2026-07-10
