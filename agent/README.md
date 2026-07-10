@@ -12,6 +12,56 @@ Get datus.ai **indexed and ranked highly on Google & Bing** so the market
 discovers Datus. Every post is an SEO asset serving that goal — accurate,
 differentiated, genuinely useful (never thin or fabricated).
 
+## Run it with OpenClaw
+
+OpenClaw loads a **workspace** — the directory holding `AGENTS.md`, `SOUL.md`,
+`IDENTITY.md`, `USER.md`, and `memory/` — and injects those files into the
+agent's context at the **start of every session** (so under OpenClaw, `SOUL.md`
+and the rest are auto-loaded; you don't have to ask for them). This `agent/`
+folder **is** a valid OpenClaw workspace — just point OpenClaw at it.
+
+**One-time setup** (creates `~/.openclaw/openclaw.json` if missing):
+```bash
+openclaw setup
+```
+
+**Point the workspace at this `agent/` directory** — pick ONE (run from the repo root, so no absolute path is hardcoded):
+
+- **A. Register a dedicated agent** (recommended):
+  ```bash
+  openclaw agents add datus-blog --workspace "$(pwd)/agent"
+  openclaw agents list          # verify it's registered
+  ```
+- **B. Environment variable** (good for containers / no config edit):
+  ```bash
+  export OPENCLAW_WORKSPACE_DIR="$(pwd)/agent"
+  ```
+- **C. Config file** — set the path in `~/.openclaw/openclaw.json` (json5):
+  ```json5
+  {
+    agents: {
+      // global default for all agents …
+      defaults: { workspace: "<repo>/agent" },
+      // … or per-agent override:
+      list: [ { id: "datus-blog", workspace: "<repo>/agent" } ]
+    }
+  }
+  ```
+  Precedence: `agents.list[].workspace` > `agents.defaults.workspace` > `OPENCLAW_WORKSPACE_DIR` > default.
+
+**Then start a session** and message the agent (via its bound channel / your
+OpenClaw session — see the OpenClaw docs), e.g. *"写一篇 blog，从 /glossary 挑一个方向。"*
+
+Notes:
+- OpenClaw auto-injects `AGENTS.md` / `SOUL.md` / `IDENTITY.md` / `USER.md` / `memory/`. The `knowledge/` files are **not** part of OpenClaw's auto-injected set, but `AGENTS.md` opens with a mandatory "load these first" checklist that makes the agent read them from the workspace before acting.
+- `memory/` is tracked in git here, so the agent's finished-post records land in the repo (and in blog PRs) — keep it that way.
+- Docs: `openclaw agents` (`docs.openclaw.ai/cli/agents`), workspace config (`docs.openclaw.ai/gateway/config-agents`), agent workspace (`docs.openclaw.ai/concepts/agent-workspace`).
+
+**Not using OpenClaw?** Any capable AI tool (Claude Code, Codex) works: tell it
+*"load `agent/AGENTS.md` and follow it to write a blog post."* The checklist at
+the top of `AGENTS.md` pulls in `SOUL.md` + `knowledge/` + `memory/`. (This needs
+web access for research, and `gh`/git auth for the PR.)
+
 ## What to send the agent
 A short instruction, e.g.:
 > 写一篇 blog，从当前 /glossary 中挑一个方向来完成 Blog 的编写。
