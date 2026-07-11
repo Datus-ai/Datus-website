@@ -117,7 +117,7 @@ Adoption signals that indicate maturity: documented **medallion** or domain laye
 | **Silver** | Cleaned, conformed, deduplicated | Typed columns, standard keys |
 | **Gold** | Business aggregates, KPI-ready | Certified metrics, star/summary tables |
 
-Medallion is **not** synonymous with lakehouse — you can run a lakehouse without medallion labels, or label medallion layers inside a warehouse. But on lakehouses, medallion gives agents and humans a **navigable hierarchy**: an agent answering executive KPI questions should prefer Gold definitions; an engineer debugging ingest should inspect Bronze paths and Silver rejects.
+[Medallion architecture](/blog/what-is-medallion-architecture/) is **not** synonymous with lakehouse — you can run a lakehouse without medallion labels, or label medallion layers inside a warehouse. But on lakehouses, medallion gives agents and humans a **navigable hierarchy**: an agent answering executive KPI questions should prefer Gold definitions; an engineer debugging ingest should inspect Bronze paths and Silver rejects.
 
 Agents that treat all layers as interchangeable produce **plausible wrong numbers** — e.g., counting raw click events in Bronze when Gold already deduplicates sessions.
 

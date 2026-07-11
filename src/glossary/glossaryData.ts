@@ -61,6 +61,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "medallion-architecture",
         definition:
           "A layered convention — Bronze (raw), Silver (cleaned), Gold (aggregated) — popularized by Databricks for incrementally refining lakehouse data.",
+        article: "/blog/what-is-medallion-architecture/",
       },
       {
         term: "Lambda vs Kappa",
