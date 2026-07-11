@@ -108,12 +108,6 @@ export const glossary: GlossaryCategory[] = [
           "Patterns for tracking how dimension values change over time. Type 1 overwrites, Type 2 keeps history with valid-from/valid-to columns, Type 3 keeps a previous-value column.",
       },
       {
-        term: "One Big Table (OBT)",
-        slug: "one-big-table",
-        definition:
-          "A modeling style that pre-joins facts and dimensions into a single wide table. Trades storage and flexibility for query simplicity and speed on columnar engines.",
-      },
-      {
         term: "Data Vault",
         slug: "data-vault",
         definition:
@@ -149,6 +143,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "delta-lake",
         definition:
           "A table format from Databricks that layers an ACID transaction log on Parquet, enabling MERGE, time travel, and streaming reads on a data lake.",
+        article: "/blog/what-is-delta-lake/",
       },
       {
         term: "Apache Hudi",
