@@ -57,13 +57,6 @@ export const glossary: GlossaryCategory[] = [
           "A metadata-driven layer that stitches together distributed data sources so they can be queried and governed as if they were one system.",
       },
       {
-        term: "Medallion Architecture",
-        slug: "medallion-architecture",
-        definition:
-          "A layered convention — Bronze (raw), Silver (cleaned), Gold (aggregated) — popularized by Databricks for incrementally refining lakehouse data.",
-        article: "/blog/what-is-medallion-architecture/",
-      },
-      {
         term: "Lambda vs Kappa",
         slug: "lambda-vs-kappa",
         definition:
@@ -112,6 +105,13 @@ export const glossary: GlossaryCategory[] = [
         slug: "data-vault",
         definition:
           "A modeling approach using hubs (business keys), links (relationships), and satellites (descriptive attributes). Optimized for auditability and frequent schema change.",
+      },
+      {
+        term: "Medallion Architecture",
+        slug: "medallion-architecture",
+        definition:
+          "A layered convention — Bronze (raw), Silver (cleaned), Gold (aggregated) — popularized by Databricks for incrementally refining lakehouse data.",
+        article: "/blog/what-is-medallion-architecture/",
       },
     ],
   },
