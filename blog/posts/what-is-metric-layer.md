@@ -33,8 +33,6 @@ head:
 
 # What Is a Metric Layer? Definition, Examples & How It Differs From a Semantic Layer
 
-Last Monday, Finance reported $14.2M in net revenue for Q2. Product reported $13.8M. Same database, same tables, same raw SQL — different answers. Finance excluded chargebacks. Product excluded chargebacks but included a different refund window. Neither was wrong; neither was using the same definition. The gap between those two numbers is not a data quality problem — it is a **metric layer** problem. A metric layer standardizes what every KPI means and how it is computed, so when an analyst, a dashboard, or an AI agent asks "what was our net revenue?", they all get the same number from the same logic. This article defines the concept, walks through <a href="https://docs.getdbt.com/docs/build-about-metricflow" rel="nofollow noopener">MetricFlow</a> as the leading open-source implementation, and explains why the AI agent era turns metric layers from governance nice-to-have into operational necessity.
-
 ## TL;DR
 
 - A **metric layer** is a **standardized catalog of business KPIs** — each metric defined once with explicit SQL, dimensions, time grain, and ownership, then consumed everywhere.
@@ -42,6 +40,8 @@ Last Monday, Finance reported $14.2M in net revenue for Q2. Product reported $13
 - Leading implementations: <a href="https://docs.getdbt.com/docs/build-about-metricflow" rel="nofollow noopener">dbt MetricFlow</a> (open-source, YAML-defined, Git-managed), <a href="https://cube.dev/" rel="nofollow noopener">Cube</a> (headless, API-first), GoodData MAQL (proprietary query language), and LookML measures (Looker-native).
 - Most metric layers are **static** — defined in code, deployed through CI/CD, consumed at query time. AI agents introduce a new requirement: metrics that can be **bootstrapped from historical SQL**, **refined through feedback**, and **kept current** without waiting for the next modeling sprint.
 - Datus generates metrics automatically from production SQL (`/gen_metrics`), stores them in MetricFlow-compatible YAML, and feeds them into Subagent context — treating the metric layer as **living infrastructure**, not a one-time modeling project.
+
+Last Monday, Finance reported $14.2M in net revenue for Q2. Product reported $13.8M. Same database, same tables, same raw SQL — different answers. Finance excluded chargebacks. Product excluded chargebacks but included a different refund window. Neither was wrong; neither was using the same definition. The gap between those two numbers is not a data quality problem — it is a **metric layer** problem. A metric layer standardizes what every KPI means and how it is computed, so when an analyst, a dashboard, or an AI agent asks "what was our net revenue?", they all get the same number from the same logic. This article defines the concept, walks through <a href="https://docs.getdbt.com/docs/build-about-metricflow" rel="nofollow noopener">MetricFlow</a> as the leading open-source implementation, and explains why the AI agent era turns metric layers from governance nice-to-have into operational necessity.
 
 ## 1. Metric layer: a working definition
 

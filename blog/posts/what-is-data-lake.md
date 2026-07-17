@@ -33,10 +33,6 @@ head:
 
 # What Is a Data Lake? Definition, Architecture & Data Lake vs Data Warehouse
 
-Three years ago a team pointed every pipeline they had at a cheap S3 bucket: clickstream JSON, database dumps, third-party CSVs, application logs, model outputs. The promise was "keep everything, model it later." Today that bucket holds 400 terabytes, nobody remembers what `prod_v2_final/` contains, two folders both claim to hold "users," and the data scientists have quietly gone back to asking the data engineering team for extracts. The bucket became a **data swamp** — which is the most common way a **data lake** fails, and the fastest way to understand what one actually is. This glossary entry defines the data lake, walks through its schema-on-read architecture, contrasts it with a data warehouse, and explains why AI agents struggle on raw lake storage without a layer of context on top.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains the data lake as a general concept, referencing Datus alongside other tools and architectures in the category. See the end for more detail.*
-
 ## TL;DR
 
 - A **data lake** is centralized object storage that holds **raw data in its original format** — structured, semi-structured, and unstructured — applying schema only when the data is read (schema-on-read).
@@ -44,6 +40,8 @@ Three years ago a team pointed every pipeline they had at a cheap S3 bucket: cli
 - Its risk is the **data swamp** — without catalogs, zones, and governance, a lake degrades into an unsearchable dump that no one trusts.
 - **Data lake vs data warehouse** is not either/or: a lake optimizes for cheap, flexible ingest; a [warehouse](/blog/what-is-data-warehouse/) optimizes for governed, fast BI — and the [lakehouse](/blog/what-is-lakehouse/) exists to get both.
 - AI agents and text-to-SQL stumble on lakes because they see **file paths, not table semantics** — missing partitions, formats, and which zone is trustworthy — so lake context has to be made explicit.
+
+Three years ago a team pointed every pipeline they had at a cheap S3 bucket: clickstream JSON, database dumps, third-party CSVs, application logs, model outputs. The promise was "keep everything, model it later." Today that bucket holds 400 terabytes, nobody remembers what `prod_v2_final/` contains, two folders both claim to hold "users," and the data scientists have quietly gone back to asking the data engineering team for extracts. The bucket became a **data swamp** — which is the most common way a **data lake** fails, and the fastest way to understand what one actually is. This glossary entry defines the data lake, walks through its schema-on-read architecture, contrasts it with a data warehouse, and explains why AI agents struggle on raw lake storage without a layer of context on top.
 
 ## 1. Data lake: a working definition
 
@@ -161,7 +159,3 @@ They can, but accuracy depends entirely on the context wrapped around the raw st
 - [What is a data warehouse?](/blog/what-is-data-warehouse/) — the schema-on-write counterpart, and when governed BI wins
 - [What is a lakehouse?](/blog/what-is-lakehouse/) — warehouse semantics layered on open lake storage
 - [What is a data catalog?](/blog/what-is-data-catalog/) — the discovery layer that keeps a lake from becoming a swamp
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains the data lake as a general concept and how cross-stack agents approach lake context — alongside other tools and architectures in the category.*

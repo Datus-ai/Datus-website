@@ -33,10 +33,6 @@ head:
 
 # What Is Change Data Capture (CDC)? Methods & Use Cases
 
-**Change data capture (CDC)** is the practice of detecting every row-level insert, update, and delete in a source database and propagating those changes to downstream systems — a warehouse, a lake, a cache, another service — instead of re-copying the whole table. When CDC is done well, an analytics table can trail its operational source by seconds rather than a day. This guide defines CDC, compares the three ways to capture change, and covers where it breaks and how agents should treat CDC-fed tables.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains change data capture as a general concept, referencing Datus alongside other tools and approaches in the category. See the end for more detail.*
-
 ## TL;DR
 
 - **CDC** streams row-level changes (INSERT/UPDATE/DELETE) out of a source system as they happen, so targets stay in sync without full reloads.
@@ -44,6 +40,8 @@ head:
 - CDC powers real-time replication, zero-downtime migration, cache invalidation, event-driven microservices, and incremental loads into the lakehouse.
 - The hard parts are not extraction — they are **initial snapshots, ordering, exactly-once delivery, deletes, and schema drift**.
 - For AI agents, CDC decides *freshness*. An agent that doesn't know a table is CDC-backed with a 30-second lag — or has fallen behind — will answer confidently from stale data.
+
+**Change data capture (CDC)** is the practice of detecting every row-level insert, update, and delete in a source database and propagating those changes to downstream systems — a warehouse, a lake, a cache, another service — instead of re-copying the whole table. When CDC is done well, an analytics table can trail its operational source by seconds rather than a day. This guide defines CDC, compares the three ways to capture change, and covers where it breaks and how agents should treat CDC-fed tables.
 
 ## 1. Change data capture: a working definition
 
@@ -182,7 +180,3 @@ Yes, and it is now a common pattern. Open table formats like Apache Iceberg, Del
 - [What is a data contract?](/blog/what-is-data-contract/) — catching schema drift at the producer/consumer boundary
 - [What is medallion architecture?](/blog/what-is-medallion-architecture/) — where CDC lands and how it is refined
 - [Contextual data engineering](/blog/contextual-data-engineering/) — making freshness and source-of-truth first-class context
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains change data capture as a general concept and how Datus addresses the context around it — tracking which tables are CDC-backed, their expected freshness, and reconciliation against the source of truth, through dual-dimension context and domain-scoped Subagents.*

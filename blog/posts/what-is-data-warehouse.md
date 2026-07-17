@@ -33,10 +33,6 @@ head:
 
 # What Is a Data Warehouse? Definition, Architecture & How It Differs From a Data Lake
 
-A finance team needs the same revenue number in the board deck, the investor update, and the daily ops dashboard — computed the same way every time, and fast enough to slice by region and quarter on demand. Delivering that consistency is the job a **data warehouse** was built to do: a central, structured store where data is cleaned, conformed, and modeled *before* it lands, so analytical SQL runs quickly and returns the same answer to everyone. This glossary entry defines what a data warehouse is, how its schema-on-write design differs from a data lake and a lakehouse, what the architecture looks like under the hood, and why AI agents generating SQL against a warehouse still need far more than a list of table names.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains the data warehouse as a general concept, referencing Datus alongside other tools and architectures in the category. See the end for more detail.*
-
 ## TL;DR
 
 - A **data warehouse** is a central, query-optimized store for **structured, modeled data**, where schema is defined up front (schema-on-write) and data is loaded in cleaned form for BI, reporting, and analytics.
@@ -44,6 +40,8 @@ A finance team needs the same revenue number in the board deck, the investor upd
 - Inside, a warehouse couples an **ELT/ETL pipeline**, a **modeling layer** (star schemas, conformed dimensions, marts), and a **columnar, often MPP query engine** tuned for large aggregations.
 - **Cloud data warehouses** — Snowflake, BigQuery, Amazon Redshift — separated storage from compute and made the pattern elastic and pay-per-query.
 - AI agents and text-to-SQL fail on warehouses not because SQL is hard, but because they miss **which mart is certified**, **what grain a table is at**, and **how a metric is actually defined** — context the schema alone never carries.
+
+A finance team needs the same revenue number in the board deck, the investor update, and the daily ops dashboard — computed the same way every time, and fast enough to slice by region and quarter on demand. Delivering that consistency is the job a **data warehouse** was built to do: a central, structured store where data is cleaned, conformed, and modeled *before* it lands, so analytical SQL runs quickly and returns the same answer to everyone. This glossary entry defines what a data warehouse is, how its schema-on-write design differs from a data lake and a lakehouse, what the architecture looks like under the hood, and why AI agents generating SQL against a warehouse still need far more than a list of table names.
 
 ## 1. Data warehouse: a working definition
 
@@ -168,7 +166,3 @@ For a small, well-documented schema, yes. For a real warehouse with hundreds of 
 - [What is a data lake?](/blog/what-is-data-lake/) — the schema-on-read counterpart, and when raw storage wins
 - [What is a lakehouse?](/blog/what-is-lakehouse/) — warehouse semantics on open lake storage
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — how "revenue" stays one number across every mart
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains the data warehouse as a general concept and how cross-stack agents approach warehouse context — alongside other tools and architectures in the category.*

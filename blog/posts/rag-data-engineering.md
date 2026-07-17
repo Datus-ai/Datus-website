@@ -33,10 +33,6 @@ head:
 
 # What Is RAG for Data Engineering? Retrieval, Context & Agent Accuracy
 
-**Retrieval-augmented generation (RAG)** augments an LLM prompt with **retrieved facts** — in data engineering, usually schema fragments, metric definitions, and historical SQL — before the model generates an answer or query. For text-to-SQL and data agents, RAG is how context scales beyond a single prompt window. This glossary entry defines RAG, how it differs from dumping your whole warehouse into chat, and how it connects to a persistent context engine.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains RAG as a general retrieval architecture, referencing Datus alongside other tools and approaches in the category. See the end for more detail.*
-
 ## TL;DR
 
 - **RAG** = **retrieve** relevant documents → **inject** into prompt → **generate** SQL or explanations.
@@ -44,6 +40,8 @@ head:
 - Bad retrieval causes **confident wrong SQL** — worse than admitting "I don't know."
 - RAG in a **session** is not enough; production systems need **durable indexes** that update with feedback.
 - Production data RAG uses structured context navigation and vector search over institutional SQL to inject the right schema, metrics, and reference queries into each generation — not a one-size-fits-all retrieval dump.
+
+**Retrieval-augmented generation (RAG)** augments an LLM prompt with **retrieved facts** — in data engineering, usually schema fragments, metric definitions, and historical SQL — before the model generates an answer or query. For text-to-SQL and data agents, RAG is how context scales beyond a single prompt window. This glossary entry defines RAG, how it differs from dumping your whole warehouse into chat, and how it connects to a persistent context engine.
 
 ## 1. RAG: a working definition
 
@@ -187,7 +185,3 @@ Usually **stale or noisy indexes**, **no scope**, and **no feedback loop** — n
 - [What is text-to-SQL?](/blog/what-is-text-to-sql/) — generation task RAG supports
 - [What is schema linking?](/blog/what-is-schema-linking/) — retrieval quality determines link quality
 - [How a context engine improves agent accuracy](/blog/context-engine-data-engineering-agent-accuracy/) — RAG as part of persistent context
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains RAG as a general retrieval architecture and how Datus implements it — through Context Engine structures, hybrid retrieval, and feedback-driven index evolution.*

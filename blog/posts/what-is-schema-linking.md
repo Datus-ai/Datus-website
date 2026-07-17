@@ -33,10 +33,6 @@ head:
 
 # What Is Schema Linking? Definition, Challenges & How Agents Map NL to Columns
 
-**Schema linking** is the step in text-to-SQL where natural-language phrases — "revenue by channel last quarter" — get mapped to concrete **tables, columns, joins, and filters** in a specific database. When schema linking fails, the model writes fluent SQL against the wrong objects. This glossary entry defines schema linking, why it is the dominant accuracy bottleneck, and how data engineering agents address it with physical and semantic context together.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains schema linking as a general concept, referencing Datus alongside other tools and approaches in the category. See the end for more detail.*
-
 ## TL;DR
 
 - **Schema linking** resolves **which database objects** a question refers to — before or during SQL generation.
@@ -44,6 +40,8 @@ head:
 - Large warehouses, ambiguous column names, and missing business aliases make linking harder than syntax generation.
 - **Physical schema alone** is insufficient — you need business terms, reference SQL, and deprecation notes.
 - A **dual-dimension approach** — combining physical catalog metadata with business language and institutional knowledge — gives agents the context to link both column names and what people actually call them.
+
+**Schema linking** is the step in text-to-SQL where natural-language phrases — "revenue by channel last quarter" — get mapped to concrete **tables, columns, joins, and filters** in a specific database. When schema linking fails, the model writes fluent SQL against the wrong objects. This glossary entry defines schema linking, why it is the dominant accuracy bottleneck, and how data engineering agents address it with physical and semantic context together.
 
 ## 1. Schema linking: a working definition
 
@@ -186,7 +184,3 @@ Partially. Startup-stage linking — small schemas, one domain, active maintenan
 - [What is text-to-SQL?](/blog/what-is-text-to-sql/) — where schema linking fits in the pipeline
 - [RAG for data engineering](/blog/rag-data-engineering/) — retrieval that feeds linking
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed business terms for linking
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains schema linking as a general concept and how Datus addresses it — through dual-dimension context, reference SQL retrieval, and domain-scoped Subagents.*

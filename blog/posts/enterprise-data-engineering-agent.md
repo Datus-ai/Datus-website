@@ -32,15 +32,15 @@ head:
 ---
 # What an Enterprise Data Engineering Agent Actually Needs
 
-A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that works for a single engineer on a single laptop is a productivity tool. A data engineering agent that works for fifty engineers, three hundred analysts, and a security team that audits every database query is infrastructure. The gap between the two is not a matter of scale. It is a matter of architecture.
-
-This article outlines the six requirements that separate an agent suitable for enterprise deployment from one suitable for personal use—and what each requirement means in practice. For the broader agent landscape, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
-
 ## TL;DR
 
 Enterprise data engineering agents need six things that personal agents can skip: **shared and versioned context**, **access control at the subagent level**, **auditability**, **long-running reliability**, **integration with existing governance**, and **a clear path from free to paid**.
 - Most agents on the market today address one or two of these. Few address all six.
 - The gap is not about features. It is about whether the agent was designed from the start to be infrastructure that a security team can sign off on.
+
+A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that works for a single engineer on a single laptop is a productivity tool. A data engineering agent that works for fifty engineers, three hundred analysts, and a security team that audits every database query is infrastructure. The gap between the two is not a matter of scale. It is a matter of architecture.
+
+This article outlines the six requirements that separate an agent suitable for enterprise deployment from one suitable for personal use—and what each requirement means in practice. For the broader agent landscape, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
 
 ## 1. Shared and versioned context
 

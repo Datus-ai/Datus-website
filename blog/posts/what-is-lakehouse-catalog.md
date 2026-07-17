@@ -33,10 +33,6 @@ head:
 
 # What Is a Lakehouse Catalog? Hive, Glue, Unity, Polaris & Horizon
 
-A **lakehouse catalog** is the metadata service that tells a query engine which tables exist, where their files live, and what their schema is. When Spark, Trino, Snowflake, or Databricks resolves `SELECT * FROM sales.orders`, it does not scan object storage hoping to find the right Parquet files — it asks a catalog. That catalog returns the table's location, current schema, partition layout, and, for open table formats, the pointer to the latest metadata snapshot. This glossary entry defines the lakehouse catalog, traces its evolution from the Hive Metastore to AWS Glue, Unity Catalog, Apache Polaris, and Snowflake Horizon, and explains the open-versus-managed split that now shapes every lakehouse architecture decision.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains lakehouse catalogs as general infrastructure, referencing Datus alongside other tools and architectures in the category. See the end for more detail.*
-
 ## TL;DR
 
 - A **lakehouse catalog** is an engine-facing metadata service that maps logical table names to physical storage locations, schemas, and table-format snapshots — it is what makes object storage queryable as tables.
@@ -44,6 +40,8 @@ A **lakehouse catalog** is the metadata service that tells a query engine which 
 - The lineage runs **Hive Metastore → AWS Glue Data Catalog → Unity Catalog / Apache Polaris / Snowflake Horizon**, with open table formats (Iceberg, Delta) pushing catalogs toward standardized REST APIs.
 - The defining tension today is **open vs managed**: Apache Polaris and the Iceberg REST spec favor portability; Unity Catalog and Snowflake Horizon offer deeper integration with a single control plane — and both vendors now ship an open and a managed face.
 - Catalogs are also becoming the **grounding layer for AI agents**: an agent that generates SQL needs the same table, schema, and location metadata a query engine does, plus executable context the catalog alone does not carry.
+
+A **lakehouse catalog** is the metadata service that tells a query engine which tables exist, where their files live, and what their schema is. When Spark, Trino, Snowflake, or Databricks resolves `SELECT * FROM sales.orders`, it does not scan object storage hoping to find the right Parquet files — it asks a catalog. That catalog returns the table's location, current schema, partition layout, and, for open table formats, the pointer to the latest metadata snapshot. This glossary entry defines the lakehouse catalog, traces its evolution from the Hive Metastore to AWS Glue, Unity Catalog, Apache Polaris, and Snowflake Horizon, and explains the open-versus-managed split that now shapes every lakehouse architecture decision.
 
 ## 1. Lakehouse catalog: a working definition
 
@@ -156,8 +154,6 @@ An agent that generates SQL reads the same catalog metadata a query engine does 
 - [What Is a Data Catalog? Definition, Tools & How It Differs From Agent Context](/blog/what-is-data-catalog/)
 - [What Is a Lakehouse? Definition, Architecture & Open Table Formats](/blog/what-is-lakehouse/)
 - [What Is a Data Engineering Agent?](/blog/what-is-data-engineering-agent/)
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains lakehouse catalogs as a general concept and how Datus approaches catalog-grounded context — alongside other tools and architectures in the category.*
 
 ## About the author
 

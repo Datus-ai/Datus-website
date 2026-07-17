@@ -32,10 +32,6 @@ head:
 ---
 # How to Build Your First Data Engineering Agent in 15 Minutes
 
-You do not need a procurement approval. You do not need a cloud budget. You do not need to know how LLMs work. You need a terminal, Python 3.12 or later, and roughly 15 minutes if your environment is ready. By the end of this guide, you will have a working <a href="https://datus.ai/glossary">data engineering agent</a> connected to a real database, a generated semantic model, and a scoped chatbot you can share with a teammate.
-
-We will use Datus for this tutorial because it is free (Apache 2.0), installs with a single pip command, and ships with a built-in tutorial dataset so you do not need to connect a production warehouse to try it. If you want to understand what a data engineering agent is before building one, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
-
 ## TL;DR
 
 You will do seven things in this tutorial:
@@ -46,6 +42,10 @@ You will do seven things in this tutorial:
 5. Generate a semantic model from your database schema
 6. Create a subagent—a scoped chatbot for a specific domain
 7. Share the subagent link with a teammate
+
+You do not need a procurement approval. You do not need a cloud budget. You do not need to know how LLMs work. You need a terminal, Python 3.12 or later, and roughly 15 minutes if your environment is ready. By the end of this guide, you will have a working <a href="https://datus.ai/glossary">data engineering agent</a> connected to a real database, a generated semantic model, and a scoped chatbot you can share with a teammate.
+
+We will use Datus for this tutorial because it is free (Apache 2.0), installs with a single pip command, and ships with a built-in tutorial dataset so you do not need to connect a production warehouse to try it. If you want to understand what a data engineering agent is before building one, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
 
 ## Step 1: Install Datus
 

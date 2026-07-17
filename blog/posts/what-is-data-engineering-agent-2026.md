@@ -33,8 +33,6 @@ head:
 
 # What Is a Data Engineering Agent? Definition, Examples & a 2026 Comparison
 
-Four very different products now ship as a **data engineering agent** — Google BigQuery, Adobe Experience Platform, the Claude Code *data-engineer* subagent, and the open-source <a href="https://github.com/Datus-ai/Datus-agent" rel="nofollow noopener">Datus agent</a>. Read their docs back-to-back and the surface promise sounds identical — "describe what you want, the agent builds it." Run them, and the experiences barely overlap. This guide defines the category honestly: what AI data engineering agents actually do, where they differ, and which problems the label is really trying to solve.
-
 ## TL;DR
 
 - A **data engineering agent** turns natural-language intent into **executable data work** — SQL, transformations, pipelines, quality checks — against a **real stack**, with enough context to skip translating every column name by hand.
@@ -44,6 +42,8 @@ Four very different products now ship as a **data engineering agent** — Google
 - **Open-source frameworks** (Datus) target plural stacks and treat **context as the product** — the agent that outlives a single warehouse and quarter.
 
 In practice, the four products competing for the label today are not the same thing: one is a cloud feature, one is a SaaS capability, one is an agent persona, and one is an open-source agent framework. Here is how to tell them apart.
+
+Four very different products now ship as a **data engineering agent** — Google BigQuery, Adobe Experience Platform, the Claude Code *data-engineer* subagent, and the open-source <a href="https://github.com/Datus-ai/Datus-agent" rel="nofollow noopener">Datus agent</a>. Read their docs back-to-back and the surface promise sounds identical — "describe what you want, the agent builds it." Run them, and the experiences barely overlap. This guide defines the category honestly: what AI data engineering agents actually do, where they differ, and which problems the label is really trying to solve.
 
 ## 1. Data engineering agent: a working definition
 

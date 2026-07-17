@@ -501,20 +501,35 @@ function indexPage(posts) {
     ? [...CATEGORIES, { label: "More essays", description: "", slugs: extras }]
     : CATEGORIES;
 
-  const sections = cats.map((cat) => {
-    const items = cat.slugs.filter((s) => posts.has(s)).map((s) => posts.get(s));
-    if (!items.length) return "";
-    const cards = items.map((p) => `<a class="post-row" href="/blog/${p.slug}/">
+  // A single post row. `dateStr` lets the "Latest" rail show the update date.
+  const postCard = (p, dateStr = fmtDate(p.date)) => `<a class="post-row" href="/blog/${p.slug}/">
       <div class="post-row__main"><h3 class="post-row__title">${esc(p.title)}</h3>
       <p class="post-row__desc">${esc(p.description)}</p></div>
-      <span class="post-row__date">${fmtDate(p.date)}</span></a>`).join("");
+      <span class="post-row__date">${dateStr}</span></a>`;
+
+  // "Latest" rail: every post sorted by most-recent update (lastmod ?? date),
+  // newest first, so freshly published/updated posts surface at the very top.
+  const postDate = (p) => Date.parse(p.lastmod || p.date) || 0;
+  const latest = [...posts.values()].sort((a, b) => postDate(b) - postDate(a)).slice(0, 6);
+  const latestSection = latest.length
+    ? `<section class="blog-cat" id="latest">
+      <div class="blog-cat__head"><h2 class="blog-cat__label">Latest</h2>
+      <p class="blog-cat__desc">The most recently published and updated posts.</p></div>
+      <div class="post-list">${latest.map((p) => postCard(p, fmtDate(p.lastmod || p.date))).join("")}</div></section>`
+    : "";
+
+  const sections = latestSection + cats.map((cat) => {
+    const items = cat.slugs.filter((s) => posts.has(s)).map((s) => posts.get(s));
+    if (!items.length) return "";
+    const cards = items.map((p) => postCard(p)).join("");
     return `<section class="blog-cat" id="${slugify(cat.label)}">
       <div class="blog-cat__head"><h2 class="blog-cat__label">${esc(cat.label)}</h2>
       ${cat.description ? `<p class="blog-cat__desc">${esc(cat.description)}</p>` : ""}</div>
       <div class="post-list">${cards}</div></section>`;
   }).join("");
 
-  const tabs = cats.map((c) => `<a class="blog-tab" href="#${slugify(c.label)}">${esc(c.label)}</a>`).join("");
+  const tabs = (latest.length ? `<a class="blog-tab" href="#latest">Latest</a>` : "")
+    + cats.map((c) => `<a class="blog-tab" href="#${slugify(c.label)}">${esc(c.label)}</a>`).join("");
 
   const crumbs = breadcrumbHtml([
     { label: "Home", href: "/" },

@@ -32,18 +32,18 @@ head:
 ---
 # Data Engineering Agent vs. Claude Code: When to Use Which
 
-Claude Code is one of the best general-purpose coding agents available. It can write Python, debug infrastructure code, refactor APIs, and—with the right prompt—act as a capable data engineer for an afternoon. It is also, by design, not a data engineering agent.
-
-This distinction is not a dig at Claude Code. It is an acknowledgment that data engineering has requirements that general-purpose coding agents were not built to handle: persistent schema knowledge across sessions, validated SQL patterns that compound in accuracy, business metric definitions that survive beyond a single conversation, and delivery mechanisms that turn context into something a non-engineer can use.
-
-This article explains the real differences, the scenarios where each tool wins, and the pattern that turns them from competitors into complements. For a broader comparison of available agents, see the [best data engineering agents in 2026](/blog/best-data-engineering-agents-2026/).
-
 ## TL;DR
 
 - **Claude Code** is a general-purpose coding agent that can do data engineering tasks brilliantly in a single session. It does not carry data context between sessions.
 - A **data engineering agent** (Datus, Wren AI, Altimate) is purpose-built for data work with a persistent context store that grows more accurate with use.
 - The right question is not "which is better?" but **"does this task need persistent data context?"** If yes, use a DE agent. If no, Claude Code is faster to start.
 - The complementary pattern: a DE agent builds and maintains data context, and exposes it to Claude Code through MCP—Claude Code becomes the general-purpose interface to the specialized data context.
+
+Claude Code is one of the best general-purpose coding agents available. It can write Python, debug infrastructure code, refactor APIs, and—with the right prompt—act as a capable data engineer for an afternoon. It is also, by design, not a data engineering agent.
+
+This distinction is not a dig at Claude Code. It is an acknowledgment that data engineering has requirements that general-purpose coding agents were not built to handle: persistent schema knowledge across sessions, validated SQL patterns that compound in accuracy, business metric definitions that survive beyond a single conversation, and delivery mechanisms that turn context into something a non-engineer can use.
+
+This article explains the real differences, the scenarios where each tool wins, and the pattern that turns them from competitors into complements. For a broader comparison of available agents, see the [best data engineering agents in 2026](/blog/best-data-engineering-agents-2026/).
 
 ## 1. The fundamental difference: context persistence
 

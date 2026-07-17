@@ -33,8 +33,6 @@ head:
 
 # What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer
 
-A **semantic layer** is a business representation of data that maps physical tables and columns to stable business concepts — metrics, dimensions, entities, and relationships — so analysts and applications can query by *revenue* and *region* instead of `fact_orders.amount_usd` and `dim_geo.region_code`. It sits between raw storage and every consumer of data: BI tools, APIs, notebooks, and increasingly **AI agents**. This [glossary](/glossary#semantic-layer) entry gives a practical definition, walks through common implementations, and explains where semantic layers end — and where a [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that *operationalizes* those definitions begins.
-
 ## TL;DR
 
 - A **semantic layer** translates **physical schema** into **business language** — metrics, dimensions, entities, joins, and access rules — so consumers do not re-derive logic on every query.
@@ -42,6 +40,8 @@ A **semantic layer** is a business representation of data that maps physical tab
 - Common implementations include <a href="https://docs.getdbt.com/docs/build-about-metricflow" rel="nofollow noopener">dbt Semantic Layer / MetricFlow</a>, <a href="https://cube.dev/" rel="nofollow noopener">Cube</a>, LookML, and warehouse-native semantic models.
 - Most semantic layers are **static at runtime** — defined once, versioned in Git, consumed by BI. AI agents expose a new requirement: semantics that **evolve with validated SQL, feedback, and usage**.
 - Datus does not replace semantic layers — it **sits above and around them**, helping teams build, strengthen, and put semantic definitions to work in agents and workflows.
+
+A **semantic layer** is a business representation of data that maps physical tables and columns to stable business concepts — metrics, dimensions, entities, and relationships — so analysts and applications can query by *revenue* and *region* instead of `fact_orders.amount_usd` and `dim_geo.region_code`. It sits between raw storage and every consumer of data: BI tools, APIs, notebooks, and increasingly **AI agents**. This [glossary](/glossary#semantic-layer) entry gives a practical definition, walks through common implementations, and explains where semantic layers end — and where a [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that *operationalizes* those definitions begins.
 
 ## 1. Semantic layer: a working definition
 

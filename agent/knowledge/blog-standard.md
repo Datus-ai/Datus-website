@@ -47,16 +47,12 @@ Notes: the build script overrides canonical to `/blog/<slug>/` regardless, but k
 ```
 # <Title>                                   ← single H1, == title
 
-**<Term>** is <one-sentence crisp definition>. When <it fails / why it matters>,
-<consequence>. This guide defines <term>, <what else it covers>.   ← bold-term opener, may inline-link a pillar post
-
-*Disclosure: Datus is a data engineering agent platform. This article explains
-<term> as a general concept, referencing Datus alongside other tools and
-approaches in the category. See the end for more detail.*   ← italic disclosure
-
-## TL;DR
+## TL;DR                                     ← FIRST block, right under the title
 - 4–6 tight bullets: the definition, the main failure mode, the key distinction,
   and the "context/agent" angle.
+
+**<Term>** is <one-sentence crisp definition>. When <it fails / why it matters>,
+<consequence>. This guide defines <term>, <what else it covers>.   ← bold-term opener, follows TL;DR, may inline-link a pillar post
 
 ## 1. <Term>: a working definition        ← numbered H2 sections
 > A production-oriented definition in a blockquote.
@@ -81,15 +77,14 @@ Recap the thesis in 2–4 sentences; land the "context evolves → reliability" 
 - [<Existing post>](/blog/<slug>/) — <em-dash gloss>
 - [<Existing post>](/blog/<slug>/) — <gloss>
 - [<Existing post>](/blog/<slug>/) — <gloss>
-
----
-*Disclosure: Datus is a data engineering agent platform. This glossary entry
-explains <term> as a general concept and how Datus addresses it — through
-dual-dimension context, reference SQL retrieval, and domain-scoped Subagents.*
 ```
 
+> **No disclosure blocks.** Posts must NOT include a Disclosure paragraph — not
+> the italic opener, not the closing italic, not a blockquote or inline
+> parenthetical form. Keep Datus mentions educational and in-body only.
+
 ## 3. Other post templates (skeletons)
-- **Comparison "X vs Y" / "Best … 2026":** provocative market-claim opener → TL;DR → "the categories, briefly" → one big side-by-side **comparison table** → fair per-option H3 write-ups (with "verify their own numbers" caveats) → "Decision framework" (Question 1/2/3) → recommendation → FAQ → Related articles. For head-to-heads, resolve with "when to use which / they work best together."
+- **Comparison "X vs Y" / "Best … 2026":** TL;DR (first block) → provocative market-claim opener → "the categories, briefly" → one big side-by-side **comparison table** → fair per-option H3 write-ups (with "verify their own numbers" caveats) → "Decision framework" (Question 1/2/3) → recommendation → FAQ → Related articles. For head-to-heads, resolve with "when to use which / they work best together."
 - **Thought-leadership / concept:** 2–3 line thesis hook that names a false binary and dissolves it ("Most copilots help with generation. Data engineering needs execution.") → argument sections ("N reasons", each `###`) → "what changes in practice" → FAQ → "Final takeaway" → "Continue reading" + soft Datus CTA.
 - **How-to / tutorial:** framing → numbered step sections with CLI/YAML code blocks → "next steps" → Try-Studio CTA → practical FAQ.
 
@@ -102,7 +97,7 @@ dual-dimension context, reference SQL retrieval, and domain-scoped Subagents.*
 - **Length:** long-form. Glossary/comparison flagships ≈ 180–240+ body lines, 6–8 sections, ≥1 big table, 4–6 FAQ. Depth is the SEO moat.
 
 ## 5. How to mention Datus (do NOT over-sell)
-- Glossary/thought posts: Datus appears mainly in the "how context engines/agents improve X" section and the closing disclosure — educational framing, complementary ("Datus does not replace the semantic layer — it sits above and around it").
+- Glossary/thought posts: Datus appears mainly in the "how context engines/agents improve X" section — educational framing, complementary ("Datus does not replace the semantic layer — it sits above and around it"). No disclosure block (see §2).
 - Comparison/tutorial/product posts: Datus can appear throughout, still fair and honest ("architectural direction, not the shipped feature set" when talking roadmap).
 - Always: open-source / Apache-2.0 framing; link Studio/GitHub/Docs where natural.
 

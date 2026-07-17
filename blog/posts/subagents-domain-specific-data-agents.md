@@ -32,18 +32,18 @@ head:
 ---
 # Subagents: How to Ship Domain-Specific Data Agents Without Training a Model
 
-A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that can answer any question about your entire warehouse sounds powerful. In practice, it is a liability. Give an agent unrestricted access to every table, every metric, and every schema, and it will produce answers that are technically correct and organizationally wrong—using the operations team's definition of revenue when finance asked the question, or joining through a deprecated path because nobody told the agent not to.
-
-A subagent solves this by scoping the problem. Instead of one agent that knows everything, you create many subagents, each knowing exactly what one domain needs: roughly 10 tables, 20 metrics, 30 validated SQL references, and a set of standing business rules. Each subagent is a self-contained, shareable chatbot that delivers accurate answers within its domain—and stays silent outside it.
-
-This article explains what subagents are, how they work, and why they are the delivery unit that separates a <a href="https://datus.ai/glossary">data engineering agent</a> from a smart SQL writer. For the philosophy behind scoped context, see [contextual data engineering](/blog/contextual-data-engineering/).
-
 ## TL;DR
 
 - A **subagent** is a domain-specific chatbot built from scoped context: a curated subset of tables, metrics, validated SQL, and business rules relevant to one business domain.
 - Subagents solve three problems: **accuracy** (less irrelevant context = fewer wrong answers), **access control** (finance subagent cannot query HR tables), and **delivery** (analysts get a purpose-built chatbot instead of a general-purpose agent they do not know how to use).
 - The subagent lifecycle: ad-hoc exploration → generate metrics and reference SQL → configure scope → deploy chatbot → collect feedback → refine context → mature enough to export as an API.
 - Subagents are not a feature. They are the delivery model.
+
+A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that can answer any question about your entire warehouse sounds powerful. In practice, it is a liability. Give an agent unrestricted access to every table, every metric, and every schema, and it will produce answers that are technically correct and organizationally wrong—using the operations team's definition of revenue when finance asked the question, or joining through a deprecated path because nobody told the agent not to.
+
+A subagent solves this by scoping the problem. Instead of one agent that knows everything, you create many subagents, each knowing exactly what one domain needs: roughly 10 tables, 20 metrics, 30 validated SQL references, and a set of standing business rules. Each subagent is a self-contained, shareable chatbot that delivers accurate answers within its domain—and stays silent outside it.
+
+This article explains what subagents are, how they work, and why they are the delivery unit that separates a <a href="https://datus.ai/glossary">data engineering agent</a> from a smart SQL writer. For the philosophy behind scoped context, see [contextual data engineering](/blog/contextual-data-engineering/).
 
 ## 1. The problem subagents solve
 

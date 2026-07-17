@@ -33,10 +33,6 @@ head:
 
 # What Is a Data Catalog? Definition, Tools & How It Differs From Agent Context
 
-A **data catalog** inventories and describes data assets — tables, columns, owners, tags, and often **lineage** — so people can **find and trust** data across the organization. It is the phone book of the warehouse; it is not, by itself, a system that turns questions into correct SQL. This glossary entry defines data catalogs, compares them to dictionaries and semantic layers, and explains why data engineering agents need executable context on top of catalog metadata.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains data catalogs as general infrastructure, referencing Datus's Context Engine as one example of a layer that consumes catalog metadata. See the end for more detail.*
-
 ## TL;DR
 
 - A **data catalog** answers **what exists, who owns it, and where it came from** — optimized for human discovery.
@@ -44,6 +40,8 @@ A **data catalog** inventories and describes data assets — tables, columns, ow
 - **Data dictionary** = column-level definitions; **catalog** = searchable asset graph with governance metadata.
 - A **[semantic layer](/blog/what-is-semantic-layer/)** adds executable metric logic; catalogs rarely encode "net revenue" computation completely.
 - A catalog alone is not an AI grounding layer — agents need **executable context** (reference SQL, [semantic models](/blog/what-is-semantic-model/), feedback) layered on top of catalog metadata to generate correct queries reliably.
+
+A **data catalog** inventories and describes data assets — tables, columns, owners, tags, and often **lineage** — so people can **find and trust** data across the organization. It is the phone book of the warehouse; it is not, by itself, a system that turns questions into correct SQL. This glossary entry defines data catalogs, compares them to dictionaries and semantic layers, and explains why data engineering agents need executable context on top of catalog metadata.
 
 ## 1. Data catalog: a working definition
 
@@ -187,7 +185,3 @@ Assuming that catalog coverage equals AI readiness. A catalog with 100% table co
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — executable business logic above catalog metadata
 - [How a context engine improves agent accuracy](/blog/context-engine-data-engineering-agent-accuracy/) — beyond catalog browsing
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — operationalizes context, not just inventory
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains data catalogs as general infrastructure and how Datus positions its Context Engine as a complementary layer — consuming catalog metadata and adding executable, evolvable agent context on top.*

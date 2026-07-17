@@ -33,10 +33,6 @@ head:
 
 # What Is Apache Iceberg? Table Format, Features & Iceberg vs Delta Lake
 
-A data engineer partitions a large events table in Hive by a string column, `dt='2026-06-15'`, and ships it. Six months later the business wants hourly granularity. A backfill rewrites the underlying folders, a few late files land in the wrong directory, and every downstream query that hard-coded `WHERE dt = '2026-06-15'` quietly returns partial results — no error, just wrong numbers in a board deck. **Apache Iceberg** is the open table format designed to make this entire class of failure structurally impossible: it tracks which files belong to a table, hides partition logic from the query, and commits changes atomically. This glossary entry defines what Iceberg is, how its core mechanics work, how it compares to Delta Lake and Hudi, and why AI agents querying a lakehouse need to understand it.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains Apache Iceberg as a general concept, referencing Datus alongside other tools and architectures in the category. See the end for more detail.*
-
 ## TL;DR
 
 - **Apache Iceberg** is an open table format that turns a directory of files on object storage into a database-style table with **ACID transactions, schema evolution, hidden partitioning, and time travel** — readable by many engines, owned by no single vendor.
@@ -44,6 +40,8 @@ A data engineer partitions a large events table in Hive by a string column, `dt=
 - **Hidden partitioning** and **partition evolution** let you change how a table is physically laid out without rewriting queries — the failure mode in the opening story simply cannot occur.
 - Against **Delta Lake** and **Apache Hudi**, Iceberg's distinguishing bet is **engine neutrality**: it was designed from the start to avoid coupling table semantics to one compute vendor.
 - AI agents and text-to-SQL systems break on Iceberg estates when they reason about **file paths instead of table snapshots**, ignore **partition transforms**, or assume a `MERGE` works the same across engines — context must be table-format-aware.
+
+A data engineer partitions a large events table in Hive by a string column, `dt='2026-06-15'`, and ships it. Six months later the business wants hourly granularity. A backfill rewrites the underlying folders, a few late files land in the wrong directory, and every downstream query that hard-coded `WHERE dt = '2026-06-15'` quietly returns partial results — no error, just wrong numbers in a board deck. **Apache Iceberg** is the open table format designed to make this entire class of failure structurally impossible: it tracks which files belong to a table, hides partition logic from the query, and commits changes atomically. This glossary entry defines what Iceberg is, how its core mechanics work, how it compares to Delta Lake and Hudi, and why AI agents querying a lakehouse need to understand it.
 
 ## 1. Apache Iceberg: a working definition
 
@@ -153,7 +151,3 @@ For a tiny POC schema, paste DDL and it may work. For a production Iceberg estat
 - [What is a lakehouse?](/blog/what-is-lakehouse/) — the architecture Iceberg tables make possible
 - [What is Apache Hudi?](/blog/what-is-apache-hudi/) — the upsert-first table format Iceberg is often compared to
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — why table-format-aware context matters
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains Apache Iceberg as a general concept and how cross-stack agents approach lakehouse context — alongside other tools and architectures in the category.*

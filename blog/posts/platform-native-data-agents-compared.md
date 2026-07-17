@@ -33,8 +33,6 @@ head:
 
 # Platform-Native Data Engineering Agents Compared: Cortex Code, Genie Code, and BigQuery DE Agent
 
-Your team runs Snowflake for warehousing, BigQuery for ML feature stores, and a Databricks lakehouse for data science. Each platform now ships a data engineering agent: Snowflake Cortex Code generates dbt models and Airflow DAGs. Databricks Genie Code builds Spark pipelines and monitors them 24/7. BigQuery DE Agent ingests, transforms, and orchestrates — and ships a Data Agent Kit so you can work from VS Code or Claude Code. Each agent is excellent within its own ecosystem. Each is blind outside it. The question is not which agent is best — it is whether your architecture can afford to run three agents with three context models that do not share learning, or whether a cross-stack agent with unified context is worth trading platform-native depth for multi-platform coverage. This article compares the three, lays out a five-factor evaluation framework, and makes the case for both approaches — because the right answer depends on your stack, not on the agent spec sheet.
-
 ## TL;DR
 
 - **Three major platform-native data engineering agents** have launched in the past 12 months: Snowflake Cortex Code (Nov 2025, expanded Feb 2026), Databricks Genie Code (Mar 2026 GA), and Google BigQuery DE Agent (Nov 2025 Preview, Apr 2026 GA).
@@ -43,6 +41,8 @@ Your team runs Snowflake for warehousing, BigQuery for ML feature stores, and a 
 - Genie Code reports 77.1% task completion vs 32.1% for general agents in internal testing — the strongest published accuracy claim among the three.
 - BigQuery DEA reports 90% ETL migration time reduction (Vodafone case) and ships a **Data Agent Kit** (MCP + VS Code + Claude Code + Gemini CLI integration) — the most open integration surface.
 - The case for an open, cross-stack agent (like Datus): platform-native agents are best-in-class within their ecosystem and blind outside it. Teams running Snowflake + BigQuery + a lakehouse need an agent that operates across all three, not three agents with three different context models.
+
+Your team runs Snowflake for warehousing, BigQuery for ML feature stores, and a Databricks lakehouse for data science. Each platform now ships a data engineering agent: Snowflake Cortex Code generates dbt models and Airflow DAGs. Databricks Genie Code builds Spark pipelines and monitors them 24/7. BigQuery DE Agent ingests, transforms, and orchestrates — and ships a Data Agent Kit so you can work from VS Code or Claude Code. Each agent is excellent within its own ecosystem. Each is blind outside it. The question is not which agent is best — it is whether your architecture can afford to run three agents with three context models that do not share learning, or whether a cross-stack agent with unified context is worth trading platform-native depth for multi-platform coverage. This article compares the three, lays out a five-factor evaluation framework, and makes the case for both approaches — because the right answer depends on your stack, not on the agent spec sheet.
 
 ## 1. The three platform agents: capability comparison
 

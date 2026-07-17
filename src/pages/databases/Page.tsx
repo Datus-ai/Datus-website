@@ -8,7 +8,6 @@ import {
   CodeBlock,
   FeatureCard,
   InlineCode,
-  Mark,
   SectionHead,
   SpecCard,
   SpecTable,
@@ -131,7 +130,7 @@ export default function DatabasesPage() {
               margin: "20px 0 0",
             }}
           >
-            Supported <Mark tone="var(--term-cyan)">Databases</Mark>
+            Supported Databases
           </h1>
           <p className="lead" style={{ maxWidth: 680 }}>
             Eleven native database adapters, from embedded SQLite and DuckDB to cloud warehouses
@@ -173,7 +172,7 @@ export default function DatabasesPage() {
       <CatalogSection>
         <SectionHead
           eyebrow="One interface"
-          title={<>Four <Mark tone="var(--term-amber)">Categories</Mark>, one interface</>}
+          title={<>Four Categories, one interface</>}
           lead="Every adapter implements the same CRUD, DDL, metadata and sampling contract — so subagents work identically across your OLTP, warehouse and lake engines."
         />
         <div className="grid grid-4">
@@ -223,7 +222,7 @@ export default function DatabasesPage() {
             <div style={{ flex: "1 1 320px", minWidth: 280 }}>
               <span className="eyebrow">Migration</span>
               <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,32px)" }}>
-                Cross-database <Mark tone="var(--term-green)">Migration</Mark> hints
+                Cross-database Migration hints
               </h2>
               <p className="lead" style={{ marginTop: 10 }}>
                 Every adapter implements MigrationTargetMixin so subagents can generate DDL for the
@@ -244,7 +243,7 @@ export default function DatabasesPage() {
       <CatalogSection alt>
         <SectionHead
           eyebrow="Configuration"
-          title={<>Drop-in <Mark tone="var(--term-pink)">datasource</Mark> config</>}
+          title={<>Drop-in datasource config</>}
           lead="One YAML file wires every warehouse. Environment variables keep credentials out of source control."
         />
         <CodeBlock filename="agent.yml" lang="yaml" code={datasourceYaml} />
@@ -271,7 +270,7 @@ export default function DatabasesPage() {
             }}
           >
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Connect Your <Mark tone="var(--term-cyan)">Warehouse</Mark> in Minutes
+              Connect Your Warehouse in Minutes
             </h2>
             <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
               Native adapters for Snowflake, Postgres, MySQL and more — drop in credentials and the

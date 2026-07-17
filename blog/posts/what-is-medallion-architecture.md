@@ -33,10 +33,6 @@ head:
 
 # What Is Medallion Architecture? Bronze, Silver & Gold Layers
 
-**Medallion architecture** is a data design pattern that organizes a [lakehouse](/blog/what-is-lakehouse/) into three named layers — **Bronze** (raw), **Silver** (cleaned and validated), and **Gold** (business-ready) — so data quality improves at each hop from source to consumption. It is a naming convention for pipeline stages, not a product you install, and Databricks itself calls it "a recommended best practice but not a requirement." This guide defines the pattern, says exactly what belongs in each layer, walks the anti-patterns the vendor pages downplay, and answers the question those pages skip: **which layer should an AI agent actually query?**
-
-*Disclosure: Datus is a data engineering agent platform. This article explains medallion architecture as a general concept, referencing Datus alongside other tools and approaches in the category. See the end for more detail.*
-
 ## TL;DR
 
 - **Medallion architecture** = Bronze → Silver → Gold, a "multi-hop" convention that progressively refines data quality across layers.
@@ -45,6 +41,8 @@ head:
 - The common failure modes: forcing all three layers onto every dataset, a sprawling Gold that drifts into competing "single sources of truth," and quality debt that propagates downstream unchecked.
 - **Gold is not a semantic layer.** Gold holds structured tables; meaning — what a metric means, which table is authoritative, how to join — lives above and around it.
 - An AI agent usually needs **Silver's granularity** for causal analysis and **Gold's definitions** for headline metrics — plus context medallion layers alone don't encode.
+
+**Medallion architecture** is a data design pattern that organizes a [lakehouse](/blog/what-is-lakehouse/) into three named layers — **Bronze** (raw), **Silver** (cleaned and validated), and **Gold** (business-ready) — so data quality improves at each hop from source to consumption. It is a naming convention for pipeline stages, not a product you install, and Databricks itself calls it "a recommended best practice but not a requirement." This guide defines the pattern, says exactly what belongs in each layer, walks the anti-patterns the vendor pages downplay, and answers the question those pages skip: **which layer should an AI agent actually query?**
 
 ## 1. Medallion architecture: a working definition
 
@@ -203,7 +201,3 @@ It depends on the task. For a governed headline KPI, Gold is correct — it matc
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the meaning layer above Gold
 - [What is schema linking?](/blog/what-is-schema-linking/) — how agents pick the right table across layers
 - [Contextual data engineering](/blog/contextual-data-engineering/) — evolvable context over the medallion
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains medallion architecture as a general concept and how Datus addresses the meaning gap above it — through dual-dimension context, reference SQL retrieval, and domain-scoped Subagents that know which layer and table answer each question.*

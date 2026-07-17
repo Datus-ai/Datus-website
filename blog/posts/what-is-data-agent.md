@@ -33,8 +33,6 @@ head:
 
 # What Is a Data Agent? How It Differs From a Data Engineering Agent
 
-If you attended three data conferences in 2026, you heard at least a dozen tools described as "AI agents for data." One generates SQL from natural language. One monitors pipeline health and suggests fixes. One auto-generates dashboards. One discovers metadata across catalogs. One builds and evolves the context that all the others depend on. They share a label and almost nothing else — not architecture, not user, not failure mode, not the problem they actually solve. This article proposes a six-type taxonomy that separates them by what they actually do, maps the consumer/producer tier architecture that connects them, and explains why one type — the [data engineering agent](/blog/what-is-data-engineering-agent/) — matters more for long-term accuracy than the other five combined.
-
 ## TL;DR
 
 - A **data agent** is any AI system that interacts with data — querying, analyzing, monitoring, or discovering — using natural language and data context.
@@ -42,6 +40,8 @@ If you attended three data conferences in 2026, you heard at least a dozen tools
 - A **data engineering agent** is the **builder subclass** — it does not just answer questions from data; it builds and evolves the context ([semantic models](/blog/what-is-semantic-model/), metrics, reference SQL, validation rules) that makes all other data agents more accurate.
 - Most data agents are **consumers** of data context. Data engineering agents are **producers and maintainers** of data context. This is the fundamental architectural distinction.
 - Datus is a data engineering agent: it builds evolvable context for data systems, and exposes that context to other data agents (chatbots, BI tools, external agents) through Subagents, APIs, and [MCP](/blog/what-is-mcp-data-engineering/).
+
+If you attended three data conferences in 2026, you heard at least a dozen tools described as "AI agents for data." One generates SQL from natural language. One monitors pipeline health and suggests fixes. One auto-generates dashboards. One discovers metadata across catalogs. One builds and evolves the context that all the others depend on. They share a label and almost nothing else — not architecture, not user, not failure mode, not the problem they actually solve. This article proposes a six-type taxonomy that separates them by what they actually do, maps the consumer/producer tier architecture that connects them, and explains why one type — the [data engineering agent](/blog/what-is-data-engineering-agent/) — matters more for long-term accuracy than the other five combined.
 
 ## 1. Data agent: a working definition
 
