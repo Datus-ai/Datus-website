@@ -230,6 +230,7 @@ A contract is machine-readable, authoritative context. An agent doing text-to-SQ
 - [What is a data catalog?](/blog/what-is-data-catalog/) — discovery vs governed interface
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed metrics vs contracted interfaces
 - [What is schema linking?](/blog/what-is-schema-linking/) — how contracts ground agent column mapping
+- [What is change data capture (CDC)?](/blog/what-is-cdc/) — where schema drift enters, and why contracts guard the boundary
 - [Contextual data engineering](/blog/contextual-data-engineering/) — the evolvable layer above the contract floor
 
 ---

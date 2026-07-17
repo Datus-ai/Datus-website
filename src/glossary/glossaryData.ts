@@ -193,6 +193,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "change-data-capture",
         definition:
           "Streaming row-level inserts, updates, and deletes out of an operational database in near real time, usually by reading its transaction log.",
+        article: "/blog/what-is-cdc/",
       },
       {
         term: "Backfill",
