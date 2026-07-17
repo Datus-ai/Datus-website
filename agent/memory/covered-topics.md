@@ -91,7 +91,7 @@ this agent)".
 **Covered (term has a working `article`):** Data Warehouse, Data Lake, Lakehouse,
 Data Mesh, Semantic Layer, Metric Layer, Apache Iceberg, Apache Hudi, Lakehouse
 Catalog, Data Catalog, Text-to-SQL, Schema Linking, RAG, Data Engineering Agent,
-Data Contract, Medallion Architecture.
+Data Contract, Medallion Architecture, Change Data Capture.
 
 **⚠ Broken glossary links (article set but post missing → OPEN, high priority to fill):**
 - ~~Data Contract → `/blog/what-is-data-contract/`~~ — FILLED (PR #55, 2026-07-10).
@@ -132,3 +132,14 @@ Data Contract, Medallion Architecture.
 - Glossary updated: yes (set article: /blog/what-is-medallion-architecture/ on Medallion Architecture term)
 - PR: https://github.com/Datus-ai/Datus-website/pull/56   Status: open
 - Date: 2026-07-10
+
+### what-is-cdc
+- Title: What Is Change Data Capture (CDC)? Methods & Use Cases
+- Target keyword: change data capture (what is CDC, CDC methods, log-based CDC, Debezium, CDC to lakehouse, CDC pipeline)
+- Angle: crisp definition + the three CDC methods in one tradeoff table (delete-capture + source-load columns the SERP glosses) + real use cases + honest "where CDC breaks" (initial snapshot handoff, ordering, exactly-once/idempotent sinks, deletes, schema drift) + CDC-to-lakehouse (Iceberg/Hudi/Fivetran 2025–2026); differentiated agent angle = CDC makes "freshness" a checkable fact not an assumption, plus reconcile CDC copy vs source
+- Source direction: open glossary term `change-data-capture` (no article; Processing category) — complements published Apache Hudi (upserts/change streams)
+- Key sources: confluent.io/learn/change-data-capture; debezium.io features docs + 2025 blog (ms-range latency MySQL/Postgres); striim.com CDC methods; rivery.io CDC; fivetran.com press (Iceberg + Snowflake)
+- Internal links added: what-is-apache-hudi, what-is-apache-iceberg, what-is-lakehouse, what-is-medallion-architecture, what-is-data-warehouse, what-is-data-contract, what-is-data-engineering-agent-2026, contextual-data-engineering (reciprocal links added from what-is-apache-hudi + what-is-data-contract)
+- Glossary updated: yes (set article: /blog/what-is-cdc/ on Change Data Capture term)
+- PR: https://github.com/Datus-ai/Datus-website/pull/58   Status: open
+- Date: 2026-07-17
