@@ -156,6 +156,7 @@ Only with format-aware context. On a small POC, pasting DDL may work, but on pro
 
 - [What is Apache Iceberg?](/blog/what-is-apache-iceberg/) — the engine-neutral table format Hudi is often compared to
 - [What is a lakehouse?](/blog/what-is-lakehouse/) — the architecture Hudi tables make possible
+- [What is change data capture (CDC)?](/blog/what-is-cdc/) — the change streams Hudi upserts are built to absorb
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — why table-format-aware context matters
 
 ---
