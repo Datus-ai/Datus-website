@@ -17,7 +17,6 @@ import FAQ, { type FaqItem } from "./components/FAQ";
 import {
   CatalogSection,
   FeatureCard,
-  Mark,
   panelBg,
   sectionBorder,
   toneAt,
@@ -332,7 +331,7 @@ function ProblemSolution() {
       <div className="section-head center">
         <span className="eyebrow">Why Datus</span>
         <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-          Why Teams Switch to a <Mark tone="var(--term-cyan)">Data Engineering Agent</Mark>
+          Why Teams Switch to a Data Engineering Agent
         </h2>
         <p className="lead" style={{ marginTop: 10 }}>
           Copilots and NL2SQL solve one prompt at a time. A data engineering agent owns the
@@ -501,7 +500,7 @@ function ThreeLayers() {
         <div>
           <span className="eyebrow">Architecture</span>
           <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-            A Data Engineering Agent in <Mark tone="var(--term-amber)">Three Layers</Mark>
+            A Data Engineering Agent in Three Layers
           </h2>
           <p className="lead" style={{ marginTop: 10 }}>
             Delivery on top, Intelligence in the middle, a Data Layer underneath. Three stacked
@@ -524,7 +523,7 @@ function Lifecycle() {
         <div>
           <span className="eyebrow">Lifecycle</span>
           <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-            Agentic Data Engineering Across the <Mark tone="var(--term-cyan)">Full Lifecycle</Mark>
+            Agentic Data Engineering Across the Full Lifecycle
           </h2>
           <p className="lead" style={{ marginTop: 10 }}>
             From SQL development to monitoring — eight lifecycle phases orbit one Datus agent,
@@ -585,7 +584,7 @@ function UseCases() {
       <div className="section-head center">
         <span className="eyebrow">Use cases</span>
         <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-          What Teams <Mark tone="var(--term-amber)">Actually Ship</Mark> With Datus
+          What Teams Actually Ship With Datus
         </h2>
         <p className="lead" style={{ marginTop: 10 }}>
           Four workflows that show up on day one — same data engineering agent, same context,
@@ -661,7 +660,7 @@ function Surfaces() {
       <div className="section-head center">
         <span className="eyebrow">Get started</span>
         <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-          One Agent, Four <Mark tone="var(--term-green)">Surfaces to Pick From</Mark>
+          One Agent, Four Surfaces to Pick From
         </h2>
         <p className="lead" style={{ marginTop: 10 }}>
           Same data engineering agent, same context — four surfaces (Studio, CLI, Chatbot, MCP) so
@@ -746,7 +745,7 @@ function StackLogos() {
       <div className="section-head center">
         <span className="eyebrow">Integrations</span>
         <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-          Works With Your <Mark tone="var(--term-pink)">Modern Data Stack</Mark>
+          Works With Your Modern Data Stack
         </h2>
         <p className="lead" style={{ marginTop: 10 }}>
           Point the Datus data engineering agent at what you already run. Governance and dialect
@@ -834,7 +833,7 @@ function ClosingCta() {
           }}
         >
           <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-            Ready to let the <Mark tone="var(--term-amber)">data engineering agent</Mark> run?
+            Ready to let the data engineering agent run?
           </h2>
           <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
             Open Datus Studio <A href="/pricing/">free in your browser</A>, or self-host the

@@ -14,10 +14,6 @@ export const toneAt = (i: number) => TONES[i % TONES.length];
 export const panelBg = "rgba(11,18,48,0.4)";
 export const sectionBorder = "1px solid var(--line)";
 
-export function Mark({ tone, children }: { tone: string; children: ReactNode }) {
-  return <span style={{ color: tone }}>{children}</span>;
-}
-
 export function InlineCode({ children }: { children: ReactNode }) {
   return (
     <code
