@@ -12,6 +12,8 @@ import McpPage from "./pages/mcp/Page";
 import ChatbotPage from "./pages/chatbot/Page";
 import PricingPage from "./pages/pricing/Page";
 import FaqPage from "./pages/faq/Page";
+import OsiFieldMappingPage from "./pages/osi-field-mapping/Page";
+import OsiPlaygroundPage from "./pages/tools/osi-playground/Page";
 
 /**
  * SSR entry for build-time prerendering. Loaded via Vite's ssrLoadModule in
@@ -37,6 +39,8 @@ export const ROUTES: { out: string; node: JSX.Element }[] = [
   { out: "chatbot/index.html", node: <ChatbotPage /> },
   { out: "pricing/index.html", node: <PricingPage /> },
   { out: "faq/index.html", node: <FaqPage /> },
+  { out: "osi-field-mapping/index.html", node: <OsiFieldMappingPage /> },
+  { out: "tools/osi-playground/index.html", node: <OsiPlaygroundPage /> },
 ];
 
 export function render(node: JSX.Element): string {

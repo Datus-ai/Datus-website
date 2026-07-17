@@ -74,6 +74,16 @@ export const INTEGRATIONS: NavLink[] = [
     href: "/models/",
     description: "OpenAI, Claude, Gemini, DeepSeek…",
   },
+  {
+    label: "OSI Field Mapping",
+    href: "/osi-field-mapping/",
+    description: "Semantic layers mapped to the OSI spec.",
+  },
+  {
+    label: "OSI Playground",
+    href: "/tools/osi-playground/",
+    description: "MetricFlow → OSI: validate, convert, diff.",
+  },
 ];
 
 export const NAV: NavItem[] = [

@@ -45,6 +45,10 @@ const CARDS = [
     subtitle: "Essays and guides on data agents, semantic layers, and evolvable context." },
   { slug: "blog-post", eyebrow: "Blog", title: "Datus Blog",
     subtitle: "Essays and guides from the team building the data engineering agent." },
+  { slug: "osi-field-mapping", eyebrow: "OSI Field Mapping", title: "Eight semantic layers, one OSI spec",
+    subtitle: "MetricFlow, Cube, LookML, AtScale, Snowflake, GoodData, Power BI and Databricks — mapped field by field." },
+  { slug: "tools-osi-playground", eyebrow: "OSI Playground", title: "MetricFlow to OSI, in your browser",
+    subtitle: "Validate, convert and diff MetricFlow YAML against the Open Semantic Interchange spec." },
 ];
 
 const qs = (c) =>

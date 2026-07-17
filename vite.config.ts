@@ -19,6 +19,8 @@ const MPA_ROUTES = [
   'chatbot',
   'pricing',
   'faq',
+  'osi-field-mapping',
+  'tools/osi-playground',
 ];
 
 // Locally mirror GitHub Pages behavior: redirect a clean URL like `/products/cli`
