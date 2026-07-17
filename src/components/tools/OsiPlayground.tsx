@@ -11,37 +11,13 @@ const MAX_INPUT_BYTES = 200 * 1024; // 200KB — protect the main thread
 
 type Tab = "validator" | "converter" | "diff";
 
-/** macOS-style window frame reusing the site.css `.term` chrome. */
-function WindowFrame({
-  title,
-  meta,
-  traffic = true,
-  children,
-}: {
-  title?: React.ReactNode;
-  meta?: React.ReactNode;
-  traffic?: boolean;
-  children: React.ReactNode;
-}) {
+function TrafficDots() {
   return (
-    <div className="term" style={{ fontFamily: "var(--font-sans)" }}>
-      <div className="term__bar">
-        {traffic && (
-          <>
-            <span className="term__dot term__dot--r" />
-            <span className="term__dot term__dot--y" />
-            <span className="term__dot term__dot--g" />
-          </>
-        )}
-        {title !== undefined && <span className="term__title">{title}</span>}
-        {meta !== undefined && (
-          <span className="term__title" style={{ marginLeft: "auto" }}>
-            {meta}
-          </span>
-        )}
-      </div>
-      {children}
-    </div>
+    <>
+      <span className="term__dot term__dot--r" />
+      <span className="term__dot term__dot--y" />
+      <span className="term__dot term__dot--g" />
+    </>
   );
 }
 
@@ -114,6 +90,12 @@ function download(name: string, contents: string) {
   URL.revokeObjectURL(url);
 }
 
+const barTitleStyle: React.CSSProperties = {
+  marginLeft: "auto",
+  fontSize: 12.5,
+  color: "var(--ink-faint)",
+};
+
 export function OsiPlayground() {
   const [input, setInput] = useState(SAMPLE_METRICFLOW);
   const [tab, setTab] = useState<Tab>("converter");
@@ -154,12 +136,21 @@ export function OsiPlayground() {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const tabBtn = (value: Tab, label: string) => (
+  const outMeta =
+    tab === "validator"
+      ? `OSI v${OSI_SCHEMA_VERSION}`
+      : tab === "converter"
+        ? conversion && conversion.errors.length === 0
+          ? `${conversion.mappedCount} mapped · ${conversion.renamedCount} renamed`
+          : "—"
+        : `+${diffSummary.added} · −${diffSummary.removed} lines`;
+
+  const miniTab = (value: Tab, label: string) => (
     <button
       type="button"
       role="tab"
       aria-selected={tab === value}
-      className="osi-tab"
+      className="osi-tab-mini"
       onClick={() => setTab(value)}
     >
       {label}
@@ -168,8 +159,15 @@ export function OsiPlayground() {
 
   return (
     <div className="osi-pg">
-      {/* INPUT COLUMN */}
-      <WindowFrame title="metricflow.yml" meta={`${(input.length / 1024).toFixed(1)} KB`}>
+      {/* INPUT WINDOW */}
+      <div className="term osi-win" style={{ fontFamily: "var(--font-sans)" }}>
+        <div className="term__bar">
+          <TrafficDots />
+          <span className="term__title">metricflow.yml</span>
+          <span className="term__title" style={{ marginLeft: "auto" }}>
+            {(input.length / 1024).toFixed(1)} KB
+          </span>
+        </div>
         <div className="osi-bar">
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button type="button" className="osi-btn" onClick={() => setInput(SAMPLE_METRICFLOW)}>
@@ -208,128 +206,114 @@ export function OsiPlayground() {
             Input is over 200 KB — trimmed for browser-side processing.
           </div>
         )}
-      </WindowFrame>
+      </div>
 
-      {/* OUTPUT COLUMN */}
-      <div>
-        <div className="osi-tabs" role="tablist" aria-label="OSI Playground tools">
-          {tabBtn("validator", "Validator")}
-          {tabBtn("converter", "Converter")}
-          {tabBtn("diff", "Diff")}
+      {/* OUTPUT WINDOW — tab switcher lives in the title bar, meta on the right */}
+      <div className="term osi-win" style={{ fontFamily: "var(--font-sans)" }}>
+        <div className="term__bar">
+          <div className="osi-seg" role="tablist" aria-label="OSI Playground tools">
+            {miniTab("validator", "Validator")}
+            {miniTab("converter", "Converter")}
+            {miniTab("diff", "Diff")}
+          </div>
+          <span style={barTitleStyle}>{outMeta}</span>
         </div>
 
-        {/* VALIDATOR */}
-        {tab === "validator" && (
-          <WindowFrame title="validator" meta={`OSI v${OSI_SCHEMA_VERSION}`} traffic={false}>
-            <div style={{ padding: 18, minHeight: 420, display: "grid", gap: 12, alignContent: "start" }}>
-              {!validation ? null : validation.kind === "yaml-error" ? (
-                <>
-                  <StatusBadge tone="pink">✗ YAML error</StatusBadge>
-                  <pre className="osi-pre" style={{ color: "var(--ink-dim)" }}>
-                    {validation.message}
-                  </pre>
-                </>
-              ) : validation.kind === "not-object" ? (
-                <>
-                  <StatusBadge tone="pink">✗ Invalid root</StatusBadge>
-                  <p style={{ fontSize: 13, color: "var(--ink-dim)", margin: 0 }}>
-                    {validation.message}
-                  </p>
-                </>
-              ) : validation.kind === "valid" ? (
-                <>
-                  <StatusBadge tone="sage">✓ Valid OSI</StatusBadge>
-                  <p style={{ fontSize: 13, color: "var(--ink-muted)", margin: 0 }}>
-                    This document conforms to the OSI v{OSI_SCHEMA_VERSION} core schema (subset).{" "}
-                    {validation.warnings[0] ?? ""}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <StatusBadge tone="amber">
-                    ⚠ {validation.errors.length} issue{validation.errors.length === 1 ? "" : "s"}
-                  </StatusBadge>
-                  {validation.warnings.map((w, i) => (
-                    <p key={i} style={{ fontSize: 12, color: "var(--ink-faint)", margin: 0 }}>
-                      {w}
-                    </p>
-                  ))}
-                  <ul style={{ margin: "6px 0 0", padding: 0, listStyle: "none", display: "grid", gap: 8 }}>
-                    {validation.errors.slice(0, 20).map((err, i) => (
-                      <li
-                        key={i}
-                        style={{
-                          borderRadius: 8,
-                          border: "1px solid var(--line)",
-                          background: "rgba(11,18,48,0.4)",
-                          padding: "8px 12px",
-                          fontFamily: "var(--font-mono)",
-                          fontSize: 12,
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontSize: 10,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.14em",
-                            color: "var(--ink-faint)",
-                          }}
-                        >
-                          {err.instancePath || "/"}
-                        </div>
-                        <div style={{ color: "var(--ink-dim)" }}>{err.message}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
+        {tab === "converter" && (
+          <div className="osi-bar">
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: "var(--ink-faint)",
+              }}
+            >
+              OSI v{OSI_SCHEMA_VERSION}
+            </span>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button type="button" className="osi-btn" onClick={copyOsi} disabled={!conversion?.osiYaml}>
+                <Copy size={12} /> {copied ? "Copied" : "Copy"}
+              </button>
+              <button
+                type="button"
+                className="osi-btn"
+                onClick={() => conversion && download("osi.yml", conversion.osiYaml)}
+                disabled={!conversion?.osiYaml}
+              >
+                <Download size={12} /> Download
+              </button>
             </div>
-          </WindowFrame>
+          </div>
         )}
 
-        {/* CONVERTER */}
-        {tab === "converter" && (
-          <WindowFrame
-            title="osi.yml"
-            meta={
-              conversion && conversion.errors.length === 0
-                ? `${conversion.mappedCount} mapped · ${conversion.renamedCount} renamed`
-                : "—"
-            }
-            traffic={false}
-          >
-            <div className="osi-bar">
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: 10,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.14em",
-                  color: "var(--ink-faint)",
-                }}
-              >
-                OSI v{OSI_SCHEMA_VERSION}
-              </span>
-              <div style={{ display: "flex", gap: 8 }}>
-                <button
-                  type="button"
-                  className="osi-btn"
-                  onClick={copyOsi}
-                  disabled={!conversion?.osiYaml}
-                >
-                  <Copy size={12} /> {copied ? "Copied" : "Copy"}
-                </button>
-                <button
-                  type="button"
-                  className="osi-btn"
-                  onClick={() => conversion && download("osi.yml", conversion.osiYaml)}
-                  disabled={!conversion?.osiYaml}
-                >
-                  <Download size={12} /> Download
-                </button>
+        <div className="osi-body">
+          {/* VALIDATOR */}
+          {tab === "validator" &&
+            (!validation ? null : validation.kind === "yaml-error" ? (
+              <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
+                <StatusBadge tone="pink">✗ YAML error</StatusBadge>
+                <pre className="osi-pre" style={{ color: "var(--ink-dim)" }}>
+                  {validation.message}
+                </pre>
               </div>
-            </div>
-            <div style={{ padding: 18, minHeight: 380 }}>
+            ) : validation.kind === "not-object" ? (
+              <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
+                <StatusBadge tone="pink">✗ Invalid root</StatusBadge>
+                <p style={{ fontSize: 13, color: "var(--ink-dim)", margin: 0 }}>{validation.message}</p>
+              </div>
+            ) : validation.kind === "valid" ? (
+              <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
+                <StatusBadge tone="sage">✓ Valid OSI</StatusBadge>
+                <p style={{ fontSize: 13, color: "var(--ink-muted)", margin: 0 }}>
+                  This document conforms to the OSI v{OSI_SCHEMA_VERSION} core schema (subset).{" "}
+                  {validation.warnings[0] ?? ""}
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
+                <StatusBadge tone="amber">
+                  ⚠ {validation.errors.length} issue{validation.errors.length === 1 ? "" : "s"}
+                </StatusBadge>
+                {validation.warnings.map((w, i) => (
+                  <p key={i} style={{ fontSize: 12, color: "var(--ink-faint)", margin: 0 }}>
+                    {w}
+                  </p>
+                ))}
+                <ul style={{ margin: "6px 0 0", padding: 0, listStyle: "none", display: "grid", gap: 8 }}>
+                  {validation.errors.slice(0, 20).map((err, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        borderRadius: 8,
+                        border: "1px solid var(--line)",
+                        background: "rgba(11,18,48,0.4)",
+                        padding: "8px 12px",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 12,
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: 10,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.14em",
+                          color: "var(--ink-faint)",
+                        }}
+                      >
+                        {err.instancePath || "/"}
+                      </div>
+                      <div style={{ color: "var(--ink-dim)" }}>{err.message}</div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+          {/* CONVERTER */}
+          {tab === "converter" && (
+            <>
               {conversion && <DroppedList items={conversion.droppedFields} />}
               {conversion?.errors.length ? (
                 <>
@@ -343,50 +327,41 @@ export function OsiPlayground() {
                   <code>{conversion?.osiYaml ?? ""}</code>
                 </pre>
               )}
-            </div>
-          </WindowFrame>
-        )}
+            </>
+          )}
 
-        {/* DIFF */}
-        {tab === "diff" && (
-          <WindowFrame
-            title="diff · metricflow ↔ osi"
-            meta={`+${diffSummary.added} · −${diffSummary.removed} lines`}
-            traffic={false}
-          >
-            <div style={{ padding: 18, minHeight: 420, overflowX: "auto" }}>
-              {diffParts.length === 0 ? (
-                <p style={{ fontSize: 13, color: "var(--ink-faint)", margin: 0 }}>
-                  Paste a MetricFlow YAML on the left to see the line-by-line diff.
-                </p>
-              ) : (
-                <pre className="osi-pre" style={{ whiteSpace: "pre" }}>
-                  {diffParts.map((p, i) => {
-                    const bg = p.added
-                      ? "color-mix(in oklab, var(--term-green) 20%, transparent)"
-                      : p.removed
-                        ? "color-mix(in oklab, var(--term-pink) 20%, transparent)"
-                        : "transparent";
-                    const prefix = p.added ? "+ " : p.removed ? "− " : "  ";
-                    return (
-                      <span key={i} style={{ background: bg, display: "block", whiteSpace: "pre-wrap" }}>
-                        {p.value
-                          .split("\n")
-                          .filter((_, idx, arr) => !(idx === arr.length - 1 && arr[idx] === ""))
-                          .map((line, li) => (
-                            <span key={li} style={{ display: "block" }}>
-                              <span style={{ color: "var(--ink-faint)", userSelect: "none" }}>{prefix}</span>
-                              {line}
-                            </span>
-                          ))}
-                      </span>
-                    );
-                  })}
-                </pre>
-              )}
-            </div>
-          </WindowFrame>
-        )}
+          {/* DIFF */}
+          {tab === "diff" &&
+            (diffParts.length === 0 ? (
+              <p style={{ fontSize: 13, color: "var(--ink-faint)", margin: 0 }}>
+                Paste a MetricFlow YAML on the left to see the line-by-line diff.
+              </p>
+            ) : (
+              <pre className="osi-pre" style={{ whiteSpace: "pre" }}>
+                {diffParts.map((p, i) => {
+                  const bg = p.added
+                    ? "color-mix(in oklab, var(--term-green) 20%, transparent)"
+                    : p.removed
+                      ? "color-mix(in oklab, var(--term-pink) 20%, transparent)"
+                      : "transparent";
+                  const prefix = p.added ? "+ " : p.removed ? "− " : "  ";
+                  return (
+                    <span key={i} style={{ background: bg, display: "block", whiteSpace: "pre-wrap" }}>
+                      {p.value
+                        .split("\n")
+                        .filter((_, idx, arr) => !(idx === arr.length - 1 && arr[idx] === ""))
+                        .map((line, li) => (
+                          <span key={li} style={{ display: "block" }}>
+                            <span style={{ color: "var(--ink-faint)", userSelect: "none" }}>{prefix}</span>
+                            {line}
+                          </span>
+                        ))}
+                    </span>
+                  );
+                })}
+              </pre>
+            ))}
+        </div>
       </div>
     </div>
   );

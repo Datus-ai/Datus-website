@@ -613,11 +613,36 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  align-items: start;
+  align-items: stretch;
 }
 @media (max-width: 900px) {
   .osi-pg { grid-template-columns: 1fr; }
 }
+/* Both windows fill the (stretched) grid row so they stay equal height. */
+.osi-win { display: flex; flex-direction: column; min-height: 560px; }
+.osi-body { flex: 1; min-height: 0; overflow: auto; padding: 18px; }
+/* Segmented tab switcher that lives inside the output window title bar. */
+.osi-seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(11, 18, 48, 0.5);
+}
+.osi-tab-mini {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  padding: 3px 11px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.osi-tab-mini[aria-selected="true"] { background: var(--brand-soft); color: var(--ink); }
 .osi-bar {
   display: flex;
   align-items: center;
@@ -649,8 +674,9 @@ body {
 .osi-input {
   display: block;
   width: 100%;
-  min-height: 420px;
-  resize: vertical;
+  flex: 1;
+  min-height: 0;
+  resize: none;
   border: 0;
   outline: none;
   background: transparent;
@@ -660,28 +686,6 @@ body {
   line-height: 1.7;
   padding: 16px;
 }
-.osi-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--panel);
-  margin-bottom: 12px;
-}
-.osi-tab {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 8px 0;
-  border-radius: 7px;
-  border: 0;
-  background: transparent;
-  color: var(--ink-muted);
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-.osi-tab[aria-selected="true"] { background: var(--brand-soft); color: var(--ink); }
 .osi-pre {
   margin: 0;
   white-space: pre-wrap;
