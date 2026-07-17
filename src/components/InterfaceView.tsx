@@ -45,10 +45,9 @@ export type InterfaceData = {
 /** Rewrite datus-design marker classes + inline code to site.css styling. */
 function styleHtml(html: string): string {
   return html
-    .replace(/class="marker-cyan"/g, 'style="color:var(--term-cyan)"')
-    .replace(/class="marker-amber"/g, 'style="color:var(--term-amber)"')
-    .replace(/class="marker-sage"/g, 'style="color:var(--term-green)"')
-    .replace(/class="marker-pink"/g, 'style="color:var(--term-pink)"')
+    // Datus-website keeps headings neutral: drop the datus-design marker accent
+    // colors so highlighted phrases match the main ink color (no rainbow text).
+    .replace(/\s*class="marker-(?:cyan|amber|sage|pink)"/g, "")
     .replace(/<code[^>]*>/g, '<code class="rich-code">');
 }
 
@@ -296,7 +295,7 @@ function InterfaceMatrix({ current, title, description }: { current: string | nu
             <Marked as="h2" className="h2" html={title} style={{ fontSize: "clamp(24px,3vw,34px)" }} />
           ) : (
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Pick the <span style={{ color: "var(--term-cyan)" }}>Interface</span> That Fits Your Team
+              Pick the Interface That Fits Your Team
             </h2>
           )}
           <p className="lead" style={{ marginTop: 10 }}>
