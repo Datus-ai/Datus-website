@@ -33,10 +33,6 @@ head:
 
 # What Is Text-to-SQL? Definition, How It Works & Why Context Matters
 
-**Text-to-SQL** is the task of turning a natural-language question into an executable SQL query against a real database — the core generation step inside most **NL2SQL** products and data engineering agents. This glossary entry defines how text-to-SQL systems work, where they fail without grounded context, and how they differ from a one-shot SQL copilot that forgets every session.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains text-to-SQL as a general concept, referencing Datus alongside other tools and architectures in the category. See the end for more detail.*
-
 ## TL;DR
 
 - **Text-to-SQL** maps questions like "weekly net revenue by region" into `SELECT` statements grounded in a specific schema — not generic SQL tutorials.
@@ -44,6 +40,8 @@ head:
 - **NL2SQL** is the product category name; text-to-SQL is the underlying capability. Many "agents" are text-to-SQL with extra orchestration.
 - Failure modes cluster around **schema linking** (wrong columns), **grain errors** (wrong joins), and **stale definitions** (metrics that changed in production but not in metadata).
 - Treating text-to-SQL as a persistent capability — where corrections survive sessions and context improves with usage — separates durable infrastructure from stateless chat.
+
+**Text-to-SQL** is the task of turning a natural-language question into an executable SQL query against a real database — the core generation step inside most **NL2SQL** products and data engineering agents. This glossary entry defines how text-to-SQL systems work, where they fail without grounded context, and how they differ from a one-shot SQL copilot that forgets every session.
 
 ## 1. Text-to-SQL: a working definition
 
@@ -222,7 +220,3 @@ ChatGPT generates SQL from its training data — it knows what `SELECT` syntax l
 - [What is schema linking?](/blog/what-is-schema-linking/) — the bottleneck inside most text-to-SQL failures
 - [RAG for data engineering](/blog/rag-data-engineering/) — how retrieval supplies context at query time
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed metrics text-to-SQL should ground on
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains text-to-SQL as a general concept and how Datus approaches it — alongside other tools and architectures in the category.*

@@ -32,18 +32,18 @@ head:
 ---
 # Open Source Data Engineering Agents: Why They Exist, When to Use One, and What Your Options Are
 
-Not every category needs an open-source option. Most people do not need an open-source CRM or an open-source email client—the SaaS version works fine, and the data is not sensitive enough to justify the overhead of self-hosting.
-
-Data engineering is different. The agent you choose will have credentials to your warehouse. It will read your schemas, generate your SQL, and—in some configurations—execute queries against production data. It will become part of your data infrastructure the way dbt or Airflow is part of your infrastructure. When a tool sits that deep in your stack, the questions that matter are not just about features. They are about control, auditability, and what happens if the vendor changes direction.
-
-This article explains why open-source data engineering agents exist as a category, when the tradeoff of self-hosting is worth it, and how to choose among the three leading open-source options. For the full landscape including closed-source and platform-embedded agents, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
-
 ## TL;DR
 
 - **Three open-source data engineering agents** lead the category in 2026: Datus (Apache 2.0, Context Engine + subagents), Wren AI (Apache 2.0, semantic layer + text-to-SQL), and Altimate (MIT, agentic dbt harness).
 - Open source matters in this category for three reasons: **auditability** (you can read what queries the agent generates and why), **self-hosting** (your warehouse credentials stay on your infrastructure), and **no platform lock-in** (the agent works across warehouses, not inside one).
 - The tradeoff is **setup cost**: open-source agents require more initial configuration than platform-embedded ones. The payoff is **long-term control**: the agent's context belongs to you, not to a vendor.
 - Open source is not a guarantee of sustainability. Choose projects with visible maintenance, clear licensing, active docs, and a credible commercial or community path.
+
+Not every category needs an open-source option. Most people do not need an open-source CRM or an open-source email client—the SaaS version works fine, and the data is not sensitive enough to justify the overhead of self-hosting.
+
+Data engineering is different. The agent you choose will have credentials to your warehouse. It will read your schemas, generate your SQL, and—in some configurations—execute queries against production data. It will become part of your data infrastructure the way dbt or Airflow is part of your infrastructure. When a tool sits that deep in your stack, the questions that matter are not just about features. They are about control, auditability, and what happens if the vendor changes direction.
+
+This article explains why open-source data engineering agents exist as a category, when the tradeoff of self-hosting is worth it, and how to choose among the three leading open-source options. For the full landscape including closed-source and platform-embedded agents, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
 
 ## 1. Why open source matters specifically for data engineering agents
 

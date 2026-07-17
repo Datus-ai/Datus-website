@@ -33,8 +33,6 @@ head:
 
 # dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers
 
-Last year, defining a new metric in a dbt project worked like this: write the transformation SQL in a dbt model, document the business logic in a YAML description field (if you remembered), repeat the same logic in Looker's LookML for the dashboard layer, and hope that whoever queries the data six months later understands that `mktg_analytics.fact_attrib_daily.attrib_windows_30d_v2` means "30-day attribution window revenue." The metric existed in four places — the dbt model, the docs, the LookML, and the analyst's head — and keeping them synchronized was a manual process that everyone agreed was valuable and nobody had time to maintain. MetricFlow — the open-source engine behind dbt's Semantic Layer — changes this by making metric definitions a standalone, governed artifact: define `net_revenue` once in YAML, and every BI tool, notebook, API, and AI agent queries the same definition. This article explains how MetricFlow works, what it does well, where it hits its limits, and how it fits into a broader architecture that includes [data engineering agents](/blog/what-is-data-engineering-agent/).
-
 ## TL;DR
 
 - **MetricFlow** is the open-source engine behind dbt's Semantic Layer — defining metrics, dimensions, and semantic models in YAML, generating correct SQL at query time.
@@ -43,6 +41,8 @@ Last year, defining a new metric in a dbt project worked like this: write the tr
 - Strengths: Git-managed governance, CI/CD-validated definitions, multi-engine SQL generation, composable derived metrics, strong dbt ecosystem integration.
 - Limitations: **engineer-maintained, batch-updated** — new ad-hoc queries and feedback cycles have no path into MetricFlow YAML until a PR is opened. This is the gap data engineering agents fill: bootstrapping metric candidates from production SQL and feeding validated queries back into context continuously.
 - Datus auto-generates MetricFlow-compatible semantic models and metrics (`/gen_semantic_model`, `/gen_metrics`), stores them alongside existing dbt definitions, and uses them to ground agent-generated SQL — complementing dbt's governance with continuous context evolution.
+
+Last year, defining a new metric in a dbt project worked like this: write the transformation SQL in a dbt model, document the business logic in a YAML description field (if you remembered), repeat the same logic in Looker's LookML for the dashboard layer, and hope that whoever queries the data six months later understands that `mktg_analytics.fact_attrib_daily.attrib_windows_30d_v2` means "30-day attribution window revenue." The metric existed in four places — the dbt model, the docs, the LookML, and the analyst's head — and keeping them synchronized was a manual process that everyone agreed was valuable and nobody had time to maintain. MetricFlow — the open-source engine behind dbt's Semantic Layer — changes this by making metric definitions a standalone, governed artifact: define `net_revenue` once in YAML, and every BI tool, notebook, API, and AI agent queries the same definition. This article explains how MetricFlow works, what it does well, where it hits its limits, and how it fits into a broader architecture that includes [data engineering agents](/blog/what-is-data-engineering-agent/).
 
 ## 1. What dbt Semantic Layer actually is
 

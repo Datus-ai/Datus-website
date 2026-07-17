@@ -32,18 +32,18 @@ head:
 ---
 # Data Engineering Agent vs. SQL Copilot: What's the Real Difference?
 
-Every SQL copilot and every data engineering agent will generate a query from a natural-language question. On a demo video, they look identical: type a question, get a result. The difference is invisible until the second question—and the tenth, and the hundredth.
-
-A SQL copilot is a clever stranger. It can write a brilliant query on first meeting. But it forgets you the moment the session ends. A <a href="https://datus.ai/glossary">data engineering agent</a> is a coworker. It gets better at your data the longer it works with you.
-
-This article explains what that difference actually means in practice—and why it matters for any team running more than a few queries a week. If you are new to the category, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
-
 ## TL;DR
 
 - **SQL copilots** (GitHub Copilot for SQL, text-to-SQL tools, IDE assistants) generate queries in response to prompts and stop there. No memory, no feedback loop, no accumulation.
 - **Data engineering agents** generate queries, execute them, capture feedback, and accumulate reusable context—schemas, metrics, validated SQL, business rules—across sessions.
 - The distinction is not about intelligence. It is about **architecture**: one has a context store that grows; the other does not.
 - For individual ad-hoc queries, a copilot is fine. For team-scale, repeated data work, an agent that accumulates context is the difference between a tool and an asset.
+
+Every SQL copilot and every data engineering agent will generate a query from a natural-language question. On a demo video, they look identical: type a question, get a result. The difference is invisible until the second question—and the tenth, and the hundredth.
+
+A SQL copilot is a clever stranger. It can write a brilliant query on first meeting. But it forgets you the moment the session ends. A <a href="https://datus.ai/glossary">data engineering agent</a> is a coworker. It gets better at your data the longer it works with you.
+
+This article explains what that difference actually means in practice—and why it matters for any team running more than a few queries a week. If you are new to the category, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
 
 ## 1. What a SQL copilot does well
 

@@ -8,7 +8,6 @@ import {
   CodeBlock,
   FeatureCard,
   InlineCode,
-  Mark,
   SectionHead,
   SpecCard,
   SpecTable,
@@ -139,7 +138,7 @@ export default function IntegrationsPage() {
               margin: "20px 0 0",
             }}
           >
-            Datus <Mark tone="var(--term-cyan)">Integrations</Mark>
+            Datus Integrations
           </h1>
           <p className="lead" style={{ maxWidth: 660 }}>
             Datus is built on a plugin-first architecture. Beyond the dedicated{" "}
@@ -156,7 +155,7 @@ export default function IntegrationsPage() {
       <CatalogSection alt>
         <SectionHead
           eyebrow="Storage"
-          title={<><Mark tone="var(--term-cyan)">Storage Backends</Mark> — vector + relational</>}
+          title={<>Storage Backends — vector + relational</>}
           lead="Dual-track storage keeps embeddings and relational metadata side-by-side. Swap the backend as your deployment grows."
         />
         <div className="grid grid-3">
@@ -180,7 +179,7 @@ export default function IntegrationsPage() {
       <CatalogSection>
         <SectionHead
           eyebrow="Embeddings"
-          title={<><Mark tone="var(--term-amber)">Embedding Providers</Mark> for context recall</>}
+          title={<>Embedding Providers for context recall</>}
           lead="Vectorize schemas, docs and metrics for semantic search. Mix cloud embeddings with local models to balance quality, cost and privacy."
         />
         <div className="grid grid-4">
@@ -206,7 +205,7 @@ export default function IntegrationsPage() {
       <CatalogSection alt>
         <SectionHead
           eyebrow="Semantic layer"
-          title={<><Mark tone="var(--term-green)">Semantic Layer</Mark> adapters</>}
+          title={<>Semantic Layer adapters</>}
           lead="Bring your metric definitions into the agent's context. MetricFlow ships today; more adapters can be registered through Python entry points."
         />
         <div className="grid grid-2" style={{ alignItems: "stretch" }}>
@@ -256,7 +255,7 @@ export default function IntegrationsPage() {
             <div style={{ flex: "1 1 320px", minWidth: 280 }}>
               <span className="eyebrow">BI copilot</span>
               <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,32px)" }}>
-                <Mark tone="var(--term-pink)">BI Platform</Mark> Copilot
+                BI Platform Copilot
               </h2>
               <p className="lead" style={{ marginTop: 10 }}>
                 Point Datus at an Apache Superset dashboard and it extracts every chart's SQL,
@@ -281,7 +280,7 @@ export default function IntegrationsPage() {
       <CatalogSection alt>
         <SectionHead
           eyebrow="MCP protocol"
-          title={<><Mark tone="var(--term-cyan)">MCP Protocol</Mark> — client & server</>}
+          title={<>MCP Protocol — client & server</>}
           lead="Datus speaks Model Context Protocol in both directions. Consume any external MCP server, or expose Datus's own database and context-search tools to Claude, Cursor and other MCP hosts."
         />
         <div className="grid grid-2">
@@ -331,7 +330,7 @@ export default function IntegrationsPage() {
       <CatalogSection>
         <SectionHead
           eyebrow="Skills"
-          title={<>Agent <Mark tone="var(--term-amber)">Skills</Mark> & Marketplace</>}
+          title={<>Agent Skills & Marketplace</>}
           lead="Modular capability packs (v0.2.5) following the agentskills.io spec. Discover, install and publish skills from the built-in marketplace."
         />
         <div className="grid grid-3" style={{ alignItems: "stretch" }}>
@@ -348,7 +347,7 @@ export default function IntegrationsPage() {
       <CatalogSection alt>
         <SectionHead
           eyebrow="Observability"
-          title={<><Mark tone="var(--term-green)">Observability</Mark> & optional tools</>}
+          title={<>Observability & optional tools</>}
           lead="Trace every LLM call, augment platform docs with web search, or debug prompts locally as YAML."
         />
         <SpecTable
@@ -387,7 +386,7 @@ export default function IntegrationsPage() {
             }}
           >
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Bring Your <Mark tone="var(--term-cyan)">Stack</Mark>, We Plug In
+              Bring Your Stack, We Plug In
             </h2>
             <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
               Databases, models, semantic layers, BI copilots and observability — every layer is a plugin.

@@ -33,8 +33,6 @@ head:
 
 # Cube.dev: From Semantic Layer Pioneer to Agentic Analytics Platform
 
-In 2019, Cube was an open-source framework for building analytics dashboards — a React component library with a caching layer. By 2022, it had repositioned as a headless semantic layer — the dashboards were still there, but the real product was the API that served governed metrics to any frontend. In June 2025, it launched D3, a platform built around AI agents that consume those metrics — not as an add-on feature, but as the primary interface. That arc — from dashboard framework to semantic infrastructure to agentic platform — is not a pivot. It is a thesis playing out in three acts: the dashboard is a commodity, the semantic layer is the durable asset, and AI agents are its natural consumers. This article traces Cube's evolution, examines its architecture, and explains what its trajectory toward agentic analytics means for the [data engineering agent](/blog/what-is-data-engineering-agent/) category — including where Cube and Datus converge and where they make fundamentally different architectural bets.
-
 ## TL;DR
 
 - **Cube** started as Cube.js (2019), an open-source dashboard framework. It evolved into a universal **headless semantic layer** — defining metrics, dimensions, and relationships in code (JS/YAML/Python), serving them through SQL, REST, and GraphQL APIs.
@@ -42,6 +40,8 @@ In 2019, Cube was an open-source framework for building analytics dashboards —
 - Cube's core architecture: **cube data models** define data sources (measures, dimensions, joins) → **CubeSQL** (Postgres-compatible SQL) + REST/GraphQL APIs serve them → **CubeStore** (Rust-based OLAP engine) caches hot queries to <50ms → **D3 agents** orchestrate on top of the entire stack.
 - Cube and Datus are **directionally convergent** — both moving toward "semantic layer + agent" — but from opposite starting points: Cube from the consumption/API side upward, Datus from the engineering/context side downward.
 - The key architectural difference: Cube embeds agents as **consumers** of the semantic layer (agents query Cube's API). Datus treats agents as **producers and evolvers** of context (agents build and refine the semantic layer itself).
+
+In 2019, Cube was an open-source framework for building analytics dashboards — a React component library with a caching layer. By 2022, it had repositioned as a headless semantic layer — the dashboards were still there, but the real product was the API that served governed metrics to any frontend. In June 2025, it launched D3, a platform built around AI agents that consume those metrics — not as an add-on feature, but as the primary interface. That arc — from dashboard framework to semantic infrastructure to agentic platform — is not a pivot. It is a thesis playing out in three acts: the dashboard is a commodity, the semantic layer is the durable asset, and AI agents are its natural consumers. This article traces Cube's evolution, examines its architecture, and explains what its trajectory toward agentic analytics means for the [data engineering agent](/blog/what-is-data-engineering-agent/) category — including where Cube and Datus converge and where they make fundamentally different architectural bets.
 
 ## 1. Cube's evolution: three eras
 

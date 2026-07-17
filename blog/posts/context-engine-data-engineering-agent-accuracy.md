@@ -32,16 +32,16 @@ head:
 ---
 # How a Context Engine Makes Data Engineering Agents More Accurate
 
-Every [data engineering agent](/blog/what-is-data-engineering-agent-2026/) uses an LLM to generate SQL. The LLM is not the differentiator. Any modern model—GPT-4o, Claude, Gemini, DeepSeek—can produce syntactically correct SQL against a well-described schema. The accuracy gap between agents is not about which model they use. It is about what context they give the model before asking it to generate a query.
-
-A context engine is the component that prepares, retrieves, and continuously updates that context. This article explains how it works, why it is the single largest lever for agent accuracy, and what separates a well-designed context engine from a thin wrapper around a model API. For the theoretical foundation, see [contextual data engineering](/blog/contextual-data-engineering/).
-
 ## TL;DR
 
 - A context engine has three jobs: **inspect** (discover schemas and patterns from real data), **retrieve** (find the right context at query time), and **update** (incorporate feedback into the context store).
 - The retrieval quality—not the LLM quality—is the ceiling on agent accuracy. A brilliant model with poor context retrieval will generate confidently wrong SQL.
 - What makes a context engine effective: dual-dimension organization (physical catalog + logical subject tree), feedback-driven updates, and reference SQL that grounds queries in proven patterns rather than generating from scratch.
 - In one production deployment (Yunqi Lakehouse), self-service analytics rates rose from 15% to 60%—not because the model improved, but because the context it operated on accumulated.
+
+Every [data engineering agent](/blog/what-is-data-engineering-agent-2026/) uses an LLM to generate SQL. The LLM is not the differentiator. Any modern model—GPT-4o, Claude, Gemini, DeepSeek—can produce syntactically correct SQL against a well-described schema. The accuracy gap between agents is not about which model they use. It is about what context they give the model before asking it to generate a query.
+
+A context engine is the component that prepares, retrieves, and continuously updates that context. This article explains how it works, why it is the single largest lever for agent accuracy, and what separates a well-designed context engine from a thin wrapper around a model API. For the theoretical foundation, see [contextual data engineering](/blog/contextual-data-engineering/).
 
 ## 1. The accuracy bottleneck is not the LLM
 

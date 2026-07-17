@@ -33,10 +33,6 @@ head:
 
 # What Is Apache Hudi? Upserts, Copy-on-Write vs Merge-on-Read & CDC
 
-**Apache Hudi** is an open table format and ingestion framework that brings database-style **upserts, deletes, and incremental processing** to data lakes built on object storage. Where most lake tables were designed to be appended to, Hudi was designed from the start to be *mutated*: it can apply a stream of changed records to an existing table efficiently, track every change on a timeline, and let downstream jobs read only what changed since the last run. This glossary entry defines what Hudi is, how its two table types work, how record-level upserts and incremental queries differ from append-only formats, how it compares to Iceberg and Delta Lake, and why AI agents querying a Hudi lakehouse need format-aware context.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains Apache Hudi as a general concept, referencing Datus alongside other tools and architectures in the category. See the end for more detail.*
-
 ## TL;DR
 
 - **Apache Hudi** is an open table format and incremental data platform that adds **record-level upserts, deletes, change tracking, and incremental queries** to data lakes on object storage.
@@ -44,6 +40,8 @@ head:
 - Hudi offers two table types: **Copy-on-Write (CoW)** optimizes read performance, while **Merge-on-Read (MoR)** optimizes write/ingest latency by deferring compaction.
 - A **record-level index** lets Hudi locate and update individual records quickly, which is what makes high-frequency upsert workloads practical at lake scale.
 - Against **Iceberg** and **Delta Lake**, Hudi's sweet spot is **streaming ingest and CDC-heavy pipelines**; agents querying Hudi must understand table type and query type, or they will read stale or partial data.
+
+**Apache Hudi** is an open table format and ingestion framework that brings database-style **upserts, deletes, and incremental processing** to data lakes built on object storage. Where most lake tables were designed to be appended to, Hudi was designed from the start to be *mutated*: it can apply a stream of changed records to an existing table efficiently, track every change on a timeline, and let downstream jobs read only what changed since the last run. This glossary entry defines what Hudi is, how its two table types work, how record-level upserts and incremental queries differ from append-only formats, how it compares to Iceberg and Delta Lake, and why AI agents querying a Hudi lakehouse need format-aware context.
 
 ## 1. Apache Hudi: a working definition
 
@@ -158,7 +156,3 @@ Only with format-aware context. On a small POC, pasting DDL may work, but on pro
 - [What is a lakehouse?](/blog/what-is-lakehouse/) — the architecture Hudi tables make possible
 - [What is change data capture (CDC)?](/blog/what-is-cdc/) — the change streams Hudi upserts are built to absorb
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — why table-format-aware context matters
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains Apache Hudi as a general concept and how cross-stack agents approach lakehouse context — alongside other tools and architectures in the category.*

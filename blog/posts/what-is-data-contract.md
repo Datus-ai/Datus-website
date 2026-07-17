@@ -33,10 +33,6 @@ head:
 
 # What Is a Data Contract? Definition, Schema Enforcement & Examples
 
-**A data contract** is a machine-checkable agreement between the producer of a dataset and its consumers that specifies the dataset's **schema, semantics, quality rules, freshness SLAs, and ownership** — and fails a build or a pipeline when reality drifts from what was promised. When an upstream team renames a column or quietly changes what "active" means, a data contract turns a silent downstream breakage into a loud, early error. This guide defines data contracts, shows a concrete example, compares the tooling, and explains how they fit an agentic data stack.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains data contracts as a general concept, referencing Datus alongside other tools and approaches in the category. See the end for more detail.*
-
 ## TL;DR
 
 - A **data contract** is an explicit, versioned, machine-enforced interface for a dataset — schema plus semantics, quality, SLAs, and ownership — not just a schema definition.
@@ -44,6 +40,8 @@ head:
 - Enforcement happens **before bad data lands**: schema checks in CI/CD, a schema registry on a stream, or a `dbt` build that fails when the output shape drifts.
 - The dominant standard is the **Open Data Contract Standard (ODCS)** — a YAML spec now under the Linux Foundation's Bitol project — with `dbt` model contracts and the `datacontract.com` specification as common companions.
 - A contract describes **the "what" of an interface**; it does not capture the ad-hoc, evolving knowledge (validated queries, deprecations, tribal join rules) that agents also need. The two are complementary.
+
+**A data contract** is a machine-checkable agreement between the producer of a dataset and its consumers that specifies the dataset's **schema, semantics, quality rules, freshness SLAs, and ownership** — and fails a build or a pipeline when reality drifts from what was promised. When an upstream team renames a column or quietly changes what "active" means, a data contract turns a silent downstream breakage into a loud, early error. This guide defines data contracts, shows a concrete example, compares the tooling, and explains how they fit an agentic data stack.
 
 ## 1. Data contract: a working definition
 
@@ -232,7 +230,3 @@ A contract is machine-readable, authoritative context. An agent doing text-to-SQ
 - [What is schema linking?](/blog/what-is-schema-linking/) — how contracts ground agent column mapping
 - [What is change data capture (CDC)?](/blog/what-is-cdc/) — where schema drift enters, and why contracts guard the boundary
 - [Contextual data engineering](/blog/contextual-data-engineering/) — the evolvable layer above the contract floor
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains data contracts as a general concept and how Datus complements them — consuming contracts as machine-readable context while adding the evolvable, institutional knowledge (validated reference SQL, deprecations, feedback) that contracts do not capture, through dual-dimension context and domain-scoped Subagents.*

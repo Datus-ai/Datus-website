@@ -33,8 +33,6 @@ head:
 
 # What Is a Semantic Model? Definition, Examples & How It Differs From a Semantic View
 
-A data engineer inherits a 500-table Snowflake instance. Somewhere in `analytics_prod` is the data the marketing team needs for their Q3 campaign attribution analysis — but the schema is a landscape of cryptic column names (`attrib_windows_30d_v2`, `conv_type_id_fk`), undocumented join paths, and tribal knowledge that left with the previous engineer. A [semantic layer](/blog/what-is-semantic-layer/) would give her the full business dictionary. But before you can build a dictionary, you need to write the entries. A **semantic model** is a single entry — one dataset, described in business terms: which columns are measures you can quantify, which are dimensions you can group by, how this dataset connects to others, and what business rules apply. This article defines what goes into a semantic model, walks through a MetricFlow example, and distinguishes it from the newer concept of warehouse-native semantic views — including when you would use one over the other.
-
 ## TL;DR
 
 - A **semantic model** describes one data source in business language: measures, dimensions, joins, metadata, and business rules — turning `fact_orders.amount_usd` into "Net Revenue, filtered to completed orders."
@@ -42,6 +40,8 @@ A data engineer inherits a 500-table Snowflake instance. Somewhere in `analytics
 - Common formats: MetricFlow `semantic_model` YAML (dbt), Cube data model JavaScript/YAML, LookML `view` files, GoodData LDM.
 - A **semantic view** (Snowflake, BigQuery) is a warehouse-native alternative — semantics defined in SQL inside the database rather than in an external modeling layer. See §5 for the tradeoffs.
 - Datus auto-generates semantic models from live schema (`/gen_semantic_model`), stores them in MetricFlow-compatible YAML, and refines them through agent feedback — turning model creation from a manual, sprint-gated process into a continuous one.
+
+A data engineer inherits a 500-table Snowflake instance. Somewhere in `analytics_prod` is the data the marketing team needs for their Q3 campaign attribution analysis — but the schema is a landscape of cryptic column names (`attrib_windows_30d_v2`, `conv_type_id_fk`), undocumented join paths, and tribal knowledge that left with the previous engineer. A [semantic layer](/blog/what-is-semantic-layer/) would give her the full business dictionary. But before you can build a dictionary, you need to write the entries. A **semantic model** is a single entry — one dataset, described in business terms: which columns are measures you can quantify, which are dimensions you can group by, how this dataset connects to others, and what business rules apply. This article defines what goes into a semantic model, walks through a MetricFlow example, and distinguishes it from the newer concept of warehouse-native semantic views — including when you would use one over the other.
 
 ## 1. Semantic model: a working definition
 

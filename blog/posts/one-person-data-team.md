@@ -32,17 +32,17 @@ head:
 ---
 # One-Person Data Team: How a Data Engineering Agent Multiplies Your Output
 
-The modern data stack was designed for teams. dbt, Airflow, Snowflake, Looker, Monte Carlo—each tool expects someone to own it, maintain it, and field the questions that flow through it. A mid-size company's data team might have three to five engineers, plus analysts, plus a manager. A startup or small company might have one person handling all of it—pipelines, queries, metrics, dashboards, ad-hoc requests, data quality, documentation.
-
-That one person is not underperforming. They are outnumbered. The bottleneck is not their speed; it is the volume of context-switching, the repetitive nature of data requests, and the impossibility of being the sole carrier of institutional knowledge about the warehouse.
-
-A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) changes the math. Not by replacing the engineer, but by handling the repetitive work, accumulating context so the engineer does not have to re-explain the same tables every week, and delivering self-service access to people who would otherwise file tickets. This article explains how—and what it actually looks like in daily practice.
-
 ## TL;DR
 
 - The bottleneck for a solo data engineer is not query-writing speed. It is **context-switching, repetitive requests, and being the sole carrier of institutional knowledge**.
 - A data engineering agent addresses all three: it automates repetitive SQL generation, accumulates context so requests get more accurate over time, and packages that context into self-service subagents that analysts can use without filing tickets.
 - The result: a one-person data team spends less time on translation work and more time on the engineering that only they can do.
+
+The modern data stack was designed for teams. dbt, Airflow, Snowflake, Looker, Monte Carlo—each tool expects someone to own it, maintain it, and field the questions that flow through it. A mid-size company's data team might have three to five engineers, plus analysts, plus a manager. A startup or small company might have one person handling all of it—pipelines, queries, metrics, dashboards, ad-hoc requests, data quality, documentation.
+
+That one person is not underperforming. They are outnumbered. The bottleneck is not their speed; it is the volume of context-switching, the repetitive nature of data requests, and the impossibility of being the sole carrier of institutional knowledge about the warehouse.
+
+A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) changes the math. Not by replacing the engineer, but by handling the repetitive work, accumulating context so the engineer does not have to re-explain the same tables every week, and delivering self-service access to people who would otherwise file tickets. This article explains how—and what it actually looks like in daily practice.
 
 ## 1. The real bottleneck: it is not your typing speed
 

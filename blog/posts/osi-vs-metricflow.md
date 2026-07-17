@@ -35,10 +35,6 @@ head:
 
 # OSI vs MetricFlow: Semantic Standard vs Execution Engine
 
-"OSI vs MetricFlow" is one of those comparisons that sounds like a head-to-head product choice but mostly isn't. Once you disambiguate the acronym, the useful version of the question is **Open Semantic Interchange (OSI) vs MetricFlow** — and there the honest answer is that they are not substitutes. OSI is a portable **specification** for semantic metadata; MetricFlow is an **execution engine** that turns semantic definitions into warehouse SQL. One is a contract, the other is a runtime. This article clears up the ambiguity, compares the two on the dimensions that actually matter, and explains when to reach for each — or, more often, both together.
-
-> **Disclosure:** This is an independent analysis published on the Datus blog. Datus builds a [data engineering agent](/blog/what-is-data-engineering-agent-2026/); where that perspective is relevant it is flagged explicitly, and the comparison itself is vendor-neutral.
-
 ## TL;DR
 
 - **OSI** ([Open Semantic Interchange](/blog/open-semantic-interchange-osi/)) is an Apache 2.0, vendor-neutral **standard** for representing and exchanging semantic metadata — metrics, dimensions, datasets, relationships — across tools.
@@ -46,6 +42,8 @@ head:
 - They operate at **different layers**. OSI = portable definition; MetricFlow = execution of that definition. dbt has stated MetricFlow is maintained as part of the OSI initiative, and recent dbt Core versions can parse OSI semantic documents alongside native dbt semantics.
 - "OSI" is genuinely ambiguous: it can also mean the **networking OSI model** (ISO/IEC 7498-1) or **Amazon OpenSearch Ingestion** (a telemetry service). Neither competes with MetricFlow — they belong to different decision categories.
 - Practical rule: choose **OSI** for portable semantics across tools, **MetricFlow** for governed metric execution in a dbt-centered stack, and **OSI + MetricFlow** when you want both.
+
+"OSI vs MetricFlow" is one of those comparisons that sounds like a head-to-head product choice but mostly isn't. Once you disambiguate the acronym, the useful version of the question is **Open Semantic Interchange (OSI) vs MetricFlow** — and there the honest answer is that they are not substitutes. OSI is a portable **specification** for semantic metadata; MetricFlow is an **execution engine** that turns semantic definitions into warehouse SQL. One is a contract, the other is a runtime. This article clears up the ambiguity, compares the two on the dimensions that actually matter, and explains when to reach for each — or, more often, both together.
 
 ## 1. First, disambiguate "OSI"
 
@@ -128,7 +126,7 @@ The migration trap worth calling out: these are **not drop-in replacements** for
 
 Both OSI and MetricFlow address how semantics are **represented** and **executed**. Neither, on its own, solves how semantics get **created, validated, and kept current** — which is where most organizations actually struggle. A perfectly portable, perfectly executable metric that was authored six months ago and never revisited is still stale.
 
-This is the gap [data engineering agents](/blog/what-is-data-engineering-agent-2026/) target. The durable pattern is a layered one: a portable standard (OSI) for distribution, an execution engine (MetricFlow) for runtime, and an evolvable [context](/blog/contextual-data-engineering/) layer that bootstraps definitions from historical SQL, validates them through feedback, and promotes proven ad-hoc queries into the formal model. *(Disclosure: this layered "context" approach is the problem space Datus works in — it complements OSI and MetricFlow rather than replacing either.)* Treat OSI as the interchange rails and MetricFlow as the execution engine; the open question every team still owns is how those definitions stay accurate over time.
+This is the gap [data engineering agents](/blog/what-is-data-engineering-agent-2026/) target. The durable pattern is a layered one: a portable standard (OSI) for distribution, an execution engine (MetricFlow) for runtime, and an evolvable [context](/blog/contextual-data-engineering/) layer that bootstraps definitions from historical SQL, validates them through feedback, and promotes proven ad-hoc queries into the formal model. Treat OSI as the interchange rails and MetricFlow as the execution engine; the open question every team still owns is how those definitions stay accurate over time.
 
 ## 7. Common misconceptions
 

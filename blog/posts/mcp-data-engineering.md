@@ -32,16 +32,16 @@ head:
 ---
 # MCP and Data Engineering: The Protocol That Connects Your Entire Stack
 
-The Model Context Protocol (MCP), introduced by Anthropic and maintained as an open protocol, is the closest thing the AI agent ecosystem has to a shared connector standard. It standardizes how agents discover and use external tools—databases, APIs, file systems, orchestrators—through a client-server model that works across vendors. For data engineering, it matters because it turns a fragmented stack of tools that do not talk to each other into a set of composable capabilities that an agent can orchestrate.
-
-This article explains what MCP means for data engineering specifically, how agents use it as both clients and servers, and where the protocol's current limitations leave room for native tooling. If you are new to the agent side, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
-
 ## TL;DR
 
 - **MCP** standardizes how AI agents connect to external tools—databases, orchestrators, quality tools, APIs—through a client-server model.
 - For data engineering, MCP enables two patterns: agents **consuming** data tools (querying databases via MCP, triggering Airflow DAGs) and agents **exposing** themselves as tools (a DE agent's context engine made available to Claude Code).
 - MCP is not a replacement for native tooling. The protocol adds latency and abstraction. Core data operations (schema inspection, query generation, context management) are better served by native, deeply integrated tools.
 - The practical strategy: use MCP for the long tail of integrations, not for the core path.
+
+The Model Context Protocol (MCP), introduced by Anthropic and maintained as an open protocol, is the closest thing the AI agent ecosystem has to a shared connector standard. It standardizes how agents discover and use external tools—databases, APIs, file systems, orchestrators—through a client-server model that works across vendors. For data engineering, it matters because it turns a fragmented stack of tools that do not talk to each other into a set of composable capabilities that an agent can orchestrate.
+
+This article explains what MCP means for data engineering specifically, how agents use it as both clients and servers, and where the protocol's current limitations leave room for native tooling. If you are new to the agent side, start with [what is a data engineering agent](/blog/what-is-data-engineering-agent-2026/).
 
 ## 1. What MCP is, in one paragraph
 

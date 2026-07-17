@@ -33,10 +33,6 @@ head:
 
 # What Is Data Mesh? Definition, Principles & How Domain Agents Map to It
 
-**Data mesh** is an organizational and architectural approach that treats **domain teams** as owners of **data products** — curated, documented datasets (or APIs) other teams can consume with clear contracts — instead of relying on one central platform team to ship every table. For data engineering agents, mesh thinking explains why **scoped, domain-specific context** beats a single global warehouse dump. This glossary entry defines data mesh, contrasts it with data fabric, and explains the agent implications of domain ownership.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains data mesh as a general architectural paradigm, using Datus's Subject Tree and Subagent model as one example of mesh-aligned agent design. See the end for more detail.*
-
 ## TL;DR
 
 - **Data mesh** decentralizes **ownership** and **delivery** of data products to domain teams, with **federated governance**.
@@ -44,6 +40,8 @@ head:
 - **Data fabric** is often **technology-centric integration**; mesh is **organization-centric ownership** — related, not identical.
 - Agents aligned to mesh ship **per-domain Subagents** with scoped tables, metrics, and rules — not one chatbot over 40,000 tables.
 - Mesh-aligned agents organize context by business domain — with scoped tables, metrics, and rules per domain — so a Finance question gets a Finance answer, not whichever definition happens to rank highest in a global index.
+
+**Data mesh** is an organizational and architectural approach that treats **domain teams** as owners of **data products** — curated, documented datasets (or APIs) other teams can consume with clear contracts — instead of relying on one central platform team to ship every table. For data engineering agents, mesh thinking explains why **scoped, domain-specific context** beats a single global warehouse dump. This glossary entry defines data mesh, contrasts it with data fabric, and explains the agent implications of domain ownership.
 
 ## 1. Data mesh: a working definition
 
@@ -173,7 +171,3 @@ Yes, if the platform enables **per-domain context and delivery** (Subagents, ACL
 - [Subagents: domain-specific data agents](/blog/subagents-domain-specific-data-agents/) — mesh-aligned delivery unit
 - [Contextual data engineering](/blog/contextual-data-engineering/) — evolving context per domain
 - [What is a data catalog?](/blog/what-is-data-catalog/) — shared discovery layer under domain products
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains data mesh as a general architectural paradigm and how Datus aligns its Subject Tree and Subagent model with mesh principles — as an operating model implementation, not a mesh platform replacement.*

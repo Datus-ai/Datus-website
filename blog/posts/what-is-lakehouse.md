@@ -33,10 +33,6 @@ head:
 
 # What Is a Lakehouse? Definition, Architecture & Open Table Formats Explained
 
-A data team stores years of clickstream logs in cheap object storage, runs nightly ETL into a cloud warehouse for BI, and maintains a separate streaming pipeline for real-time dashboards. Three systems, three copies of "customer," three definitions of "active user," and a growing bill for moving the same bytes twice. A **lakehouse** is the architecture pattern that tries to collapse this sprawl: keep data in open, low-cost storage, but add warehouse-grade transactions, SQL performance, and governance on top through **open table formats**. This glossary entry defines what a lakehouse is, how it differs from a data lake and a data warehouse, which technologies make it work, and why AI agents querying your stack need to understand it.
-
-*Disclosure: Datus is a data engineering agent platform. This article explains lakehouse architecture as a general concept, referencing Datus alongside other tools and architectures in the category. See the end for more detail.*
-
 ## TL;DR
 
 - A **lakehouse** combines **data lake economics and flexibility** with **warehouse-style ACID transactions, schema enforcement, and SQL analytics** — typically on object storage plus an open table format layer.
@@ -44,6 +40,8 @@ A data team stores years of clickstream logs in cheap object storage, runs night
 - **Open table formats** — <a href="https://iceberg.apache.org/" rel="nofollow noopener">Apache Iceberg</a>, <a href="https://docs.delta.io/" rel="nofollow noopener">Delta Lake</a>, <a href="https://hudi.apache.org/" rel="nofollow noopener">Apache Hudi</a> — are the technical foundation that makes lakehouse semantics (upserts, time travel, schema evolution) possible on files.
 - **Medallion architecture** (Bronze / Silver / Gold) is a common organizational pattern on lakehouses, not a requirement of the definition.
 - AI agents and text-to-SQL systems fail on lakehouse estates when they see file paths instead of **table semantics**, miss **partition keys**, or treat **Silver and Gold** layers interchangeably — context must be lakehouse-aware.
+
+A data team stores years of clickstream logs in cheap object storage, runs nightly ETL into a cloud warehouse for BI, and maintains a separate streaming pipeline for real-time dashboards. Three systems, three copies of "customer," three definitions of "active user," and a growing bill for moving the same bytes twice. A **lakehouse** is the architecture pattern that tries to collapse this sprawl: keep data in open, low-cost storage, but add warehouse-grade transactions, SQL performance, and governance on top through **open table formats**. This glossary entry defines what a lakehouse is, how it differs from a data lake and a data warehouse, which technologies make it work, and why AI agents querying your stack need to understand it.
 
 ## 1. Lakehouse: a working definition
 
@@ -199,7 +197,3 @@ Engine support for Iceberg converged across major warehouses and query engines; 
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — why persistent context matters on complex estates
 - [What is a data catalog?](/blog/what-is-data-catalog/) — discovery layer lakehouses depend on
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed metrics atop Gold tables
-
----
-
-*Disclosure: Datus is a data engineering agent platform. This glossary entry explains lakehouse architecture as a general concept and how cross-stack agents approach lakehouse context — alongside other tools and architectures in the category.*

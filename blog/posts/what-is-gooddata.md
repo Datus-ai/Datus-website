@@ -33,8 +33,6 @@ head:
 
 # GoodData: How a 17-Year BI Company Became an AI-Native Analytics Platform
 
-In 2007 — the year the iPhone launched and "cloud BI" did not yet exist as a category — a Czech entrepreneur named Roman Stanek founded a business intelligence startup in San Francisco. Its architecture made an unusual bet: a proprietary query language called MAQL, designed to let business users define metrics declaratively without writing SQL, sat between every dashboard and every database. That decision was not strategic foresight about AI agents. It was a practical response to the problem of BI consistency — make sure every dashboard computed revenue the same way. Seventeen years later, after a rebrand to **GoodData.AI** in April 2026, that same MAQL engine has become the company's most valuable asset — not because dashboards still matter most, but because AI agents need exactly the kind of governed, composable metric definitions MAQL was built to provide. This article traces GoodData's evolution, examines the architecture that survived three industry shifts, and extracts the lesson that matters for every data team: governed semantics outlast every interface built on top of them.
-
 ## TL;DR
 
 - GoodData was founded in **2007** by Roman Stanek as a cloud BI platform. It built one of the industry's earliest **universal semantic layers** with MAQL (Multidimensional Analytical Query Language), a proprietary query engine that translates business logic into optimized SQL.
@@ -42,6 +40,8 @@ In 2007 — the year the iPhone launched and "cloud BI" did not yet exist as a c
 - Rebranded to **GoodData.AI** in April 2026, adding AI Assistant (semantic-grounded chat), Agent Builder (build and deploy AI agents), MCP Server (governed analytics execution), and Smart Search.
 - GoodData's 17-year arc — from cloud BI → headless BI → AI-native analytics — mirrors the industry trajectory: the semantic layer, once a feature of the BI tool, becomes the platform's central infrastructure layer for AI agents.
 - Lesson for data engineering: the companies that survive the AI transition are the ones that built their semantic layer before they needed it for AI. GoodData's MAQL and LDM were built for BI consistency; they turned out to be the foundation for trustworthy AI agents.
+
+In 2007 — the year the iPhone launched and "cloud BI" did not yet exist as a category — a Czech entrepreneur named Roman Stanek founded a business intelligence startup in San Francisco. Its architecture made an unusual bet: a proprietary query language called MAQL, designed to let business users define metrics declaratively without writing SQL, sat between every dashboard and every database. That decision was not strategic foresight about AI agents. It was a practical response to the problem of BI consistency — make sure every dashboard computed revenue the same way. Seventeen years later, after a rebrand to **GoodData.AI** in April 2026, that same MAQL engine has become the company's most valuable asset — not because dashboards still matter most, but because AI agents need exactly the kind of governed, composable metric definitions MAQL was built to provide. This article traces GoodData's evolution, examines the architecture that survived three industry shifts, and extracts the lesson that matters for every data team: governed semantics outlast every interface built on top of them.
 
 ## 1. GoodData's evolution: four phases
 

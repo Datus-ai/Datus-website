@@ -32,18 +32,18 @@ head:
 ---
 # Contextual Data Engineering: Why Every Data Engineering Agent Needs Evolvable Context
 
-The largest cost in data engineering is not writing SQL. It is re-learning the same tables, the same metrics, the same business rules, over and over, every time a new question arrives. A data engineer joins a team and spends weeks absorbing context that exists only in people's heads. An analyst files a ticket, waits three days, and receives a query that the engineer wrote last quarter for someone else and cannot find. A new hire asks "what does 'revenue' mean here?" and gets three different answers from three different people.
-
-This is not a tooling problem. It is a context problem. And it is the problem that **contextual data engineering** is designed to solve.
-
-If you have read [what a data engineering agent is](/blog/what-is-data-engineering-agent-2026/), you already know the rough shape of what follows. That article argued that the deepest split between today's data engineering agents is how they handle context. This article gives the idea its own name and its own definition.
-
 ## TL;DR
 
 - **Contextual data engineering** treats data context—schemas, metrics, validated SQL, business rules, and feedback—as a **first-class, evolvable asset**, not a one-time modeling exercise.
 - It sits beneath a <a href="https://datus.ai/glossary">data engineering agent</a> the way an operating system sits beneath an application: the agent runs on top of it, and every run makes the context stronger.
 - Traditional data engineering models context once and consumes it statically. Contextual data engineering runs a **feedback loop**: agent operates → users correct or confirm → context evolves → next run is more accurate.
 - Context operates in three layers: **schema metadata** (what exists), **business semantics** (what it means), and **institutional memory** (what we learned the hard way). Most tools stop at layer one.
+
+The largest cost in data engineering is not writing SQL. It is re-learning the same tables, the same metrics, the same business rules, over and over, every time a new question arrives. A data engineer joins a team and spends weeks absorbing context that exists only in people's heads. An analyst files a ticket, waits three days, and receives a query that the engineer wrote last quarter for someone else and cannot find. A new hire asks "what does 'revenue' mean here?" and gets three different answers from three different people.
+
+This is not a tooling problem. It is a context problem. And it is the problem that **contextual data engineering** is designed to solve.
+
+If you have read [what a data engineering agent is](/blog/what-is-data-engineering-agent-2026/), you already know the rough shape of what follows. That article argued that the deepest split between today's data engineering agents is how they handle context. This article gives the idea its own name and its own definition.
 
 ## 1. The problem: context is the bottleneck, not compute
 
