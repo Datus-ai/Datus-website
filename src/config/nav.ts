@@ -42,16 +42,6 @@ export const PRODUCTS: NavLink[] = [
     description: "The easiest way to start — free, no setup.",
   },
   {
-    label: "Web Chatbot",
-    href: "/chatbot/",
-    description: "Slack / web chat for analysts.",
-  },
-  {
-    label: "MCP Server",
-    href: "/mcp/",
-    description: "Connect Claude, Cursor, IDEs.",
-  },
-  {
     label: "Enterprise",
     href: "/products/enterprise/",
     description: "Shared context, governance, long-running agents.",
@@ -73,16 +63,6 @@ export const INTEGRATIONS: NavLink[] = [
     label: "Models",
     href: "/models/",
     description: "OpenAI, Claude, Gemini, DeepSeek…",
-  },
-  {
-    label: "OSI Field Mapping",
-    href: "/osi-field-mapping/",
-    description: "Semantic layers mapped to the OSI spec.",
-  },
-  {
-    label: "OSI Playground",
-    href: "/tools/osi-playground/",
-    description: "MetricFlow → OSI: validate, convert, diff.",
   },
 ];
 
