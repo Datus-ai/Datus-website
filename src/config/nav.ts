@@ -42,6 +42,16 @@ export const PRODUCTS: NavLink[] = [
     description: "The easiest way to start — free, no setup.",
   },
   {
+    label: "Web Chatbot",
+    href: "/chatbot/",
+    description: "Slack / web chat for analysts.",
+  },
+  {
+    label: "MCP Server",
+    href: "/mcp/",
+    description: "Connect Claude, Cursor, IDEs.",
+  },
+  {
     label: "Enterprise",
     href: "/products/enterprise/",
     description: "Shared context, governance, long-running agents.",
