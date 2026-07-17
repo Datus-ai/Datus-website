@@ -620,6 +620,9 @@ body {
 }
 /* Both windows fill the (stretched) grid row so they stay equal height. */
 .osi-win { display: flex; flex-direction: column; min-height: 560px; }
+/* Fixed title-bar height so the left (plain text) and right (segmented tab
+   control) bars line up despite different content heights. */
+.osi-win > .term__bar { min-height: 54px; }
 .osi-body { flex: 1; min-height: 0; overflow: auto; padding: 18px; }
 /* Segmented tab switcher that lives inside the output window title bar. */
 .osi-seg {
