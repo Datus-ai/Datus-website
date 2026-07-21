@@ -143,3 +143,15 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Glossary updated: yes (set article: /blog/what-is-cdc/ on Change Data Capture term)
 - PR: https://github.com/Datus-ai/Datus-website/pull/58   Status: open
 - Date: 2026-07-17
+
+### semantic-layer-tools-list-osi
+- Title: Semantic Layer Tools in 2026: Complete List + OSI (Apache Ossie) Status
+- Target keyword: semantic layer tools (semantic layer tools list, semantic layer comparison 2026, OSI support, Apache Ossie support status)
+- Angle: vendor-neutral DIRECTORY/LIST post (distinct from the existing OSI *standard* explainer and osi-vs-metricflow) — 15 tools across 3 architecture buckets (standalone / platform-native / API-BI-native) in one master grid with Open Source / entry pricing / AI-agent access / OSI status (🟢 converter merged / 🟡 working group / 🔴 not participating); + 3-level "what OSI support actually means" (reference converters vs working-group intent vs native support — none shipped) + 4 buyer questions + OSI readiness scorecard; agent angle = tools author semantics, OSI makes them portable, agent-driven context evolution keeps them current
+- Source direction: operator-supplied material (~/Documents/31-semantic-layer-tools-list-osi.md); reformatted to house style. NOT a glossary term (list article) → no glossary `article` set
+- Key sources (verified 2026-07-21): ossie.apache.org (enters Apache Incubator June 2026, formerly OSI); snowflake.com/dremio.com/getdbt.com blogs "OSI is now Apache Ossie"; github.com/apache/ossie converters dir (dbt/GoodData/Salesforce/Polaris merged, Spark in review; 35+ PRs, 50+ orgs, 3 WGs: Metric Language/Catalog/Ontology)
+- Same PR also REFRESHED `open-semantic-interchange-osi.md` to the Apache Ossie framing (was stale: "Sept 2025 launch", old open-semantic-interchange/OSI repo, no Ossie mention). Added: Apache Incubator June 2026 / ASF donation, apache/ossie repo (replaced old repo URL everywhere), merged converters, new FAQ "Is OSI the same as Apache Ossie?", lastmod→2026-07-21. Canonical/slug unchanged
+- Internal links added: what-is-semantic-layer, open-semantic-interchange-osi, osi-vs-metricflow, dbt-semantic-layer-metricflow, cube-agentic-analytics, what-is-gooddata, contextual-data-engineering, what-is-data-engineering-agent-2026 (reciprocal link added FROM open-semantic-interchange-osi)
+- Glossary updated: no (list article, no matching term)
+- PR: https://github.com/Datus-ai/Datus-website/pull/63   Status: open
+- Date: 2026-07-21
