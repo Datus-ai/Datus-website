@@ -111,14 +111,22 @@ git checkout -b blog/<slug>
 git add blog/posts/<slug>.md scripts/build-blog.mjs src/glossary/glossaryData.ts
 #   (+ blog/public/images/<slug>/ if you added images, + any related post you edited)
 #   Note: do NOT stage sitemaps — they're generated into dist/ at build time.
+#   Note: the memory record (agent/memory/covered-topics.md) ships in this SAME PR too — committed in Step 7.
 git commit -m "blog: <Title>"
 git push -u origin blog/<slug>
 gh pr create --base main --title "blog: <Title>" --body "<what/why, target keyword, sources, local URL>"
 ```
 The repo auto-deploys to GitHub Pages when the PR is merged to `main` (`.github/workflows/deploy.yml` runs `build:all`). The operator merges.
 
-### Step 7 — Record it in memory
-Append a record to `memory/covered-topics.md` using the **full** format in `memory/README.md` — every field: slug, Title, Target keyword, Angle, Source direction, Key sources, **Internal links added**, **Glossary updated (yes/no)**, PR link **+ Status (open/merged)**, Date. This is what prevents duplicate posts next time.
+### Step 7 — Record it in memory (and commit it to the SAME PR)
+Append a record to `agent/memory/covered-topics.md` using the **full** format in `memory/README.md` — every field: slug, Title, Target keyword, Angle, Source direction, Key sources, **Internal links added**, **Glossary updated (yes/no)**, PR link **+ Status (open/merged)**, Date. This is what prevents duplicate posts next time.
+
+The `agent/` config — **including memory** — is tracked in this repo, so the memory record is **not** a local-only note: it must ship in the **same PR** as the post. Because the record references the PR link, it is written after Step 6 and lands as a follow-up commit on the same branch:
+```bash
+git add agent/memory/covered-topics.md
+git commit -m "blog: record <slug> in covered-topics memory"
+git push        # updates the SAME PR from Step 6 — never open a new one
+```
 
 ### Step 8 — Report to the operator (中文)
 Send: chosen direction + rationale, the sources you researched, the local review URL, and the PR link.
@@ -133,7 +141,7 @@ Send: chosen direction + rationale, the sources you researched, the local review
   git commit -m "blog: address review — <summary>"
   git push        # updates the SAME PR — never open a new one
   ```
-- Update the memory record if the angle/keyword changed materially.
+- Update the memory record if the angle/keyword changed materially, and push it to the same PR.
 
 ---
 
@@ -146,4 +154,4 @@ Send: chosen direction + rationale, the sources you researched, the local review
 - [ ] build-blog category + glossaryData `article` updated; post URL present in generated `dist/blog/sitemap.xml` (no manual sitemap edit).
 - [ ] `npm run build:all` succeeds; page verified at `http://localhost:4173/blog/<slug>/`.
 - [ ] Only relevant files staged (no `.idea/`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`).
-- [ ] PR opened on `Datus-ai/Datus-website`; memory record appended; 中文 summary sent.
+- [ ] PR opened on `Datus-ai/Datus-website`; memory record appended **and committed to the same PR** (`agent/memory/covered-topics.md`); 中文 summary sent.
