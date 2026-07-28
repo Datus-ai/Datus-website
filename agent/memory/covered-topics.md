@@ -155,3 +155,15 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Glossary updated: no (list article, no matching term)
 - PR: https://github.com/Datus-ai/Datus-website/pull/63   Status: open
 - Date: 2026-07-21
+
+### cursor-for-data-engineering
+- Title: Datus: The Cursor for Data Engineering
+- Target keyword: cursor for data engineering (agentic data engineering IDE, vertical AI agent, data engineering agent, context engine, evolvable context, AI SQL agent)
+- Angle: product-thesis / thought-leadership — defines "Cursor for data engineering" as an agent that operates the *data system* (warehouses, metrics, reference SQL, validation loops), not SQL autocomplete. Whitespace vs SERP: frames "Cursor for X" as a real 2026 vertical-agent CATEGORY (not a slogan) w/ agentic-IDE-vs-DE comparison table; three surfaces (IDE · agent runtime · evolvable context shell); honest platform-native-vs-open section that CREDITS Cortex Code/Genie/BigQuery DEA before naming the cross-stack gravity limit. Datus = the Cursor for data engineering, open-source + free Cloud Personal
+- Source direction: operator-supplied draft (~/Documents/32-cursor-for-data-engineering.md); reworked to full house style (head block, TL;DR-first, added Cortex/Genie FAQ + Related articles, dropped non-standard category/image/slug frontmatter). NOT a glossary term
+- Key sources (verified 2026-07-28): cursor.com; getpanto.ai Cursor stats (>$1B ARR 2025 — hedged); turing.com vertical AI agents (Harvey/Abridge scale, 2026 category); snowflake.com/en/blog/cortex-code-governed-agent-data-stack (Cortex Code cross-stack governed agent); agami.ai Cortex Analyst vs Genie vs BigQuery (GA mid-2026)
+- Internal links added: what-is-data-engineering-agent-2026, contextual-data-engineering, data-engineering-agent-vs-sql-copilot, mcp-data-engineering, subagents-domain-specific-data-agents, one-person-data-team, platform-native-data-agents-compared, data-engineering-agent-vs-claude-code, what-is-semantic-layer (no reciprocal links added yet)
+- Glossary updated: no (product-thesis article, no matching term)
+- Category: "What is Datus" (start-here thesis home) in scripts/build-blog.mjs
+- PR: https://github.com/Datus-ai/Datus-website/pull/64   Status: open
+- Date: 2026-07-28

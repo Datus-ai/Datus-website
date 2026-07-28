@@ -41,7 +41,7 @@ md.use(anchor, { permalink: anchor.permalink.headerLink() });
 /* -------- category structure (ported from the old VitePress sidebar) -------- */
 const CATEGORIES = [
   { label: "What is Datus", description: "Start here — the problem, the product, and the thesis behind it.",
-    slugs: ["meet-the-general-chat-agent", "meet_datus", "agentic-data-stack", "welcome"] },
+    slugs: ["cursor-for-data-engineering", "meet-the-general-chat-agent", "meet_datus", "agentic-data-stack", "welcome"] },
   { label: "Data Engineering Agent", description: "The category, the comparisons, and how to build with one — our core cluster.",
     slugs: ["sql-was-never-the-hard-part", "what-is-data-engineering-agent-2026", "what-is-data-engineering-agent",
       "contextual-data-engineering", "best-data-engineering-agents-2026", "open-source-data-engineering-agents",
