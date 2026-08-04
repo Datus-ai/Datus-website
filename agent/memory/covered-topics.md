@@ -167,3 +167,15 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Category: "What is Datus" (start-here thesis home) in scripts/build-blog.mjs
 - PR: https://github.com/Datus-ai/Datus-website/pull/64   Status: open
 - Date: 2026-07-28
+
+### what-is-snowflake-osi
+- Title: What Is Snowflake OSI? Semantic Views, Cortex Analyst & Ossie
+- Target keyword: snowflake osi (snowflake open semantic, snowflake semantic layer, Apache Ossie, Ossie YAML, Snowflake Semantic Views, Cortex Analyst, SYSTEM$…_OSSIE_YAML)
+- Angle: Snowflake-shaped SPOKE off the OSI standard hub — disambiguates the search phrase "Snowflake OSI" (a search shorthand, NOT a SKU) into three distinct layers: Semantic Views (author/govern) vs Cortex Analyst (text-to-SQL consumer) vs Ossie (interchange format). Whitespace vs SERP: the engineering-level product bridge announcement pages skip — SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML / SYSTEM$READ_OSSIE_YAML_FROM_SEMANTIC_VIEW, deprecated …_OSI_YAML… aliases, Ossie core 0.1.1, dialect priority SNOWFLAKE→ANSI_SQL, and a round-trip FIDELITY breakdown (equi-joins/metrics/ai_context survive; non-equi ASOF/RANGE dropped; Snowflake-only custom_instructions land in SNOWFLAKE custom extensions) + a two-SQL mini walkthrough. Agent angle = interchange moves a definition once; evolvable context keeps it accurate as schemas drift
+- Source direction: operator-supplied draft (~/Documents/33-what-is-snowflake-osi.md); reworked to house style — converted to full head block, moved TL;DR to first block, switched byline Kostja→Evan Paul, corrected incubation date (draft said "July 8 2026" → verified July 2026 per ossie.apache.org), repointed DE-agent link to canonical -2026, added contextual-data-engineering / platform-native-data-agents-compared / semantic-layer-tools-list-osi links, dropped non-standard category/image/slug frontmatter. NOT a glossary term (spoke)
+- Key sources (verified 2026-08-04): docs.snowflake.com SYSTEM$READ_OSSIE_YAML_FROM_SEMANTIC_VIEW + SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML (signatures, required name+version, core 0.1.1, SNOWFLAKE→ANSI_SQL dialect fallback, custom-extension fidelity); ossie.apache.org/updates/ossie-enters-apache-incubator (Apache Incubator July 2026, name change, spec unchanged, 100+ commits / 35 PRs / 17→50+ orgs / 3 WGs Metric Language·Catalog·Ontology / dbt Semantic Layer + Apache Polaris converters merged)
+- Internal links added: what-is-semantic-model, open-semantic-interchange-osi, what-is-semantic-layer, what-is-text-to-sql, what-is-data-engineering-agent-2026, contextual-data-engineering, osi-vs-metricflow, semantic-layer-tools-list-osi, platform-native-data-agents-compared (reciprocal link added FROM open-semantic-interchange-osi Related articles)
+- Glossary updated: no (spoke article, no matching glossary term)
+- Category: "Semantic Layer" in scripts/build-blog.mjs
+- PR: https://github.com/Datus-ai/Datus-website/pull/65   Status: open
+- Date: 2026-08-04

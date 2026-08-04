@@ -168,6 +168,7 @@ Now, for architectural direction. Start building semantic infrastructure with th
 
 ## Related articles
 
+- [What is Snowflake OSI?](/blog/what-is-snowflake-osi/) — how Snowflake bridges Semantic Views to Ossie YAML, and what the SYSTEM$ functions actually do
 - [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — how the portable standard pairs with dbt's execution engine
 - [Semantic layer tools in 2026 + OSI status](/blog/semantic-layer-tools-list-osi/) — every tool, with its current Apache Ossie support
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the business dictionary OSI makes portable
