@@ -177,5 +177,5 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Internal links added: what-is-semantic-model, open-semantic-interchange-osi, what-is-semantic-layer, what-is-text-to-sql, what-is-data-engineering-agent-2026, contextual-data-engineering, osi-vs-metricflow, semantic-layer-tools-list-osi, platform-native-data-agents-compared (reciprocal link added FROM open-semantic-interchange-osi Related articles)
 - Glossary updated: no (spoke article, no matching glossary term)
 - Category: "Semantic Layer" in scripts/build-blog.mjs
-- PR: https://github.com/Datus-ai/Datus-website/pull/65   Status: open
+- PR: https://github.com/Datus-ai/Datus-website/pull/65   Status: merged
 - Date: 2026-08-04
