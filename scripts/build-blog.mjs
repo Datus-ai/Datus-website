@@ -202,7 +202,7 @@ function footerHtml() {
 
 function gaHtml() {
   return `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag("consent","default",{ad_storage:"denied",analytics_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",wait_for_update:500});</script>
+gtag("consent","default",{ad_storage:"denied",analytics_storage:"granted",ad_user_data:"denied",ad_personalization:"denied",wait_for_update:500});</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
 <script>gtag("js",new Date());gtag("config","${GA_ID}");</script>`;
 }
