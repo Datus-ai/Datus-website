@@ -57,13 +57,6 @@ export const glossary: GlossaryCategory[] = [
           "A metadata-driven layer that stitches together distributed data sources so they can be queried and governed as if they were one system.",
       },
       {
-        term: "Medallion Architecture",
-        slug: "medallion-architecture",
-        definition:
-          "A layered convention — Bronze (raw), Silver (cleaned), Gold (aggregated) — popularized by Databricks for incrementally refining lakehouse data.",
-        article: "/blog/what-is-medallion-architecture/",
-      },
-      {
         term: "Lambda vs Kappa",
         slug: "lambda-vs-kappa",
         definition:
@@ -108,16 +101,17 @@ export const glossary: GlossaryCategory[] = [
           "Patterns for tracking how dimension values change over time. Type 1 overwrites, Type 2 keeps history with valid-from/valid-to columns, Type 3 keeps a previous-value column.",
       },
       {
-        term: "One Big Table (OBT)",
-        slug: "one-big-table",
-        definition:
-          "A modeling style that pre-joins facts and dimensions into a single wide table. Trades storage and flexibility for query simplicity and speed on columnar engines.",
-      },
-      {
         term: "Data Vault",
         slug: "data-vault",
         definition:
           "A modeling approach using hubs (business keys), links (relationships), and satellites (descriptive attributes). Optimized for auditability and frequent schema change.",
+      },
+      {
+        term: "Medallion Architecture",
+        slug: "medallion-architecture",
+        definition:
+          "A layered convention — Bronze (raw), Silver (cleaned), Gold (aggregated) — popularized by Databricks for incrementally refining lakehouse data.",
+        article: "/blog/what-is-medallion-architecture/",
       },
     ],
   },
@@ -149,6 +143,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "delta-lake",
         definition:
           "A table format from Databricks that layers an ACID transaction log on Parquet, enabling MERGE, time travel, and streaming reads on a data lake.",
+        article: "/blog/what-is-delta-lake/",
       },
       {
         term: "Apache Hudi",
