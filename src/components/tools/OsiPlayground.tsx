@@ -6,6 +6,8 @@ import { convertMetricflowYaml } from "../../lib/osi/metricflow-to-osi";
 import { validateAsOsi } from "../../lib/osi/validate";
 import { diffLines } from "../../lib/osi/diff";
 import { SAMPLE_METRICFLOW, SAMPLE_METRICFLOW_INVALID } from "../../lib/osi/samples";
+import { useLocale } from "../../i18n/LocaleContext";
+import { UI } from "../../i18n/ui";
 
 const MAX_INPUT_BYTES = 200 * 1024; // 200KB — protect the main thread
 
@@ -50,7 +52,7 @@ function StatusBadge({ tone, children }: { tone: keyof typeof TONE; children: Re
   );
 }
 
-function DroppedList({ items }: { items: string[] }) {
+function DroppedList({ items, label }: { items: string[]; label: string }) {
   if (items.length === 0) return null;
   return (
     <div
@@ -73,7 +75,7 @@ function DroppedList({ items }: { items: string[] }) {
           color: "var(--ink-faint)",
         }}
       >
-        Dropped fields:
+        {label}
       </span>{" "}
       {items.join(", ")}
     </div>
@@ -97,6 +99,7 @@ const barTitleStyle: React.CSSProperties = {
 };
 
 export function OsiPlayground() {
+  const t = UI[useLocale()].osiTool;
   const [input, setInput] = useState(SAMPLE_METRICFLOW);
   const [tab, setTab] = useState<Tab>("converter");
   const [copied, setCopied] = useState(false);
@@ -141,9 +144,9 @@ export function OsiPlayground() {
       ? `OSI v${OSI_SCHEMA_VERSION}`
       : tab === "converter"
         ? conversion && conversion.errors.length === 0
-          ? `${conversion.mappedCount} mapped · ${conversion.renamedCount} renamed`
+          ? `${conversion.mappedCount} ${t.mapped} · ${conversion.renamedCount} ${t.renamed}`
           : "—"
-        : `+${diffSummary.added} · −${diffSummary.removed} lines`;
+        : `+${diffSummary.added} · −${diffSummary.removed} ${t.diffLines}`;
 
   const miniTab = (value: Tab, label: string) => (
     <button
@@ -171,18 +174,18 @@ export function OsiPlayground() {
         <div className="osi-bar">
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button type="button" className="osi-btn" onClick={() => setInput(SAMPLE_METRICFLOW)}>
-              <Sparkles size={12} /> Load example
+              <Sparkles size={12} /> {t.loadExample}
             </button>
             <button
               type="button"
               className="osi-btn"
               onClick={() => setInput(SAMPLE_METRICFLOW_INVALID)}
             >
-              Load invalid
+              {t.loadInvalid}
             </button>
           </div>
           <button type="button" className="osi-btn" onClick={() => setInput("")}>
-            <RotateCcw size={12} /> Clear
+            <RotateCcw size={12} /> {t.clear}
           </button>
         </div>
         <textarea
@@ -190,8 +193,8 @@ export function OsiPlayground() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           spellCheck={false}
-          placeholder="Paste your MetricFlow YAML here…"
-          aria-label="MetricFlow YAML input"
+          placeholder={t.placeholder}
+          aria-label={t.inputAria}
         />
         {oversize && (
           <div
@@ -203,7 +206,7 @@ export function OsiPlayground() {
               color: "var(--ink-dim)",
             }}
           >
-            Input is over 200 KB — trimmed for browser-side processing.
+            {t.oversize}
           </div>
         )}
       </div>
@@ -211,10 +214,10 @@ export function OsiPlayground() {
       {/* OUTPUT WINDOW — tab switcher lives in the title bar, meta on the right */}
       <div className="term osi-win" style={{ fontFamily: "var(--font-sans)" }}>
         <div className="term__bar">
-          <div className="osi-seg" role="tablist" aria-label="OSI Playground tools">
-            {miniTab("validator", "Validator")}
-            {miniTab("converter", "Converter")}
-            {miniTab("diff", "Diff")}
+          <div className="osi-seg" role="tablist" aria-label={t.toolsAria}>
+            {miniTab("validator", t.validator)}
+            {miniTab("converter", t.converter)}
+            {miniTab("diff", t.diff)}
           </div>
           <span style={barTitleStyle}>{outMeta}</span>
         </div>
@@ -234,7 +237,7 @@ export function OsiPlayground() {
             </span>
             <div style={{ display: "flex", gap: 8 }}>
               <button type="button" className="osi-btn" onClick={copyOsi} disabled={!conversion?.osiYaml}>
-                <Copy size={12} /> {copied ? "Copied" : "Copy"}
+                <Copy size={12} /> {copied ? t.copied : t.copy}
               </button>
               <button
                 type="button"
@@ -242,7 +245,7 @@ export function OsiPlayground() {
                 onClick={() => conversion && download("osi.yml", conversion.osiYaml)}
                 disabled={!conversion?.osiYaml}
               >
-                <Download size={12} /> Download
+                <Download size={12} /> {t.download}
               </button>
             </div>
           </div>
@@ -253,28 +256,28 @@ export function OsiPlayground() {
           {tab === "validator" &&
             (!validation ? null : validation.kind === "yaml-error" ? (
               <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
-                <StatusBadge tone="pink">✗ YAML error</StatusBadge>
+                <StatusBadge tone="pink">{t.yamlError}</StatusBadge>
                 <pre className="osi-pre" style={{ color: "var(--ink-dim)" }}>
                   {validation.message}
                 </pre>
               </div>
             ) : validation.kind === "not-object" ? (
               <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
-                <StatusBadge tone="pink">✗ Invalid root</StatusBadge>
+                <StatusBadge tone="pink">{t.invalidRoot}</StatusBadge>
                 <p style={{ fontSize: 13, color: "var(--ink-dim)", margin: 0 }}>{validation.message}</p>
               </div>
             ) : validation.kind === "valid" ? (
               <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
-                <StatusBadge tone="sage">✓ Valid OSI</StatusBadge>
+                <StatusBadge tone="sage">{t.validOsi}</StatusBadge>
                 <p style={{ fontSize: 13, color: "var(--ink-muted)", margin: 0 }}>
-                  This document conforms to the OSI v{OSI_SCHEMA_VERSION} core schema (subset).{" "}
+                  {t.conforms.replace("{version}", OSI_SCHEMA_VERSION)}{" "}
                   {validation.warnings[0] ?? ""}
                 </p>
               </div>
             ) : (
               <div style={{ display: "grid", gap: 12, alignContent: "start" }}>
                 <StatusBadge tone="amber">
-                  ⚠ {validation.errors.length} issue{validation.errors.length === 1 ? "" : "s"}
+                  ⚠ {validation.errors.length} {validation.errors.length === 1 ? t.issue : t.issues}
                 </StatusBadge>
                 {validation.warnings.map((w, i) => (
                   <p key={i} style={{ fontSize: 12, color: "var(--ink-faint)", margin: 0 }}>
@@ -314,10 +317,10 @@ export function OsiPlayground() {
           {/* CONVERTER */}
           {tab === "converter" && (
             <>
-              {conversion && <DroppedList items={conversion.droppedFields} />}
+              {conversion && <DroppedList items={conversion.droppedFields} label={t.droppedFields} />}
               {conversion?.errors.length ? (
                 <>
-                  <StatusBadge tone="pink">✗ Conversion failed</StatusBadge>
+                  <StatusBadge tone="pink">{t.conversionFailed}</StatusBadge>
                   <pre className="osi-pre" style={{ marginTop: 8 }}>
                     {conversion.errors.join("\n")}
                   </pre>
@@ -334,7 +337,7 @@ export function OsiPlayground() {
           {tab === "diff" &&
             (diffParts.length === 0 ? (
               <p style={{ fontSize: 13, color: "var(--ink-faint)", margin: 0 }}>
-                Paste a MetricFlow YAML on the left to see the line-by-line diff.
+                {t.diffEmpty}
               </p>
             ) : (
               <pre className="osi-pre" style={{ whiteSpace: "pre" }}>

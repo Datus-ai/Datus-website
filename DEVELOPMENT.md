@@ -22,6 +22,30 @@ npm run build:all && npm run preview  # http://localhost:4173
 Tests the full production build (marketing pages + static blog). Requires a
 rebuild after changes.
 
+## Bilingual pages (`/zh`)
+
+Every marketing page has a Chinese mirror at `/zh` + the same path — the slug is
+never translated. **The blog is English only** and must never gain a `/zh/blog`
+URL or a `zh-Hans` alternate. See `src/i18n/config.ts` for the route list.
+
+- **UI copy** (nav, footer, buttons, form labels) → `src/i18n/ui.ts`.
+- **Page copy** → the page's own `content.ts` / `faq.ts`, exported as
+  `Record<Locale, …>`; the component picks a branch with `useT(...)`.
+- **`<head>` metadata** → English stays in the route's hand-written
+  `<route>/index.html`; Chinese goes in `src/i18n/pageMeta.ts`.
+- **Internal links** are always written in English form (`/pricing/`) and
+  prefixed at render time by `useHref()`. Never hard-code `/zh/…`.
+
+`npm run build` only emits the English shells. The `prerender` step then derives
+each `/zh` shell from its English sibling, injects the hreflang cluster into
+both, renders every route in both locales into `<div id="root">`, and writes
+`dist/sitemap-pages.xml`. So **`npm run dev` shows `/zh` page bodies but not
+`/zh` head metadata** — check that on `npm run preview`.
+
+Adding a new marketing page: add its path to `MIRRORED_PATHS`, its Chinese
+metadata to `ZH_PAGE_META`, and its component to `PAGES` in
+`src/prerender.tsx`. The build fails loudly if the metadata is missing.
+
 ## Adding a Blog Post
 
 1. **Create file**: `blog/posts/my-post.md`

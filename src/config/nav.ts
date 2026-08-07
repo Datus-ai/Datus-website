@@ -1,4 +1,6 @@
 import { GITHUB_URL } from "../hooks/useGitHubStars";
+import type { Locale } from "../i18n/config";
+import { UI } from "../i18n/ui";
 
 export { GITHUB_URL };
 
@@ -25,58 +27,43 @@ export interface NavItem {
   children?: NavLink[];
 }
 
-export const PRODUCTS: NavLink[] = [
-  {
-    label: "Datus CLI",
-    href: "/products/cli/",
-    description: "Run the modern data stack from your terminal.",
-  },
-  {
-    label: "VS Code Extension",
-    href: "/products/vscode/",
-    description: "Bring context and agents into your editor.",
-  },
-  {
-    label: "Datus Studio",
-    href: "/products/studio/",
-    description: "The easiest way to start — free, no setup.",
-  },
-  {
-    label: "Enterprise",
-    href: "/products/enterprise/",
-    description: "Shared context, governance, long-running agents.",
-  },
-];
+// Hrefs are written in their English (unprefixed) form throughout. The nav
+// components run them through `useHref()` so a `/zh` page links inside `/zh`;
+// `/blog/` has no Chinese mirror and is left alone by that helper.
 
-export const INTEGRATIONS: NavLink[] = [
-  {
-    label: "All Integrations",
-    href: "/integrations/",
-    description: "Storage, semantic, BI, MCP, skills, tracing.",
-  },
-  {
-    label: "Databases",
-    href: "/databases/",
-    description: "SQLite, Postgres, Snowflake, Spark…",
-  },
-  {
-    label: "Models",
-    href: "/models/",
-    description: "OpenAI, Claude, Gemini, DeepSeek…",
-  },
-];
+export function productsNav(locale: Locale): NavLink[] {
+  const t = UI[locale].products;
+  return [
+    { label: t.cli, href: "/products/cli/", description: t.cliDesc },
+    { label: t.vscode, href: "/products/vscode/", description: t.vscodeDesc },
+    { label: t.studio, href: "/products/studio/", description: t.studioDesc },
+    { label: t.enterprise, href: "/products/enterprise/", description: t.enterpriseDesc },
+  ];
+}
 
-export const NAV: NavItem[] = [
-  { label: "Products", children: PRODUCTS },
-  { label: "Integrations", children: INTEGRATIONS },
-  { label: "Pricing", href: "/pricing/" },
-  { label: "Blog", href: "/blog/", external: true },
-  {
-    label: "Community",
-    children: [
-      { label: "GitHub", href: GITHUB_URL, external: true },
-      { label: "Slack", href: SLACK_URL, external: true },
-      { label: "Docs", href: DOCS_URL, external: true },
-    ],
-  },
-];
+export function integrationsNav(locale: Locale): NavLink[] {
+  const t = UI[locale].products;
+  return [
+    { label: t.allIntegrations, href: "/integrations/", description: t.allIntegrationsDesc },
+    { label: t.databases, href: "/databases/", description: t.databasesDesc },
+    { label: t.models, href: "/models/", description: t.modelsDesc },
+  ];
+}
+
+export function siteNav(locale: Locale): NavItem[] {
+  const t = UI[locale].nav;
+  return [
+    { label: t.products, children: productsNav(locale) },
+    { label: t.integrations, children: integrationsNav(locale) },
+    { label: t.pricing, href: "/pricing/" },
+    { label: t.blog, href: "/blog/", external: true },
+    {
+      label: t.community,
+      children: [
+        { label: t.github, href: GITHUB_URL, external: true },
+        { label: t.slack, href: SLACK_URL, external: true },
+        { label: t.docs, href: DOCS_URL, external: true },
+      ],
+    },
+  ];
+}

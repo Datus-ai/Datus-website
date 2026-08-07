@@ -2,6 +2,8 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { CheckCircle2, X } from "lucide-react";
 import { motion } from "motion/react";
 import React, { useState } from "react";
+import { useLocale } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -74,6 +76,8 @@ export function EnterpriseInquiryDialog({
   children: React.ReactNode;
   source?: string;
 }) {
+  const locale = useLocale();
+  const t = UI[locale].form;
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState<FormState>(initialForm);
@@ -132,7 +136,7 @@ export function EnterpriseInquiryDialog({
     } catch (err) {
       setStatus("error");
       setErrorMsg(
-        err instanceof Error ? err.message : "Something went wrong. Try again.",
+        err instanceof Error ? err.message : UI[locale].form.genericError,
       );
     }
   }
@@ -184,7 +188,7 @@ export function EnterpriseInquiryDialog({
           className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
         >
           <DialogPrimitive.Close
-            aria-label="Close"
+            aria-label={t.close}
             style={{
               position: "absolute",
               top: 14,
@@ -241,7 +245,7 @@ export function EnterpriseInquiryDialog({
                     margin: 0,
                   }}
                 >
-                  Thanks — we'll be in touch
+                  {t.thanks}
                 </h3>
               </DialogPrimitive.Title>
               <p
@@ -253,8 +257,7 @@ export function EnterpriseInquiryDialog({
                   maxWidth: 380,
                 }}
               >
-                We typically respond within one business day. In the meantime,
-                feel free to email{" "}
+                {t.dialogThanksBody}
                 <a
                   href="mailto:contact@datus.ai"
                   style={{ color: "#F9A8D4", textDecoration: "none" }}
@@ -279,7 +282,7 @@ export function EnterpriseInquiryDialog({
                   cursor: "pointer",
                 }}
               >
-                Close
+                {t.close}
               </button>
             </motion.div>
           ) : (
@@ -294,7 +297,7 @@ export function EnterpriseInquiryDialog({
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  Contact us about Enterprise & BYOC
+                  {t.dialogTitle}
                 </h3>
               </DialogPrimitive.Title>
               <p
@@ -305,8 +308,7 @@ export function EnterpriseInquiryDialog({
                   color: "#94A3B8",
                 }}
               >
-                Tell us a little about your team and what you're trying to do.
-                We'll get back within one business day.
+                {t.dialogLead}
               </p>
 
               <div style={{ display: "grid", gap: "1rem" }}>
@@ -319,7 +321,7 @@ export function EnterpriseInquiryDialog({
                 >
                   <div>
                     <label htmlFor="enterprise-name" style={labelStyle}>
-                      Full name <span style={{ color: "#F9A8D4" }}>*</span>
+                      {t.fullName.replace(" *", "")} <span style={{ color: "#F9A8D4" }}>*</span>
                     </label>
                     <input
                       id="enterprise-name"
@@ -335,7 +337,7 @@ export function EnterpriseInquiryDialog({
                   </div>
                   <div>
                     <label htmlFor="enterprise-company" style={labelStyle}>
-                      Company <span style={{ color: "#F9A8D4" }}>*</span>
+                      {t.company.replace(" *", "")} <span style={{ color: "#F9A8D4" }}>*</span>
                     </label>
                     <input
                       id="enterprise-company"
@@ -360,7 +362,7 @@ export function EnterpriseInquiryDialog({
                 >
                   <div>
                     <label htmlFor="enterprise-email" style={labelStyle}>
-                      Work email <span style={{ color: "#F9A8D4" }}>*</span>
+                      {t.workEmail.replace(" *", "")} <span style={{ color: "#F9A8D4" }}>*</span>
                     </label>
                     <input
                       id="enterprise-email"
@@ -376,7 +378,7 @@ export function EnterpriseInquiryDialog({
                   </div>
                   <div>
                     <label htmlFor="enterprise-role" style={labelStyle}>
-                      Role / title
+                      {t.role}
                     </label>
                     <input
                       id="enterprise-role"
@@ -393,7 +395,7 @@ export function EnterpriseInquiryDialog({
 
                 <div>
                   <label htmlFor="enterprise-message" style={labelStyle}>
-                    What are you trying to do?
+                    {t.message}
                   </label>
                   <textarea
                     id="enterprise-message"
@@ -402,7 +404,7 @@ export function EnterpriseInquiryDialog({
                     onChange={(e) => update("message", e.target.value)}
                     onFocus={focusRing}
                     onBlur={blurRing}
-                    placeholder="Stack, scale, timeline, anything we should know…"
+                    placeholder={t.messagePlaceholder}
                     style={textareaStyle}
                   />
                 </div>
@@ -470,7 +472,7 @@ export function EnterpriseInquiryDialog({
                     transition: "transform 0.15s ease, box-shadow 0.15s ease",
                   }}
                 >
-                  {status === "submitting" ? "Sending…" : "Request a meeting"}
+                  {status === "submitting" ? t.submitting : t.submit}
                 </button>
               </div>
             </form>

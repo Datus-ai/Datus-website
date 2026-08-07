@@ -3,12 +3,17 @@
 // Vite), renders each route to a static HTML string, and injects it into the
 // Vite-built shell's <div id="root"></div> in dist/. The client then hydrates.
 //
+// Before rendering, the `/zh` shells are derived from their English siblings
+// (see scripts/lib/i18n-shells.mjs) so the Chinese routes have a document to be
+// injected into, and the English ones gain their hreflang cluster.
+//
 // Run after `vite build`.
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
+import { buildLocaleShells } from "./lib/i18n-shells.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -29,6 +34,13 @@ async function main() {
   });
 
   try {
+    const i18n = await vite.ssrLoadModule("/src/i18n/build.ts");
+    const { built, skipped } = buildLocaleShells(DIST, i18n);
+    if (skipped.length) {
+      console.warn(`[i18n] no built shell for: ${skipped.join(", ")}`);
+    }
+    console.log(`[i18n] wrote ${built} /zh shells + /en redirect stubs`);
+
     const { ROUTES, render } = await vite.ssrLoadModule("/src/prerender.tsx");
     let done = 0;
     for (const { out, node } of ROUTES) {

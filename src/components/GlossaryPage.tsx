@@ -1,31 +1,89 @@
 import "./GlossaryPage.css";
 import Footer from "./Footer";
-import { glossary, allTerms, GLOSSARY_UPDATED } from "../glossary/glossaryData";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { allTerms, glossaryFor, glossaryUpdated } from "../glossary/glossaryData";
+import { useHref, useLocale } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
+import type { Locale } from "../i18n/config";
+
+type GlossaryCopy = {
+  eyebrow: string;
+  title: string;
+  subtitle: (count: number) => string;
+  meta: (categories: number, terms: number, updated: string) => string;
+  termsSuffix: (n: number) => string;
+  readGuide: string;
+  ctaTitle: string;
+  ctaBody: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+};
+
+const COPY: Record<Locale, GlossaryCopy> = {
+  en: {
+    eyebrow: "Glossary",
+    title: "Data engineering glossary",
+    subtitle: (count) =>
+      `Plain-language definitions of the ${count} concepts Datus agents work with day to day — from semantic layer and lakehouse to schema linking, MCP, and RAG. One page, no fluff.`,
+    meta: (categories, terms, updated) =>
+      `${categories} categories · ${terms} terms · Updated ${updated}`,
+    termsSuffix: (n) => `${n} terms`,
+    readGuide: "Read the full guide →",
+    ctaTitle: "From definitions to a working agent",
+    ctaBody:
+      "Datus turns these concepts into an evolvable Context Engine — so your data engineering agent understands your warehouse, not just the words.",
+    ctaPrimary: "Explore the agent",
+    ctaSecondary: "Read the docs",
+  },
+  zh: {
+    eyebrow: "术语表",
+    title: "数据工程术语表",
+    subtitle: (count) =>
+      `用大白话解释 Datus Agent 每天打交道的 ${count} 个概念——从语义层、湖仓，到 Schema Linking、MCP 与 RAG。一页看完，不灌水。`,
+    meta: (categories, terms, updated) =>
+      `${categories} 个分类 · ${terms} 个词条 · 更新于 ${updated}`,
+    termsSuffix: (n) => `${n} 个词条`,
+    readGuide: "阅读完整指南 →",
+    ctaTitle: "从定义到一个真正能干活的 Agent",
+    ctaBody:
+      "Datus 把这些概念变成一套可演进的上下文引擎——让你的数据工程 Agent 真正理解你的数仓，而不只是认得这些词。",
+    ctaPrimary: "了解这个 Agent",
+    ctaSecondary: "阅读文档",
+  },
+};
 
 const GlossaryPage = () => {
+  const locale = useLocale();
+  const l = useHref();
+  const t = COPY[locale];
+  const ui = UI[locale];
+  const glossary = glossaryFor(locale);
+
   return (
     <div className="glossary">
       {/* Header */}
       <header className="glossary-header">
         <div className="glossary-header__inner">
-          <a href="/" className="glossary-header__logo" aria-label="Datus home">
+          <a href={l("/")} className="glossary-header__logo" aria-label="Datus">
             <img src="/logo_dark.svg" alt="Datus" />
           </a>
           <nav className="glossary-header__nav" aria-label="Primary">
-            <a href="/blog/">Blog</a>
+            {/* The blog is English-only, so this href is never prefixed. */}
+            <a href="/blog/">{ui.nav.blog}</a>
             <a href="https://docs.datus.ai" target="_blank" rel="noopener noreferrer">
-              Docs
+              {ui.nav.docs}
             </a>
             <a href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
-              GitHub
+              {ui.nav.github}
             </a>
+            <LanguageSwitcher />
             <a
               className="glossary-header__cta"
               href="https://studio.datus.ai/overview"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get started
+              {ui.nav.getStarted}
             </a>
           </nav>
         </div>
@@ -36,27 +94,22 @@ const GlossaryPage = () => {
         <nav className="glossary-breadcrumb" aria-label="Breadcrumb">
           <ol>
             <li>
-              <a href="/">Home</a>
+              <a href={l("/")}>{ui.nav.home}</a>
               <span className="glossary-breadcrumb__sep" aria-hidden="true">/</span>
             </li>
             <li>
-              <span aria-current="page">Glossary</span>
+              <span aria-current="page">{t.eyebrow}</span>
             </li>
           </ol>
         </nav>
 
         {/* Hero */}
         <section className="glossary-hero">
-          <p className="glossary-hero__eyebrow">Glossary</p>
-          <h1 className="glossary-hero__title">Data engineering glossary</h1>
-          <p className="glossary-hero__subtitle">
-            Plain-language definitions of the {allTerms.length} concepts Datus
-            agents work with day to day — from semantic layer and lakehouse to
-            schema linking, MCP, and RAG. One page, no fluff.
-          </p>
+          <p className="glossary-hero__eyebrow">{t.eyebrow}</p>
+          <h1 className="glossary-hero__title">{t.title}</h1>
+          <p className="glossary-hero__subtitle">{t.subtitle(allTerms.length)}</p>
           <p className="glossary-hero__meta">
-            {glossary.length} categories · {allTerms.length} terms · Updated{" "}
-            {GLOSSARY_UPDATED}
+            {t.meta(glossary.length, allTerms.length, glossaryUpdated(locale))}
           </p>
         </section>
 
@@ -76,17 +129,18 @@ const GlossaryPage = () => {
             <div className="glossary-section__head">
               <h2 className="glossary-section__title">{cat.name}</h2>
               <span className="glossary-section__count">
-                {cat.terms.length} terms
+                {t.termsSuffix(cat.terms.length)}
               </span>
             </div>
             <div className="glossary-grid">
-              {cat.terms.map((t) => (
-                <article key={t.slug} id={t.slug} className="glossary-card">
-                  <h3 className="glossary-card__term">{t.term}</h3>
-                  <p className="glossary-card__def">{t.definition}</p>
-                  {t.article && (
-                    <a className="glossary-card__link" href={t.article}>
-                      Read the full guide →
+              {cat.terms.map((term) => (
+                <article key={term.slug} id={term.slug} className="glossary-card">
+                  <h3 className="glossary-card__term">{term.term}</h3>
+                  <p className="glossary-card__def">{term.definition}</p>
+                  {/* Guides live on the blog, which ships English only. */}
+                  {term.article && (
+                    <a className="glossary-card__link" href={term.article}>
+                      {t.readGuide}
                     </a>
                   )}
                 </article>
@@ -97,12 +151,8 @@ const GlossaryPage = () => {
 
         {/* Closing CTA */}
         <section className="glossary-cta">
-          <h2>From definitions to a working agent</h2>
-          <p>
-            Datus turns these concepts into an evolvable Context Engine — so your
-            data engineering agent understands your warehouse, not just the
-            words.
-          </p>
+          <h2>{t.ctaTitle}</h2>
+          <p>{t.ctaBody}</p>
           <div className="glossary-cta__actions">
             <a
               className="glossary-cta__primary"
@@ -110,7 +160,7 @@ const GlossaryPage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Explore the agent
+              {t.ctaPrimary}
             </a>
             <a
               className="glossary-cta__secondary"
@@ -118,7 +168,7 @@ const GlossaryPage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Read the docs
+              {t.ctaSecondary}
             </a>
           </div>
         </section>

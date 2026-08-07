@@ -1,55 +1,59 @@
 import "./Footer.css";
+import { useHref, useLocale } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const locale = useLocale();
+  const l = useHref();
+  const t = UI[locale].footer;
+  const p = UI[locale].products;
 
   return (
     <footer className="site-footer">
       <div className="site-footer__inner">
         <div className="site-footer__brand">
-          <a href="/" className="site-footer__logo" aria-label="Datus home">
+          <a href={l("/")} className="site-footer__logo" aria-label="Datus">
             <img src="/logo_dark.svg" alt="Datus" />
           </a>
-          <p className="site-footer__tagline">
-            The open-source data engineering agent with an evolvable Context
-            Engine — natural language to governed, production-ready data work.
-          </p>
+          <p className="site-footer__tagline">{t.tagline}</p>
         </div>
 
         <nav className="site-footer__cols" aria-label="Footer">
           <div className="site-footer__col">
-            <h3 className="site-footer__heading">Products</h3>
+            <h3 className="site-footer__heading">{t.products}</h3>
             <ul>
-              <li><a href="/products/cli/">Datus CLI</a></li>
-              <li><a href="/products/vscode/">VS Code Extension</a></li>
-              <li><a href="/products/studio/">Datus Studio</a></li>
-              <li><a href="/products/enterprise/">Enterprise</a></li>
+              <li><a href={l("/products/cli/")}>{p.cli}</a></li>
+              <li><a href={l("/products/vscode/")}>{p.vscode}</a></li>
+              <li><a href={l("/products/studio/")}>{p.studio}</a></li>
+              <li><a href={l("/products/enterprise/")}>{p.enterprise}</a></li>
             </ul>
           </div>
 
           <div className="site-footer__col">
-            <h3 className="site-footer__heading">Resources</h3>
+            <h3 className="site-footer__heading">{t.resources}</h3>
             <ul>
-              <li><a href="/integrations/">Integrations</a></li>
-              <li><a href="/pricing/">Pricing</a></li>
-              <li><a href="/blog/">Blog</a></li>
-              <li><a href="/glossary/">Glossary</a></li>
-              <li><a href="/faq/">FAQ</a></li>
+              <li><a href={l("/integrations/")}>{t.integrations}</a></li>
+              <li><a href={l("/pricing/")}>{t.pricing}</a></li>
+              {/* The blog is English-only — no /zh mirror, so the href is left bare. */}
+              <li><a href="/blog/">{t.blog}</a></li>
+              <li><a href={l("/glossary/")}>{t.glossary}</a></li>
+              <li><a href={l("/faq/")}>{t.faq}</a></li>
               <li>
                 <a href="https://docs.datus.ai" target="_blank" rel="noopener noreferrer">
-                  Docs
+                  {t.docs}
                 </a>
               </li>
             </ul>
           </div>
 
           <div className="site-footer__col">
-            <h3 className="site-footer__heading">Company</h3>
+            <h3 className="site-footer__heading">{t.company}</h3>
             <ul>
-              <li><a href="mailto:contact@datus.ai">Contact</a></li>
+              <li><a href="mailto:contact@datus.ai">{t.contact}</a></li>
               <li>
                 <a href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
-                  GitHub
+                  {t.github}
                 </a>
               </li>
               <li>
@@ -58,7 +62,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Community
+                  {t.community}
                 </a>
               </li>
             </ul>
@@ -67,7 +71,7 @@ const Footer = () => {
       </div>
 
       <div className="site-footer__bar">
-        <span>© {year} DatusAI, Inc.</span>
+        <span>© {year} {t.rights}</span>
       </div>
     </footer>
   );

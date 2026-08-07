@@ -28,6 +28,14 @@ const requiredFiles = [
   path.join(root, 'dist', 'blog', 'what-is-text-to-sql', 'index.html'),
   path.join(root, 'dist', 'blog', 'posts', 'what-is-text-to-sql', 'index.html'),
   path.join(root, 'dist', 'data-engineering-agent', 'index.html'),
+  // Bilingual mirror: a representative /zh page, the /en redirect stub, and the
+  // sitemap that lists both locales. Catches a prerender step that silently
+  // skipped the i18n shells.
+  path.join(root, 'dist', 'zh', 'index.html'),
+  path.join(root, 'dist', 'zh', 'pricing', 'index.html'),
+  path.join(root, 'dist', 'zh', 'glossary', 'index.html'),
+  path.join(root, 'dist', 'en', 'pricing', 'index.html'),
+  path.join(root, 'dist', 'sitemap-pages.xml'),
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(file));

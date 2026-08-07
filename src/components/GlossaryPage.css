@@ -45,6 +45,17 @@
 .glossary-header__nav > a:hover {
   color: #fff;
 }
+/* The shared language switcher renders as a plain nav link here — glossary has
+   its own design system and does not load site.css. */
+.glossary-header__nav > .nav-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.glossary-header__nav > .nav-lang svg {
+  opacity: 0.7;
+}
+
 .glossary-header__cta {
   padding: 8px 16px;
   border-radius: 9999px;

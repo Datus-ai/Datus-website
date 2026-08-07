@@ -3,6 +3,8 @@ import type { LucideIcon } from "lucide-react";
 import { Fragment, type ReactNode } from "react";
 import SiteLayout from "./SiteLayout";
 import Breadcrumb, { type Crumb } from "./Breadcrumb";
+import { useHref, useLocale } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
 
 export interface ProductCTA {
   label: string;
@@ -52,10 +54,11 @@ const LIFECYCLE_TONES = [
 ];
 
 function CtaButton({ cta }: { cta: ProductCTA }) {
+  const l = useHref();
   const cls = `btn btn-lg ${cta.variant === "ghost" ? "btn-ghost" : "btn-primary"}`;
   const ext = cta.external ? { target: "_blank", rel: "noopener noreferrer" } : {};
   return (
-    <a className={cls} href={cta.href} {...ext}>
+    <a className={cls} href={cta.href && !cta.external ? l(cta.href) : cta.href} {...ext}>
       {cta.label}
       {cta.variant !== "ghost" && <ArrowRight size={17} />}
     </a>
@@ -69,6 +72,9 @@ export default function ProductPageTemplate({
   data: ProductPageData;
   breadcrumb?: { items: Crumb[]; currentUrl: string };
 }) {
+  const locale = useLocale();
+  const l = useHref();
+  const t = UI[locale].common;
   return (
     <SiteLayout>
       {breadcrumb && (
@@ -119,8 +125,8 @@ export default function ProductPageTemplate({
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <span className="eyebrow">Capabilities</span>
-            <h2 className="h2">What you get</h2>
+            <span className="eyebrow">{t.capabilities}</span>
+            <h2 className="h2">{t.whatYouGet}</h2>
           </div>
           <div className="grid grid-3">
             {data.capabilities.map((c) => (
@@ -139,7 +145,7 @@ export default function ProductPageTemplate({
         <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
           <div className="container" style={{ maxWidth: 880 }}>
             <div className="section-head">
-              <span className="eyebrow">Quickstart</span>
+              <span className="eyebrow">{t.quickstart}</span>
               <h2 className="h2">{data.quickstart.heading}</h2>
             </div>
             <div style={{ display: "grid", gap: 16 }}>
@@ -229,7 +235,11 @@ export default function ProductPageTemplate({
             {data.semanticLayer.link && (
               <a
                 className="link-arrow"
-                href={data.semanticLayer.link.href}
+                href={
+                  data.semanticLayer.link.href && !data.semanticLayer.link.external
+                    ? l(data.semanticLayer.link.href)
+                    : data.semanticLayer.link.href
+                }
                 {...(data.semanticLayer.link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 style={{ marginTop: 24 }}
               >

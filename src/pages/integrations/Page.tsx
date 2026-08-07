@@ -15,120 +15,31 @@ import {
   sectionBorder,
   toneAt,
 } from "../../components/catalog";
+import { useHref, useLocale, useT } from "../../i18n/LocaleContext";
+import { UI } from "../../i18n/ui";
 import { integrationsFaq } from "./faq";
-
-/* -------------------------------------------------------------------------- */
-/*  Content — ported from the datus-design integrations template.             */
-/* -------------------------------------------------------------------------- */
-
-const storageBackends = [
-  {
-    key: "lancedb",
-    name: "LanceDB + SQLite",
-    type: "default",
-    pkg: "Built-in",
-    notes: "Zero-config vector + relational store for local dev and single-node deployments.",
-    builtIn: true,
-  },
-  {
-    key: "pgvector",
-    name: "PostgreSQL (pgvector)",
-    type: "postgresql",
-    pkg: "datus-storage-postgresql",
-    notes: "Production tier with per-namespace schema isolation and connection pooling.",
-    builtIn: false,
-  },
-  {
-    key: "milvus",
-    name: "Milvus",
-    type: "milvus",
-    pkg: "Plugin (v0.2.6)",
-    notes: "Purpose-built vector store for large-scale semantic retrieval.",
-    builtIn: false,
-  },
-];
-
-const embeddingProviders = [
-  { key: "openai", name: "OpenAI Embeddings", model: "text-embedding-3-small / large", dim: "1536 / 3072" },
-  { key: "st", name: "sentence-transformers", model: "all-MiniLM-L6-v2 (~100MB)", dim: "384", badge: "Default" },
-  { key: "e5", name: "Multilingual E5", model: "intfloat/multilingual-e5-large-instruct", dim: "1024" },
-  { key: "bge", name: "BGE (zh / en)", model: "BAAI/bge-large-{zh,en}-v1.5", dim: "1024" },
-];
-
-const embeddingYaml = `storage:
-  # Database metadata embedding (cloud)
-  database:
-    registry_name: openai
-    model_name: text-embedding-3-small
-    dim_size: 1536
-
-  # Document embedding (local, multilingual)
-  document:
-    model_name: intfloat/multilingual-e5-large-instruct
-    dim_size: 1024
-
-  # Metric embedding (local, fast)
-  metric:
-    model_name: all-MiniLM-L6-v2
-    dim_size: 384`;
-
-const semanticMethods = [
-  { method: "list_metrics(path, limit, offset)", desc: "Enumerate metrics available in the semantic project." },
-  { method: "get_dimensions(metric_name, path)", desc: "List every dimension a metric can slice by." },
-  { method: "query_metrics(metrics, dimensions, ...)", desc: "Run metric queries with filters, time range and where clauses." },
-  { method: "validate_semantic()", desc: "Validate the semantic configuration end-to-end." },
-];
-
-const biCode = `# Deploy Superset + Postgres
-helm upgrade --install superset superset/superset \\
-  -f examples-values.yaml
-
-# One-shot: dashboard -> subagents
-datus-agent bootstrap-bi --database superset`;
-
-const skillCards = [
-  { title: "Bash Skills", body: "Shell scripts guarded by an allow-list of commands; safe to expose to the agent." },
-  { title: "Function Skills", body: "Python callables loaded through load_skill() and invoked as tools." },
-  {
-    title: "Isolated Subagent Skills",
-    body: "Run in a forked subagent context (Explore / Plan / general-purpose) with its own scratchpad.",
-  },
-];
-
-const skillsCode = `# Authenticate to the marketplace
-datus skill login --marketplace http://datus-marketplace:9000
-
-# Discover & install
-datus skill search sql
-datus skill install sql-optimization
-
-# Publish your own
-datus skill publish ./skills/my-skill --owner murphy`;
-
-const observability = [
-  { key: "langsmith", tool: "LangSmith", purpose: "LLM call tracing & debugging", config: "LANGSMITH_TRACING=true · LANGSMITH_API_KEY · LANGSMITH_PROJECT" },
-  { key: "langfuse", tool: "Langfuse", purpose: "Agent + tool full-chain tracing (OTel / OpenInference)", config: "LANGFUSE_PUBLIC_KEY · LANGFUSE_SECRET_KEY · LANGFUSE_HOST" },
-  { key: "llmtrace", tool: "LLM Trace", purpose: "Local YAML dump of prompts and completions", config: "--save_llm_trace  →  {agent.home}/trajectory/" },
-  { key: "tavily", tool: "Tavily", purpose: "Web-search fallback for platform documentation", config: "TAVILY_API_KEY" },
-  { key: "github", tool: "GitHub Token", purpose: "Rate-limit-safe pull of platform docs from GitHub", config: "GITHUB_TOKEN" },
-];
+import { biCode, embeddingYaml, integrationsPage, skillsCode } from "./content";
 
 /* -------------------------------------------------------------------------- */
 /*  Page                                                                       */
 /* -------------------------------------------------------------------------- */
 
 export default function IntegrationsPage() {
+  const t = useT(integrationsPage);
+  const faqItems = useT(integrationsFaq);
+  const ui = UI[useLocale()];
+  const l = useHref();
   return (
     <SiteLayout>
       <Breadcrumb
         currentUrl="/integrations/"
-        items={[{ label: "Home", href: "/" }, { label: "Integrations" }]}
+        items={[{ label: ui.nav.home, href: "/" }, { label: ui.nav.integrations }]}
       />
 
       {/* Hero */}
       <section className="section" style={{ paddingTop: 72, paddingBottom: 40 }}>
         <div className="container" style={{ maxWidth: 880 }}>
-          <span className="eyebrow">Integrations</span>
+          <span className="eyebrow">{t.hero.eyebrow}</span>
           <h1
             style={{
               fontSize: "clamp(32px,4.6vw,52px)",
@@ -138,37 +49,32 @@ export default function IntegrationsPage() {
               margin: "20px 0 0",
             }}
           >
-            Datus Integrations
+            {t.hero.heading}
           </h1>
           <p className="lead" style={{ maxWidth: 660 }}>
-            Datus is built on a plugin-first architecture. Beyond the dedicated{" "}
-            <a href="/databases/" style={{ color: "var(--brand-bright)", textDecoration: "underline", textUnderlineOffset: 2 }}>databases</a>{" "}
-            and{" "}
-            <a href="/models/" style={{ color: "var(--brand-bright)", textDecoration: "underline", textUnderlineOffset: 2 }}>models</a>{" "}
-            pages, this page catalogues every other layer you can plug in — storage, embeddings,
-            semantic layer, BI copilot, MCP protocol, skills, and observability.
+            {t.hero.leadBefore}
+            <a href={l("/databases/")} style={{ color: "var(--brand-bright)", textDecoration: "underline", textUnderlineOffset: 2 }}>{t.hero.databases}</a>
+            {t.hero.leadMiddle}
+            <a href={l("/models/")} style={{ color: "var(--brand-bright)", textDecoration: "underline", textUnderlineOffset: 2 }}>{t.hero.models}</a>
+            {t.hero.leadAfter}
           </p>
         </div>
       </section>
 
       {/* SECTION 1 — STORAGE */}
       <CatalogSection alt>
-        <SectionHead
-          eyebrow="Storage"
-          title={<>Storage Backends — vector + relational</>}
-          lead="Dual-track storage keeps embeddings and relational metadata side-by-side. Swap the backend as your deployment grows."
-        />
+        <SectionHead eyebrow={t.storage.eyebrow} title={t.storage.title} lead={t.storage.lead} />
         <div className="grid grid-3">
-          {storageBackends.map((s, i) => (
+          {t.storage.items.map((s, i) => (
             <SpecCard
               key={s.key}
               name={s.name}
               tone={toneAt(i)}
-              badge={s.builtIn ? (<><CheckCircle2 size={12} /> Built-in</>) : undefined}
+              badge={s.builtIn ? (<><CheckCircle2 size={12} /> {t.labels.builtIn}</>) : undefined}
               rows={[
-                { label: "Type", value: s.type },
-                { label: "Package", value: s.pkg },
-                { label: "Notes", value: s.notes, mono: false },
+                { label: t.labels.type, value: s.type },
+                { label: t.labels.pkg, value: s.pkg },
+                { label: t.labels.notes, value: s.notes, mono: false },
               ]}
             />
           ))}
@@ -177,21 +83,17 @@ export default function IntegrationsPage() {
 
       {/* SECTION 2 — EMBEDDINGS */}
       <CatalogSection>
-        <SectionHead
-          eyebrow="Embeddings"
-          title={<>Embedding Providers for context recall</>}
-          lead="Vectorize schemas, docs and metrics for semantic search. Mix cloud embeddings with local models to balance quality, cost and privacy."
-        />
+        <SectionHead eyebrow={t.embeddings.eyebrow} title={t.embeddings.title} lead={t.embeddings.lead} />
         <div className="grid grid-4">
-          {embeddingProviders.map((ep, i) => (
+          {t.embeddings.items.map((ep, i) => (
             <SpecCard
               key={ep.key}
               name={ep.name}
               tone={toneAt(i + 1)}
               badge={ep.badge}
               rows={[
-                { label: "Model", value: ep.model, mono: false },
-                { label: "Dim", value: ep.dim },
+                { label: t.labels.model, value: ep.model, mono: false },
+                { label: t.labels.dim, value: ep.dim },
               ]}
             />
           ))}
@@ -203,20 +105,16 @@ export default function IntegrationsPage() {
 
       {/* SECTION 3 — SEMANTIC LAYER */}
       <CatalogSection alt>
-        <SectionHead
-          eyebrow="Semantic layer"
-          title={<>Semantic Layer adapters</>}
-          lead="Bring your metric definitions into the agent's context. MetricFlow ships today; more adapters can be registered through Python entry points."
-        />
+        <SectionHead eyebrow={t.semantic.eyebrow} title={t.semantic.title} lead={t.semantic.lead} />
         <div className="grid grid-2" style={{ alignItems: "stretch" }}>
           <SpecCard
             name="MetricFlow"
             tone={toneAt(2)}
-            badge={<><CheckCircle2 size={12} /> Ready</>}
+            badge={<><CheckCircle2 size={12} /> {t.labels.ready}</>}
             rows={[
-              { label: "Package", value: "datus-semantic-metricflow" },
-              { label: "Install", value: "pip install datus-semantic-metricflow" },
-              { label: "Notes", value: "MetricFlow-compatible YAML; joins into subject trees.", mono: false },
+              { label: t.labels.pkg, value: "datus-semantic-metricflow" },
+              { label: t.labels.install, value: "pip install datus-semantic-metricflow" },
+              { label: t.labels.notes, value: t.semantic.metricFlowNotes, mono: false },
             ]}
           />
           <div className="card" style={{ display: "flex", flexDirection: "column" }}>
@@ -230,10 +128,10 @@ export default function IntegrationsPage() {
                 marginBottom: 14,
               }}
             >
-              Core interface
+              {t.semantic.coreInterface}
             </div>
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 10 }}>
-              {semanticMethods.map((m) => (
+              {t.semantic.methods.map((m) => (
                 <li key={m.method} style={{ fontSize: 13, lineHeight: 1.5 }}>
                   <InlineCode>{m.method}</InlineCode>
                   <span style={{ marginLeft: 8, color: "var(--ink-muted)" }}>— {m.desc}</span>
@@ -241,8 +139,9 @@ export default function IntegrationsPage() {
               ))}
             </ul>
             <p style={{ marginTop: 16, marginBottom: 0, fontSize: 12.5, color: "var(--ink-muted)" }}>
-              Register your own adapter via{" "}
-              <InlineCode>[project.entry-points."datus.semantic_adapters"]</InlineCode>.
+              {t.semantic.registerBefore}
+              <InlineCode>[project.entry-points."datus.semantic_adapters"]</InlineCode>
+              {t.semantic.registerAfter}
             </p>
           </div>
         </div>
@@ -253,20 +152,18 @@ export default function IntegrationsPage() {
         <div className="card" style={{ padding: "32px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 32, alignItems: "flex-start" }}>
             <div style={{ flex: "1 1 320px", minWidth: 280 }}>
-              <span className="eyebrow">BI copilot</span>
+              <span className="eyebrow">{t.bi.eyebrow}</span>
               <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,32px)" }}>
-                BI Platform Copilot
+                {t.bi.heading}
               </h2>
               <p className="lead" style={{ marginTop: 10 }}>
-                Point Datus at an Apache Superset dashboard and it extracts every chart's SQL,
-                builds a semantic model and emits two ready-to-use subagents — one for query, one
-                for attribution analysis.
+                {t.bi.lead}
               </p>
               <div style={{ marginTop: 18 }}>
-                <TagRow tags={["Superset only (today)", "GenSQL subagent", "GenReport + root-cause"]} />
+                <TagRow tags={t.bi.tags} />
               </div>
               <p className="muted" style={{ marginTop: 16, fontSize: 13 }}>
-                Tableau, PowerBI and Looker adapters are on the roadmap.
+                {t.bi.roadmap}
               </p>
             </div>
             <div style={{ flex: "1 1 360px", minWidth: 300, width: "100%" }}>
@@ -278,38 +175,34 @@ export default function IntegrationsPage() {
 
       {/* SECTION 5 — MCP */}
       <CatalogSection alt>
-        <SectionHead
-          eyebrow="MCP protocol"
-          title={<>MCP Protocol — client & server</>}
-          lead="Datus speaks Model Context Protocol in both directions. Consume any external MCP server, or expose Datus's own database and context-search tools to Claude, Cursor and other MCP hosts."
-        />
+        <SectionHead eyebrow={t.mcp.eyebrow} title={t.mcp.title} lead={t.mcp.lead} />
         <div className="grid grid-2">
           <FeatureCard
             tone={toneAt(0)}
-            title="MCP Client"
+            title={t.mcp.clientTitle}
             body={
               <>
                 <span style={{ display: "block" }}>
-                  Wire external MCP tools into the agent from the CLI: <InlineCode>.mcp add</InlineCode> with{" "}
-                  <InlineCode>stdio</InlineCode>, <InlineCode>http</InlineCode> or <InlineCode>sse</InlineCode> transports.
+                  {t.mcp.clientBody}<InlineCode>.mcp add</InlineCode>{" "}
+                  <InlineCode>stdio</InlineCode>, <InlineCode>http</InlineCode>, <InlineCode>sse</InlineCode>
+                  {t.mcp.clientBodyTail}
                 </span>
                 <span style={{ display: "block", marginTop: 8, fontSize: 13, color: "var(--ink-faint)" }}>
-                  Config lives in <InlineCode>~/.datus/conf/.mcp.json</InlineCode>.
+                  {t.mcp.clientConfigBefore}<InlineCode>~/.datus/conf/.mcp.json</InlineCode>{t.mcp.clientConfigAfter}
                 </span>
               </>
             }
           />
           <FeatureCard
             tone={toneAt(3)}
-            title="MCP Server"
+            title={t.mcp.serverTitle}
             body={
               <>
                 <span style={{ display: "block" }}>
-                  Run <InlineCode>datus-mcp</InlineCode> in static or dynamic mode. Static serves one namespace,
-                  dynamic routes multiple namespaces by URL path.
+                  {t.mcp.serverBodyBefore}<InlineCode>datus-mcp</InlineCode>{t.mcp.serverBodyAfter}
                 </span>
                 <span style={{ display: "block", marginTop: 8, fontSize: 13, color: "var(--ink-faint)" }}>
-                  Exposes 8 database + 8 context-search tools out of the box.
+                  {t.mcp.serverTools}
                 </span>
               </>
             }
@@ -322,19 +215,15 @@ export default function IntegrationsPage() {
           rel="noopener noreferrer"
           style={{ marginTop: 22 }}
         >
-          <ExternalLink size={15} /> Full MCP interface details in the docs <ArrowRight size={14} />
+          <ExternalLink size={15} /> {t.mcp.docsLink} <ArrowRight size={14} />
         </a>
       </CatalogSection>
 
       {/* SECTION 6 — SKILLS */}
       <CatalogSection>
-        <SectionHead
-          eyebrow="Skills"
-          title={<>Agent Skills & Marketplace</>}
-          lead="Modular capability packs (v0.2.5) following the agentskills.io spec. Discover, install and publish skills from the built-in marketplace."
-        />
+        <SectionHead eyebrow={t.skills.eyebrow} title={t.skills.title} lead={t.skills.lead} />
         <div className="grid grid-3" style={{ alignItems: "stretch" }}>
-          {skillCards.map((s, i) => (
+          {t.skills.cards.map((s, i) => (
             <FeatureCard key={s.title} tone={toneAt(i)} title={s.title} body={s.body} />
           ))}
         </div>
@@ -346,15 +235,15 @@ export default function IntegrationsPage() {
       {/* SECTION 7 — OBSERVABILITY */}
       <CatalogSection alt>
         <SectionHead
-          eyebrow="Observability"
-          title={<>Observability & optional tools</>}
-          lead="Trace every LLM call, augment platform docs with web search, or debug prompts locally as YAML."
+          eyebrow={t.observability.eyebrow}
+          title={t.observability.title}
+          lead={t.observability.lead}
         />
         <SpecTable
           filename="observability.env"
           lang="env"
-          columns={[{ label: "Tool" }, { label: "Purpose" }, { label: "Configuration" }]}
-          rows={observability.map((o) => ({
+          columns={t.observability.columns.map((label) => ({ label }))}
+          rows={t.observability.items.map((o) => ({
             key: o.key,
             cells: [
               <span style={{ fontSize: 14, fontWeight: 650, color: "var(--ink)", whiteSpace: "nowrap" }}>{o.tool}</span>,
@@ -366,11 +255,7 @@ export default function IntegrationsPage() {
       </CatalogSection>
 
       {/* FAQ */}
-      <FAQ
-        items={integrationsFaq}
-        currentUrl="/integrations/"
-        lead="Storage, embeddings, semantic layers, MCP, BI copilot, and how databases and models fit in."
-      />
+      <FAQ items={faqItems} currentUrl="/integrations/" lead={t.faqLead} />
 
       {/* Closing CTA */}
       <section className="section" style={{ paddingTop: 0 }}>
@@ -386,20 +271,20 @@ export default function IntegrationsPage() {
             }}
           >
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Bring Your Stack, We Plug In
+              {t.closing.heading}
             </h2>
             <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
-              Databases, models, semantic layers, BI copilots and observability — every layer is a plugin.
+              {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
               <a className="btn btn-lg btn-primary" href={STUDIO_URL} target="_blank" rel="noopener noreferrer">
-                Get started free <ArrowRight size={17} />
+                {t.closing.startCta} <ArrowRight size={17} />
               </a>
               <a className="btn btn-lg btn-ghost" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
-                Read the docs <ArrowRight size={17} />
+                {t.closing.docsCta} <ArrowRight size={17} />
               </a>
               <a className="btn btn-lg btn-ghost" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                Browse adapters on GitHub
+                {t.closing.githubCta}
               </a>
             </div>
           </div>

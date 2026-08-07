@@ -25,7 +25,8 @@ const MPA_ROUTES = [
 
 // Locally mirror GitHub Pages behavior: redirect a clean URL like `/products/cli`
 // to `/products/cli/` so the MPA entry (products/cli/index.html) is served in
-// dev/preview instead of falling back to the root SPA.
+// dev/preview instead of falling back to the root SPA. `/zh/...` gets the same
+// treatment — the prefix is stripped before the route lookup.
 const cleanUrls = () => {
   const redirect = (server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) => {
     server.middlewares.use((req, res, next) => {
@@ -34,10 +35,11 @@ const cleanUrls = () => {
       // A path that already ends in `/` is the canonical form and must be
       // served as-is — redirecting it would loop `/faq/` -> `/faq/` forever.
       if (!pathname.endsWith('/')) {
-        const target = pathname.replace(/^\//, '');
+        const zh = pathname.startsWith('/zh/');
+        const target = (zh ? pathname.slice(4) : pathname.slice(1));
         if (MPA_ROUTES.includes(target)) {
           res.statusCode = 301;
-          res.setHeader('Location', `/${target}/`);
+          res.setHeader('Location', `${zh ? '/zh' : ''}/${target}/`);
           res.end();
           return;
         }
@@ -51,6 +53,25 @@ const cleanUrls = () => {
     configurePreviewServer: redirect,
   };
 };
+
+// `vite dev` only knows about the English MPA entries — the `/zh` shells are a
+// build artifact (scripts/lib/i18n-shells.mjs). Serve `/zh/<route>/` from the
+// English entry so the dev server matches production routing; the page reads
+// its locale from `location.pathname`, so it still renders Chinese. Head
+// metadata is the one thing dev can't show — check that on `npm run preview`.
+const zhDevRoutes = () => ({
+  name: 'zh-dev-routes',
+  configureServer(server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) {
+    server.middlewares.use((req, _res, next) => {
+      const url = req.url || '';
+      if (!/^\/zh(\/|$|\?)/.test(url)) return next();
+      const [pathname, query] = url.split('?');
+      const stripped = pathname.replace(/^\/zh/, '') || '/';
+      req.url = `${stripped === '/' ? '/index.html' : stripped}${query ? `?${query}` : ''}`;
+      next();
+    });
+  },
+});
 
 // The blog (and its sitemap) is a build-time artifact emitted into dist/ by
 // scripts/build-blog.mjs — `vite dev` has no /blog route and would otherwise
@@ -123,7 +144,7 @@ const serveBlogPublic = () => {
 };
 
 export default defineConfig(() => ({
-  plugins: [react(), cleanUrls(), serveBuiltBlog(), serveBlogPublic()],
+  plugins: [react(), cleanUrls(), zhDevRoutes(), serveBuiltBlog(), serveBlogPublic()],
   base: '/',
   publicDir: 'src/public', 
   resolve: {

@@ -11,26 +11,33 @@
 // accordion, so answers are present in the first-paint DOM (not AJAX) and
 // remain indexable while collapsed.
 
-const SITE = "https://datus.ai";
+import { DEFAULT_LOCALE, SITE, localizePath, type Locale } from "../i18n/config";
+import { useLocale } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
 
 export type FaqItem = {
   q: string;
   a: string;
 };
 
-const toAbsolute = (href: string) =>
-  href.startsWith("http") ? href : `${SITE}${href}`;
+// A /zh page's FAQPage node must be keyed to the /zh URL, not the English one.
+const toAbsolute = (href: string, locale: Locale) =>
+  href.startsWith("http") ? href : `${SITE}${localizePath(href, locale)}`;
 
 // Safe JSON-LD <script> body: escape every `<` so an answer containing
 // "</script>" can't break out of the script element. Mirrors ldJson() in
 // src/components/Breadcrumb.tsx and scripts/build-blog.mjs.
 const ldJson = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c");
 
-export function faqPageJsonLd(items: FaqItem[], currentUrl: string) {
+export function faqPageJsonLd(
+  items: FaqItem[],
+  currentUrl: string,
+  locale: Locale = DEFAULT_LOCALE,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "@id": `${toAbsolute(currentUrl)}#faq`,
+    "@id": `${toAbsolute(currentUrl, locale)}#faq`,
     // mainEntity order matches the on-page display order (spec §三).
     mainEntity: items.map((it) => ({
       "@type": "Question",
@@ -48,8 +55,8 @@ export function faqPageJsonLd(items: FaqItem[], currentUrl: string) {
 export default function FAQ({
   items,
   currentUrl,
-  heading = "Frequently asked questions",
-  eyebrow = "FAQ",
+  heading,
+  eyebrow,
   lead,
   maxWidth = 820,
 }: {
@@ -60,8 +67,12 @@ export default function FAQ({
   lead?: string;
   maxWidth?: number;
 }) {
+  const locale = useLocale();
+  const t = UI[locale].faq;
+  heading = heading ?? t.heading;
+  eyebrow = eyebrow ?? t.eyebrow;
   if (!items.length) return null;
-  const jsonLd = faqPageJsonLd(items, currentUrl);
+  const jsonLd = faqPageJsonLd(items, currentUrl, locale);
   return (
     <section className="section faq" aria-labelledby="faq-heading">
       <div className="container" style={{ maxWidth }}>

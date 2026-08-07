@@ -1,5 +1,7 @@
 // Single source of truth for the /glossary page AND its JSON-LD structured data.
 // Definitions are kept verbatim in sync with https://datus.lovable.app/glossary.
+import type { Locale } from "../i18n/config";
+import { CATEGORY_NAMES_ZH, GLOSSARY_UPDATED_ZH, TERMS_ZH } from "./glossaryData.zh";
 
 export interface GlossaryTerm {
   term: string;
@@ -364,3 +366,27 @@ export const glossary: GlossaryCategory[] = [
 
 // Flat list of all terms (used for JSON-LD and counts).
 export const allTerms: GlossaryTerm[] = glossary.flatMap((c) => c.terms);
+
+/* --------------------------------- i18n ---------------------------------- */
+
+/**
+ * The glossary in `locale`. English is the source of record — slugs, anchors
+ * and article links come from it — and the Chinese overlay only replaces the
+ * visible term and definition, so `/glossary/#rbac` and `/zh/glossary/#rbac`
+ * point at the same entry.
+ */
+export function glossaryFor(locale: Locale): GlossaryCategory[] {
+  if (locale === "en") return glossary;
+  return glossary.map((cat) => ({
+    ...cat,
+    name: CATEGORY_NAMES_ZH[cat.id] ?? cat.name,
+    terms: cat.terms.map((t) => {
+      const zh = TERMS_ZH[t.slug];
+      return zh ? { ...t, term: zh.term, definition: zh.definition } : t;
+    }),
+  }));
+}
+
+export function glossaryUpdated(locale: Locale): string {
+  return locale === "en" ? GLOSSARY_UPDATED : GLOSSARY_UPDATED_ZH;
+}

@@ -14,113 +14,36 @@ import {
   TagRow,
   toneAt,
 } from "../../components/catalog";
+import { useHref, useLocale, useT } from "../../i18n/LocaleContext";
+import { UI } from "../../i18n/ui";
 import { databasesFaq } from "./faq";
-
-const DB_ADAPTERS_DOCS = "https://docs.datus.ai/database-adapters/";
-
-/* -------------------------------------------------------------------------- */
-/*  Content — ported from the datus-design /databases template.               */
-/* -------------------------------------------------------------------------- */
-
-type DbEntry = {
-  name: string;
-  type: string;
-  pkg: string;
-  builtIn: boolean;
-  since?: string;
-  highlight: string;
-};
-
-const databases: DbEntry[] = [
-  { name: "SQLite", type: "sqlite", pkg: "Built-in", builtIn: true, highlight: "Zero-config file store — perfect for demos and tests." },
-  { name: "DuckDB", type: "duckdb", pkg: "Built-in", builtIn: true, highlight: "Embedded OLAP for local analytics on Parquet / CSV." },
-  { name: "PostgreSQL", type: "postgresql", pkg: "datus-postgresql", builtIn: false, highlight: "Six SSL modes, multi-schema, materialized views." },
-  { name: "MySQL", type: "mysql", pkg: "datus-mysql", builtIn: false, highlight: "INFORMATION_SCHEMA + SHOW CREATE for rich metadata." },
-  { name: "Snowflake", type: "snowflake", pkg: "datus-snowflake", builtIn: false, highlight: "Native SDK with Arrow transport for fast reads." },
-  { name: "StarRocks", type: "starrocks", pkg: "datus-starrocks", builtIn: false, highlight: "Multi-catalog + materialized views, MySQL-wire." },
-  { name: "ClickHouse", type: "clickhouse", pkg: "datus-clickhouse", builtIn: false, since: "v0.2.6", highlight: "HTTP protocol; database ≡ schema, lightweight DELETE." },
-  { name: "ClickZetta", type: "clickzetta", pkg: "datus-clickzetta", builtIn: false, highlight: "Workspace + Volume/Stage ops; lakehouse partner." },
-  { name: "Hive", type: "hive", pkg: "datus-hive", builtIn: false, since: "v0.2.6", highlight: "HiveServer2 / Thrift with LDAP & Kerberos auth." },
-  { name: "Spark", type: "spark", pkg: "datus-spark", builtIn: false, since: "v0.2.6", highlight: "Spark Thrift Server; NONE / PLAIN / Kerberos auth." },
-  { name: "Trino", type: "trino", pkg: "datus-trino", builtIn: false, since: "v0.2.6", highlight: "Cross-catalog queries over HTTP/HTTPS SSL." },
-];
-
-const dbCategories = [
-  { title: "Relational", body: "PostgreSQL, MySQL — the classic OLTP stack with rich metadata endpoints." },
-  { title: "Cloud Warehouse", body: "Snowflake, StarRocks, ClickZetta — MPP engines with catalog + workspace models." },
-  { title: "Lake & Distributed", body: "Hive, Spark, Trino — Thrift and HTTP engines over your data lake." },
-  { title: "Analytical & Embedded", body: "DuckDB, ClickHouse, SQLite — from local files to columnar OLAP." },
-];
-
-const migrationExample = `# datus-agent generates layout hints per target:
-
-# StarRocks
-CREATE TABLE orders_agg (
-  user_id BIGINT,
-  order_day DATE,
-  gmv DECIMAL(18,2)
-)
-DUPLICATE KEY(user_id, order_day)
-DISTRIBUTED BY HASH(user_id) BUCKETS 16;
-
-# ClickHouse
-CREATE TABLE orders_agg (
-  user_id UInt64,
-  order_day Date,
-  gmv Decimal(18,2)
-)
-ENGINE = MergeTree
-ORDER BY (user_id, order_day);`;
-
-const datasourceYaml = `agent:
-  service:
-    databases:
-      production:                 # Snowflake
-        type: snowflake
-        account: \${SNOWFLAKE_ACCOUNT}
-        username: \${SNOWFLAKE_USER}
-        password: \${SNOWFLAKE_PASSWORD}
-        warehouse: \${SNOWFLAKE_WAREHOUSE}
-        database: \${SNOWFLAKE_DATABASE}
-
-      analytics:                  # PostgreSQL
-        type: postgresql
-        host: \${PG_HOST}
-        port: 5432
-        username: \${PG_USER}
-        password: \${PG_PASSWORD}
-        database: mydb
-        schema: public
-
-      local_demo:                 # DuckDB
-        type: duckdb
-        uri: ./data/demo.duckdb
-        default: true
-
-      bird_benchmark:             # SQLite (glob multi-file)
-        type: sqlite
-        path_pattern: benchmark/bird/**/*.sqlite`;
+import { DB_ADAPTERS_DOCS, databasesPage, datasourceYaml, migrationExample } from "./content";
 
 /* -------------------------------------------------------------------------- */
 /*  Page                                                                       */
 /* -------------------------------------------------------------------------- */
 
 export default function DatabasesPage() {
+  const t = useT(databasesPage);
+  const faqItems = useT(databasesFaq);
+  const ui = UI[useLocale()];
+  const l = useHref();
+  const databases = t.databases;
   return (
     <SiteLayout>
       <Breadcrumb
         currentUrl="/databases/"
         items={[
-          { label: "Home", href: "/" },
-          { label: "Integrations", noSchema: true },
-          { label: "Databases" },
+          { label: ui.nav.home, href: "/" },
+          { label: ui.nav.integrations, noSchema: true },
+          { label: ui.products.databases },
         ]}
       />
 
       {/* Hero */}
       <section className="section" style={{ paddingTop: 72, paddingBottom: 40 }}>
         <div className="container" style={{ maxWidth: 880 }}>
-          <span className="eyebrow">Databases</span>
+          <span className="eyebrow">{t.hero.eyebrow}</span>
           <h1
             style={{
               fontSize: "clamp(32px,4.6vw,52px)",
@@ -130,12 +53,10 @@ export default function DatabasesPage() {
               margin: "20px 0 0",
             }}
           >
-            Supported Databases
+            {t.hero.heading}
           </h1>
           <p className="lead" style={{ maxWidth: 680 }}>
-            Eleven native database adapters, from embedded SQLite and DuckDB to cloud warehouses
-            (Snowflake, StarRocks, ClickZetta) and lake engines (Hive, Spark, Trino, ClickHouse).
-            All plug in via Python entry points — no adapter code required on your side.
+            {t.hero.lead}
           </p>
         </div>
       </section>
@@ -152,15 +73,15 @@ export default function DatabasesPage() {
                 tone={tone}
                 badge={
                   db.builtIn ? (
-                    <><CheckCircle2 size={12} /> Built-in</>
+                    <><CheckCircle2 size={12} /> {t.builtIn}</>
                   ) : db.since ? (
                     <span style={{ color: "var(--ink-muted)" }}>{db.since}</span>
                   ) : undefined
                 }
                 rows={[
-                  { label: "Type", value: db.type },
-                  { label: "Package", value: db.pkg },
-                  { label: "Highlight", value: db.highlight, mono: false },
+                  { label: t.table.columns[1], value: db.type },
+                  { label: t.table.columns[2], value: db.pkg },
+                  { label: t.table.columns[3], value: db.highlight, mono: false },
                 ]}
               />
             );
@@ -171,12 +92,12 @@ export default function DatabasesPage() {
       {/* CATEGORY SPLIT */}
       <CatalogSection>
         <SectionHead
-          eyebrow="One interface"
-          title={<>Four Categories, one interface</>}
-          lead="Every adapter implements the same CRUD, DDL, metadata and sampling contract — so subagents work identically across your OLTP, warehouse and lake engines."
+          eyebrow={t.categoriesSection.eyebrow}
+          title={t.categoriesSection.title}
+          lead={t.categoriesSection.lead}
         />
         <div className="grid grid-4">
-          {dbCategories.map((c, i) => (
+          {t.categories.map((c, i) => (
             <FeatureCard key={c.title} tone={toneAt(i)} title={c.title} body={c.body} />
           ))}
         </div>
@@ -186,7 +107,7 @@ export default function DatabasesPage() {
       <CatalogSection alt>
         <SpecTable
           filename="databases.yml"
-          columns={[{ label: "Database" }, { label: "Type" }, { label: "Package" }, { label: "Highlight" }]}
+          columns={t.table.columns.map((label) => ({ label }))}
           rows={databases.map((db) => ({
             key: db.type,
             cells: [
@@ -194,7 +115,7 @@ export default function DatabasesPage() {
               <InlineCode>{db.type}</InlineCode>,
               db.builtIn ? (
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--ink-dim)" }}>
-                  <CheckCircle2 size={12} style={{ color: "var(--term-cyan)" }} /> Built-in
+                  <CheckCircle2 size={12} style={{ color: "var(--term-cyan)" }} /> {t.builtIn}
                 </span>
               ) : (
                 <InlineCode>{db.pkg}</InlineCode>
@@ -206,11 +127,11 @@ export default function DatabasesPage() {
         <p className="muted" style={{ marginTop: 20, fontSize: 14, display: "inline-flex", alignItems: "center", gap: 8 }}>
           <ExternalLink size={15} />
           <span>
-            See the{" "}
+            {t.table.docsPrefix}
             <a href={DB_ADAPTERS_DOCS} target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-bright)", textDecoration: "underline", textUnderlineOffset: 2 }}>
-              Database Adapters documentation
-            </a>{" "}
-            for configuration, connection strings, and advanced options.
+              {t.table.docsLabel}
+            </a>
+            {t.table.docsSuffix}
           </span>
         </p>
       </CatalogSection>
@@ -220,13 +141,12 @@ export default function DatabasesPage() {
         <div className="card" style={{ padding: "32px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 32, alignItems: "flex-start" }}>
             <div style={{ flex: "1 1 320px", minWidth: 280 }}>
-              <span className="eyebrow">Migration</span>
+              <span className="eyebrow">{t.migration.eyebrow}</span>
               <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,32px)" }}>
-                Cross-database Migration hints
+                {t.migration.heading}
               </h2>
               <p className="lead" style={{ marginTop: 10 }}>
-                Every adapter implements MigrationTargetMixin so subagents can generate DDL for the
-                target dialect, propose OLAP-friendly layouts, and validate the result with a dry-run.
+                {t.migration.lead}
               </p>
               <div style={{ marginTop: 18 }}>
                 <TagRow tags={["get_migration_capabilities()", "suggest_table_layout()", "validate_ddl()"]} />
@@ -242,19 +162,15 @@ export default function DatabasesPage() {
       {/* DATASOURCE CONFIG */}
       <CatalogSection alt>
         <SectionHead
-          eyebrow="Configuration"
-          title={<>Drop-in datasource config</>}
-          lead="One YAML file wires every warehouse. Environment variables keep credentials out of source control."
+          eyebrow={t.config.eyebrow}
+          title={t.config.title}
+          lead={t.config.lead}
         />
         <CodeBlock filename="agent.yml" lang="yaml" code={datasourceYaml} />
       </CatalogSection>
 
       {/* FAQ */}
-      <FAQ
-        items={databasesFaq}
-        currentUrl="/databases/"
-        lead="Supported databases, installing adapters, custom drivers, and access requirements."
-      />
+      <FAQ items={faqItems} currentUrl="/databases/" lead={t.faqLead} />
 
       {/* Closing CTA */}
       <section className="section" style={{ paddingTop: 0 }}>
@@ -270,21 +186,20 @@ export default function DatabasesPage() {
             }}
           >
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Connect Your Warehouse in Minutes
+              {t.closing.heading}
             </h2>
             <p className="lead" style={{ marginInline: "auto", maxWidth: 600 }}>
-              Native adapters for Snowflake, Postgres, MySQL and more — drop in credentials and the
-              agent starts reasoning over your real schema.
+              {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
               <a className="btn btn-lg btn-primary" href={DB_ADAPTERS_DOCS} target="_blank" rel="noopener noreferrer">
-                Database Adapters docs <ArrowRight size={17} />
+                {t.closing.docsCta} <ArrowRight size={17} />
               </a>
-              <a className="btn btn-lg btn-ghost" href="/models/">
-                Explore models <ArrowRight size={17} />
+              <a className="btn btn-lg btn-ghost" href={l("/models/")}>
+                {t.closing.modelsCta} <ArrowRight size={17} />
               </a>
               <a className="btn btn-lg btn-ghost" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                Contribute an adapter
+                {t.closing.contributeCta}
               </a>
             </div>
           </div>
