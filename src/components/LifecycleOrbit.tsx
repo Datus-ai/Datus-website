@@ -6,17 +6,6 @@
  * narrow screens (see `.lifecycle-*` rules in site.css).
  */
 
-const PHASES = [
-  "SQL Dev",
-  "Data Quality",
-  "Metric Mgmt",
-  "Modeling",
-  "SQL Review",
-  "Deploy",
-  "Monitor",
-  "Docs",
-];
-
 const chipStyle: React.CSSProperties = {
   padding: "6px 10px",
   borderRadius: 8,
@@ -31,7 +20,9 @@ const chipStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
-export function LifecycleOrbit() {
+/** `phases` is page copy, so it arrives localized from the caller. */
+export function LifecycleOrbit({ phases }: { phases: string[] }) {
+  const PHASES = phases;
   const size = 360;
   const cx = size / 2;
   const cy = size / 2;

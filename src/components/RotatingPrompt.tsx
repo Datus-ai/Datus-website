@@ -4,20 +4,15 @@ import { useEffect, useState } from "react";
  * Typewriter that cycles through Datus's end-to-end, semantic-centric verbs —
  * Build metrics / Create dashboard / Generate SQL / Create ETL job /
  * Create subagent chatbot — to show one agent spanning the whole lifecycle.
+ *
+ * The phrases are page copy, so they arrive localized from the caller.
  */
-const PHRASES = [
-  "Build metrics for revenue",
-  "Create a dashboard for churn",
-  "Generate SQL for cohort retention",
-  "Create an ETL job for events",
-  "Create a subagent chatbot for sales",
-];
-
 const TYPE_MS = 55;
 const DELETE_MS = 28;
 const HOLD_MS = 1500;
 
-export default function RotatingPrompt() {
+export default function RotatingPrompt({ phrases }: { phrases: string[] }) {
+  const PHRASES = phrases;
   const [index, setIndex] = useState(0);
   const [text, setText] = useState("");
   const [phase, setPhase] = useState<"typing" | "holding" | "deleting">(

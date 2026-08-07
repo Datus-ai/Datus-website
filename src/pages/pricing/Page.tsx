@@ -3,64 +3,16 @@ import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
 import FAQ from "../../components/FAQ";
 import { EnterpriseInquiryDialog } from "../../components/EnterpriseInquiryDialog";
-import { GITHUB_URL, STUDIO_URL } from "../../config/nav";
+import { useLocale, useT } from "../../i18n/LocaleContext";
+import { UI } from "../../i18n/ui";
 import { pricingFaq } from "./faq";
+import { pricingPage, type Tier } from "./content";
 
-interface Tier {
-  name: string;
-  price: string;
-  tagline: string;
-  features: string[];
-  cta: { label: string; href?: string; external?: boolean; dialog?: boolean };
-  featured?: boolean;
-}
-
-const TIERS: Tier[] = [
-  {
-    name: "Open Source",
-    price: "Free",
-    tagline: "Apache-2.0 · self-hosted",
-    features: [
-      "Full Datus CLI + VS Code extension",
-      "Context engine & subagents",
-      "Bring your own warehouse & model",
-      "Community support",
-    ],
-    cta: { label: "View on GitHub", href: GITHUB_URL, external: true },
-  },
-  {
-    name: "Cloud Personal",
-    price: "Free",
-    tagline: "Studio · Early access",
-    features: [
-      "Hosted workspace — no setup",
-      "Connect your warehouse in minutes",
-      "Chat, subagents & evolving context",
-      "Free during early access",
-    ],
-    cta: { label: "Sign up free", href: STUDIO_URL },
-    featured: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    tagline: "For data teams",
-    features: [
-      "SSO & access control",
-      "Org-level context store & versioning",
-      "Governance, sandboxing & approvals",
-      "Long-running agents",
-      "Deployment & support services",
-    ],
-    cta: { label: "Contact us", dialog: true },
-  },
-];
-
-function CtaFor({ tier }: { tier: Tier }) {
+function CtaFor({ tier, source }: { tier: Tier; source: string }) {
   const cls = `btn btn-lg ${tier.featured ? "btn-primary" : "btn-ghost"}`;
   if (tier.cta.dialog) {
     return (
-      <EnterpriseInquiryDialog source="datus.ai pricing — Contact us">
+      <EnterpriseInquiryDialog source={source}>
         <button className={cls} style={{ width: "100%" }}>{tier.cta.label}</button>
       </EnterpriseInquiryDialog>
     );
@@ -74,27 +26,29 @@ function CtaFor({ tier }: { tier: Tier }) {
 }
 
 export default function PricingPage() {
+  const t = useT(pricingPage);
+  const faqItems = useT(pricingFaq);
+  const ui = UI[useLocale()];
   return (
     <SiteLayout>
       <Breadcrumb
         currentUrl="/pricing/"
-        items={[{ label: "Home", href: "/" }, { label: "Pricing" }]}
+        items={[{ label: ui.nav.home, href: "/" }, { label: t.eyebrow }]}
       />
       <section className="section" style={{ paddingTop: 72, paddingBottom: 40 }}>
         <div className="container section-head center" style={{ marginBottom: 44 }}>
-          <span className="eyebrow">Pricing</span>
+          <span className="eyebrow">{t.eyebrow}</span>
           <h1 style={{ fontSize: "clamp(32px,4.6vw,52px)", lineHeight: 1.06, letterSpacing: "-0.03em", fontWeight: 750, margin: "16px 0 0" }}>
-            Free for individuals. Custom for enterprises.
+            {t.heading}
           </h1>
           <p className="lead" style={{ marginInline: "auto", maxWidth: 560 }}>
-            Personal productivity is fully open and free. We make money from the
-            enterprise edition — shared context, governance, and support.
+            {t.lead}
           </p>
         </div>
 
         <div className="container">
           <div className="grid grid-3" style={{ alignItems: "stretch" }}>
-            {TIERS.map((tier) => (
+            {t.tiers.map((tier) => (
               <div
                 key={tier.name}
                 className="card"
@@ -117,22 +71,18 @@ export default function PricingPage() {
                   ))}
                 </ul>
                 <div style={{ marginTop: 26 }}>
-                  <CtaFor tier={tier} />
+                  <CtaFor tier={tier} source={t.inquirySource} />
                 </div>
               </div>
             ))}
           </div>
           <p className="muted" style={{ textAlign: "center", marginTop: 28, fontSize: 14 }}>
-            Open source is real and stays free. Enterprise pricing is tailored to your deployment.
+            {t.note}
           </p>
         </div>
       </section>
 
-      <FAQ
-        items={pricingFaq}
-        currentUrl="/pricing/"
-        lead="Free tiers, Enterprise quotes, the open-source license, and LLM billing."
-      />
+      <FAQ items={faqItems} currentUrl="/pricing/" lead={t.faqLead} />
     </SiteLayout>
   );
 }

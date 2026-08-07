@@ -7,75 +7,34 @@ import { DOCS_URL } from "../../../config/nav";
 import {
   CatalogSection,
   FeatureCard,
-  InlineCode,
   SectionHead,
   SpecTable,
   toneAt,
 } from "../../../components/catalog";
 import { OsiPlayground } from "../../../components/tools/OsiPlayground";
 import { OSI_MAPPING_ROWS, OSI_VS_ROWS } from "./data";
+import { useHref, useLocale, useT } from "../../../i18n/LocaleContext";
+import { UI } from "../../../i18n/ui";
 import { osiPlaygroundFaq } from "./faq";
-
-/* -------------------------------------------------------------------------- */
-/*  Content                                                                    */
-/* -------------------------------------------------------------------------- */
-
-const HOW_TO_STEPS = [
-  {
-    title: "Paste your MetricFlow YAML",
-    description:
-      "Drop your semantic_models file into the input on the left. The Playground parses locally — nothing leaves your browser.",
-  },
-  {
-    title: "Convert to OSI",
-    description:
-      "Open the Converter tab, click Download, and you have an OSI-compatible .yml file ready to hand to any OSI-aware tool.",
-  },
-  {
-    title: "Diff and validate",
-    description:
-      "Use the Diff tab to see exactly what changed, then the Validator to confirm the output matches OSI v0.2 before you commit it.",
-  },
-];
-
-const WHY_MATTERS: { title: string; description: string }[] = [
-  {
-    title: "One definition, every tool",
-    description:
-      "Define 'weekly active users' once. Snowflake Cortex, Cube, Looker and the Datus agent all read the same OSI file — no more three answers for the same question.",
-  },
-  {
-    title: "AI agents that don't hallucinate metrics",
-    description:
-      "OSI is the missing grounding layer for LLM copilots. When your agent reads OSI, it stops inventing join keys and starts quoting the semantic layer verbatim.",
-  },
-  {
-    title: "Zero-lock migration path",
-    description:
-      "Author metrics in dbt MetricFlow today, export to OSI, and consume them from any downstream tool tomorrow. The interchange format decouples authoring from consumption.",
-  },
-  {
-    title: "Governance stays where it belongs",
-    description:
-      "Reviewed pull requests, lineage and ownership live in the source YAML. OSI carries the same names into every consumer, so downstream tools show the same governance metadata.",
-  },
-];
-
-const howToJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: "Convert MetricFlow YAML to Open Semantic Interchange",
-  description:
-    "Free browser-based workflow to validate, convert and diff a MetricFlow semantic layer into OSI YAML using the Datus Playground.",
-  step: HOW_TO_STEPS.map((s, i) => ({
-    "@type": "HowToStep",
-    position: i + 1,
-    name: s.title,
-    text: s.description,
-  })),
-};
+import { osiPlaygroundPage, type OsiPlaygroundCopy } from "./content";
 
 const ldJson = (obj: unknown) => JSON.stringify(obj).replace(/</g, "\\u003c");
+
+/** HowTo schema built from the localized steps so it matches the visible list. */
+function howToJsonLd(t: OsiPlaygroundCopy["howTo"]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: t.schemaName,
+    description: t.schemaDescription,
+    step: t.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.title,
+      text: s.description,
+    })),
+  };
+}
 
 function Prose({ children }: { children: ReactNode }) {
   return (
@@ -88,21 +47,25 @@ function Prose({ children }: { children: ReactNode }) {
 /* -------------------------------------------------------------------------- */
 
 export default function OsiPlaygroundPage() {
+  const t = useT(osiPlaygroundPage);
+  const faqItems = useT(osiPlaygroundFaq);
+  const ui = UI[useLocale()];
+  const l = useHref();
   return (
     <SiteLayout>
       <Breadcrumb
         currentUrl="/tools/osi-playground/"
         items={[
-          { label: "Home", href: "/" },
-          { label: "Tools", noSchema: true },
-          { label: "OSI Playground" },
+          { label: ui.nav.home, href: "/" },
+          { label: t.breadcrumbTools, noSchema: true },
+          { label: t.hero.eyebrow },
         ]}
       />
 
       {/* Hero */}
       <section className="section" style={{ paddingTop: 72, paddingBottom: 32 }}>
         <div className="container" style={{ maxWidth: 900 }}>
-          <span className="eyebrow">OSI Playground</span>
+          <span className="eyebrow">{t.hero.eyebrow}</span>
           <h1
             style={{
               fontSize: "clamp(32px,4.6vw,52px)",
@@ -112,12 +75,10 @@ export default function OsiPlaygroundPage() {
               margin: "20px 0 0",
             }}
           >
-            The Open-Source OSI Playground for MetricFlow
+            {t.hero.heading}
           </h1>
           <p className="lead" style={{ maxWidth: 720 }}>
-            Validate MetricFlow YAML against the Open Semantic Interchange spec, convert it to OSI in
-            one click, and diff the two formats side-by-side. Runs entirely in your browser — no
-            upload, no signup.
+            {t.hero.lead}
           </p>
           <div
             style={{
@@ -132,11 +93,12 @@ export default function OsiPlaygroundPage() {
               color: "var(--ink-faint)",
             }}
           >
-            <span>OSI v0.2.0.dev0</span>
-            <span>·</span>
-            <span>Browser-only</span>
-            <span>·</span>
-            <span>Apache 2.0</span>
+            {t.hero.stats.map((stat, i) => (
+              <span key={stat} style={{ display: "contents" }}>
+                {i > 0 && <span>·</span>}
+                <span>{stat}</span>
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -151,43 +113,27 @@ export default function OsiPlaygroundPage() {
       {/* WHAT IS OSI */}
       <CatalogSection alt>
         <div style={{ maxWidth: 820 }}>
-          <SectionHead
-            eyebrow="Overview"
-            title="What Is the Open Semantic Interchange?"
-            lead="OSI is a vendor-neutral YAML specification for semantic-layer metadata — a shared way for warehouses, BI tools and AI agents to talk about the same metric without redefining it in every product."
-          />
+          <SectionHead eyebrow={t.overview.eyebrow} title={t.overview.title} lead={t.overview.lead} />
           <div style={{ display: "grid", gap: 16 }}>
-            <Prose>
-              Launched in 2025 by Snowflake, dbt Labs, Salesforce, ThoughtSpot and other members of
-              the modern data stack, OSI standardizes how <strong>entities</strong>,{" "}
-              <strong>dimensions</strong>, <strong>metrics</strong> and <strong>join keys</strong>{" "}
-              are described. Once a metric like <em>revenue</em> is defined in OSI, Cortex, Cube,
-              Looker, AtScale and Datus can all read the same source of truth.
-            </Prose>
-            <Prose>
-              The current draft is <strong>v0.2.0.dev0</strong>. It targets an eventual 1.0 alongside
-              production adoption in Snowflake Cortex and dbt semantic-layer exports.
-            </Prose>
+            {t.overview.prose.map((para, i) => (
+              <Prose key={i}>{para}</Prose>
+            ))}
           </div>
         </div>
       </CatalogSection>
 
       {/* FIELD MAPPING */}
       <CatalogSection>
-        <SectionHead
-          eyebrow="Mapping"
-          title="MetricFlow → OSI Field Mapping"
-          lead="How every MetricFlow construct is translated into the OSI core schema. The Converter above uses exactly this table — nothing hidden. See the full 8-product mapping in the OSI Field Mapping reference."
-        />
+        <SectionHead eyebrow={t.mapping.eyebrow} title={t.mapping.title} lead={t.mapping.lead} />
         <SpecTable
           filename="metricflow-to-osi.yaml"
-          columns={[{ label: "MetricFlow" }, { label: "OSI" }, { label: "Notes" }]}
+          columns={t.mapping.columns.map((label) => ({ label }))}
           rows={OSI_MAPPING_ROWS}
         />
         <p style={{ marginTop: 16, fontSize: 14, color: "var(--ink-muted)" }}>
-          Want every product side-by-side?{" "}
+          {t.mapping.linkBefore}
           <a
-            href="/osi-field-mapping/"
+            href={l("/osi-field-mapping/")}
             style={{
               color: "var(--brand-bright)",
               textDecoration: "underline",
@@ -195,22 +141,17 @@ export default function OsiPlaygroundPage() {
               textUnderlineOffset: 2,
             }}
           >
-            Read the OSI Field Mapping reference
-          </a>{" "}
-          — MetricFlow, Cube, LookML, AtScale, Snowflake, GoodData, Power BI and Databricks across
-          six layers.
+            {t.mapping.linkLabel}
+          </a>
+          {t.mapping.linkAfter}
         </p>
       </CatalogSection>
 
       {/* HOW-TO */}
       <CatalogSection alt>
-        <SectionHead
-          eyebrow="How to"
-          title="How to Convert MetricFlow to OSI"
-          lead="Three steps, browser only — no CLI to install, no key to paste."
-        />
+        <SectionHead eyebrow={t.howTo.eyebrow} title={t.howTo.title} lead={t.howTo.lead} />
         <div className="grid grid-3">
-          {HOW_TO_STEPS.map((step, i) => (
+          {t.howTo.steps.map((step, i) => (
             <div key={step.title} className="card" style={{ display: "flex", flexDirection: "column" }}>
               <span
                 aria-hidden="true"
@@ -231,18 +172,14 @@ export default function OsiPlaygroundPage() {
             </div>
           ))}
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(howToJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(howToJsonLd(t.howTo)) }} />
       </CatalogSection>
 
       {/* WHY IT MATTERS */}
       <CatalogSection>
-        <SectionHead
-          eyebrow="Why it matters"
-          title="Why an Open Semantic Standard Matters"
-          lead="Four concrete wins your data team gets the day a metric definition stops living inside a single vendor's YAML."
-        />
+        <SectionHead eyebrow={t.why.eyebrow} title={t.why.title} lead={t.why.lead} />
         <div className="grid grid-2">
-          {WHY_MATTERS.map((w, i) => (
+          {t.why.items.map((w, i) => (
             <FeatureCard key={w.title} tone={toneAt(i)} title={w.title} body={w.description} />
           ))}
         </div>
@@ -251,23 +188,19 @@ export default function OsiPlaygroundPage() {
       {/* COMPARISON TABLE */}
       <CatalogSection alt>
         <SectionHead
-          eyebrow="Comparison"
-          title="OSI vs MetricFlow vs Cube"
-          lead="Interchange formats, engines and platforms solve different problems. Here is where each one fits."
+          eyebrow={t.comparison.eyebrow}
+          title={t.comparison.title}
+          lead={t.comparison.lead}
         />
         <SpecTable
           filename="osi-vs-metricflow-vs-cube.yaml"
-          columns={[{ label: "Dimension" }, { label: "OSI" }, { label: "MetricFlow" }, { label: "Cube" }]}
+          columns={t.comparison.columns.map((label) => ({ label }))}
           rows={OSI_VS_ROWS}
         />
       </CatalogSection>
 
       {/* FAQ */}
-      <FAQ
-        items={osiPlaygroundFaq}
-        currentUrl="/tools/osi-playground/"
-        lead="What OSI is, how the converter works, whether your YAML stays local, and how Datus uses OSI internally."
-      />
+      <FAQ items={faqItems} currentUrl="/tools/osi-playground/" lead={t.faqLead} />
 
       {/* CTA */}
       <section className="section" style={{ paddingTop: 0 }}>
@@ -283,18 +216,17 @@ export default function OsiPlaygroundPage() {
             }}
           >
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Let a data engineering agent read your OSI.
+              {t.closing.heading}
             </h2>
             <p className="lead" style={{ marginInline: "auto", maxWidth: 640 }}>
-              Datus grounds every SQL query, pipeline and dashboard answer in your semantic layer —
-              OSI, MetricFlow, Cube or LookML, take your pick.
+              {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
               <a className="btn btn-lg btn-primary" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
-                See Datus features <ArrowRight size={17} />
+                {t.closing.featuresCta} <ArrowRight size={17} />
               </a>
-              <a className="btn btn-lg btn-ghost" href="/osi-field-mapping/">
-                OSI field mapping <ArrowRight size={17} />
+              <a className="btn btn-lg btn-ghost" href={l("/osi-field-mapping/")}>
+                {t.closing.mappingCta} <ArrowRight size={17} />
               </a>
             </div>
           </div>

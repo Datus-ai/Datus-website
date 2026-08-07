@@ -1,8 +1,9 @@
 // AUTO-PORTED from datus-design interfaces.chatbot (Supabase seed). Content is the
 // SEO source of truth; do not paraphrase. Rendered by <InterfaceView>.
 import type { InterfaceData } from "../../components/InterfaceView";
+import type { Locale } from "../../i18n/config";
 
-export const CHATBOT_DATA: InterfaceData = {
+const EN: InterfaceData = {
   "slug": "chatbot",
   "name": "Datus Web Chatbot",
   "breadcrumb": "Web Chatbot",
@@ -194,3 +195,171 @@ export const CHATBOT_DATA: InterfaceData = {
     "description": "Share one URL with analysts and PMs, let them chat with the warehouse, save subagents — no install, no SQL ramp-up required."
   }
 };
+
+// Chinese mirror of the same payload. Structure, ids, YAML and
+// `[[path|anchor]]` link tokens are identical — only prose is translated.
+const ZH: InterfaceData = {
+  "slug": "chatbot",
+  "name": "Datus Web Chatbot",
+  "breadcrumb": "Web Chatbot",
+  "matrix_slot": "chatbot",
+  "seo": {
+    "title": "Datus Web Chatbot — 浏览器里的 AI 数据分析师",
+    "description": "Datus Web Chatbot 是浏览器里的 AI 数据分析师——和数仓对话、把子代理共享给团队，免安装。底层由可演进的上下文引擎驱动。"
+  },
+  "hero": {
+    "title": "Datus Chatbot — 人人可用的<span class=\"marker-pink\">分析师级对话界面</span>",
+    "actions": [
+      {
+        "href": "https://docs.datus.ai/cli/introduction/",
+        "icon": "arrow-right",
+        "label": "阅读文档",
+        "external": true
+      },
+      {
+        "href": "#matrix",
+        "label": "对比各个入口"
+      }
+    ],
+    "description": "把驱动 CLI 的同一个 Agent 带进 Slack 和浏览器，让分析师和产品经理不碰终端也能拿到受治理的答案。"
+  },
+  "sections": [
+    {
+      "kind": "why_carousel",
+      "items": [
+        {
+          "body": "不是每个业务方都想用 SQL 编辑器或 BI 看板。他们只想在已经打开的工具里——Slack，或者一个浏览器标签页——问一句，然后拿到一个可信的答案。",
+          "title": "到用户干活的地方去"
+        },
+        {
+          "body": "每条回复都会标出它用到的表和指标，并回溯到语义层的血缘。不会编造列名，也不用猜口径——用的就是 CLI 那套上下文。",
+          "title": "可信、可追溯的答案"
+        },
+        {
+          "body": "加一次 <code class=\"font-mono text-[13px] px-1 rounded bg-muted\">--web</code> 就够了。同事打开一个网址就能提问——不用 pip、不用 Docker，也不用记一个周二就会忘的账号。",
+          "title": "业务方零安装"
+        }
+      ],
+      "title": "分析场景为什么要用 <span class=\"marker-pink\">Chatbot</span>？",
+      "description": "不是每个业务方都想用 SQL 编辑器或 BI 看板。他们只想在已经在用的地方问一句，然后拿到一个可信的答案。"
+    },
+    {
+      "id": "chatbot-use-cases",
+      "kind": "use_cases",
+      "items": [
+        {
+          "id": "self-serve-chat",
+          "jobId": "self-serve-chat",
+          "title": "在 Slack 里回答产品经理的问题，不用提工单",
+          "description": "产品经理在 #growth 里问「上周那次上线效果怎么样」。机器人直接回上受治理的 SQL、一张小图和血缘——不用提工单，数据团队也不用切换上下文。这个机器人包的是一个 [[/studio#self-serve-chat|在 Studio 里打包好的子代理]]，把 [[/data-analyst#self-serve-chat|分析师本来就信任的自助入口]]交到业务方手里。"
+        },
+        {
+          "id": "investigate-anomaly",
+          "jobId": "investigate-anomaly",
+          "title": "在 Slack 私聊里做值班数据诊断",
+          "description": "早上八点营收数字看着不对。在 Slack 里问一下机器人，它会拉出新鲜度检查、找到跑晚了的作业，并 @ 上负责人——赶在老板的私信到达之前。线索更深时，可以 [[/cli#investigate-anomaly|回到 CLI 继续做根因分析]]，用的还是 [[/data-analyst#investigate-anomaly|分析师那套异常排查流程]]。"
+        },
+        {
+          "id": "automate-reports",
+          "jobId": "automate-reports",
+          "title": "Slack 里的自助运营 Runbook",
+          "description": "把一个子代理包成 Slack 机器人，指向运营团队的 Skills 库。运营用大白话问「哪些发货延迟了」，Runbook 每次都用同一套受治理的 SQL 作答——当调用方是定时任务而不是人时，可以 [[/api#automate-reports|通过 API 触发同一个子代理]]。"
+        },
+        {
+          "id": "feedback-loop",
+          "jobId": "feedback-loop",
+          "title": "把对话里的反馈闭环回上下文",
+          "description": "分析师给管用的答案点赞，给不对的答案打标。每一次点赞和问题反馈——都附带会话链接——都会流回 [[/studio#feedback-loop|Studio 的评审队列]]，交给 [[/data-engineer#feedback-loop|调优这个子代理的数据工程师]]，让明天的问题得到更好的答案。"
+        }
+      ],
+      "title": "全公司范围的 Chatbot <span class=\"marker-amber\">使用场景</span>",
+      "columns": 2,
+      "description": "四类原本要走工单的对话——现在就发生在提问的那个会话里。"
+    },
+    {
+      "kind": "showcase_split",
+      "yaml": {
+        "code": "chatbot:\n  channels:\n    - kind: slack\n      workspace: T0123ABCD\n      allowed_channels: [growth, exec]\n    - kind: web\n      port: 8501\n      auth: sso\n  agent:\n    context: growth\n    skills: [mrr, funnel, cohort]\n    policy: read_only",
+        "filename": "chatbot.yml"
+      },
+      "title": "部署到 <span class=\"marker-pink\">Slack、Web，或者两者都要</span>",
+      "description": "一份配置，两个渠道。把 Slack 应用指向你的工作区，启动 Streamlit Web UI，或者让两者都跑在同一个 Agent 和同一份上下文上——每条消息都会经过同一层策略校验。"
+    },
+    {
+      "kind": "feature_grid",
+      "items": [
+        {
+          "body": "答案会标明用到了哪些表、指标与语义定义——不编造列名，也不含糊其辞。",
+          "title": "带上下文的对话"
+        },
+        {
+          "body": "每次对话都是一个可分享的网址，带完整记录、SQL 与工具调用。明天再打开，还能从刚才那一步接着走。",
+          "title": "会话可回溯"
+        },
+        {
+          "body": "每条回复都带一个遵循工作区权限策略的分享按钮。同事看到的是原始查询和结果，不是截图。",
+          "title": "受治理的分享"
+        }
+      ],
+      "title": "Chatbot 闭环：<span class=\"marker-cyan\">对话、回溯、分享</span>",
+      "columns": 3,
+      "description": "Datus Chatbot 能做而通用大模型对话界面做不到的三件事。"
+    },
+    {
+      "kind": "how_to",
+      "steps": [
+        {
+          "title": "安装 Agent",
+          "description": "从 PyPI 或 Homebrew 装上 Datus——CLI、Chatbot 与 API 用的是同一个二进制。"
+        },
+        {
+          "title": "开启一个渠道",
+          "description": "打开 Streamlit Web UI 或注册 Slack 应用——一个开关搞定，不用额外装依赖。"
+        },
+        {
+          "title": "把网址发出去",
+          "description": "把工作区网址发给同事，或者把机器人拉进 Slack 频道。他们用大白话就能开始提问。"
+        }
+      ],
+      "title": "<span class=\"marker-sage\">一分钟内</span>把 Chatbot 跑起来",
+      "schemaName": "启动 Datus Chatbot",
+      "description": "和 CLI 一样的安装方式。指向 Slack 或浏览器，然后把网址交给同事。",
+      "schemaDescription": "安装 Datus，开启 Web 或 Slack 渠道，然后把网址分享给团队。"
+    },
+    {
+      "kind": "interface_matrix"
+    }
+  ],
+  "faqs": [
+    {
+      "answer": "面向分析师、产品经理和业务用户——他们想在浏览器里用大白话查数仓，而不必学 SQL 或安装 CLI。",
+      "question": "Datus Web Chatbot 是给谁用的？"
+    },
+    {
+      "answer": "Datus Chatbot 通过可演进的上下文引擎锚定在你的数仓、数据目录、指标与团队已认可的答案上，因此产出的是受治理的 SQL 和可追溯的结果，而不是幻觉。",
+      "question": "它和 ChatGPT 这类通用 AI 聊天机器人有什么不同？"
+    },
+    {
+      "answer": "是的。Web Chatbot 与 CLI 共用同一份 Apache 2.0 代码——用 `datus-cli --web` 就能在本地启动，也可以直接用托管的 Datus Studio。",
+      "question": "它是免费且开源的吗？"
+    },
+    {
+      "answer": "可以。每个会话都有稳定的网址，携带子代理、数据源与完整上下文，团队里任何人都能重新打开并继续这段对话。",
+      "question": "对话可以分享给团队吗？"
+    }
+  ],
+  "cta": {
+    "title": "给你的团队一个<span class=\"marker-amber\">浏览器数据聊天助手</span>",
+    "buttons": [
+      {
+        "href": "https://studio.datus.ai/overview",
+        "icon": "arrow-right",
+        "label": "试用 Web Chatbot",
+        "external": true
+      }
+    ],
+    "description": "把一个网址发给分析师和产品经理，让他们直接和数仓对话、保存子代理——不用安装，也不用先学 SQL。"
+  }
+};
+
+export const CHATBOT_DATA: Record<Locale, InterfaceData> = { en: EN, zh: ZH };

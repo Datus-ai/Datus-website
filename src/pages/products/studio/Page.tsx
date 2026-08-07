@@ -1,16 +1,20 @@
 import ProductPageTemplate from "../../../components/ProductPageTemplate";
+import { useLocale, useT } from "../../../i18n/LocaleContext";
+import { UI } from "../../../i18n/ui";
 import { studioPage } from "./content";
 
 export default function StudioPage() {
+  const data = useT(studioPage);
+  const t = UI[useLocale()];
   return (
     <ProductPageTemplate
-      data={studioPage}
+      data={data}
       breadcrumb={{
         currentUrl: "/products/studio/",
         items: [
-          { label: "Home", href: "/" },
-          { label: "Products", noSchema: true },
-          { label: "Datus Studio" },
+          { label: t.nav.home, href: "/" },
+          { label: t.nav.products, noSchema: true },
+          { label: t.products.studio },
         ],
       }}
     />

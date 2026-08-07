@@ -2,11 +2,10 @@ import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import SiteLayout from "../../../components/SiteLayout";
 import Breadcrumb from "../../../components/Breadcrumb";
 import FAQ from "../../../components/FAQ";
+import { useHref, useLocale, useT } from "../../../i18n/LocaleContext";
+import { UI } from "../../../i18n/ui";
 import { cliFaq } from "./faq";
-import {
-  claudeCodeNote, cliHero, closing, ecosystem, guardrails, modelNeutral, parity,
-  type CliCta, type DocLink, type FeatureCard,
-} from "./content";
+import { cliPage, type CliCta, type DocLink, type FeatureCard } from "./content";
 
 function Cta({ cta }: { cta: CliCta }) {
   const cls = `btn btn-lg ${cta.variant === "ghost" ? "btn-ghost" : "btn-primary"}`;
@@ -67,14 +66,20 @@ const panelBg = "rgba(11,18,48,0.4)";
 const sectionBorder = "1px solid var(--line)";
 
 export default function CliPage() {
+  const { hero: cliHero, parity, modelNeutral, guardrails, ecosystem, closing, claudeCodeNote, faqLead } =
+    useT(cliPage);
+  const faqItems = useT(cliFaq);
+  const locale = useLocale();
+  const ui = UI[locale];
+  const l = useHref();
   return (
     <SiteLayout>
       <Breadcrumb
         currentUrl="/products/cli/"
         items={[
-          { label: "Home", href: "/" },
-          { label: "Products", noSchema: true },
-          { label: "Datus CLI" },
+          { label: ui.nav.home, href: "/" },
+          { label: ui.nav.products, noSchema: true },
+          { label: ui.products.cli },
         ]}
       />
       {/* Hero */}
@@ -126,7 +131,7 @@ export default function CliPage() {
           {/* Per-subagent routing */}
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1.3fr 0.8fr 1fr" }}>
-              {["Subagent", "Model", "Why"].map((h) => (
+              {modelNeutral.columns.map((h) => (
                 <div key={h} style={{
                   padding: "14px 20px", fontSize: 12, fontWeight: 650, letterSpacing: "0.04em",
                   textTransform: "uppercase", color: "var(--ink-muted)", borderBottom: sectionBorder,
@@ -221,18 +226,14 @@ export default function CliPage() {
             <p className="lead" style={{ marginTop: 10, maxWidth: 720 }}>{ecosystem.body}</p>
           </div>
           <Cards cards={ecosystem.cards} />
-          <a className="link-arrow" href={ecosystem.linkHref} style={{ marginTop: 22 }}>
+          <a className="link-arrow" href={l(ecosystem.linkHref)} style={{ marginTop: 22 }}>
             {ecosystem.linkLabel} <ArrowRight size={15} />
           </a>
         </div>
       </section>
 
       {/* FAQ */}
-      <FAQ
-        items={cliFaq}
-        currentUrl="/products/cli/"
-        lead="Install, models, Subagents, and how the CLI relates to Studio."
-      />
+      <FAQ items={faqItems} currentUrl="/products/cli/" lead={faqLead} />
 
       {/* Closing CTA */}
       <section className="section" id="contact" style={{ scrollMarginTop: "var(--nav-h)", paddingTop: 0 }}>
@@ -260,7 +261,7 @@ export default function CliPage() {
               {closing.ctas.map((c) => <Cta key={c.label} cta={c} />)}
             </div>
             <p className="muted" style={{ marginTop: 18, fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <CheckCircle2 size={14} style={{ color: "var(--term-green)" }} /> Bring your own warehouse & model
+              <CheckCircle2 size={14} style={{ color: "var(--term-green)" }} /> {closing.byo}
             </p>
           </div>
         </div>

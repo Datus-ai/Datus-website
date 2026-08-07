@@ -11,6 +11,9 @@ import {
   toneAt,
 } from "./catalog";
 import { GITHUB_URL } from "../config/nav";
+import { useHref, useLocale } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
+import type { Locale } from "../i18n/config";
 
 /* -------------------------------------------------------------------------- */
 /*  Types — mirror the datus-design `interfaces` payload (the SEO source).     */
@@ -82,6 +85,7 @@ function mapHref(path: string): string | null {
 
 /** Parse `[[path|anchor]]` tokens; link known routes, keep the rest as text. */
 function RichText({ text }: { text: string }): ReactNode {
+  const l = useHref();
   const parts: ReactNode[] = [];
   const re = /\[\[([^|\]]+)\|([^\]]+)\]\]/g;
   let last = 0;
@@ -93,7 +97,8 @@ function RichText({ text }: { text: string }): ReactNode {
     }
     const [, href, label] = m;
     const external = /^https?:\/\//i.test(href);
-    const mapped = external ? href : mapHref(href);
+    const target = external ? href : mapHref(href);
+    const mapped = target && !external ? l(target) : target;
     if (mapped) {
       parts.push(
         <a
@@ -279,14 +284,20 @@ function SectionRenderer({ section, matrixSlot }: { section: Section; matrixSlot
 /*  Cross-interface matrix (CLI / Chatbot / API / MCP)                        */
 /* -------------------------------------------------------------------------- */
 
-const MATRIX_ITEMS: Array<{ key: string; label: string; href: string | null; blurb: string }> = [
-  { key: "cli", label: "CLI", href: "/products/cli/", blurb: "Explore data, build context, and ship SQL from the terminal." },
-  { key: "chatbot", label: "Web Chatbot", href: "/chatbot/", blurb: "Chat with subagents from a browser — zero install." },
-  { key: "api", label: "API Server", href: null, blurb: "Consume data services via REST — language agnostic." },
-  { key: "mcp", label: "MCP Server", href: "/mcp/", blurb: "Plug into Claude Desktop, Cursor, and any MCP client." },
-];
+function matrixItems(locale: Locale): Array<{ key: string; label: string; href: string | null; blurb: string }> {
+  const m = UI[locale].interfaceMatrix;
+  return [
+    { key: "cli", label: m.cli, href: "/products/cli/", blurb: m.cliBlurb },
+    { key: "chatbot", label: m.chatbot, href: "/chatbot/", blurb: m.chatbotBlurb },
+    { key: "api", label: m.api, href: null, blurb: m.apiBlurb },
+    { key: "mcp", label: m.mcp, href: "/mcp/", blurb: m.mcpBlurb },
+  ];
+}
 
 function InterfaceMatrix({ current, title, description }: { current: string | null; title?: string; description?: string }) {
+  const locale = useLocale();
+  const l = useHref();
+  const m = UI[locale].interfaceMatrix;
   return (
     <section id="matrix" className="section" style={{ paddingBlock: "clamp(48px,6vw,84px)", scrollMarginTop: 80 }}>
       <div className="container">
@@ -295,15 +306,15 @@ function InterfaceMatrix({ current, title, description }: { current: string | nu
             <Marked as="h2" className="h2" html={title} style={{ fontSize: "clamp(24px,3vw,34px)" }} />
           ) : (
             <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>
-              Pick the Interface That Fits Your Team
+              {m.heading}
             </h2>
           )}
           <p className="lead" style={{ marginTop: 10 }}>
-            {description ?? "Four surfaces. One agent. Pick the one that fits your team."}
+            {description ?? m.lead}
           </p>
         </div>
         <div className="grid grid-4">
-          {MATRIX_ITEMS.map((it) => {
+          {matrixItems(locale).map((it) => {
             const isCurrent = current === it.key;
             const inner = (
               <div className="card" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
@@ -322,7 +333,7 @@ function InterfaceMatrix({ current, title, description }: { current: string | nu
                       marginBottom: 12,
                     }}
                   >
-                    You are here
+                    {m.youAreHere}
                   </span>
                 )}
                 <h3 className="card__title">{it.label}</h3>
@@ -331,7 +342,7 @@ function InterfaceMatrix({ current, title, description }: { current: string | nu
             );
             if (isCurrent || !it.href) return <div key={it.key}>{inner}</div>;
             return (
-              <a key={it.key} href={it.href} style={{ textDecoration: "none", color: "inherit" }}>
+              <a key={it.key} href={l(it.href)} style={{ textDecoration: "none", color: "inherit" }}>
                 {inner}
               </a>
             );
@@ -347,6 +358,7 @@ function InterfaceMatrix({ current, title, description }: { current: string | nu
 /* -------------------------------------------------------------------------- */
 
 export default function InterfaceView({ data }: { data: InterfaceData }) {
+  const ui = UI[useLocale()];
   const currentUrl = `/${data.slug}/`;
   const faqItems: FaqItem[] = data.faqs.map((f) => ({ q: f.question, a: f.answer }));
   const heroActions = data.hero.actions ?? [];
@@ -355,7 +367,7 @@ export default function InterfaceView({ data }: { data: InterfaceData }) {
     <SiteLayout>
       <Breadcrumb
         currentUrl={currentUrl}
-        items={[{ label: "Home", href: "/" }, { label: data.breadcrumb }]}
+        items={[{ label: ui.nav.home, href: "/" }, { label: data.breadcrumb }]}
       />
 
       {/* Hero */}
@@ -445,7 +457,7 @@ export default function InterfaceView({ data }: { data: InterfaceData }) {
                   );
                 })}
                 <a className="btn btn-lg btn-ghost" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-                  Star on GitHub
+                  {ui.interfaceMatrix.starOnGitHub}
                 </a>
               </div>
             </div>

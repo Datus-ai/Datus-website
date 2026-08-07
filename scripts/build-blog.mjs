@@ -757,14 +757,9 @@ function urlset(entries) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
 
-// Marketing pages — stable, low-churn URLs.
-function buildPagesSitemap() {
-  const entries = [
-    "/", "/products/cli/", "/products/vscode/", "/products/studio/", "/products/enterprise/",
-    "/integrations/", "/pricing/", "/glossary/", "/faq/",
-  ].map((loc) => ({ loc, lastmod: BUILD_DATE }));
-  return urlset(entries);
-}
+// Marketing pages live in dist/sitemap-pages.xml, written by the prerender step
+// (scripts/lib/i18n-shells.mjs) because that is where the bilingual route list
+// and the hreflang pairs are known. Only the blog is generated here.
 
 // Blog section — the index, every post (with its real lastmod), and the
 // standalone reference pages.
@@ -814,8 +809,8 @@ function main() {
   const refs = buildReferencePages();
 
   // Sitemaps: a top-level index + a child per section. Overwrites the static
-  // fallback sitemap.xml copied from src/public.
-  write(join(DIST, "sitemap-pages.xml"), buildPagesSitemap());
+  // fallback sitemap.xml copied from src/public. sitemap-pages.xml is already
+  // on disk from the prerender step; leave it alone.
   write(join(DIST, "blog", "sitemap.xml"), buildBlogSitemap(posts, refs));
   write(join(DIST, "sitemap.xml"), buildSitemapIndex(["/sitemap-pages.xml", "/blog/sitemap.xml"]));
 

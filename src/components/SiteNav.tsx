@@ -2,11 +2,14 @@ import { ChevronDown, Github, Menu, Star, X } from "lucide-react";
 import { useState } from "react";
 import {
   GITHUB_URL,
-  NAV,
   STUDIO_URL,
+  siteNav,
   type NavItem,
 } from "../config/nav";
 import { formatStarCount, useGitHubStars } from "../hooks/useGitHubStars";
+import { useHref, useLocale } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 function extAttrs(external?: boolean) {
   return external
@@ -16,9 +19,10 @@ function extAttrs(external?: boolean) {
 
 function NavEntry({ item }: { item: NavItem }) {
   const [open, setOpen] = useState(false);
+  const l = useHref();
   if (!item.children) {
     return (
-      <a className="nav-link" href={item.href} {...extAttrs(item.external)}>
+      <a className="nav-link" href={item.href ? l(item.href) : undefined} {...extAttrs(item.external)}>
         {item.label}
       </a>
     );
@@ -42,7 +46,7 @@ function NavEntry({ item }: { item: NavItem }) {
           <a
             key={child.label}
             className="nav-dd__item"
-            href={child.href}
+            href={child.external ? child.href : l(child.href!)}
             {...extAttrs(child.external)}
             role="menuitem"
           >
@@ -60,21 +64,26 @@ function NavEntry({ item }: { item: NavItem }) {
 export default function SiteNav() {
   const stars = useGitHubStars();
   const [open, setOpen] = useState(false);
+  const locale = useLocale();
+  const l = useHref();
+  const t = UI[locale].nav;
 
   return (
     <header className="site-nav">
       <div className="site-nav__inner">
-        <a className="site-nav__logo" href="/" aria-label="Datus home">
+        <a className="site-nav__logo" href={l("/")} aria-label="Datus">
           <img src="/logo_dark.svg" alt="Datus" />
         </a>
 
         <nav className="site-nav__links" aria-label="Primary">
-          {NAV.map((item) => (
+          {siteNav(locale).map((item) => (
             <NavEntry key={item.label} item={item} />
           ))}
         </nav>
 
         <div className="site-nav__spacer" />
+
+        <LanguageSwitcher />
 
         <a
           className="nav-ghost-btn"
@@ -90,13 +99,13 @@ export default function SiteNav() {
         </a>
 
         <a className="btn btn-primary btn-sm" href={STUDIO_URL}>
-          Get started
+          {t.getStarted}
         </a>
 
         <button
           className="site-nav__burger"
           type="button"
-          aria-label="Menu"
+          aria-label={t.menu}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
@@ -110,6 +119,9 @@ export default function SiteNav() {
 }
 
 function MobileMenu({ onClose }: { onClose: () => void }) {
+  const locale = useLocale();
+  const l = useHref();
+  const t = UI[locale].nav;
   return (
     <div
       style={{
@@ -124,7 +136,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
       onClick={onClose}
     >
       <div style={{ display: "grid", gap: 6 }}>
-        {NAV.map((item) =>
+        {siteNav(locale).map((item) =>
           item.children ? (
             <div key={item.label} style={{ padding: "10px 0" }}>
               <div
@@ -142,7 +154,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
               {item.children.map((c) => (
                 <a
                   key={c.label}
-                  href={c.href}
+                  href={c.external ? c.href : l(c.href!)}
                   {...extAttrs(c.external)}
                   style={{
                     display: "block",
@@ -158,7 +170,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           ) : (
             <a
               key={item.label}
-              href={item.href}
+              href={item.external || !item.href ? item.href : l(item.href)}
               {...extAttrs(item.external)}
               style={{
                 padding: "14px 0",
@@ -176,8 +188,9 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           href={STUDIO_URL}
           style={{ marginTop: 18 }}
         >
-          Get started — free
+          {t.getStartedFree}
         </a>
+        <LanguageSwitcher className="nav-lang nav-lang--mobile" />
       </div>
     </div>
   );

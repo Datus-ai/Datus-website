@@ -14,6 +14,9 @@ import PricingPage from "./pages/pricing/Page";
 import FaqPage from "./pages/faq/Page";
 import OsiFieldMappingPage from "./pages/osi-field-mapping/Page";
 import OsiPlaygroundPage from "./pages/tools/osi-playground/Page";
+import GlossaryPage from "./components/GlossaryPage";
+import { LocaleProvider } from "./i18n/LocaleContext";
+import { LOCALES, isMirrored, localizePath, type Locale } from "./i18n/config";
 
 /**
  * SSR entry for build-time prerendering. Loaded via Vite's ssrLoadModule in
@@ -22,26 +25,47 @@ import OsiPlaygroundPage from "./pages/tools/osi-playground/Page";
  * client hydrates it (see src/lib/mount.tsx). The content lives in the HTML
  * for crawlers; React only takes over the interactive bits.
  *
- * Glossary is intentionally excluded — it uses a separate CSS system and
- * already ships its definitions as JSON-LD structured data.
+ * Every route is rendered once per locale it has a shell for. English keeps its
+ * unprefixed output path; Chinese lands under `dist/zh/…`, matching the URL
+ * contract in src/i18n/config.ts.
  */
-export const ROUTES: { out: string; node: JSX.Element }[] = [
-  { out: "index.html", node: <App /> },
-  { out: "datafun/index.html", node: <DatafunPage /> },
-  { out: "products/cli/index.html", node: <CliPage /> },
-  { out: "products/vscode/index.html", node: <VscodePage /> },
-  { out: "products/studio/index.html", node: <StudioPage /> },
-  { out: "products/enterprise/index.html", node: <EnterprisePage /> },
-  { out: "integrations/index.html", node: <IntegrationsPage /> },
-  { out: "databases/index.html", node: <DatabasesPage /> },
-  { out: "models/index.html", node: <ModelsPage /> },
-  { out: "mcp/index.html", node: <McpPage /> },
-  { out: "chatbot/index.html", node: <ChatbotPage /> },
-  { out: "pricing/index.html", node: <PricingPage /> },
-  { out: "faq/index.html", node: <FaqPage /> },
-  { out: "osi-field-mapping/index.html", node: <OsiFieldMappingPage /> },
-  { out: "tools/osi-playground/index.html", node: <OsiPlaygroundPage /> },
+const PAGES: { path: string; page: () => JSX.Element }[] = [
+  { path: "/", page: () => <App /> },
+  { path: "/datafun/", page: () => <DatafunPage /> },
+  { path: "/products/cli/", page: () => <CliPage /> },
+  { path: "/products/vscode/", page: () => <VscodePage /> },
+  { path: "/products/studio/", page: () => <StudioPage /> },
+  { path: "/products/enterprise/", page: () => <EnterprisePage /> },
+  { path: "/integrations/", page: () => <IntegrationsPage /> },
+  { path: "/databases/", page: () => <DatabasesPage /> },
+  { path: "/models/", page: () => <ModelsPage /> },
+  { path: "/mcp/", page: () => <McpPage /> },
+  { path: "/chatbot/", page: () => <ChatbotPage /> },
+  { path: "/pricing/", page: () => <PricingPage /> },
+  { path: "/faq/", page: () => <FaqPage /> },
+  { path: "/osi-field-mapping/", page: () => <OsiFieldMappingPage /> },
+  { path: "/tools/osi-playground/", page: () => <OsiPlaygroundPage /> },
+  { path: "/glossary/", page: () => <GlossaryPage /> },
 ];
+
+/** `/products/cli/` + zh → `zh/products/cli/index.html`. */
+function outFile(path: string, locale: Locale): string {
+  return `${localizePath(path, locale).replace(/^\//, "")}index.html`;
+}
+
+export const ROUTES: { out: string; path: string; locale: Locale; node: JSX.Element }[] =
+  PAGES.flatMap(({ path, page }) =>
+    LOCALES.filter((locale) => locale === "en" || isMirrored(path)).map((locale) => ({
+      out: outFile(path, locale),
+      path,
+      locale,
+      node: (
+        <LocaleProvider locale={locale} path={path}>
+          {page()}
+        </LocaleProvider>
+      ),
+    })),
+  );
 
 export function render(node: JSX.Element): string {
   return renderToString(node);
