@@ -123,11 +123,11 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
   "/glossary/": {
     title: "数据工程术语表 | Datus",
     description:
-      "用大白话解释 46 个数据工程概念——语义层、湖仓、Schema Linking、MCP、RAG 等等，都是 Datus Agent 每天打交道的东西。",
+      "用大白话解释 47 个数据工程概念——语义层、湖仓、Schema Linking、MCP、RAG 等等，都是 Datus Agent 每天打交道的东西。",
     ogTitle: "数据工程术语表 | Datus",
     ogDescription:
-      "用大白话解释 46 个数据工程概念——语义层、湖仓、Schema Linking、MCP、RAG 等等。",
-    twitterDescription: "用大白话解释 46 个 Datus Agent 每天打交道的数据工程概念。",
+      "用大白话解释 47 个数据工程概念——语义层、湖仓、Schema Linking、MCP、RAG 等等。",
+    twitterDescription: "用大白话解释 47 个 Datus Agent 每天打交道的数据工程概念。",
   },
   "/osi-field-mapping/": {
     title: "OSI 字段映射 — 8 个语义层对照 Open Semantic Interchange",
