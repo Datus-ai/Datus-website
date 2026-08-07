@@ -24,6 +24,9 @@ rebuild after changes.
 
 ## Bilingual pages (`/zh`)
 
+> Copy rules, the locked EN↔ZH terminology table and the review checklist live
+> in [CLAUDE.md](./CLAUDE.md). This section covers only the build mechanics.
+
 Every marketing page has a Chinese mirror at `/zh` + the same path — the slug is
 never translated. **The blog is English only** and must never gain a `/zh/blog`
 URL or a `zh-Hans` alternate. See `src/i18n/config.ts` for the route list.
