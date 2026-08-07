@@ -1,125 +1,150 @@
 # CLAUDE.md
 
-本文件是本仓库的长期约定。构建流程、加博客文章等日常操作见 [DEVELOPMENT.md](./DEVELOPMENT.md)，这里不重复。
+Long-lived conventions for this repo. Build commands and the blog workflow live
+in [DEVELOPMENT.md](./DEVELOPMENT.md) and are not repeated here.
 
 ---
 
-# 一、中英双语（`/zh`）规范
+# 1. Bilingual pages (`/zh`)
 
-站点是 Vite MPA（非 Next.js）。公开 URL 契约严格遵循内部规范 `datus-i18n-spec.md`（在 clients 仓，不在本仓），框架层按本栈的等价实现落地——**公开 URL 约定不因框架而变**。
+The site is a Vite MPA, not Next.js. The public URL contract follows the
+internal `datus-i18n-spec.md` (kept in the clients repo, not here); the
+framework layer is this stack's equivalent implementation. **The public URL
+contract does not change because the framework does.**
 
-## 1.1 范围
+## 1.1 Scope
 
-| | 规则 |
+| | Rule |
 |---|---|
-| **纳入** | 除 `/blog/**` 外的全部营销 / 产品 / 落地路径 |
-| **排除** | `/blog/**`（仅英文）、`/datafun/`（noindex 的中文专场活动页，做镜像即重复）、docs.datus.ai、studio.datus.ai |
-| **路径** | 中文 = `/zh` + 英文 path，**slug 不翻译** |
-| **默认** | 新增营销页默认同步出 `/zh` 镜像 |
+| **Included** | Every marketing / product / landing path except `/blog/**` |
+| **Excluded** | `/blog/**` (English only), `/datafun/` (a `noindex` Chinese-only event page — a mirror would just be a duplicate), docs.datus.ai, studio.datus.ai |
+| **Path** | Chinese = `/zh` + the English path; **the slug is never translated** |
+| **Default** | A new marketing page ships its `/zh` mirror in the same PR |
 
 ```
 /{path}      ↔  /zh/{path}
-/blog/...    →  仅英文，永不出现 /zh/blog，也不得声明 zh-Hans alternate
+/blog/...    →  English only. Never a /zh/blog URL, never a zh-Hans alternate.
 ```
 
-英文无前缀，保住存量 URL 权重。语言**只由 URL 决定**——不做 Accept-Language 嗅探、不读 cookie、不做自动跳转，爬虫和分享链接拿到的一定是路径所声明的语言。
+English stays unprefixed so existing URLs keep their equity. Locale is decided
+**by the URL and nothing else** — no Accept-Language sniffing, no cookie, no
+automatic redirect. A crawler or a shared link always gets the language the path
+declares.
 
-`src/i18n/config.ts` 的 `MIRRORED_PATHS` 是路由清单的唯一事实来源，被路由 helper、预渲染、`/zh` 壳生成器和 sitemap 共用。
+`MIRRORED_PATHS` in `src/i18n/config.ts` is the single source of truth for the
+route list, shared by the routing helpers, the prerenderer, the `/zh` shell
+generator and the sitemap.
 
-## 1.2 改文案去哪儿改
+## 1.2 Where copy lives
 
-| 层 | 位置 |
+| Layer | Location |
 |---|---|
-| UI 通用文案（导航、页脚、按钮、表单标签、共用组件） | `src/i18n/ui.ts` |
-| 页面正文 | 各页自己的 `content.ts` / `faq.ts`，导出 `Record<Locale, …>` |
-| `<head>` 元数据 | 英文在 `<route>/index.html`（手写）；中文在 `src/i18n/pageMeta.ts` |
-| 术语表词条 | 英文 `src/glossary/glossaryData.ts`；中文 `src/glossary/glossaryData.zh.ts`（按 slug 覆盖） |
+| Shared UI copy (nav, footer, buttons, form labels, shared components) | `src/i18n/ui.ts` |
+| Page body copy | that page's `content.ts` / `faq.ts`, exported as `Record<Locale, …>` |
+| `<head>` metadata | English in the hand-written `<route>/index.html`; Chinese in `src/i18n/pageMeta.ts` |
+| Glossary entries | English in `src/glossary/glossaryData.ts`; Chinese overlay keyed by slug in `src/glossary/glossaryData.zh.ts` |
 
-组件里用 `useT(dict)` 取当前语言分支。**禁止**在组件内硬编码中英分支或长文；短标签最终也要进 `ui.ts`。
+Components read the active branch with `useT(dict)`. **Never** hard-code an
+EN/ZH branch or long prose inside a component; even short labels belong in
+`ui.ts`.
 
-## 1.3 内链
+## 1.3 Internal links
 
-内链一律写**英文形态**（`/pricing/`），由 `useHref()` 在渲染时加前缀：
+Always write internal hrefs in **English form** (`/pricing/`) and let
+`useHref()` prefix them at render time:
 
 ```tsx
 const l = useHref();
 <a href={l("/pricing/")}>…</a>
 ```
 
-- **禁止硬编码 `/zh/…`**。
-- `localizePath()` 只给 `MIRRORED_PATHS` 里的路径加前缀，所以 `/blog/...`、外链、`mailto:`、纯锚点会原样透传——这是设计行为，不是遗漏。
-- 语言切换器是 EN 页面上唯一允许指向 `/zh` 的链接（反之亦然）。
+- **Never hard-code `/zh/…`.**
+- `localizePath()` only prefixes paths in `MIRRORED_PATHS`, so `/blog/...`,
+  external URLs, `mailto:` and bare fragments pass through untouched. That is
+  intended behaviour, not an oversight.
+- The language switcher is the only link on an English page allowed to point at
+  `/zh`, and vice versa.
 
-## 1.4 渲染必须是完整 HTML
+## 1.4 Responses must be complete HTML
 
-**要求请求路由的 `text/html` 里就含完整页面内容（含文案），不能只返回 SPA 的 JS 再由前端挂载。**
+**The `text/html` response for a route must already contain the full page,
+copy included. Never ship a JS-only SPA shell that mounts the copy client-side**
+— it has to be crawlable as-is.
 
-`vite build` 只产出英文壳；`npm run prerender` 随后：
+`vite build` emits only the English shells. `npm run prerender` then:
 
-1. 从刚构建好的英文壳派生 `/zh` 壳（复用同一批 hash 资源，head 按 `pageMeta.ts` 重写）；
-2. 给两棵树注入 hreflang 簇；
-3. **两种语言各渲染一遍**，注入 `<div id="root">`；
-4. 写出 `dist/sitemap-pages.xml`。
+1. derives each `/zh` shell from its freshly built English sibling (same asset
+   hashes; head rewritten from `pageMeta.ts`),
+2. injects the hreflang cluster into both trees,
+3. renders **every route once per locale** into `<div id="root">`,
+4. writes `dist/sitemap-pages.xml`.
 
-客户端走 `hydrateRoot`（见 `src/lib/mount.tsx`、`src/glossary-main.tsx`），所以 SSR 与 hydration 的产物必须一致。
+The client hydrates (`src/lib/mount.tsx`, `src/glossary-main.tsx`), so the SSR
+output and the hydrated tree must match.
 
-> `npm run dev` 能看到 `/zh` 的**页面正文**，但看不到 `/zh` 的 **head 元数据**（那是构建期产物）。校验 meta 一律用 `npm run preview`。
+> `npm run dev` serves `/zh` page **bodies** but not `/zh` **head metadata** —
+> that is a build-time artifact. Verify meta tags with `npm run preview`.
 
-## 1.5 新增一个营销页的清单
+## 1.5 Adding a marketing page
 
-1. `src/i18n/config.ts` → `MIRRORED_PATHS` 加路径；
-2. `src/i18n/pageMeta.ts` → `ZH_PAGE_META` 加中文 title / description / og（**缺了会直接构建失败**，`missingZhMeta()` 兜底）；
-3. `src/prerender.tsx` → `PAGES` 加组件；
-4. 页面文案写成 `Record<Locale, …>`；
-5. 英文 `<route>/index.html` 照现有页面写 head；
-6. `npm run build:all && npm run preview` 核对 §1.8 验收清单。
+1. add the path to `MIRRORED_PATHS` in `src/i18n/config.ts`;
+2. add its Chinese title / description / og to `ZH_PAGE_META` in
+   `src/i18n/pageMeta.ts` — **the build fails if this is missing**
+   (`missingZhMeta()`);
+3. add the component to `PAGES` in `src/prerender.tsx`;
+4. write the page copy as `Record<Locale, …>`;
+5. write the English `<head>` in `<route>/index.html`, following an existing page;
+6. run `npm run build:all && npm run preview` and walk the checklist in §4.
 
 ---
 
-# 二、术语锁定表
+# 2. Locked terminology
 
-对齐规范 §5。**精调、新增文案一律遵守，禁止同词多译**；需要新增映射时改这张表，不要各页自造。
+Aligned with §5 of the i18n spec. **Every translation and every new piece of
+Chinese copy must follow this table — one English term, one Chinese rendering.**
+When a new term comes up, add it here rather than inventing a rendering inside a
+page.
 
-## 2.1 品牌与品类
+## 2.1 Brand and category
 
-| English | 中文（锁定） | 备注 |
+| English | 中文 (locked) | Notes |
 |---|---|---|
-| Datus | Datus | 不译 |
-| data engineering agent | 数据工程 Agent | 品类主译；不用「数据工程智能体」 |
+| Datus | Datus | not translated |
+| data engineering agent | 数据工程 Agent | the category term; not 数据工程智能体 |
 | open-source | 开源 | |
-| evolvable context | 可演进的上下文 | One Story 用语 |
+| evolvable context | 可演进的上下文 | One Story wording |
 | one-man / one-person data team | 一人数据团队 | |
 | enterprise agent teams | 企业 Agent 团队 | |
-| modern data stack | modern data stack | 保留英文 |
+| modern data stack | modern data stack | kept in English |
 
-## 2.2 产品与能力
+## 2.2 Product and capabilities
 
-| English | 中文（锁定） | 备注 |
+| English | 中文 (locked) | Notes |
 |---|---|---|
-| Context Engine / Data Context Engine | 上下文引擎 / 数据上下文引擎 | 不译成「情境引擎」 |
-| context | 上下文 | 数据语境下不用「情境」 |
-| Subagent | 子代理 | 正文用「子代理」；产品名/标题可保留 Subagent |
+| Context Engine / Data Context Engine | 上下文引擎 / 数据上下文引擎 | never 情境引擎 |
+| context | 上下文 | never 情境 in a data setting |
+| Subagent | 子代理 | 子代理 in body copy; `Subagent` may stay in headings and product names |
 | Semantic Layer | 语义层 | |
 | semantic model | 语义模型 | |
 | metrics | 指标 | |
-| Reference SQL | Reference SQL | 产品概念保留英文 |
+| Reference SQL | Reference SQL | product concept, kept in English |
 | NL2SQL / text-to-SQL | NL2SQL / 自然语言转 SQL | |
 | lineage | 血缘 | |
 | data quality | 数据质量 | |
 | governance | 治理 | |
 | long-running agents | 长时运行 Agent | |
-| warehouse | 数仓 / 数据仓库 | 上下文清晰时用「数仓」 |
+| warehouse | 数仓 / 数据仓库 | 数仓 when the context is clear |
 | catalog | 数据目录 | |
-| MCP (Model Context Protocol) | MCP | 标题不译全称 |
-| adapter | 适配器 | 数据库接入一律叫适配器，**不是** MCP 连接器 |
-| schema | 表结构 / Schema | 「Schema 漂移」「Schema Linking」保留英文 |
-| skills | Skills | 产品概念保留英文 |
+| MCP (Model Context Protocol) | MCP | do not expand in headings |
+| adapter | 适配器 | database support is always adapters — **not** "MCP connectors" |
+| schema | 表结构 / Schema | keep English in Schema 漂移, Schema Linking |
+| skills | Skills | product concept, kept in English |
 | self-host | 私有部署 / 自行部署 | |
-| RBAC / SSO / SLA | RBAC / SSO / SLA | 不译 |
+| RBAC / SSO / SLA | RBAC / SSO / SLA | not translated |
 
-## 2.3 导航与 CTA
+## 2.3 Navigation and CTAs
 
-| English | 中文（锁定） |
+| English | 中文 (locked) |
 |---|---|
 | Get started | 开始使用 |
 | Get started — free | 免费开始使用 |
@@ -135,61 +160,94 @@ const l = useHref();
 | Glossary | 术语表 |
 | FAQ | 常见问题 |
 | Enterprise | 企业版 |
-| Open Source | 开源版 |
+| Open Source (pricing tier) | 开源版 |
 | Cloud Personal | 云端个人版 |
 | Contact us | 联系我们 |
 | Capabilities / What you get | 核心能力 / 你能得到什么 |
 | Quickstart | 快速开始 |
 
-## 2.4 保留不译
+## 2.4 Never translated
 
-产品名（Datus CLI / Studio / Enterprise）、CLI 命令与参数（`datus-cli --web`、`pip install datus-agent`）、包名、配置字段与代码标识符（`dataset.source`、`metrics[].aggregation`、`agent.yml`）、厂商与产品专名（Snowflake、dbt、Cube、LookML、Airflow…）、协议名（MCP、OSI、OpenTelemetry）。
+Product names (Datus CLI / Studio / Enterprise), CLI commands and flags
+(`datus-cli --web`, `pip install datus-agent`), package names, config fields and
+code identifiers (`dataset.source`, `metrics[].aggregation`, `agent.yml`),
+vendor and product proper nouns (Snowflake, dbt, Cube, LookML, Airflow…), and
+protocol names (MCP, OSI, OpenTelemetry).
 
-## 2.5 One Story 锚点句
+## 2.5 One Story anchor sentences
+
+Reuse verbatim where the page calls for it:
 
 > Datus 是一个开源的数据工程 Agent，为你的数据系统构建可演进的上下文。
 > 从一人数据团队到企业 Agent 团队——Datus 把数据工作变成可靠、可复用的 Agent 系统。
 
 ---
 
-# 三、中文写作注意事项
+# 3. Writing Chinese copy
 
-- **标点用全角**：。，、；：？！（）——。英文专名、代码、数字与中文之间加半角空格：`支持 11+ 种数据库`、`用 pip install datus-agent 安装`。
-- **不要机翻腔**：营销页要像中文母语者写的，而不是英文句式直译。长英文从句该拆就拆成两句。
-- **CTA 用动词短语**，不要「点击这里」。
-- **数字与事实必须与英文一致**：改了一边就要改另一边（例：glossary 的词条数量、支持的数据库数量）。
-- **代码块、CLI 命令、YAML、字段名一律不翻译**，只翻译它们外面的说明文字。
-- **翻译前先核对事实**。英文原文本身可能有错——例如 CLI FAQ 曾把 DuckDB/StarRocks/Hive/Spark/ClickHouse/Trino 写成「MCP-based connectors」，实际是原生适配器。发现这类错误要中英文一起改，不要照着错的翻。
-
----
-
-# 四、SEO 硬性约束
-
-- 各语言 `canonical` **指向自身**，禁止跨语言 canonical，一律绝对 URL。
-- hreflang 簇 = `en` + `zh-Hans` + `x-default`（→ 英文），**双向互指且包含自身**。
-- Blog 页面**不得**声明 `zh-Hans` alternate；`/zh/blog/**` 不得存在。
-- `<html lang>`：英文 `en-US`，中文 `zh-CN`；`og:locale` / `og:locale:alternate` 随之。
-- 面包屑、FAQ、HowTo 等 JSON-LD 的 URL 必须带正确 locale 前缀（`Breadcrumb` / `FAQ` 组件已内建，直接传英文形态 path 即可）。
-- 尾斜杠：hreflang、canonical、sitemap 三者写法必须一致（本站统一带尾斜杠）。
-- 非 blog 的 sitemap 由预渲染步骤写出（`scripts/lib/i18n-shells.mjs`），含两种语言 + `xhtml:link` hreflang；`scripts/build-blog.mjs` 只负责博客。
-- 营销文案有实质改动时，同步 `scripts/lib/i18n-shells.mjs` 里的 `BUILD_DATE`（marketing 页 `<lastmod>`，与博客的 BUILD_DATE 相互独立）。
+- **Use full-width punctuation**: 。，、；：？！（）——. Put a half-width space
+  between Chinese and adjacent Latin words, code or numbers: `支持 11+ 种数据库`,
+  `用 pip install datus-agent 安装`.
+- **No machine-translation register.** Marketing copy should read as if written
+  in Chinese, not transliterated from English syntax. Split long English
+  subordinate clauses into separate sentences.
+- **CTAs are verb phrases**, never 点击这里.
+- **Numbers and facts must agree across languages.** Change one side and you
+  change the other (e.g. the glossary term count, the number of supported
+  databases).
+- **Never translate** code blocks, CLI commands, YAML or field names — only the
+  prose around them.
+- **Check the facts before translating.** The English source can be wrong: the
+  CLI FAQ described DuckDB / StarRocks / Hive / Spark / ClickHouse / Trino as
+  "MCP-based connectors" when they are native adapters. Fix both languages
+  rather than faithfully mistranslating.
 
 ---
 
-# 五、验收清单
+# 4. Hard SEO constraints
 
-改动涉及双语时，`npm run build:all && npm run preview` 后逐条核对：
+- Each locale is **self-canonical**. Never canonicalise across languages. Always
+  absolute URLs.
+- hreflang cluster = `en` + `zh-Hans` + `x-default` (→ English), declared
+  **bidirectionally and including self**.
+- Blog pages must **not** declare a `zh-Hans` alternate, and `/zh/blog/**` must
+  not exist.
+- `<html lang>` is `en-US` / `zh-CN`, with `og:locale` and
+  `og:locale:alternate` following.
+- JSON-LD URLs (breadcrumb, FAQ, HowTo) carry the correct locale prefix. The
+  `Breadcrumb` and `FAQ` components handle this — pass English-form paths.
+- Trailing slashes must agree across hreflang, canonical and sitemap. This site
+  uses trailing slashes everywhere.
+- The non-blog sitemap is written by the prerender step
+  (`scripts/lib/i18n-shells.mjs`) with both locales and `xhtml:link` hreflang.
+  `scripts/build-blog.mjs` owns the blog sitemap only.
+- Bump `BUILD_DATE` in `scripts/lib/i18n-shells.mjs` when marketing copy changes
+  materially. It is the marketing pages' `<lastmod>` and is independent of the
+  blog's own BUILD_DATE.
 
-- [ ] `/{path}` 与 `/zh/{path}` 均可**直接**访问（无语言协商跳转）
-- [ ] `curl` 拿到的 HTML 里就有完整正文，不依赖 JS 挂载
-- [ ] 不存在可索引的 `/zh/blog/**`；blog 页面无 `zh-Hans` hreflang
-- [ ] `/en`、`/en/*` 落到无前缀页面（GitHub Pages 用 noindex 跳转桩代替 301）
-- [ ] 营销页 hreflang 双向互指 + self + `x-default`→EN
-- [ ] 各语言 canonical 指向自身，绝对 URL，与 sitemap 尾斜杠一致
-- [ ] `<html lang>` 与页面语言一致
-- [ ] 语言切换同 path 换前缀且**保留 `?query`**
-- [ ] `/zh` 页面内链除语言切换器外全部在 `/zh` 内（blog 链接保持英文）
-- [ ] 无硬编码漏网英文（抽查页面正文与共用组件）
-- [ ] 术语符合第二章
-- [ ] Headless 打开若干 `/zh` 页：无 console 报错、无 hydration mismatch
-- [ ] 非 blog sitemap 含 `/zh` 镜像，且未混入 blog 中文 URL
+---
+
+# 5. Review checklist
+
+For any change touching both languages, run `npm run build:all && npm run
+preview` and verify:
+
+- [ ] `/{path}` and `/zh/{path}` are both reachable **directly**, with no
+      language negotiation or redirect
+- [ ] `curl` returns the full body copy — nothing depends on JS to render
+- [ ] no indexable `/zh/blog/**`; blog pages carry no `zh-Hans` hreflang
+- [ ] `/en` and `/en/*` land on the unprefixed page (GitHub Pages can't 301, so
+      these are `noindex` redirect stubs)
+- [ ] marketing pages declare hreflang bidirectionally, including self and
+      `x-default` → English
+- [ ] each locale canonicalises to itself, absolute URL, trailing slash matching
+      the sitemap
+- [ ] `<html lang>` matches the page language
+- [ ] the language switcher keeps the same path, swaps the prefix, and
+      **preserves `?query`**
+- [ ] on a `/zh` page every internal link stays inside `/zh` except the language
+      switcher (blog links stay English)
+- [ ] no leftover hard-coded English in body copy or shared components
+- [ ] terminology matches §2
+- [ ] headless-load a few `/zh` pages: no console errors, no hydration mismatch
+- [ ] the non-blog sitemap contains the `/zh` mirrors and no Chinese blog URLs
