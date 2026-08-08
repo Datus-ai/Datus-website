@@ -7,6 +7,7 @@ import { existsSync, statSync, readFileSync } from 'node:fs';
 // the clean-URL redirect plugin below, so the two never drift apart.
 const MPA_ROUTES = [
   'datafun',
+  'wechat',
   'glossary',
   'products/cli',
   'products/vscode',
