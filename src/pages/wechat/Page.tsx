@@ -31,12 +31,12 @@ const CONTACT_EMAIL = "contact@datus.ai";
 
 const VALUE_POINTS: { title: string; body: string }[] = [
   {
-    title: "构建指标体系",
-    body: "把散落的口径、语义模型与参考 SQL 统一沉淀、版本化、复用，构建 OSI 标准指标体系。",
+    title: "构建指标体系和数据本体基础",
+    body: "把散落的口径、语义模型与参考 SQL 统一沉淀、版本化、复用，沉淀企业数据本体，构建 OSI 标准指标体系。",
   },
   {
-    title: "自动生成报表和问数服务",
-    body: "从指标出发自动生成 Dashboard 与报告，并对外提供自然语言问数服务。",
+    title: "提供自然语言问数服务和 API",
+    body: "基于指标与语义层对外提供自然语言问数服务，并以 API 形式接入你的业务系统。",
   },
   {
     title: "安全可控地提升数据开发效率",
