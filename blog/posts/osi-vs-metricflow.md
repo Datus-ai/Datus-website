@@ -175,6 +175,7 @@ Indirectly, yes. The top failure mode of [text-to-SQL](/blog/what-is-text-to-sql
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard, in depth: who's behind it and why portable semantics matter
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the business translation layer OSI makes portable and MetricFlow executes
 - [dbt Semantic Layer & MetricFlow](/blog/dbt-semantic-layer-metricflow/) — a complete guide to defining metrics with MetricFlow
+- [OSI vs dbt MetricFlow: key differences for AI agents](/blog/osi-vs-dbt-metricflow/) — the deeper six-dimension comparison, the converter flow, and the agent angle
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI-focused subset these tools standardize
 - [Datus glossary](/glossary#modeling) — short definitions for the semantic layer, metric layer, and related terms
 
