@@ -179,3 +179,77 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Category: "Semantic Layer" in scripts/build-blog.mjs
 - PR: https://github.com/Datus-ai/Datus-website/pull/65   Status: merged
 - Date: 2026-08-04
+
+<!-- OSI comparison series (PR #70) — 6 spokes off the OSI hub, operator-supplied drafts (~/Documents/blog-doc/34–39) reformatted to house style: house head block, short-URL canonical, byline Kostja→Evan Paul, dropped slug/category/image frontmatter. Dates staggered 08-05→08-10 to read as continuous updates. All 6 in "Semantic Layer" build-blog category; none maps to a glossary term (comparison spokes) so no glossaryData change. Shipped as ONE PR because they cross-link each other. -->
+
+### osi-vs-dbt-metricflow
+- Title: OSI vs dbt MetricFlow: Key Differences & Why It Matters for AI Agents
+- Target keyword: OSI vs dbt MetricFlow (OSI vs MetricFlow, Apache Ossie, dbt MetricFlow, MetricFlow to OSI converter, semantic layer standard)
+- Angle: definition (interchange format) vs execution (metric runtime); 6-dimension key-differences table; author→convert→interchange→consume converter flow; when-to-use-which/both decision; AI-agent angle (OSI prevents mis-recognition, MetricFlow prevents mis-execution); 5 misconceptions. Distinct from existing osi-vs-metricflow (concept-level standard-vs-engine) — now reciprocally cross-linked + differentiated to avoid split ranking
+- Source direction: operator draft 34-osi-vs-dbt-metricflow.md
+- Key sources: ossie.apache.org; docs.getdbt.com/docs/build/about-metricflow; github.com/apache/ossie (4 merged converters); spider2-sql.github.io (GPT-4o 10.1% / o1-preview 17.1%)
+- Internal links added: what-is-semantic-layer, open-semantic-interchange-osi, dbt-semantic-layer-metricflow, what-is-metric-layer, semantic-layer-tools-list-osi, osi-vs-cube, osi-vs-lookml, osi-vs-metricflow (reciprocal), what-is-data-engineering-agent
+- Glossary updated: no (comparison spoke)
+- Category: "Semantic Layer" in scripts/build-blog.mjs
+- PR: https://github.com/Datus-ai/Datus-website/pull/70   Status: open
+- Date: 2026-08-05
+
+### osi-vs-lookml
+- Title: OSI vs LookML: Can Open Standards Replace Looker's Modeling Language?
+- Target keyword: OSI vs LookML (LookML vs OSI, Apache Ossie, Looker modeling language, migrate LookML to OSI, semantic layer portability)
+- Angle: LookML = proprietary runtime-coupled modeling language vs OSI = neutral interchange; "release valve, not replacement" verdict; what portability would unlock (4 outcomes) vs what LookML's model-to-UI loop does that interchange can't; 3 migration/coexistence scenarios; Looker NOT in OSI working-group roster (🔴), no LookML converter as of Aug 2026 — launch-partner coverage = intent not delivery
+- Source direction: operator draft 35-osi-vs-lookml.md
+- Key sources: docs.cloud.google.com/looker LookML docs; ossie.apache.org; github.com/apache/ossie; spider2-sql.github.io
+- Internal links added: what-is-semantic-model, what-is-semantic-layer, open-semantic-interchange-osi, semantic-layer-tools-list-osi, osi-vs-dbt-metricflow, osi-vs-warehouse-native-semantics, what-is-text-to-sql, what-is-data-engineering-agent, semantic-vs-syntactic-interoperability
+- Glossary updated: no (comparison spoke)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/70   Status: open
+- Date: 2026-08-06
+
+### osi-vs-warehouse-native-semantics
+- Title: OSI vs Warehouse-Native Semantics: Snowflake and Databricks Compared
+- Target keyword: OSI vs warehouse-native semantics (Snowflake Semantic Views, Databricks Metric Views, Apache Ossie, Cortex Analyst, Genie)
+- Angle: native (in-platform catalog object) vs OSI (interchange) tradeoff = portability vs operational depth; Snowflake SHIPS the Ossie YAML bridge (SYSTEM$CREATE/READ_..._OSSIE_YAML, core 0.1.1, SNOWFLAKE→ANSI_SQL) with a concrete round-trip walkthrough + fidelity limits (equi-joins survive, non-equi ASOF/RANGE dropped, custom_instructions land in SNOWFLAKE extensions); Databricks = working-group member, NO converter shipped; single-platform→native, second platform/consumer→OSI
+- Source direction: operator draft 36-osi-vs-warehouse-native-semantics.md
+- Key sources: snowflake.com apache-ossie incubator blog; docs.snowflake.com SYSTEM$..._OSSIE_YAML; docs.databricks.com/genie; github.com/apache/ossie; spider2-sql.github.io
+- Internal links added: what-is-semantic-model, what-is-semantic-layer, open-semantic-interchange-osi, what-is-snowflake-osi, semantic-layer-tools-list-osi, osi-vs-dbt-metricflow, osi-vs-lookml, what-is-text-to-sql, what-is-data-engineering-agent, context-engine-data-engineering-agent-accuracy
+- Glossary updated: no (comparison spoke)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/70   Status: open
+- Date: 2026-08-07
+
+### semantic-vs-syntactic-interoperability
+- Title: Semantic vs Syntactic Interoperability: Difference & Why It Matters
+- Target keyword: semantic vs syntactic interoperability (semantic interoperability, syntactic interoperability, data interoperability, text-to-SQL errors)
+- Angle: the one true glossary-style post of the batch — syntactic = shared format (loud failures), semantic = shared meaning (silent failures); net_revenue worked example; failure taxonomy (wrong join / wrong metric def / wrong grain ≈ 40% of text-to-SQL prod errors); how OSI implements semantic interoperability (separates definition from implementation); HL7 FHIR analogy; agents can't tolerate silent wrongness
+- Source direction: operator draft 37-semantic-vs-syntactic-interoperability.md
+- Key sources: hl7.org/fhir; github.com/open-semantic-interchange/OSI; spider2-sql.github.io (632 enterprise tasks)
+- Internal links added: what-is-semantic-layer, what-is-text-to-sql, open-semantic-interchange-osi, osi-vs-dbt-metricflow, osi-vs-rdf-owl, what-is-data-engineering-agent, what-is-semantic-model, context-engine-data-engineering-agent-accuracy
+- Glossary updated: no (no matching term; comparison/concept post)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/70   Status: open
+- Date: 2026-08-08
+
+### osi-vs-rdf-owl
+- Title: OSI vs RDF/OWL: Two Generations of Semantics Compared
+- Target keyword: OSI vs RDF/OWL (RDF, OWL, Semantic Web, Apache Ossie, open-world vs closed-world, ontology vs semantic layer)
+- Angle: two generations of "machine-readable meaning" — RDF/OWL (2000s W3C, open-world, inference, high adoption cost) vs OSI (2020s YAML, closed-world, executable, analytics-scoped); 7-dimension table; why the Semantic Web never landed in enterprise analytics; the Ontology working group as bridge (transpile OWL↔OSI, not replace); agents need BOTH grounding (OSI) + reasoning (ontology) → Datus Context Engine + Subject Tree
+- Source direction: operator draft 38-osi-vs-rdf-owl.md
+- Key sources: scientificamerican.com 2001 Semantic Web; w3.org/RDF; open-semantic-interchange.org; relational.ai ontological-semantics-to-OSI post; github.com/open-semantic-interchange/OSI
+- Internal links added: semantic-layer-vs-ontology, what-is-semantic-layer, open-semantic-interchange-osi, osi-vs-dbt-metricflow, osi-vs-lookml, osi-vs-cube, osi-vs-warehouse-native-semantics, what-is-text-to-sql, what-is-semantic-model, what-is-data-engineering-agent
+- Glossary updated: no (comparison spoke)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/70   Status: open
+- Date: 2026-08-09
+
+### osi-vs-cube
+- Title: OSI vs Cube: Headless Semantic Layer Meets Open Standard
+- Target keyword: OSI vs Cube (Cube.dev, headless semantic layer, Apache Ossie, CubeStore, semantic layer API)
+- Angle: standard vs product — OSI defines/moves, Cube defines+executes+serves (cube data models, CubeStore sub-50ms pre-agg, SQL/REST/GraphQL/MCP/AI API, ~20K stars, D3 agents); define→export→consume pipeline; Cube = working-group member but NO merged converter as of Aug 2026 (roadmap signal); "don't wait for the standard to start governing metrics"
+- Source direction: operator draft 39-osi-vs-cube.md
+- Key sources: cube.dev/docs (D3 platform June 2025); github.com/open-semantic-interchange/OSI; github.com/apache/ossie; spider2-sql.github.io
+- Internal links added: open-semantic-interchange-osi, cube-agentic-analytics, what-is-semantic-layer, what-is-semantic-model, semantic-layer-tools-list-osi, osi-vs-dbt-metricflow, osi-vs-lookml, osi-vs-rdf-owl, what-is-data-engineering-agent
+- Glossary updated: no (comparison spoke)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/70   Status: open
+- Date: 2026-08-10
