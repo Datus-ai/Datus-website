@@ -253,3 +253,111 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Category: "Semantic Layer"
 - PR: https://github.com/Datus-ai/Datus-website/pull/70   Status: open
 - Date: 2026-08-10
+
+### what-is-ontology
+- Title: What Is an Ontology? Definition, Three Productizations & AI Agents
+- Target keyword: ontology (ontology in data, ontology vs semantic layer, OWL/RDF, Palantir Ontology, SQL ontology, knowledge graph, ontology for AI agents)
+- Angle: ontology = identity layer (classes/properties/relations/rules), NOT a semantic layer/taxonomy/knowledge graph; three productizations buyers confuse in 2026 (W3C OWL/RDF, Palantir Foundry Ontology, SQL ontologies); open-world vs closed-world as the undeclared design input; agent failures are wrong-subject not wrong-arithmetic (calibration walkthrough); "light ontology before a heavy one" checklist; Datus Subject Tree as a light ontology
+- Source direction: operator draft 40-what-is-ontology.md
+- Key sources: w3.org/TR/owl2-overview; palantir.com foundry ontology-system docs
+- Internal links added: semantic-layer-vs-ontology, what-is-semantic-layer, osi-vs-rdf-owl, what-is-timbr, what-is-atscale
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-17
+
+### what-is-timbr
+- Title: What Is Timbr? Ontology-Based Semantic Layer Built on SQL
+- Target keyword: Timbr (Timbr.ai, ontology-based semantic layer, SQL ontology, virtual knowledge graph, Timbr vs Cube, Timbr vs AtScale)
+- Angle: Timbr.ai = SQL-native ontology over the warehouse (no separate graph store, traversals push down to SQL); how it differs from Cube (headless metrics) and AtScale (virtual OLAP); when the extra ontology layer is worth it
+- Source direction: operator draft 41-what-is-timbr.md
+- Key sources: timbr.ai; docs.timbr.ai
+- Internal links added: what-is-semantic-layer, what-is-ontology, semantic-layer-vs-ontology, cube-agentic-analytics, what-is-data-engineering-agent
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-18
+
+### what-is-atscale
+- Title: What Is AtScale? Enterprise Semantic Layer for BI, Excel & AI
+- Target keyword: AtScale (AtScale semantic layer, virtual OLAP, Semantic Modeling Language SML, MDX/DAX, AtScale MCP, Excel/Power BI semantic layer)
+- Angle: virtual OLAP for Excel/Power BI/agents; SML, DSO pricing model, MDX/DAX surface, MCP; "when the cube is the wrong unit" for agentic analytics
+- Source direction: operator draft 42-what-is-atscale.md
+- Key sources: atscale.com; github.com (AtScale SML)
+- Internal links added: what-is-semantic-layer, what-is-timbr, semantic-layer-tools-list-osi, cube-agentic-analytics
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-19
+
+### what-is-databricks-genie
+- Title: What Is Databricks Genie? Agents for Conversational Analytics
+- Target keyword: Databricks Genie (Genie Spaces, conversational analytics, Unity Catalog, Databricks text-to-SQL, Genie vs Genie Code, AI/BI Genie)
+- Angle: domain-scoped agents (formerly Spaces) answering with SQL + charts under Unity Catalog governance; how Genie differs from Genie Code; grounding/trust model
+- Source direction: operator draft 43-what-is-databricks-genie.md
+- Key sources: databricks.com; docs.databricks.com/genie
+- Internal links added: what-is-data-agent, what-is-cortex-analyst, what-is-claude-data-plugin, platform-native-data-agents-compared, what-is-data-engineering-agent
+- Glossary updated: no (no matching /glossary term)
+- Category: "Data Engineering Agent"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-20
+
+### what-is-cortex-analyst
+- Title: What Is Cortex Analyst? Snowflake Natural-Language SQL for BI
+- Target keyword: Cortex Analyst (Snowflake Cortex Analyst, Snowflake text-to-SQL, Semantic Views, verified query repository, Cortex Analyst vs Genie, Cortex Analyst API)
+- Angle: Snowflake's managed text-to-SQL REST API grounded in Semantic Views; verified queries; why it is not Cortex Code; REST integration into apps
+- Source direction: operator draft 44-what-is-cortex-analyst.md
+- Key sources: docs.snowflake.com (Cortex Analyst, Semantic Views)
+- Internal links added: what-is-data-agent, what-is-databricks-genie, what-is-claude-data-plugin, what-is-snowflake-osi, what-is-data-engineering-agent
+- Glossary updated: no (no matching /glossary term)
+- Category: "Data Engineering Agent"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-21
+
+### what-is-claude-data-plugin
+- Title: What Is the Claude Data Plugin? SQL, Charts & Warehouse MCP
+- Target keyword: Claude Data plugin (Anthropic Data plugin, Claude Code data, Cowork, warehouse MCP, Claude SQL charts, Claude vs Genie vs Cortex Analyst)
+- Angle: Anthropic's Data plugin across Cowork and Claude Code for SQL/charts/dashboards over warehouse MCP; how it differs from Genie and Cortex Analyst (general agent + MCP vs platform-native)
+- Source direction: operator draft 45-what-is-claude-data-plugin.md
+- Key sources: claude.com; github.com (Anthropic MCP)
+- Internal links added: what-is-data-agent, what-is-cortex-analyst, what-is-databricks-genie, data-engineering-agent-vs-claude-code, what-is-data-engineering-agent
+- Glossary updated: no (no matching /glossary term)
+- Category: "Data Engineering Agent"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-22
+
+### introducing-datus-knowledge
+- Title: Introducing Datus Knowledge: The Memory Layer for Data Engineering Agents
+- Target keyword: Datus Knowledge (data engineering agent memory, semantic model store, reference SQL, context engine, schema retrieval, agent memory layer)
+- Angle: product intro — Knowledge stores schema, semantic models, metrics, reference SQL, templates, platform docs so the agent retrieves meaning (not a schema dump); Tree + Vector retrieval; feeds Subagents and the OSI adapter
+- Source direction: operator draft 46-introducing-datus-knowledge.md
+- Key sources: docs.datus.ai; docs.getdbt.com; lancedb.com; github.com
+- Internal links added: what-is-data-engineering-agent, contextual-data-engineering, what-is-semantic-model, datus-osi-semantic-adapter, introducing-datus-subagents, what-is-data-catalog
+- Glossary updated: no (product/feature post)
+- Category: "Releases"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-17
+
+### datus-osi-semantic-adapter
+- Title: The Datus OSI Semantic Adapter: OSI In, MetricFlow Out
+- Target keyword: Datus OSI semantic adapter (Open Semantic Interchange, OSI YAML, MetricFlow, vendor-neutral metrics, semantic layer interoperability, dbt MetricFlow adapter)
+- Angle: product intro — authors vendor-neutral OSI YAML, validates it, and queries metrics via MetricFlow without leaking backend fields into source models; the OSI-in/MetricFlow-out pipeline
+- Source direction: operator draft 47-datus-osi-semantic-adapter.md
+- Key sources: docs.datus.ai
+- Internal links added: open-semantic-interchange-osi, osi-vs-dbt-metricflow, introducing-datus-knowledge, introducing-datus-subagents
+- Glossary updated: no (product/feature post)
+- Category: "Releases"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-17
+
+### introducing-datus-subagents
+- Title: Introducing Datus Subagents: Specialized Workers for SQL and KPIs
+- Target keyword: Datus Subagents (task subagents, AskMetrics, gen_sql, data engineering agent, specialized agents, governed metrics)
+- Angle: product intro — Datus 0.3 built-in task subagents; AskMetrics answers KPIs from governed metrics, gen_sql + explore handle SQL/schema; specialized workers vs one universal chat agent
+- Source direction: operator draft 48-introducing-datus-subagents.md
+- Key sources: docs.datus.ai
+- Internal links added: subagents-domain-specific-data-agents, what-is-data-engineering-agent, introducing-datus-knowledge, datus-osi-semantic-adapter
+- Glossary updated: no (product/feature post)
+- Category: "Releases"
+- PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
+- Date: 2026-08-17

@@ -48,13 +48,14 @@ const CATEGORIES = [
       "build-your-first-data-engineering-agent", "data-engineering-agent-vs-claude-code",
       "data-engineering-agent-vs-sql-copilot", "one-person-data-team", "context-engine-data-engineering-agent-accuracy",
       "mcp-data-engineering", "enterprise-data-engineering-agent", "subagents-domain-specific-data-agents",
-      "best-data-engineering-agents", "ai-native-data-platforms", "platform-native-data-agents-compared"] },
+      "best-data-engineering-agents", "ai-native-data-platforms", "platform-native-data-agents-compared",
+      "what-is-databricks-genie", "what-is-cortex-analyst", "what-is-claude-data-plugin"] },
   { label: "Semantic Layer", description: "What a semantic layer is, and how it differs from a metric layer, model, ontology, or catalog.",
     slugs: ["what-is-semantic-layer", "what-is-metric-layer", "what-is-semantic-model", "semantic-layer-vs-ontology",
       "open-semantic-interchange-osi", "what-is-snowflake-osi", "osi-vs-metricflow", "osi-vs-dbt-metricflow", "osi-vs-lookml",
       "osi-vs-warehouse-native-semantics", "osi-vs-rdf-owl", "osi-vs-cube", "semantic-vs-syntactic-interoperability",
       "dbt-semantic-layer-metricflow", "cube-agentic-analytics", "what-is-gooddata",
-      "semantic-layer-tools-list-osi"] },
+      "semantic-layer-tools-list-osi", "what-is-ontology", "what-is-timbr", "what-is-atscale"] },
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
     slugs: ["what-is-text-to-sql", "what-is-schema-linking", "rag-data-engineering", "what-is-data-catalog",
       "what-is-data-mesh", "what-is-data-agent", "what-is-lakehouse", "what-is-lakehouse-catalog",
@@ -78,7 +79,8 @@ const CATEGORIES = [
     slugs: ["data-engineering-agent-use-cases", "the-operating-model-of-an-agentic-data-team",
       "make-data-agents-truly-usable-ask-explore-and-control-with-confidence"] },
   { label: "Releases", description: "What's new in Datus.",
-    slugs: ["datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
+    slugs: ["introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
+      "datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
 ];
 
 // slug -> category label, for the hero eyebrow badge. First category wins.
