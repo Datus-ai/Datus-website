@@ -134,6 +134,8 @@ page.
 | governance | 治理 | |
 | long-running agents | 长时运行 Agent | |
 | warehouse | 数仓 / 数据仓库 | 数仓 when the context is clear |
+| lakehouse / lakehousing | 湖仓 / 湖仓一体 | 湖仓一体 for the capability, 湖仓 as a modifier |
+| hybrid search | 混合检索 | never 混合搜索 |
 | catalog | 数据目录 | |
 | MCP (Model Context Protocol) | MCP | do not expand in headings |
 | adapter | 适配器 | database support is always adapters — **not** "MCP connectors" |

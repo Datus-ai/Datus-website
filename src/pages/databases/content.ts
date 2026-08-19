@@ -12,6 +12,8 @@ export type DbEntry = {
   pkg: string;
   builtIn: boolean;
   since?: string;
+  /** Accent override; unset means the decorative cyan/amber/green/pink rotation. */
+  tone?: string;
   highlight: string;
 };
 
@@ -36,6 +38,9 @@ const ADAPTER_META = [
   { name: "MySQL", type: "mysql", pkg: "datus-mysql", builtIn: false },
   { name: "Snowflake", type: "snowflake", pkg: "datus-snowflake", builtIn: false },
   { name: "StarRocks", type: "starrocks", pkg: "datus-starrocks", builtIn: false },
+  // Amber to match StarRocks — same Cloud Warehouse tier. The positional
+  // rotation would land Doris on green, which reads as Lake & Distributed.
+  { name: "Apache Doris", type: "doris", pkg: "datus-doris", builtIn: false, tone: "var(--term-amber)" },
   { name: "ClickHouse", type: "clickhouse", pkg: "datus-clickhouse", builtIn: false, since: "v0.2.6" },
   { name: "ClickZetta", type: "clickzetta", pkg: "datus-clickzetta", builtIn: false },
   { name: "Hive", type: "hive", pkg: "datus-hive", builtIn: false, since: "v0.2.6" },
@@ -51,6 +56,7 @@ function databaseList(builtInLabel: string, highlights: string[]): DbEntry[] {
     pkg: "pkg" in m ? m.pkg : builtInLabel,
     builtIn: m.builtIn,
     since: "since" in m ? m.since : undefined,
+    tone: "tone" in m ? m.tone : undefined,
     highlight: highlights[i],
   }));
 }
@@ -108,7 +114,7 @@ const EN: DatabasesCopy = {
   hero: {
     eyebrow: "Databases",
     heading: "Supported Databases",
-    lead: "Eleven native database adapters, from embedded SQLite and DuckDB to cloud warehouses (Snowflake, StarRocks, ClickZetta) and lake engines (Hive, Spark, Trino, ClickHouse). All plug in via Python entry points — no adapter code required on your side.",
+    lead: "Twelve native database adapters, from embedded SQLite and DuckDB to cloud warehouses (Snowflake, StarRocks, Apache Doris, ClickZetta) and lake engines (Hive, Spark, Trino, ClickHouse). All plug in via Python entry points — no adapter code required on your side.",
   },
   builtIn: "Built-in",
   databases: databaseList("Built-in", [
@@ -118,6 +124,7 @@ const EN: DatabasesCopy = {
     "INFORMATION_SCHEMA + SHOW CREATE for rich metadata.",
     "Native SDK with Arrow transport for fast reads.",
     "Multi-catalog + materialized views, MySQL-wire.",
+    "Lakehousing, materialized views and hybrid search.",
     "HTTP protocol; database ≡ schema, lightweight DELETE.",
     "Workspace + Volume/Stage ops; lakehouse partner.",
     "HiveServer2 / Thrift with LDAP & Kerberos auth.",
@@ -131,7 +138,7 @@ const EN: DatabasesCopy = {
   },
   categories: [
     { title: "Relational", body: "PostgreSQL, MySQL — the classic OLTP stack with rich metadata endpoints." },
-    { title: "Cloud Warehouse", body: "Snowflake, StarRocks, ClickZetta — MPP engines with catalog + workspace models." },
+    { title: "Cloud Warehouse", body: "Snowflake, StarRocks, Apache Doris, ClickZetta — MPP engines with catalog + workspace models." },
     { title: "Lake & Distributed", body: "Hive, Spark, Trino — Thrift and HTTP engines over your data lake." },
     { title: "Analytical & Embedded", body: "DuckDB, ClickHouse, SQLite — from local files to columnar OLAP." },
   ],
@@ -165,7 +172,7 @@ const ZH: DatabasesCopy = {
   hero: {
     eyebrow: "数据库",
     heading: "支持的数据库",
-    lead: "十一个原生数据库适配器，从嵌入式的 SQLite、DuckDB，到云数仓（Snowflake、StarRocks、ClickZetta），再到湖上引擎（Hive、Spark、Trino、ClickHouse）。全部通过 Python entry points 接入——你这边不用写任何适配器代码。",
+    lead: "十二个原生数据库适配器，从嵌入式的 SQLite、DuckDB，到云数仓（Snowflake、StarRocks、Apache Doris、ClickZetta），再到湖上引擎（Hive、Spark、Trino、ClickHouse）。全部通过 Python entry points 接入——你这边不用写任何适配器代码。",
   },
   builtIn: "内置",
   databases: databaseList("内置", [
@@ -175,6 +182,7 @@ const ZH: DatabasesCopy = {
     "通过 INFORMATION_SCHEMA + SHOW CREATE 获取丰富元数据。",
     "原生 SDK 配合 Arrow 传输，读取更快。",
     "多 catalog + 物化视图，走 MySQL 协议。",
+    "湖仓一体、物化视图与混合检索。",
     "HTTP 协议；database 等同 schema，支持轻量 DELETE。",
     "工作空间 + Volume/Stage 操作；湖仓生态伙伴。",
     "HiveServer2 / Thrift，支持 LDAP 与 Kerberos 认证。",
@@ -188,7 +196,7 @@ const ZH: DatabasesCopy = {
   },
   categories: [
     { title: "关系型", body: "PostgreSQL、MySQL——经典 OLTP 组合，元数据接口丰富。" },
-    { title: "云数仓", body: "Snowflake、StarRocks、ClickZetta——带 catalog 与工作空间模型的 MPP 引擎。" },
+    { title: "云数仓", body: "Snowflake、StarRocks、Apache Doris、ClickZetta——带 catalog 与工作空间模型的 MPP 引擎。" },
     { title: "湖与分布式", body: "Hive、Spark、Trino——架在数据湖之上的 Thrift 与 HTTP 引擎。" },
     { title: "分析型与嵌入式", body: "DuckDB、ClickHouse、SQLite——从本地文件到列式 OLAP。" },
   ],

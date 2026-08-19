@@ -74,7 +74,7 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
   "/databases/": {
     title: "支持的数据库 — Datus",
     description:
-      "Datus 开箱支持 11+ 种数据库，包括 SQLite、DuckDB、PostgreSQL、MySQL、Snowflake、StarRocks、ClickHouse、ClickZetta、Hive、Spark 与 Trino。",
+      "Datus 开箱支持 12+ 种数据库，包括 SQLite、DuckDB、PostgreSQL、MySQL、Snowflake、StarRocks、Apache Doris、ClickHouse、ClickZetta、Hive、Spark 与 Trino。",
     ogTitle: "支持的数据库 — Datus",
     ogDescription:
       "把 Datus 接入你的数据栈——从嵌入式 SQLite 到 Snowflake、StarRocks 这样的云数仓。",

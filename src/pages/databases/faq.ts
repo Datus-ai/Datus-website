@@ -7,7 +7,7 @@ import type { Locale } from "../../i18n/config";
 const EN: FaqItem[] = [
   {
     q: "Which databases does Datus support out of the box?",
-    a: "Datus supports 11+ databases: SQLite, DuckDB, PostgreSQL, MySQL, Snowflake, StarRocks, ClickHouse, ClickZetta, Hive, Spark and Trino. SQLite and DuckDB are built in; the rest ship as installable adapters (datus-postgresql, datus-snowflake, and so on).",
+    a: "Datus supports 12+ databases: SQLite, DuckDB, PostgreSQL, MySQL, Snowflake, StarRocks, Apache Doris, ClickHouse, ClickZetta, Hive, Spark and Trino. SQLite and DuckDB are built in; the rest ship as installable adapters (datus-postgresql, datus-snowflake, and so on).",
   },
   {
     q: "How do I install a database adapter?",
@@ -30,7 +30,7 @@ const EN: FaqItem[] = [
 const ZH: FaqItem[] = [
   {
     q: "Datus 开箱支持哪些数据库？",
-    a: "Datus 支持 11 种以上数据库：SQLite、DuckDB、PostgreSQL、MySQL、Snowflake、StarRocks、ClickHouse、ClickZetta、Hive、Spark 和 Trino。其中 SQLite 与 DuckDB 是内置的，其余以可安装适配器的形式提供（datus-postgresql、datus-snowflake 等）。",
+    a: "Datus 支持 12 种以上数据库：SQLite、DuckDB、PostgreSQL、MySQL、Snowflake、StarRocks、Apache Doris、ClickHouse、ClickZetta、Hive、Spark 和 Trino。其中 SQLite 与 DuckDB 是内置的，其余以可安装适配器的形式提供（datus-postgresql、datus-snowflake 等）。",
   },
   {
     q: "怎么安装数据库适配器？",

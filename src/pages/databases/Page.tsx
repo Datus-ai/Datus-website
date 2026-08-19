@@ -65,7 +65,7 @@ export default function DatabasesPage() {
       <CatalogSection alt>
         <div className="grid grid-4">
           {databases.map((db, i) => {
-            const tone = toneAt(i);
+            const tone = db.tone ?? toneAt(i);
             return (
               <SpecCard
                 key={db.type}
