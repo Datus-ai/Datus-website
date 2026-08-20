@@ -15,7 +15,7 @@ import { dirname, join } from "node:path";
 // `<lastmod>` for the marketing pages — the date this copy last changed, which
 // is deliberately independent of the blog's own BUILD_DATE in build-blog.mjs.
 // Bump it when marketing copy changes materially.
-const BUILD_DATE = "2026-08-07";
+const BUILD_DATE = "2026-08-20";
 
 const escapeAttr = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

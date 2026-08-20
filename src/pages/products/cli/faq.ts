@@ -12,7 +12,7 @@ const EN: FaqItem[] = [
   },
   {
     q: "Does Datus CLI work with my existing warehouse?",
-    a: "Yes. Every database is a native Datus adapter: SQLite and DuckDB are built in, and Snowflake, PostgreSQL, MySQL, ClickZetta, StarRocks, ClickHouse, Hive, Spark and Trino ship as installable adapter packages (datus-snowflake, datus-trino, and so on). You point the CLI at your catalog or JDBC connection—no need to migrate data. Custom DB adapters can be added via the plugin architecture described in the GitHub repo.",
+    a: "Yes. Every database is a native Datus adapter: SQLite and DuckDB are built in, and Snowflake, PostgreSQL, MySQL, ClickZetta, StarRocks, Apache Doris, ClickHouse, Hive, Spark and Trino ship as installable adapter packages (datus-snowflake, datus-trino, and so on). You point the CLI at your catalog or JDBC connection—no need to migrate data. Custom DB adapters can be added via the plugin architecture described in the GitHub repo.",
   },
   {
     q: "How is Datus CLI different from Datus Studio?",
@@ -35,7 +35,7 @@ const ZH: FaqItem[] = [
   },
   {
     q: "Datus CLI 能接我现有的数仓吗？",
-    a: "可以。所有数据库都通过 Datus 原生适配器接入：SQLite 与 DuckDB 是内置的，Snowflake、PostgreSQL、MySQL、ClickZetta、StarRocks、ClickHouse、Hive、Spark 与 Trino 则以可安装的适配器包形式提供（datus-snowflake、datus-trino 等）。你只需把 CLI 指向自己的数据目录或 JDBC 连接，不需要迁移数据。自定义数据库适配器可以按 GitHub 仓库中的插件架构自行扩展。",
+    a: "可以。所有数据库都通过 Datus 原生适配器接入：SQLite 与 DuckDB 是内置的，Snowflake、PostgreSQL、MySQL、ClickZetta、StarRocks、Apache Doris、ClickHouse、Hive、Spark 与 Trino 则以可安装的适配器包形式提供（datus-snowflake、datus-trino 等）。你只需把 CLI 指向自己的数据目录或 JDBC 连接，不需要迁移数据。自定义数据库适配器可以按 GitHub 仓库中的插件架构自行扩展。",
   },
   {
     q: "Datus CLI 和 Datus Studio 有什么区别？",
