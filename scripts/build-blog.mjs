@@ -55,7 +55,9 @@ const CATEGORIES = [
       "open-semantic-interchange-osi", "what-is-snowflake-osi", "osi-vs-metricflow", "osi-vs-dbt-metricflow", "osi-vs-lookml",
       "osi-vs-warehouse-native-semantics", "osi-vs-rdf-owl", "osi-vs-cube", "semantic-vs-syntactic-interoperability",
       "dbt-semantic-layer-metricflow", "cube-agentic-analytics", "what-is-gooddata",
-      "semantic-layer-tools-list-osi", "what-is-ontology", "what-is-timbr", "what-is-atscale"] },
+      "semantic-layer-tools-list-osi", "what-is-ontology", "what-is-timbr", "what-is-atscale",
+      "first-native-apache-ossie-engine", "why-osi-needs-execution-engine", "dosi-mcp-semantic-layer-for-agents",
+      "dosi-vs-metricflow", "dosi-with-cube"] },
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
     slugs: ["what-is-text-to-sql", "what-is-schema-linking", "rag-data-engineering", "what-is-data-catalog",
       "what-is-data-mesh", "what-is-data-agent", "what-is-lakehouse", "what-is-lakehouse-catalog",
@@ -79,7 +81,7 @@ const CATEGORIES = [
     slugs: ["data-engineering-agent-use-cases", "the-operating-model-of-an-agentic-data-team",
       "make-data-agents-truly-usable-ask-explore-and-control-with-confidence"] },
   { label: "Releases", description: "What's new in Datus.",
-    slugs: ["introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
+    slugs: ["introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
       "datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
 ];
 
