@@ -361,3 +361,75 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Category: "Releases"
 - PR: https://github.com/Datus-ai/Datus-website/pull/71   Status: open
 - Date: 2026-08-17
+
+### introducing-dosi
+- Title: Introducing Dosi: OSI-Native Semantic Layer for Metrics
+- Target keyword: Dosi (OSI-native semantic layer, Apache Ossie, OSI YAML, multi-dialect SQL, metrics engine, MCP, Datus Studio, datus-semantic-dosi)
+- Angle: product intro — Dosi compiles OSI YAML to SQL across 15+ dialects via CLI/REST+Arrow/MCP/Python with structured error codes; "define once, use everywhere"; datus-semantic-dosi adapter runs OSI metrics without MetricFlow; not open source
+- Source direction: operator draft ~/dosi/49-introducing-dosi.md
+- Key sources: dosi.datus.ai; docs.datus.ai; ossie.ai
+- Internal links added: open-semantic-interchange-osi, what-is-semantic-layer, what-is-data-engineering-agent, introducing-datus-knowledge, dosi-vs-metricflow, dosi-with-cube, first-native-apache-ossie-engine, dosi-mcp-semantic-layer-for-agents
+- Glossary updated: no (product/feature post)
+- Category: "Releases"
+- PR: https://github.com/Datus-ai/Datus-website/pull/73   Status: open
+- Date: 2026-08-21
+
+### first-native-apache-ossie-engine
+- Title: First Native Apache Ossie Engine
+- Target keyword: apache ossie implementation (native Ossie engine, OSI execution engine, semantic layer runtime, OSI converter, reference compiler, semantic interoperability)
+- Angle: research/taxonomy — converters vs validators vs native execution engines; what a native Ossie engine must prove; Apache roadmap names reference compiler (not shipped); Dosi is first native execution engine; benchmarks caveated (simple_model fixture)
+- Source direction: operator draft ~/dosi/50-first-native-apache-ossie-engine.md
+- Key sources: github.com/apache/ossie; dosi.datus.ai/benchmarks; ossie roadmap
+- Internal links added: open-semantic-interchange-osi, why-osi-needs-execution-engine, introducing-dosi, osi-vs-dbt-metricflow, what-is-semantic-layer
+- Glossary updated: no (no matching /glossary term for Ossie/OSI/Dosi)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/73   Status: open
+- Date: 2026-08-22
+
+### why-osi-needs-execution-engine
+- Title: Why OSI Needs an Execution Engine — Interchange vs Runtime
+- Target keyword: OSI execution engine (Apache Ossie, interchange vs runtime, semantic layer runtime, OSI YAML, MetricFlow, semantic interoperability)
+- Angle: thought-leadership — "OSI is just a format" is the point; interchange (definition) vs runtime (execution) split; what breaks when execution is an afterthought (inert catalog, double-conversion tax, agent grounding gap); native OSI runtimes (Dosi) close the gap
+- Source direction: operator draft ~/dosi/51-why-osi-needs-execution-engine.md
+- Key sources: github.com/apache/ossie; ossie.apache.org; dosi.datus.ai
+- Internal links added: open-semantic-interchange-osi, first-native-apache-ossie-engine, semantic-vs-syntactic-interoperability, osi-vs-dbt-metricflow, introducing-dosi
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/73   Status: open
+- Date: 2026-08-23
+
+### dosi-mcp-semantic-layer-for-agents
+- Title: Dosi MCP Semantic Layer for Agents — No SQL Guessing
+- Target keyword: Dosi MCP (semantic layer for agents, Model Context Protocol, OSI metrics, structured errors, Claude Code, Codex, text-to-SQL, governed metrics, Datus Agent)
+- Angle: architecture — semantic MCP server (governed metric names) vs database MCP (SQL guessing); structured error codes for self-correction; integration patterns for Claude Code/Codex/Datus Agent/CI; semantic layer as MCP server pattern
+- Source direction: operator draft ~/dosi/52-dosi-mcp-semantic-layer-for-agents.md
+- Key sources: dosi.datus.ai; docs.datus.ai (semantic adapters)
+- Internal links added: mcp-data-engineering, what-is-data-agent, what-is-semantic-layer, open-semantic-interchange-osi, introducing-dosi, what-is-data-engineering-agent, introducing-datus-knowledge, dosi-vs-metricflow
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/73   Status: open
+- Date: 2026-08-24
+
+### dosi-vs-metricflow
+- Title: Dosi vs MetricFlow: OSI-Native vs dbt-Centric Runtime
+- Target keyword: Dosi vs MetricFlow (dbt MetricFlow, OSI-native runtime, semantic layer execution engine, Apache Ossie, multi-dialect SQL, benchmarks, dbt Semantic Layer)
+- Angle: comparison — runtime choice (not standards war); same OSI file → dbt-centric MetricFlow OR OSI-native Dosi; decision framework; benchmarks (10-22x warm, ~220x cold on simple_model, caveated); distinct from osi-vs-dbt-metricflow (format vs runtime)
+- Source direction: operator draft ~/dosi/53-dosi-vs-metricflow.md
+- Key sources: dosi.datus.ai/benchmarks; docs.getdbt.com; github.com/apache/ossie
+- Internal links added: open-semantic-interchange-osi, introducing-dosi, osi-vs-dbt-metricflow, what-is-semantic-layer, why-osi-needs-execution-engine, first-native-apache-ossie-engine, dbt-semantic-layer-metricflow, dosi-mcp-semantic-layer-for-agents, dosi-with-cube
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/73   Status: open
+- Date: 2026-08-25
+
+### dosi-with-cube
+- Title: Dosi with Cube: OSI Execution and Agentic Analytics in One Stack
+- Target keyword: Dosi with Cube (Cube.dev, OSI execution, agentic analytics, semantic layer, Apache Ossie, CubeStore, MCP, multi-dialect SQL, headless semantic layer)
+- Angle: stack architecture (not product fight) — Cube for cached API-first consumption/agentic analytics, OSI for interchange, Dosi for OSI-native multi-dialect execution; no merged Cube-to-OSI converter yet; agent patterns Cube API vs Dosi MCP
+- Source direction: operator draft ~/dosi/54-dosi-with-cube.md
+- Key sources: dosi.datus.ai; github.com/apache/ossie; cube.dev (OSI launch initiative)
+- Internal links added: open-semantic-interchange-osi, introducing-dosi, what-is-semantic-layer, cube-agentic-analytics, osi-vs-cube, what-is-data-agent, why-osi-needs-execution-engine, first-native-apache-ossie-engine, dosi-mcp-semantic-layer-for-agents
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/73   Status: open
+- Date: 2026-08-26
