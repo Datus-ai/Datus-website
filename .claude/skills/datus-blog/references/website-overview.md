@@ -3,7 +3,7 @@
 How datus.ai is built, so blog posts wire in correctly and render.
 
 ## Repo
-- Remote `Datus-ai/Datus-website`, base branch `main`. This `agent/` config lives inside that repo; the working repo is the repo root (the parent of `agent/`).
+- Remote `Datus-ai/Datus-website`, base branch `main`. The blog skill config lives inside that repo at `.claude/skills/datus-blog/`; the working repo is the repo root.
 - Deploy: on push/merge to `main`, `.github/workflows/deploy.yml` runs `npm run build:all` and publishes `dist/` to **GitHub Pages** (production `https://datus.ai`). So a merged PR auto-publishes; no manual deploy.
 
 ## Two rendering systems in one repo
@@ -27,7 +27,7 @@ How datus.ai is built, so blog posts wire in correctly and render.
 - **Reading time, TOC, share links** are generated automatically from the rendered HTML.
 
 ## Other site pieces the blog touches
-- **Sitemap:** `src/public/sitemap.xml` — add each new post as `https://datus.ai/blog/<slug>/`.
+- **Sitemap:** nothing to edit by hand. `build-blog.mjs` writes `dist/blog/sitemap.xml` from the posts it discovers and the `dist/sitemap.xml` index that points at it (plus `dist/sitemap-pages.xml` from the prerender step). `src/public/sitemap.xml` is only a build-time fallback — do NOT add posts to it.
 - **Glossary:** `src/glossary/glossaryData.ts` — categories → terms `{term, slug, definition, article?}`. Rendered at `/glossary/`. Set a term's `article: "/blog/<slug>/"` when you publish its post.
 - **Blog pillar page:** `blog/data-engineering-agent/index.md` (`/data-engineering-agent/`) — the hub; optionally add a related link.
 

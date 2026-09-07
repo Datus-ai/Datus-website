@@ -51,6 +51,12 @@ metadata to `ZH_PAGE_META`, and its component to `PAGES` in
 
 ## Adding a Blog Post
 
+> For a full SEO post (research, house style, wiring, PR, anti-duplication
+> ledger) use the **`datus-blog` skill** at
+> [`.claude/skills/datus-blog/`](./.claude/skills/datus-blog/) — `SKILL.md` is the
+> SOP, `references/` the writing/SEO standard, `memory/covered-topics.md` the
+> list of what's already published. The steps below are the bare mechanics.
+
 1. **Create file**: `blog/posts/my-post.md`
 ```markdown
 ---
