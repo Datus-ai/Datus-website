@@ -152,3 +152,4 @@ Start with governed metric definitions and whether your organization wants a por
 - [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) — OSI-native vs dbt-centric runtime.
 - [Dosi with Cube](/blog/dosi-with-cube/) — where Dosi and Cube fit in one stack.
 - [Dosi MCP semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — how agents consume Dosi.
+- [Apache Ossie + Dosi: 10-minute quickstart](/blog/apache-ossie-dosi-quickstart/) — install, query, and wire it into an agent.

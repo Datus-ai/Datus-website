@@ -24,6 +24,7 @@ How datus.ai is built, so blog posts wire in correctly and render.
 - **Article JSON-LD + BreadcrumbList** are emitted automatically per post.
 - **TL;DR:** a `## TL;DR` section gets special styling (`wrapTldr`).
 - **Hero image:** frontmatter `heroImage`/`heroImageAlt` wins; else the first body image is promoted to the hero; else text-only hero. Images are optional — this is a text-first SEO blog.
+- **Image paths:** files live in `blog/public/images/<slug>/`; posts reference them as **`/images/<slug>/<file>`** — the site root, *not* `/blog/images/...`. `build-blog.mjs` copies `blog/public/*` into `dist/*` after `vite build` for exactly this reason. Compress before committing (the `tiny-png` skill).
 - **Reading time, TOC, share links** are generated automatically from the rendered HTML.
 
 ## Other site pieces the blog touches

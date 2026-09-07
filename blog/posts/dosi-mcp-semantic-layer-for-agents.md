@@ -172,3 +172,4 @@ MetricFlow and Cube remain strong authoring and serving stacks in many estates. 
 - [What is a data agent?](/blog/what-is-data-agent/) — the category context for these agents.
 - [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) — runtime choice for OSI metrics.
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the interchange format agents compile.
+- [Apache Ossie + Dosi: 10-minute quickstart](/blog/apache-ossie-dosi-quickstart/) — the MCP wiring, end to end on DuckDB.

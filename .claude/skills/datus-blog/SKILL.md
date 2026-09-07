@@ -35,8 +35,12 @@ Paths are relative to this skill directory (`.claude/skills/datus-blog/`).
 4. [ ] `references/website-overview.md` — site & blog build pipeline, commands, URLs.
 5. [ ] `references/product-positioning.md` — what Datus is + canonical vocabulary.
 6. [ ] `references/glossary-directions.md` — candidate topics + how to choose.
+7. [ ] `references/porting-external-articles.md` — **only when porting an
+       already-published article** (Medium / WeChat / an operator draft): how to
+       fetch the real source, pull and compress its images, and re-check its
+       facts before reusing them.
 
-`memory/README.md` holds the record format for step 7.
+`memory/README.md` holds the record format for step 7 of the workflow.
 
 ## Principles (these override convenience)
 
@@ -105,7 +109,7 @@ steps; ask only on genuine forks.
 | Glossary source (directions) | `src/glossary/glossaryData.ts` |
 | Blog build script (categories live here) | `scripts/build-blog.mjs` → `CATEGORIES` |
 | Sitemap | **auto-generated** by `build-blog.mjs` → `dist/blog/sitemap.xml` (referenced from the `dist/sitemap.xml` index). Do NOT hand-edit `src/public/sitemap.xml` for posts. |
-| Images (optional) | `blog/public/images/<slug>/…`, referenced as `/blog/images/<slug>/…` |
+| Images (optional) | live in `blog/public/images/<slug>/…`; referenced from a post as **`/images/<slug>/…`** (site root, **not** `/blog/images/…`). `build-blog.mjs` copies `blog/public/*` → `dist/*`. |
 | Memory ledger | `.claude/skills/datus-blog/memory/covered-topics.md` |
 
 **Build is static.** `npm run dev` (vite) does NOT render blog posts — they only
@@ -119,6 +123,11 @@ exist after the static build. Always preview with `build:all` + `preview`.
 ```bash
 git checkout main && git pull
 ```
+
+> **Porting an already-published article?** (Medium, WeChat, a conference write-up,
+> an operator draft.) The direction is decided — skip to
+> `references/porting-external-articles.md` for the fetch / image / fact-check
+> procedure, then rejoin at Step 3. Steps 4–8 are unchanged.
 
 ### Step 1 — Choose a direction (and check it's not covered)
 1. Open `src/glossary/glossaryData.ts`. Prefer a term with **no `article:` link
