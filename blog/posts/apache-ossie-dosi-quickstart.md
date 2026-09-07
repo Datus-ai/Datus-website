@@ -1,19 +1,19 @@
 ---
-title: "Apache Ossie + Dosi: 10-Minute Semantic Layer Quickstart"
-description: "Install Dosi, query a 191K-row DuckDB dataset from the CLI, wire it into Claude Code over MCP, and let attribution explain a revenue drop — in ten minutes."
+title: "Apache Ossie + Dosi: A 10-Minute Semantic Layer for Your AI Agent"
+description: "A 10-minute Dosi quick start: install, query a 191K-row DuckDB dataset from the CLI, connect it to Claude Code over MCP, and ask why revenue dropped."
 author: "Harrison Zhao"
 date: 2026-09-07
 lastmod: 2026-09-07
 head:
   - - meta
     - name: keywords
-      content: "Apache Ossie tutorial, Dosi quickstart, semantic layer for AI agents, OSI YAML to SQL, MCP server semantic layer, Claude Code MCP, metric attribution, DuckDB semantic layer, text-to-SQL alternative"
+      content: "Apache Ossie tutorial, Dosi quick start, semantic layer for AI agents, OSI YAML to SQL, MCP server semantic layer, Claude Code MCP, metric attribution, DuckDB semantic layer, TermWise attribution"
   - - meta
     - property: og:title
-      content: "Apache Ossie + Dosi: 10-Minute Semantic Layer Quickstart"
+      content: "Apache Ossie + Dosi: A 10-Minute Semantic Layer for Your AI Agent"
   - - meta
     - property: og:description
-      content: "Install Dosi, query a 191K-row DuckDB dataset from the CLI, wire it into Claude Code over MCP, and let attribution explain a revenue drop — in ten minutes."
+      content: "A 10-minute Dosi quick start: install, query a 191K-row DuckDB dataset from the CLI, connect it to Claude Code over MCP, and ask why revenue dropped."
   - - meta
     - property: og:type
       content: article
@@ -31,41 +31,42 @@ head:
       href: https://datus.ai/blog/apache-ossie-dosi-quickstart/
 ---
 
-# Apache Ossie + Dosi: 10-Minute Semantic Layer Quickstart
+# Apache Ossie + Dosi: A 10-Minute Semantic Layer for Your AI Agent
 
 ## TL;DR
 
-- **Dosi** compiles <a href="https://ossie.apache.org/" rel="nofollow noopener">Apache Ossie</a> (OSI) YAML semantic models into SQL for 16 warehouse dialects, and exposes the same semantic layer through a CLI, an MCP server, and REST/Python.
-- This walkthrough runs end to end on **local DuckDB** — no production connection: install → download a 191K-row dataset → query from the CLI → compile the same query for other dialects → register the MCP server in Claude Code → ask why revenue dropped.
-- Every command is copy-pasteable. Tested against **Dosi 0.1.9** with OSI spec `0.2.0.dev0`.
-- The point of the exercise: the agent answers through **your metric definitions** instead of guessing SQL, and the same numbers come back from the CLI and from the agent because there is one engine underneath.
-- The last step is the interesting one. `attribute_metric` turns "why did it drop?" into a **single deterministic call** whose decomposition reconciles back to the total change.
+In ten minutes, Dosi gives us four things:
 
-![Dosi as a semantic compiler: one Apache Ossie YAML model in, SQL for DuckDB, Postgres, MySQL, Snowflake, ClickHouse, Trino and StarRocks out, plus metrics Q&A and attribution in Claude Code](/images/apache-ossie-dosi-quickstart/dosi-ossie-yaml-to-sql.png)
+- **Define metrics once.** CLI, MCP, REST, and Python all use the same definitions. Switching Agents does not mean teaching the metric layer again.
+- **Change databases without changing metric definitions.** One Apache Ossie YAML model can compile into 16 SQL dialects.
+- **Every answer has a source.** You can inspect the generated SQL and the metric definition, so when something is wrong, you know where to look.
+- **"Why" is computed by the engine.** Attribution is not just an Agent guessing from a few query results, and the decomposition can reconcile back to the total.
 
-*One semantic model, many SQL dialects — and the same definitions served to an agent.*
+![Dosi as a semantic compiler: one Apache Ossie YAML model in, SQL for DuckDB, Postgres, MySQL, Snowflake, ClickHouse, Trino and StarRocks out, with metrics Q&A and attribution in Claude Code](/images/apache-ossie-dosi-quickstart/dosi-ossie-yaml-to-sql.png)
 
-Compared with letting an agent generate SQL on every question, a [semantic layer](/blog/what-is-semantic-layer) gives you a stable, consistent place for metric definitions, joins, and calculation logic. This guide is the shortest path to seeing that difference on your own machine.
+*One semantic model. Many SQL dialects.*
 
-> A version of this article was first published on <a href="https://medium.com/@linux.hust/apache-ossie-dosi-a-10-minute-semantic-layer-for-your-ai-agent-0a92fa1859e5" rel="nofollow noopener">Medium</a>. Versions and counts here have been re-checked against the current documentation.
+This is a 10-minute Quick Start for <a href="https://dosi.datus.ai/" rel="nofollow noopener">Dosi</a>. Dosi compiles <a href="https://ossie.apache.org/" rel="nofollow noopener">Apache Ossie</a> YAML semantic models into SQL for 16 database dialects, and exposes the same [semantic layer](/blog/what-is-semantic-layer/) through CLI, MCP, and APIs. Compared with letting an Agent generate SQL directly every time, Dosi gives you a more stable and consistent layer for metric definitions, joins, and calculation logic.
 
-## What you need
+We'll run through the whole flow in ten minutes:
 
-- Linux (x86_64 / arm64) or a Mac with Apple Silicon.
-- `claude --version` 2.1 or newer for the Claude Code section (the CLI-only sections need nothing else).
-- Roughly ten minutes, plus a small amount of model quota for the agent steps.
+install Dosi → download a 200K-row dataset → query it from the CLI → connect Dosi to Claude Code → ask questions → and finally ask Claude why revenue dropped.
 
-Dosi needs no toolchain, database, or client libraries — every warehouse connector is compiled into the published binary. The default build runs DuckDB **in your process**; it needs `libstdc++` on the machine because DuckDB is C++. There is a lean build that is pure Rust and shells out to a `duckdb` CLI for local queries instead, which is the right choice for distroless or older images.
+Every command below can be copied directly. This tutorial uses Dosi 0.1.9 and runs entirely on a local DuckDB database, so you don't need to connect to production.
 
-## 1. Install Dosi
+> A version of this article was first published on <a href="https://medium.com/@linux.hust/apache-ossie-dosi-a-10-minute-semantic-layer-for-your-ai-agent-0a92fa1859e5" rel="nofollow noopener">Medium</a>.
+
+## Install Dosi
+
+You need a Linux machine (x86_64 / arm64) or a Mac with Apple Silicon. Installation is one command:
 
 ```bash
 curl -fsSL https://dosi.datus.ai/install.sh | sh
 ```
 
-The installer detects your CPU architecture, verifies the SHA-256 checksum, installs `dosi` and `dosi-server` into `~/.local/bin`, and puts the example Apache Ossie YAML models under `~/.local/share/dosi/examples`.
+The installer detects your CPU architecture, verifies the SHA-256 checksum, installs `dosi` and `dosi-server` into `~/.local/bin`, and puts the example Apache Ossie YAML files under `~/.local/share/dosi/examples`.
 
-Verify it:
+Verify the installation:
 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
@@ -81,11 +82,11 @@ build      engine (DuckDB in process)
 examples   /home/you/.local/share/dosi/examples
 ```
 
-`dosi info` needs no model, so it doubles as a version probe. `build` tells you which of the two published builds you have — `engine` runs DuckDB in process, `lean` shells out to a `duckdb` CLI.
+## Download a 200K-row dataset
 
-## 2. Get a dataset worth exploring
+The built-in example only has few orders. That is enough to verify the basic functionality, but not enough to make attribution interesting.
 
-The built-in example has six rows of orders. That is enough to verify the plumbing and not enough to make attribution interesting, so download a bigger one:
+So we'll use a dataset with around 200K rows:
 
 ```bash
 export DOSI_EXAMPLES=~/.local/share/dosi/examples
@@ -94,30 +95,32 @@ export DOSI_DB=$PWD/orders.duckdb
 curl -fsSL https://dosi.datus.ai/orders-200k.duckdb -o "$DOSI_DB"
 ```
 
-The file is about 2 MB and contains 191K orders, 5,000 customers, and 500 products. Its tables and columns match the bundled `orders` model, so there is no semantic model to modify.
+The file is only 2 MB and contains 191K orders, 5,000 customers, and 500 products. Its tables and columns match the built-in `orders` model, so there is no need to modify the semantic model.
 
-Two things about this dataset are deliberate. It is generated with `hash()` rather than `random()`, so **your numbers will match the ones below**. And it contains two intentionally planted signals — we will let attribution find them in step 6 rather than describing them now.
+The dataset is generated with `hash()` rather than `random()`. It also contains two intentionally planted signals. We won't reveal them yet — later we'll let attribution find them.
 
-## 3. Look at the model before querying it
+## Query it from the CLI
+
+First, see what metrics are defined in the model:
 
 ```bash
 dosi list metrics --model $DOSI_EXAMPLES/orders/model.yaml
 ```
 
 ```text
-NAME               KIND        DATASETS           DESCRIPTION
-revenue            aggregate   orders             Total order amount
-order_count        aggregate   orders             Number of orders
-unique_customers   aggregate   orders             Distinct purchasing customers
-avg_order_value    ratio       orders             Revenue per order (ratio)
-total_margin       expression  orders, products   Revenue minus cost (expression over two aggregates)
+NAME              KIND        DATASETS          DESCRIPTION
+revenue           aggregate   orders            Total order amount
+order_count       aggregate   orders            Number of orders
+unique_customers  aggregate   orders            Distinct purchasing customers
+avg_order_value   ratio       orders            Revenue per order (ratio)
+total_margin      expression  orders, products  Revenue minus cost (expression over two aggregates)
 ```
 
-Pay attention to `KIND`. Dosi does not store a metric as a SQL string; it knows each metric's algebraic type. Ratios cannot simply be added together, and cross-table expressions cannot always be computed by joining everything first. The kind also determines how attribution decomposes the metric later — which is why this column exists at all.
+Pay attention to `KIND`.
 
-`dosi list datasets` and `dosi list dimensions` are the other two discovery calls, and they are what an agent uses before it queries anything.
+Dosi does not store a metric as just a SQL string. It understands the algebraic type of each metric. Ratios cannot simply be added together, and cross-table expressions cannot always be calculated by joining everything first. The metric type also determines how attribution works later.
 
-## 4. Run a metric query
+Now run a query:
 
 ```bash
 dosi query --model $DOSI_EXAMPLES/orders/model.yaml \
@@ -127,18 +130,16 @@ dosi query --model $DOSI_EXAMPLES/orders/model.yaml \
 ```
 
 ```text
-region   revenue      order_count   avg_order_value
-north    5390777.27   52610         102.47
-east     5141251.25   50324         102.16
-south    4866115.57   47831         101.74
-west     4190772.79   40634         103.13
+region  revenue      order_count  avg_order_value
+north   5390777.27   52610        102.47
+east    5141251.25   50324        102.16
+south   4866115.57   47831        101.74
+west    4190772.79   40634        103.13
 ```
 
-Note what you did *not* write: `region` lives in the `customers` table while the metrics come from `orders`, and the join is defined in the model, not in the query. That is the whole point of a metric query — you name business objects, and the compiler resolves grain and joins.
+`region` lives in the `customers` table, while the metrics come from `orders`. The join relationship is already defined in the model, so you don't need to write it in the query.
 
-### The same query, other dialects
-
-Drop `--execute` and Dosi compiles without running. Change `--dialect` and the same semantic query becomes SQL for a different database:
+Remove `--execute` and Dosi will only compile the SQL without running it. Change `--dialect`, and the same semantic query becomes SQL for different databases. For example, this query grouped by month:
 
 ```bash
 dosi query --model $DOSI_EXAMPLES/orders/model.yaml \
@@ -146,24 +147,26 @@ dosi query --model $DOSI_EXAMPLES/orders/model.yaml \
   --group-by orders.order_date:month --dialect mysql
 ```
 
-"Group by month" is one concept with several implementations:
+compiles differently per database:
 
 ```sql
 -- duckdb
 SELECT DATE_TRUNC('MONTH', orders.order_date) AS order_date__month, ...
 
 -- mysql
-SELECT STR_TO_DATE(DATE_FORMAT(orders.order_date, '%Y-%m-01'), '%Y-%m-%d') AS order_date__month, ...
+SELECT STR_TO_DATE(DATE_FORMAT(orders.order_date, '%Y-%m-01'), '%Y-%m-%d') AS ..., ...
 
 -- oracle
 SELECT TRUNC(orders.order_date, 'MM') AS order_date__month, ...
 ```
 
-Dosi ships executors for <a href="https://dosi.datus.ai/connectors/" rel="nofollow noopener">16 dialects</a> — DuckDB, SQLite, MySQL, TiDB, StarRocks, Doris, PostgreSQL, Hologres, Huawei Cloud DWS, GaussDB/openGauss, Oracle, ClickHouse, Trino, Snowflake, BigQuery, Databricks (Redshift compiles today but has no executor yet). These differences live in the compiler instead of in N hand-maintained SQL templates.
+The same concept — "group by month" — has different implementations across databases. Dosi currently supports <a href="https://dosi.datus.ai/connectors/" rel="nofollow noopener">16 SQL dialects</a>, so these differences are handled by the compiler instead of being maintained as separate SQL templates.
 
-## 5. Wire it into Claude Code over MCP
+## Connect Dosi to Claude Code
 
-Dosi ships its own MCP server, so there is no adapter to install. Start it in the background so you keep the terminal and the exported variables:
+Dosi comes with an <a href="https://dosi.datus.ai/mcp/" rel="nofollow noopener">MCP Server</a>, so there is no extra adapter to install.
+
+Start it in the background and suppress the logs. This lets us continue using the same terminal, without having to re-export the environment variables:
 
 ```bash
 dosi-server \
@@ -171,9 +174,7 @@ dosi-server \
   --db "$DOSI_DB" >/dev/null 2>&1 &
 ```
 
-> **Don't skip `--db`.** Without it the server's local DuckDB is in-memory and unseeded: `compile_sql` works, `run_query` fails with a missing-table error. It is the most common first-run confusion.
-
-Register it:
+Now register the MCP server:
 
 ```bash
 claude mcp add --transport http dosi http://127.0.0.1:8081/mcp
@@ -184,55 +185,150 @@ claude mcp list
 dosi: http://127.0.0.1:8081/mcp (HTTP) - ✔ Connected
 ```
 
-`claude mcp list` actually connects, so it works as a health check. MCP is mounted at `POST /mcp` — at the top level, not under `/v1`. If the server requires a token (`--auth-token`, env `DOSI_SERVER_TOKEN`), pass it at registration with `--header "Authorization: Bearer $DOSI_SERVER_TOKEN"`.
+`claude mcp list` actually connects to the server, so it also works as a simple health check. Dosi exposes a set of tools, ranging from `list_metrics` to `attribute_metric`.
 
-The tools the server exposes fall into four groups — discovery (`list_datasets`, `list_metrics`, `list_dimensions`, `describe_metric`, `get_capabilities`), compilation (`compile_sql`, `explain_query`), execution (`run_query`, `select`), and analysis (`attribute_metric`), plus `validate_model`. The <a href="https://dosi.datus.ai/mcp/" rel="nofollow noopener">MCP reference</a> lists the current set; a given server reports its own via `tools/list`, so check there rather than assuming a fixed count.
+## Ask questions
 
-Now start Claude Code and ask:
+Now start Claude Code, then ask:
 
 ```text
 What are revenue and average order value by region?
 ```
 
-The answer comes back with the same numbers as step 4 — same engine, same definitions — typically with the observation that the revenue spread is driven by order volume rather than by average order value (AOV lands within roughly 1.4% across the four regions, while order volume ranges from 40.6K in west to 52.6K in north, a difference of around 29%).
-
-Two details are worth noticing in the response. Claude Code only had to map "revenue," "average order value," and "region" to metrics and dimensions — SQL compilation and execution were Dosi's job. And when it explains what a metric means (`avg_order_value` is revenue ÷ order count, *not* value per customer; `region` comes from `customers.region` joined through `orders.customer_id`), that explanation comes from the semantic model rather than being reinvented.
-
-So far we have solved the easy problem: getting the number right.
-
-## 6. Ask the hard question: why did it drop?
-
-The more common question behind a dashboard is not *what* but *why*. Without leaving Claude Code:
+Here is a possible output:
 
 ```text
-Revenue dropped significantly in Q2 2024 compared with Q1. Help me understand why.
+| Region | Revenue      | Avg Order Value | Orders |
+|--------|--------------|-----------------|--------|
+| north  | 5,390,777.27 | 102.47          | 52,610 |
+| east   | 5,141,251.25 | 102.16          | 50,324 |
+| south  | 4,866,115.57 | 101.74          | 47,831 |
+| west   | 4,190,772.79 | 103.13          | 40,634 |
+
+- The revenue difference is mainly driven by order volume, not average order value.
+  AOV is almost identical across the four regions, with a range of only about 1.4%.
+  Order volume ranges from 40.6K in west to 52.6K in north, a difference of around 29%.
+
+- west has the highest AOV but the lowest revenue. Value per order is not the problem;
+  traffic/order volume is.
+
+- Metric definitions: revenue = revenue (sum of order amount);
+  avg_order_value = revenue / order count, not value per customer.
+  Region comes from customers.region and is joined through orders.customer_id.
 ```
 
-This time the agent calls Dosi's attribution tool and then drills down from the attribution result. In one recorded run the agent made 11 tool calls in 98 seconds and found both planted signals, separated and quantified:
+The numbers are exactly the same as the CLI results above, because both use the same engine and the same metric definitions.
 
-**The epicenter.** Revenue fell $1.57M (−14.8%) Q1→Q2 2024 ($10.58M → $9.01M), and it was not broad-based: the West region alone accounted for $1.02M — 65% — of the entire decline, collapsing roughly 39% while the other three regions each dipped 6–8%. Inside West, two problems compounded:
+Claude Code mainly needs to understand that "revenue," "average order value," and "region" map to specific Metrics and Dimensions. SQL compilation and execution are handled by Dosi.
 
-| West | Q1 2024 | Q2 2024 | Change |
-|---|---|---|---|
-| Completed revenue | $2.39M | $1.14M | −52% |
-| Completed orders | 22,503 | 11,617 | −48% |
-| Cancelled orders | 2,019 | 4,495 | +123% |
-| Cancellation rate | 8.2% | 27.9% | ~3.4x |
+The metric definitions in the explanation also come from the semantic model instead of being reinvented by Claude.
 
-**The secondary signal.** Electronics fell across every region (−$892K, the largest category drop), but worst in the West (−51%, versus 27–28% elsewhere). So there are two distinct stories: a broad electronics softening, plus a West-specific operational breakdown that dominates the total.
+So far we have solved the first problem: getting the number right.
 
-The agent also noticed something a careless analysis would miss — the `revenue` metric includes cancelled orders, which is why completed revenue (−$1.75M) and rising cancelled revenue (+$174K) partly offset each other in the totals.
+But the more common question behind a dashboard is:
 
-### What the tool actually returns
+## Why did it drop?
 
-The `attribute_metric` call the agent used corresponds exactly to this CLI command:
+Without leaving Claude Code, ask:
+
+```text
+Revenue dropped significantly in Q2 2024 compared with Q1.
+Help me understand why.
+```
+
+This time Claude Code will call Dosi's attribution tools and then continue drilling down based on the attribution results.
+
+In one actual run, Claude made 11 tool calls in 98 seconds. Here is an excerpt from the result:
+
+```text
+This is exactly what the attribution tool is for. Let me load it and compare
+Q2 2024 against Q1 2024.
+I'll run attribution on revenue, comparing Q1 2024 (baseline) against Q2 2024
+(current), across the candidate dimensions.
+
+  Called dosi
+
+Revenue fell $1.57M (−14.8%) Q1→Q2 2024 ($10.58M → $9.01M). The attribution
+shows the drop is not broad-based — it's concentrated in three overlapping
+signals. Let me confirm whether they're the same story by drilling into the
+intersection.
+
+  Called dosi 2 times
+
+The drop has a clear epicenter. Here's what the data says.
+
+Headline
+
+Revenue fell $1.57M (−14.8%), but this wasn't broad-based. The West region
+alone accounts for $1.02M — 65% — of the entire company's decline, collapsing
+~39% while the other three regions each dipped only 6–8%.
+
+What actually happened in the West
+
+Two compounding problems, both in West:
+
+┌───────────────────┬─────────┬─────────┬────────┐
+│       West        │ Q1 2024 │ Q2 2024 │ Change │
+├───────────────────┼─────────┼─────────┼────────┤
+│ Completed revenue │  $2.39M │  $1.14M │   −52% │
+├───────────────────┼─────────┼─────────┼────────┤
+│ Completed orders  │  22,503 │  11,617 │   −48% │
+├───────────────────┼─────────┼─────────┼────────┤
+│ Cancelled orders  │   2,019 │   4,495 │  +123% │
+├───────────────────┼─────────┼─────────┼────────┤
+│ Cancellation rate │    8.2% │   27.9% │  ~3.4× │
+└───────────────────┴─────────┴─────────┴────────┘
+
+- Order volume roughly halved — completed orders dropped from 22.5K to 11.6K.
+- Cancellations more than doubled on top of that. Nearly 1 in 3 West orders
+  now cancels, vs. 1 in 12 last quarter.
+
+Company-wide this shows up as the top-ranked signal in attribution: completed
+revenue −$1.75M, partly masked by cancelled revenue rising +$174K (the tool
+flagged these offsetting deltas). Average order value on completed orders
+barely moved (~$106 → ~$98), so this is a volume + cancellation problem, not a
+pricing one.
+
+The secondary signal: electronics
+
+Electronics fell across every region (−$892K, the largest category drop), but
+again worst in the West:
+
+┌─────────────────────┬───────┬───────┬────────┐
+│ Electronics revenue │  Q1   │  Q2   │ Change │
+├─────────────────────┼───────┼───────┼────────┤
+│ West                │ $652K │ $320K │   −51% │
+├─────────────────────┼───────┼───────┼────────┤
+│ North               │ $702K │ $514K │   −27% │
+├─────────────────────┼───────┼───────┼────────┤
+│ East                │ $681K │ $487K │   −28% │
+├─────────────────────┼───────┼───────┼────────┤
+│ South               │ $645K │ $467K │   −28% │
+└─────────────────────┴───────┴───────┴────────┘
+
+So there are two distinct stories: a broad ~28% electronics softening
+(possibly supply, pricing, or seasonal), plus a West-specific operational
+breakdown — volume loss and a cancellation spike — that dominates the total.
+```
+
+Both planted signals were found, separated, and quantified. Claude Code also noticed that the `revenue` metric includes cancelled orders.
+
+The traditional way to answer this question is to run a long series of exploratory queries: calculate the totals for both periods, compare dimension after dimension, align segments that appear or disappear between periods, and finally calculate how much each segment contributed to the total change.
+
+An Agent can write those SQL queries itself, but the more queries it runs, the easier it becomes for definitions to drift or for the final contributions to stop reconciling with the total.
+
+Dosi turns this part into a semantic-layer primitive.
+
+The `attribute_metric` call Claude Code just used corresponds directly to this CLI command:
 
 ```bash
-dosi attribute --model $DOSI_EXAMPLES/orders/model.yaml \
+dosi --model $DOSI_EXAMPLES/orders/model.yaml attribute \
   --metric revenue --dimensions customers.region,products.category \
   --baseline 2024-01-01..2024-04-01 --current 2024-04-01..2024-07-01 \
   --db "$DOSI_DB"
 ```
+
+It returns structured results directly:
 
 ```json
 {
@@ -245,7 +341,7 @@ dosi attribute --model $DOSI_EXAMPLES/orders/model.yaml \
     "pct_change": -14.85
   },
   "dimension_ranking": [
-    { "dimension": "customers.region", "score": 0.650 },
+    { "dimension": "customers.region",  "score": 0.650 },
     { "dimension": "products.category", "score": 0.568 }
   ],
   "top_dimension_values": [
@@ -266,57 +362,68 @@ dosi attribute --model $DOSI_EXAMPLES/orders/model.yaml \
 }
 ```
 
-One call, and you already know revenue dropped 1.57M (−14.8%), that `west` is the most important regional change, and that `electronics` is the most important category change. Each segment can return `drill_down.where_sql`, so the agent reuses the filter to keep exploring instead of reconstructing a `WHERE` clause. The response also carries a `reconciliation` block that checks whether the decomposition adds back up to the total change.
+From one call, we can already see that revenue dropped by 1.57M (-14.8%), `west` is the most important regional change, and `electronics` is the most important category change.
 
-Ratio metrics get a different method. Average order value fell from 105.97 to 98.40 (−7.1%), and Dosi decomposes that into `mix_effect` and `rate_effect` — here `mix_effect` is only −0.02 while `rate_effect` is −7.54, i.e. this was not a shift in segment mix. Electronics AOV fell from 97.08 to 70.30 while its share barely moved, 0.277 → 0.278.
+Each segment can also return `drill_down.where_sql`, so the Agent can reuse the filter and continue exploring. The response also contains `reconciliation`, which checks whether the decomposition reconciles back to the total change.
 
-Contrast that with the alternative. An agent *can* write the exploratory SQL itself: totals for both periods, then dimension after dimension, aligning segments that appear or disappear between periods, then computing each segment's contribution. But the more queries it improvises, the easier it is for definitions to drift and for contributions to stop reconciling with the total. Dosi turns that loop into a semantic-layer primitive — which is the argument for [keeping attribution in the engine rather than in a prompt](/blog/dosi-mcp-semantic-layer-for-agents).
+Ratio metrics use a different attribution method.
 
-## 7. What ten minutes bought you
+For example, average order value dropped from 105.97 to 98.40 (-7.1%). Dosi can decompose that into `mix_effect` and `rate_effect`. In this case, `mix_effect` is only -0.02, while `rate_effect` is -7.54. Electronics AOV dropped from 97.08 to 70.30, while its share barely changed from 0.277 to 0.278.
 
-One design point holds the whole walkthrough together: **the CLI, the API, and MCP are not separate implementations.** The `attribute_metric` tool the agent called and the `dosi attribute` command you ran go through the same semantic engine, and the same is true for `compile_sql` and `run_query`. The CLI is convenient for humans, debugging, and CI; MCP is convenient for agents; REST suits BI and services. Underneath there is one set of metric definitions, one SQL compiler, and one attribution engine.
+## Summary
 
-| What you get | Why it matters |
-|---|---|
-| **Define metrics once** | CLI, MCP, REST, and Python use the same definitions. Switching agents does not mean re-teaching the metric layer. |
-| **Change databases without touching definitions** | One Ossie YAML model compiles to 16 SQL dialects. |
-| **Every answer has a source** | You can inspect the generated SQL and the metric definition, so when a number looks wrong you know where to look. |
-| **"Why" is computed, not guessed** | Attribution is a deterministic decomposition that reconciles back to the total, not an agent's summary of a few queries. |
+One important design point here is that **CLI, API and MCP are not two separate implementations**.
 
-## Where to go next
+The `attribute_metric` tool you just used from Claude Code and the manual `dosi attribute` command run through the same semantic engine. The same is true for `compile_sql` and `run_query`.
 
-- Official docs: <a href="https://dosi.datus.ai/" rel="nofollow noopener">dosi.datus.ai</a>, the <a href="https://dosi.datus.ai/agents/claude-code/" rel="nofollow noopener">Claude Code walkthrough</a> (also covers Codex and OpenCode), and the <a href="https://dosi.datus.ai/attribution/" rel="nofollow noopener">attribution guide</a>.
-- Building semantic models with an agent instead of by hand: <a href="https://datus.ai/" rel="nofollow noopener">datus.ai</a>, and <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a> for data teams.
+CLI is convenient for humans, debugging, and CI. MCP is convenient for [Agents](/blog/what-is-data-agent/), API is suitable for BI & Services. But there is only one set of metric definitions, one SQL compiler, and one attribution engine underneath all of them.
+
+That is also why attribution belongs in the semantic layer instead of in an Agent prompt.
+
+In ten minutes, Dosi gives us four things:
+
+- **Define metrics once.** CLI, MCP, REST, and Python all use the same definitions. Switching Agents does not mean teaching the metric layer again.
+- **Change databases without changing metric definitions.** One Apache Ossie YAML model can compile into 16 SQL dialects.
+- **Every answer has a source.** You can inspect the generated SQL and the metric definition, so when something is wrong, you know where to look.
+- **"Why" is computed by the engine.** Attribution is not just an Agent guessing from a few query results, and the decomposition can reconcile back to the total.
+
+Documentation:
+
+1. <a href="https://dosi.datus.ai/" rel="nofollow noopener">https://dosi.datus.ai/</a>
+2. <a href="https://dosi.datus.ai/agents/claude-code/" rel="nofollow noopener">https://dosi.datus.ai/agents/claude-code/</a>
+3. <a href="https://dosi.datus.ai/attribution/" rel="nofollow noopener">https://dosi.datus.ai/attribution/</a>
+
+If you want know more about how to create semantic model with Agents, try <a href="https://datus.ai/" rel="nofollow noopener">datus.ai</a>, and we have a commercial solution for data teams, see <a href="https://studio.datus.ai/overview" rel="nofollow noopener">Datus Studio</a>.
 
 ## Frequently asked questions
 
 ### Do I need a warehouse to try this?
 
-No. Everything above runs against a local DuckDB file, which is why the walkthrough is safe to do on a laptop during a meeting. The default Dosi build embeds DuckDB in-process, so `--execute --db orders.duckdb` needs nothing installed. When you point it at a real warehouse later, only the connection profile changes — the model and the queries stay as they are.
+No. The whole tutorial runs on a local DuckDB database, so you don't need to connect to production. The dataset is a 2 MB file with 191K orders, 5,000 customers and 500 products, and its tables and columns match the built-in `orders` model — so there is no semantic model to modify either.
 
-### How is this different from letting Claude write SQL against my database over MCP?
+### Will my numbers match the ones in this article?
 
-A database MCP server gives the agent tables and lets it guess the rest: which column is revenue, whether to exclude cancelled orders, how to join to `customers`. A semantic MCP server gives it governed metric names and returns SQL compiled from those definitions. The practical difference shows up in consistency — the CLI and the agent produced identical numbers here — and in failure mode: a wrong metric name is a structured error with candidates, not a plausible-looking wrong number.
+The CLI numbers will: the dataset is generated with `hash()` rather than `random()`, so it is deterministic. The agent narrative will not match word for word — in one actual run Claude made 11 tool calls in 98 seconds, and another run may explore in a different order. That is exactly why the deterministic parts belong in the engine and the open-ended exploration belongs in the model.
 
-### Will my attribution numbers match the ones in this article?
+### Why does `KIND` matter in the metric list?
 
-The CLI numbers will, because the dataset is generated with `hash()` rather than `random()` and ships as a fixed file. The *agent* narrative will not match word for word — tool-call counts and phrasing vary between runs, which is exactly why the deterministic parts belong in the engine. The `attribute_metric` output for the same windows is stable; the prose around it is not.
+Because Dosi does not store a metric as just a SQL string — it understands the algebraic type of each metric. Ratios cannot simply be added together, and cross-table expressions cannot always be calculated by joining everything first. The metric type also determines how attribution decomposes the metric: `revenue` uses `term_wise`, while a ratio like `avg_order_value` is split into `mix_effect` and `rate_effect`.
 
-### Why does the walkthrough say 16 dialects when the diagram says 13?
+### How is this different from letting an Agent write SQL against my database?
 
-Because the connector list grew after the diagram was drawn. The current <a href="https://dosi.datus.ai/connectors/" rel="nofollow noopener">connectors page</a> is the source of truth: 16 dialects with executors, plus Redshift, which compiles to SQL but has no executor yet. Treat any count in a diagram — including ours — as a snapshot.
+An Agent can write the exploratory SQL itself, but the more queries it runs, the easier it becomes for definitions to drift or for the final contributions to stop reconciling with the total. Here the join between `orders` and `customers` comes from the model, the metric definitions in the explanation come from the semantic model instead of being reinvented, and the CLI and the Agent return identical numbers because they share one engine.
 
-### Is Dosi open source?
+### Why is attribution part of the semantic layer rather than the prompt?
 
-Apache Ossie, the specification, is Apache-2.0 and lives at the ASF. Dosi is source-available under the Elastic License 2.0, not an OSI-approved open-source licence. [Datus Agent](/blog/what-is-data-engineering-agent-2026), the data engineering agent Dosi was built for, is Apache-2.0.
+Because the CLI, API and MCP are not separate implementations. The `attribute_metric` tool the Agent calls and the manual `dosi attribute` command run through the same semantic engine, with one set of metric definitions, one SQL compiler and one attribution engine underneath. The response also contains `reconciliation`, which checks the decomposition against the total change — something a prompt cannot guarantee.
 
-### What is the smallest useful next step after this tutorial?
+### Do I have to rewrite metric definitions when I change database?
 
-Point `dosi validate` at a semantic model you already have — a MetricFlow or Cube model converted to Ossie YAML, or one you generated — and fix what it reports before wiring any agent to it. Model errors surface as structured codes at compile time, which is a much cheaper place to find them than in a Monday dashboard review.
+No. One Apache Ossie YAML model compiles into 16 SQL dialects; you change `--dialect` (or point at another connection) and the model stays as it is. "Group by month" is one concept with different implementations per database, and those differences are handled by the compiler instead of being maintained as separate SQL templates.
 
 ## Related articles
 
-- [What Makes a Semantic Layer AI-Native? 6 Requirements](/blog/ai-native-semantic-layer/) — the reasoning behind this tooling
+- [What Makes a Semantic Layer Truly AI-Native?](/blog/ai-native-semantic-layer/) — the reasoning behind this tooling
 - [Dosi MCP Semantic Layer for Agents — No SQL Guessing](/blog/dosi-mcp-semantic-layer-for-agents/) — semantic MCP versus database MCP
 - [Introducing Dosi: OSI-Native Semantic Layer for Metrics](/blog/introducing-dosi/) — surfaces, dialects, and structured errors
 - [What Is Open Semantic Interchange (OSI)?](/blog/open-semantic-interchange-osi/) — the spec Dosi compiles

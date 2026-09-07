@@ -37,8 +37,9 @@ Paths are relative to this skill directory (`.claude/skills/datus-blog/`).
 6. [ ] `references/glossary-directions.md` — candidate topics + how to choose.
 7. [ ] `references/porting-external-articles.md` — **only when porting an
        already-published article** (Medium / WeChat / an operator draft): how to
-       fetch the real source, pull and compress its images, and re-check its
-       facts before reusing them.
+       fetch the real source, pull and compress its images, re-check its facts —
+       and how much of the author's body copy you may touch (answer: almost
+       none).
 
 `memory/README.md` holds the record format for step 7 of the workflow.
 
@@ -124,10 +125,14 @@ exist after the static build. Always preview with `build:all` + `preview`.
 git checkout main && git pull
 ```
 
-> **Porting an already-published article?** (Medium, WeChat, a conference write-up,
-> an operator draft.) The direction is decided — skip to
-> `references/porting-external-articles.md` for the fetch / image / fact-check
-> procedure, then rejoin at Step 3. Steps 4–8 are unchanged.
+> **Porting an already-published article?** (Medium, WeChat, a conference
+> write-up, an operator draft — usually written by a Datus core developer.) The
+> direction is decided, so skip to `references/porting-external-articles.md`:
+> **preserve the author's body copy verbatim**, add only the structural layer
+> (TL;DR, FAQ, Related articles, images, internal links) around it, and fix
+> stale facts surgically in place. **Do not rewrite the prose to fit the house
+> template** — the author's voice is the asset. Then rejoin at Step 3; Steps
+> 4–8 are unchanged.
 
 ### Step 1 — Choose a direction (and check it's not covered)
 1. Open `src/glossary/glossaryData.ts`. Prefer a term with **no `article:` link
