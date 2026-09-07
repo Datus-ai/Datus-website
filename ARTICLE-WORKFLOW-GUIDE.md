@@ -5,24 +5,32 @@
 > static pages at `/blog/<slug>/`).
 
 The authoritative, up-to-date guidance for writing and shipping a Datus blog post
-now lives in the **blog agent config** under [`agent/`](./agent/):
+now lives in the **`datus-blog` skill** under
+[`.claude/skills/datus-blog/`](./.claude/skills/datus-blog/):
 
+- **The end-to-end SOP** (research → write → wire → preview → PR → memory):
+  [`.claude/skills/datus-blog/SKILL.md`](./.claude/skills/datus-blog/SKILL.md)
 - **How to write** — voice, structure, frontmatter, SEO, post templates:
-  [`agent/knowledge/blog-standard.md`](./agent/knowledge/blog-standard.md)
+  [`references/blog-standard.md`](./.claude/skills/datus-blog/references/blog-standard.md)
 - **How the site & blog build** — pipeline, URLs, commands, deploy:
-  [`agent/knowledge/website-overview.md`](./agent/knowledge/website-overview.md)
+  [`references/website-overview.md`](./.claude/skills/datus-blog/references/website-overview.md)
 - **Product positioning & canonical vocabulary:**
-  [`agent/knowledge/product-positioning.md`](./agent/knowledge/product-positioning.md)
+  [`references/product-positioning.md`](./.claude/skills/datus-blog/references/product-positioning.md)
 - **SEO goal & research discipline (never fabricate):**
-  [`agent/knowledge/seo-and-research.md`](./agent/knowledge/seo-and-research.md)
-- **End-to-end publishing workflow (the SOP):**
-  [`agent/AGENTS.md`](./agent/AGENTS.md)
+  [`references/seo-and-research.md`](./.claude/skills/datus-blog/references/seo-and-research.md)
+- **Candidate topics from the glossary:**
+  [`references/glossary-directions.md`](./.claude/skills/datus-blog/references/glossary-directions.md)
 - **What's already published (avoid duplicates):**
-  [`agent/memory/covered-topics.md`](./agent/memory/covered-topics.md)
+  [`memory/covered-topics.md`](./.claude/skills/datus-blog/memory/covered-topics.md)
+
+In Claude Code the skill triggers on a request like *"写一篇 blog，从当前
+/glossary 中挑一个方向"*, or invoke it explicitly with `/datus-blog`.
 
 ## Quick facts (current pipeline)
 - Post source: `blog/posts/<slug>.md` → built to `https://datus.ai/blog/<slug>/`.
 - Build & preview locally: `npm run build:all` then `npm run preview` → `http://localhost:4173/blog/<slug>/`.
   (`npm run dev` does **not** render blog posts — the blog is static.)
-- After adding a post: update `src/public/sitemap.xml`, add the slug to `CATEGORIES` in `scripts/build-blog.mjs`, and set the term's `article` in `src/glossary/glossaryData.ts`.
+- After adding a post: add the slug to `CATEGORIES` in `scripts/build-blog.mjs`
+  and set the term's `article` in `src/glossary/glossaryData.ts`. The sitemaps are
+  generated into `dist/` at build time — never hand-edit them for a post.
 - A `## Frequently asked questions` section (≥2 `###` questions) auto-emits `FAQPage` JSON-LD.

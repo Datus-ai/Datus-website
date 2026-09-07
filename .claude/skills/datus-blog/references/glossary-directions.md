@@ -2,7 +2,7 @@
 
 Source of directions: `src/glossary/glossaryData.ts` (in the repo root)
 (47 terms in 7 categories). A term with an `article:` link already has a blog
-post — **prefer terms without one**. Always re-check `memory/covered-topics.md`
+post — **prefer terms without one**. Always re-check `../memory/covered-topics.md`
 before committing to a direction (the ledger is authoritative; this file is a
 snapshot that can drift as posts ship).
 
@@ -67,10 +67,10 @@ For 2–3 candidates, weigh:
 1. **Search value** — is it a term data teams actually search? (glossary "what-is-X" terms usually are.)
 2. **Whitespace** — can we beat the current top results with more depth / an honest table / a failure-mode walkthrough?
 3. **Datus fit** — is there a natural, honest bridge to evolvable context / agents / semantic layer? (Almost all of these do: e.g. CDC → freshness → agent monitoring; SCD → grain → schema linking; data lineage → context engine; embeddings/vector search → Tree+Vector memory.)
-4. **Portfolio balance** — fills a gap or closes a referenced-but-unwritten link, and isn't a near-duplicate of anything in `memory/covered-topics.md`.
+4. **Portfolio balance** — fills a gap or closes a referenced-but-unwritten link, and isn't a near-duplicate of anything in `../memory/covered-topics.md`.
 
 When you publish a term's post, also set its `article: "/blog/<slug>/"` in
-`glossaryData.ts` and move it to the "covered" list in `memory/covered-topics.md`.
+`glossaryData.ts` and move it to the "covered" list in `../memory/covered-topics.md`.
 
 ## Slug naming
 Match the corpus: glossary posts use `what-is-<term>` (e.g. `what-is-cdc`,

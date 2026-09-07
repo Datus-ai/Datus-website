@@ -16,7 +16,7 @@ Never write from memory alone. Before drafting any post:
 2. **Understand it deeply** — the real definition, mechanics, trade-offs, failure modes, and how practitioners actually talk about it.
 3. **Collect citable facts** — every number, date, capability, quote, or competitor claim you'll use, each tied to a real source URL. Those become `rel="nofollow noopener"` external links in the post.
 4. **Scout the SERP** — look at what currently ranks for the target keyword. Identify how to be better: more depth, an honest comparison table they lack, a concrete failure-mode walkthrough, a clearer definition, updated 2026 facts.
-5. **If you can't verify it, don't claim it.** Hedge honestly ("typically", "in practice", "as of 2026") or leave it out. This is a hard line from `SOUL.md` and an explicit operator requirement.
+5. **If you can't verify it, don't claim it.** Hedge honestly ("typically", "in practice", "as of 2026") or leave it out. This is a hard line from the skill principles (SKILL.md) and an explicit operator requirement.
 
 ## On-page SEO checklist (per post)
 - **Title** — keyword-first, < ~60 chars, compelling. Pattern for definitions: "What Is X? Definition, <benefit> & <differentiator>".
@@ -31,7 +31,7 @@ Never write from memory alone. Before drafting any post:
 - **Differentiation** — the page must say something the current top results don't.
 
 ## What NOT to do (SEO-harmful)
-- Don't duplicate an existing post's topic/angle (check `memory/covered-topics.md`) — internal duplication splits ranking signals. The corpus already has a couple of accidental near-duplicates; don't add more.
+- Don't duplicate an existing post's topic/angle (check `../memory/covered-topics.md`) — internal duplication splits ranking signals. The corpus already has a couple of accidental near-duplicates; don't add more.
 - Don't keyword-stuff, don't invent stats, don't publish thin pages.
 - Don't link to non-existent internal posts (creates 404s). Verify targets exist in `blog/posts/`.
 - Don't `dofollow` competitor/external links (use `nofollow noopener`).

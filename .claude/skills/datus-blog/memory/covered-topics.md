@@ -97,7 +97,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - ~~Data Contract → `/blog/what-is-data-contract/`~~ — FILLED (PR #55, 2026-07-10).
 - MCP → `/blog/what-is-mcp-data-engineering/` (no post; a different `mcp-data-engineering` exists) — write `what-is-mcp-data-engineering` OR repoint the glossary link.
 
-**Open directions (no article):** see `knowledge/glossary-directions.md` (31 terms).
+**Open directions (no article):** see `../references/glossary-directions.md` (31 terms).
 
 ---
 

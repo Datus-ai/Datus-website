@@ -7,7 +7,7 @@ hub-and-spoke intelligently.
 ## Files
 - `covered-topics.md` — the canonical ledger. Seeded with every post that
   existed at agent-creation time (Jul 2026), plus glossary coverage. **Append a
-  new record every time you finish a post** (Step 7 in `AGENTS.md`).
+  new record every time you finish a post** (Step 7 in `../SKILL.md`).
 
 ## Before choosing a direction
 Read `covered-topics.md`. Skip anything already listed or a near-duplicate
