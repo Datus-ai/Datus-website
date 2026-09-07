@@ -189,3 +189,4 @@ Unlikely as a universal outcome — and that is healthy. MetricFlow remains the 
 - [Semantic vs syntactic interoperability](/blog/semantic-vs-syntactic-interoperability/) — the interoperability layers behind runtime.
 - [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — format vs runtime, in depth.
 - [Introducing Dosi](/blog/introducing-dosi/) — a native OSI runtime in practice.
+- [What makes a semantic layer AI-native?](/blog/ai-native-semantic-layer/) — the six requirements a runtime has to meet.

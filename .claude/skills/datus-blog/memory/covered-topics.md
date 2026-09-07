@@ -433,3 +433,36 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Category: "Semantic Layer"
 - PR: https://github.com/Datus-ai/Datus-website/pull/73   Status: open
 - Date: 2026-08-26
+
+### ai-native-semantic-layer
+- Title: What Makes a Semantic Layer AI-Native? 6 Requirements
+- Target keyword: AI-native semantic layer (semantic layer for AI agents, Apache Ossie, OSI spec, semantic layer runtime, parameterized metrics, metric attribution, structured errors)
+- Angle: requirements/definition — "AI-native = open spec + deterministic runtime + agent-native tools"; the layer moves from the query path into the agent reasoning loop (so compile latency matters); fewer-but-composable metrics beat a thousand-entry catalog; NO RAG inside the semantic layer; attribution needs a bounded contract; human taste still required. Distinct from why-osi-needs-execution-engine (interchange vs runtime) and introducing-dosi (product intro)
+- Source direction: PORT of https://medium.com/@linux.hust/what-makes-a-semantic-layer-truly-ai-native-cc3a8939305e (originally published 2026-08-31, Harrison Zhao)
+- Key sources: dosi.datus.ai/benchmarks, /connectors, /errors, /attribution, /parameterized-metrics; github.com/apache/ossie (+ ontology/ontology.md 0.2.0.dev0); github.com/dbt-labs/metricflow
+- Internal links added: why-osi-needs-execution-engine, introducing-dosi, apache-ossie-dosi-quickstart, dosi-vs-metricflow, what-is-semantic-layer, why-ai-agents-need-semantic-context-to-work-reliably, what-is-data-engineering-agent-2026, what-is-ontology, semantic-layer-vs-ontology, rag-data-engineering, dosi-mcp-semantic-layer-for-agents
+- Reciprocal links added from: why-osi-needs-execution-engine
+- Images: 4 (blog/public/images/ai-native-semantic-layer/) — pulled from the Medium CDN at original resolution, pngquant-compressed
+- Fact corrections vs source: 16 dialects w/ executors (source said 15, diagram 13+); cold start 220-237x / warm 10-22x (source said ~200x); attribution strategies term_wise + mix_shift (source said LMDI); Dosi is Elastic License 2.0 source-available (source said "open")
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/75   Status: open
+- Date: 2026-09-07
+
+### apache-ossie-dosi-quickstart
+- Title: Apache Ossie + Dosi: 10-Minute Semantic Layer Quickstart
+- Target keyword: Apache Ossie quickstart / Dosi quickstart (semantic layer for AI agents, OSI YAML to SQL, MCP server semantic layer, Claude Code MCP, metric attribution, DuckDB semantic layer)
+- Angle: how-to/tutorial — the first runnable tutorial in the Dosi cluster: install -> 191K-row DuckDB dataset -> CLI metric query -> same query compiled for other dialects -> dosi-server MCP registered in Claude Code -> attribution finds two planted signals in a Q1->Q2 revenue drop. Distinct from dosi-mcp-semantic-layer-for-agents (architecture, no walkthrough)
+- Source direction: PORT of https://medium.com/@linux.hust/apache-ossie-dosi-a-10-minute-semantic-layer-for-your-ai-agent-0a92fa1859e5 (originally published 2026-08-27, Harrison Zhao)
+- Key sources: dosi.datus.ai/install, /cli, /mcp, /connectors, /attribution, /agents/claude-code; ossie.apache.org
+- Internal links added: ai-native-semantic-layer, dosi-mcp-semantic-layer-for-agents, introducing-dosi, open-semantic-interchange-osi, mcp-data-engineering, what-is-semantic-layer, what-is-data-engineering-agent-2026
+- Reciprocal links added from: introducing-dosi, dosi-mcp-semantic-layer-for-agents
+- Images: 1 hero (blog/public/images/apache-ossie-dosi-quickstart/) — Medium CDN original, pngquant-compressed
+- Fact corrections vs source: pinned to dosi 0.1.9 (source 0.1.8); 16 dialects (source "13+"); MCP tool families instead of "11 tools" (reference lists 14, official walkthrough's tools/list returns 10); all reader-facing URLs re-verified (install.sh + orders-200k.duckdb live; /tutorial/ now 404s so it is not linked)
+- Glossary updated: no (no matching /glossary term)
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/75   Status: open
+- Date: 2026-09-07
+
+## Open follow-up (outside this repo)
+- The two Medium originals above should carry a `rel="canonical"` pointing at the datus.ai URLs (or be trimmed to excerpts linking here). Only the author can set this; raised with the operator 2026-09-07.
