@@ -480,7 +480,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Glossary updated: no (no matching /glossary term)
 - Category: "In practice"
 - PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
-- Date: 2026-09-08
+- Date: 2026-04-30 (original WeChat publication date; the post carries it as `date`, with `lastmod` 2026-09-08 for the datus.ai edition)
 
 ### chatbi-to-data-agent-13-months
 - Title: 13 Months from ChatBI to DataAgent: A Field Report
@@ -495,7 +495,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Glossary updated: no (no matching /glossary term)
 - Category: "In practice"
 - PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
-- Date: 2026-09-09
+- Date: 2026-07-23 (original WeChat publication date; the post carries it as `date`, with `lastmod` 2026-09-09 for the datus.ai edition)
 
 ### from-chatbi-to-data-agent-what-changes
 - Title: From ChatBI to Data Agent: What Changes and What Doesn't
@@ -510,7 +510,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Glossary updated: no (no matching /glossary term)
 - Category: "Data Engineering Agent"
 - PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
-- Date: 2026-09-10
+- Date: 2026-08-08 (original WeChat publication date; the post carries it as `date`, with `lastmod` 2026-09-10 for the datus.ai edition)
 
 ### data-agent-sandbox
 - Title: Data Agents Need a Better Sandbox Than a Container
@@ -525,7 +525,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Glossary updated: no (no matching /glossary term)
 - Category: "Architecture and pipelines"
 - PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
-- Date: 2026-09-11
+- Date: 2026-08-22 (original WeChat publication date; the post carries it as `date`, with `lastmod` 2026-09-11 for the datus.ai edition)
 
 ## Note on the five WeChat articles reviewed 2026-09-11
 The operator sent five 数据杂货铺 URLs. The fifth — 什么才是AI Native的语义层

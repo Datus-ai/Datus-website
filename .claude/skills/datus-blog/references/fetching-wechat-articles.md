@@ -47,9 +47,22 @@ grep -o 'var nickname = [^;]*'    "$id.html" | head -1   # 数据杂货铺
 date -r <create_time> "+%Y-%m-%d"                        # macOS; GNU: date -d @<ts>
 ```
 
-`create_time` is the **original publication date**. It goes in the memory
-record and it decides the ordering when a batch of ports is staggered across
-`date:` values.
+`create_time` is the **original publication date**, and it is the post's
+`date:`. The piece was written then; backdating is honest and it keeps a batch
+of ports naturally staggered instead of stacking them all on today.
+
+Pair it with `lastmod:` = the day the datus.ai edition actually ships (stagger
+these too, in the same order). The two fields then say exactly the right thing:
+authored on the WeChat date, published here with re-checked facts on the
+lastmod date. It matters mechanically as well —
+`scripts/build-blog.mjs` renders the byline and `datePublished` from `date`, but
+sorts the `/blog` "Latest" rail and writes `<lastmod>` in the sitemap from
+`lastmod`, so a backdated post still surfaces as new.
+
+One consequence to watch: a fact you corrected forward (§3) can end up
+future-dated relative to the byline — "the extension shipped in May 2026" under
+an April byline. That is what `lastmod` is for, so keep the correct fact, but
+flag it to the operator rather than letting it pass silently.
 
 ## 4. Extract the body text
 
