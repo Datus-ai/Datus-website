@@ -125,10 +125,12 @@ Then:
    body image is auto-promoted to the hero, so put the best one right after
    TL;DR. Commit them in the same PR as the post.
 
-The figures are Chinese-language slides. Keep them — but write **English alt
-text and an English caption** under each (`*Figure 1 — 13 months, from the first
-conversation to DataAgent in production.*`) so the page still reads and still
-indexes in English.
+The figures are Chinese-language slides. **Redraw the diagrams in English** —
+see `translating-figures.md` for the HTML → `npm run figures:build` → tiny-png
+pipeline, and for the images that must never be redrawn (product UI screenshots,
+chat logs, anything evidential). Every figure, redrawn or not, gets **English alt
+text and an English caption** (`*Figure 1 — 13 months, from the first
+conversation to DataAgent in production.*`).
 
 ## 6. These posts are Chinese; the blog is English
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../_figure.css" />
+<style>
+  .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 10px; align-items: stretch; }
+  .flow .box { border-radius: 10px; padding: 17px 10px; text-align: center; font-size: 14.5px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  .f1 { background: #edeefe; border: 1px solid #c9ccf7; color: #3730a3; }
+  .f2, .f3 { background: var(--red-bg); border: 1px solid var(--red-line); color: var(--red-ink); }
+  .f4 { background: var(--green-bg); border: 1px solid var(--green-line); color: var(--green-ink); }
+  .f5 { background: var(--slate-bg); border: 1px solid var(--line); color: #475569; }
+  .chev { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 10px; margin: 0; }
+  .chev div { text-align: right; color: #cbd5e1; font-size: 15px; position: relative; top: -34px; right: -7px; height: 0; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 14px; margin-top: 26px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .card b { display: block; font-size: 15px; font-weight: 700; margin-bottom: 7px; }
+  .card span { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+  .punch { margin-top: 26px; text-align: center; font-size: 15px; font-weight: 600; color: var(--red-ink); }
+</style>
+</head>
+<body>
+<div id="figure">
+  <h1>Security: put the boundary where the model cannot reach it</h1>
+  <div class="flow">
+    <div class="box f1">Model generates SQL</div>
+    <div class="box f2">Hook parses &amp; validates</div>
+    <div class="box f3">Permission filters injected</div>
+    <div class="box f4">Query executes</div>
+    <div class="box f5">Audit trail retained</div>
+  </div>
+  <div class="chev"><div>›</div><div>›</div><div>›</div><div>›</div><div></div></div>
+  <div class="cards">
+    <div class="card"><b>Identity bound at three levels</b><span>Role · organization · store scope</span></div>
+    <div class="card"><b>Failed validation is refused</b><span>Table not on the authorization list,<br>or the filter is missing</span></div>
+    <div class="card"><b>Filters spliced by the hook</b><span>The model is the easiest link<br>in the chain to bypass</span></div>
+    <div class="card"><b>Every SQL statement retained</b><span>Tiered permissions + confirmation<br>for sensitive operations</span></div>
+  </div>
+  <p class="punch">Capability can go to the model. The boundary has to stay with the system.</p>
+</div>
+</body>
+</html>

@@ -490,7 +490,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Key sources: docs.datus.ai/0.3/; datus.ai/products/vscode/ (VS Code plugin shipped May 2026)
 - Internal links added: what-is-semantic-layer, what-is-data-agent, enterprise-data-engineering-agent, subagents-domain-specific-data-agents, contextual-data-engineering
 - Reciprocal links added from: what-is-data-agent
-- Images: 5 (blog/public/images/chatbi-to-data-agent-13-months/) — Chinese-language slides, English alt text + captions, pngquant-compressed
+- Images: 5 (blog/public/images/chatbi-to-data-agent-13-months/) — all five diagrams REDRAWN in English; sources at blog/figures/chatbi-to-data-agent-13-months/*.html, rendered by `npm run figures:build`, pngquant-compressed
 - Fact corrections vs source: none needed. Customer-reported numbers (190K tokens/attribution run, 4 person-days per table, 7 SQL → semantic model at ~2 min each, 80% bar) and the model line-up (Kimi Coding Plan / MiniMax / DeepSeek-V4 / GPT-5.5) left as the author's account. Customer stays anonymous. The 题记 is kept, including its disclosure that the body was AI-drafted
 - Glossary updated: no (no matching /glossary term)
 - Category: "In practice"
@@ -520,7 +520,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Key sources: docs.datus.ai/0.3/plugin/introduction/ (allow/ask/deny; normal/auto/dangerous); paimon.apache.org/docs/master/maintenance/manage-branches/ (create/delete/read-write/fast-forward/fallback — no merge); iceberg.apache.org/docs/latest/branching/; dosi.datus.ai
 - Internal links added: what-is-lakehouse, what-is-apache-iceberg, mcp-data-engineering, make-data-agents-truly-usable-ask-explore-and-control-with-confidence, enterprise-data-engineering-agent, why-ai-agents-need-semantic-context-to-work-reliably
 - Reciprocal links added from: enterprise-data-engineering-agent
-- Images: 3 (blog/public/images/data-agent-sandbox/) — Datus Studio screenshots, pngquant-compressed
+- Images: 3 (blog/public/images/data-agent-sandbox/) — Datus Studio screenshots, pngquant-compressed. STILL CHINESE-LOCALE UI: these are evidence, not diagrams, so they must not be redrawn (translating-figures.md §1). Fix = re-capture the three screens with Studio in English; flagged to the operator 2026-09-11
 - Fact corrections vs source: "introduced the plugin system a month ago" de-serialized (and the DeepSeek-harness aside dropped); Alibaba Cloud talk framing made timeless; 加小助手 / PPT CTA removed; Paimon's no-merge claim verified against the docs before keeping it
 - Glossary updated: no (no matching /glossary term)
 - Category: "Architecture and pipelines"

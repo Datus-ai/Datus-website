@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../_figure.css" />
+<style>
+  #figure { padding-bottom: 24px; }
+  .track { position: relative; height: 250px; margin: 0 6px; }
+  .rail { position: absolute; left: 0; right: 0; top: 123px; height: 7px; border-radius: 4px; background: #dbe6fb; }
+  .stop { position: absolute; top: 116px; width: 21px; height: 21px; border-radius: 50%; background: #2563eb; border: 3.5px solid #fff; transform: translateX(-50%); }
+  .stop.sm { top: 120px; width: 13px; height: 13px; background: #93b4f5; border-width: 3px; }
+  .node { position: absolute; width: 176px; transform: translateX(-50%); text-align: center; }
+  .node .date { font-size: 16px; font-weight: 700; color: #2563eb; }
+  .node .label { font-size: 12.5px; color: var(--ink); line-height: 1.5; }
+  .node.up { bottom: 137px; }
+  .node.up .label { margin-bottom: 8px; }
+  .node.down { top: 147px; }
+  .node.down .label { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div id="figure">
+  <h1>Thirteen months: from the first conversation to DataAgent in production</h1>
+  <div class="track">
+    <div class="rail"></div>
+
+    <div class="stop" style="left:4%"></div>
+    <div class="node up" style="left:4%"><div class="label">First conversation<br>facing the ChatBI pain</div><div class="date">2025.05</div></div>
+
+    <div class="stop sm" style="left:17.5%"></div>
+    <div class="node down" style="left:17.5%"><div class="date">2025.07</div><div class="label">Semantic layer demo<br>metrics stable offline</div></div>
+
+    <div class="stop" style="left:31%"></div>
+    <div class="node up" style="left:31%"><div class="label">First scenario deployed<br>test set and tuning</div><div class="date">2025.08–09</div></div>
+
+    <div class="stop sm" style="left:44.5%"></div>
+    <div class="node down" style="left:44.5%"><div class="date">2025.11</div><div class="label">“DataAgent”<br>three-year plan starts</div></div>
+
+    <div class="stop" style="left:58%"></div>
+    <div class="node up" style="left:58%"><div class="label">Sub-agent architecture<br>metric interface aligned</div><div class="date">2025.12</div></div>
+
+    <div class="stop sm" style="left:71.5%"></div>
+    <div class="node down" style="left:71.5%"><div class="date">2026.04</div><div class="label">Attribution report<br>generation</div></div>
+
+    <div class="stop" style="left:85%"></div>
+    <div class="node up" style="left:85%"><div class="label">VS Code plugin ships<br>reports · dashboards · Q&amp;A live</div><div class="date">2026.05</div></div>
+
+    <div class="stop sm" style="left:97%"></div>
+    <div class="node down" style="left:94%"><div class="date">2026.06</div><div class="label">Data-development rollout<br>&amp; ontology integration</div></div>
+  </div>
+</div>
+</body>
+</html>

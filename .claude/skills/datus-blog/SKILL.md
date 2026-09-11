@@ -43,6 +43,10 @@ Paths are relative to this skill directory (`.claude/skills/datus-blog/`).
 8. [ ] `references/fetching-wechat-articles.md` — **only when the source is a
        `mp.weixin.qq.com/s/...` link.** WebFetch returns a 200 decoy page there
        ("环境异常"), so read this before concluding an article is unavailable.
+9. [ ] `references/translating-figures.md` — **whenever a ported article's
+       diagrams carry non-English labels.** How to redraw a figure in English
+       (`blog/figures/**` → `npm run figures:build`), and which images must
+       never be redrawn.
 
 `memory/README.md` holds the record format for step 7 of the workflow.
 
