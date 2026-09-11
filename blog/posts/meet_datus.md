@@ -2,6 +2,7 @@
 title: SQL agents are broken without context. Meet Datus.
 description: Learn why SQL agents fail without governed context and how Datus uses contextual engineering and subagents for reliable workflows.
 date: 2025-10-21
+tags: insight
 lastmod: 2026-02-26
 head:
   - - meta
