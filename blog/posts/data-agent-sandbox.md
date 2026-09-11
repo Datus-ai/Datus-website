@@ -69,9 +69,9 @@ A data engineering agent faces far too many systems. On one side we use adaptors
 
 So Datus puts these capabilities into plugins. This demo loaded the Flink, Kubernetes/ACK and S3 plugins. A plugin can wrap basic database operations, and it can equally turn a remote API or a cloud service interface into a local tool the agent can call stably, while making the context, namespace, bucket, permission level and structured return explicit.
 
-![The Datus workbench plugin selection step, with a list of installable plugins including adls, airflow-plugin, aks, aliyun-ack, datus-plugin-demo, eks, emr, emr-serverless and flink, three of them checked with version selectors and a configure button](/images/data-agent-sandbox/plugin-selection.png)
+![The Plugins page under Integrations in a Datus StarRocks workspace, listing installable plugins — adls, airflow-plugin, aks, aliyun-ack, datus-plugin-demo, eks, emr, emr-serverless, flink — with airflow-plugin, aliyun-ack and flink checked, each showing a version selector and a Configure button](/images/data-agent-sandbox/plugin-selection.png)
 
-*Plugins are installed into a project's agent execution environment and can be changed at any time afterwards.*
+*Plugins are installed into a project's agent runtime, and can be changed later.*
 
 When the agent calls Kubernetes, for example, it knows which ACK context and which namespace it should be in, and whether it should be reading pod status or FlinkDeployment status; when it operates object storage, permissions can be restricted to a specified bucket and artifact path. Different subagents can also load different prompts, skills and tool sets per task.
 
@@ -103,9 +103,9 @@ Human attention should be concentrated on the plan at the start of a task, and o
 
 At the beginning, get the goal, the constraints and the acceptance criteria clear; in the middle, the agent explores, develops, deploys and diagnoses by itself; at the end, the human looks at the result, the diff and the validation, and decides whether to merge into production. For genuinely long-horizon tasks I think this fits how people work far better than popping confirmations continuously.
 
-![A Datus mission board thread where the project agent asks the requester to confirm two open definition questions — how to segment customers given there is no ready-made field, and how to define online-channel revenue on raw_orders — with the human answering to go ahead, the mission moving from clarifying to pending, and a choice between doing it manually in the workspace or handing it to the agent to run in the sandbox](/images/data-agent-sandbox/mission-board-sandbox.png)
+![A Datus mission board thread on a demo board: the agent shows the SQL it ran against jeff_shop_live.raw_orders, then the orchestrator reports that re-checking against the live source confirmed the earlier finding rather than changing it — same 640 orders and GMV, same store distribution — and notes nothing is finalized until the human accepts the answer, while the mission state moves from Clarifying to Todo to Running](/images/data-agent-sandbox/mission-board-sandbox.png)
 
-*Clarify first, then decide: run it by hand in the workspace, or hand it to an agent in the sandbox.*
+*The agent re-checks its own finding and states what it did; the mission advances on its own, but nothing is final until a human accepts it.*
 
 For tasks running ten minutes or longer, we now also keep the plan/todo and the execution state of every step. A human can interrupt partway through and add constraints, but does not have to watch the screen the whole time. What really needs reviewing at the end is which changes the agent made, what the validation results were, and whether this change should go into the trunk.
 
