@@ -466,3 +466,69 @@ Data Contract, Medallion Architecture, Change Data Capture.
 
 ## Open follow-up (outside this repo)
 - The two Medium originals above should carry a `rel="canonical"` pointing at the datus.ai URLs (or be trimmed to excerpts linking here). Only the author can set this; raised with the operator 2026-09-07.
+
+### full-stack-data-engineer-harness
+- Title: The Full-Stack Data Engineer: Three Skills and a Harness
+- Target keyword: full stack data engineer (one-person data team, data engineering harness, agentic data stack, semantic ownership, validation loop, ChatBI last mile)
+- Angle: field report from the Data Engineering Open Forum — division of labour becomes latency in the agent era; the three abilities (semantic definition, agentic data stack, agent-native context from history); ChatBI is an augmentation of dashboards, not a replacement; the bottleneck moved from generating SQL to validating tables/metrics/dashboards; Datus 0.3. Distinct from one-person-data-team (that one is the solo engineer's weekly calendar; this one is the skill set + harness)
+- Source direction: PORT of https://mp.weixin.qq.com/s/2qrU9bT8Orc5rjW2zixbIg (originally published 2026-04-30, Harrison Zhao, 数据杂货铺 WeChat)
+- Key sources: dataengineeringopenforum.com (16 Apr 2026, SF, Data Engineer Things); linkedin.com/in/pellwood; docs.datus.ai/0.3/; datus.ai/products/vscode/; studio.datus.ai
+- Internal links added: agentic-data-stack, contextual-data-engineering, what-is-text-to-sql, subagents-domain-specific-data-agents, what-is-data-contract, what-is-data-engineering-agent-2026, one-person-data-team
+- Reciprocal links added from: one-person-data-team
+- Images: 4 (blog/public/images/full-stack-data-engineer-harness/) — WeChat CDN originals, pngquant-compressed. Skipped the QR codes and a screenshot of private roundtable notes
+- Fact corrections vs source: VS Code plugin "will ship after the May holiday" → shipped May 2026; "over the past six months" and other relative framing de-serialized; WeChat back-link and 加小助手 CTA removed
+- Glossary updated: no (no matching /glossary term)
+- Category: "In practice"
+- PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
+- Date: 2026-09-08
+
+### chatbi-to-data-agent-13-months
+- Title: 13 Months from ChatBI to DataAgent: A Field Report
+- Target keyword: ChatBI to data agent (data agent case study, enterprise data agent deployment, reference template, scoped context, SQL permission hook, row access control)
+- Angle: the corpus's first customer case study — an anonymized restaurant chain with tens of thousands of stores, May 2025 to June 2026. 80% accuracy fails because trust is the real metric; layering by determinism (reference template / reference SQL + KB / semantic layer + skills); four security gates the model cannot reach; four named pits. Distinct from enterprise-data-engineering-agent (requirements list vs lived deployment)
+- Source direction: PORT of https://mp.weixin.qq.com/s/934iB7MInOq_ViQnLhu_LA (originally published 2026-07-23, body AI-drafted from 27 meeting transcripts, preface by Harrison Zhao)
+- Key sources: docs.datus.ai/0.3/; datus.ai/products/vscode/ (VS Code plugin shipped May 2026)
+- Internal links added: what-is-semantic-layer, what-is-data-agent, enterprise-data-engineering-agent, subagents-domain-specific-data-agents, contextual-data-engineering
+- Reciprocal links added from: what-is-data-agent
+- Images: 5 (blog/public/images/chatbi-to-data-agent-13-months/) — Chinese-language slides, English alt text + captions, pngquant-compressed
+- Fact corrections vs source: none needed. Customer-reported numbers (190K tokens/attribution run, 4 person-days per table, 7 SQL → semantic model at ~2 min each, 80% bar) and the model line-up (Kimi Coding Plan / MiniMax / DeepSeek-V4 / GPT-5.5) left as the author's account. Customer stays anonymous. The 题记 is kept, including its disclosure that the body was AI-drafted
+- Glossary updated: no (no matching /glossary term)
+- Category: "In practice"
+- PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
+- Date: 2026-09-09
+
+### from-chatbi-to-data-agent-what-changes
+- Title: From ChatBI to Data Agent: What Changes and What Doesn't
+- Target keyword: ChatBI vs data agent (context building, project context, scoped subagent, long-horizon agent, bottom-up metrics, dashboard copilot)
+- Angle: a year of Datus in one argument — frameworks churn, context building does not. Measurer → Builder; project-level context beats one big context DB and "a subagent's ceiling is its project context maturity"; long-horizon agents are limited by requirement clarification, not SQL; semantic layer returns as the LLM's semantic contract; metric governance should be bottom-up, ontology grows out of used metrics. The four audience Q&As are the FAQ section
+- Source direction: PORT of https://mp.weixin.qq.com/s/1c_vSET-TGdh8Dg-2Mf87A (originally published 2026-08-08, Harrison Zhao, talk recap + Q&A)
+- Key sources: docs.datus.ai/0.3/; dosi.datus.ai; github.com/apache/ossie
+- Internal links added: what-is-data-engineering-agent-2026, subagents-domain-specific-data-agents, contextual-data-engineering, what-is-apache-iceberg, dbt-semantic-layer-metricflow, what-is-semantic-layer, open-semantic-interchange-osi, what-is-ontology, introducing-dosi, semantic-layer-vs-ontology, what-is-data-agent
+- Reciprocal links added from: what-is-data-agent
+- Images: none (both images in the original are QR codes)
+- Fact corrections vs source: "the new implementation is migrating to Rust" → "has since moved to Rust" (Dosi shipped; see ai-native-semantic-layer); meetup/PPT framing de-serialized; WeChat back-link and 加小助手 CTA removed
+- Glossary updated: no (no matching /glossary term)
+- Category: "Data Engineering Agent"
+- PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
+- Date: 2026-09-10
+
+### data-agent-sandbox
+- Title: Data Agents Need a Better Sandbox Than a Container
+- Target keyword: data agent sandbox (agentic lakehouse, write agent, permission mode, plugin system, Paimon branch, Iceberg branching, checkpoint validate merge)
+- Angle: the read-only → write transition. A write agent's artifact is a running system, and the failures are cross-system and runtime-only; plugins beat more tools because they carry a permission boundary and a structured return; a data sandbox is not an E2B container — it must isolate data state via checkpoint → branch → validate → merge; lakehouses have branch and fast-forward but no three-way merge, and that gap caps agent parallelism
+- Source direction: PORT of https://mp.weixin.qq.com/s/IlaJ7P-zSC098sG3OmkUPg (originally published 2026-08-22, Harrison Zhao, Agentic Lakehouse talk write-up)
+- Key sources: docs.datus.ai/0.3/plugin/introduction/ (allow/ask/deny; normal/auto/dangerous); paimon.apache.org/docs/master/maintenance/manage-branches/ (create/delete/read-write/fast-forward/fallback — no merge); iceberg.apache.org/docs/latest/branching/; dosi.datus.ai
+- Internal links added: what-is-lakehouse, what-is-apache-iceberg, mcp-data-engineering, make-data-agents-truly-usable-ask-explore-and-control-with-confidence, enterprise-data-engineering-agent, why-ai-agents-need-semantic-context-to-work-reliably
+- Reciprocal links added from: enterprise-data-engineering-agent
+- Images: 3 (blog/public/images/data-agent-sandbox/) — Datus Studio screenshots, pngquant-compressed
+- Fact corrections vs source: "introduced the plugin system a month ago" de-serialized (and the DeepSeek-harness aside dropped); Alibaba Cloud talk framing made timeless; 加小助手 / PPT CTA removed; Paimon's no-merge claim verified against the docs before keeping it
+- Glossary updated: no (no matching /glossary term)
+- Category: "Architecture and pipelines"
+- PR: https://github.com/Datus-ai/Datus-website/pull/76   Status: open
+- Date: 2026-09-11
+
+## Note on the five WeChat articles reviewed 2026-09-11
+The operator sent five 数据杂货铺 URLs. The fifth — 什么才是AI Native的语义层
+(https://mp.weixin.qq.com/s/JkO-TWItu7cfctpfVAk1LA, 2026-09-01) — is the same
+piece already ported as `ai-native-semantic-layer` from its Medium edition
+(PR #75). Not re-ported.
