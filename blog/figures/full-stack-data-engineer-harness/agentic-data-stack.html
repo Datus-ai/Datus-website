@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../_figure.css" />
+<style>
+  #figure { padding-bottom: 34px; }
+  .stack { display: grid; grid-template-columns: 1fr 34px 214px; align-items: stretch; }
+
+  .group { border-radius: 14px; padding: 34px 18px 18px; position: relative; }
+  .group > .glabel { position: absolute; top: 12px; left: 18px; font-size: 13px; font-weight: 700; letter-spacing: .2px; }
+  .g-agents { background: #eaf9ef; border: 1.5px solid #9fdcb8; }
+  .g-agents > .glabel { color: #17794a; }
+  .g-mds    { background: #fff9ea; border: 1.5px solid #f0dba4; margin-top: 26px; }
+  .g-mds > .glabel { color: #9a6a09; }
+  .g-infra  { background: #eef4fe; border: 1.5px solid #bdd3f5; padding: 34px 14px 16px; }
+  .g-infra > .glabel { color: #2151a8; }
+
+  .node { border-radius: 9px; padding: 13px 8px; text-align: center; font-size: 13px; font-weight: 600; line-height: 1.35; display: flex; align-items: center; justify-content: center; }
+  .n-green  { background: #cdefda; border: 1.3px solid #86cfa4; color: #15693f; }
+  .n-orange { background: #fbe3bd; border: 1.3px solid #eec483; color: #8a5c07; }
+  .n-blue   { background: #cfe2fb; border: 1.3px solid #93bdf1; color: #1d4c9e; }
+  .n-purple { background: #e0d9fb; border: 1.3px solid #bcadf1; color: #5233b8; }
+  .n-red    { background: #fbd5d5; border: 1.3px solid #f0a5a5; color: #a83232; }
+
+  .agents-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 12px; }
+  .mds-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .mds-foot { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 12px; margin-top: 16px; padding-top: 16px; border-top: 1.5px dashed #e0c98f; }
+  .infra-col { display: flex; flex-direction: column; gap: 11px; height: 100%; }
+  .infra-col .node { flex: 1; }
+
+  .link { display: flex; align-items: flex-start; justify-content: center; padding-top: 46px; color: #64748b; }
+  .vlink { display: flex; align-items: center; justify-content: center; height: 26px; color: #64748b; }
+</style>
+</head>
+<body>
+<div id="figure">
+  <h1>Agentic Data Stack</h1>
+  <div class="stack">
+    <div>
+      <div class="group g-agents">
+        <span class="glabel">Data Agents</span>
+        <div class="agents-row">
+          <div class="node n-green">Data Analytic<br>Agents</div>
+          <div class="node n-green">Data Engineering<br>Agent</div>
+          <div class="node n-green">Data Ops<br>Agent</div>
+          <div class="node n-green">Data Context<br>Store</div>
+          <div class="node n-green">Context Building<br>Tools</div>
+        </div>
+      </div>
+
+      <div class="vlink">
+        <svg width="14" height="26" viewBox="0 0 14 26" fill="none">
+          <path d="M7 2v22M3 6l4-4 4 4M3 20l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="group g-mds" style="margin-top:0">
+        <span class="glabel">Modern Data Stack</span>
+        <div class="mds-grid">
+          <div class="node n-orange" style="grid-column:1;grid-row:1">Data Source</div>
+          <div class="node n-orange" style="grid-column:2;grid-row:1">ETL Tools</div>
+          <div class="node n-blue"   style="grid-column:3;grid-row:1">Data Warehouse</div>
+          <div class="node n-purple" style="grid-column:4;grid-row:1">Data Science &amp;<br>ML Platform</div>
+          <div class="node n-red"    style="grid-column:5;grid-row:1">BI</div>
+
+          <div class="node n-orange" style="grid-column:2;grid-row:2">Streaming<br>Engine</div>
+          <div class="node n-blue"   style="grid-column:3;grid-row:2">Data Lake</div>
+          <div class="node n-purple" style="grid-column:4;grid-row:2">Query Engine</div>
+          <div class="node n-red"    style="grid-column:5;grid-row:2">Data App</div>
+
+          <div class="node n-orange" style="grid-column:2;grid-row:3">Batch Engine</div>
+          <div class="node n-purple" style="grid-column:4;grid-row:3">Realtime<br>Analytics</div>
+          <div class="node n-red"    style="grid-column:5;grid-row:3">Semantic Layer</div>
+        </div>
+        <div class="mds-foot">
+          <div class="node n-purple">Metadata</div>
+          <div class="node n-purple">Quality &amp; Testing</div>
+          <div class="node n-purple">Data Security</div>
+          <div class="node n-purple">Data Observability</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="link">
+      <svg width="30" height="16" viewBox="0 0 30 16" fill="none">
+        <path d="M2 8h26M7 3L2 8l5 5M23 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="group g-infra">
+      <span class="glabel">Agent Infra</span>
+      <div class="infra-col">
+        <div class="node n-blue">Agent Memory</div>
+        <div class="node n-blue">Inference Infra</div>
+        <div class="node n-blue">(Post-)Training Infra</div>
+        <div class="node n-blue">Agent Sandbox</div>
+        <div class="node n-blue">Agent<br>Observability</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

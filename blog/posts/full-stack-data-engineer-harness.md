@@ -91,7 +91,7 @@ The form of the dashboard and the report keeps changing in this new era, but wha
 
 The data stack of the future is not a pile of tools but a set of continuously working agents. Every data infra vendor is starting to claim they have moved from serving humans to serving agents, and understanding where those components sit and how they are organized becomes one of the keys.
 
-![The agentic data stack: a layer of data agents and a context store sitting on top of the modern data stack, with agent infra — memory, inference, sandbox, observability — alongside it](/images/full-stack-data-engineer-harness/agentic-data-stack.jpg)
+![The agentic data stack: a layer of data agents and a context store sitting on top of the modern data stack, with agent infra — memory, inference, sandbox, observability — alongside it](/images/full-stack-data-engineer-harness/agentic-data-stack.png)
 
 *The agentic data stack: data agents and a context store above the modern data stack, with agent infra beside it.*
 
@@ -113,7 +113,7 @@ AI changes not just the production side of data engineering but the consumption 
 
 A ChatBI with no data engineering context underneath it is usually water with no source. Final accuracy still comes back to the definition of the wide table, the definition of the metric, the construction of reference SQL and templates. In the cases and experience we have accumulated so far, only a subagent constrained by scoped context has been able to guarantee accuracy — and for the moment that still cannot be done without human design.
 
-![ChatBI's last mile: five delivery forms — ad-hoc SQL for discovery, reference SQL for recurring questions, reference templates for repeated pivots, metrics for self-serve BI, and gen_report / gen_dashboard for deeper analysis](/images/full-stack-data-engineer-harness/chatbi-last-mile.jpg)
+![ChatBI's last mile: five delivery forms — ad-hoc SQL for discovery, reference SQL for recurring questions, reference templates for repeated pivots, metrics for self-serve BI, and gen_report / gen_dashboard for deeper analysis](/images/full-stack-data-engineer-harness/chatbi-last-mile.png)
 
 *ChatBI's last mile: different users need different answers, and each form trades freedom for determinism.*
 
@@ -143,7 +143,7 @@ When I really did pick up Claude Code and build an end-to-end data engineering t
 
 The way I understand a data engineering harness, the core is not wrapping one more layer of workflow around things. It is building a continuously improving validation loop: accumulate context from historical SQL and jobs, extract lineage and implicit rules, precipitate them into a validation spec that keeps getting better — and then, at the key moments of `gen_sql`, `gen_metrics` and `gen_dashboard`, do the checking, the reflection and the correction through standardized tool calls.
 
-![The harness workflow: a human creates a goal, the orchestrator decomposes it and confirms the plan, each task runs through a validation loop of validation script, worktree diff and review, and only a passing run reaches update-docs, confirm and commit](/images/full-stack-data-engineer-harness/harness-workflow.jpg)
+![The harness workflow: a human creates a goal, the orchestrator decomposes it and confirms the plan, each task runs through a validation loop of validation script, worktree diff and review, and only a passing run reaches update-docs, confirm and commit](/images/full-stack-data-engineer-harness/harness-workflow.png)
 
 *The harness workflow: every task passes through a validation loop before a human confirms the commit.*
 

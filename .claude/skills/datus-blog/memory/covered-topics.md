@@ -475,7 +475,7 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Key sources: dataengineeringopenforum.com (16 Apr 2026, SF, Data Engineer Things); linkedin.com/in/pellwood; docs.datus.ai/0.3/; datus.ai/products/vscode/; studio.datus.ai
 - Internal links added: agentic-data-stack, contextual-data-engineering, what-is-text-to-sql, subagents-domain-specific-data-agents, what-is-data-contract, what-is-data-engineering-agent-2026, one-person-data-team
 - Reciprocal links added from: one-person-data-team
-- Images: 4 (blog/public/images/full-stack-data-engineer-harness/) — WeChat CDN originals, pngquant-compressed. Skipped the QR codes and a screenshot of private roundtable notes
+- Images: 4 (blog/public/images/full-stack-data-engineer-harness/) — the three diagrams REDRAWN (sources at blog/figures/full-stack-data-engineer-harness/*.html); agentic-data-town is a screenshot grid, kept as evidence with its baked-in Chinese caption strip cropped off. pngquant-compressed. Skipped the QR codes and a screenshot of private roundtable notes
 - Fact corrections vs source: VS Code plugin "will ship after the May holiday" → shipped May 2026; "over the past six months" and other relative framing de-serialized; WeChat back-link and 加小助手 CTA removed
 - Glossary updated: no (no matching /glossary term)
 - Category: "In practice"
