@@ -21,6 +21,11 @@ untouched.
 The line is simple: **a diagram is an argument, and an argument can be restated
 in another language. A screenshot is evidence, and evidence cannot be redrawn.**
 
+> Outside this repo, the global `diagram` skill (`~/.claude/skills/diagram/`)
+> does the same job with a standalone renderer and a set of starter templates.
+> Inside this repo, use the wiring below — the paths and the npm script are what
+> the blog build expects.
+
 ## 2. The pipeline
 
 HTML source → headless Chromium screenshot → pngquant → commit. The repo
