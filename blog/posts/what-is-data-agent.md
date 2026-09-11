@@ -224,3 +224,5 @@ No — and teams that try to find a single agent that covers all six types will 
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — the producer-tier subclass in detail
 - [What is text-to-SQL?](/blog/what-is-text-to-sql/) — the core capability behind query agents
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the context tier that agents consume
+- [From ChatBI to data agent: what changes and what doesn't](/blog/from-chatbi-to-data-agent-what-changes/) — how the category shifted, and what stayed the same
+- [13 months from ChatBI to DataAgent](/blog/chatbi-to-data-agent-13-months/) — one enterprise deployment, start to finish

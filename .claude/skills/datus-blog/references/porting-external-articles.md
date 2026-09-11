@@ -176,6 +176,10 @@ about their own words.
 
 ## 5. Disclose the original, and mind duplicate content
 
+> **WeChat ports are the exception.** Do not add the first-publication note and
+> do not link back to `mp.weixin.qq.com` at all — see
+> `fetching-wechat-articles.md` §7. The rest of this section still applies.
+
 - Add one line near the top, after the opener:
   > A version of this article was first published on
   > <a href="…" rel="nofollow noopener">Medium</a>. …

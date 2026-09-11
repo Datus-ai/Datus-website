@@ -40,6 +40,9 @@ Paths are relative to this skill directory (`.claude/skills/datus-blog/`).
        fetch the real source, pull and compress its images, re-check its facts —
        and how much of the author's body copy you may touch (answer: almost
        none).
+8. [ ] `references/fetching-wechat-articles.md` — **only when the source is a
+       `mp.weixin.qq.com/s/...` link.** WebFetch returns a 200 decoy page there
+       ("环境异常"), so read this before concluding an article is unavailable.
 
 `memory/README.md` holds the record format for step 7 of the workflow.
 

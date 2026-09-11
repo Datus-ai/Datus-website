@@ -150,3 +150,4 @@ The analyst files an issue report describing what was wrong. The correction flow
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
 - [Contextual data engineering](/blog/contextual-data-engineering/) — the feedback loop that makes one-person teams work
 - [Build your first data engineering agent](/blog/build-your-first-data-engineering-agent/) — a 15-minute tutorial
+- [The full-stack data engineer: three skills and a harness](/blog/full-stack-data-engineer-harness/) — the skills and the validation loop behind a one-person team
