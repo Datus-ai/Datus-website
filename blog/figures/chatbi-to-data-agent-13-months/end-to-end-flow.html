@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../_figure.css" />
+<style>
+  .band { margin-bottom: 30px; }
+  .band > h2 { font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 14px; }
+  .past > h2 { color: #c2560f; }
+  .now > h2 { color: var(--green-ink); }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 10px; }
+  .cell { border-radius: 10px; padding: 18px 10px; text-align: center; font-size: 14px; font-weight: 500; line-height: 1.45; display: flex; align-items: center; justify-content: center; }
+  .past .cell { background: #fdf1dd; border: 1px solid #f0d6a8; color: #7a4a10; }
+  .now .cell { background: var(--green-bg); border: 1px solid var(--green-line); color: #146046; }
+</style>
+</head>
+<body>
+<div id="figure">
+  <h1>Looking ahead: an end-to-end flow, from R&amp;D to agent</h1>
+
+  <div class="band past">
+    <h2>Before: manual steps sat in between (measured in weeks)</h2>
+    <div class="row">
+      <div class="cell">Business raises<br>a requirement</div>
+      <div class="cell">Manual table<br>creation / ETL</div>
+      <div class="cell">Manual metric<br>definition</div>
+      <div class="cell">Manual tool<br>configuration</div>
+      <div class="cell">The business<br>uses it</div>
+    </div>
+  </div>
+
+  <div class="band now">
+    <h2>Happening now: one set of context, the whole chain agentic (measured in days)</h2>
+    <div class="row">
+      <div class="cell">Business raises<br>a requirement</div>
+      <div class="cell">Development agent<br>creates tables · ETL</div>
+      <div class="cell">Metrics / semantic models<br>generated automatically</div>
+      <div class="cell">Skills validate<br>against the spec</div>
+      <div class="cell">Q&amp;A / attribution / reports<br>immediately usable</div>
+    </div>
+  </div>
+
+  <p class="caption">Existing assets — historical SQL · reports · definition documents — are initialized into project knowledge, not rebuilt from scratch.</p>
+</div>
+</body>
+</html>

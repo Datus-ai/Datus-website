@@ -151,3 +151,4 @@ Common enterprise expectations include SOC 2 Type II for vendor controls, GDPR r
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
 - [Contextual data engineering](/blog/contextual-data-engineering/) — the context architecture that enterprises need
 - [Open source data engineering agents](/blog/open-source-data-engineering-agents/) — the self-hosting option for enterprises with strict data residency requirements
+- [Data agents need a better sandbox than a container](/blog/data-agent-sandbox/) — permission modes, validation and data-state isolation

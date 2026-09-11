@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../_figure.css" />
+<style>
+  #figure { padding: 36px 40px 36px; }
+  .head { margin-bottom: 30px; }
+  #figure .head h1 { text-align: left; font-size: 26px; margin-bottom: 7px; }
+  .head p { font-size: 13.5px; color: var(--muted); margin-bottom: 13px; }
+  .head hr { width: 70px; border: 0; border-top: 3px solid #14a08a; border-radius: 2px; margin: 0; }
+
+  .cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 18px; }
+  .card {
+    border: 1px solid #e2e8f0; border-radius: 12px 12px 8px 8px;
+    background: #fdfefe; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .card .body { padding: 22px 14px 20px; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; }
+  .icon {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: #d7f2ec; border: 1.6px solid #14a08a;
+    display: flex; align-items: center; justify-content: center;
+    color: #0f7d6c; margin-bottom: 18px;
+  }
+  .card b { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 10px; }
+  .card b code { font-family: inherit; }
+  .card span { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+  .best {
+    background: #1e293b; color: #fff;
+    height: 42px; padding: 0 6px; text-align: center;
+    font-size: 10.5px; letter-spacing: .4px; white-space: nowrap;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .best i { font-style: normal; color: #94a3b8; font-weight: 600; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div id="figure">
+  <div class="head">
+    <h1>ChatBI: The Last Mile</h1>
+    <p>Different users need different answers</p>
+    <hr>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="body">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.1 5-5 2.1 2.1-5z"/></svg></div>
+        <b>Ad-hoc SQL</b>
+        <span>Free-form<br>exploration for<br>new questions</span>
+      </div>
+      <div class="best"><i>BEST FOR</i>Discovery</div>
+    </div>
+
+    <div class="card">
+      <div class="body">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></div>
+        <b>Reference SQL</b>
+        <span>Grounded retrieval<br>over curated<br>SQL libraries</span>
+      </div>
+      <div class="best"><i>BEST FOR</i>Recurring questions</div>
+    </div>
+
+    <div class="card">
+      <div class="body">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
+        <b>Reference Template</b>
+        <span>Parameterized<br>patterns,<br>re-runnable</span>
+      </div>
+      <div class="best"><i>BEST FOR</i>Repeated pivots</div>
+    </div>
+
+    <div class="card">
+      <div class="body">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.11a1.7 1.7 0 0 0-1.11-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.11a1.7 1.7 0 0 0 1.55-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.11a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.11a1.7 1.7 0 0 0-1.55 1z"/></svg></div>
+        <b>Metrics</b>
+        <span>Semantic interface<br>over MetricFlow</span>
+      </div>
+      <div class="best"><i>BEST FOR</i>Self-serve BI</div>
+    </div>
+
+    <div class="card">
+      <div class="body">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7 15l3.5-4 2.5 2.5L17 9"/><path d="M17 9h-3M17 9v3"/></svg></div>
+        <b><code>gen_report</code> /<br><code>gen_dashboard</code></b>
+        <span>Multi-step<br>composition into<br>a deliverable</span>
+      </div>
+      <div class="best"><i>BEST FOR</i>Deeper analysis</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

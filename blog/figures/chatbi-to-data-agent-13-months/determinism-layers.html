@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../_figure.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 44px 1.25fr 210px; gap: 16px 0; align-items: stretch; }
+  .who, .cap { border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; justify-content: center; }
+  .who { background: var(--slate-bg); border: 1px solid var(--line); }
+  .who b { font-size: 16px; font-weight: 600; }
+  .who span { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .cap { margin-right: 22px; }
+  .cap b { font-size: 17px; font-weight: 700; }
+  .cap span { font-size: 13px; margin-top: 5px; }
+  .c1 { background: var(--green-bg); border: 1px solid var(--green-line); }
+  .c1 b, .c1 span { color: var(--green-ink); }
+  .c2 { background: var(--blue-bg); border: 1px solid var(--blue-line); }
+  .c2 b, .c2 span { color: var(--blue-ink); }
+  .c3 { background: var(--pink-bg); border: 1px solid var(--pink-line); }
+  .c3 b, .c3 span { color: var(--pink-ink); }
+  .bench { grid-column: 4; grid-row: 1 / span 3; background: var(--amber-bg); border: 1px solid var(--amber-line); border-radius: 12px; padding: 22px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .bench b { font-size: 17px; font-weight: 700; color: var(--amber-ink); line-height: 1.35; }
+  .bench hr { width: 46px; border: 0; border-top: 1px solid var(--amber-line); margin: 14px 0; }
+  .bench span { font-size: 13px; color: var(--amber-ink); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="figure">
+  <h1>Match the scenario: layering capabilities by determinism</h1>
+  <div class="grid">
+    <div class="who"><b>Store manager / frontline</b><span>Standard questions, asked every day</span></div>
+    <div class="arrow"><svg width="26" height="10" viewBox="0 0 26 10" fill="none"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cap c1"><b>Reference Template</b><span>The model fills parameters, never writes SQL</span></div>
+    <div class="bench">
+      <b>Benchmark<br>+ feedback loop</b>
+      <hr>
+      <span>A test set per scenario<br>Continuous regression</span>
+    </div>
+
+    <div class="who"><b>Office self-service</b><span>Flexible, but with precedent to follow</span></div>
+    <div class="arrow"><svg width="26" height="10" viewBox="0 0 26 10" fill="none"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cap c2"><b>Reference SQL + knowledge base</b><span>Retrieve a similar past case, then rewrite</span></div>
+
+    <div class="who"><b>Regional manager / management</b><span>Attribution · reports · open questions</span></div>
+    <div class="arrow"><svg width="26" height="10" viewBox="0 0 26 10" fill="none"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cap c3"><b>Metric semantic layer + Skills</b><span>Follow the business analysis method, step by step</span></div>
+  </div>
+  <p class="caption">The more deterministic the scenario, the less freedom the model gets — trust comes from matching the two.</p>
+</div>
+</body>
+</html>

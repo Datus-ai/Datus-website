@@ -66,6 +66,7 @@
     "prerender": "node scripts/prerender.mjs",
     "blog:build": "node scripts/build-blog.mjs",
     "og:build": "node scripts/build-og.mjs",
+    "figures:build": "node scripts/build-figures.mjs",
     "build:all": "npm run build && npm run prerender && npm run blog:build && node scripts/clean-landing-page.js",
     "merge:builds": "node scripts/clean-landing-page.js",
     "preview": "vite preview --port 4173"

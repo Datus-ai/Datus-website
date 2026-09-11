@@ -1,0 +1,48 @@
+/* Shared tokens for blog figures rendered by scripts/build-figures.mjs.
+   Linked relatively from each figure: <link rel="stylesheet" href="../_figure.css">
+   Keep figures light-background: the blog body is light and figures are not
+   theme-aware images. */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #fff; }
+
+#figure {
+  width: 1080px;
+  padding: 34px 40px 30px;
+  background: #fff;
+  font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+
+#figure h1 {
+  font-size: 23px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.2px;
+  margin-bottom: 30px;
+}
+
+#figure .caption {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 13.5px;
+  color: #64748b;
+}
+
+/* palette — mirrors the colour coding of the original figures */
+:root {
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --slate-bg: #f1f5f9;
+  --brand: #402df3;
+
+  --green-bg: #e8f7ef; --green-line: #bbe5cd; --green-ink: #17794a;
+  --blue-bg:  #e8f0fe; --blue-line:  #c0d4f7; --blue-ink:  #2151a8;
+  --pink-bg:  #fdeaf1; --pink-line:  #f6c6d8; --pink-ink:  #a83263;
+  --amber-bg: #fef7e3; --amber-line: #f2ddab; --amber-ink: #9a6a09;
+  --red-bg:   #fdecec; --red-line:   #f6c9c9; --red-ink:   #b03a3a;
+}
+
+.arrow { display: flex; align-items: center; justify-content: center; color: #94a3b8; }
+.arrow svg { display: block; }
