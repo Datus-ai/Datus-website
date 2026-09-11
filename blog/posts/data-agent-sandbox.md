@@ -3,7 +3,7 @@ title: "Data Agents Need a Better Sandbox Than a Container"
 description: "Read-only data agents answer questions; write agents deliver work. That needs plugins, permission modes, and a sandbox with checkpoint, branch and merge."
 author: "Harrison Zhao"
 date: 2026-08-22
-insight: true
+tags: insight
 lastmod: 2026-09-11
 head:
   - - meta

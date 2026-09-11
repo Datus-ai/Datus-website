@@ -39,8 +39,10 @@ const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
 md.use(anchor, { permalink: anchor.permalink.headerLink() });
 
 /* -------- category structure (ported from the old VitePress sidebar) -------- */
-// The curated rail at the top of /blog. Membership is opt-in per post via
-// `insight: true` in the frontmatter — see the `insight` field below.
+// The curated rail at the top of /blog. Membership is opt-in per post by
+// tagging it `insight` in the frontmatter — see parseTags() and the `tags`
+// field below.
+const INSIGHT_TAG = "insight";
 const INSIGHT_LABEL = "Product & Insight";
 const INSIGHT_ID = "product-insight";
 const INSIGHT_DESC = "In-depth pieces written by the Datus team — what we built, what we got wrong, and what we learned shipping it.";
@@ -134,9 +136,10 @@ function readPosts() {
       title: data.title || slug,
       description: data.description || "",
       author: data.author || "",
-      // Hand-picked: a deep piece written by the team, not an AI-drafted SEO
-      // post. Drives the "Product & Insight" rail at the top of /blog.
-      insight: data.insight === true,
+      // Hand-picked labels. `insight` marks a deep piece written by the team
+      // rather than an AI-drafted SEO post, and drives the "Product & Insight"
+      // rail at the top of /blog.
+      tags: parseTags(data.tags),
       date: data.date || "",
       lastmod: data.lastmod || data.date || "",
       breadcrumbLabel: data.breadcrumbLabel || "",
@@ -526,12 +529,12 @@ function indexPage(posts) {
       <p class="post-row__desc">${esc(p.description)}</p></div>
       <span class="post-row__date">${dateStr}</span></a>`;
 
-  // "Product & Insight" rail: only posts flagged `insight: true` in their
-  // frontmatter — the deep pieces the team wrote themselves. Never automatic,
-  // so an AI-drafted SEO post cannot drift into it. Newest first by the date
-  // the piece was written.
+  // "Product & Insight" rail: only posts tagged `insight` in their frontmatter
+  // — the deep pieces the team wrote themselves. Never automatic, so an
+  // AI-drafted SEO post cannot drift into it. Newest first by the date the
+  // piece was written.
   const postDate = (p) => Date.parse(p.date) || 0;
-  const insights = [...posts.values()].filter((p) => p.insight)
+  const insights = [...posts.values()].filter((p) => p.tags.includes(INSIGHT_TAG))
     .sort((a, b) => postDate(b) - postDate(a));
   const insightSection = insights.length
     ? `<section class="blog-cat" id="${INSIGHT_ID}">
@@ -574,6 +577,14 @@ function indexPage(posts) {
     image: `${SITE}/og/blog-index-1200x630.png`,
   });
 }
+
+// Frontmatter `tags` accepts either a comma-separated string
+// (`tags: insight, release`) or a YAML list (`tags: [insight, release]`).
+// Normalized to a lowercase, de-duplicated array of non-empty tags.
+const parseTags = (raw) => {
+  const parts = Array.isArray(raw) ? raw : String(raw ?? "").split(",");
+  return [...new Set(parts.map((t) => String(t).trim().toLowerCase()).filter(Boolean))];
+};
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 

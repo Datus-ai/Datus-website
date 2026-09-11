@@ -3,7 +3,7 @@ title: "The Full-Stack Data Engineer: Three Skills and a Harness"
 description: "Why the one-person data team is coming, the three skills a full-stack data engineer needs, and why validation — not SQL generation — is now the real bottleneck."
 author: "Harrison Zhao"
 date: 2026-04-30
-insight: true
+tags: insight
 lastmod: 2026-09-08
 head:
   - - meta
