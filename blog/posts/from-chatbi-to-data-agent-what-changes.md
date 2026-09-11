@@ -3,6 +3,7 @@ title: "From ChatBI to Data Agent: What Changes and What Doesn't"
 description: "A year of building Datus: models, frameworks and interfaces change fast, but building and maintaining good context is still the hardest part of a data agent."
 author: "Harrison Zhao"
 date: 2026-08-08
+insight: true
 lastmod: 2026-09-10
 head:
   - - meta

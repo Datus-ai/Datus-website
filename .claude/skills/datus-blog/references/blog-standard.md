@@ -40,6 +40,13 @@ head:
       href: https://datus.ai/blog/<slug>/
 ---
 ```
+Optional: `insight: true` puts the post in the **Product & Insight** rail at the
+top of `/blog`. That rail is reserved for deep pieces the Datus team wrote
+themselves — first-person engineering accounts, field reports, launch essays.
+**A post you drafted does not get this flag.** Ports of an article a Datus core
+developer published elsewhere (Medium, WeChat) do. If you think a post you wrote
+belongs there, ask the operator rather than setting it.
+
 Notes: the build script overrides canonical to `/blog/<slug>/` regardless, but keep the block consistent with recent posts. `og:image` default is `https://datus.ai/logo_dark.svg` (only add a per-post PNG if you actually create one under `blog/public/images/<slug>/`).
 
 ## 2. Body skeleton — glossary "What is X" (the most common request)

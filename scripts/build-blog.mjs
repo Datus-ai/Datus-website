@@ -39,6 +39,12 @@ const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
 md.use(anchor, { permalink: anchor.permalink.headerLink() });
 
 /* -------- category structure (ported from the old VitePress sidebar) -------- */
+// The curated rail at the top of /blog. Membership is opt-in per post via
+// `insight: true` in the frontmatter — see the `insight` field below.
+const INSIGHT_LABEL = "Product & Insight";
+const INSIGHT_ID = "product-insight";
+const INSIGHT_DESC = "In-depth pieces written by the Datus team — what we built, what we got wrong, and what we learned shipping it.";
+
 const CATEGORIES = [
   { label: "What is Datus", description: "Start here — the problem, the product, and the thesis behind it.",
     slugs: ["cursor-for-data-engineering", "meet-the-general-chat-agent", "meet_datus", "agentic-data-stack", "welcome"] },
@@ -128,6 +134,9 @@ function readPosts() {
       title: data.title || slug,
       description: data.description || "",
       author: data.author || "",
+      // Hand-picked: a deep piece written by the team, not an AI-drafted SEO
+      // post. Drives the "Product & Insight" rail at the top of /blog.
+      insight: data.insight === true,
       date: data.date || "",
       lastmod: data.lastmod || data.date || "",
       breadcrumbLabel: data.breadcrumbLabel || "",
@@ -517,18 +526,21 @@ function indexPage(posts) {
       <p class="post-row__desc">${esc(p.description)}</p></div>
       <span class="post-row__date">${dateStr}</span></a>`;
 
-  // "Latest" rail: every post sorted by most-recent update (lastmod ?? date),
-  // newest first, so freshly published/updated posts surface at the very top.
-  const postDate = (p) => Date.parse(p.lastmod || p.date) || 0;
-  const latest = [...posts.values()].sort((a, b) => postDate(b) - postDate(a)).slice(0, 6);
-  const latestSection = latest.length
-    ? `<section class="blog-cat" id="latest">
-      <div class="blog-cat__head"><h2 class="blog-cat__label">Latest</h2>
-      <p class="blog-cat__desc">The most recently published and updated posts.</p></div>
-      <div class="post-list">${latest.map((p) => postCard(p, fmtDate(p.lastmod || p.date))).join("")}</div></section>`
+  // "Product & Insight" rail: only posts flagged `insight: true` in their
+  // frontmatter — the deep pieces the team wrote themselves. Never automatic,
+  // so an AI-drafted SEO post cannot drift into it. Newest first by the date
+  // the piece was written.
+  const postDate = (p) => Date.parse(p.date) || 0;
+  const insights = [...posts.values()].filter((p) => p.insight)
+    .sort((a, b) => postDate(b) - postDate(a));
+  const insightSection = insights.length
+    ? `<section class="blog-cat" id="${INSIGHT_ID}">
+      <div class="blog-cat__head"><h2 class="blog-cat__label">${esc(INSIGHT_LABEL)}</h2>
+      <p class="blog-cat__desc">${esc(INSIGHT_DESC)}</p></div>
+      <div class="post-list">${insights.map((p) => postCard(p)).join("")}</div></section>`
     : "";
 
-  const sections = latestSection + cats.map((cat) => {
+  const sections = insightSection + cats.map((cat) => {
     const items = cat.slugs.filter((s) => posts.has(s)).map((s) => posts.get(s));
     if (!items.length) return "";
     const cards = items.map((p) => postCard(p)).join("");
@@ -538,7 +550,7 @@ function indexPage(posts) {
       <div class="post-list">${cards}</div></section>`;
   }).join("");
 
-  const tabs = (latest.length ? `<a class="blog-tab" href="#latest">Latest</a>` : "")
+  const tabs = (insights.length ? `<a class="blog-tab" href="#${INSIGHT_ID}">${esc(INSIGHT_LABEL)}</a>` : "")
     + cats.map((c) => `<a class="blog-tab" href="#${slugify(c.label)}">${esc(c.label)}</a>`).join("");
 
   const crumbs = breadcrumbHtml([

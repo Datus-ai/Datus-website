@@ -3,6 +3,7 @@ title: "What Makes a Semantic Layer Truly AI-Native?"
 description: "Why we built Dosi: an AI-native semantic layer is an open spec plus a deterministic planner, compiler and runtime, plus an agent-native tool interface."
 author: "Harrison Zhao"
 date: 2026-09-07
+insight: true
 lastmod: 2026-09-07
 head:
   - - meta

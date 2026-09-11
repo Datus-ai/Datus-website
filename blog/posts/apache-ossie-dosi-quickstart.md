@@ -3,6 +3,7 @@ title: "Apache Ossie + Dosi: A 10-Minute Semantic Layer for Your AI Agent"
 description: "A 10-minute Dosi quick start: install, query a 191K-row DuckDB dataset from the CLI, connect it to Claude Code over MCP, and ask why revenue dropped."
 author: "Harrison Zhao"
 date: 2026-09-07
+insight: true
 lastmod: 2026-09-07
 head:
   - - meta

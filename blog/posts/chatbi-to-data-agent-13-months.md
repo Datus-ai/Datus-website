@@ -3,6 +3,7 @@ title: "13 Months from ChatBI to DataAgent: A Field Report"
 description: "Thirteen months inside a restaurant chain's move from ChatBI to a DataAgent: the paradigm shift, layering by determinism, security hooks, and the pits we hit."
 author: "Harrison Zhao"
 date: 2026-07-23
+insight: true
 lastmod: 2026-09-09
 head:
   - - meta
