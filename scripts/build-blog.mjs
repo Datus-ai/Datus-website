@@ -487,7 +487,8 @@ function postPage(post) {
     (post.keywords ? `<meta name="keywords" content="${esc(post.keywords)}" />\n` : "") +
     `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` +
     faqLd;
-  const byline = [fmtDate(post.date), readTime(post.html), post.author ? `By ${post.author}` : ""]
+  const updated = post.lastmod && post.lastmod !== post.date ? `Updated ${fmtDate(post.lastmod)}` : "";
+  const byline = [fmtDate(post.date), updated, readTime(post.html), post.author ? `By ${post.author}` : ""]
     .filter(Boolean).join("  ·  ");
   const crumbs = breadcrumbHtml([
     { label: "Home", href: "/" },
