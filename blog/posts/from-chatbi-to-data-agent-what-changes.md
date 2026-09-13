@@ -4,7 +4,7 @@ description: "A year of building Datus: models, frameworks and interfaces change
 author: "Harrison Zhao"
 date: 2026-08-08
 tags: insight
-lastmod: 2026-09-13
+lastmod: 2026-09-10
 head:
   - - meta
     - name: keywords

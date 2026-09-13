@@ -86,7 +86,7 @@ Reading the grid as a buyer: only **dbt Semantic Layer** and **GoodData** show a
 
 ## 3. What "OSI support" actually means — and doesn't mean — in 2026
 
-OSI (Open Semantic Interchange, now **Apache Ossie**) is easy to misunderstand. Here is a precise breakdown of what exists and what does not. For the standard itself, see the dedicated [OSI explainer](/blog/open-semantic-interchange-osi/) and how it differs from an execution engine in [OSI vs MetricFlow](/blog/osi-vs-metricflow/).
+OSI (Open Semantic Interchange, now **Apache Ossie**) is easy to misunderstand. Here is a precise breakdown of what exists and what does not. For the standard itself, see the dedicated [OSI explainer](/blog/open-semantic-interchange-osi/) and how it differs from an execution engine in [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/).
 
 ### Level 1: Reference converters (real, working, on GitHub)
 
@@ -189,6 +189,6 @@ Yes, with nuance. An open-source core (Cube Core, Lightdash, Preset, Dremio Comm
 
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the definition, and why static models break under AI agents.
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard behind the OSI status column, and who is behind it.
-- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the interchange standard vs the execution engine, and why you need both.
+- [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the interchange standard vs the execution engine, and why you need both.
 - [dbt Semantic Layer / MetricFlow](/blog/dbt-semantic-layer-metricflow/) — the only tool in this list with a merged converter, in depth.
 - [What Is a Data Engineering Agent?](/blog/what-is-data-engineering-agent-2026/) — the layer that keeps portable semantics from going stale.

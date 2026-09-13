@@ -3,7 +3,7 @@ title: "Cube.dev: From Semantic Layer Pioneer to Agentic Analytics Platform"
 description: "How Cube.dev evolved from an open-source semantic layer to the D3 Agentic Analytics platform, and what its trajectory means for data engineering."
 author: "Evan Paul"
 date: 2026-06-09
-lastmod: 2026-09-13
+lastmod: 2026-06-10
 head:
   - - meta
     - name: keywords

@@ -3,7 +3,7 @@ title: "What Is Snowflake OSI? Semantic Views, Cortex Analyst & Ossie"
 description: "Snowflake OSI is search shorthand for Snowflake's role in Open Semantic Interchange — now Apache Ossie — plus Semantic View import/export via Ossie YAML."
 author: "Evan Paul"
 date: 2026-08-04
-lastmod: 2026-09-13
+lastmod: 2026-08-04
 head:
   - - meta
     - name: keywords
@@ -181,6 +181,6 @@ Not everything. Core datasets, fields, equi-joins, model-level metrics, and `ai_
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard itself, now Apache Ossie: what it encodes and who's behind it.
 - [What Is a Semantic Model?](/blog/what-is-semantic-model/) — semantic models vs warehouse-native semantic views.
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the general concept Snowflake's Semantic Views implement in-warehouse.
-- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — interchange standard vs execution engine, and why you need both.
+- [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — interchange standard vs execution engine, and why you need both.
 - [Semantic layer tools in 2026 + OSI status](/blog/semantic-layer-tools-list-osi/) — which tools have actually shipped an Ossie converter.
 - [Platform-native data agents compared](/blog/platform-native-data-agents-compared/) — Cortex/Genie/BigQuery vs open cross-stack agents.

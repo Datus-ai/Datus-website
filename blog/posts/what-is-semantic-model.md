@@ -3,7 +3,7 @@ title: "What Is a Semantic Model? Definition, Examples & How It Differs From a S
 description: "Semantic model definition, key components, how it fits into a semantic layer, and how it differs from warehouse-native semantic views."
 author: "Evan Paul"
 date: 2026-06-08
-lastmod: 2026-09-13
+lastmod: 2026-06-10
 head:
   - - meta
     - name: keywords

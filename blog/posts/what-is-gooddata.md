@@ -3,7 +3,7 @@ title: "GoodData: How a 17-Year BI Company Became an AI-Native Analytics Platfor
 description: "GoodData's evolution from cloud BI startup to GoodData.AI — what it reveals about the industry shift toward AI-native analytics and the role of the semantic layer."
 author: "Evan Paul"
 date: 2026-06-10
-lastmod: 2026-09-13
+lastmod: 2026-06-10
 head:
   - - meta
     - name: keywords

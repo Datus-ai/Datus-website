@@ -3,7 +3,7 @@ title: "The Datus OSI Semantic Adapter: OSI In, MetricFlow Out"
 description: "The Datus OSI (Apache Ossie) semantic adapter authors vendor-neutral YAML, validates it, and queries metrics via MetricFlow without leaking backend fields into source models."
 author: "Kostja"
 date: 2026-08-17
-lastmod: 2026-09-13
+lastmod: 2026-08-17
 head:
   - - meta
     - name: keywords
@@ -50,7 +50,7 @@ The Datus OSI semantic adapter lets the agent author metrics in vendor-neutral [
 
 A semantic model that only exists as MetricFlow YAML is useful until the next tool needs the same KPI. Then someone copies `measure_proxy` and `type_params` into a second file, or the agent "helps" by emitting warehouse SQL that happens to match last quarter's number. The syntax is fine. The contract is not: the source of truth has become an execution artifact.
 
-That is the failure [OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow/) already names. OSI says what a metric means so another tool can read it. MetricFlow computes it so the warehouse returns the right grain. An agent that writes MetricFlow YAML as if it were the interchange format collapses those layers. Six months later you cannot move the definition, and you cannot tell which fields were business meaning and which were compiler hints.
+That is the failure [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow/) already names. OSI says what a metric means so another tool can read it. MetricFlow computes it so the warehouse returns the right grain. An agent that writes MetricFlow YAML as if it were the interchange format collapses those layers. Six months later you cannot move the definition, and you cannot tell which fields were business meaning and which were compiler hints.
 
 The Datus OSI adapter exists so generation stays on the portable side of that line. The agent authors OSI core. The adapter compiles an internal IR and lowers it to MetricFlow. The YAML you keep in git should still look like OSI after a successful run.
 
@@ -108,7 +108,7 @@ That "not yet" is the honest part of the pitch. The adapter is not a replacement
 
 The Datus OSI semantic adapter is the product connection between a vendor-neutral authoring format and a governed query path: OSI in the repo, validation before Knowledge, MetricFlow at execution time, `ask_metrics` at the question. The work it saves is not typing YAML. It is the second copy of the same KPI that appears the first time someone treats an execution field as a definition — and the draft that would have reached Knowledge if the gate had not stopped it.
 
-The standard itself is [Open Semantic Interchange](/blog/open-semantic-interchange-osi/). The layer split is [OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow/). The store that receives a published metric is [Datus Knowledge](/blog/introducing-datus-knowledge/). When the question is a named KPI, the worker that should answer it is a [Datus subagent](/blog/introducing-datus-subagents/) — not a general chat inventing SQL.
+The standard itself is [Open Semantic Interchange](/blog/open-semantic-interchange-osi/). The layer split is [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow/). The store that receives a published metric is [Datus Knowledge](/blog/introducing-datus-knowledge/). When the question is a named KPI, the worker that should answer it is a [Datus subagent](/blog/introducing-datus-subagents/) — not a general chat inventing SQL.
 
 ## Frequently asked questions
 
@@ -135,6 +135,6 @@ No. MetricFlow and OSI are peer adapters. Switch the global semantic layer when 
 ## Related articles
 
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard the adapter authors.
-- [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — the two layers the adapter bridges.
+- [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — the two layers the adapter bridges.
 - [Introducing Datus Knowledge](/blog/introducing-datus-knowledge/) — where the authored models live.
 - [Introducing Datus Subagents](/blog/introducing-datus-subagents/) — the workers that query these metrics.

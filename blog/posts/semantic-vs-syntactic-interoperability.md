@@ -94,7 +94,7 @@ OSI is an <a href="https://github.com/open-semantic-interchange/OSI" rel="nofoll
 
 The key design choice is that OSI separates definition from implementation. A metric definition carries the meaning — `net_revenue` is `SUM(revenue) - SUM(refunds)` filtered on `order_status = 'completed'` — while the SQL dialect is left to whichever engine consumes it. That is precisely what semantic interoperability requires: agreement on meaning, not on implementation. Two systems connected to the same OSI-compliant definition may still use different dialects, but they will compute the same number.
 
-OSI is not a semantic layer product, and it does not define how definitions get created or kept current — the [OSI deep dive](/blog/open-semantic-interchange-osi) covers that boundary in detail. For how the standard compares with authoring tools, see [OSI vs dbt/MetricFlow](/blog/osi-vs-dbt-metricflow); for its relationship to formal ontologies, see [OSI vs RDF/OWL](/blog/osi-vs-rdf-owl). What matters here is the pattern: a lightweight, machine-readable format for meaning, agreed once and consumed by every tool and agent downstream.
+OSI is not a semantic layer product, and it does not define how definitions get created or kept current — the [OSI deep dive](/blog/open-semantic-interchange-osi) covers that boundary in detail. For how the standard compares with authoring tools, see [Apache Ossie / OSI vs dbt/MetricFlow](/blog/osi-vs-dbt-metricflow); for its relationship to formal ontologies, see [Apache Ossie / OSI vs RDF/OWL](/blog/osi-vs-rdf-owl). What matters here is the pattern: a lightweight, machine-readable format for meaning, agreed once and consumed by every tool and agent downstream.
 
 ## 5. Why this matters for AI agents
 

@@ -4,7 +4,7 @@ description: "Read-only data agents answer questions; write agents deliver work.
 author: "Harrison Zhao"
 date: 2026-08-22
 tags: insight
-lastmod: 2026-09-13
+lastmod: 2026-09-11
 head:
   - - meta
     - name: keywords

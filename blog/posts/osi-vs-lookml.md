@@ -1,6 +1,6 @@
 ---
-title: "OSI vs LookML: Can Open Standards Replace Looker's Modeling Language?"
-description: "OSI (Apache Ossie) vs LookML: lock-in trade-offs, migration paths, and how both affect metric portability for AI agents in practice."
+title: "Apache Ossie (OSI) vs LookML: Can Open Standards Replace Looker's Modeling Language?"
+description: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs LookML: lock-in trade-offs, migration paths, and metric portability for AI agents."
 author: "Evan Paul"
 date: 2026-08-06
 lastmod: 2026-09-13
@@ -10,10 +10,10 @@ head:
       content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs LookML, LookML vs OSI, LookML, Looker modeling language, semantic layer portability, migrate LookML to OSI, AI agents"
   - - meta
     - property: og:title
-      content: "OSI vs LookML: Can Open Standards Replace Looker's Modeling Language?"
+      content: "Apache Ossie (OSI) vs LookML: Can Open Standards Replace Looker's Modeling Language?"
   - - meta
     - property: og:description
-      content: "OSI (Apache Ossie) vs LookML: lock-in trade-offs, migration paths, and how both affect metric portability for AI agents in practice."
+      content: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs LookML: lock-in trade-offs, migration paths, and metric portability for AI agents."
   - - meta
     - property: og:type
       content: article
@@ -31,11 +31,11 @@ head:
       href: https://datus.ai/blog/osi-vs-lookml/
 ---
 
-# OSI vs LookML: Can Open Standards Replace Looker's Modeling Language?
+# Apache Ossie (OSI) vs LookML: Can Open Standards Replace Looker's Modeling Language?
 
 > **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
 
-LookML vs OSI (Apache Ossie): one is Looker's proprietary modeling language, the other a vendor-neutral interchange standard. This article compares both fairly, weighs what portability would unlock, and maps migration and coexistence paths for teams on Looker today.
+LookML vs **Apache Ossie** (formerly **Open Semantic Interchange**, OSI): one is Looker's proprietary modeling language, the other a vendor-neutral interchange standard. This article compares both fairly, weighs what portability would unlock, and maps migration and coexistence paths for teams on Looker today.
 
 ## TL;DR
 
@@ -139,6 +139,10 @@ Most misconceptions come from treating a format and a product as the same thing.
 LookML and OSI are not rivals in the way the "vs" in the title suggests; they operate at different layers. LookML is the tightest model-to-UI loop in BI, deeply integrated with Looker's exploration engine and Google Cloud's ecosystem, and it is the right choice for teams whose primary consumer is Looker itself. OSI is a portability path — an interchange standard that could release LookML-authored definitions from the Looker stack, with the sharp caveat that, as of August 2026, Looker is not in the public working group and no native support exists anywhere. The honest framing is that OSI is not a replacement but a release valve: it becomes valuable exactly when definitions need to travel. For teams on Looker, the practical sequence is to define and govern the metrics that matter, treat portability as a design assumption rather than a feature, and watch the ecosystem signals — a LookML converter, a roster change, a shipped import — before committing to migration. If the standard delivers, you will have definitions ready to travel. If it does not, you will still have a governed semantic layer, which is the part that is never wasted. Explore the [data engineering glossary](/glossary/) for more definitions.
 
 ## Frequently asked questions
+
+### Is this about OSI or Apache Ossie?
+
+They are the same standard. **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the Apache Incubator in July 2026 — the spec, community, and mission did not change. This comparison applies whether you know it as OSI or Apache Ossie. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/).
 
 ### What is the difference between LookML and OSI?
 

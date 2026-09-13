@@ -3,7 +3,7 @@ title: "Introducing Dosi: OSI-Native Semantic Layer for Metrics"
 description: "Dosi compiles Apache Ossie (OSI) YAML into SQL across 15+ warehouse dialects — CLI, REST, MCP, and Python — so metrics are defined once and used everywhere."
 author: "Kostja"
 date: 2026-08-21
-lastmod: 2026-09-13
+lastmod: 2026-08-21
 head:
   - - meta
     - name: keywords

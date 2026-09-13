@@ -1,6 +1,6 @@
 ---
-title: "OSI vs RDF/OWL: Two Generations of Semantics Compared"
-description: "OSI vs RDF/OWL: how formal Semantic Web ontologies differ from Apache Ossie's lightweight YAML interchange, and why it matters for analytics."
+title: "Apache Ossie (OSI) vs RDF/OWL: Two Generations of Semantics Compared"
+description: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs RDF/OWL: how formal Semantic Web ontologies differ from lightweight YAML interchange."
 author: "Evan Paul"
 date: 2026-08-09
 lastmod: 2026-09-13
@@ -10,10 +10,10 @@ head:
       content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs RDF/OWL, RDF, OWL, Semantic Web, ontology vs semantic layer, open-world vs closed-world, knowledge graph, AI agents"
   - - meta
     - property: og:title
-      content: "OSI vs RDF/OWL: Two Generations of Semantics Compared"
+      content: "Apache Ossie (OSI) vs RDF/OWL: Two Generations of Semantics Compared"
   - - meta
     - property: og:description
-      content: "OSI vs RDF/OWL: how formal Semantic Web ontologies differ from Apache Ossie's lightweight YAML interchange, and why it matters for analytics."
+      content: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs RDF/OWL: how formal Semantic Web ontologies differ from lightweight YAML interchange."
   - - meta
     - property: og:type
       content: article
@@ -31,11 +31,11 @@ head:
       href: https://datus.ai/blog/osi-vs-rdf-owl/
 ---
 
-# OSI vs RDF/OWL: Two Generations of Semantics Compared
+# Apache Ossie (OSI) vs RDF/OWL: Two Generations of Semantics Compared
 
 > **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
 
-**RDF/OWL** is the W3C specification stack behind the Semantic Web — formal ontologies, graph triples, inference, and an open-world model of meaning. **OSI** (now Apache Ossie) is a pragmatic YAML interchange format for metrics, dimensions, and relationships, built for the closed world of enterprise analytics. This article defines both, compares them across seven dimensions, and argues that the two are converging rather than competing.
+**RDF/OWL** is the W3C specification stack behind the Semantic Web — formal ontologies, graph triples, inference, and an open-world model of meaning. **Apache Ossie** (formerly **Open Semantic Interchange**, OSI) is a pragmatic YAML interchange format for metrics, dimensions, and relationships, built for the closed world of enterprise analytics. This article defines both, compares them across seven dimensions, and argues that the two are converging rather than competing.
 
 ## TL;DR
 
@@ -94,13 +94,13 @@ If you are deciding which of the two to build on, the differences that matter ar
 | **Adoption cost** | High: reasoners, ontology tooling, URI management, expertise | Low: YAML files any data engineer can read, edit, and validate |
 | **Fit for analytics** | Poor default: built for web-scale knowledge, not warehouse queries | Native: mirrors how BI tools and metric layers already model data |
 
-The pattern across the table is a trade-off, not a scorecard. RDF/OWL wins on generality — its formalism can represent pharmaceutical ontologies, supply-chain graphs, or legal knowledge, none of which reduce to a star schema. OSI wins on adoption cost and analytical fit, because it models exactly the artifacts a warehouse already contains, with semantics that execute. In practice, the row that decides most enterprise conversations is "world assumption": teams evaluating OSI vs RDF vs OWL for analytics rarely need inference, but they always need definitions that translate unambiguously into SQL. For narrower comparisons against specific authoring tools, see [OSI vs dbt/MetricFlow](/blog/osi-vs-dbt-metricflow), [OSI vs LookML](/blog/osi-vs-lookml), and [OSI vs Cube](/blog/osi-vs-cube).
+The pattern across the table is a trade-off, not a scorecard. RDF/OWL wins on generality — its formalism can represent pharmaceutical ontologies, supply-chain graphs, or legal knowledge, none of which reduce to a star schema. OSI wins on adoption cost and analytical fit, because it models exactly the artifacts a warehouse already contains, with semantics that execute. In practice, the row that decides most enterprise conversations is "world assumption": teams evaluating OSI vs RDF vs OWL for analytics rarely need inference, but they always need definitions that translate unambiguously into SQL. For narrower comparisons against specific authoring tools, see [Apache Ossie / OSI vs dbt/MetricFlow](/blog/osi-vs-dbt-metricflow), [Apache Ossie / OSI vs LookML](/blog/osi-vs-lookml), and [Apache Ossie / OSI vs Cube](/blog/osi-vs-cube).
 
 ## 4. Why the Semantic Web never fully landed in enterprise analytics — and why OSI's scoping works
 
 The question that follows from the table is why the more expressive technology lost the enterprise analytics market. The Semantic Web did not fail for lack of ambition — the 2001 vision was enormous — but for the economics of adoption. Formal ontologies require reasoners, SPARQL endpoints, URI governance, and a modeling discipline that treats every concept definition as a lasting contract; few analytics teams have any of that tooling. The modeling overhead is the deeper issue: OWL's open-world semantics assume a web of independently published schemas, while a warehouse is a bounded, curated system in which "the model contains everything you may query" is the actual invariant. When the definitions you need describe exactly the tables you have, an inference layer multiplies cost without adding correctness.
 
-What survived from the Semantic Web is telling. Knowledge graphs productized the graph-and-ontology idea into search infrastructure, and RDF/OWL remains the standard in domains that genuinely need it — life sciences, government data, research publishing. What did not survive was the claim that every organization should formally model its world. OSI approaches the same problem from the opposite direction: instead of generalizing semantics until they cover everything, it scopes them to the artifacts analytics actually exchanges, and keeps the model explicit, versioned, and directly executable. That scoping is why OSI has merged four reference converters — dbt/MetricFlow, GoodData, Salesforce, and Apache Polaris — and also why no product yet ships native OSI support: the ecosystem is standardizing the interchange first and the tooling second. For teams still sorting out the semantic-web-versus-semantic-layer question, [what is a semantic layer](/blog/what-is-semantic-layer) covers the closer sibling, and [OSI vs warehouse-native semantics](/blog/osi-vs-warehouse-native-semantics) examines how the standard relates to built-in features in Snowflake and BigQuery.
+What survived from the Semantic Web is telling. Knowledge graphs productized the graph-and-ontology idea into search infrastructure, and RDF/OWL remains the standard in domains that genuinely need it — life sciences, government data, research publishing. What did not survive was the claim that every organization should formally model its world. OSI approaches the same problem from the opposite direction: instead of generalizing semantics until they cover everything, it scopes them to the artifacts analytics actually exchanges, and keeps the model explicit, versioned, and directly executable. That scoping is why OSI has merged four reference converters — dbt/MetricFlow, GoodData, Salesforce, and Apache Polaris — and also why no product yet ships native OSI support: the ecosystem is standardizing the interchange first and the tooling second. For teams still sorting out the semantic-web-versus-semantic-layer question, [what is a semantic layer](/blog/what-is-semantic-layer) covers the closer sibling, and [Apache Ossie / OSI vs warehouse-native semantics](/blog/osi-vs-warehouse-native-semantics) examines how the standard relates to built-in features in Snowflake and BigQuery.
 
 ## 5. The ontology-representation working group: where the two worlds converge
 
@@ -141,6 +141,10 @@ For most data teams, the practical answer is not a bet on one standard but a div
 Explore the [data engineering glossary](/glossary/) for more definitions.
 
 ## Frequently asked questions
+
+### Is this about OSI or Apache Ossie?
+
+They are the same standard. **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the Apache Incubator in July 2026 — the spec, community, and mission did not change. This comparison applies whether you know it as OSI or Apache Ossie. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/).
 
 ### What is the difference between OSI and RDF/OWL?
 

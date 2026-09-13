@@ -3,7 +3,7 @@ title: "What Is Databricks Genie? Agents for Conversational Analytics"
 description: "What Databricks Genie is: domain-scoped agents (formerly Spaces) that answer with SQL and charts under Unity Catalog — and how they differ from Genie Code."
 author: "Kostja"
 date: 2026-08-20
-lastmod: 2026-09-13
+lastmod: 2026-08-20
 head:
   - - meta
     - name: keywords

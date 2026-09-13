@@ -3,7 +3,7 @@ title: "Dosi with Cube: OSI Execution and Agentic Analytics in One Stack"
 description: "How Dosi with Cube stacks API-first semantic serving with OSI-native multi-dialect SQL execution — complementary layers for agents and warehouses."
 author: "Kostja"
 date: 2026-08-26
-lastmod: 2026-09-13
+lastmod: 2026-08-26
 head:
   - - meta
     - name: keywords
@@ -40,7 +40,7 @@ A team standardizes metrics in Cube, ships sub-50ms dashboards through CubeStore
 ## TL;DR
 
 - **Dosi with Cube** describes a complementary stack: Cube as the API-first [semantic layer](/blog/what-is-semantic-layer) for pre-aggregations, multi-protocol serving, and [agentic analytics](/blog/cube-agentic-analytics); OSI (Apache Ossie) as the portable interchange between authoring tools; Dosi as the OSI-native execution engine that compiles YAML to 15+ warehouse dialects via CLI, REST, MCP, and Python.
-- Cube and Dosi solve different boundaries — Cube **runs** governed semantics through its own data models and CubeStore cache; Dosi **executes** OSI YAML as the input contract without requiring a Cube or MetricFlow runtime in the compile path. See [OSI vs Cube](/blog/osi-vs-cube) for the standard-vs-product distinction.
+- Cube and Dosi solve different boundaries — Cube **runs** governed semantics through its own data models and CubeStore cache; Dosi **executes** OSI YAML as the input contract without requiring a Cube or MetricFlow runtime in the compile path. See [Apache Ossie / OSI vs Cube](/blog/osi-vs-cube) for the standard-vs-product distinction.
 - **Agent patterns diverge by design:** Cube routes [data agents](/blog/what-is-data-agent) through SQL, REST, GraphQL, MCP, and AI API endpoints grounded in cube data models; Dosi MCP exposes metric-level compile tools with structured error codes when the governed object is OSI. Teams can use both — Cube for cached consumption at scale, Dosi when the same OSI file must compile for Snowflake, BigQuery, and Spark without re-authoring.
 - As of August 2026, Cube participates in the OSI working group but has **no merged Cube-to-OSI converter** in the Apache Ossie repository — interoperability is intent, not a shipped import path. Dosi is among the **first** engines built to compile OSI YAML to multi-dialect SQL natively; it is a **Datus Studio component**, not open source, and this article does not cover pricing or packaging.
 - The durable architecture: **author where your team already models** (often Cube), **interchange via OSI** when definitions must travel, **execute with Dosi** when multi-dialect OSI-native compilation and agent MCP with structured errors are the requirement — complementary layers, not a replacement narrative.
@@ -123,13 +123,13 @@ Cube's advantages remain real for teams choosing a semantic consumption platform
 
 **Dosi with Cube** names a stack architecture, not a SKU bundle. Cube governs and serves metrics through API-first semantic layers and agentic analytics; OSI carries portable meaning between tools; Dosi compiles OSI YAML to warehouse SQL across dialects with CLI, REST, MCP, and Python surfaces for pipelines and agents. Use Cube when cached, multi-protocol consumption is the core problem. Add Dosi when OSI is the handoff format and native multi-dialect execution — with structured agent errors — closes the loop interchange opens.
 
-Read [Introducing Dosi](/blog/introducing-dosi) for product scope, [OSI vs Cube](/blog/osi-vs-cube) for standard-versus-product depth, and [Cube agentic analytics](/blog/cube-agentic-analytics) for Cube's agent layer — this page is the complementarity map. For MCP wiring details, see [Dosi MCP semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents) and <a href="https://dosi.datus.ai/" rel="nofollow noopener">dosi.datus.ai</a>. Align definitions before you align servers; the stack only works when metric meaning has an owner.
+Read [Introducing Dosi](/blog/introducing-dosi) for product scope, [Apache Ossie / OSI vs Cube](/blog/osi-vs-cube) for standard-versus-product depth, and [Cube agentic analytics](/blog/cube-agentic-analytics) for Cube's agent layer — this page is the complementarity map. For MCP wiring details, see [Dosi MCP semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents) and <a href="https://dosi.datus.ai/" rel="nofollow noopener">dosi.datus.ai</a>. Align definitions before you align servers; the stack only works when metric meaning has an owner.
 
 ## Frequently asked questions
 
 ### Does Cube natively import or export OSI today?
 
-As of August 2026, **no merged Cube-to-OSI converter** exists in the Apache Ossie repository, and Cube does not ship user-facing OSI import or export as a product feature. Cube participates in the OSI working group and has publicly stated intent to contribute adapters. Treat OSI interoperability from Cube as roadmap signal until a shipped path exists — see [OSI vs Cube](/blog/osi-vs-cube) for the full adoption picture.
+As of August 2026, **no merged Cube-to-OSI converter** exists in the Apache Ossie repository, and Cube does not ship user-facing OSI import or export as a product feature. Cube participates in the OSI working group and has publicly stated intent to contribute adapters. Treat OSI interoperability from Cube as roadmap signal until a shipped path exists — see [Apache Ossie / OSI vs Cube](/blog/osi-vs-cube) for the full adoption picture.
 
 ### Can I use Cube and Dosi together without duplicating metric logic?
 
@@ -154,7 +154,7 @@ Adopt OSI thinking when definitions must **travel** — second warehouse, tool m
 ## Related articles
 
 - [Introducing Dosi](/blog/introducing-dosi/) — the OSI-native execution engine.
-- [OSI vs Cube](/blog/osi-vs-cube/) — the standard-versus-product distinction.
+- [Apache Ossie / OSI vs Cube](/blog/osi-vs-cube/) — the standard-versus-product distinction.
 - [Cube agentic analytics](/blog/cube-agentic-analytics/) — Cube's agent layer in depth.
 - [Dosi MCP semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — the MCP wiring for OSI metrics.
 - [Why OSI needs an execution engine](/blog/why-osi-needs-execution-engine/) — the interchange-vs-runtime gap.

@@ -1,6 +1,6 @@
 ---
-title: "OSI vs Warehouse-Native Semantics: Snowflake and Databricks Compared"
-description: "Snowflake Semantic Views vs Databricks Metric Views vs OSI (Apache Ossie): portability, lock-in, AI grounding, and when warehouse-native semantics win."
+title: "Apache Ossie (OSI) vs Warehouse-Native Semantics: Snowflake and Databricks Compared"
+description: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs warehouse-native semantics: Snowflake, Databricks, portability, lock-in, and AI grounding."
 author: "Evan Paul"
 date: 2026-08-07
 lastmod: 2026-09-13
@@ -10,10 +10,10 @@ head:
       content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs warehouse-native semantics, Snowflake Semantic Views, Databricks Metric Views, Cortex Analyst, Genie, semantic layer portability, AI agents"
   - - meta
     - property: og:title
-      content: "OSI vs Warehouse-Native Semantics: Snowflake and Databricks Compared"
+      content: "Apache Ossie (OSI) vs Warehouse-Native Semantics: Snowflake and Databricks Compared"
   - - meta
     - property: og:description
-      content: "Snowflake Semantic Views vs Databricks Metric Views vs OSI (Apache Ossie): portability, lock-in, AI grounding, and when warehouse-native semantics win."
+      content: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs warehouse-native semantics: Snowflake, Databricks, portability, lock-in, and AI grounding."
   - - meta
     - property: og:type
       content: article
@@ -31,11 +31,11 @@ head:
       href: https://datus.ai/blog/osi-vs-warehouse-native-semantics/
 ---
 
-# OSI vs Warehouse-Native Semantics: Snowflake and Databricks Compared
+# Apache Ossie (OSI) vs Warehouse-Native Semantics: Snowflake and Databricks Compared
 
 > **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
 
-Warehouse-native semantics — Snowflake Semantic Views and Databricks Metric Views — keep governed metrics inside one platform; OSI (Apache Ossie) is the interchange format that lets them leave. This article compares both across portability, lock-in, and AI grounding, and shows when each approach wins.
+Warehouse-native semantics — Snowflake Semantic Views and Databricks Metric Views — keep governed metrics inside one platform; **Apache Ossie** (formerly **Open Semantic Interchange**, OSI) is the interchange format that lets them leave. This article compares both across portability, lock-in, and AI grounding, and shows when each approach wins.
 
 ## TL;DR
 
@@ -133,6 +133,10 @@ Warehouse-native semantics and OSI / Apache Ossie answer different questions. Na
 Next reading: the [OSI / Apache Ossie overview](/blog/open-semantic-interchange-osi), [what is Snowflake OSI](/blog/what-is-snowflake-osi), and the [semantic layer tools list with OSI status](/blog/semantic-layer-tools-list-osi). For the agent view, see [what is a data engineering agent](/blog/what-is-data-engineering-agent).
 
 ## Frequently asked questions
+
+### Is this about OSI or Apache Ossie?
+
+They are the same standard. **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the Apache Incubator in July 2026 — the spec, community, and mission did not change. This comparison applies whether you know it as OSI or Apache Ossie. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/).
 
 ### What is the difference between OSI and a warehouse-native semantic layer?
 

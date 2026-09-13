@@ -103,7 +103,7 @@ Calling something a native **apache ossie implementation** at the execution laye
 
 **Dialect lowering.** The same Ossie model produces correct SQL for more than one warehouse dialect — at minimum through a stable internal intermediate representation. Annotations in the spec may carry dialect-specific expressions; the engine merges portable semantics with those hints.
 
-**Query surface.** Consumers need a stable interface: CLI flags, an HTTP API, MCP tools for agents, or embedded library calls. The [OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow) split is instructive here: MetricFlow ships all of the above against its own YAML; a native Ossie engine ships them against Ossie YAML.
+**Query surface.** Consumers need a stable interface: CLI flags, an HTTP API, MCP tools for agents, or embedded library calls. The [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow) split is instructive here: MetricFlow ships all of the above against its own YAML; a native Ossie engine ships them against Ossie YAML.
 
 **Conformance signal.** Eventually, shared test fixtures — the Apache roadmap mentions a conformance suite tied to a reference compiler — let implementations prove equivalent results. Until that suite lands, engines should document their fixture coverage and edge-case limits honestly.
 
@@ -155,7 +155,7 @@ Teams can maintain one Ossie file per metric domain. At query time, `dosi query 
 
 **Benchmarks, with caveats.** Dosi publishes an apples-to-apples benchmark against MetricFlow using the MetricFlow `simple_model` fixture converted one-to-one to Ossie — a small model (~25 datasets/metrics), not a production-sized graph. On that fixture, <a href="https://dosi.datus.ai/benchmarks/" rel="nofollow noopener">documented runs</a> report roughly 10–22× faster warm compilation and materially lower peak RSS versus MetricFlow in-process, with end-to-end cold CLI comparisons showing larger gaps because MetricFlow pays substantial Python import and parse overhead per invocation. Treat those ratios as **scenario-specific**, not universal speedup claims; large models may narrow or widen the gap. Reproduction scripts and raw JSON live on the benchmarks page.
 
-For a product-oriented introduction to Dosi as Studio infrastructure, see [Introducing Dosi](/blog/introducing-dosi). For where Ossie ends and MetricFlow begins in the stack, keep [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow) as the companion read.
+For a product-oriented introduction to Dosi as Studio infrastructure, see [Introducing Dosi](/blog/introducing-dosi). For where Ossie ends and MetricFlow begins in the stack, keep [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow) as the companion read.
 
 ## 7. Where native execution fits in the semantic stack
 
@@ -208,7 +208,7 @@ Ask which semantic fixture and query matrix were used, whether comparisons inclu
 
 ### Where does Dosi fit if we already use dbt MetricFlow?
 
-MetricFlow excels when dbt is your authoring and governance system. Ossie enters when you need definitions to outlive that stack or feed non-dbt consumers — agents, second warehouses, embedded analytics. Dosi executes Ossie YAML directly; dbt teams can keep MetricFlow as the authoring path and treat Ossie as interchange when portability matters. The two layers are complementary; see [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow) for the full split.
+MetricFlow excels when dbt is your authoring and governance system. Ossie enters when you need definitions to outlive that stack or feed non-dbt consumers — agents, second warehouses, embedded analytics. Dosi executes Ossie YAML directly; dbt teams can keep MetricFlow as the authoring path and treat Ossie as interchange when portability matters. The two layers are complementary; see [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow) for the full split.
 
 ## Apache Ossie / OSI: official resources
 
@@ -223,5 +223,5 @@ MetricFlow excels when dbt is your authoring and governance system. Ossie enters
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard this engine implements.
 - [Why OSI needs an execution engine](/blog/why-osi-needs-execution-engine/) — the interchange-vs-runtime gap.
 - [Introducing Dosi](/blog/introducing-dosi/) — the product overview of the engine.
-- [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — where Ossie ends and MetricFlow begins.
+- [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — where Ossie ends and MetricFlow begins.
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the category context.

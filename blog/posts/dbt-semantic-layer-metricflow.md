@@ -3,7 +3,7 @@ title: "dbt Semantic Layer & MetricFlow: Architecture and Limits"
 description: "How MetricFlow powers dbt's Semantic Layer, where it works, where it falls short, and how AI data agents and OSI-native alternatives extend governed metrics."
 author: "Evan Paul"
 date: 2026-06-09
-lastmod: 2026-09-13
+lastmod: 2026-09-12
 head:
   - - meta
     - name: keywords
@@ -190,7 +190,7 @@ The closest alternatives are other semantic-layer engines: [Cube](/blog/osi-vs-c
 
 ## Related articles
 
-- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the portable standard vs the execution engine
+- [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the portable standard vs the execution engine
 - [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) — OSI-native runtime vs dbt-centric runtime
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog MetricFlow implements
 - [What is a semantic model?](/blog/what-is-semantic-model/) — the building block MetricFlow queries

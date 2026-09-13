@@ -1,6 +1,6 @@
 ---
-title: "OSI vs Cube: Headless Semantic Layer Meets Open Standard"
-description: "OSI (now Apache Ossie) vs Cube compared: the Open Semantic Interchange standard vs Cube's headless semantic layer — formats, execution, governance, and AI agent access."
+title: "Apache Ossie (OSI) vs Cube: Headless Semantic Layer Meets Open Standard"
+description: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs Cube: open standard meets headless semantic layer — format, execution, governance, AI access."
 author: "Evan Paul"
 date: 2026-08-10
 lastmod: 2026-09-13
@@ -10,10 +10,10 @@ head:
       content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs Cube, Cube.dev, headless semantic layer, Open Semantic Interchange, CubeStore, semantic layer API, AI agents"
   - - meta
     - property: og:title
-      content: "OSI vs Cube: Headless Semantic Layer Meets Open Standard"
+      content: "Apache Ossie (OSI) vs Cube: Headless Semantic Layer Meets Open Standard"
   - - meta
     - property: og:description
-      content: "OSI vs Cube compared: the Open Semantic Interchange standard vs Cube's headless semantic layer — formats, execution, governance, and AI agent access."
+      content: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs Cube: open standard meets headless semantic layer — format, execution, governance, AI access."
   - - meta
     - property: og:type
       content: article
@@ -31,11 +31,11 @@ head:
       href: https://datus.ai/blog/osi-vs-cube/
 ---
 
-# OSI vs Cube: Headless Semantic Layer Meets Open Standard
+# Apache Ossie (OSI) vs Cube: Headless Semantic Layer Meets Open Standard
 
 > **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
 
-**OSI** and **Cube** are often grouped together, but they operate at different layers of the semantic stack: OSI is an open interchange standard for portable metric definitions, while Cube is a headless semantic layer product that defines, executes, and serves those definitions. This article defines each, compares them across format, execution, governance, and AI agent access, and explains why the product-vs-standard distinction matters in practice.
+**Apache Ossie** (formerly **Open Semantic Interchange**, OSI) and **Cube** are often grouped together, but they operate at different layers of the semantic stack: OSI is an open interchange standard for portable metric definitions, while Cube is a headless semantic layer product that defines, executes, and serves those definitions. This article defines each, compares them across format, execution, governance, and AI agent access, and explains why the product-vs-standard distinction matters in practice.
 
 ## TL;DR
 
@@ -117,7 +117,7 @@ The complementary piece is who keeps those definitions current. Standards descri
 
 Four misconceptions dominate this topic, and each one collapses once the product-vs-standard line is held firmly.
 
-- **"OSI is a semantic layer like Cube."** It is not. OSI is a specification; it stores nothing, queries nothing, and serves no API. A semantic layer is a runtime — Cube, MetricFlow, LookML — that does all three. For the related boundary with formal semantic standards, see the [OSI vs RDF/OWL](/blog/osi-vs-rdf-owl) comparison.
+- **"OSI is a semantic layer like Cube."** It is not. OSI is a specification; it stores nothing, queries nothing, and serves no API. A semantic layer is a runtime — Cube, MetricFlow, LookML — that does all three. For the related boundary with formal semantic standards, see the [Apache Ossie / OSI vs RDF/OWL](/blog/osi-vs-rdf-owl) comparison.
 - **"Cube supports OSI because it is in the working group."** Participation signals intent, not delivery. As of August 2026, Cube has no converter merged in the Apache Ossie repository, while dbt, GoodData, Salesforce, and Polaris do.
 - **"Cube data model YAML and OSI YAML are the same thing."** The syntax family is shared, but the contract differs: cube data model YAML is tool configuration executed by Cube; OSI YAML is an interchange document that any conforming tool can consume. Same file extension, different promise.
 - **"Adopting OSI means replacing Cube."** The opposite. OSI needs a runtime to be useful, and Cube needs an interchange path for its definitions to travel. The standard extends Cube's reach; it does not remove it.
@@ -131,6 +131,10 @@ OSI and Cube are not competitors; they are two layers of the same stack. OSI is 
 Explore the [data engineering glossary](/glossary/) for more definitions.
 
 ## Frequently asked questions
+
+### Is this about OSI or Apache Ossie?
+
+They are the same standard. **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the Apache Incubator in July 2026 — the spec, community, and mission did not change. This comparison applies whether you know it as OSI or Apache Ossie. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/).
 
 ### Is OSI a semantic layer like Cube?
 

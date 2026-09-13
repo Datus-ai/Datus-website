@@ -3,7 +3,7 @@ title: "Why OSI Needs an Execution Engine — Interchange vs Runtime"
 description: "OSI (Apache Ossie) defines portable semantic metadata, not query execution. Learn the interchange-vs-runtime gap and why native OSI engines matter."
 author: "Kostja"
 date: 2026-08-23
-lastmod: 2026-09-13
+lastmod: 2026-08-23
 head:
   - - meta
     - name: keywords
@@ -63,7 +63,7 @@ The objection usually arrives in one of three forms, each pointing at a real gap
 
 **"We already exported to OSI — why can't the agent query it?"** Because export proves interchange, not executability. An OSI file on disk is a governed document. Querying it requires an engine that parses the schema, resolves relationships, plans aggregation grain, selects a dialect, and emits SQL — then optionally exposes the result through CLI, REST, or MCP for agents.
 
-**"The converter exists, so we're OSI-compatible."** Reference converters in the Ossie repository validate that a mapping is technically feasible. They are command-line proofs, not product features. As of August 2026, no major semantic layer or BI product ships native OSI import that compiles and serves metrics without an intermediate native format — a point the [OSI vs dbt MetricFlow comparison](/blog/osi-vs-dbt-metricflow) documents in detail.
+**"The converter exists, so we're OSI-compatible."** Reference converters in the Ossie repository validate that a mapping is technically feasible. They are command-line proofs, not product features. As of August 2026, no major semantic layer or BI product ships native OSI import that compiles and serves metrics without an intermediate native format — a point the [Apache Ossie / OSI vs dbt MetricFlow comparison](/blog/osi-vs-dbt-metricflow) documents in detail.
 
 **"Agents can read YAML — they'll figure out the SQL."** Agents read text reliably; they do not reliably compute enterprise metrics from unstructured context. The failure mode is semantic, not syntactic: valid SQL against the wrong join path, the wrong grain, or a plausible but uncertified aggregate. A format gives agents structured meaning; a runtime gives them a governed execution path that does not depend on the model inventing warehouse logic at query time.
 
@@ -98,7 +98,7 @@ Teams that treat OSI export as the finish line encounter predictable failure mod
 
 **The inert catalog problem.** Semantic metadata lands in a data catalog or Git repository as OSI YAML. Discovery improves — analysts can see that `net_revenue` excludes refunds. Queryability does not. Without a runtime wired to that source, the catalog becomes documentation with schema validation, not a queryable semantic layer. The metric exists as a portable file; no API serves it.
 
-**The double-conversion tax.** A common interim pattern: export MetricFlow YAML to OSI for portability, then import OSI into another native format for execution because the target engine does not consume OSI directly. Each conversion introduces mapping risk — subtle grain shifts, lost filter context, relationship cardinality approximations. The team gains interchange in theory and pays integration tax in practice. The [OSI vs MetricFlow article](/blog/osi-vs-dbt-metricflow) describes this as complementary layers; in production it feels like friction until a consumer reads OSI natively.
+**The double-conversion tax.** A common interim pattern: export MetricFlow YAML to OSI for portability, then import OSI into another native format for execution because the target engine does not consume OSI directly. Each conversion introduces mapping risk — subtle grain shifts, lost filter context, relationship cardinality approximations. The team gains interchange in theory and pays integration tax in practice. The [Apache Ossie / OSI vs MetricFlow article](/blog/osi-vs-dbt-metricflow) describes this as complementary layers; in production it feels like friction until a consumer reads OSI natively.
 
 **The agent grounding gap.** An agent given OSI YAML as context can describe a metric accurately and still generate SQL that violates join rules the YAML encodes. Structured definitions reduce ambiguity; they do not replace a compiler. Production agent stacks need either (a) a runtime the agent calls (`query_metrics("net_revenue", group_by=["region"])`) or (b) an engine-trusted SQL path — not a prompt that asks the model to interpret YAML and write warehouse SQL in one step.
 
@@ -189,6 +189,6 @@ Unlikely as a universal outcome — and that is healthy. MetricFlow remains the 
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — what the standard defines.
 - [First Native Apache Ossie Engine](/blog/first-native-apache-ossie-engine/) — the native-implementation taxonomy.
 - [Semantic vs syntactic interoperability](/blog/semantic-vs-syntactic-interoperability/) — the interoperability layers behind runtime.
-- [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — format vs runtime, in depth.
+- [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — format vs runtime, in depth.
 - [Introducing Dosi](/blog/introducing-dosi/) — a native OSI runtime in practice.
 - [What makes a semantic layer AI-native?](/blog/ai-native-semantic-layer/) — the six requirements a runtime has to meet.

@@ -3,7 +3,7 @@ title: "Introducing Datus Knowledge: The Memory Layer for Data Engineering Agent
 description: "Datus Knowledge stores schema, semantic models, metrics, reference SQL, templates, and platform docs so a data engineering agent retrieves meaning — not a schema dump."
 author: "Kostja"
 date: 2026-08-17
-lastmod: 2026-09-13
+lastmod: 2026-08-17
 head:
   - - meta
     - name: keywords
