@@ -1,25 +1,25 @@
 ---
-title: "dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers"
-description: "How dbt Semantic Layer and MetricFlow work, what they mean for data engineering teams, and how they fit with data engineering agents."
+title: "dbt Semantic Layer & MetricFlow: Architecture and Limits"
+description: "How MetricFlow powers dbt's Semantic Layer, where it works, where it falls short, and how AI data agents and OSI-native alternatives extend governed metrics."
 author: "Evan Paul"
 date: 2026-06-09
-lastmod: 2026-06-10
+lastmod: 2026-09-12
 head:
   - - meta
     - name: keywords
-      content: "dbt semantic layer, MetricFlow, dbt MetricFlow guide, dbt semantic layer explained, MetricFlow architecture, dbt metrics, semantic layer dbt"
+      content: "dbt semantic layer, MetricFlow, MetricFlow architecture, MetricFlow license, MetricFlow Apache 2.0, dbt semantic layer explained, dbt metrics, semantic layer dbt, MetricFlow alternatives, Dosi"
   - - meta
     - property: og:title
-      content: "dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers"
+      content: "dbt Semantic Layer & MetricFlow: Architecture and Limits"
   - - meta
     - property: og:description
-      content: "How dbt Semantic Layer and MetricFlow work, what they mean for data engineering teams, and how they fit with data engineering agents."
+      content: "How MetricFlow powers dbt's Semantic Layer, where it works, where it falls short, and how AI data agents and OSI-native alternatives extend governed metrics."
   - - meta
     - property: og:type
       content: article
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/posts/dbt-semantic-layer-metricflow
+      content: https://datus.ai/blog/dbt-semantic-layer-metricflow/
   - - meta
     - property: og:image
       content: https://datus.ai/logo_dark.svg
@@ -28,30 +28,31 @@ head:
       content: summary_large_image
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/posts/dbt-semantic-layer-metricflow
+      href: https://datus.ai/blog/dbt-semantic-layer-metricflow/
 ---
 
-# dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers
+# dbt Semantic Layer & MetricFlow: Architecture and Limits
 
 ## TL;DR
 
-- **MetricFlow** is the open-source engine behind dbt's Semantic Layer — defining metrics, dimensions, and semantic models in YAML, generating correct SQL at query time.
-- It was **open-sourced in late 2025** (Apache 2.0), making it the reference implementation for Git-managed, composable, grain-aware metric definitions.
-- Core architecture: **semantic models** describe data sources (measures, dimensions, entities); **metrics** compose measures across models with dimensions, filters, and time granularity; the **query API** (dbt Cloud) serves metrics to BI tools, notebooks, and agents.
-- Strengths: Git-managed governance, CI/CD-validated definitions, multi-engine SQL generation, composable derived metrics, strong dbt ecosystem integration.
-- Limitations: **engineer-maintained, batch-updated** — new ad-hoc queries and feedback cycles have no path into MetricFlow YAML until a PR is opened. This is the gap data engineering agents fill: bootstrapping metric candidates from production SQL and feeding validated queries back into context continuously.
-- Datus auto-generates MetricFlow-compatible semantic models and metrics (`/gen_semantic_model`, `/gen_metrics`), stores them alongside existing dbt definitions, and uses them to ground agent-generated SQL — complementing dbt's governance with continuous context evolution.
+- **MetricFlow is the query engine behind [dbt's Semantic Layer](https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl)** — define metrics, dimensions, and semantic models in YAML, and it generates correct SQL at query time across Snowflake, BigQuery, Databricks, Postgres, and DuckDB.
+- **The license path matters:** MetricFlow shipped under AGPL, moved to the restrictive BSL after dbt Labs acquired Transform in 2023 (production serving required dbt Cloud), then [relicensed to permissive Apache 2.0 in October 2025](https://www.getdbt.com/blog/open-source-metricflow-governed-metrics), aligning it with [Open Semantic Interchange (OSI)](/blog/osi-vs-metricflow/).
+- **Strengths:** Git-managed governance, CI/CD-validated definitions, grain enforcement, multi-engine SQL, and composable derived metrics.
+- **Limits:** it is engineer-maintained and batch-updated — ad-hoc queries and corrections have no path into the YAML until someone opens a PR.
+- **Alternatives & complements:** OSI-native runtimes like [Dosi](/blog/introducing-dosi/) compile the same definitions across 15+ dialects, and AI data agents keep provisional context current between PRs.
 
-Last year, defining a new metric in a dbt project worked like this: write the transformation SQL in a dbt model, document the business logic in a YAML description field (if you remembered), repeat the same logic in Looker's LookML for the dashboard layer, and hope that whoever queries the data six months later understands that `mktg_analytics.fact_attrib_daily.attrib_windows_30d_v2` means "30-day attribution window revenue." The metric existed in four places — the dbt model, the docs, the LookML, and the analyst's head — and keeping them synchronized was a manual process that everyone agreed was valuable and nobody had time to maintain. MetricFlow — the open-source engine behind dbt's Semantic Layer — changes this by making metric definitions a standalone, governed artifact: define `net_revenue` once in YAML, and every BI tool, notebook, API, and AI agent queries the same definition. This article explains how MetricFlow works, what it does well, where it hits its limits, and how it fits into a broader architecture that includes [data engineering agents](/blog/what-is-data-engineering-agent/).
+**MetricFlow is the query engine behind dbt's Semantic Layer** — the runtime that turns a declarative metric definition into correct SQL. You define a metric like `net_revenue` once in YAML — its measures, dimensions, joins, and grain — and MetricFlow generates the right query for whatever BI tool, notebook, API, or AI agent asks for it, on whatever warehouse you run. Data teams care because it kills metric drift: the number in the dashboard, the number in the code, and the number an agent returns all resolve to one governed definition. Its limits are the flip side of that governance — every metric change is a PR, so the layer is always one review cycle behind the analysis happening on top of it. This article covers how MetricFlow works, its licensing path to Apache 2.0, where it excels, where it falls short, and the [OSI-native](/blog/osi-vs-metricflow/) and agent-driven approaches that extend it.
 
 ## 1. What dbt Semantic Layer actually is
 
 The dbt Semantic Layer has two parts:
 
-- **MetricFlow** — the open-source engine that defines and queries metrics. This is the technology. It is Apache 2.0, standalone, and usable without dbt Cloud.
+- **[MetricFlow](https://github.com/dbt-labs/metricflow)** — the open-source engine that defines and queries metrics. This is the technology. Since October 2025 it is [Apache 2.0](https://docs.getdbt.com/docs/build/about-metricflow), standalone, and usable without dbt Cloud.
 - **dbt Cloud Semantic Layer** — the hosted query API and governance layer. This is the product. It exposes MetricFlow definitions through a REST API with caching, access control, and integrations with BI tools (Looker, Tableau, ThoughtSpot, Hex, Mode).
 
 The separation matters: you can run MetricFlow locally or in your own infrastructure (open-source), and you can optionally use dbt Cloud to serve it at scale (product). Most teams start with MetricFlow definitions in their dbt project and evaluate dbt Cloud for production serving.
+
+The Apache 2.0 license is recent, and the path to it shapes today's ecosystem. MetricFlow began at Transform (acquired by dbt Labs in 2023) under the Affero GPL, then moved to the Business Source License (BSL) — open to read and run locally, but production serving was gated behind dbt Cloud. At Coalesce 2025, dbt Labs relicensed it to Apache 2.0 and committed it to the [Open Semantic Interchange (OSI)](/blog/osi-vs-metricflow/) effort alongside Snowflake and Salesforce, so any vendor can now build on the engine without lock-in. That shift is what makes portable, OSI-native alternatives practical rather than theoretical.
 
 A minimal MetricFlow project has three artifact types:
 
@@ -143,21 +144,15 @@ The value is not in any single step but in the **entirety**: MetricFlow takes a 
 
 **Static context.** MetricFlow defines metrics as they *were* at the last deploy. It has no mechanism for incorporating provisional context — "don't use `status` before March; use `status_v2`" — or validated ad-hoc SQL that has not been promoted to a formal metric. In the AI agent era, where agents generate new SQL daily, static context at deploy-time granularity is increasingly insufficient.
 
-## 5. How data engineering agents complement MetricFlow
+## 5. Extending MetricFlow: OSI, Dosi, and continuous context
 
-The limitations above are not flaws in MetricFlow — they are consequences of its design as a **governance layer**. Governance requires review; review takes time; the gap between "this SQL is correct and useful" and "this SQL is a certified metric in MetricFlow" is inherent to any review-gated system.
+The limits above are not flaws in MetricFlow — they are the cost of governance. Review takes time, and the gap between "this SQL is correct and useful" and "this SQL is a certified metric" is inherent to any review-gated system. Two moves extend MetricFlow without giving up that governance.
 
-Data engineering agents operate in that gap. The pattern:
+**Portability through OSI.** Since the Apache 2.0 relicensing, MetricFlow is aligned with [Open Semantic Interchange (OSI)](/blog/osi-vs-metricflow/) — a portable specification for metric definitions — so a metric authored for MetricFlow can be read by other engines. [Dosi](/blog/introducing-dosi/) is an OSI-native runtime that compiles the same semantic definitions into SQL across 15+ warehouse dialects and serves them over CLI, REST, and MCP. That is useful when you want metric execution outside the dbt Cloud query API, or a lighter path for [serving governed metrics to AI agents](/blog/dosi-mcp-semantic-layer-for-agents/). See [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) for a runtime-level comparison of the two.
 
-1. **Agent bootstraps metric candidates** — Datus `/gen_metrics` scans historical SQL, identifies recurring aggregation patterns, and generates MetricFlow-compatible metric YAML drafts. These are candidates, not certified metrics — but they are 80%-correct starting points that skip the "blank page" phase of metric authoring.
+**Continuous context.** MetricFlow captures metrics as they *were* at the last deploy. The ad-hoc query an analyst wrote this morning, the deprecation note ("use `status_v2` after March"), the edge-case filter surfaced in review — none of it reaches the YAML until a PR lands. Keeping that provisional context live between deploys, and promoting it to formal MetricFlow definitions once it has accumulated validation, is how teams stay both current and governed.
 
-2. **Agent maintains provisional context** — validated ad-hoc SQL, deprecation notes, edge-case filters, and dimensional splits that have not been promoted to MetricFlow yet live in the agent's context and are injected into every query. This is the "fast feedback buffer" between discovery and formal governance.
-
-3. **Feedback flow is continuous** — when an analyst upvotes a query, that SQL becomes candidate reference material. When an issue is reported, the context is refined. This cycle operates at query-time speed, not sprint-cycle speed.
-
-4. **Promotion is a deliberate step** — metrics that have accumulated sufficient validation (consistent upvotes, no issues, multiple analysts using the pattern) are promoted to formal MetricFlow definitions. The promotion is still PR-gated — governance is preserved — but the metric arrives at the PR with production validation, not as a greenfield proposal.
-
-This combination — MetricFlow for governed, certified metrics; data engineering agent for continuous context evolution — is the durable pattern. MetricFlow without an agent is precise but slow. An agent without MetricFlow is fast but ungoverned. Together, they produce metrics that are both current and certified.
+Together: MetricFlow for governed, certified metrics; OSI and Dosi for portable execution; a live context layer for the fast-moving edge. MetricFlow alone is precise but slow to change. Paired with a portable runtime and continuous context, metrics stay both current and certified.
 
 ## 6. Practical: how to start with MetricFlow
 
@@ -177,9 +172,9 @@ MetricFlow solved the right problem at the right time: metric governance through
 
 **MetricFlow** is the open-source engine (Apache 2.0) behind dbt's Semantic Layer. It defines metrics, dimensions, and semantic models in YAML, then generates correct SQL at query time for Snowflake, BigQuery, Databricks, Postgres, and DuckDB. It is the reference implementation for Git-managed, composable metric definitions.
 
-### Is MetricFlow free?
+### Is MetricFlow free? What license is it under?
 
-Yes. MetricFlow is open-source under Apache 2.0. The query API for serving metrics at scale (with caching, access control, BI integrations) is part of dbt Cloud, which is a paid product. You can run MetricFlow standalone at no cost.
+Yes. Since October 2025, MetricFlow is open-source under **Apache 2.0**. Earlier versions shipped under AGPL and then the BSL — under BSL you could run it locally, but serving metrics in production required dbt Cloud. The Apache 2.0 relicensing removed that restriction; the query API for serving metrics at scale (caching, access control, BI integrations) is still part of dbt Cloud, a paid product, but the engine itself now runs standalone at no cost.
 
 ### Do I need dbt to use MetricFlow?
 
@@ -189,12 +184,19 @@ MetricFlow is designed to work with dbt transformations — semantic models typi
 
 MetricFlow is **Git-centric**: metrics are YAML files in a dbt project, governed through PRs and CI/CD, and served through a query API (dbt Cloud). Cube is **API-centric**: metrics are defined in JavaScript or YAML cube models, governed through Cube's platform, and served through SQL, REST, and GraphQL APIs. MetricFlow is strongest in dbt-native environments; Cube is strongest in embedded analytics and headless BI. Both support the OSI standard for semantic interoperability.
 
-### Can a data engineering agent generate MetricFlow definitions?
+### What are the alternatives to MetricFlow?
 
-Yes. Datus `/gen_semantic_model` and `/gen_metrics` generate MetricFlow-compatible YAML from live schema and historical SQL. These are metric candidates — 80%-correct drafts that engineers review and refine — rather than auto-committed certified metrics. The value is speed: the agent produces a draft in seconds that would take an engineer 20–40 minutes to write from scratch, and the review step preserves governance.
+The closest alternatives are other semantic-layer engines: [Cube](/blog/osi-vs-cube/) (API-centric, strong in embedded analytics) and OSI-native runtimes such as [Dosi](/blog/dosi-vs-metricflow/), which compile the same OSI metric definitions into SQL across 15+ dialects and serve them over CLI, REST, and MCP. Because MetricFlow is now Apache 2.0 and OSI-aligned, a definition authored for MetricFlow is increasingly portable across these engines rather than locking you into one runtime.
 
 ## Related articles
 
+- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the portable standard vs the execution engine
+- [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) — OSI-native runtime vs dbt-centric runtime
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog MetricFlow implements
 - [What is a semantic model?](/blog/what-is-semantic-model/) — the building block MetricFlow queries
-- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the full business dictionary
+
+## External references
+
+- [Announcing open source MetricFlow](https://www.getdbt.com/blog/open-source-metricflow-governed-metrics) — dbt Labs on the Apache 2.0 relicensing
+- [About MetricFlow](https://docs.getdbt.com/docs/build/about-metricflow) — dbt developer docs
+- [dbt-labs/metricflow](https://github.com/dbt-labs/metricflow) — the source repository
