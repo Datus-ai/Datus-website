@@ -170,14 +170,6 @@ No. A well-designed metric system already provides progressive disclosure: `list
 
 Decide which metrics actually guide the business, whether the semantic model should use a star or snowflake schema, and how many tables belong in one model. An agent plus a good semantic layer removes most of the SQL and YAML labor and produces valid, consistent, executable Ossie YAML — but valid YAML does not automatically make a good metric system, especially in BI systems that have grown inside a company for years.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Why OSI Needs an Execution Engine — Interchange vs Runtime](/blog/why-osi-needs-execution-engine/) — the spec/runtime split argued in full

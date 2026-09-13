@@ -157,11 +157,3 @@ The open-world assumption says that anything not stated in a knowledge base is u
 ### Can OSI and RDF/OWL be used together?
 
 Yes — that is the direction the ecosystem is heading. OSI's Ontology working group maps OSI concepts to formal ontology standards so that an OWL ontology or RDF store can be transpiled into OSI, moved across tools, and transpiled back with its bindings intact. A team can keep its knowledge graph authoritative for disambiguation and domain structure while an OSI-compatible semantic model handles execution and portability for agents and BI tools.
-
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

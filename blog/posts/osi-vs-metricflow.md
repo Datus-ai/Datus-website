@@ -172,14 +172,6 @@ Use OSI for portable semantics across multiple tools, MetricFlow for executing g
 
 Indirectly, yes. The top failure mode of [text-to-SQL](/blog/what-is-text-to-sql/) is semantic ambiguity — correct SQL for the wrong business definition. Machine-readable, governed metric definitions (whether exchanged via OSI or executed via MetricFlow) give AI systems grounded business logic instead of raw schema, which is where most accuracy gains actually come from.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard, in depth: who's behind it and why portable semantics matter

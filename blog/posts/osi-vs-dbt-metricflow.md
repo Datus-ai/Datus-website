@@ -165,11 +165,3 @@ Yes. OSI is vendor-neutral and does not require dbt anywhere in the stack. The s
 ### Why does the OSI vs MetricFlow distinction matter for AI agents?
 
 Because the two layers prevent different classes of agent error. MetricFlow prevents mis-execution: it validates joins and grain at plan time, so a queried metric is computed correctly. OSI prevents mis-recognition: a portable, machine-readable definition lets an agent understand a metric it has never seen instead of guessing from column names. On Spider 2.0, frontier models fall to roughly 10–17% accuracy on real enterprise SQL workflows; grounding agents in governed semantic context is the primary known lever for closing that gap.
-
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

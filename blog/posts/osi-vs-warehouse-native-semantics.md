@@ -157,11 +157,3 @@ Not by itself — but it is where lock-in concentrates. Definitions that live on
 ### What does OSI mean for AI agents?
 
 It means the definitions that ground NL-to-SQL can move between platforms. Cortex Analyst grounds in Semantic Views; Genie grounds in Metric Views; and an Ossie document can, in principle, ground both plus a third agent on a different stack. Portability still leaves the evolution problem, because interchange does not keep definitions current after schema drift — which is why maintained, validated context remains the deciding factor for agent accuracy.
-
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

@@ -151,14 +151,6 @@ No. Cube's open-source core is Apache 2.0 licensed. **Dosi is a Datus Studio com
 
 Adopt OSI thinking when definitions must **travel** — second warehouse, tool migration, audit-friendly interchange, or multi-vendor consumption. Add **Dosi** when OSI YAML exists or will exist soon and you need **native multi-dialect compilation** and agent MCP with structured errors without hand-maintaining SQL per engine. If Cube covers all warehouses and consumers with no interchange requirement, prioritize Cube's serving strengths first; revisit Dosi when portability becomes a production bottleneck, not a slide deck aspiration.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Introducing Dosi](/blog/introducing-dosi/) — the OSI-native execution engine.

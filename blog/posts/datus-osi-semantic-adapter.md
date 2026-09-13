@@ -132,14 +132,6 @@ Not as the expression. Period comparisons use a base metric plus `offset_window`
 
 No. MetricFlow and OSI are peer adapters. Switch the global semantic layer when you want new generation to emit OSI. Existing MetricFlow projects keep working until you choose to move them.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard the adapter authors.

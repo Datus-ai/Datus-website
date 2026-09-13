@@ -147,11 +147,3 @@ Not through a supported feature. As of August 2026 there is no native Cube OSI e
 ### Should I adopt Cube, OSI, or both?
 
 Both, in sequence. Choose Cube (or another authoring tool) when you need governed semantics served to many consumers today; adopt OSI thinking — portable, tool-neutral definitions — as the architectural target. Do not wait for the standard to start governing metrics: define your KPIs now, keep them maintained, and treat OSI as the interchange path that will let them travel later.
-
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

@@ -147,14 +147,6 @@ No. Datus Knowledge is the agent's memory layer — schema, semantic models, ref
 
 Start with governed metric definitions and whether your organization wants a portable interchange format. If you already export or plan to export **Apache Ossie YAML**, Dosi is the execution engine on the other side. If metrics still live only in tribal SQL and undocumented dashboards, fix definition and ownership first — a compiler does not substitute for agreement on what "net revenue" means.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the interchange standard Dosi compiles.

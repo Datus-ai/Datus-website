@@ -176,14 +176,6 @@ Use **`SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML`** and **`SYSTEM$READ_OSSIE_Y
 
 Not everything. Core datasets, fields, equi-joins, model-level metrics, and `ai_context` are designed to survive. Non-equi relationships can be dropped; some Snowflake-only features move into `SNOWFLAKE` custom extensions that other tools may ignore. Validate fidelity against Snowflake's Ossie mapping docs before treating export as a full backup of AI instructions and advanced join types.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard itself, now Apache Ossie: what it encodes and who's behind it.

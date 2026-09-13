@@ -222,14 +222,6 @@ When OSI export is already part of the workflow **and** a consumer needs governe
 
 MetricFlow's engine is Apache 2.0 open source; dbt Cloud's API is a product. Dosi's engine is a **Datus Studio component** and is **not open source** as of August 2026. The Ossie specification is Apache-licensed; Dosi is a commercial runtime for that spec — evaluate access and licensing separately from interchange adoption.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Introducing Dosi](/blog/introducing-dosi/) — the OSI-native engine, in full.

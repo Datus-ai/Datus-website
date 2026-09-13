@@ -167,14 +167,6 @@ No. Datus Knowledge holds retrieval context — schema, reference SQL, subjects 
 
 MetricFlow and Cube remain strong authoring and serving stacks in many estates. Dosi targets teams standardized on **OSI YAML** as the portable handoff and want a native multi-dialect compiler with an agent-first MCP surface and structured errors. It is an execution and consumption path for interchange, not a mandatory replacement for existing semantic products — especially if your organization is not yet exporting OSI.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Introducing Dosi](/blog/introducing-dosi/) — the engine behind the MCP surface.

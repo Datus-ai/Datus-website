@@ -159,11 +159,3 @@ Not as of August 2026. Looker does not appear in the public OSI working-group pa
 ### Is LookML an open standard?
 
 No. LookML is proprietary to Looker (now under Google Cloud). It is well documented and has a large community, but the language, its schema, and the runtime that interprets it are controlled by one vendor. By contrast, OSI (Apache Ossie) is an Apache-2.0 specification governed by the Apache Software Foundation, which is the standard answer to "will my definitions be readable by other tools — and by me — in ten years."
-
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

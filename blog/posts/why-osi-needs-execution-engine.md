@@ -184,14 +184,6 @@ Dosi is a commercial Datus product documented at dosi.datus.ai — an OSI-native
 
 Unlikely as a universal outcome — and that is healthy. MetricFlow remains the right runtime for dbt-centric stacks. Warehouse-native semantic layers remain the right choice when deep platform integration outweighs cross-vendor portability. Native OSI runtimes fit when teams want OSI YAML to be both the interchange format **and** the execution input without lowering to another authoring language. OSI makes definitions portable across these options; runtimes compete on where and how those definitions execute.
 
-## Apache Ossie / OSI: official resources
-
-- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
-- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
-- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
-- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
-- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
-
 ## Related articles
 
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — what the standard defines.
