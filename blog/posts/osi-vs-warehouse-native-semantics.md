@@ -3,11 +3,11 @@ title: "OSI vs Warehouse-Native Semantics: Snowflake and Databricks Compared"
 description: "Snowflake Semantic Views vs Databricks Metric Views vs OSI (Apache Ossie): portability, lock-in, AI grounding, and when warehouse-native semantics win."
 author: "Evan Paul"
 date: 2026-08-07
-lastmod: 2026-08-07
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "OSI vs warehouse-native semantics, Snowflake Semantic Views, Databricks Metric Views, Apache Ossie, Cortex Analyst, Genie, semantic layer portability, AI agents"
+      content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs warehouse-native semantics, Snowflake Semantic Views, Databricks Metric Views, Cortex Analyst, Genie, semantic layer portability, AI agents"
   - - meta
     - property: og:title
       content: "OSI vs Warehouse-Native Semantics: Snowflake and Databricks Compared"
@@ -33,6 +33,8 @@ head:
 
 # OSI vs Warehouse-Native Semantics: Snowflake and Databricks Compared
 
+> **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
+
 Warehouse-native semantics — Snowflake Semantic Views and Databricks Metric Views — keep governed metrics inside one platform; OSI (Apache Ossie) is the interchange format that lets them leave. This article compares both across portability, lock-in, and AI grounding, and shows when each approach wins.
 
 ## TL;DR
@@ -55,7 +57,7 @@ That final clause is the whole trade in miniature. Teams that already run everyt
 
 ## 2. OSI / Apache Ossie: a quick recap
 
-OSI (Open Semantic Interchange) is the vendor-neutral, Apache-2.0 specification — expressed in YAML/JSON — that defines metrics, dimensions, datasets, and relationships, and it is now incubating at the Apache Software Foundation under the name **Apache Ossie**, per the <a href="https://www.snowflake.com/en/blog/apache-ossie-open-semantic-interchange-incubator/" rel="nofollow noopener">incubator announcement</a>. It does not replace authoring tools; it gives them a common format so definitions authored in one tool can be consumed elsewhere without re-authoring. The [full OSI explainer](/blog/open-semantic-interchange-osi) covers the standard, its working group, and its adoption status; this article only needs the part that differentiates it from warehouse-native objects.
+OSI (Open Semantic Interchange) is the vendor-neutral, Apache-2.0 specification — expressed in YAML/JSON — that defines metrics, dimensions, datasets, and relationships, and it is now incubating at the Apache Software Foundation under the name **Apache Ossie**, per the [incubator announcement](https://www.snowflake.com/en/blog/apache-ossie-open-semantic-interchange-incubator/). It does not replace authoring tools; it gives them a common format so definitions authored in one tool can be consumed elsewhere without re-authoring. The [full OSI explainer](/blog/open-semantic-interchange-osi) covers the standard, its working group, and its adoption status; this article only needs the part that differentiates it from warehouse-native objects.
 
 That differentiation is structural rather than cosmetic. A warehouse-native object is an *implementation*: it lives in a catalog, resolves against a specific query engine, and inherits a specific platform's permissions model. Ossie is an *interchange format*: it describes the definition in a way any conforming tool can read, and it deliberately stays silent about where or how the definition executes. That separation of definition from implementation is precisely what lets a Semantic View round-trip through Ossie YAML and land, in principle, in a different tool. The practical consequences of this design — what survives a round-trip, what is dropped, and what vendors actually ship — are the subject of the rest of this article.
 
@@ -94,7 +96,7 @@ CALL SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML('analytics.sandbox', $$ ... Oss
 
 `total_revenue`, the grain, and the equi-join survive. The Cortex-oriented instructions sit in the `SNOWFLAKE` extension and do not transfer, so a consumer that reads Ossie core fields but ignores vendor extensions answers "revenue by region" with the metric expression intact and the instruction layer missing. The export succeeded; the AI behavior diverged. That gap — interchange of definitions versus interchange of agent policy — is the boundary teams discover six months after declaring themselves "Ossie-native."
 
-On the Databricks side, the comparison is about absence rather than difference. Databricks is a working-group member, and its Metric Views are the closest warehouse-native analog to Semantic Views, consumed by Genie for natural-language querying. As of August 2026, however, there is no shipped Metric View ↔ Ossie converter; the only Databricks-adjacent path through the spec is the ecosystem's reference converters in the <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie repository</a>. The [semantic layer tools list](/blog/semantic-layer-tools-list-osi) tracks this status per tool, and the honest summary is that participation signals intent, not delivery.
+On the Databricks side, the comparison is about absence rather than difference. Databricks is a working-group member, and its Metric Views are the closest warehouse-native analog to Semantic Views, consumed by Genie for natural-language querying. As of August 2026, however, there is no shipped Metric View ↔ Ossie converter; the only Databricks-adjacent path through the spec is the ecosystem's reference converters in the [Apache Ossie repository](https://github.com/apache/ossie). The [semantic layer tools list](/blog/semantic-layer-tools-list-osi) tracks this status per tool, and the honest summary is that participation signals intent, not delivery.
 
 ## 5. When warehouse-native wins — and when OSI wins
 
@@ -155,3 +157,11 @@ Not by itself — but it is where lock-in concentrates. Definitions that live on
 ### What does OSI mean for AI agents?
 
 It means the definitions that ground NL-to-SQL can move between platforms. Cortex Analyst grounds in Semantic Views; Genie grounds in Metric Views; and an Ossie document can, in principle, ground both plus a third agent on a different stack. Portability still leaves the evolution problem, because interchange does not keep definitions current after schema drift — which is why maintained, validated context remains the deciding factor for agent accuracy.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

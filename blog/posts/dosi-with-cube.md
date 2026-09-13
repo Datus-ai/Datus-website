@@ -3,11 +3,11 @@ title: "Dosi with Cube: OSI Execution and Agentic Analytics in One Stack"
 description: "How Dosi with Cube stacks API-first semantic serving with OSI-native multi-dialect SQL execution — complementary layers for agents and warehouses."
 author: "Kostja"
 date: 2026-08-26
-lastmod: 2026-08-26
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Dosi with Cube, Cube.dev, OSI execution, agentic analytics, semantic layer, Apache Ossie, CubeStore, MCP, multi-dialect SQL, headless semantic layer"
+      content: "Dosi with Cube, Cube.dev, OSI execution, agentic analytics, semantic layer, Apache Ossie, Apache Ossie implementation, Ossie execution engine, OSI, CubeStore, MCP, multi-dialect SQL, headless semantic layer"
   - - meta
     - property: og:title
       content: "Dosi with Cube: OSI Execution and Agentic Analytics in One Stack"
@@ -32,6 +32,8 @@ head:
 ---
 
 # Dosi with Cube: OSI Execution and Agentic Analytics in One Stack
+
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
 
 A team standardizes metrics in Cube, ships sub-50ms dashboards through CubeStore, and routes D3 agents through Cube's semantic API — then opens a second warehouse in BigQuery and discovers the Snowflake SQL Cube generated does not compile there without a rewrite. Another team exports portable [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi) YAML from their authoring toolchain but has no engine that treats that file as the execution contract across every warehouse they operate. **Dosi with Cube** is not a merger of two products; it is a stack architecture where Cube excels at governed consumption and agentic analytics, OSI carries definitions between tools, and [Dosi](/blog/introducing-dosi) compiles OSI natively to warehouse SQL when interchange — not a single vendor runtime — is the handoff format.
 
@@ -69,7 +71,7 @@ Picture the stack top to bottom as four bands, each with a distinct accountabili
 
 **Semantic serving (Cube's home band).** Cube's semantic API layer — CubeSQL, REST, GraphQL, MCP — resolves cube data models into SQL, applies access control, and hits CubeStore pre-aggregations for sub-50ms hot paths. This is where Cube's maturity shows: one API for many metrics, many tools, many agents, with caching as a first-class product feature. Teams that need governed metrics served at scale to diverse consumers often standardize here even when OSI interchange is a parallel track.
 
-**Interchange (OSI / Apache Ossie).** Portable YAML or JSON carries metrics, dimensions, relationships, and business context between authoring tools and execution engines. OSI stores nothing and executes nothing — it is the contract document. As of August 2026, reference converters exist for dbt/MetricFlow, GoodData, Salesforce, and Apache Polaris in the <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie repository</a>; Cube is a working-group member with stated intent to contribute adapters, but no merged Cube converter ships in that repository yet. Interchange is real; automatic Cube round-trips are not — plan accordingly.
+**Interchange (OSI / Apache Ossie).** Portable YAML or JSON carries metrics, dimensions, relationships, and business context between authoring tools and execution engines. OSI stores nothing and executes nothing — it is the contract document. As of August 2026, reference converters exist for dbt/MetricFlow, GoodData, Salesforce, and Apache Polaris in the [Apache Ossie repository](https://github.com/apache/ossie); Cube is a working-group member with stated intent to contribute adapters, but no merged Cube converter ships in that repository yet. Interchange is real; automatic Cube round-trips are not — plan accordingly.
 
 **OSI-native execution (Dosi's home band).** Dosi reads OSI YAML and emits dialect-specific SQL — date functions, join planning, grain validation, filter compilation — for Snowflake, BigQuery, Databricks, Spark, Trino, PostgreSQL, and the rest of the supported dialect list on <a href="https://dosi.datus.ai/" rel="nofollow noopener">dosi.datus.ai</a>. Outputs include CLI validation for CI, REST with Apache Arrow for services, Python for pipelines, and MCP for agents. Inside Datus Studio, the **`datus-semantic-dosi`** adapter executes OSI metrics without MetricFlow in the path when interchange is the handoff format.
 
@@ -148,6 +150,14 @@ No. Cube's open-source core is Apache 2.0 licensed. **Dosi is a Datus Studio com
 ### When should we adopt OSI and Dosi if we already run Cube agentic analytics?
 
 Adopt OSI thinking when definitions must **travel** — second warehouse, tool migration, audit-friendly interchange, or multi-vendor consumption. Add **Dosi** when OSI YAML exists or will exist soon and you need **native multi-dialect compilation** and agent MCP with structured errors without hand-maintaining SQL per engine. If Cube covers all warehouses and consumers with no interchange requirement, prioritize Cube's serving strengths first; revisit Dosi when portability becomes a production bottleneck, not a slide deck aspiration.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

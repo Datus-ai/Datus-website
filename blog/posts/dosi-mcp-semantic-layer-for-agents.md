@@ -3,11 +3,11 @@ title: "Dosi MCP Semantic Layer for Agents — No SQL Guessing"
 description: "How agents query governed OSI metrics via Dosi MCP: structured error codes, Claude Code and Codex patterns, and why semantic MCP beats raw SQL."
 author: "Kostja"
 date: 2026-08-24
-lastmod: 2026-08-24
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Dosi MCP, semantic layer for agents, Model Context Protocol, OSI metrics, structured errors, Claude Code, Codex, text-to-SQL, governed metrics, Datus Agent"
+      content: "Dosi MCP, semantic layer for agents, Model Context Protocol, OSI metrics, OSI, Apache Ossie, Apache Ossie implementation, Ossie execution engine, structured errors, Claude Code, Codex, text-to-SQL, governed metrics, Datus Agent"
   - - meta
     - property: og:title
       content: "Dosi MCP Semantic Layer for Agents — No SQL Guessing"
@@ -32,6 +32,8 @@ head:
 ---
 
 # Dosi MCP Semantic Layer for Agents — No SQL Guessing
+
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
 
 An analyst asks Claude Code for "net revenue by region last month." The agent writes SQL, runs it, and returns a number that looks right — until finance notices the filter on cancelled orders never made it into the query. This article explains how a **Dosi MCP semantic layer** routes agent questions through certified OSI metrics instead of improvised SQL, and why **structured errors** matter more than another text-to-SQL shortcut.
 
@@ -164,6 +166,14 @@ No. Datus Knowledge holds retrieval context — schema, reference SQL, subjects 
 ### We already use MetricFlow or Cube — why add Dosi MCP?
 
 MetricFlow and Cube remain strong authoring and serving stacks in many estates. Dosi targets teams standardized on **OSI YAML** as the portable handoff and want a native multi-dialect compiler with an agent-first MCP surface and structured errors. It is an execution and consumption path for interchange, not a mandatory replacement for existing semantic products — especially if your organization is not yet exporting OSI.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

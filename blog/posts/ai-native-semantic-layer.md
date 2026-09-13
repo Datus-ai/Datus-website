@@ -4,11 +4,11 @@ description: "Why we built Dosi: an AI-native semantic layer is an open spec plu
 author: "Harrison Zhao"
 date: 2026-09-07
 tags: insight
-lastmod: 2026-09-07
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "AI-native semantic layer, semantic layer for AI agents, Apache Ossie, OSI spec, semantic layer runtime, parameterized metrics, TermWise attribution, structured errors, MetricFlow, Dosi"
+      content: "AI-native semantic layer, semantic layer for AI agents, Apache Ossie, Apache Ossie implementation, Ossie execution engine, OSI, OSI spec, semantic layer runtime, parameterized metrics, TermWise attribution, structured errors, MetricFlow, Dosi"
   - - meta
     - property: og:title
       content: "What Makes a Semantic Layer Truly AI-Native?"
@@ -36,6 +36,8 @@ head:
 
 *— Why we built Dosi*
 
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
+
 ## TL;DR
 
 This is what we believe an AI-first semantic layer should provide:
@@ -58,7 +60,7 @@ From day one of building <a href="https://github.com/Datus-ai/Datus-agent" rel="
 
 One clarification first. By semantic layer, I mean a system such as MetricFlow or <a href="https://cube.dev/product/ai-context-layer" rel="nofollow noopener">Cube</a>. A metrics platform is usually a web application for configuring, managing, querying, and visualizing metrics, with its metric specification hidden inside the product. A semantic layer can be completely headless. It starts with a spec that defines metrics and a planner or compiler that translates those definitions into SQL. It can be exposed through a CLI or API, and in the AI era, it should also provide <a href="https://modelcontextprotocol.io/" rel="nofollow noopener">MCP</a> tools.
 
-The need for an open spec became obvious in 2025. <a href="https://docs.snowflake.com/en/user-guide/views-semantic/overview" rel="nofollow noopener">Snowflake Semantic Views</a> and <a href="https://docs.databricks.com/aws/en/uc-semantics/metric-views" rel="nofollow noopener">Databricks metric views</a> brought semantics directly into their platforms, while <a href="https://www.tableau.com/products/tableau-next" rel="nofollow noopener">Tableau Next</a> rebuilt Tableau's semantic capabilities. Everyone agreed that semantics mattered, but metric definitions were becoming isolated again. In September 2025, Snowflake, dbt, and Salesforce proposed [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) as a common specification. The project was later donated to Apache and became <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie</a>.
+The need for an open spec became obvious in 2025. <a href="https://docs.snowflake.com/en/user-guide/views-semantic/overview" rel="nofollow noopener">Snowflake Semantic Views</a> and <a href="https://docs.databricks.com/aws/en/uc-semantics/metric-views" rel="nofollow noopener">Databricks metric views</a> brought semantics directly into their platforms, while <a href="https://www.tableau.com/products/tableau-next" rel="nofollow noopener">Tableau Next</a> rebuilt Tableau's semantic capabilities. Everyone agreed that semantics mattered, but metric definitions were becoming isolated again. In September 2025, Snowflake, dbt, and Salesforce proposed [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) as a common specification. The project entered the Apache Incubator on July 10, 2026 and was renamed [Apache Ossie](https://github.com/apache/ossie) — a vendor-neutral, community-governed open standard, with the spec and mission unchanged.
 
 Apache Ossie is an important step because a semantic layer needs an open standard. But today the project is still mainly a YAML specification with Python conversion scripts. If we only move a metric definition into another YAML file and put that file into an LLM prompt, the fundamental problem is not solved. The definition is portable, but it is not yet executable.
 
@@ -138,7 +140,7 @@ This is what we believe an AI-first semantic layer should provide:
 
 That is why we built Dosi.
 
-Apache Ossie has also recently added an <a href="https://github.com/apache/ossie/blob/main/ontology/ontology.md" rel="nofollow noopener">ontology specification draft</a> in version `0.2.0.dev0`. It introduces business concepts, relationships, rules, and mappings from logical models into an ontology. This is an important direction because [ontology](/blog/semantic-layer-vs-ontology/) needs the semantic layer as trusted infrastructure, not just as extra context for the model.
+Apache Ossie has also recently added an [ontology specification draft](https://github.com/apache/ossie/blob/main/ontology/ontology.md) in version `0.2.0.dev0`. It introduces business concepts, relationships, rules, and mappings from logical models into an ontology. This is an important direction because [ontology](/blog/semantic-layer-vs-ontology/) needs the semantic layer as trusted infrastructure, not just as extra context for the model.
 
 We are following this draft closely and have already started applying it in customer scenarios. We will release the related Dosi capabilities step by step as the specification and our implementation mature.
 
@@ -167,6 +169,14 @@ No. A well-designed metric system already provides progressive disclosure: `list
 ### What can an agent not do for me here?
 
 Decide which metrics actually guide the business, whether the semantic model should use a star or snowflake schema, and how many tables belong in one model. An agent plus a good semantic layer removes most of the SQL and YAML labor and produces valid, consistent, executable Ossie YAML — but valid YAML does not automatically make a good metric system, especially in BI systems that have grown inside a company for years.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

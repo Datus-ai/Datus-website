@@ -1,13 +1,13 @@
 ---
 title: "The Datus OSI Semantic Adapter: OSI In, MetricFlow Out"
-description: "The Datus OSI semantic adapter authors vendor-neutral YAML, validates it, and queries metrics via MetricFlow without leaking backend fields into source models."
+description: "The Datus OSI (Apache Ossie) semantic adapter authors vendor-neutral YAML, validates it, and queries metrics via MetricFlow without leaking backend fields into source models."
 author: "Kostja"
 date: 2026-08-17
-lastmod: 2026-08-17
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Datus OSI semantic adapter, Open Semantic Interchange, OSI YAML, MetricFlow, vendor-neutral metrics, semantic layer interoperability, dbt MetricFlow adapter"
+      content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, Datus OSI semantic adapter, Open Semantic Interchange, OSI YAML, MetricFlow, vendor-neutral metrics, semantic layer interoperability, dbt MetricFlow adapter"
   - - meta
     - property: og:title
       content: "The Datus OSI Semantic Adapter: OSI In, MetricFlow Out"
@@ -33,6 +33,8 @@ head:
 
 
 # The Datus OSI Semantic Adapter: OSI In, MetricFlow Out
+
+> **Apache Ossie (aka OSI).** This page covers **Open Semantic Interchange (OSI)**, renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This article uses **Apache Ossie / OSI** interchangeably. The Datus OSI Semantic Adapter is a Datus converter that consumes the open Apache Ossie / OSI spec — not the standard itself.
 
 The Datus OSI semantic adapter lets the agent author metrics in vendor-neutral [Open Semantic Interchange](/blog/open-semantic-interchange-osi/) YAML, validate them, and query the certified ones through MetricFlow — without writing MetricFlow fields into the source model.
 
@@ -129,6 +131,14 @@ Not as the expression. Period comparisons use a base metric plus `offset_window`
 ### Do I have to migrate every model to OSI this week?
 
 No. MetricFlow and OSI are peer adapters. Switch the global semantic layer when you want new generation to emit OSI. Existing MetricFlow projects keep working until you choose to move them.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

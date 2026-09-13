@@ -3,11 +3,11 @@ title: "Dosi vs MetricFlow: OSI-Native vs dbt-Centric Runtime"
 description: "Compare Dosi and dbt MetricFlow as execution engines: same OSI interchange can feed dbt graph runtime or OSI-native multi-dialect compile — when to use each."
 author: "Kostja"
 date: 2026-08-25
-lastmod: 2026-08-25
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Dosi vs MetricFlow, dbt MetricFlow, OSI-native runtime, semantic layer execution engine, Apache Ossie, multi-dialect SQL, benchmarks, dbt Semantic Layer"
+      content: "Dosi vs MetricFlow, dbt MetricFlow, OSI-native runtime, semantic layer execution engine, Apache Ossie, Apache Ossie implementation, Ossie execution engine, OSI, multi-dialect SQL, benchmarks, dbt Semantic Layer"
   - - meta
     - property: og:title
       content: "Dosi vs MetricFlow: OSI-Native vs dbt-Centric Runtime"
@@ -33,6 +33,8 @@ head:
 
 # Dosi vs MetricFlow: OSI-Native vs dbt-Centric Runtime
 
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
+
 An analytics team exports MetricFlow YAML to [Apache Ossie (OSI)](/blog/open-semantic-interchange-osi) and declares victory on portability. Then engineering asks the question that actually matters: *who executes the file?* MetricFlow still compiles through the dbt semantic graph; [Dosi](/blog/introducing-dosi) compiles OSI YAML directly to warehouse SQL across fifteen-plus dialects. Same interchange document — two execution paths. This comparison is about **runtime choice**, not whether OSI or MetricFlow "wins." For the format-vs-runtime split, see [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow); here we compare what each engine does when OSI is the handoff format.
 
 ## TL;DR
@@ -45,7 +47,7 @@ An analytics team exports MetricFlow YAML to [Apache Ossie (OSI)](/blog/open-sem
 
 ## 1. Same interchange file, two execution paths
 
-Portability conversations stop at the export button. Execution conversations start immediately after. When a team runs the dbt (MetricFlow) → OSI converter — documented in the <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie repository</a> — it produces a vendor-neutral YAML file describing metrics, dimensions, datasets, and relationships. That file is interchange, not runtime. Something must still accept a semantic query (`net_revenue` by `region`, last closed month), plan joins, enforce grain, and emit dialect-correct SQL.
+Portability conversations stop at the export button. Execution conversations start immediately after. When a team runs the dbt (MetricFlow) → OSI converter — documented in the [Apache Ossie repository](https://github.com/apache/ossie) — it produces a vendor-neutral YAML file describing metrics, dimensions, datasets, and relationships. That file is interchange, not runtime. Something must still accept a semantic query (`net_revenue` by `region`, last closed month), plan joins, enforce grain, and emit dialect-correct SQL.
 
 Two execution paths are now realistic for that handoff:
 
@@ -219,6 +221,14 @@ When OSI export is already part of the workflow **and** a consumer needs governe
 ### Is Dosi open source like MetricFlow?
 
 MetricFlow's engine is Apache 2.0 open source; dbt Cloud's API is a product. Dosi's engine is a **Datus Studio component** and is **not open source** as of August 2026. The Ossie specification is Apache-licensed; Dosi is a commercial runtime for that spec — evaluate access and licensing separately from interchange adoption.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

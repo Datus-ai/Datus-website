@@ -3,7 +3,7 @@ title: "What Is a Semantic Model? Definition, Examples & How It Differs From a S
 description: "Semantic model definition, key components, how it fits into a semantic layer, and how it differs from warehouse-native semantic views."
 author: "Evan Paul"
 date: 2026-06-08
-lastmod: 2026-06-10
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
@@ -166,7 +166,7 @@ WITH SEMANTIC METADATA (
 | You want Git-managed, reviewed, CI/CD-validated semantics | You prioritize operational simplicity over governance workflow |
 | You are building for AI agent consumption | You are building for human SQL consumers |
 
-In practice, larger organizations often have both: semantic models for cross-platform, governed definitions, and semantic views for quick, warehouse-scoped use cases. The OSI standard (see [Open Semantic Interchange explained](/blog/open-semantic-interchange-osi/)) aims to make both patterns interoperable — so a semantic view in Snowflake and a semantic model in MetricFlow can exchange definitions through a common format.
+In practice, larger organizations often have both: semantic models for cross-platform, governed definitions, and semantic views for quick, warehouse-scoped use cases. The OSI standard (now Apache Ossie; see [Open Semantic Interchange explained](/blog/open-semantic-interchange-osi/)) aims to make both patterns interoperable — so a semantic view in Snowflake and a semantic model in MetricFlow can exchange definitions through a common format.
 
 ## 6. When you need more than ad-hoc semantic models
 

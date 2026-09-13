@@ -3,7 +3,7 @@ title: "What Is Cortex Analyst? Snowflake Natural-Language SQL for BI"
 description: "What Cortex Analyst is: Snowflake's managed text-to-SQL API grounded in Semantic Views — verified queries, REST integration, and why it is not Cortex Code."
 author: "Kostja"
 date: 2026-08-21
-lastmod: 2026-08-21
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
@@ -62,7 +62,7 @@ The documentation therefore treats a semantic layer as mandatory infrastructure,
 
 That contract is what makes Analyst trustworthy rather than merely plausible. Analyst is Snowflake executing SQL that an LLM proposed against a contract you authored. It uses the View's metadata to generate SQL, and the SQL then runs in *your* warehouse, so compute and data access follow warehouse roles: if a role cannot `SELECT` the underlying tables, Analyst cannot magically return the rows. If you skip the contract, you have bought a hosted text-to-SQL endpoint with the same failure mode every vendor warns about.
 
-Two details decide how the contract behaves in production. First, if you register several Semantic Views, Analyst can choose among them rather than requiring the client to pass the right file on every question — convenient, and a reason to keep Views tightly scoped so "revenue" cannot jump from Finance to Growth. Second, Semantic Views support **custom instructions** (how to generate SQL, how to categorize questions). Those instructions are Snowflake-side policy. They do not automatically travel if you export the View through Ossie; that gap is documented in our [Snowflake OSI](/blog/what-is-snowflake-osi/) piece and is why "we exported YAML" is not the same as "every agent behaves the same."
+Two details decide how the contract behaves in production. First, if you register several Semantic Views, Analyst can choose among them rather than requiring the client to pass the right file on every question — convenient, and a reason to keep Views tightly scoped so "revenue" cannot jump from Finance to Growth. Second, Semantic Views support **custom instructions** (how to generate SQL, how to categorize questions). Those instructions are Snowflake-side policy. They do not automatically travel if you export the View through [Apache Ossie (formerly Open Semantic Interchange, OSI)](/blog/open-semantic-interchange-osi/); that gap is documented in our [Snowflake OSI](/blog/what-is-snowflake-osi/) piece and is why "we exported YAML" is not the same as "every agent behaves the same."
 
 ## 3. Verified queries: the audit field no demo can fake
 

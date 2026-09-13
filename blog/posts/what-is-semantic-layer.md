@@ -3,7 +3,7 @@ title: "What Is a Semantic Layer? Definition, Examples & How It Differs From a M
 description: "Semantic layer defined: the business translation layer between raw tables and analysts, what it includes (metrics, dimensions, entities), how it differs from metric layers and catalogs, and why static models break under AI agents."
 author: "Evan Paul"
 date: 2026-05-31
-lastmod: 2026-05-31
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
@@ -104,7 +104,7 @@ semantic_model:
       expr: dim_geo.region_name
 ```
 
-Strength: metrics live in the same repo as transformations; weakness: still primarily **engineer-maintained** and **batch-updated** through PRs — a new ad-hoc query that surfaces a missing dimension or edge case has no path back into this YAML until an engineer opens a PR. This gap is the central tension between static semantic layers and agent-driven data work. For how MetricFlow compares to the portable OSI standard, see [OSI vs MetricFlow](/blog/osi-vs-metricflow/).
+Strength: metrics live in the same repo as transformations; weakness: still primarily **engineer-maintained** and **batch-updated** through PRs — a new ad-hoc query that surfaces a missing dimension or edge case has no path back into this YAML until an engineer opens a PR. This gap is the central tension between static semantic layers and agent-driven data work. For how MetricFlow compares to the portable OSI (now Apache Ossie) standard, see [OSI vs MetricFlow](/blog/osi-vs-metricflow/).
 
 ### Cube
 

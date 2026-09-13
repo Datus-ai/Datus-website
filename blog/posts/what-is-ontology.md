@@ -3,7 +3,7 @@ title: "What Is an Ontology? Definition, Three Productizations & AI Agents"
 description: "Ontology in data and AI: classes, relationships, and rules — and the three productizations buyers confuse in 2026: OWL/RDF, Palantir, and SQL ontologies."
 author: "Kostja"
 date: 2026-08-17
-lastmod: 2026-08-17
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
@@ -75,7 +75,7 @@ The practical test is the question you are trying to answer. "Is this row a `Tes
 
 Search "ontology" in 2026 and you will land on three incompatible productizations. Treating them as one SKU is how RFPs go sideways.
 
-**W3C OWL and RDF.** The <a href="https://www.w3.org/TR/owl2-overview/" rel="nofollow noopener">OWL 2 Web Ontology Language</a> is the standards-track way to write classes, properties, and axioms so reasoners can check consistency and infer facts. RDF provides the graph data model underneath. This stack is the right tool when the domain is genuinely open-world, multi-source, and inference-heavy — life sciences, government statistical publishing, some supply-chain graphs. The cost is real: URI management, reasoner behavior, SPARQL, and a toolchain most warehouse teams do not run. OSI's ontology working group exists in part to *map* this world into analytics interchange rather than replace it; see [OSI vs RDF/OWL](/blog/osi-vs-rdf-owl/) for that bridge.
+**W3C OWL and RDF.** The <a href="https://www.w3.org/TR/owl2-overview/" rel="nofollow noopener">OWL 2 Web Ontology Language</a> is the standards-track way to write classes, properties, and axioms so reasoners can check consistency and infer facts. RDF provides the graph data model underneath. This stack is the right tool when the domain is genuinely open-world, multi-source, and inference-heavy — life sciences, government statistical publishing, some supply-chain graphs. The cost is real: URI management, reasoner behavior, SPARQL, and a toolchain most warehouse teams do not run. The [OSI (now Apache Ossie)](/blog/open-semantic-interchange-osi/) ontology working group exists in part to *map* this world into analytics interchange rather than replace it; see [OSI vs RDF/OWL](/blog/osi-vs-rdf-owl/) for that bridge.
 
 **Palantir Ontology.** Palantir's Foundry Ontology is an operational system: object types, link types, actions, functions, and security bound together so applications and AIP agents can read *and write* against a live object graph. Palantir's own <a href="https://www.palantir.com/docs/foundry/architecture-center/ontology-system/" rel="nofollow noopener">architecture writing</a> states that this fourfold integration of data, logic, action, and security cannot be accomplished with a thin semantic layer. If you need writeback, kinetic actions, and object-level policy in one platform, this is the shape. If you need portable metric definitions for BI, it is the wrong purchase. The trade-off is coupling: you adopt the platform to get the ontology.
 

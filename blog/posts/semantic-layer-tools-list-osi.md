@@ -3,11 +3,11 @@ title: "Semantic Layer Tools in 2026: Complete List + OSI (Apache Ossie) Status"
 description: "Every semantic layer tool in 2026 — dbt MetricFlow, Cube, AtScale, Snowflake, LookML and more — with each one's current OSI (Apache Ossie) support status."
 author: "Evan Paul"
 date: 2026-07-21
-lastmod: 2026-07-21
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "semantic layer tools, semantic layer tools list, OSI support, Apache Ossie, dbt Semantic Layer, Cube semantic layer, AtScale, Snowflake Semantic Views, semantic layer comparison 2026"
+      content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, semantic layer tools, semantic layer tools list, OSI support, Open Semantic Interchange, dbt Semantic Layer, Cube semantic layer, AtScale, Snowflake Semantic Views, semantic layer comparison 2026"
   - - meta
     - property: og:title
       content: "Semantic Layer Tools in 2026: Complete List + OSI (Apache Ossie) Status"
@@ -33,12 +33,14 @@ head:
 
 # Semantic Layer Tools in 2026: Complete List + OSI (Apache Ossie) Status
 
+> **Apache Ossie (aka OSI).** This page covers **Open Semantic Interchange (OSI)**, renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This article uses **Apache Ossie / OSI** interchangeably.
+
 A vendor-neutral directory of every [semantic layer](/blog/what-is-semantic-layer/) tool available in mid-2026 — 15 products across three architecture categories — with the most up-to-date OSI (Apache Ossie) compatibility status for each.
 
 ## TL;DR
 
 - **15 semantic layer tools** are available in 2026, split into three architecture categories: standalone (dbt Semantic Layer, Cube, AtScale), platform-native (Snowflake Semantic Views, Databricks Metric Views, Looker LookML, Power BI), and API/BI-native (GoodData, ThoughtSpot, Sigma, Lightdash, Preset, Omni, Domo, Dremio).
-- **No product ships native OSI support yet.** Open Semantic Interchange entered the Apache Incubator as **Apache Ossie** in June 2026. The only working OSI path today is through reference converters in the `apache/ossie` repository.
+- **No product ships native OSI support yet.** Open Semantic Interchange entered the Apache Incubator as **Apache Ossie** in July 2026. The only working OSI path today is through reference converters in the `apache/ossie` repository.
 - **Four converters are merged**: dbt (MetricFlow), GoodData, Salesforce, and Apache Polaris. A Spark converter is in review.
 - **50+ organizations** participate in the OSI working group, including Snowflake, Databricks, dbt Labs, Cube, AtScale, ThoughtSpot, and Atlan. Participation signals intent; it does not equal shipped support.
 - **OSI compatibility will be a differentiating factor by late 2026.** Tools with merged converters and active working-group participation are the safest bets for teams that want portable, multi-tool semantic definitions.
@@ -76,7 +78,7 @@ The table below is the single reference grid for this article: every tool from t
 | **Dremio** | API/BI-native | Yes (Community Edition, Apache 2.0) | Cloud consumption-based; Community free | AI semantic search, REST | 🟡 Working group; active Apache Ossie promoter |
 
 **OSI Status legend**:
-- 🟢 **Converter merged**: Reference OSI converter code merged in <a href="https://github.com/apache/ossie" rel="nofollow noopener">github.com/apache/ossie</a> — the tool has a working (if not product-grade) path to OSI.
+- 🟢 **Converter merged**: Reference OSI converter code merged in [github.com/apache/ossie](https://github.com/apache/ossie) — the tool has a working (if not product-grade) path to OSI.
 - 🟡 **Working group member**: The vendor participates in the OSI initiative but has not shipped a converter or native support. Intent is signaled; delivery is unproven.
 - 🔴 **Not participating**: The vendor is not listed in OSI public working-group rosters and has not announced plans. Semantic definitions authored in this tool may remain trapped in its ecosystem.
 
@@ -88,7 +90,7 @@ OSI (Open Semantic Interchange, now **Apache Ossie**) is easy to misunderstand. 
 
 ### Level 1: Reference converters (real, working, on GitHub)
 
-The Apache Ossie repository at <a href="https://github.com/apache/ossie" rel="nofollow noopener">github.com/apache/ossie</a> contains working reference converters — command-line tools that translate between vendor-specific semantic formats and the OSI specification:
+The Apache Ossie repository at [github.com/apache/ossie](https://github.com/apache/ossie) contains working reference converters — command-line tools that translate between vendor-specific semantic formats and the OSI specification:
 
 | Converter | Direction | Status |
 |---|---|---|
@@ -174,6 +176,14 @@ Cube offers the broadest API surface for AI agent consumption (SQL, REST, GraphQ
 ### Is an open-source semantic layer better for avoiding vendor lock-in?
 
 Yes, with nuance. An open-source core (Cube Core, Lightdash, Preset, Dremio Community Edition) means you control deployment and are not forced into a specific cloud or pricing meter. However, open-source tools that do not participate in OSI still produce definitions in their proprietary format — which is lock-in of a different kind. The strongest anti-lock-in position is: open-source core + OSI working-group participation (Cube, Lightdash, Preset) or open format + OSI converter merged (dbt MetricFlow, which is open-source at the MetricFlow layer but requires dbt Cloud for the Semantic Layer API).
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

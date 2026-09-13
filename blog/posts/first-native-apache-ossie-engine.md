@@ -1,13 +1,13 @@
 ---
 title: "First Native Apache Ossie Engine"
-description: "What a native Apache Ossie implementation is, how it differs from converters, and why execution engines like Dosi matter for portable semantics."
+description: "What a native Apache Ossie (incubating) implementation is, how a native Apache Ossie engine differs from OSI converters, and why execution engines like Dosi matter for portable semantics."
 author: "Kostja"
 date: 2026-08-22
-lastmod: 2026-08-22
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Apache Ossie implementation, native Ossie engine, OSI execution engine, semantic layer runtime, OSI converter, Dosi, reference compiler, semantic interoperability"
+      content: "Apache Ossie, Apache Ossie incubating, native Apache Ossie engine, Ossie semantic model specification, Apache Ossie implementation, native Ossie engine, OSI execution engine, OSI converter, Dosi, reference compiler, semantic interoperability, semantic layer runtime"
   - - meta
     - property: og:title
       content: "First Native Apache Ossie Engine"
@@ -37,7 +37,7 @@ Search for **apache ossie implementation** and you will find the specification, 
 
 ## TL;DR
 
-- **Apache Ossie** (incubating) is a vendor-neutral YAML/JSON specification for metrics, dimensions, datasets, and relationships — not a query engine. See the [Open Semantic Interchange overview](/blog/open-semantic-interchange-osi) for the full standard context.
+- **Apache Ossie** (incubating) — the standard formerly published as **Open Semantic Interchange (OSI)**, accepted into the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) on July 10, 2026 — is a vendor-neutral YAML/JSON specification for metrics, dimensions, datasets, and relationships, not a query engine. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi) for the full standard context. The rename (OSI clashed with the Open Source Initiative) left the spec, community, and mission unchanged.
 - Today, most **apache ossie implementation** work in the community repository is **converter-level**: translate MetricFlow YAML, LookML, or platform-native definitions *into* or *out of* Ossie format. Converters prove the spec is mappable; they do not execute queries.
 - A **native Ossie engine** consumes Ossie YAML directly, plans joins and aggregations from the semantic graph, and lowers the result to warehouse SQL — without requiring an intermediate authoring format like MetricFlow or a platform-specific semantic view.
 - The Apache Ossie **roadmap** names a reference compiler and semantic query language as future deliverables; as of August 2026 those pieces are planned, not shipped in the incubating project.
@@ -47,7 +47,7 @@ Search for **apache ossie implementation** and you will find the specification, 
 
 Teams evaluating Ossie often ask a reasonable question: *who implements it?* The answer depends on which layer you mean.
 
-At the **interchange layer**, implementation means reading and writing Ossie documents correctly — validating schema, preserving metric expressions, mapping relationships, and carrying business context fields like descriptions and AI metadata. Reference converters in the <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie repository</a> do exactly that. They are essential proof that the format is expressive enough to represent real semantic models from production tools.
+At the **interchange layer**, implementation means reading and writing Ossie documents correctly — validating schema, preserving metric expressions, mapping relationships, and carrying business context fields like descriptions and AI metadata. Reference converters in the [Apache Ossie repository](https://github.com/apache/ossie) do exactly that. They are essential proof that the format is expressive enough to represent real semantic models from production tools.
 
 At the **execution layer**, implementation means something different: take an Ossie model as the *source of truth*, accept a semantic query (metrics, dimensions, filters, time grain), compile a correct join plan, and emit SQL that a warehouse can run. No round-trip through a second authoring format. No "export to Ossie, import into LookML, then query LookML."
 
@@ -115,7 +115,7 @@ The difference shows up in day-two operations. Import-native paths re-sync when 
 
 ## 5. The Apache Ossie roadmap: reference engine planned, not delivered
 
-The incubating project is explicit about what is shipping today versus what is queued. Validators and converters are real; the **Semantic Query Language & Reference Engine** workstream is on the <a href="https://github.com/apache/ossie/blob/main/ROADMAP.md" rel="nofollow noopener">public roadmap</a> with deliverables that include:
+The incubating project is explicit about what is shipping today versus what is queued. Validators and converters are real; the **Semantic Query Language & Reference Engine** workstream is on the [public roadmap](https://github.com/apache/ossie/blob/main/ROADMAP.md) with deliverables that include:
 
 - A standard semantic query interface (Ossie-native or SQL-extended)
 - Mapping from semantic queries to execution plans
@@ -192,7 +192,7 @@ A **converter** translates semantic definitions between Ossie YAML and another f
 
 ### Does Apache Ossie ship a reference execution engine?
 
-Not as of August 2026. The <a href="https://github.com/apache/ossie/blob/main/ROADMAP.md" rel="nofollow noopener">Apache Ossie roadmap</a> lists a semantic query language and reference compiler as planned deliverables, including conformance tests. The incubating repository ships validators, spec documents, and reference converters. Independent engines such as Dosi implement execution ahead of that reference code, which is consistent with how other Apache projects have matured — spec and converters first, canonical runtime later.
+Not as of August 2026. The [Apache Ossie roadmap](https://github.com/apache/ossie/blob/main/ROADMAP.md) lists a semantic query language and reference compiler as planned deliverables, including conformance tests. The incubating repository ships validators, spec documents, and reference converters. Independent engines such as Dosi implement execution ahead of that reference code, which is consistent with how other Apache projects have matured — spec and converters first, canonical runtime later.
 
 ### Is Dosi the only way to run Ossie models?
 
@@ -209,6 +209,14 @@ Ask which semantic fixture and query matrix were used, whether comparisons inclu
 ### Where does Dosi fit if we already use dbt MetricFlow?
 
 MetricFlow excels when dbt is your authoring and governance system. Ossie enters when you need definitions to outlive that stack or feed non-dbt consumers — agents, second warehouses, embedded analytics. Dosi executes Ossie YAML directly; dbt teams can keep MetricFlow as the authoring path and treat Ossie as interchange when portability matters. The two layers are complementary; see [OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow) for the full split.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

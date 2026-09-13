@@ -1,14 +1,14 @@
 ---
 title: "Apache Ossie + Dosi: A 10-Minute Semantic Layer for Your AI Agent"
-description: "A 10-minute Dosi quick start: install, query a 191K-row DuckDB dataset from the CLI, connect it to Claude Code over MCP, and ask why revenue dropped."
+description: "A 10-minute Apache Ossie + Dosi quick start: install Dosi, query a 191K-row DuckDB dataset from the CLI, connect it to Claude Code over MCP, and ask why revenue dropped."
 author: "Harrison Zhao"
 date: 2026-09-07
 tags: insight
-lastmod: 2026-09-07
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Apache Ossie tutorial, Dosi quick start, semantic layer for AI agents, OSI YAML to SQL, MCP server semantic layer, Claude Code MCP, metric attribution, DuckDB semantic layer, TermWise attribution"
+      content: "Apache Ossie, Apache Ossie incubating, native Apache Ossie engine, Ossie semantic model specification, Apache Ossie tutorial, Apache Ossie quickstart, Dosi tutorial, Dosi quick start, semantic layer for AI agents, OSI YAML to SQL, MCP server semantic layer, Claude Code MCP, metric attribution, DuckDB semantic layer, TermWise attribution"
   - - meta
     - property: og:title
       content: "Apache Ossie + Dosi: A 10-Minute Semantic Layer for Your AI Agent"
@@ -47,7 +47,7 @@ In ten minutes, Dosi gives us four things:
 
 *One semantic model. Many SQL dialects.*
 
-This is a 10-minute Quick Start for <a href="https://dosi.datus.ai/" rel="nofollow noopener">Dosi</a>. Dosi compiles <a href="https://ossie.apache.org/" rel="nofollow noopener">Apache Ossie</a> YAML semantic models into SQL for 16 database dialects, and exposes the same [semantic layer](/blog/what-is-semantic-layer/) through CLI, MCP, and APIs. Compared with letting an Agent generate SQL directly every time, Dosi gives you a more stable and consistent layer for metric definitions, joins, and calculation logic.
+This is a 10-minute Quick Start for [Dosi](https://dosi.datus.ai/), a native execution engine for [Apache Ossie](https://ossie.apache.org/) — the vendor-neutral standard formerly known as OSI (see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/)), accepted into the Apache Incubator on July 10, 2026. Dosi compiles Apache Ossie YAML semantic models into SQL for 16 database dialects, and exposes the same [semantic layer](/blog/what-is-semantic-layer/) through CLI, MCP, and APIs. Dosi is one implementation of the Apache Ossie / OSI specification, not the standard itself. Compared with letting an Agent generate SQL directly every time, Dosi gives you a more stable and consistent layer for metric definitions, joins, and calculation logic.
 
 We'll run through the whole flow in ten minutes:
 
@@ -421,6 +421,14 @@ Because the CLI, API and MCP are not separate implementations. The `attribute_me
 ### Do I have to rewrite metric definitions when I change database?
 
 No. One Apache Ossie YAML model compiles into 16 SQL dialects; you change `--dialect` (or point at another connection) and the model stays as it is. "Group by month" is one concept with different implementations per database, and those differences are handled by the compiler instead of being maintained as separate SQL templates.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

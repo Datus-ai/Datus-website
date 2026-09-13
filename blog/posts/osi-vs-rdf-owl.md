@@ -3,11 +3,11 @@ title: "OSI vs RDF/OWL: Two Generations of Semantics Compared"
 description: "OSI vs RDF/OWL: how formal Semantic Web ontologies differ from Apache Ossie's lightweight YAML interchange, and why it matters for analytics."
 author: "Evan Paul"
 date: 2026-08-09
-lastmod: 2026-08-09
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "OSI vs RDF/OWL, RDF, OWL, Semantic Web, Apache Ossie, ontology vs semantic layer, open-world vs closed-world, knowledge graph, AI agents"
+      content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs RDF/OWL, RDF, OWL, Semantic Web, ontology vs semantic layer, open-world vs closed-world, knowledge graph, AI agents"
   - - meta
     - property: og:title
       content: "OSI vs RDF/OWL: Two Generations of Semantics Compared"
@@ -33,6 +33,8 @@ head:
 
 # OSI vs RDF/OWL: Two Generations of Semantics Compared
 
+> **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
+
 **RDF/OWL** is the W3C specification stack behind the Semantic Web — formal ontologies, graph triples, inference, and an open-world model of meaning. **OSI** (now Apache Ossie) is a pragmatic YAML interchange format for metrics, dimensions, and relationships, built for the closed world of enterprise analytics. This article defines both, compares them across seven dimensions, and argues that the two are converging rather than competing.
 
 ## TL;DR
@@ -55,7 +57,7 @@ That definition matters because the open-world assumption is not a corner detail
 
 ## 2. OSI (Apache Ossie): a working definition
 
-OSI — the Open Semantic Interchange — is an Apache 2.0-licensed specification for exchanging semantic metadata: metrics, dimensions, datasets, relationships, and business context, expressed in declarative YAML or JSON. The project emerged from a Snowflake-convened coalition in late 2025, entered the Apache Incubator in June 2026 under the name **Apache Ossie**, and as of August 2026 sits at spec v0.1.1 with a 0.2.0-dev branch in progress and more than 50 participating organizations. The architecture is deliberately hub-and-spoke: rather than building converters between every pair of tools, each platform translates to and from OSI as a central, vendor-neutral format. The <a href="https://open-semantic-interchange.org/" rel="nofollow noopener">OSI project site</a> describes the goal in one line — stop redefining "Revenue" in every dashboard, so every tool and agent works from the same source of truth.
+OSI — the Open Semantic Interchange — is an Apache 2.0-licensed specification for exchanging semantic metadata: metrics, dimensions, datasets, relationships, and business context, expressed in declarative YAML or JSON. The project emerged from a Snowflake-convened coalition in late 2025, entered the Apache Incubator in July 2026 under the name **Apache Ossie**, and as of August 2026 sits at spec v0.1.1 with a 0.2.0-dev branch in progress and more than 50 participating organizations. The architecture is deliberately hub-and-spoke: rather than building converters between every pair of tools, each platform translates to and from OSI as a central, vendor-neutral format. The [Apache Ossie project site](https://ossie.apache.org/) describes the goal in one line — stop redefining "Revenue" in every dashboard, so every tool and agent works from the same source of truth.
 
 A concrete OSI model looks like what a metric layer already produces today:
 
@@ -76,7 +78,7 @@ semantic_models:
         to: customers.id
 ```
 
-Three properties separate OSI from the RDF/OWL world. First, OSI is scoped to analytics artifacts — metrics, dimensions, datasets, relationships — and explicitly not a language for describing arbitrary domains. Second, its semantics are closed-world and executable: the model is the complete truth, and no reasoner sits between a definition and the SQL it generates. Third, it is an interchange format, not a query engine — the <a href="https://github.com/open-semantic-interchange/OSI" rel="nofollow noopener">specification repository</a> ships converters rather than runtimes. For a full walkthrough of what OSI standardizes and who backs it, see [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi).
+Three properties separate OSI from the RDF/OWL world. First, OSI is scoped to analytics artifacts — metrics, dimensions, datasets, relationships — and explicitly not a language for describing arbitrary domains. Second, its semantics are closed-world and executable: the model is the complete truth, and no reasoner sits between a definition and the SQL it generates. Third, it is an interchange format, not a query engine — the [specification repository](https://github.com/apache/ossie) ships converters rather than runtimes. For a full walkthrough of what OSI standardizes and who backs it, see [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi).
 
 ## 3. Side-by-side comparison
 
@@ -84,7 +86,7 @@ If you are deciding which of the two to build on, the differences that matter ar
 
 | Dimension | RDF/OWL (Semantic Web) | OSI / Apache Ossie |
 | --- | --- | --- |
-| **Era and origin** | 2000s W3C standards, born from the 2001 Semantic Web vision | 2020s industry spec, Apache Incubator since June 2026 |
+| **Era and origin** | 2000s W3C standards, born from the 2001 Semantic Web vision | 2020s industry spec, Apache Incubator since July 2026 |
 | **Formalism** | Formal logic: classes, properties, axioms, inference rules | Declarative YAML/JSON: metrics, dimensions, datasets, relationships |
 | **World assumption** | Open world — unstated facts are unknown, not false | Closed world — the model is the complete truth |
 | **Inference** | First-class: reasoners derive new facts from axioms | Out of scope: definitions are explicit and executed directly |
@@ -155,3 +157,11 @@ The open-world assumption says that anything not stated in a knowledge base is u
 ### Can OSI and RDF/OWL be used together?
 
 Yes — that is the direction the ecosystem is heading. OSI's Ontology working group maps OSI concepts to formal ontology standards so that an OWL ontology or RDF store can be transpiled into OSI, moved across tools, and transpiled back with its bindings intact. A team can keep its knowledge graph authoritative for disambiguation and domain structure while an OSI-compatible semantic model handles execution and portability for agents and BI tools.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

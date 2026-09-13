@@ -3,7 +3,7 @@ title: "Semantic vs Syntactic Interoperability: Difference & Why It Matters"
 description: "Syntactic interoperability is shared format; semantic interoperability is shared meaning. See the difference, failure modes, and why it matters for AI agents."
 author: "Evan Paul"
 date: 2026-08-08
-lastmod: 2026-08-08
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
@@ -88,7 +88,7 @@ These three patterns account for roughly 40% of text-to-SQL production errors in
 
 ## 4. How OSI (Apache Ossie) implements semantic interoperability
 
-The failure taxonomy above is why the industry has started standardizing meaning the way it once standardized formats. The most concrete example as of August 2026 is OSI, the Open Semantic Interchange specification, which entered the Apache Incubator in June 2026 under the project name **Apache Ossie**.
+The failure taxonomy above is why the industry has started standardizing meaning the way it once standardized formats. The most concrete example as of August 2026 is OSI, the Open Semantic Interchange specification, which entered the Apache Incubator in July 2026 under the project name **Apache Ossie**.
 
 OSI is an <a href="https://github.com/open-semantic-interchange/OSI" rel="nofollow noopener">Apache-2.0-licensed specification</a> that defines a vendor-neutral representation for the semantic artifacts a query needs: metrics (calculation logic, aggregation type, time grain), dimensions (attributes and hierarchies), datasets (tables with column-level metadata), and relationships (join keys, cardinality, grain implications). Definitions are authored in YAML or JSON, versioned like code, and portable across tools. The working group reports over 50 participating organizations, and four reference converters have merged so far — dbt/MetricFlow, GoodData, Salesforce, and Apache Polaris — meaning definitions authored in those tools can be exported to the standard format.
 

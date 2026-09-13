@@ -1,13 +1,13 @@
 ---
 title: "OSI vs Cube: Headless Semantic Layer Meets Open Standard"
-description: "OSI vs Cube compared: the Open Semantic Interchange standard vs Cube's headless semantic layer — formats, execution, governance, and AI agent access."
+description: "OSI (now Apache Ossie) vs Cube compared: the Open Semantic Interchange standard vs Cube's headless semantic layer — formats, execution, governance, and AI agent access."
 author: "Evan Paul"
 date: 2026-08-10
-lastmod: 2026-08-10
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "OSI vs Cube, Cube.dev, headless semantic layer, Apache Ossie, Open Semantic Interchange, CubeStore, semantic layer API, AI agents"
+      content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs Cube, Cube.dev, headless semantic layer, Open Semantic Interchange, CubeStore, semantic layer API, AI agents"
   - - meta
     - property: og:title
       content: "OSI vs Cube: Headless Semantic Layer Meets Open Standard"
@@ -33,6 +33,8 @@ head:
 
 # OSI vs Cube: Headless Semantic Layer Meets Open Standard
 
+> **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
+
 **OSI** and **Cube** are often grouped together, but they operate at different layers of the semantic stack: OSI is an open interchange standard for portable metric definitions, while Cube is a headless semantic layer product that defines, executes, and serves those definitions. This article defines each, compares them across format, execution, governance, and AI agent access, and explains why the product-vs-standard distinction matters in practice.
 
 ## TL;DR
@@ -53,7 +55,7 @@ That definition draws a boundary most vendor materials blur on purpose. OSI is a
 
 ## 2. What OSI is: an open interchange standard, not a runtime
 
-OSI, the Open Semantic Interchange specification now being shepherded through the [Apache Incubator as Apache Ossie](/blog/open-semantic-interchange-osi), is a vendor-neutral format for semantic metadata. The specification at <a href="https://github.com/open-semantic-interchange/OSI" rel="nofollow noopener">github.com/open-semantic-interchange/OSI</a> defines how metrics, dimensions, datasets, relationships, and business context are represented in YAML or JSON — and, critically, it separates definition from implementation. An OSI metric says what the metric is and how it relates to other entities; it does not say where the query runs or which SQL dialect to use.
+OSI, the Open Semantic Interchange specification now being shepherded through the [Apache Incubator as Apache Ossie](/blog/open-semantic-interchange-osi), is a vendor-neutral format for semantic metadata. The specification at [github.com/apache/ossie](https://github.com/apache/ossie) defines how metrics, dimensions, datasets, relationships, and business context are represented in YAML or JSON — and, critically, it separates definition from implementation. An OSI metric says what the metric is and how it relates to other entities; it does not say where the query runs or which SQL dialect to use.
 
 That separation is what makes the standard portable. A `net_revenue` metric defined once in OSI format can be translated into Snowflake SQL, BigQuery SQL, or a Cube API query, depending on which engine consumes it. As of August 2026 the specification is at v0.1.1 (with 0.2.0-dev work in progress), the working group spans more than 50 organizations — from Snowflake, Databricks, and Google to dbt Labs, Cube, AtScale, and a long tail of BI, catalog, and enterprise vendors — and the project holds four merged reference converters (dbt/MetricFlow, GoodData, Salesforce, Apache Polaris) that translate between vendor formats and OSI. The standard is real and it is moving fast; what does not yet exist is a single product with user-facing OSI import or export.
 
@@ -87,7 +89,7 @@ A concrete sketch: a team maintains `net_revenue` as a Cube measure with a defin
 
 ## 6. Adoption status: working-group member, not a merged converter
 
-Cube has been in the OSI conversation from the beginning, listed among the semantic-layer vendors in the working group alongside dbt Labs, AtScale, and Denodo. That matters: participation by the leading open-source headless semantic layer signals that the industry is serious about interoperability. But participation is not support, and the honest as-of-August-2026 status is that Cube has no merged converter in the <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie repository</a>.
+Cube has been in the OSI conversation from the beginning, listed among the semantic-layer vendors in the working group alongside dbt Labs, AtScale, and Denodo. That matters: participation by the leading open-source headless semantic layer signals that the industry is serious about interoperability. But participation is not support, and the honest as-of-August-2026 status is that Cube has no merged converter in the [Apache Ossie repository](https://github.com/apache/ossie).
 
 Four reference converters are merged there — dbt/MetricFlow, GoodData, Salesforce, and Apache Polaris — and none of them is Cube. A reference converter is a working CLI mapping that proves the format translation is technically understood; it is not a product feature, but it is the difference between "we intend to support OSI" and "the mapping exists in the standard's repository." For a full vendor-by-vendor picture, see the [semantic layer tools list with OSI status](/blog/semantic-layer-tools-list-osi).
 
@@ -145,3 +147,11 @@ Not through a supported feature. As of August 2026 there is no native Cube OSI e
 ### Should I adopt Cube, OSI, or both?
 
 Both, in sequence. Choose Cube (or another authoring tool) when you need governed semantics served to many consumers today; adopt OSI thinking — portable, tool-neutral definitions — as the architectural target. Do not wait for the standard to start governing metrics: define your KPIs now, keep them maintained, and treat OSI as the interchange path that will let them travel later.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the Apache Software Foundation
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)

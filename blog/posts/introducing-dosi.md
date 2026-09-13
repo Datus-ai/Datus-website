@@ -3,11 +3,11 @@ title: "Introducing Dosi: OSI-Native Semantic Layer for Metrics"
 description: "Dosi compiles Apache Ossie (OSI) YAML into SQL across 15+ warehouse dialects — CLI, REST, MCP, and Python — so metrics are defined once and used everywhere."
 author: "Kostja"
 date: 2026-08-21
-lastmod: 2026-08-21
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Dosi, OSI-native semantic layer, Apache Ossie, OSI YAML, multi-dialect SQL, metrics engine, semantic layer, MCP, Datus Studio, datus-semantic-dosi"
+      content: "Dosi, OSI-native semantic layer, Apache Ossie, Apache Ossie implementation, Ossie execution engine, OSI, OSI YAML, multi-dialect SQL, metrics engine, semantic layer, MCP, Datus Studio, datus-semantic-dosi"
   - - meta
     - property: og:title
       content: "Introducing Dosi: OSI-Native Semantic Layer for Metrics"
@@ -32,6 +32,8 @@ head:
 ---
 
 # Introducing Dosi: OSI-Native Semantic Layer for Metrics
+
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
 
 Dosi is an OSI-native semantic layer engine for metrics: take Apache Ossie (OSI) YAML in, get warehouse SQL out — in fifteen or more dialects, through a CLI, REST with Arrow, MCP, or Python. Tagline: **Define once. Use everywhere.**
 
@@ -58,7 +60,7 @@ Most semantic stacks assume one execution backend. MetricFlow targets the dbt gr
 
 > **Dosi** is an OSI-native semantic layer engine for metrics. It reads Apache Ossie (OSI) YAML and produces SQL for metrics, dimensions, filters, and time grains in fifteen or more warehouse dialects. It does not replace your OSI authoring workflow; it executes the interchange format teams already export or generate.
 
-The compilation path is deliberately narrow. Input is OSI YAML — the same shape the OSS community documents under <a href="https://ossie.ai/" rel="nofollow noopener">Apache Ossie</a>. Output is SQL strings (and structured metadata) suitable for direct execution or wrapping in an agent tool. Dosi does not ask you to maintain a second metric dictionary in a proprietary schema; the OSI file is the contract.
+The compilation path is deliberately narrow. Input is OSI YAML — the same shape the OSS community documents under [Apache Ossie](https://ossie.apache.org/), the vendor-neutral open standard Dosi conforms to. Output is SQL strings (and structured metadata) suitable for direct execution or wrapping in an agent tool. Dosi does not ask you to maintain a second metric dictionary in a proprietary schema; the OSI file is the contract.
 
 What travels through that contract is the vocabulary agents and analysts fight over in production: **metrics** with certified expressions, **dimensions** and entity relationships that fix join grain, **filters** that encode "exclude test accounts" once, and **time grains** that define whether "last month" means calendar month or fiscal period. Dosi resolves those objects into a single SQL statement per request — metric query, slice by dimension, apply filter set — rather than handing back a fragment your application still has to stitch together.
 
@@ -144,6 +146,14 @@ No. Datus Knowledge is the agent's memory layer — schema, semantic models, ref
 ### We do not use OSI yet — should we start with Dosi?
 
 Start with governed metric definitions and whether your organization wants a portable interchange format. If you already export or plan to export **Apache Ossie YAML**, Dosi is the execution engine on the other side. If metrics still live only in tribal SQL and undocumented dashboards, fix definition and ownership first — a compiler does not substitute for agreement on what "net revenue" means.
+
+## Apache Ossie / OSI: official resources
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the open standard Dosi implements
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/)
 
 ## Related articles
 

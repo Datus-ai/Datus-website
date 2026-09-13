@@ -4,7 +4,7 @@ description: "Read-only data agents answer questions; write agents deliver work.
 author: "Harrison Zhao"
 date: 2026-08-22
 tags: insight
-lastmod: 2026-09-11
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
@@ -66,7 +66,7 @@ Almost all of these problems are cross-system. The agent has to read state all t
 
 This is also an important part of the demo: the Datus agent has a <a href="https://docs.datus.ai/0.3/plugin/introduction/" rel="nofollow noopener">plugin system</a>.
 
-A data engineering agent faces far too many systems. On one side we use adaptors for native integration with different databases and with the OSI metric system, but outside the database there is Flink, Kubernetes, object storage, the scheduler, BI, the catalog, and every cloud vendor's API. If you only give the agent a shell, then in theory it can do anything, but the tool boundary, the permissions and the outputs are all uncontrollable, and it is very hard to end up with a stable engineering system.
+A data engineering agent faces far too many systems. On one side we use adaptors for native integration with different databases and with the [OSI (now Apache Ossie)](/blog/open-semantic-interchange-osi/) metric system, but outside the database there is Flink, Kubernetes, object storage, the scheduler, BI, the catalog, and every cloud vendor's API. If you only give the agent a shell, then in theory it can do anything, but the tool boundary, the permissions and the outputs are all uncontrollable, and it is very hard to end up with a stable engineering system.
 
 So Datus puts these capabilities into plugins. This demo loaded the Flink, Kubernetes/ACK and S3 plugins. A plugin can wrap basic database operations, and it can equally turn a remote API or a cloud service interface into a local tool the agent can call stably, while making the context, namespace, bucket, permission level and structured return explicit.
 
