@@ -119,7 +119,7 @@ In a fully realized architecture, they are complementary: Datus generates and ev
 
 Cube's evolution from dashboard framework → headless semantic layer → agentic analytics platform is not a unique path — it reflects a broader market pattern:
 
-**Signal 1: The semantic layer is infrastructure, not a feature.** Cube bet its entire product on this thesis years ago, and the market has validated it. When Databricks Ventures invested $25M in Cube, they were investing in semantic infrastructure — not dashboard tooling. The OSI standard (see [Open Semantic Interchange explained](/blog/open-semantic-interchange-osi/)) further validates this: metrics are becoming portable infrastructure, not tool-specific features.
+**Signal 1: The semantic layer is infrastructure, not a feature.** Cube bet its entire product on this thesis years ago, and the market has validated it. When Databricks Ventures invested $25M in Cube, they were investing in semantic infrastructure — not dashboard tooling. The OSI standard (now Apache Ossie; see [Open Semantic Interchange explained](/blog/open-semantic-interchange-osi/)) further validates this: metrics are becoming portable infrastructure, not tool-specific features.
 
 **Signal 2: AI agents need a governed semantic layer to be trustworthy.** Cube's "LLMs query semantic layers, not databases" argument is increasingly the consensus. Giving an AI agent raw database access produces confident wrong answers. Routing agent queries through a governed semantic layer produces answers grounded in certified business logic. This is not a Cube-specific insight — it is an architectural requirement for any production AI analytics deployment.
 

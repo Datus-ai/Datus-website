@@ -103,7 +103,7 @@ The painful job is pipeline authoring and on-call. That is Genie Code, or a data
 
 Nobody will own curation. An uncared-for Genie Agent is a schema dump with a chat box. Unity Catalog descriptions help; they are not a semantic model.
 
-You need the same certified metric in Snowflake, a BI tool, and an external agent runtime. Genie Ontology and Metric Views are Databricks-native context. Portable interchange is a different layer — OSI / Apache Ossie — and it does not replace Databricks's agent.
+You need the same certified metric in Snowflake, a BI tool, and an external agent runtime. Genie Ontology and Metric Views are Databricks-native context. Portable interchange is a different layer — [OSI / Apache Ossie](/blog/open-semantic-interchange-osi/) — and it does not replace Databricks's agent.
 
 You wanted a generalist analyst in Claude or ChatGPT. The [Claude Data plugin](/blog/what-is-claude-data-plugin/) (Cowork / Claude Code) plus warehouse MCP is a **client**: SQL, charts, and QA against whatever you connect. It does not ship Unity Catalog, Metric Views, or curated Genie Agents. Genie is the opposite shape: the agent lives in the platform, and MCP is how *other* clients come to it.
 

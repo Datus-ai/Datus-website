@@ -36,7 +36,7 @@ head:
 ## TL;DR
 
 - **MetricFlow is the query engine behind [dbt's Semantic Layer](https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl)** — define metrics, dimensions, and semantic models in YAML, and it generates correct SQL at query time across Snowflake, BigQuery, Databricks, Postgres, and DuckDB.
-- **The license path matters:** MetricFlow shipped under AGPL, moved to the restrictive BSL after dbt Labs acquired Transform in 2023 (production serving required dbt Cloud), then [relicensed to permissive Apache 2.0 in October 2025](https://www.getdbt.com/blog/open-source-metricflow-governed-metrics), aligning it with [Open Semantic Interchange (OSI)](/blog/osi-vs-metricflow/).
+- **The license path matters:** MetricFlow shipped under AGPL, moved to the restrictive BSL after dbt Labs acquired Transform in 2023 (production serving required dbt Cloud), then [relicensed to permissive Apache 2.0 in October 2025](https://www.getdbt.com/blog/open-source-metricflow-governed-metrics), aligning it with [Open Semantic Interchange (OSI, now Apache Ossie)](/blog/open-semantic-interchange-osi/).
 - **Strengths:** Git-managed governance, CI/CD-validated definitions, grain enforcement, multi-engine SQL, and composable derived metrics.
 - **Limits:** it is engineer-maintained and batch-updated — ad-hoc queries and corrections have no path into the YAML until someone opens a PR.
 - **Alternatives & complements:** OSI-native runtimes like [Dosi](/blog/introducing-dosi/) compile the same definitions across 15+ dialects, and AI data agents keep provisional context current between PRs.
@@ -190,7 +190,7 @@ The closest alternatives are other semantic-layer engines: [Cube](/blog/osi-vs-c
 
 ## Related articles
 
-- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the portable standard vs the execution engine
+- [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the portable standard vs the execution engine
 - [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) — OSI-native runtime vs dbt-centric runtime
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog MetricFlow implements
 - [What is a semantic model?](/blog/what-is-semantic-model/) — the building block MetricFlow queries

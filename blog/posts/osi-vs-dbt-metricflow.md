@@ -1,19 +1,19 @@
 ---
-title: "OSI vs dbt MetricFlow: Key Differences & Why It Matters for AI Agents"
-description: "How OSI (Apache Ossie) and dbt MetricFlow differ — definition vs execution, governance, portability — and why both matter for AI agents."
+title: "Apache Ossie (OSI) vs dbt MetricFlow: Key Differences & Why It Matters for AI Agents"
+description: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs dbt MetricFlow: definition vs execution, portability, and why both matter for AI agents."
 author: "Evan Paul"
 date: 2026-08-05
-lastmod: 2026-08-05
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "OSI vs dbt MetricFlow, OSI vs MetricFlow, Apache Ossie, dbt MetricFlow, dbt semantic layer, MetricFlow to OSI converter, semantic layer standard, AI agents"
+      content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, OSI vs dbt MetricFlow, OSI vs MetricFlow, dbt MetricFlow, dbt semantic layer, MetricFlow to OSI converter, semantic layer standard, AI agents"
   - - meta
     - property: og:title
-      content: "OSI vs dbt MetricFlow: Key Differences & Why It Matters for AI Agents"
+      content: "Apache Ossie (OSI) vs dbt MetricFlow: Key Differences & Why It Matters for AI Agents"
   - - meta
     - property: og:description
-      content: "How OSI (Apache Ossie) and dbt MetricFlow differ — definition vs execution, governance, portability — and why both matter for AI agents."
+      content: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs dbt MetricFlow: definition vs execution, portability, and why both matter for AI agents."
   - - meta
     - property: og:type
       content: article
@@ -31,14 +31,16 @@ head:
       href: https://datus.ai/blog/osi-vs-dbt-metricflow/
 ---
 
-# OSI vs dbt MetricFlow: Key Differences & Why It Matters for AI Agents
+# Apache Ossie (OSI) vs dbt MetricFlow: Key Differences & Why It Matters for AI Agents
 
-OSI (Apache Ossie) and dbt MetricFlow solve different problems but are often confused. This article defines each, compares them across six dimensions, walks through the dbt (MetricFlow) to OSI converter flow, and explains why the distinction matters for AI agents.
+> **OSI is now Apache Ossie.** In July 2026, **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** and entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This comparison uses **Apache Ossie / OSI** interchangeably.
+
+**Apache Ossie** (formerly **Open Semantic Interchange**, OSI) and dbt MetricFlow solve different problems but are often confused. This article defines each, compares them across six dimensions, walks through the dbt (MetricFlow) to OSI converter flow, and explains why the distinction matters for AI agents.
 
 ## TL;DR
 
 - **OSI (Apache Ossie) is a vendor-neutral interchange format for semantic definitions; dbt MetricFlow is the open-source execution engine behind dbt's Semantic Layer** — complementary layers, not competitors: author in MetricFlow, interchange via OSI, consume anywhere.
-- OSI is a specification, not a product: it standardizes metrics, dimensions, datasets, and relationships in YAML/JSON, but it plans no joins and generates no SQL. It entered the Apache Incubator in June 2026 as Apache Ossie, and the spec (v0.1.1 / 0.2.0-dev) is still evolving with possible breaking changes.
+- OSI is a specification, not a product: it standardizes metrics, dimensions, datasets, and relationships in YAML/JSON, but it plans no joins and generates no SQL. It entered the Apache Incubator in July 2026 as Apache Ossie, and the spec (v0.1.1 / 0.2.0-dev) is still evolving with possible breaking changes.
 - MetricFlow is a runtime. It consumes semantic definitions, builds a semantic graph, and emits warehouse-specific SQL, with definitions governed as Git-versioned YAML through pull requests and served at scale through the dbt Cloud Semantic Layer API.
 - The two connect through reference converters: the dbt (MetricFlow) → OSI converter is one of four merged in the Apache Ossie repository, alongside GoodData, Salesforce, and Apache Polaris, with a Spark converter in review.
 - For AI agents the distinction decides accuracy: OSI makes governed definitions machine-readable across tools, MetricFlow makes them executable, and agents that consume both get grounded context instead of guessed semantics.
@@ -55,7 +57,7 @@ That division of labor is the whole argument of this article. OSI is a portable 
 
 Two boundaries are worth stating up front. OSI is not a semantic layer product: you cannot query it, it stores nothing, and it has no UI. MetricFlow is not an interchange format: a MetricFlow YAML file is only directly consumable by MetricFlow and the dbt ecosystem, which is precisely the gap OSI was created to close. Keeping those two negatives in mind prevents most of the confusion this article exists to clean up.
 
-For the higher-level standard-versus-engine framing without the converter and agent detail, see our [OSI vs MetricFlow](/blog/osi-vs-metricflow) explainer; this article goes deeper on the six dimensions, the converter flow, and what the split means for AI agents.
+For the higher-level standard-versus-engine framing without the converter and agent detail, see our [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow) explainer; this article goes deeper on the six dimensions, the converter flow, and what the split means for AI agents.
 
 The rest of the article works from these definitions: a short recap of each layer, the key-differences table, the converter flow that joins them, a decision framework, the AI-agent angle, and the misconceptions that keep circulating.
 
@@ -63,7 +65,7 @@ The rest of the article works from these definitions: a short recap of each laye
 
 OSI is covered in depth in our [Open Semantic Interchange (OSI) explainer](/blog/open-semantic-interchange-osi); the compressed version is enough here. OSI is an Apache 2.0 specification that standardizes the semantic artifacts every analytics stack defines — metrics, dimensions, datasets, relationships, and the business context that interprets them — in YAML or JSON. What OSI deliberately does not define is execution: no query plans, no SQL dialects, no runtime.
 
-For this comparison, the details that matter are state and direction. OSI launched in September 2025 with 17 organizations and has grown past 50 participants across five working groups, with Snowflake leading and dbt Labs, Databricks, Salesforce, Oracle, Mistral AI, and BlackRock among the signatories. In June 2026 the project entered the Apache Incubator and was renamed Apache Ossie, and the specification sits at v0.1.1 with a 0.2.0-dev branch — which is a polite way of saying the format can still change in breaking ways. The project site is <a href="https://ossie.apache.org" rel="nofollow noopener">ossie.apache.org</a>.
+For this comparison, the details that matter are state and direction. OSI launched in September 2025 with 17 organizations and has grown past 50 participants across five working groups, with Snowflake leading and dbt Labs, Databricks, Salesforce, Oracle, Mistral AI, and BlackRock among the signatories. In July 2026 the project entered the Apache Incubator and was renamed Apache Ossie, and the specification sits at v0.1.1 with a 0.2.0-dev branch — which is a polite way of saying the format can still change in breaking ways. The project site is [ossie.apache.org](https://ossie.apache.org/).
 
 None of that makes OSI executable, and that is deliberate. The specification separates definition from implementation so the same OSI document can drive a query in whichever engine consumes it. That separation is what makes the format portable — and it is also what makes OSI useless on its own. Portability without execution is a contract; execution without portability is a silo; OSI and MetricFlow are each half of the fix.
 
@@ -84,7 +86,7 @@ The comparison that matters is not "which one is better" — they are different 
 | **Portability** | Ports across SQL dialects via its query engine | Ports across tools, platforms, and vendors |
 | **Execution vs. definition** | Executes: builds a semantic graph, plans joins, generates SQL | Defines: documents semantics; performs no execution |
 | **AI agent access** | dbt Cloud API: JDBC, GraphQL, MCP server | Machine-readable YAML/JSON any tool or agent can parse |
-| **Maturity** | Most-adopted open-source metric layer; SL API still requires dbt Cloud | Apache Incubator (June 2026); spec v0.1.1 / 0.2.0-dev; no native product support yet |
+| **Maturity** | Most-adopted open-source metric layer; SL API still requires dbt Cloud | Apache Incubator (July 2026); spec v0.1.1 / 0.2.0-dev; no native product support yet |
 
 The pattern to internalize is that each is strong exactly where the other is weak. MetricFlow is mature, executable, and governed, but its definitions travel only where the dbt ecosystem can read them. OSI is young, non-executable, and deliberately ungoverned, but its definitions can travel anywhere a spec-conformant tool exists. The governance row is the least obvious: MetricFlow governance is a feature of its Git model, while OSI has no governance model at all — it defers to the authoring tool by design. That is not a defect; it is scope. It also means the common claim that "OSI gives you governance" is backwards: OSI gives you portability, and you bring the governance with you.
 
@@ -94,13 +96,13 @@ The relationship is easiest to see as a pipeline: author, convert, interchange, 
 
 The authoring step stays in MetricFlow. A team defines a `net_revenue` metric as YAML in its dbt project — a semantic model pointing at `fact_orders`, a measure computed as `revenue_usd - refund_usd`, a filter for completed orders, a daily grain. That definition is reviewed in a pull request, validated in CI, and at query time MetricFlow generates the correct SQL for the warehouse. So far, everything is inside the dbt world.
 
-The conversion step is where OSI enters. The dbt (MetricFlow) to OSI converter — one of four reference converters merged in the <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie repository</a> — takes that MetricFlow YAML and emits an OSI document describing the same metric, dimensions, relationships, and business context in the vendor-neutral format. The mapping preserves the semantic content that matters: the calculation, the grain, the filter, and the relationship to the underlying dataset.
+The conversion step is where OSI enters. The dbt (MetricFlow) to OSI converter — one of four reference converters merged in the [Apache Ossie repository](https://github.com/apache/ossie) — takes that MetricFlow YAML and emits an OSI document describing the same metric, dimensions, relationships, and business context in the vendor-neutral format. The mapping preserves the semantic content that matters: the calculation, the grain, the filter, and the relationship to the underlying dataset.
 
 The interchange step is where portability becomes real. That OSI document can be handed to any tool that implements the specification — a BI tool, a catalog, another semantic layer, or an AI agent — without re-authoring the definition. The consume step closes the loop: the downstream tool reads the document, understands what `net_revenue` means, and executes it with its own engine. Author once, consume anywhere is the pattern the standard was built for.
 
 Two honesty notes. The converter is a reference implementation: a CLI tool that proves the mapping and validates the spec, not a product-grade "Export as OSI" button in dbt Cloud. And no product ships native OSI import or export yet — as of August 2026 the converter path is the only working route, a status we track in the [semantic layer tools list](/blog/semantic-layer-tools-list-osi). The gap is closing, but teams should plan for the current reality.
 
-Viewed this way, MetricFlow and OSI never compete; the converter is the joint, and the joint is why the ecosystem treats them as one stack. For the equivalent comparison against other authoring tools, see our [OSI vs Cube](/blog/osi-vs-cube) and [OSI vs LookML](/blog/osi-vs-lookml) analyses.
+Viewed this way, MetricFlow and OSI never compete; the converter is the joint, and the joint is why the ecosystem treats them as one stack. For the equivalent comparison against other authoring tools, see our [Apache Ossie / OSI vs Cube](/blog/osi-vs-cube) and [Apache Ossie / OSI vs LookML](/blog/osi-vs-lookml) analyses.
 
 ## 6. When to use which — and when to use both
 
@@ -143,6 +145,10 @@ The pattern behind all five is the same: each misconception collapses two layers
 The semantic layer industry spent 2025 proving that metrics are infrastructure, and it is spending 2026 proving that infrastructure should be portable. dbt MetricFlow and OSI (Apache Ossie) are the two halves of that argument: one is the most widely adopted open-source engine for defining and executing metrics; the other is a vendor-neutral format for moving those definitions anywhere. They are not competitors. The converter that joins them — author in MetricFlow, interchange via OSI, consume anywhere — is already merged, and native support is the direction every working group signatory is moving. For AI agents the stakes are concrete: portable definitions determine whether an agent can see a metric at all, and governed execution determines whether it computes the right number. Teams that adopt the two-layer model now are not betting on a specific vendor; they are betting that definitions should be infrastructure, which is the safest bet in the stack. Start by auditing which of your metrics are governed, which are portable, and which are neither — the gaps will name themselves.
 
 ## Frequently asked questions
+
+### Is this about OSI or Apache Ossie?
+
+They are the same standard. **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the Apache Incubator in July 2026 — the spec, community, and mission did not change. This comparison applies whether you know it as OSI or Apache Ossie. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/).
 
 ### What is the difference between OSI and dbt MetricFlow?
 

@@ -7,7 +7,7 @@ lastmod: 2026-08-04
 head:
   - - meta
     - name: keywords
-      content: "Snowflake OSI, Snowflake open semantic, Snowflake semantic layer, Apache Ossie, Ossie YAML, Snowflake Semantic Views, Cortex Analyst, SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML"
+      content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, Snowflake OSI, Snowflake open semantic, Snowflake semantic layer, Open Semantic Interchange, Ossie YAML, Snowflake Semantic Views, Cortex Analyst, SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML"
   - - meta
     - property: og:title
       content: "What Is Snowflake OSI? Semantic Views, Cortex Analyst & Ossie"
@@ -32,6 +32,8 @@ head:
 ---
 
 # What Is Snowflake OSI? Semantic Views, Cortex Analyst & Ossie
+
+> **Apache Ossie (aka OSI).** This page covers **Open Semantic Interchange (OSI)**, renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This article uses **Apache Ossie / OSI** interchangeably.
 
 ## TL;DR
 
@@ -134,7 +136,7 @@ CALL SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML(
 
 They confirm `total_revenue`, grain, and the equi-join survive. What does not automatically become portable product behavior: the Cortex-oriented instructions and synonyms sit in `SNOWFLAKE` custom extensions — another BI tool that reads Ossie core fields but ignores vendor extensions will answer "revenue by region" with the metric expression intact and the instruction layer missing. The export succeeded; the AI behavior diverged. That is the difference between interchange of definitions and interchange of agent policy.
 
-Official references for verification: Snowflake's <a href="https://docs.snowflake.com/en/sql-reference/functions/system_read_ossie_yaml_from_semantic_view" rel="nofollow noopener">SYSTEM$READ_OSSIE_YAML_FROM_SEMANTIC_VIEW</a> docs, <a href="https://docs.snowflake.com/en/sql-reference/stored-procedures/system_create_semantic_view_from_ossie_yaml" rel="nofollow noopener">SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML</a>, the <a href="https://ossie.apache.org/updates/ossie-enters-apache-incubator/" rel="nofollow noopener">Apache Ossie incubator announcement</a>, and the <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie repository</a>.
+Official references for verification: Snowflake's [SYSTEM$READ_OSSIE_YAML_FROM_SEMANTIC_VIEW](https://docs.snowflake.com/en/sql-reference/functions/system_read_ossie_yaml_from_semantic_view) docs, [SYSTEM$CREATE_SEMANTIC_VIEW_FROM_OSSIE_YAML](https://docs.snowflake.com/en/sql-reference/stored-procedures/system_create_semantic_view_from_ossie_yaml), the [Apache Ossie incubator announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/), and the [Apache Ossie repository](https://github.com/apache/ossie).
 
 ## 6. When the Snowflake-native path is enough — and when portable Ossie matters
 
@@ -179,6 +181,6 @@ Not everything. Core datasets, fields, equi-joins, model-level metrics, and `ai_
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard itself, now Apache Ossie: what it encodes and who's behind it.
 - [What Is a Semantic Model?](/blog/what-is-semantic-model/) — semantic models vs warehouse-native semantic views.
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the general concept Snowflake's Semantic Views implement in-warehouse.
-- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — interchange standard vs execution engine, and why you need both.
+- [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — interchange standard vs execution engine, and why you need both.
 - [Semantic layer tools in 2026 + OSI status](/blog/semantic-layer-tools-list-osi/) — which tools have actually shipped an Ossie converter.
 - [Platform-native data agents compared](/blog/platform-native-data-agents-compared/) — Cortex/Genie/BigQuery vs open cross-stack agents.

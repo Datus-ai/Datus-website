@@ -3,11 +3,11 @@ title: "Open Semantic Interchange (OSI): What the New Standard Means for Data En
 description: "A complete guide to Open Semantic Interchange (OSI) — now Apache Ossie (incubating): what it standardizes, who's behind it, and why portable semantics matter."
 author: "Evan Paul"
 date: 2026-06-09
-lastmod: 2026-07-21
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
-      content: "Open Semantic Interchange, Apache Ossie, Apache Ossie incubating, OSI semantic layer, OSI specification, semantic layer standard, portable semantics, Snowflake OSI, semantic interoperability"
+      content: "Apache Ossie, Apache Ossie incubating, Open Semantic Interchange, OSI, Ossie semantic layer, Ossie semantic model specification, OSI semantic layer, OSI specification, semantic layer standard, portable semantics, Snowflake OSI, semantic interoperability"
   - - meta
     - property: og:title
       content: "Open Semantic Interchange (OSI): What the New Standard Means for Data Engineering and AI Agents"
@@ -36,13 +36,13 @@ head:
 ## TL;DR
 
 - **OSI** (Open Semantic Interchange) is an Apache 2.0–licensed standard for the **semantic layer** — a vendor-neutral format for semantic metadata (metrics, dimensions, datasets, relationships, and business context) so definitions authored in one tool can be consumed in another without re-authoring.
-- **OSI is now Apache Ossie (incubating).** The project was donated to the Apache Software Foundation and entered the **Apache Incubator in June 2026** as *Apache Ossie*, moving development to <a href="https://github.com/apache/ossie" rel="nofollow noopener">github.com/apache/ossie</a>. Reference converters for **dbt (MetricFlow), GoodData, Salesforce, and Apache Polaris** are already merged there; no vendor ships native OSI import/export yet.
+- **OSI is now Apache Ossie (incubating).** The project was donated to the Apache Software Foundation and entered the **Apache Incubator on July 10, 2026** as *Apache Ossie* — the acronym "OSI" collided with the Open Source Initiative, so the community picked a distinct name. The spec, community, and mission are unchanged; development now lives at [github.com/apache/ossie](https://github.com/apache/ossie). Reference converters for **dbt (MetricFlow), GoodData, Salesforce, and Apache Polaris** are already merged there; no vendor ships native OSI import/export yet.
 - It was launched by **Snowflake**, with **dbt Labs, Databricks, Google, AWS, Cube, AtScale, Qlik, Atlan, Collibra, DataHub, Salesforce, and 50+ others** in the working group.
 - OSI does **not** replace existing semantic layers (Cube, MetricFlow, LookML). It provides an **interchange format** — a common language they can all speak. Think USB-C for semantics, not a new semantic layer product.
 - For data engineering, OSI means **metric definitions become portable infrastructure**, not tool-specific configuration. For AI agents, it means governed, machine-readable business context available across platforms.
 - The limit of OSI — and where agent-driven approaches add value — is that OSI standardizes the **exchange format**, not the **evolution cycle**. Semantics still need to be authored, validated, and kept current. Data engineering agents that generate, validate, and refine semantic definitions are the natural complement: OSI provides the rails; agents provide the fuel.
 
-Until recently, if your team defined `net_revenue` in MetricFlow inside a dbt project, that definition was trapped in the dbt ecosystem. Your Looker dashboard had a separate copy — same metric name, independently maintained logic. Your Python analytics stack had a third. Your AI agent, deprived of any of these, queried raw schema and guessed at the business logic. Three copies of the same metric, three maintenance surfaces, three opportunities to drift — and each new consumption tool added another. The **Open Semantic Interchange (OSI)** is the industry's answer to this fragmentation: launched by Snowflake and partners in late 2025, developed in the open under Apache 2.0, and — as of June 2026 — donated to the Apache Software Foundation, where it now incubates as **Apache Ossie**. It is a vendor-neutral standard for the [semantic layer](/blog/what-is-semantic-layer/) — backed by 60+ organizations and growing. It does not replace MetricFlow, Cube, or LookML. It provides an interchange format so a metric authored in any of them can be consumed by all of them. This article explains what OSI standardizes, who is behind it, and why portable semantics change the architecture conversation for [data engineering agents](/blog/what-is-data-engineering-agent/) — not by solving every problem, but by making the problems that remain more visible.
+Until recently, if your team defined `net_revenue` in MetricFlow inside a dbt project, that definition was trapped in the dbt ecosystem. Your Looker dashboard had a separate copy — same metric name, independently maintained logic. Your Python analytics stack had a third. Your AI agent, deprived of any of these, queried raw schema and guessed at the business logic. Three copies of the same metric, three maintenance surfaces, three opportunities to drift — and each new consumption tool added another. The **Open Semantic Interchange (OSI)** is the industry's answer to this fragmentation: launched by Snowflake and partners in late 2025, developed in the open under Apache 2.0, and — as of July 2026 — donated to the Apache Software Foundation, where it now incubates as **Apache Ossie**. It is a vendor-neutral standard for the [semantic layer](/blog/what-is-semantic-layer/) — backed by 60+ organizations and growing. It does not replace MetricFlow, Cube, or LookML. It provides an interchange format so a metric authored in any of them can be consumed by all of them. This article explains what OSI standardizes, who is behind it, and why portable semantics change the architecture conversation for [data engineering agents](/blog/what-is-data-engineering-agent/) — not by solving every problem, but by making the problems that remain more visible.
 
 ## 1. What problem OSI solves
 
@@ -54,7 +54,7 @@ OSI solves this by defining a **single, vendor-neutral interchange format**. A m
 
 ## 2. What OSI standardizes
 
-The OSI specification (now developed at <a href="https://github.com/apache/ossie" rel="nofollow noopener">github.com/apache/ossie</a> as Apache Ossie) defines a common representation for:
+The OSI specification (now developed at [github.com/apache/ossie](https://github.com/apache/ossie) as Apache Ossie) defines a common representation for:
 
 | Semantic artifact | What it encodes | Example |
 | --- | --- | --- |
@@ -68,7 +68,7 @@ Critically, OSI separates **definition** from **implementation**. A metric defin
 
 ## 3. Who is behind OSI
 
-The working group is unusually broad for a standards initiative in the data space. As of mid-2026, 60+ organizations have joined — with Google and AWS added in November 2025 and a Financial Services Semantic Working Group launched in June 2026. That same month, the project cleared its most important governance milestone: it was **donated to the Apache Software Foundation and accepted into the Apache Incubator as Apache Ossie**, moving from a Snowflake-convened consortium to a community-governed ASF project. Development now happens at <a href="https://github.com/apache/ossie" rel="nofollow noopener">github.com/apache/ossie</a>, organized into three working groups (Metric Language, Catalog, and Ontology), with reference converters for **dbt (MetricFlow), GoodData, Salesforce, and Apache Polaris** already merged and a Spark converter in review.
+The working group is unusually broad for a standards initiative in the data space. As of mid-2026, 60+ organizations have joined — with Google and AWS added in November 2025 and a Financial Services Semantic Working Group launched in June 2026. In July 2026, the project cleared its most important governance milestone: it was **donated to the Apache Software Foundation and accepted into the Apache Incubator (on July 10) as Apache Ossie**, moving from a Snowflake-convened consortium to a community-governed ASF project. Development now happens at [github.com/apache/ossie](https://github.com/apache/ossie), organized into three working groups (Metric Language, Catalog, and Ontology), with reference converters for **dbt (MetricFlow), GoodData, Salesforce, and Apache Polaris** already merged and a Spark converter in review.
 
 | Category | Participants |
 | --- | --- |
@@ -134,7 +134,7 @@ OSI is v1. It is real, it is open-source, and it has significant industry backin
 
 ## Conclusion
 
-OSI is the most significant standards effort in the semantic layer space — and if adoption follows the breadth of the working group, it could do for business semantics what Apache Iceberg did for table formats: turn a fragmented, vendor-specific landscape into an open, interoperable one. That parallel is now more than rhetorical — with its June 2026 donation to the Apache Software Foundation, OSI (as Apache Ossie) takes the same open-governance path Iceberg did. That outcome is not guaranteed. Standards efforts in data infrastructure have succeeded when they solved a problem that everyone agreed was expensive (Iceberg: table format lock-in) and failed when they tried to solve a problem that the largest vendors benefited from keeping unsolved. Semantic fragmentation is expensive for users but strategically useful for platforms — a Snowflake customer locked into Snowflake Semantic Views is a retained customer. OSI's inclusion of Databricks, Google, dbt Labs, and Snowflake in the same working group is the strongest signal that the industry recognizes this as a shared problem rather than a competitive weapon, but the standard's long-term viability depends on whether the largest platforms ship native OSI import/export — not just participate in the working group. If they do, OSI becomes infrastructure. If they do not, it becomes a specification with impressive endorsements and limited adoption. Either way, the architectural direction is correct: metric definitions are infrastructure, and infrastructure should be portable. Build your semantic layer with that assumption, and you will be ready whether OSI succeeds, a successor standard emerges, or the industry finds another path to the same outcome.
+OSI is the most significant standards effort in the semantic layer space — and if adoption follows the breadth of the working group, it could do for business semantics what Apache Iceberg did for table formats: turn a fragmented, vendor-specific landscape into an open, interoperable one. That parallel is now more than rhetorical — with its July 2026 donation to the Apache Software Foundation, OSI (as Apache Ossie) takes the same open-governance path Iceberg did. That outcome is not guaranteed. Standards efforts in data infrastructure have succeeded when they solved a problem that everyone agreed was expensive (Iceberg: table format lock-in) and failed when they tried to solve a problem that the largest vendors benefited from keeping unsolved. Semantic fragmentation is expensive for users but strategically useful for platforms — a Snowflake customer locked into Snowflake Semantic Views is a retained customer. OSI's inclusion of Databricks, Google, dbt Labs, and Snowflake in the same working group is the strongest signal that the industry recognizes this as a shared problem rather than a competitive weapon, but the standard's long-term viability depends on whether the largest platforms ship native OSI import/export — not just participate in the working group. If they do, OSI becomes infrastructure. If they do not, it becomes a specification with impressive endorsements and limited adoption. Either way, the architectural direction is correct: metric definitions are infrastructure, and infrastructure should be portable. Build your semantic layer with that assumption, and you will be ready whether OSI succeeds, a successor standard emerges, or the industry finds another path to the same outcome.
 
 ## Frequently asked questions
 
@@ -144,11 +144,11 @@ OSI is the most significant standards effort in the semantic layer space — and
 
 ### Is OSI the same as Apache Ossie?
 
-Yes. **Apache Ossie is the new name for Open Semantic Interchange.** The project was donated to the Apache Software Foundation and entered the Apache Incubator as *Apache Ossie (incubating)* in June 2026. "OSI" and "Apache Ossie" refer to the same standard; going forward, development happens under the Apache umbrella at <a href="https://github.com/apache/ossie" rel="nofollow noopener">github.com/apache/ossie</a>, which moves governance from a vendor-convened consortium to a community-governed ASF project.
+Yes. **Apache Ossie is the new name for Open Semantic Interchange.** The project was donated to the Apache Software Foundation and entered the Apache Incubator as *Apache Ossie (incubating)* on July 10, 2026. The community renamed it because the acronym "OSI" clashed with the Open Source Initiative; the specification itself did not change. "OSI" and "Apache Ossie" refer to the same standard, and you will still see both names in the wild. Going forward, development happens under the Apache umbrella at [github.com/apache/ossie](https://github.com/apache/ossie), which moves governance from a vendor-convened consortium to a community-governed ASF project.
 
 ### Who created OSI?
 
-OSI was launched by **Snowflake** with a working group that includes dbt Labs, Databricks, Google BigQuery, Cube, AtScale, Qlik, Atlan, Collibra, DataHub, and 50+ other organizations. Since June 2026 it is stewarded by the Apache Software Foundation as Apache Ossie, developed in the open at <a href="https://github.com/apache/ossie" rel="nofollow noopener">github.com/apache/ossie</a>.
+OSI was launched by **Snowflake** with a working group that includes dbt Labs, Databricks, Google BigQuery, Cube, AtScale, Qlik, Atlan, Collibra, DataHub, and 50+ other organizations. Since July 2026 it is stewarded by the Apache Software Foundation as Apache Ossie, developed in the open at [github.com/apache/ossie](https://github.com/apache/ossie).
 
 ### Is OSI a semantic layer product?
 
@@ -166,10 +166,20 @@ Potentially a lot. The #1 failure mode of text-to-SQL is semantic ambiguity — 
 
 Now, for architectural direction. Start building semantic infrastructure with the assumption that definitions should be portable. Watch for native OSI support in your BI and data tools — the first wave is likely within 2026. But do not wait for OSI to start governing metrics: define your KPIs in MetricFlow or Cube today, and you will have something valuable to export when the ecosystem matures.
 
+## Apache Ossie / OSI: official resources
+
+Apache Ossie (formerly Open Semantic Interchange, OSI) is developed in the open under the Apache Software Foundation. The primary sources — cite these, not secondary summaries:
+
+- [Apache Ossie project site](https://ossie.apache.org/) — the standard's home under the ASF
+- [Apache Ossie on GitHub](https://github.com/apache/ossie) — repository, reference converters, and examples
+- [Apache Ossie core specification](https://github.com/apache/ossie/blob/main/core-spec/spec.md) — the semantic model schema for metrics, dimensions, datasets, and relationships
+- [Apache Incubator status](https://incubator.apache.org/clutch/ossie.html) — incubation progress and community governance
+- ["OSI is now Apache Ossie" announcement](https://ossie.apache.org/updates/ossie-enters-apache-incubator/) and [project updates](https://ossie.apache.org/updates/)
+
 ## Related articles
 
 - [What is Snowflake OSI?](/blog/what-is-snowflake-osi/) — how Snowflake bridges Semantic Views to Ossie YAML, and what the SYSTEM$ functions actually do
-- [OSI vs MetricFlow](/blog/osi-vs-metricflow/) — how the portable standard pairs with dbt's execution engine
+- [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — how the portable standard pairs with dbt's execution engine
 - [Semantic layer tools in 2026 + OSI status](/blog/semantic-layer-tools-list-osi/) — every tool, with its current Apache Ossie support
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the business dictionary OSI makes portable
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog OSI standardizes

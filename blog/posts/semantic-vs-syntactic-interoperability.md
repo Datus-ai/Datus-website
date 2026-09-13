@@ -3,7 +3,7 @@ title: "Semantic vs Syntactic Interoperability: Difference & Why It Matters"
 description: "Syntactic interoperability is shared format; semantic interoperability is shared meaning. See the difference, failure modes, and why it matters for AI agents."
 author: "Evan Paul"
 date: 2026-08-08
-lastmod: 2026-08-08
+lastmod: 2026-09-13
 head:
   - - meta
     - name: keywords
@@ -88,13 +88,13 @@ These three patterns account for roughly 40% of text-to-SQL production errors in
 
 ## 4. How OSI (Apache Ossie) implements semantic interoperability
 
-The failure taxonomy above is why the industry has started standardizing meaning the way it once standardized formats. The most concrete example as of August 2026 is OSI, the Open Semantic Interchange specification, which entered the Apache Incubator in June 2026 under the project name **Apache Ossie**.
+The failure taxonomy above is why the industry has started standardizing meaning the way it once standardized formats. The most concrete example as of August 2026 is OSI, the Open Semantic Interchange specification, which entered the Apache Incubator in July 2026 under the project name **Apache Ossie**.
 
 OSI is an <a href="https://github.com/open-semantic-interchange/OSI" rel="nofollow noopener">Apache-2.0-licensed specification</a> that defines a vendor-neutral representation for the semantic artifacts a query needs: metrics (calculation logic, aggregation type, time grain), dimensions (attributes and hierarchies), datasets (tables with column-level metadata), and relationships (join keys, cardinality, grain implications). Definitions are authored in YAML or JSON, versioned like code, and portable across tools. The working group reports over 50 participating organizations, and four reference converters have merged so far — dbt/MetricFlow, GoodData, Salesforce, and Apache Polaris — meaning definitions authored in those tools can be exported to the standard format.
 
 The key design choice is that OSI separates definition from implementation. A metric definition carries the meaning — `net_revenue` is `SUM(revenue) - SUM(refunds)` filtered on `order_status = 'completed'` — while the SQL dialect is left to whichever engine consumes it. That is precisely what semantic interoperability requires: agreement on meaning, not on implementation. Two systems connected to the same OSI-compliant definition may still use different dialects, but they will compute the same number.
 
-OSI is not a semantic layer product, and it does not define how definitions get created or kept current — the [OSI deep dive](/blog/open-semantic-interchange-osi) covers that boundary in detail. For how the standard compares with authoring tools, see [OSI vs dbt/MetricFlow](/blog/osi-vs-dbt-metricflow); for its relationship to formal ontologies, see [OSI vs RDF/OWL](/blog/osi-vs-rdf-owl). What matters here is the pattern: a lightweight, machine-readable format for meaning, agreed once and consumed by every tool and agent downstream.
+OSI is not a semantic layer product, and it does not define how definitions get created or kept current — the [OSI deep dive](/blog/open-semantic-interchange-osi) covers that boundary in detail. For how the standard compares with authoring tools, see [Apache Ossie / OSI vs dbt/MetricFlow](/blog/osi-vs-dbt-metricflow); for its relationship to formal ontologies, see [Apache Ossie / OSI vs RDF/OWL](/blog/osi-vs-rdf-owl). What matters here is the pattern: a lightweight, machine-readable format for meaning, agreed once and consumed by every tool and agent downstream.
 
 ## 5. Why this matters for AI agents
 

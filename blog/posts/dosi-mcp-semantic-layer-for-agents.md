@@ -7,7 +7,7 @@ lastmod: 2026-08-24
 head:
   - - meta
     - name: keywords
-      content: "Dosi MCP, semantic layer for agents, Model Context Protocol, OSI metrics, structured errors, Claude Code, Codex, text-to-SQL, governed metrics, Datus Agent"
+      content: "Dosi MCP, semantic layer for agents, Model Context Protocol, OSI metrics, OSI, Apache Ossie, Apache Ossie implementation, Ossie execution engine, structured errors, Claude Code, Codex, text-to-SQL, governed metrics, Datus Agent"
   - - meta
     - property: og:title
       content: "Dosi MCP Semantic Layer for Agents — No SQL Guessing"
@@ -32,6 +32,8 @@ head:
 ---
 
 # Dosi MCP Semantic Layer for Agents — No SQL Guessing
+
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
 
 An analyst asks Claude Code for "net revenue by region last month." The agent writes SQL, runs it, and returns a number that looks right — until finance notices the filter on cancelled orders never made it into the query. This article explains how a **Dosi MCP semantic layer** routes agent questions through certified OSI metrics instead of improvised SQL, and why **structured errors** matter more than another text-to-SQL shortcut.
 

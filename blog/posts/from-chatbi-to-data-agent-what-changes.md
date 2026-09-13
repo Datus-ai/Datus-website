@@ -8,7 +8,7 @@ lastmod: 2026-09-10
 head:
   - - meta
     - name: keywords
-      content: "ChatBI vs data agent, context building, project context, scoped subagent, long-horizon agent, semantic layer OSI, bottom-up metrics, dashboard copilot, data engineering agent"
+      content: "ChatBI vs data agent, context building, project context, scoped subagent, long-horizon agent, semantic layer OSI, Apache Ossie, bottom-up metrics, dashboard copilot, data engineering agent"
   - - meta
     - property: og:title
       content: "From ChatBI to Data Agent: What Changes and What Doesn't"
@@ -96,7 +96,7 @@ The first generation was Cube, Kyligence and MDX, where the core was pre-aggrega
 
 Natural language has far too much ambiguity. "Revenue", "active user", "this month", "new" all feel natural in a human head, but by the time they reach an agent, without an explicit metric and relationship they are easily understood as different things. So in the age of AI the semantic layer starts to carry a new responsibility: being the relatively stable semantic contract between the LLM and the underlying data.
 
-That is also why I pay attention to [OSI](/blog/open-semantic-interchange-osi/). Snowflake, dbt Labs and Salesforce/Tableau, among others, are jointly pushing Open Semantic Interchange, hoping to describe dataset, metric, dimension and relationship in one vendor-neutral declarative format. It is still a very early spec, but I think the direction matters: models will get more and more general, and a company's business semantics will not.
+That is also why I pay attention to [OSI (now Apache Ossie)](/blog/open-semantic-interchange-osi/). Snowflake, dbt Labs and Salesforce/Tableau, among others, are jointly pushing Open Semantic Interchange, hoping to describe dataset, metric, dimension and relationship in one vendor-neutral declarative format. It is still a very early spec, but I think the direction matters: models will get more and more general, and a company's business semantics will not.
 
 The other change is that I believe less and less in the traditional top-down model of metric governance. Hold meetings for six months, design and unify every metric in the company, then require the business to migrate — the organizational cost of that is too high.
 

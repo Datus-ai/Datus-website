@@ -78,7 +78,7 @@ Custom nodes reuse these types. A `sales_metric_qa` with `type: ask_metrics` is 
 
 AskMetrics is the walkthrough because it is the sharpest lane change in the roster. The Knowledge store already says metrics-first; AskMetrics is the worker that **cannot** leave that lane.
 
-It needs a configured semantic adapter and at least one published metric. MetricFlow and the [Datus OSI semantic adapter](/blog/datus-osi-semantic-adapter/) are both valid backends; OSI-authored metrics still execute through the configured engine. No adapter means no AskMetrics. That is a feature. A KPI chatbot that can silently become a SQL chatbot is how five "net revenue" implementations appear in five threads.
+It needs a configured semantic adapter and at least one published metric. MetricFlow and the [Datus OSI semantic adapter](/blog/datus-osi-semantic-adapter/) are both valid backends; [OSI (now Apache Ossie)](/blog/open-semantic-interchange-osi/)-authored metrics still execute through the configured engine. No adapter means no AskMetrics. That is a feature. A KPI chatbot that can silently become a SQL chatbot is how five "net revenue" implementations appear in five threads.
 
 The path is short. Match a subject-tree path when the name is unambiguous. Search metrics only when the tree is missing or fuzzy. Call `get_dimensions` before grouping or attributing. Execute with `query_metrics`. If the question is "what drove the drop?", run attribution across candidate dimensions. Return Markdown: interpreted window, metric names, values, limits. No SQL dump. No invented number.
 

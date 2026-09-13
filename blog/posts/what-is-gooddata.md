@@ -99,7 +99,7 @@ Looks simple, but MAQL handles:
 - **Metric composition**: `gross_margin_pct = (net_revenue - cogs) / net_revenue` — MAQL composes the component metrics, resolves their underlying tables and joins, and generates a single optimized query.
 - **Multi-source federation**: the same metric definition can query Snowflake, BigQuery, and Postgres — MAQL generates dialect-appropriate SQL for each target.
 
-What makes MAQL architecturally interesting for the AI era: it is a **declarative metric composition engine** that predates MetricFlow by a decade. The problems it solves — metric composition, automatic join resolution, grain enforcement, multi-engine SQL generation — are exactly the problems AI agents face when they try to generate complex analytical queries. MAQL solved them for BI; MetricFlow is solving them for the modern data stack; OSI is standardizing the interchange. The pattern is the same: declarative metric definitions + engine-resolved SQL generation = trustworthy answers.
+What makes MAQL architecturally interesting for the AI era: it is a **declarative metric composition engine** that predates MetricFlow by a decade. The problems it solves — metric composition, automatic join resolution, grain enforcement, multi-engine SQL generation — are exactly the problems AI agents face when they try to generate complex analytical queries. MAQL solved them for BI; MetricFlow is solving them for the modern data stack; [OSI (now Apache Ossie)](/blog/open-semantic-interchange-osi/) is standardizing the interchange. The pattern is the same: declarative metric definitions + engine-resolved SQL generation = trustworthy answers.
 
 ## 3. What GoodData's trajectory reveals about the market
 
