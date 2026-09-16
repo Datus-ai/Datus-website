@@ -7,7 +7,7 @@ lastmod: 2026-09-12
 head:
   - - meta
     - name: keywords
-      content: "semantic layer vs ontology, ontology vs semantic layer, semantic layer ontology, semantic layer knowledge graph, semantic layer for AI agents, Apache Ossie ontology, Palantir Ontology"
+      content: "semantic layer vs ontology, semantic layer ontology, semantic layer to ontology, semantic layer knowledge graph, semantic layer for AI agents, Apache Ossie ontology, Palantir Ontology"
   - - meta
     - property: og:title
       content: "Semantic Layer vs Ontology: Why AI Agents Need Both"
@@ -209,7 +209,7 @@ Palantir Ontology is an operational object layer: object types, properties, link
 
 ## Related articles
 
-- [Semantic layer vs ontology: what's the difference and why it matters for AI agents](/blog/semantic-layer-vs-ontology-difference/) — the conceptual comparison, and where a lightweight Subject Tree fits
+- [Ontology vs semantic layer: definitions and when you need each](/blog/semantic-layer-vs-ontology-difference/) — the conceptual comparison, and where a lightweight Subject Tree fits
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the governed computation plane this architecture starts from
 - [What is an ontology?](/blog/what-is-ontology/) — entities, relationships and rules, defined
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the portable specification behind Apache Ossie

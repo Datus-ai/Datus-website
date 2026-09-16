@@ -585,6 +585,20 @@ diagrams (HTML sources committed under `blog/figures/`, shared primitives in
 figure's title is derived from the sentence that introduces it in the body.
 pngquant: 718.8 KB -> 218.9 KB (-70%).
 
+## Old post retitled in PR #80 (2026-09-16)
+`semantic-layer-vs-ontology-difference` (the 2026-06-09 Evan Paul post) was
+retitled from "Semantic Layer vs Ontology: What's the Difference and Why It
+Matters for AI Agents" to **"Ontology vs Semantic Layer: Definitions and When
+You Need Each"**, with a matching description and keyword set. Reason: a slug
+does not cause cannibalisation — two pages with near-identical titles do. The
+word order is flipped so the two pages declare different intents (head-term
+comparison vs definition/when-you-need-each), and every inbound internal anchor
+was rewritten to match ("ontology vs semantic layer" / "when you need an
+ontology" for the old post; "semantic layer vs ontology" stays reserved for the
+new one). Files touched: what-is-timbr (3), what-is-ontology (3),
+from-chatbi-to-data-agent-what-changes, index.md, and the new post's Related
+articles. Body copy of the old post is untouched.
+
 ## Slug rename executed in PR #80 (2026-09-16)
 `semantic-layer-vs-ontology` (2026-06-09, Evan Paul) -> `semantic-layer-vs-ontology-difference`,
 and the new cluster post took over the freed exact-match slug. Both files, the
