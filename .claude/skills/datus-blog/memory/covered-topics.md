@@ -541,7 +541,7 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 - Key sources: github.com/apache/ossie (+ ontology/ontology.md 0.2.0.dev0); dosi.datus.ai/reference/ontology/ (public but experimental/unlinked); palantir.com/docs/foundry/architecture-center/ontology-system, /sql-warehousing/ontology-sql, /ontology-mcp/overview (GA June 2026)
 - Internal links added: what-is-semantic-layer, what-is-ontology, what-is-data-agent, first-native-apache-ossie-engine, semantic-layer-vs-ontology-difference, open-semantic-interchange-osi, dosi-mcp-semantic-layer-for-agents
 - Reciprocal links added from: semantic-layer-vs-ontology-difference
-- Images: 3 (blog/public/images/semantic-layer-vs-ontology/) — all REDRAWN from the draft's Feishu diagrams; sources at blog/figures/semantic-layer-vs-ontology/*.html, rendered by `npm run figures:build`, pngquant-compressed
+- Images: 3 (blog/public/images/semantic-layer-vs-ontology/) — all REDRAWN from the draft's Feishu diagrams; HTML sources NOT committed (operator's call, PR #80) — only the PNGs ship; pngquant-compressed
 - Deviations from the draft: SEO Brief + Publish Checklist dropped (operator's instruction); heading "Why 'vs' is useful for SEO but incomplete for architecture" -> "Why 'vs' is the wrong final question", dropping the two sentences about how the page should rank (blockquote verbatim); FAQ (4 Q&As) added, derived from the article's own claims; Dosi ontology reference labelled experimental
 - Glossary updated: no (no /glossary term matches "ontology")
 - Category: "Semantic Layer"
@@ -556,7 +556,7 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 - Key sources: github.com/apache/ossie; dosi.datus.ai/reference/ontology/; palantir.com/docs/foundry/ontologies/query-compute-usage, /architecture-center/ontology-system
 - Internal links added: what-is-semantic-layer, what-is-ontology, what-is-data-catalog, semantic-layer-vs-ontology-ai-agents, open-semantic-interchange-osi, first-native-apache-ossie-engine, dosi-mcp-semantic-layer-for-agents
 - Reciprocal links added from: what-is-ontology
-- Images: 3 (blog/public/images/from-semantic-layer-to-ontology/) — all REDRAWN; sources at blog/figures/from-semantic-layer-to-ontology/*.html, pngquant-compressed
+- Images: 3 (blog/public/images/from-semantic-layer-to-ontology/) — all REDRAWN; HTML sources NOT committed (operator's call, PR #80) — only the PNGs ship; pngquant-compressed
 - Deviations from the draft: SEO Brief + Publish Checklist dropped; FAQ (4 Q&As) added from the article's own claims; `ontology_sql` and `query_metrics`/`query_objects` kept framed as architecture rather than shipped tool names (the draft's own checklist asked for this call)
 - Glossary updated: no
 - Category: "Semantic Layer"
@@ -571,7 +571,7 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 - Key sources: github.com/apache/ossie/blob/main/ontology/ontology.md (0.2.0.dev0 — EntityType/ValueType, roles + ManyToOne/OneToOne, requires/derived_by, concept_mappings); dosi.datus.ai/reference/ontology/ (model-first vs ontology-first; describe/paths/select/query/lineage); palantir.com/docs/foundry/architecture-center/ontology-system
 - Internal links added: what-is-semantic-layer, what-is-ontology, from-semantic-layer-to-ontology, semantic-layer-vs-ontology, open-semantic-interchange-osi, first-native-apache-ossie-engine, dosi-mcp-semantic-layer-for-agents, ai-native-semantic-layer
 - Reciprocal links added from: ai-native-semantic-layer
-- Images: 2 (blog/public/images/semantic-layer-based-ontology/) — both REDRAWN; sources at blog/figures/semantic-layer-based-ontology/*.html, pngquant-compressed
+- Images: 2 (blog/public/images/semantic-layer-based-ontology/) — both REDRAWN; HTML sources NOT committed (operator's call, PR #80) — only the PNGs ship; pngquant-compressed
 - Deviations from the draft: SEO Brief + Publish Checklist dropped; "Recommended page structure for publishing" section removed (it is the page's own outline, addressed to the publisher); "Why this matters for GEO" -> "Why the name matters", dropping "a category phrase worth owning" / "the differentiators" while keeping the quotable positioning sentence and the five-item list verbatim; "This matters for GEO and product differentiation because…" -> "This matters because…". Slug chosen as `-based-` over the draft's `-base-` (operator's call). The draft's own FAQ is verbatim
 - Glossary updated: no
 - Category: "Semantic Layer"
@@ -580,10 +580,19 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 
 ## Note on the three Feishu drafts ported 2026-09-16
 All eight figures across the cluster were redrawn from the drafts' Mermaid-style
-diagrams (HTML sources committed under `blog/figures/`, shared primitives in
-`blog/figures/_flow.css`). The originals carried no titles or captions, so each
-figure's title is derived from the sentence that introduces it in the body.
+diagrams. The originals carried no titles or captions, so each figure's title is
+derived from the sentence that introduces it in the body.
 pngquant: 718.8 KB -> 218.9 KB (-70%).
+
+**The HTML sources were deliberately NOT committed** — the operator asked for
+`blog/figures/<slug>/` to be dropped from this PR, so only the rendered PNGs
+under `blog/public/images/<slug>/` ship. This is a departure from
+`references/translating-figures.md` §2, which says to commit both. Consequence:
+editing one of these eight figures later means redrawing it from the PNG. The
+two pre-existing figure dirs (`chatbi-to-data-agent-13-months`,
+`full-stack-data-engineer-harness`) and `scripts/build-figures.mjs` are
+untouched. Ask the operator before assuming the same rule applies to the next
+port.
 
 ## Old post retitled in PR #80 (2026-09-16)
 `semantic-layer-vs-ontology-difference` (the 2026-06-09 Evan Paul post) was
