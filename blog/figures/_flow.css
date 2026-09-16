@@ -1,0 +1,34 @@
+/* Shared node/arrow/bus primitives for the ontology-cluster figures.
+   Linked after _figure.css: <link rel="stylesheet" href="../_flow.css"> */
+.node {
+  background: var(--blue-bg);
+  border: 1.5px solid #8fb3ef;
+  border-radius: 12px;
+  padding: 16px 18px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #16305e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.node small {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #3c5f9c;
+  letter-spacing: 0.1px;
+}
+.node code {
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12.8px;
+}
+
+.row { display: flex; align-items: stretch; justify-content: center; }
+.row > .node { flex: 1; }
+.arrow-h { flex: 0 0 auto; align-self: center; padding: 0 10px; color: #334155; }
+.arrow-v { display: flex; justify-content: center; color: #334155; }

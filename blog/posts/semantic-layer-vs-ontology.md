@@ -192,3 +192,5 @@ Datus's **Subject Tree** serves an ontology-like function: it organizes business
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the execution layer
 - [What is a semantic model?](/blog/what-is-semantic-model/) — the building block of the semantic layer
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — how agents operationalize both layers
+- [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology-ai-agents/) — the architecture answer: governed metrics first, ontology and agent context on top
+- [Semantic-layer-based ontology: agent context on Apache Ossie](/blog/semantic-layer-based-ontology/) — what the ontology layer adds once the semantic layer is governed

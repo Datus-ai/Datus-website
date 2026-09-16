@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../_figure.css" />
+<link rel="stylesheet" href="../_flow.css" />
+<style>
+  #figure { width: 1080px; }
+  .row > .node { min-height: 128px; }
+</style>
+</head>
+<body>
+<div id="figure">
+  <h1>Not semantic layer <em>or</em> ontology — semantic layer, then ontology, then agent context</h1>
+
+  <div class="row">
+    <div class="node">Semantic Layer<small>metrics, dimensions,<br>joins, grain</small></div>
+    <div class="arrow-h"><svg width="46" height="16" viewBox="0 0 46 16" fill="none"><path d="M0 8h35" stroke="currentColor" stroke-width="2.2"/><path d="M34 2.5 44 8l-10 5.5z" fill="currentColor"/></svg></div>
+    <div class="node">Ontology<small>entities, value types,<br>roles, concept paths</small></div>
+    <div class="arrow-h"><svg width="46" height="16" viewBox="0 0 46 16" fill="none"><path d="M0 8h35" stroke="currentColor" stroke-width="2.2"/><path d="M34 2.5 44 8l-10 5.5z" fill="currentColor"/></svg></div>
+    <div class="node">Agent Context<small>safe queries,<br>explanations, actions</small></div>
+  </div>
+
+  <p class="caption">Each stage grounds the next: governed calculation first, business meaning second, agent-safe surfaces last.</p>
+</div>
+</body>
+</html>

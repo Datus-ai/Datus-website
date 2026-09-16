@@ -178,3 +178,4 @@ Decide which metrics actually guide the business, whether the semantic model sho
 - [Dosi vs MetricFlow: OSI-Native vs dbt-Centric Runtime](/blog/dosi-vs-metricflow/) — choosing a runtime for the same OSI model
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the foundational definition
 - [Why AI Agents Need Semantic Context to Work Reliably](/blog/why-ai-agents-need-semantic-context-to-work-reliably/) — the grounding argument
+- [Semantic-Layer-Based Ontology: Agent Context on Apache Ossie](/blog/semantic-layer-based-ontology/) — the ontology layer built on top of these requirements

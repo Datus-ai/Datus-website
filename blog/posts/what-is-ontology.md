@@ -164,3 +164,4 @@ They need the layer that matches the failure. If the agent gets the *number* wro
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the execution plane that binds concepts to metrics and SQL.
 - [Apache Ossie / OSI vs RDF/OWL](/blog/osi-vs-rdf-owl/) — how the two generations of machine-readable meaning relate.
 - [What is Timbr?](/blog/what-is-timbr/) — a SQL-native productization of the ontology idea.
+- [From semantic layer to ontology](/blog/from-semantic-layer-to-ontology/) — the five-layer architecture an AI data agent actually needs.
