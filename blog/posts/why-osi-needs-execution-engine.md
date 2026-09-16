@@ -1,7 +1,7 @@
 ---
 title: "Why OSI Needs an Execution Engine — Interchange vs Runtime"
 description: "OSI (Apache Ossie) defines portable semantic metadata, not query execution. Learn the interchange-vs-runtime gap and why native OSI engines matter."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-23
 lastmod: 2026-08-23
 head:

@@ -1,7 +1,7 @@
 ---
 title: "Dosi MCP Semantic Layer for Agents — No SQL Guessing"
 description: "How agents query governed OSI metrics via Dosi MCP: structured error codes, Claude Code and Codex patterns, and why semantic MCP beats raw SQL."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-24
 lastmod: 2026-08-24
 head:

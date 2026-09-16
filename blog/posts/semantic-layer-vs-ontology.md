@@ -1,7 +1,7 @@
 ---
 title: "Semantic Layer vs Ontology: Why AI Agents Need Both"
 description: "Semantic layer vs ontology is the wrong final question. See why AI data agents need both — governed metrics first, then ontology and agent context on top."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-09-12
 lastmod: 2026-09-12
 head:

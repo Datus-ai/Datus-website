@@ -1,7 +1,7 @@
 ---
 title: "What Is AtScale? Enterprise Semantic Layer for BI, Excel & AI"
 description: "Virtual OLAP for Excel, Power BI, and agents — AtScale's SML, DSO pricing, MDX/DAX, and MCP, and when the cube is the wrong unit."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-19
 lastmod: 2026-08-19
 head:

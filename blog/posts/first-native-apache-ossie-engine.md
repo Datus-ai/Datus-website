@@ -1,7 +1,7 @@
 ---
 title: "First Native Apache Ossie Engine"
 description: "What a native Apache Ossie (incubating) implementation is, how a native Apache Ossie engine differs from OSI converters, and why execution engines like Dosi matter for portable semantics."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-22
 lastmod: 2026-09-13
 head:

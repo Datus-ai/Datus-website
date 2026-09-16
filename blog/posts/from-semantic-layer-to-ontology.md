@@ -1,7 +1,7 @@
 ---
 title: "From Semantic Layer to Ontology: Architecture for AI Agents"
 description: "AI data agents need more than metrics and more than a glossary. Learn how to build an ontology, an entity plane and typed query functions on a semantic layer."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-09-14
 lastmod: 2026-09-14
 head:

@@ -1,7 +1,7 @@
 ---
 title: "What Is an Ontology? Definition, Three Productizations & AI Agents"
 description: "Ontology in data and AI: classes, relationships, and rules — and the three productizations buyers confuse in 2026: OWL/RDF, Palantir, and SQL ontologies."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-17
 lastmod: 2026-08-17
 head:

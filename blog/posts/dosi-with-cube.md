@@ -1,7 +1,7 @@
 ---
 title: "Dosi with Cube: OSI Execution and Agentic Analytics in One Stack"
 description: "How Dosi with Cube stacks API-first semantic serving with OSI-native multi-dialect SQL execution — complementary layers for agents and warehouses."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-26
 lastmod: 2026-08-26
 head:
