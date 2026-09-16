@@ -1,196 +1,217 @@
 ---
-title: "Semantic Layer vs Ontology: What's the Difference and Why It Matters for AI Agents"
-description: "How semantic layers and ontologies relate, where they diverge, and why understanding both matters for building AI agents that can trust data."
-author: "Evan Paul"
-date: 2026-06-09
-lastmod: 2026-06-10
+title: "Semantic Layer vs Ontology: Why AI Agents Need Both"
+description: "Semantic layer vs ontology is the wrong final question. See why AI data agents need both — governed metrics first, then ontology and agent context on top."
+author: "Kostja"
+date: 2026-09-12
+lastmod: 2026-09-12
 head:
   - - meta
     - name: keywords
-      content: "semantic layer vs ontology, data ontology definition, ontology data engineering, ontology vs semantic model, knowledge graph data engineering, ontology AI agent"
+      content: "semantic layer vs ontology, ontology vs semantic layer, semantic layer ontology, semantic layer knowledge graph, semantic layer for AI agents, Apache Ossie ontology, Palantir Ontology"
   - - meta
     - property: og:title
-      content: "Semantic Layer vs Ontology: What's the Difference and Why It Matters for AI Agents"
+      content: "Semantic Layer vs Ontology: Why AI Agents Need Both"
   - - meta
     - property: og:description
-      content: "How semantic layers and ontologies relate, where they diverge, and why understanding both matters for building AI agents that can trust data."
+      content: "Semantic layer vs ontology is the wrong final question. See why AI data agents need both — governed metrics first, then ontology and agent context on top."
   - - meta
     - property: og:type
       content: article
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/posts/semantic-layer-vs-ontology
+      content: https://datus.ai/blog/semantic-layer-vs-ontology/
   - - meta
     - property: og:image
-      content: https://datus.ai/logo_dark.svg
+      content: https://datus.ai/images/semantic-layer-vs-ontology/semantic-layer-to-agent-context.png
   - - meta
     - name: twitter:card
       content: summary_large_image
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/posts/semantic-layer-vs-ontology
+      href: https://datus.ai/blog/semantic-layer-vs-ontology/
 ---
 
-# Semantic Layer vs Ontology: What's the Difference and Why It Matters for AI Agents
+# Semantic Layer vs Ontology: Why AI Agents Need Both
 
 ## TL;DR
 
-- A **semantic layer** translates physical schema into business-meaningful objects — measures, dimensions, metrics, join paths — so tools and agents can query data using business language.
-- An **ontology** defines the categories, entities, properties, and rules of a domain — a formal model of what exists, independent of any specific database implementation.
-- They are **complementary, not competing**: a semantic layer provides the executable mapping from business concepts to SQL; an ontology provides the conceptual framework that gives those concepts meaning and structure.
-- For AI agents: a semantic layer grounds queries in correct data; an ontology grounds reasoning in correct relationships. An agent with only a semantic layer can answer "what was revenue last month?" correctly. An agent with both a semantic layer and an ontology can answer "which customer segments contributed most to revenue growth, and how do they relate to our product lines?" — because it understands the domain structure, not just the metric definitions.
-- Datus's Context Engine operates primarily at the semantic layer level (schema → metrics → SQL) but its Subject Tree — organizing business domains into hierarchical topics with relationships — is an ontology-like structure that gives agents a conceptual map of the data landscape.
+- A semantic layer answers: **what does this metric mean, and how is it computed?**
+- An ontology answers: **what business entities exist, how are they related, and how should an agent navigate them?**
+- They are not substitutes. AI data agents need both governed metrics and entity-level context.
+- Palantir Ontology is closer to an operational object layer with actions, functions, storage, permissions, and APIs.
+- Apache Ossie ontology is a conceptual layer over semantic models: EntityTypes, ValueTypes, relationships, rules, and mappings.
+- Dosi's differentiated path is a **semantic-layer-based ontology**: build entity context, concept paths, and agent-safe query surfaces on top of an open semantic standard.
 
-An AI agent is asked: "Which customer segments contributed most to revenue growth last quarter, and how do they relate to our product lines?" It identifies the `net_revenue` metric from the [semantic layer](/blog/what-is-semantic-layer/), slices it by `customer_segment`, and returns a number. The SQL is flawless. The result is wrong — because the agent joined customers to contracts through a billing relationship instead of the ownership relationship, conflated physical products (SKUs in a warehouse) with SaaS products (plan tiers in a subscription table), and attributed revenue from multi-product contracts entirely to the first product on the invoice. The semantic layer ensured the metric was computed correctly. What was missing — and what caused every downstream error — was an **ontology**: a formal model of what kinds of things exist in this business domain and how they relate to each other. This article defines each concept, maps where they overlap and where they diverge, and explains why the distinction stops being academic the moment you deploy an AI agent against real enterprise data.
+"Semantic layer vs ontology" sounds like an architecture choice. In practice, it is a sequencing problem.
 
-## 1. Semantic layer: a quick recap
+A [semantic layer](/blog/what-is-semantic-layer/) defines governed business measures: metrics, dimensions, joins, grain, filters, and time semantics. An [ontology](/blog/what-is-ontology/) defines the business objects, relationships, value domains, and concept paths an AI agent can reason over. If the semantic layer is missing, the ontology has names but not trusted calculations. If the ontology is missing, the semantic layer has governed numbers but not enough business context for agents to navigate the world.
 
-A semantic layer is the business translation of physical data. It defines:
+The right pattern is not **semantic layer or ontology**. It is:
 
-- **Measures**: what you can quantify — `net_revenue`, `active_users`, `churn_rate`.
-- **Dimensions**: what you group or filter by — `region`, `plan_tier`, `acquisition_channel`.
-- **Relationships (joins)**: how tables connect — `orders.customer_id → customers.id`.
-- **Business rules**: filters, calculations, grain constraints.
+![Three boxes connected left to right: Semantic Layer (metrics, dimensions, joins, grain) leads to Ontology (entities, value types, roles, concept paths), which leads to Agent Context (safe queries, explanations, actions).](/images/semantic-layer-vs-ontology/semantic-layer-to-agent-context.png)
 
-The semantic layer is **implementation-aware**. It knows that `net_revenue` lives in the `fact_orders` table, filtered by `order_status = 'completed'`, aggregated as `SUM(revenue_usd - refund_usd)`. It is a practical, executable mapping from business language to database operations.
+*Each stage grounds the next: governed calculation first, business meaning second, agent-safe surfaces last.*
 
-For a thorough treatment, see [what is a semantic layer](/blog/what-is-semantic-layer/).
+For Datus and Dosi, this distinction matters because Dosi does not start from a free-form object graph. It starts from <a href="https://github.com/apache/ossie" rel="nofollow noopener">Apache Ossie</a> semantic definitions and builds ontology semantics on top of that governed layer.
 
-## 2. Ontology: definition and role
+## Semantic layer vs ontology: the short definition
 
-An ontology, in the data and AI context, is a **formal representation of the concepts, categories, properties, and relationships that constitute a domain** — independent of any specific data system. It defines:
+A semantic layer is the governed metric and query contract between raw data and business consumers. It defines reusable metrics, dimensions, relationships, and SQL generation rules so that every dashboard, notebook, API, and AI agent computes the same number the same way.
 
-- **Classes / types**: what kinds of things exist — `Customer`, `Product`, `Order`, `Contract`, `Subscription`.
-- **Properties / attributes**: what describes each thing — a `Customer` has a `name`, an `industry`, an `annual_revenue`; a `Product` has a `sku`, a `price`, a `category`.
-- **Relationships**: how things connect — a `Customer` _places_ an `Order`; an `Order` _contains_ `LineItems`; a `Customer` _has_ a `Contract`.
-- **Hierarchies**: how things are organized — `Enterprise Customer` is a subclass of `Customer`; `SaaS Product` is a subclass of `Product`.
-- **Constraints / rules**: what must be true — a `Customer` must have at least one `Contract` to place an `Order`; a `Subscription` cannot be active after its `Contract` end date.
-
-An ontology is **implementation-independent**. It does not say where the data lives, which tables store it, or how to query it. It says what the domain contains and how the pieces fit together. It is a conceptual model — closer to philosophy than to SQL.
-
-In practice, ontologies are often expressed as **knowledge graphs**, **taxonomies**, or formal specifications (OWL, RDF). But the most useful ontologies for data engineering are lighter-weight: a shared conceptual map that everyone — analysts, engineers, product managers, AI agents — agrees on.
-
-## 3. The key differences
+An ontology is the conceptual map of a domain. It defines entities, value types, relationships, roles, constraints, and sometimes actions. In a data context, ontology turns tables and columns into business objects like `Customer`, `Order`, `Flight`, `Airport`, `Delay`, and `Alert`.
 
 | Dimension | Semantic layer | Ontology |
 | --- | --- | --- |
-| **Primary job** | Map physical data to business concepts for query execution | Define the categories, relationships, and rules of a domain |
-| **Answers the question** | "How do I query net revenue by region?" | "What is a Customer, and how does it relate to an Order?" |
-| **Database-aware?** | Yes — knows tables, columns, join paths, SQL dialects | No — describes concepts, not storage implementation |
-| **Executable?** | Yes — generates SQL, applies filters, resolves joins | No — provides conceptual grounding for reasoning, not execution |
-| **Primary consumers** | BI tools, query engines, AI agents generating SQL | Knowledge graphs, reasoning engines, AI agents performing domain reasoning |
-| **Granularity** | Table/column level — one semantic model per data source | Domain level — one ontology per business domain |
-| **Example artifact** | MetricFlow YAML: `metric: net_revenue { measure: net_revenue_amount }` | Knowledge graph: `Customer -[places]-> Order -[contains]-> LineItem` |
+| Primary unit | Metric, dimension, dataset, join | Entity, value type, relationship, role |
+| Main job | Govern calculation | Govern meaning and navigation |
+| Typical question | "How is revenue computed?" | "What is a customer? What links customer to order?" |
+| Agent failure prevented | Wrong aggregation, wrong grain, metric drift | Wrong object, wrong path, wrong literal, ambiguous relationship |
+| Datus position | Foundation layer | Built on top of the foundation |
 
-A practical way to understand the difference: if you change your database from Snowflake to BigQuery, your semantic layer needs to be re-mapped (different tables, different column names, different SQL dialect). Your ontology does not — a `Customer` placing an `Order` is true regardless of which warehouse stores the data. The semantic layer is the **implementation layer**; the ontology is the **conceptual layer**.
+The common mistake is treating ontology as a replacement for the semantic layer. That gives an agent a map of concepts without a reliable calculator. The opposite mistake is treating the semantic layer as enough for AI agents. That gives an agent certified metrics without enough object-level context to answer operational questions.
 
-## 4. How they work together
+## Why AI agents expose the gap
 
-Semantic layers and ontologies are complementary. Together, they give an AI agent both **executable access** (semantic layer) and **domain understanding** (ontology):
+Human analysts can tolerate missing semantics. If a BI dashboard has a metric called `delayed_flights`, an analyst can ask a teammate which table it comes from, which airport path to use, or whether `status = 'UNRESOLVED'` is a valid value.
 
-| Agent task | What the semantic layer provides | What the ontology provides |
+AI agents cannot rely on those hallway corrections. If the context is incomplete, the model fills the gap.
+
+Common failures include:
+
+- choosing the wrong join path when multiple paths lead to the same entity;
+- grouping a metric by a dimension that lives on the wrong side of the relationship;
+- treating a row-level field as if it were a certified metric;
+- using natural-language literals that are not valid domain values;
+- summing a detail table and accidentally multiplying counts through fanout;
+- answering with SQL that is syntactically valid but semantically wrong.
+
+A semantic layer reduces the metric failures. An ontology reduces the navigation and meaning failures. An [AI data agent](/blog/what-is-data-agent/) needs both.
+
+## The Datus view: semantic layer first, ontology second
+
+Datus's architecture is intentionally ordered:
+
+![One box labelled Apache Ossie semantic model fans out to three columns. Left: datasets, fields, primary keys. Middle: relationships and metrics, feeding the Dosi planner (validate, compile, plan) and then warehouse SQL. Right: the ontology layer, feeding EntityTypes, ValueTypes, roles and concept paths, and then agent tools describe, paths, select and query.](/images/semantic-layer-vs-ontology/datus-architecture-order.png)
+
+*The ontology is not a second truth source above the data — it is grounded in the same semantic model the planner executes.*
+
+The ontology is not a separate truth source floating above the data. It is grounded in the semantic model.
+
+That gives the agent a safer contract:
+
+- metric queries still go through governed metric definitions;
+- entity/detail queries use concept paths instead of physical table names;
+- value domains can reject invalid literals before SQL is generated;
+- relationship roles can disambiguate paths like origin airport vs destination airport;
+- derived metrics can carry path meaning, not just SQL text.
+
+In <a href="https://dosi.datus.ai/reference/ontology/" rel="nofollow noopener">Dosi's ontology reference</a> — an experimental surface at the time of writing — an ontology can load alongside a core Ossie model. The ontology is lowered to an ordinary core Ossie model and then goes through the same validate → compile → plan path. A ConceptMap sits beside it, mapping concept paths to datasets, fields, and join paths. That is the core of the semantic-layer-based ontology idea: the ontology names the world, but the semantic planner still owns execution.
+
+## Why "vs" is the wrong final question
+
+The query `semantic layer vs ontology` exists because teams are trying to compare overlapping terms. Searchers want a clean difference. The difference is real, and it is worth stating plainly before moving past it.
+
+The better framing is:
+
+> A semantic layer and an ontology solve adjacent problems. The semantic layer governs calculations; the ontology governs business meaning and traversal. AI agents need the semantic layer as the trusted computation plane and the ontology as the concept/navigation plane.
+
+## How this differs from Palantir Ontology
+
+Palantir Ontology is not just a vocabulary. Based on <a href="https://www.palantir.com/docs/foundry/architecture-center/ontology-system" rel="nofollow noopener">Palantir's public architecture</a>, it is an operational object layer: object types, properties, links, object storage, actions, functions, permissions, SDKs, <a href="https://www.palantir.com/docs/foundry/sql-warehousing/ontology-sql" rel="nofollow noopener">SQL access</a>, and <a href="https://www.palantir.com/docs/foundry/ontology-mcp/overview" rel="nofollow noopener">MCP exposure</a>.
+
+Apache Ossie ontology is narrower and more portable. It defines conceptual entities, value types, relationships, rules, and mappings over semantic data models. It is a specification, not an operational application platform.
+
+| Capability | Palantir Ontology | Apache Ossie + Dosi direction |
 | --- | --- | --- |
-| "What was net revenue last month?" | Metric definition, SQL generation, filter application | — (simple metric query does not need domain reasoning) |
-| "Which customer segments had the highest churn, and what product lines are they on?" | Churn metric definition, customer dimension, product line dimension | "Customer segment" is a property of Customer; "product line" is a property of Product; Customer relates to Subscription via Contract |
-| "What factors correlate with enterprise customer churn?" | Churn metric, customer attributes (industry, size, contract value) as dimensions | Enterprise is a subclass of Customer with additional properties (contract value, dedicated support); churn factors include contract lifecycle events |
-| "Build a Subagent for the marketing analytics domain." | Tables relevant to marketing: campaigns, leads, conversions, attribution | Marketing domain boundaries: what entities belong (Campaign, Lead, Channel) and what does not (Payroll, Inventory) |
+| Object model | Yes | EntityType / ValueType concepts |
+| Operational storage | Yes, via Foundry object storage | Initially virtual over warehouse/lakehouse |
+| Write actions | Yes | Not part of Ossie ontology; separate product layer if needed |
+| Query functions | Yes | Strong pattern to adopt for Dosi MCP tools |
+| Open semantic standard | No, platform-specific | Yes, built around Apache Ossie |
+| Metric governance | Exists in platform context | Built from semantic layer and Dosi planner |
 
-The ontology gives the agent **scope awareness** — knowing which concepts belong to which domain, how they relate, and what does not belong. The semantic layer gives the agent **execution capability** — knowing how to actually query the data for those concepts.
+This is why Datus should not position itself as "another Palantir ontology." The sharper positioning is:
 
-For data engineering agents specifically, ontologies help with:
+> Datus builds ontology on top of an open semantic layer, so AI agents reason over business concepts without leaving governed metric and query semantics behind.
 
-- **Domain scoping**: when building a Subagent for "marketing analytics," the ontology defines which entities belong — campaigns, leads, channels, conversions — and which do not — payroll, inventory, facilities.
-- **Context traversal**: when an agent needs to understand a query about "customer lifetime value," the ontology tells it that LTV connects concepts from `Customer`, `Order`, `Subscription`, and `Contract` — guiding context retrieval across domains.
-- **Ambiguity resolution**: when a query references "product," the ontology determines whether the context is physical product (SKU, inventory, warehouse) or service product (plan tier, subscription, feature set) — routing the agent to the right domain.
+## What a semantic-layer-based ontology adds
 
-## 5. Datus's Context Engine: the semantic-ontology bridge
+A semantic-layer-based ontology adds five things that a plain semantic layer usually lacks:
 
-Datus's Context Engine operates primarily at the semantic layer — generating semantic models from schema, metrics from SQL, capturing validated queries, and scoping Subagents. But its **Subject Tree** — organizing business domains into a hierarchy of topics — functions as a lightweight, practical ontology:
+1. **Entity identity**: a concept like `Flight` or `Customer` is identified by business keys, not only by dataset primary keys.
+2. **Value domains**: a field like `FlightAlert.status` can declare that only `OPEN` and `RESOLVED` are valid.
+3. **Named relationship roles**: a `Flight` can link to `Airport` as origin or destination; both paths may join to the same table, but they do not mean the same thing.
+4. **Concept paths**: an agent can ask for `FlightAlert.flight.arrives_at.code` instead of guessing physical joins across `flight_alerts`, `flights`, and `airports`.
+5. **Entity and metric planes together**: some questions return rows, some return metrics, and real workflows often need both.
 
-```
-Subject Tree (ontology-like structure)
-  ├── Finance
-  │   ├── Revenue
-  │   │   ├── Net Revenue (metric)
-  │   │   └── Revenue by Product Line (metric)
-  │   └── Costs
-  ├── Product
-  │   ├── User Engagement
-  │   └── Feature Adoption
-  └── Marketing
-      ├── Campaign Performance
-      └── Attribution
-```
+The aviation ontology loop in Dosi's design notes shows this clearly: the agent first uses metadata to understand concepts and paths, then uses query for metrics and select for entity-level detail. The ontology does not replace the metric layer. It helps the agent decide which plane to use.
 
-The Subject Tree is not a formal ontology (no class hierarchies, no property definitions, no inference rules), but it serves a similar function: it gives agents a **conceptual map** of the data landscape. When an agent receives a query about "campaign ROI," it traverses the Subject Tree to Marketing → Campaign Performance, retrieves the relevant semantic models and metrics, and generates a grounded response. The Subject Tree provides **domain awareness**; the semantic models provide **execution capability**.
+## Practical rule: when to use each layer
 
-This is a pragmatic middle ground: a full formal ontology (OWL, RDF, knowledge graph) is powerful but expensive to build and maintain. A Subject Tree is lighter-weight — defined through `/gen_semantic_model` and user curation — but gives agents enough conceptual structure to navigate domains, scope Subagents, and resolve ambiguity. For most data engineering teams, the gap between "no ontology at all" and "a practical Subject Tree" is far larger than the gap between "a Subject Tree" and "a formal ontology."
+Use the semantic layer when the question is about a certified number:
 
-## 6. When you need to think about ontology
+- revenue by region;
+- delayed flights by airport;
+- average resolution time by priority;
+- retention by cohort;
+- open alerts over time.
 
-Most data teams do not need a formal ontology. The signals that you might:
+Use the ontology layer when the question is about entities, relationships, constraints, or navigation:
 
-- **Multiple teams interpret the same concept differently.** If Marketing's definition of "customer" differs from Finance's, and both differ from Product's — and these differences cause conflicting reports — you need shared domain definitions. An ontology formalizes what "customer" means and which properties it has, across teams.
-- **AI agents make reasoning errors across domains.** If an agent confuses "product" (physical SKU) with "product" (SaaS plan tier) and generates wrong answers, an ontology can disambiguate these concepts before the agent queries data.
-- **You are building a large knowledge graph.** If your organization already maintains a knowledge graph (Neo4j, Amazon Neptune, RDF stores), integrating it with your semantic layer gives agents both conceptual reasoning and executable data access.
-- **Regulatory or compliance requirements demand traceable concept definitions.** If you need to prove that "revenue" means the same thing across all systems for audit purposes, an ontology provides the formal specification.
+- which customers belong to this account;
+- which flights arrived at JFK and have open alerts;
+- which orders are linked to a high-priority support case;
+- which airport path is destination, not origin;
+- which status values are valid.
 
-Signals you do **not** need a formal ontology (yet):
+Use both when the agent has to move from a metric result to the underlying entities, or from entity filters to governed metrics.
 
-- You have one semantic layer, one BI tool, one analytics team, and consistent metric definitions.
-- Your data estate is small enough that domain knowledge lives in people's heads and the occasional wiki page — and it stays consistent.
-- You are not deploying AI agents that need to reason across domains.
+## Recommended architecture for AI data agents
 
-## 7. The ontology layer and AI agents: the emerging architecture
+The durable architecture has three surfaces:
 
-As AI agents become more capable, the architecture is trending toward three layers:
+![A user question flows into an AI data agent, which branches into three surfaces: query_metrics for governed metrics, query_objects or select for entity detail, and named query functions for curated business logic. All three converge on the Dosi planner, then deterministic SQL, then the warehouse or lakehouse.](/images/semantic-layer-vs-ontology/three-query-surfaces.png)
 
-```
-┌──────────────────────────────────────────────┐
-│            ONTOLOGY LAYER (Conceptual)         │
-│  Classes · Properties · Relationships · Rules  │
-│  "What kinds of things exist, and how?"        │
-├──────────────────────────────────────────────┤
-│          SEMANTIC LAYER (Executable)            │
-│  Metrics · Dimensions · Joins · SQL mappings   │
-│  "How do I query those things?"                │
-├──────────────────────────────────────────────┤
-│          PHYSICAL LAYER (Storage)               │
-│  Tables · Columns · Warehouses · Lakes         │
-│  "Where is the data actually stored?"           │
-└──────────────────────────────────────────────┘
-```
+*The agent chooses a semantic surface. The runtime keeps identity, paths, value domains, permissions and SQL generation.*
 
-An AI agent operating at the ontology layer can reason about domain concepts and their relationships. The semantic layer translates that reasoning into executable queries. The physical layer stores and serves the actual data. An agent with access to all three can answer "what happened?" (semantic layer), "why did it happen?" (ontology + semantic layer), and "what could happen?" (ontology + predictive models).
+This pattern avoids two extremes:
 
-Today, most teams have the physical layer well-covered and are investing in the semantic layer. The ontology layer is aspirational for most — but the teams that invest in it early will field agents that understand not just their data but their business.
+- giving the model unrestricted raw SQL access;
+- forcing every entity-level question into a prebuilt function.
+
+The agent gets semantic tools. The runtime owns identity, paths, value domains, permissions, SQL generation, and cost controls.
 
 ## Conclusion
 
-The semantic layer movement has spent a decade making data queryable in business language — and it has largely succeeded. An analyst can ask for "net revenue by region" and get the right number from governed definitions. The ontology movement, quieter and less productized, has spent decades modeling the conceptual structure of domains — and for most data teams, it has felt like academic overhead. AI agents change that calculus. A semantic layer alone can answer "what." It cannot answer "which of these three relationships between Customer and Contract is the right one for this question" or "does 'product' mean a physical SKU or a service plan in this context." Those are ontological questions, and an agent without answers to them will produce confident wrong results exactly where the domain gets complex. The practical path for most teams is not to build a formal OWL ontology. It is to start with a lightweight Subject Tree — domain-organized, agent-curated, incrementally refined — that gives agents enough conceptual structure to navigate ambiguity without the overhead of a formal specification. The gap between no ontology and a practical Subject Tree is far larger than the gap between a Subject Tree and a formal ontology. Most teams will get 80% of the value by crossing the first gap.
+The semantic layer vs ontology debate is useful only as an entry point. For AI data agents, the better architecture is semantic layer **to** ontology: start with governed metrics and relationships, then build entity semantics and agent context on top.
+
+That is the Datus and Dosi position. Apache Ossie provides the portable semantic specification. [Dosi provides the runtime](/blog/first-native-apache-ossie-engine/) that can validate, compile, and execute those semantics. The ontology layer makes those semantics navigable for agents without asking the model to invent joins, literals, or metric logic.
+
+The result is not just a more descriptive data catalog. It is a safer execution contract for AI agents over enterprise data.
 
 ## Frequently asked questions
 
-### What is the difference between a semantic layer and an ontology?
+### Is a semantic layer the same thing as an ontology?
 
-A **semantic layer** maps physical data to business concepts for query execution — "net_revenue is SUM(amount_usd - refund_usd) WHERE status = 'completed'." An **ontology** defines the categories, relationships, and rules of a domain — "a Customer places Orders, which contain LineItems, which reference Products." The semantic layer is database-aware and executable; the ontology is database-independent and conceptual. See §3 for the full comparison.
+No. A semantic layer governs calculation — metrics, dimensions, joins, grain, filters and time semantics — so every consumer computes the same number the same way. An ontology governs meaning and navigation — which entities exist, how they relate, which roles a relationship plays, and which literal values are valid. The clearest test is the question each one answers: "how is revenue computed?" is a semantic-layer question; "what is a customer, and what links a customer to an order?" is an ontology question.
 
-### Do I need an ontology if I have a semantic layer?
+### Do I need an ontology if I already have a governed semantic layer?
 
-For simple analytical queries, no — a semantic layer is sufficient. For complex, cross-domain reasoning — especially when AI agents need to understand how business concepts relate, disambiguate terms, or navigate domain boundaries — an ontology provides the conceptual structure the semantic layer alone cannot.
+For certified aggregate questions, no. A semantic layer answers "revenue by region" or "delayed flights by airport" correctly on its own. You need the ontology once agents start asking entity-level and navigational questions — which flights arrived at JFK and have open alerts, which airport path means destination rather than origin, whether `UNRESOLVED` is even a valid status. Those are the failures a metric layer cannot catch, because the SQL it generates is syntactically valid and semantically wrong.
 
-### What is a knowledge graph, and how does it relate to ontology?
+### Should I build the ontology first or the semantic layer first?
 
-A **knowledge graph** is an ontology **plus instance data** — the formal model (Customer places Order) populated with actual entities (Acme Corp placed Order #12345). An ontology is the schema; a knowledge graph is the schema plus the data. Most enterprise knowledge graphs combine an ontology (the conceptual model) with instance data from operational systems.
+The semantic layer first. An ontology built before governed metrics gives an agent a map of concepts without a reliable calculator: it can name `Customer` and `Order` but cannot settle whether revenue excludes refunds, whether ARR comes from contracts or invoices, or what the time grain of a retention metric is. Those are semantic-layer decisions. Building the ontology on top keeps the planner as the single execution path.
 
-### Does Datus maintain an ontology?
+### How does this differ from Palantir Ontology?
 
-Datus's **Subject Tree** serves an ontology-like function: it organizes business domains into a hierarchy of topics, maps metrics and semantic models to those topics, and gives agents a conceptual map of the data landscape. It is not a formal ontology (no class hierarchies, no property definitions, no inference rules), but it provides practical domain awareness — scoping Subagents, traversing context, resolving ambiguity — without the overhead of a full formal specification.
+Palantir Ontology is an operational object layer: object types, properties, links, object storage, actions, functions, permissions, SDKs, SQL access and MCP exposure, all inside one platform. The Apache Ossie ontology specification is narrower and more portable — conceptual entities, value types, relationships, constraints and mappings over a semantic model, with no storage or application runtime of its own. The difference that matters is the starting point: Palantir starts from operational objects, a semantic-layer-based ontology starts from a governed semantic model and stays virtual over your existing warehouse.
 
 ## Related articles
 
-- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the execution layer
-- [What is a semantic model?](/blog/what-is-semantic-model/) — the building block of the semantic layer
-- [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — how agents operationalize both layers
-- [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology-ai-agents/) — the architecture answer: governed metrics first, ontology and agent context on top
-- [Semantic-layer-based ontology: agent context on Apache Ossie](/blog/semantic-layer-based-ontology/) — what the ontology layer adds once the semantic layer is governed
+- [Semantic layer vs ontology: what's the difference and why it matters for AI agents](/blog/semantic-layer-vs-ontology-difference/) — the conceptual comparison, and where a lightweight Subject Tree fits
+- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the governed computation plane this architecture starts from
+- [What is an ontology?](/blog/what-is-ontology/) — entities, relationships and rules, defined
+- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the portable specification behind Apache Ossie
+- [The first native Apache Ossie engine](/blog/first-native-apache-ossie-engine/) — the runtime that validates, compiles and plans these semantics
+- [Dosi MCP: a semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — how the query surfaces reach an agent

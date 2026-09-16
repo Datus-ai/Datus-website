@@ -42,7 +42,7 @@ An agent reports that 400 machines are overdue for calibration. The number is pr
 - It is **not** a [semantic layer](/blog/what-is-semantic-layer/) (which maps those concepts onto executable metrics and SQL), **not** a taxonomy (which is mostly hierarchy), and **not** automatically a knowledge graph (which is one way to store and traverse the model).
 - Three productizations confuse buyers in 2026: **W3C OWL/RDF** ontologies for open-world reasoning; **Palantir Ontology** as an operational object/action/security system; and **SQL ontologies** that virtualize concepts over existing warehouses without a graph database.
 - Agents fail ontology problems as **wrong identity**, not wrong arithmetic: the metric is computed exactly, and the rows still come back from the wrong class.
-- You need an ontology when questions cross entities, subtypes, and domain boundaries. You need a semantic layer when the question is how to measure. Most production stacks need a light version of both, not a full OWL toolchain. For the dedicated comparison, see [semantic layer vs ontology](/blog/semantic-layer-vs-ontology/).
+- You need an ontology when questions cross entities, subtypes, and domain boundaries. You need a semantic layer when the question is how to measure. Most production stacks need a light version of both, not a full OWL toolchain. For the dedicated comparison, see [semantic layer vs ontology](/blog/semantic-layer-vs-ontology-difference/).
 
 ## 1. Ontology: a working definition
 
@@ -140,7 +140,7 @@ In data and AI, an ontology is a machine-readable model of a domain: classes of 
 
 ### Is an ontology the same as a semantic layer?
 
-No. A semantic layer maps business concepts onto executable metrics, dimensions, and SQL. An ontology defines the concepts and relationships themselves. They complement each other: measurement versus meaning. See [semantic layer vs ontology](/blog/semantic-layer-vs-ontology/).
+No. A semantic layer maps business concepts onto executable metrics, dimensions, and SQL. An ontology defines the concepts and relationships themselves. They complement each other: measurement versus meaning. See [semantic layer vs ontology](/blog/semantic-layer-vs-ontology-difference/).
 
 ### Is an ontology the same as a knowledge graph?
 
@@ -160,7 +160,7 @@ They need the layer that matches the failure. If the agent gets the *number* wro
 
 ## Related articles
 
-- [Semantic layer vs ontology](/blog/semantic-layer-vs-ontology/) — the dedicated comparison — measurement vs meaning.
+- [Semantic layer vs ontology](/blog/semantic-layer-vs-ontology-difference/) — the dedicated comparison — measurement vs meaning.
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the execution plane that binds concepts to metrics and SQL.
 - [Apache Ossie / OSI vs RDF/OWL](/blog/osi-vs-rdf-owl/) — how the two generations of machine-readable meaning relate.
 - [What is Timbr?](/blog/what-is-timbr/) — a SQL-native productization of the ontology idea.

@@ -162,4 +162,4 @@ That is why we did a lot of this work in Datus 0.2 — connecting to BI dashboar
 - [Contextual data engineering](/blog/contextual-data-engineering/) — context as a living asset rather than one-time docs
 - [Subagents: domain-specific data agents](/blog/subagents-domain-specific-data-agents/) — why a subagent's ceiling is its project context
 - [Introducing Dosi](/blog/introducing-dosi/) — the OSI execution engine described above
-- [Semantic layer vs ontology](/blog/semantic-layer-vs-ontology/) — where metrics stop and an ontology starts
+- [Semantic layer vs ontology](/blog/semantic-layer-vs-ontology-difference/) — where metrics stop and an ontology starts

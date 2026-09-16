@@ -280,7 +280,7 @@ No. The first version is virtual: Apache Ossie semantic metadata feeds a semanti
 
 ## Related articles
 
-- [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology-ai-agents/) — the comparison this architecture answers
+- [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology/) — the comparison this architecture answers
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the governed computation plane at the base
 - [What is an ontology?](/blog/what-is-ontology/) — entities, relationships and rules, defined
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the portable spec behind Apache Ossie

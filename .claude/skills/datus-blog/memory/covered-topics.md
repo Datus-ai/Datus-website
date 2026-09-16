@@ -533,15 +533,15 @@ The operator sent five 数据杂货铺 URLs. The fifth — 什么才是AI Native
 piece already ported as `ai-native-semantic-layer` from its Medium edition
 (PR #75). Not re-ported.
 
-### semantic-layer-vs-ontology-ai-agents
+### semantic-layer-vs-ontology  (was semantic-layer-vs-ontology-ai-agents during PR #80)
 - Title: Semantic Layer vs Ontology: Why AI Agents Need Both
 - Target keyword: semantic layer vs ontology (ontology vs semantic layer, semantic layer ontology, semantic layer knowledge graph, semantic layer for AI agents, Apache Ossie ontology, Palantir Ontology)
-- Angle: the "vs" is a sequencing problem, not an architecture choice — semantic layer -> ontology -> agent context; what the ontology adds (entity identity, value domains, relationship roles, concept paths, two planes); Palantir Ontology as operational object layer vs Ossie ontology as portable spec; when to use which layer. **Distinct from the older `semantic-layer-vs-ontology` (2026-06-09, Evan Paul), which is the conceptual comparison + Subject Tree angle.** The operator explicitly chose to keep both and publish this separately rather than rewrite in place — cannibalisation on the head term is a known, accepted risk; both are cross-linked bidirectionally
+- Angle: the "vs" is a sequencing problem, not an architecture choice — semantic layer -> ontology -> agent context; what the ontology adds (entity identity, value domains, relationship roles, concept paths, two planes); Palantir Ontology as operational object layer vs Ossie ontology as portable spec; when to use which layer. **Distinct from the 2026-06-09 Evan Paul post (conceptual comparison + Subject Tree angle), which was RENAMED to `semantic-layer-vs-ontology-difference` in this same PR so this post could take the exact-match head slug.** Operator's call, made after the first review pass: the head URL had been live since June, so handing it to the current-position article transfers that equity and resolves the cannibalisation — one owner for the head term, one for the definition/difference intent. There is no redirect stub: `/blog/semantic-layer-vs-ontology/` is a real page again, now serving this article
 - Source direction: PORT of operator draft `~/Draft_ Semantic Layer vs Ontology_ Why AI Agents Need Both.md` (Feishu export, never published externally)
 - Key sources: github.com/apache/ossie (+ ontology/ontology.md 0.2.0.dev0); dosi.datus.ai/reference/ontology/ (public but experimental/unlinked); palantir.com/docs/foundry/architecture-center/ontology-system, /sql-warehousing/ontology-sql, /ontology-mcp/overview (GA June 2026)
-- Internal links added: what-is-semantic-layer, what-is-ontology, what-is-data-agent, first-native-apache-ossie-engine, semantic-layer-vs-ontology, open-semantic-interchange-osi, dosi-mcp-semantic-layer-for-agents
-- Reciprocal links added from: semantic-layer-vs-ontology
-- Images: 3 (blog/public/images/semantic-layer-vs-ontology-ai-agents/) — all REDRAWN from the draft's Feishu diagrams; sources at blog/figures/semantic-layer-vs-ontology-ai-agents/*.html, rendered by `npm run figures:build`, pngquant-compressed
+- Internal links added: what-is-semantic-layer, what-is-ontology, what-is-data-agent, first-native-apache-ossie-engine, semantic-layer-vs-ontology-difference, open-semantic-interchange-osi, dosi-mcp-semantic-layer-for-agents
+- Reciprocal links added from: semantic-layer-vs-ontology-difference
+- Images: 3 (blog/public/images/semantic-layer-vs-ontology/) — all REDRAWN from the draft's Feishu diagrams; sources at blog/figures/semantic-layer-vs-ontology/*.html, rendered by `npm run figures:build`, pngquant-compressed
 - Deviations from the draft: SEO Brief + Publish Checklist dropped (operator's instruction); heading "Why 'vs' is useful for SEO but incomplete for architecture" -> "Why 'vs' is the wrong final question", dropping the two sentences about how the page should rank (blockquote verbatim); FAQ (4 Q&As) added, derived from the article's own claims; Dosi ontology reference labelled experimental
 - Glossary updated: no (no /glossary term matches "ontology")
 - Category: "Semantic Layer"
@@ -551,7 +551,7 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 ### from-semantic-layer-to-ontology
 - Title: From Semantic Layer to Ontology: Architecture for AI Agents
 - Target keyword: from semantic layer to ontology (semantic layer ontology, semantic layer for AI agents, AI data agent ontology, entity plane, query functions)
-- Angle: the five-layer architecture — core semantic model -> governed metrics -> ontology layer -> entity/query plane -> typed query functions; why a metric-only layer breaks on cross-grain questions ("delay at Delay grain, passengers at Flight grain"); the entity plane is the missing layer in metric-centric systems; Palantir borrowed for the *separation of query surfaces*, not the storage; a virtual first version (Ossie metadata -> semantic catalog -> semantic IR -> SQL). Distinct from semantic-layer-vs-ontology-ai-agents (comparison) and semantic-layer-based-ontology (the named category + Ossie mechanics)
+- Angle: the five-layer architecture — core semantic model -> governed metrics -> ontology layer -> entity/query plane -> typed query functions; why a metric-only layer breaks on cross-grain questions ("delay at Delay grain, passengers at Flight grain"); the entity plane is the missing layer in metric-centric systems; Palantir borrowed for the *separation of query surfaces*, not the storage; a virtual first version (Ossie metadata -> semantic catalog -> semantic IR -> SQL). Distinct from semantic-layer-vs-ontology (comparison) and semantic-layer-based-ontology (the named category + Ossie mechanics)
 - Source direction: PORT of operator draft `~/Draft_ From Semantic Layer to Ontology_ The Architecture AI Data Agents Actually Need.md` (Feishu export, never published externally)
 - Key sources: github.com/apache/ossie; dosi.datus.ai/reference/ontology/; palantir.com/docs/foundry/ontologies/query-compute-usage, /architecture-center/ontology-system
 - Internal links added: what-is-semantic-layer, what-is-ontology, what-is-data-catalog, semantic-layer-vs-ontology-ai-agents, open-semantic-interchange-osi, first-native-apache-ossie-engine, dosi-mcp-semantic-layer-for-agents
@@ -569,7 +569,7 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 - Angle: names and owns the category phrase — semantic-layer-*based* ontology, NOT ontology-based semantic layer. The semantic layer stays the source of execution truth; the ontology is lowered into an ordinary core Ossie model and reuses the planner. Five things the ontology adds (entity identity, value types/domains, relationship roles, concept paths, derived metrics with path meaning); the JFK open-P1-alerts worked example; metric plane and entity plane must stay separate; three query surfaces; Palantir contrast on starting point
 - Source direction: PORT of operator draft `~/Draft_ Semantic-Layer-Based Ontology_ Building Agent Context on Apache Ossie.md` (Feishu export, never published externally)
 - Key sources: github.com/apache/ossie/blob/main/ontology/ontology.md (0.2.0.dev0 — EntityType/ValueType, roles + ManyToOne/OneToOne, requires/derived_by, concept_mappings); dosi.datus.ai/reference/ontology/ (model-first vs ontology-first; describe/paths/select/query/lineage); palantir.com/docs/foundry/architecture-center/ontology-system
-- Internal links added: what-is-semantic-layer, what-is-ontology, from-semantic-layer-to-ontology, semantic-layer-vs-ontology-ai-agents, open-semantic-interchange-osi, first-native-apache-ossie-engine, dosi-mcp-semantic-layer-for-agents, ai-native-semantic-layer
+- Internal links added: what-is-semantic-layer, what-is-ontology, from-semantic-layer-to-ontology, semantic-layer-vs-ontology, open-semantic-interchange-osi, first-native-apache-ossie-engine, dosi-mcp-semantic-layer-for-agents, ai-native-semantic-layer
 - Reciprocal links added from: ai-native-semantic-layer
 - Images: 2 (blog/public/images/semantic-layer-based-ontology/) — both REDRAWN; sources at blog/figures/semantic-layer-based-ontology/*.html, pngquant-compressed
 - Deviations from the draft: SEO Brief + Publish Checklist dropped; "Recommended page structure for publishing" section removed (it is the page's own outline, addressed to the publisher); "Why this matters for GEO" -> "Why the name matters", dropping "a category phrase worth owning" / "the differentiators" while keeping the quotable positioning sentence and the five-item list verbatim; "This matters for GEO and product differentiation because…" -> "This matters because…". Slug chosen as `-based-` over the draft's `-base-` (operator's call). The draft's own FAQ is verbatim
@@ -584,3 +584,13 @@ diagrams (HTML sources committed under `blog/figures/`, shared primitives in
 `blog/figures/_flow.css`). The originals carried no titles or captions, so each
 figure's title is derived from the sentence that introduces it in the body.
 pngquant: 718.8 KB -> 218.9 KB (-70%).
+
+## Slug rename executed in PR #80 (2026-09-16)
+`semantic-layer-vs-ontology` (2026-06-09, Evan Paul) -> `semantic-layer-vs-ontology-difference`,
+and the new cluster post took over the freed exact-match slug. Both files, the
+figure/image directories, the `CATEGORIES` entries and every inbound internal
+link (`what-is-timbr`, `what-is-ontology`, `from-chatbi-to-data-agent-what-changes`,
+`ai-native-semantic-layer`, `index.md`) were repointed. No redirect stub: nothing
+is orphaned, because the head URL still resolves to a real page. **The old post's
+URL changed**, so it needs a GSC re-index request and its backlinks (if any) now
+land on the new article by design.

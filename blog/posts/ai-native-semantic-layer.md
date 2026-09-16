@@ -140,7 +140,7 @@ This is what we believe an AI-first semantic layer should provide:
 
 That is why we built Dosi.
 
-Apache Ossie has also recently added an [ontology specification draft](https://github.com/apache/ossie/blob/main/ontology/ontology.md) in version `0.2.0.dev0`. It introduces business concepts, relationships, rules, and mappings from logical models into an ontology. This is an important direction because [ontology](/blog/semantic-layer-vs-ontology/) needs the semantic layer as trusted infrastructure, not just as extra context for the model.
+Apache Ossie has also recently added an [ontology specification draft](https://github.com/apache/ossie/blob/main/ontology/ontology.md) in version `0.2.0.dev0`. It introduces business concepts, relationships, rules, and mappings from logical models into an ontology. This is an important direction because [ontology](/blog/semantic-layer-vs-ontology-difference/) needs the semantic layer as trusted infrastructure, not just as extra context for the model.
 
 We are following this draft closely and have already started applying it in customer scenarios. We will release the related Dosi capabilities step by step as the specification and our implementation mature.
 

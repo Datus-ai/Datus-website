@@ -294,7 +294,7 @@ Apache Ossie provides the portable specification. Dosi provides the runtime need
 ## Related articles
 
 - [From semantic layer to ontology: architecture for AI agents](/blog/from-semantic-layer-to-ontology/) — the five layers, end to end
-- [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology-ai-agents/) — the comparison this architecture answers
+- [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology/) — the comparison this architecture answers
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the portable spec behind Apache Ossie
 - [The first native Apache Ossie engine](/blog/first-native-apache-ossie-engine/) — validate, compile and plan in practice
 - [Dosi MCP: a semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — how these surfaces reach an agent
