@@ -149,7 +149,7 @@ Text-to-SQL alone does not make an agent. Agents add:
 
 - **Persistence** — corrections survive the session. When an analyst corrects "revenue" from `gross_amount` to `net_revenue_usd`, that mapping is stored and applied to every future question in the domain.
 - **Delivery** — domain-scoped interfaces package context for analysts or APIs, rather than forcing every user through the same global prompt.
-- **Integration** — [MCP](/blog/what-is-mcp-data-engineering/) clients, orchestrators, CI workflows. Text-to-SQL embedded in a dbt pull request can validate that a model change does not break downstream SQL.
+- **Integration** — [MCP](/blog/mcp-data-engineering/) clients, orchestrators, CI workflows. Text-to-SQL embedded in a dbt pull request can validate that a model change does not break downstream SQL.
 - **Governance** — scoped tables, rules, audit trails (especially in enterprise deployments). Every query leaves a trace from question to SQL to tables used to result.
 
 [Contextual data engineering](/blog/contextual-data-engineering/) describes the operating model: every text-to-SQL run strengthens context for the next run. In practice, this means the system's accuracy graph slopes upward over time within a domain — not because the model was upgraded, but because every correction is stored and every validated query is indexed as a retrieval candidate for future questions. A stateless copilot's accuracy graph is flat forever.

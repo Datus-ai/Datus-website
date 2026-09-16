@@ -297,7 +297,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "model-context-protocol",
         definition:
           "An open protocol for exposing tools, data, and context to LLM clients like Claude, Cursor, and IDEs. Lets one server power many AI front ends.",
-        article: "/blog/what-is-mcp-data-engineering/",
+        article: "/blog/mcp-data-engineering/",
       },
       {
         term: "Embedding",
