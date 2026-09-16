@@ -101,7 +101,7 @@ The same honesty runs the other way, so write this down before a POC. Timbr is d
 - You need operational writeback, actions, and object-level applications. That is Palantir's shape, not a virtual SQL layer's.
 - You need a public OWL reasoner and RDF interchange as the system of record. Timbr can <a href="https://timbr.ai/solutions/owl-to-sql-ontologies-upgrade/" rel="nofollow noopener">import OWL and map it into SQL ontologies</a>; that is a migration path, not a replacement for a Semantic Web stack, and it should not be sold as one.
 
-If those bullets describe you, Timbr is not "worse Cube." It is a different layer you do not need yet. Decide the layer first — the [ontology definition](/blog/what-is-ontology/) and the [semantic layer vs ontology](/blog/semantic-layer-vs-ontology/) comparison — then pick a vendor inside it.
+If those bullets describe you, Timbr is not "worse Cube." It is a different layer you do not need yet. Decide the layer first — the [ontology definition](/blog/what-is-ontology/) and [when you need an ontology vs a semantic layer](/blog/semantic-layer-vs-ontology-difference/) — then pick a vendor inside it.
 
 ## 5. GraphRAG: a retrieval prior for wrong joins, not a document index
 
@@ -121,7 +121,7 @@ That is the Datus-shaped hole, described without pretending Timbr is deficient a
 
 Timbr is a SQL-native, virtual ontology sitting on the warehouse: concepts, relationships, inheritance, rules, and measures, queried in SQL, without a mandatory graph database. It is the most direct commercial answer to the complaint that metric-only semantic layers do not give agents a type system. It is not a drop-in Cube alternative, not an AtScale alternative for Excel cubes, and not Palantir. Buy it when identity and multi-source meaning are the incident class you cannot close with another certified KPI. Skip it when measurement consistency on a single star schema is the whole job. And whatever you buy, budget the unfashionable work of keeping the model true after the first demo.
 
-Next reading: [what an ontology is](/blog/what-is-ontology/), [semantic layer vs ontology](/blog/semantic-layer-vs-ontology/), and [what a semantic layer is](/blog/what-is-semantic-layer/).
+Next reading: [what an ontology is](/blog/what-is-ontology/), [ontology vs semantic layer](/blog/semantic-layer-vs-ontology-difference/), and [what a semantic layer is](/blog/what-is-semantic-layer/).
 
 ## Frequently asked questions
 
@@ -153,5 +153,5 @@ When the disagreement is only KPI formulas; when one warehouse and one BI tool a
 
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the category Timbr sits in.
 - [What is an ontology?](/blog/what-is-ontology/) — the identity layer Timbr productizes in SQL.
-- [Semantic layer vs ontology](/blog/semantic-layer-vs-ontology/) — measurement vs meaning, side by side.
+- [Ontology vs semantic layer](/blog/semantic-layer-vs-ontology-difference/) — measurement vs meaning, side by side.
 - [Cube for agentic analytics](/blog/cube-agentic-analytics/) — a headless alternative modeling approach.

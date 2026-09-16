@@ -140,7 +140,7 @@ This is what we believe an AI-first semantic layer should provide:
 
 That is why we built Dosi.
 
-Apache Ossie has also recently added an [ontology specification draft](https://github.com/apache/ossie/blob/main/ontology/ontology.md) in version `0.2.0.dev0`. It introduces business concepts, relationships, rules, and mappings from logical models into an ontology. This is an important direction because [ontology](/blog/semantic-layer-vs-ontology/) needs the semantic layer as trusted infrastructure, not just as extra context for the model.
+Apache Ossie has also recently added an [ontology specification draft](https://github.com/apache/ossie/blob/main/ontology/ontology.md) in version `0.2.0.dev0`. It introduces business concepts, relationships, rules, and mappings from logical models into an ontology. This is an important direction because [ontology](/blog/semantic-layer-vs-ontology-difference/) needs the semantic layer as trusted infrastructure, not just as extra context for the model.
 
 We are following this draft closely and have already started applying it in customer scenarios. We will release the related Dosi capabilities step by step as the specification and our implementation mature.
 
@@ -178,3 +178,4 @@ Decide which metrics actually guide the business, whether the semantic model sho
 - [Dosi vs MetricFlow: OSI-Native vs dbt-Centric Runtime](/blog/dosi-vs-metricflow/) — choosing a runtime for the same OSI model
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the foundational definition
 - [Why AI Agents Need Semantic Context to Work Reliably](/blog/why-ai-agents-need-semantic-context-to-work-reliably/) — the grounding argument
+- [Semantic-Layer-Based Ontology: Agent Context on Apache Ossie](/blog/semantic-layer-based-ontology/) — the ontology layer built on top of these requirements

@@ -47,12 +47,15 @@ What a semantic layer is, and how it differs from a metric layer, model, ontolog
 - [What Is a Semantic Layer? Definition, Examples & How It Differs From a Metric Layer](/blog/what-is-semantic-layer/) — May 31, 2026
 - [What Is a Metric Layer? Definition, Examples & How It Differs From a Semantic Layer](/blog/what-is-metric-layer/) — Jun 8, 2026
 - [What Is a Semantic Model? Definition, Examples & How It Differs From a Semantic View](/blog/what-is-semantic-model/) — Jun 8, 2026
-- [Semantic Layer vs Ontology: What's the Difference and Why It Matters for AI Agents](/blog/semantic-layer-vs-ontology/) — Jun 9, 2026
+- [Ontology vs Semantic Layer: Definitions and When You Need Each](/blog/semantic-layer-vs-ontology-difference/) — Jun 9, 2026
 - [Open Semantic Interchange (OSI): What the New Standard Means for Data Engineering and AI Agents](/blog/open-semantic-interchange-osi/) — Jun 9, 2026
 - [Apache Ossie / OSI vs MetricFlow: Semantic Standard vs Execution Engine](/blog/osi-vs-metricflow/) — Jun 25, 2026
 - [dbt Semantic Layer & MetricFlow: A Complete Guide for Data Engineers](/blog/dbt-semantic-layer-metricflow/) — Jun 9, 2026
 - [Cube.dev: From Semantic Layer Pioneer to Agentic Analytics Platform](/blog/cube-agentic-analytics/) — Jun 9, 2026
 - [GoodData: How a 17-Year BI Company Became an AI-Native Analytics Platform](/blog/what-is-gooddata/) — Jun 10, 2026
+- [Semantic Layer vs Ontology: Why AI Agents Need Both](/blog/semantic-layer-vs-ontology/) — Sep 12, 2026
+- [From Semantic Layer to Ontology: Architecture for AI Agents](/blog/from-semantic-layer-to-ontology/) — Sep 14, 2026
+- [Semantic-Layer-Based Ontology: Agent Context on Apache Ossie](/blog/semantic-layer-based-ontology/) — Sep 16, 2026
 
 ## Glossary
 
@@ -68,7 +71,6 @@ Core data engineering terms — defined, with how they connect to agents and con
 - [What Is a Data Lake? Definition, Architecture & Data Lake vs Data Warehouse](/blog/what-is-data-lake/) — Jun 24, 2026
 - [What Is a Lakehouse Catalog? Hive, Glue, Unity, Polaris & Horizon](/blog/what-is-lakehouse-catalog/) — Jun 26, 2026
 - [What Is a Data Contract? Definition, Schema Enforcement & Examples](/blog/what-is-data-contract/) — Jun 29, 2026
-- [What Is MCP? Model Context Protocol for Data Engineering Explained](/blog/what-is-mcp-data-engineering/) — Jun 29, 2026
 - [What Is an Embedding? Definition, Vectors & Why AI Needs Them](/blog/what-is-embedding-ai/) — Jun 30, 2026
 - [What Is Medallion Architecture? Bronze, Silver & Gold Layers](/blog/what-is-medallion-architecture/) — Jun 30, 2026
 - [What Is Apache Iceberg? Table Format, Features & Iceberg vs Delta Lake](/blog/what-is-apache-iceberg/) — Jun 30, 2026
