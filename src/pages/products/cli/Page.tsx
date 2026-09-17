@@ -66,7 +66,7 @@ const panelBg = "rgba(11,18,48,0.4)";
 const sectionBorder = "1px solid var(--line)";
 
 export default function CliPage() {
-  const { hero: cliHero, parity, modelNeutral, guardrails, ecosystem, closing, claudeCodeNote, faqLead } =
+  const { hero: cliHero, parity, lifecycle, modelNeutral, guardrails, ecosystem, closing, claudeCodeNote, faqLead } =
     useT(cliPage);
   const faqItems = useT(cliFaq);
   const locale = useLocale();
@@ -229,6 +229,41 @@ export default function CliPage() {
           <a className="link-arrow" href={l(ecosystem.linkHref)} style={{ marginTop: 22 }}>
             {ecosystem.linkLabel} <ArrowRight size={15} />
           </a>
+        </div>
+      </section>
+
+      {/* Lifecycle — the Datus agent owns the full data engineering lifecycle */}
+      <section className="section" style={{ background: panelBg, borderBlock: sectionBorder }}>
+        <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">{lifecycle.eyebrow}</span>
+            <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>{lifecycle.heading}</h2>
+            <p className="lead" style={{ marginTop: 10, maxWidth: 720 }}>{lifecycle.lead}</p>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
+            {lifecycle.phases.map((phase, i) => (
+              <div key={phase} style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+                <span
+                  className="card"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 10,
+                    padding: "10px 16px", borderRadius: 999,
+                  }}
+                >
+                  <span style={{
+                    fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 700,
+                    color: "var(--brand-bright)", opacity: 0.9,
+                  }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span style={{ fontSize: 14, fontWeight: 650, color: "var(--ink)" }}>{phase}</span>
+                </span>
+                {i < lifecycle.phases.length - 1 && (
+                  <ArrowRight size={14} style={{ color: "var(--ink-faint)", flexShrink: 0 }} />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -23,9 +23,10 @@ const Footer = () => {
           <div className="site-footer__col">
             <h3 className="site-footer__heading">{t.products}</h3>
             <ul>
-              <li><a href={l("/products/cli/")}>{p.cli}</a></li>
-              <li><a href={l("/products/vscode/")}>{p.vscode}</a></li>
               <li><a href={l("/products/studio/")}>{p.studio}</a></li>
+              <li><a href={l("/products/cli/")}>{p.cli}</a></li>
+              <li><a href="https://dosi.datus.ai" target="_blank" rel="noopener noreferrer">{p.dosi}</a></li>
+              <li><a href={l("/products/vscode/")}>{p.vscode}</a></li>
               <li><a href={l("/products/enterprise/")}>{p.enterprise}</a></li>
             </ul>
           </div>

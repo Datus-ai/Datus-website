@@ -54,6 +54,7 @@ export interface GuardrailPillar {
 export interface CliCopy {
   hero: { eyebrow: string; title: string; subhead: string; ctas: CliCta[] };
   parity: { eyebrow: string; heading: string; body: string; cards: FeatureCard[] };
+  lifecycle: { eyebrow: string; heading: string; lead: string; phases: string[] };
   modelNeutral: {
     eyebrow: string;
     heading: string;
@@ -85,10 +86,10 @@ const CLAUDE_CODE_MCP_HREF = `${DOCS_03}/integration/mcp/#claude-code`;
 
 const EN: CliCopy = {
   hero: {
-    eyebrow: "Open source · Apache-2.0",
+    eyebrow: "The open-source Datus agent · Apache-2.0",
     title: "Better Claude Code for data engineers.",
     subhead:
-      "Everything you love about Claude Code, skills, MCP, self-evolving memory, rebuilt for the data stack. Model-neutral, governed, and wired into your warehouse from the first command.",
+      "Everything you love about Claude Code, skills, MCP, self-evolving memory, rebuilt for the data stack. This is the open-source Datus agent: it reads your schema and SQL history to generate the OSI semantic models Datus Studio and the Dosi engine build on. Model-neutral, governed, and wired into your warehouse from the first command.",
     ctas: [
       { label: "Quickstart", href: QUICKSTART_URL, external: true, variant: "primary" },
       { label: "View on GitHub", href: GITHUB_URL, external: true, variant: "ghost" },
@@ -122,6 +123,22 @@ const EN: CliCopy = {
         body: "Drive the agent from where your team already works, Slack and Lark channel integration built in.",
         links: [{ label: "IM Gateway", href: `${DOCS_03}/gateway/introduction/` }],
       },
+    ],
+  },
+  // Supplement (from the old data-engineering-agent homepage): the full lifecycle.
+  lifecycle: {
+    eyebrow: "The data lifecycle",
+    heading: "One agent across the full data engineering lifecycle.",
+    lead: "From SQL development to monitoring, the Datus agent owns each phase in a single, always-in-context workflow, not a chat wrapper bolted onto your stack.",
+    phases: [
+      "SQL development",
+      "Data quality",
+      "Metric management",
+      "Modeling",
+      "SQL review",
+      "Deploy",
+      "Monitor",
+      "Docs",
     ],
   },
   // Differentiator 1, model neutrality.
@@ -231,10 +248,10 @@ const EN: CliCopy = {
 
 const ZH: CliCopy = {
   hero: {
-    eyebrow: "开源 · Apache-2.0",
+    eyebrow: "开源 Datus agent · Apache-2.0",
     title: "为数据工程师打造的更好的 Claude Code。",
     subhead:
-      "你喜欢 Claude Code 的一切——Skills、MCP、自我演进的记忆——统统为数据栈重做了一遍。模型中立、可治理，从第一条命令起就接进你的数仓。",
+      "你喜欢 Claude Code 的一切——Skills、MCP、自我演进的记忆——统统为数据栈重做了一遍。这就是开源的 Datus agent：它读取你的表结构与 SQL 历史，生成 OSI 语义模型，供 Datus Studio 与 Dosi 引擎在其上构建。模型中立、可治理，从第一条命令起就接进你的数仓。",
     ctas: [
       { label: "快速开始", href: QUICKSTART_URL, external: true, variant: "primary" },
       { label: "在 GitHub 上查看", href: GITHUB_URL, external: true, variant: "ghost" },
@@ -267,6 +284,21 @@ const ZH: CliCopy = {
         body: "在团队已经在用的地方驱动 Agent，内置 Slack 与飞书频道集成。",
         links: [{ label: "IM 网关", href: `${DOCS_03}/gateway/introduction/` }],
       },
+    ],
+  },
+  lifecycle: {
+    eyebrow: "数据生命周期",
+    heading: "一个 Agent，贯穿完整的数据工程生命周期。",
+    lead: "从 SQL 开发到监控，Datus agent 在一条始终带着上下文的工作流里接管每个阶段——而不是在你的技术栈上外挂一个聊天外壳。",
+    phases: [
+      "SQL 开发",
+      "数据质量",
+      "指标管理",
+      "数据建模",
+      "SQL 评审",
+      "部署",
+      "监控",
+      "文档",
     ],
   },
   modelNeutral: {

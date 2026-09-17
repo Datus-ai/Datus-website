@@ -21,9 +21,9 @@ const TEMPLATE = pathToFileURL(resolve(__dirname, "og-template.html")).href;
 const OUT_DIR = resolve(ROOT, "src/public/og");
 
 const CARDS = [
-  { slug: "home", title: "The AI agent for end-to-end data engineering",
-    subtitle: "SQL generation, semantic context, and governed workflow automation." },
-  { slug: "faq", eyebrow: "FAQ", title: "Questions about the open-source data engineering agent" },
+  { slug: "home", title: "The enterprise data context layer",
+    subtitle: "An Apache Ossie semantic layer and ontology your data agents can trust — live in days." },
+  { slug: "faq", eyebrow: "FAQ", title: "Questions about the enterprise data context layer" },
   { slug: "integrations", eyebrow: "Integrations", title: "Datus works with your entire data stack",
     subtitle: "Warehouses, catalogs, semantic layers, BI tools, and job schedulers." },
   { slug: "databases", eyebrow: "Databases", title: "Eleven native database adapters",
@@ -37,18 +37,21 @@ const CARDS = [
   { slug: "glossary", eyebrow: "Glossary", title: "The data engineering glossary",
     subtitle: "Plain-language definitions for the modern, AI-native data stack." },
   { slug: "pricing", eyebrow: "Pricing", title: "Free for individuals, custom for enterprises" },
-  { slug: "products-cli", eyebrow: "Datus CLI", title: "The data engineering agent for your terminal" },
-  { slug: "products-studio", eyebrow: "Datus Studio", title: "The hosted data engineering agent" },
-  { slug: "products-enterprise", eyebrow: "Enterprise", title: "Governed data agent teams" },
+  { slug: "products-cli", eyebrow: "Datus agent", title: "The open-source data CLI for your terminal",
+    subtitle: "Generates Apache Ossie semantic models from your schema and SQL history. Apache-2.0." },
+  { slug: "products-studio", eyebrow: "Datus Studio", title: "The commercial context-aware co-pilot",
+    subtitle: "Humans, BI and agents drive the whole stack in natural language." },
+  { slug: "products-enterprise", eyebrow: "Enterprise", title: "Governed context for enterprise agent teams",
+    subtitle: "SSO, RBAC, SQL policy and private / VPC deployment on the warehouse you own." },
   { slug: "products-vscode", eyebrow: "VS Code", title: "A data agent and context in your editor" },
   { slug: "blog-index", eyebrow: "Blog", title: "AI-native data engineering",
     subtitle: "Essays and guides on data agents, semantic layers, and evolvable context." },
   { slug: "blog-post", eyebrow: "Blog", title: "Datus Blog",
-    subtitle: "Essays and guides from the team building the data engineering agent." },
-  { slug: "osi-field-mapping", eyebrow: "OSI Field Mapping", title: "Eight semantic layers, one OSI spec",
+    subtitle: "Essays and guides from the team building the enterprise data context layer." },
+  { slug: "osi-field-mapping", eyebrow: "Apache Ossie", title: "Eight semantic layers, one Apache Ossie spec",
     subtitle: "MetricFlow, Cube, LookML, AtScale, Snowflake, GoodData, Power BI and Databricks — mapped field by field." },
-  { slug: "tools-osi-playground", eyebrow: "OSI Playground", title: "MetricFlow to OSI, in your browser",
-    subtitle: "Validate, convert and diff MetricFlow YAML against the Open Semantic Interchange spec." },
+  { slug: "tools-osi-playground", eyebrow: "Apache Ossie Playground", title: "MetricFlow to Apache Ossie, in your browser",
+    subtitle: "Validate, convert and diff MetricFlow YAML against the Apache Ossie (OSI) spec." },
 ];
 
 const qs = (c) =>

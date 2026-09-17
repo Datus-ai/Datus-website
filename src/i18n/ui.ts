@@ -45,6 +45,8 @@ export type UiMessages = {
   products: {
     cli: string;
     cliDesc: string;
+    dosi: string;
+    dosiDesc: string;
     vscode: string;
     vscodeDesc: string;
     studio: string;
@@ -170,12 +172,14 @@ export const UI: Record<Locale, UiMessages> = {
       rights: "DatusAI, Inc.",
     },
     products: {
-      cli: "Datus CLI",
-      cliDesc: "Run the modern data stack from your terminal.",
+      cli: "Datus agent",
+      cliDesc: "Open source — generates OSI models and runs the work.",
+      dosi: "Dosi engine",
+      dosiDesc: "Compiles OSI to native SQL for 16 dialects. Free to download.",
       vscode: "VS Code Extension",
       vscodeDesc: "Bring context and agents into your editor.",
       studio: "Datus Studio",
-      studioDesc: "The easiest way to start — free, no setup.",
+      studioDesc: "The commercial context-aware co-pilot.",
       enterprise: "Enterprise",
       enterpriseDesc: "Shared context, governance, long-running agents.",
       allIntegrations: "All Integrations",
@@ -294,12 +298,14 @@ export const UI: Record<Locale, UiMessages> = {
       rights: "DatusAI, Inc.",
     },
     products: {
-      cli: "Datus CLI",
-      cliDesc: "在终端里跑通整个 modern data stack。",
+      cli: "Datus agent",
+      cliDesc: "开源——生成 OSI 模型并执行工作。",
+      dosi: "Dosi 引擎",
+      dosiDesc: "把 OSI 编译成 16 种方言的原生 SQL，可免费下载。",
       vscode: "VS Code 插件",
       vscodeDesc: "把上下文和 Agent 带进你的编辑器。",
       studio: "Datus Studio",
-      studioDesc: "最省事的上手方式——免费、免部署。",
+      studioDesc: "商业化的上下文感知 co-pilot。",
       enterprise: "企业版",
       enterpriseDesc: "共享上下文、治理能力、长时运行 Agent。",
       allIntegrations: "全部集成",

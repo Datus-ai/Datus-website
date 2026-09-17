@@ -23,21 +23,21 @@ export type PageMeta = {
 
 export const ZH_PAGE_META: Record<string, PageMeta> = {
   "/": {
-    title: "Datus — 开源的数据工程 Agent",
+    title: "Datus — 企业数据上下文层",
     description:
-      "Datus 是开源的数据工程 Agent：做规划、写 SQL、上线数据管道，并持续监控你的数仓、数据目录与 BI。",
-    ogTitle: "Datus — 开源的数据工程 Agent",
+      "Datus 把你已有的数仓变成一层经治理的数据上下文层——一套 Apache Ossie 语义层与本体，几天内上线，让企业数据 Agent 可以信任。",
+    ogTitle: "Datus — 企业数据上下文层",
     ogDescription:
-      "Datus 是开源的数据工程 Agent：做规划、写 SQL、上线数据管道，并持续监控你的数仓、数据目录与 BI。",
+      "Datus 把你已有的数仓变成一层经治理的数据上下文层——一套 Apache Ossie 语义层与本体，几天内上线，让企业数据 Agent 可以信任。",
   },
   "/products/cli/": {
-    title: "Datus CLI — 终端里的开源数据工程 Agent",
+    title: "Datus agent — 终端里的开源数据 CLI",
     description:
-      "开源的 Datus CLI 把数据工程 Agent 装进终端——自带数仓与模型，构建可演进的上下文引擎，生成经过校验的 SQL。Apache-2.0 许可。",
-    ogTitle: "Datus CLI — 开源的数据工程 Agent",
+      "开源的 Datus agent（Datus CLI）跑在终端里——读取表结构与 SQL 历史生成 OSI 语义模型，自带数仓与模型，生成经过校验的 SQL。Apache-2.0 许可。",
+    ogTitle: "Datus agent — 开源数据 CLI",
     ogDescription:
-      "在终端里运行数据工程 Agent——你的数仓、你的模型、你的上下文。Apache-2.0 许可。",
-    twitterDescription: "在终端里运行数据工程 Agent——你的数仓、你的模型、你的上下文。",
+      "在终端里运行 Datus agent——生成 OSI 语义模型，你的数仓、你的模型、你的上下文。Apache-2.0 许可。",
+    twitterDescription: "在终端里运行 Datus agent——你的数仓、你的模型、你的上下文。",
   },
   "/products/vscode/": {
     title: "Datus for VS Code — 编辑器里的数据 Agent 与上下文",
