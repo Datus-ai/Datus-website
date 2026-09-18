@@ -25,6 +25,7 @@ export type UiMessages = {
     getStartedFree: string;
     switchTo: string;
     switchAria: string;
+    language: string;
   };
   footer: {
     tagline: string;
@@ -152,7 +153,8 @@ export const UI: Record<Locale, UiMessages> = {
       getStarted: "Get started",
       getStartedFree: "Get started — free",
       switchTo: "中文",
-      switchAria: "Switch to Chinese",
+      switchAria: "Change language",
+      language: "Language",
     },
     footer: {
       tagline:
@@ -278,7 +280,8 @@ export const UI: Record<Locale, UiMessages> = {
       getStarted: "开始使用",
       getStartedFree: "免费开始使用",
       switchTo: "English",
-      switchAria: "切换到英文",
+      switchAria: "切换语言",
+      language: "语言",
     },
     footer: {
       tagline:
