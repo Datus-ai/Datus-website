@@ -358,7 +358,9 @@ body {
   font-size: 13.5px;
   font-weight: 600;
 }
+.nav-lang { background: none; border: 0; cursor: pointer; font-family: inherit; }
 .nav-lang:hover { color: #fff; background: rgba(255, 255, 255, 0.04); }
+.nav-lang[aria-expanded="true"] { color: #fff; background: rgba(255, 255, 255, 0.04); }
 .nav-lang svg { opacity: 0.7; }
 .nav-lang--mobile {
   justify-content: center;
@@ -366,6 +368,58 @@ body {
   border: 1px solid var(--line-strong);
   height: 44px;
   font-size: 15px;
+}
+
+/* Language switcher popup — a globe button that reveals the locale list on
+   click. Reuses the nav dropdown surface (.nav-dd__menu) but is click-driven
+   (shown via .nav-lang-dd.open) and right-aligned under the icon. */
+.nav-lang-dd { position: relative; display: inline-flex; }
+.nav-lang__menu {
+  right: 0;
+  left: auto;
+  min-width: 168px;
+}
+.nav-lang-dd.open .nav-lang__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-lang__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-dim);
+  transition: background 0.14s ease, color 0.14s ease;
+}
+.nav-lang__item:hover { background: var(--brand-soft); color: var(--ink); }
+.nav-lang__item[aria-current="true"] { color: var(--ink); }
+.nav-lang__item svg { color: var(--brand-bright); opacity: 1; }
+
+/* Mobile burger menu: options render inline as a row, not a popup. */
+.nav-lang-dd--mobile { flex-direction: column; align-items: stretch; margin-top: 16px; gap: 8px; }
+.nav-lang__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.nav-lang__row { display: flex; gap: 8px; }
+.nav-lang__row .nav-lang__item {
+  flex: 1;
+  justify-content: center;
+  border: 1px solid var(--line-strong);
+  height: 44px;
+  font-size: 15px;
+}
+.nav-lang__row .nav-lang__item[aria-current="true"] {
+  border-color: var(--brand-bright);
+  background: var(--brand-soft);
 }
 
 .site-nav__burger {
@@ -537,7 +591,8 @@ body {
   .site-nav__links { display: none; }
   .site-nav__burger { display: inline-flex; }
   /* The header copy moves into the burger menu (.nav-lang--mobile). */
-  .site-nav__inner > .nav-lang { display: none; }
+  .site-nav__inner > .nav-lang,
+  .site-nav__inner > .nav-lang-dd { display: none; }
   .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .hero-grid { grid-template-columns: 1fr !important; }
 

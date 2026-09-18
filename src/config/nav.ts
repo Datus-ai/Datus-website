@@ -9,6 +9,8 @@ export const STUDIO_URL =
   "https://studio.datus.ai/overview?utm_source=datus.ai&utm_medium=nav&utm_campaign=get_started";
 
 export const DOCS_URL = "https://docs.datus.ai";
+/** Dosi engine lives on its own subdomain; the nav links straight out to it. */
+export const DOSI_URL = "https://dosi.datus.ai";
 export const SLACK_URL =
   "https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg";
 export const CONTACT_EMAIL = "contact@datus.ai";
@@ -33,11 +35,15 @@ export interface NavItem {
 
 export function productsNav(locale: Locale): NavLink[] {
   const t = UI[locale].products;
+  // Open core, commercial studio: Studio (commercial) sits on top of the
+  // open-source Datus agent and the Dosi engine. Dosi has its own subdomain, so
+  // it links straight out. Enterprise still has a page but is folded into
+  // Studio / Pricing rather than shown as a top-line product.
   return [
-    { label: t.cli, href: "/products/cli/", description: t.cliDesc },
-    { label: t.vscode, href: "/products/vscode/", description: t.vscodeDesc },
     { label: t.studio, href: "/products/studio/", description: t.studioDesc },
-    { label: t.enterprise, href: "/products/enterprise/", description: t.enterpriseDesc },
+    { label: t.cli, href: "/products/cli/", description: t.cliDesc },
+    { label: t.dosi, href: DOSI_URL, external: true, description: t.dosiDesc },
+    { label: t.vscode, href: "/products/vscode/", description: t.vscodeDesc },
   ];
 }
 

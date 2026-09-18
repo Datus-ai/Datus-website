@@ -101,6 +101,7 @@ function Hero({ t }: { t: HomeCopy }) {
                   the accent phrase, Chinese runs the two together. */}
               {t.hero.titleLead}
               <span className="grad-text">{t.hero.titleAccent}</span>
+              {t.hero.titleTail}
             </h1>
             <p className="lead" style={{ maxWidth: 560 }}>
               {t.hero.lead}
