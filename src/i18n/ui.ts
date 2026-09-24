@@ -285,7 +285,7 @@ export const UI: Record<Locale, UiMessages> = {
     },
     footer: {
       tagline:
-        "开源的数据工程 Agent，内置可演进的上下文引擎——用自然语言完成可治理、可上生产的数据工作。",
+        "开源的数据工程 Agent，内置可演进的上下文引擎，用自然语言完成可治理、可上生产的数据工作。",
       products: "产品",
       resources: "资源",
       company: "公司",
@@ -302,7 +302,7 @@ export const UI: Record<Locale, UiMessages> = {
     },
     products: {
       cli: "Datus agent",
-      cliDesc: "开源——生成 OSI 模型并执行工作。",
+      cliDesc: "开源，生成 OSI 模型、执行任务。",
       dosi: "Dosi 引擎",
       dosiDesc: "把 OSI 编译成 16 种方言的原生 SQL，可免费下载。",
       vscode: "VS Code 插件",
