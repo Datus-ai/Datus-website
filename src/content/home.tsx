@@ -383,9 +383,9 @@ const EN: HomeCopy = {
 const ZH: HomeCopy = {
   hero: {
     eyebrow: "企业数据上下文层 · Apache Ossie",
-    titleLead: "",
-    titleAccent: "数据上下文层",
-    titleTail: "，几天就能用。",
+    titleLead: "快速构建 ",
+    titleAccent: "AI 原生语义层",
+    titleTail: "",
     lead: (
       <>
         几乎每家企业都被要求落地数据 Agent，能真正交付的却寥寥无几。Datus 直接在你
