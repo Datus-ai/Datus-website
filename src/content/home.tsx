@@ -142,7 +142,6 @@ const EN: HomeCopy = {
     "Define the churn metric once",
     "Answer: Q3 net revenue by region",
     "Expose the semantic layer over MCP",
-    "Ship the stalled agent pilot to production",
   ],
   proof: [
     { value: "", label: "GitHub stars" },
@@ -383,26 +382,26 @@ const EN: HomeCopy = {
 const ZH: HomeCopy = {
   hero: {
     eyebrow: "企业数据上下文层 · Apache Ossie",
-    titleLead: "几天内跑通一层",
-    titleAccent: "数据上下文层",
-    titleTail: "。",
+    titleLead: "快速构建 ",
+    titleAccent: "AI 原生语义层",
+    titleTail: "",
     lead: (
       <>
-        每家企业都有数据 Agent 的落地任务，但很少有人能真正交付。Datus 把你
-        <A href="/databases/">已有的数仓</A>变成一层经过治理的数据上下文层——一套{" "}
-        <strong>Apache Ossie</strong> 语义层与本体，而不是通用记忆。这是你的数据 Agent
-        可以信任的上下文，几天内上线，并随每一次查询持续演进。
+        几乎每家企业都被要求落地数据 Agent，能真正交付的却寥寥无几。Datus 直接在你
+        <A href="/databases/">已有的数仓</A>上，建起一层受治理的数据上下文层。它是一套{" "}
+        <strong>Apache Ossie</strong> 语义层与本体，而不是通用记忆。这份上下文，你的数据 Agent
+        才真正信得过：几天就能上线，还会随每一次查询不断演进。
       </>
     ),
     ctaPrimary: "免费开始使用",
     ctaGithub: "在 GitHub 上 Star",
-    contact: "要在企业里落地？联系我们",
+    contact: "想在企业里落地？联系我们",
     byoWarehouse: <>自带<A href="/databases/">数仓</A></>,
     byoModel: <>自带<A href="/models/">模型</A></>,
   },
   terminal: {
     connected: "↳ 读取表结构 · SQL 历史 · 血缘 → 生成 OSI 语义模型",
-    ready: "✓ Apache Ossie 上下文层就绪——本体、指标、经治理的 SQL",
+    ready: "✓ Apache Ossie 上下文层就绪：本体、指标、受治理的 SQL",
     pipeline: "编译 → 校验 → 治理 → 服务",
     captured: " · 由 Dosi 引擎编译，覆盖 16 种方言",
     selfEvolve: "↻ 持续演进：从每一次查询中打磨本体与指标",
@@ -410,42 +409,41 @@ const ZH: HomeCopy = {
   },
   prompts: [
     "梳理我们的营收本体",
-    "把流失率指标定义一次",
+    "流失率指标只定义一次",
     "回答：Q3 各地区净营收",
-    "通过 MCP 暴露语义层",
-    "把停滞的 agent pilot 推上生产",
+    "把语义层暴露到 MCP",
   ],
   proof: [
     { value: "", label: "GitHub Star" },
     { value: "Apache Ossie", label: "开放的语义 + 本体标准" },
     { value: "16 种方言", label: "一份 OSI 规范，原生 SQL" },
-    { value: "以天计，非以季度计", label: "连上即得可用的上下文层" },
+    { value: "几天，而非几个季度", label: "接上就有可用的上下文层" },
   ],
   problem: {
     eyebrow: "落地难题",
-    heading: "每家企业都有数据 Agent 的落地任务，真正能交付的却很少。",
-    lead: "卡点不在模型，而在于几十年积累的杂乱、割裂的数据——没有 Agent 能独自安全地在其中穿行，于是 pilot 停滞，账单照样到来。Datus 为 Agent 铺出一条经过治理的路径。",
+    heading: "每家企业都被要求落地数据 Agent，真正能交付的却很少。",
+    lead: "真正的卡点不是模型，而是几十年沉淀下来的杂乱、割裂的数据。没有哪个 Agent 能独自在里面安全穿行，于是 pilot 迟迟推不动，账单却照样寄来。Datus 为 Agent 铺出一条受治理的通路。",
     colProblem: "没有上下文层",
     colDatus: "有了 Datus",
     rows: [
       {
-        problem: "Agent 靠猜来拼 join 和口径，然后一本正经地答错。",
+        problem: "Agent 全靠猜来拼 join、凑口径，然后一本正经地答错。",
         solution:
-          "Agent 通过经治理的 Apache Ossie 语义层与本体来查询——没有编造的空间。",
+          "Agent 只能通过受治理的 Apache Ossie 语义层与本体查询，没有胡编的余地。",
       },
       {
-        problem: "彻底重构数据要花上几个季度，pilot 在真实数据上就死掉了。",
+        problem: "把数据彻底重构一遍要好几个季度，pilot 撑不到真实数据就先夭折了。",
         solution: (
           <>
-            快速起步、零重构——连上你<A href="/databases/">已有的数仓</A>，几天内就能得到一层可用的数据上下文层。
+            起步快、零重构。接上你<A href="/databases/">已有的数仓</A>，几天就能拥有可用的数据上下文层。
           </>
         ),
       },
       {
-        problem: "每个团队对同一个指标各有各的定义，数字永远对不上。",
+        problem: "同一个指标，每个团队各有各的算法，数字永远对不齐。",
         solution: (
           <>
-            为<A href="/integrations/">数据生产者、消费者与 Agent</A>提供同一份经治理的口径——一份真源，多个入口。
+            让<A href="/integrations/">数据的生产者、消费者和 Agent</A>共用同一份受治理的口径。一处定义，处处一致。
           </>
         ),
       },
@@ -456,8 +454,8 @@ const ZH: HomeCopy = {
     heading: "开放内核，商业 Studio",
     lead: (
       <>
-        一套基于开放标准的栈：顶层是商业化的 <A href="/products/studio/">Studio</A>，中层是开源 Agent，
-        底层是 Apache Ossie 标准与 Dosi 引擎。
+        一套基于开放标准的技术栈：上层是商业化的 <A href="/products/studio/">Studio</A>，中层是开源 Agent，
+        底层是 Apache Ossie 标准和 Dosi 引擎。
       </>
     ),
     items: [
@@ -468,7 +466,7 @@ const ZH: HomeCopy = {
       },
       {
         name: "Datus agent",
-        caption: "开源 · 生成模型、执行工作",
+        caption: "开源 · 生成模型、执行任务",
         chips: ["OSI 模型", "text-to-SQL", "CLI · SDK", "Apache 2.0"],
       },
       {
@@ -483,8 +481,8 @@ const ZH: HomeCopy = {
     heading: "从原始数仓，到 Agent 可信任的上下文层",
     lead: (
       <>
-        Datus 读取你已有的一切，把它编译成一层经治理的{" "}
-        <A href="/tools/osi-playground/">Apache Ossie 上下文层</A>，再从真实使用中持续打磨。
+        Datus 读取你手上已有的一切，编译成一层受治理的{" "}
+        <A href="/tools/osi-playground/">Apache Ossie 上下文层</A>，再从真实使用中不断打磨。
       </>
     ),
     phases: [
@@ -501,23 +499,23 @@ const ZH: HomeCopy = {
   useCases: {
     eyebrow: "切入点",
     heading: "数据上下文层从哪里开始回本",
-    lead: "从一个经治理的域开始，用一个下午跑通它，然后一个域一个域地扩展。",
+    lead: "先从一个治理好的业务域入手，一个下午就能验证，再一个域一个域地铺开。",
     items: [
       {
         title: "把停滞的 agent pilot 推上生产",
         body: (
           <>
-            Demo 在样本数据上跑通，一到真实数据就死掉。Datus 在真实数仓之上给这个 pilot
-            一层经治理的上下文层，让它终于能上线。
+            Demo 在样本数据上好好的，一碰真实数据就崩。Datus 在真实数仓之上给这个 pilot
+            铺一层受治理的上下文层，它才终于能上线。
           </>
         ),
       },
       {
-        title: "在割裂的 BI 版图上统一一份口径",
+        title: "在四分五裂的 BI 版图里统一口径",
         body: (
           <>
-            同一个指标、三种定义、两个平台。Datus 编译出一套
-            <A href="/osi-field-mapping/">Apache Ossie 语义层</A>，让 BI、人与 Agent 读到同一份口径。
+            同一个指标，三种定义，散在两个平台。Datus 编译出一套
+            <A href="/osi-field-mapping/">Apache Ossie 语义层</A>，BI、人和 Agent 读的都是同一份。
           </>
         ),
       },
@@ -525,7 +523,7 @@ const ZH: HomeCopy = {
         title: "让 Agent 在本体上推理，而不是在裸表上猜",
         body: (
           <>
-            本体教会 Agent 各个概念的含义以及它们如何关联，于是它在业务里导航，而不是靠猜来拼 join。
+            本体告诉 Agent 每个概念是什么、彼此如何关联，于是它能在业务里找路，而不是靠猜去拼 join。
           </>
         ),
       },
@@ -533,8 +531,8 @@ const ZH: HomeCopy = {
         title: "让 Agent 通过 MCP 调用你的语义层",
         body: (
           <>
-            通过<A href="/mcp/">原生 MCP</A> 把经治理的上下文暴露出去，让 Claude、Cursor
-            或你自己的 Agent 通过口径来查询，而不是裸 SQL。
+            用<A href="/mcp/">原生 MCP</A> 把受治理的上下文开放出去，Claude、Cursor
+            或你自己的 Agent 都按口径查询，而不是直接写裸 SQL。
           </>
         ),
       },
@@ -542,16 +540,16 @@ const ZH: HomeCopy = {
   },
   surfaces: {
     eyebrow: "接口",
-    heading: "同一个引擎，同一份答案——你团队工作的每一处",
-    lead: "CLI、带 Apache Arrow 的 REST、原生 MCP 与 Python SDK。一层数据上下文层，覆盖所有入口——人、BI 与 Agent 得到同一份经治理的答案。",
+    heading: "同一个引擎，同一份答案，覆盖团队工作的每一处",
+    lead: "CLI、基于 Apache Arrow 的 REST、原生 MCP，还有 Python SDK。一层数据上下文层接通所有入口，人、BI 和 Agent 拿到的都是同一份受治理的答案。",
     items: [
       {
         id: "studio",
         name: "Studio",
         tagline: (
           <>
-            商业化的<A href="/products/studio/">上下文感知 co-pilot</A>，团队用自然语言驱动整栈——
-            映射实体、定义指标、回答问题，全部锚定在你经治理的上下文层之上。
+            商业版的<A href="/products/studio/">上下文感知 co-pilot</A>。团队用自然语言驱动整套技术栈，
+            映射实体、定义指标、回答问题，全都落在你受治理的上下文层之上。
           </>
         ),
         start: "open studio.datus.ai",
@@ -561,8 +559,8 @@ const ZH: HomeCopy = {
         name: "Datus agent",
         tagline: (
           <>
-            开源的 <A href="/products/cli/">Datus agent</A> 读取你的表结构与 SQL 历史，
-            无需手写 YAML 就能生成 OSI 语义模型，再处理数据集、text-to-SQL 与调度——全部基于 Apache 2.0。
+            开源的 <A href="/products/cli/">Datus agent</A> 读取你的表结构和 SQL 历史，
+            不用手写 YAML 就能生成 OSI 语义模型，再一手包办数据集、text-to-SQL 和调度，全部基于 Apache 2.0。
           </>
         ),
         start: "pip install datus-agent",
@@ -572,8 +570,8 @@ const ZH: HomeCopy = {
         name: "Chatbot",
         tagline: (
           <>
-            把上下文层嵌进 Slack、飞书或 Microsoft Teams，让每个频道都变成
-            <A href="/chatbot/">自助数据入口</A>——给出的答案对齐经治理的口径，而不是一次性的 SQL。
+            把上下文层嵌进 Slack、飞书或 Microsoft Teams，每个群都变成
+            <A href="/chatbot/">自助取数入口</A>，答案对齐统一治理的口径，而不是临时拼的 SQL。
           </>
         ),
         start: "/datus in Slack",
@@ -583,8 +581,8 @@ const ZH: HomeCopy = {
         name: "MCP Server",
         tagline: (
           <>
-            通过 <A href="/mcp/">Model Context Protocol</A> 把整套经治理的上下文暴露出去。
-            接进 Claude、Cursor 或 Windsurf，让任何 Agent 都能在你的本体与指标上推理——同一个引擎，同一份答案。
+            通过 <A href="/mcp/">Model Context Protocol</A> 把整套受治理的上下文开放出去。
+            接进 Claude、Cursor 或 Windsurf，任何 Agent 都能基于你的本体和指标推理，同一个引擎，同一份答案。
           </>
         ),
         start: "datus mcp serve",
@@ -594,7 +592,7 @@ const ZH: HomeCopy = {
   stack: {
     eyebrow: "集成",
     heading: "适配你已经在跑的 modern data stack",
-    lead: "把 Datus 指向你的数仓、数据目录、语义层与 BI。Dosi 引擎把 OSI 编译成 16 种数仓方言的原生 SQL，什么都不用迁。",
+    lead: "让 Datus 对接你的数仓、数据目录、语义层和 BI。Dosi 引擎把 OSI 编译成 16 种数仓方言的原生 SQL，什么都不用迁移。",
     model: "模型",
     byo: "自带",
     groups: ["数仓", "建模", "语义层", "数据目录", "BI", "编排调度"],
@@ -606,27 +604,27 @@ const ZH: HomeCopy = {
     items: [
       {
         q: "什么是数据上下文层？",
-        a: "数据上下文层是直接建在你数仓之上的、经过治理的语义层与本体：它告诉 AI 你的实体、指标与关系分别意味着什么，并给出干净、经治理的度量路径。和通用记忆存储不同，它锚定在数据本身之上——这正是企业数据 Agent 想答对而不是靠猜 join 与口径所需要的上下文。",
+        a: "数据上下文层直接建在你的数仓之上，是一套受治理的语义层与本体。它告诉 AI 你的实体、指标和关系分别代表什么，并给出干净、受治理的度量路径。和通用记忆存储不同，它扎根于数据本身，这正是企业数据 Agent 想答对、而不是靠猜 join 和口径时，真正需要的上下文。",
       },
       {
         q: "为什么没有它，企业的 Agent 落地任务就会停滞？",
-        a: "卡点很少是模型，而是几十年积累的杂乱、割裂的数据——没有 LLM 能独自安全地在其中穿行，于是 Demo 在样本数据上跑通、一到真实数据就死掉。Datus 连上你已有的数仓，几天内编译出一层经治理的上下文层，Agent 得到贯穿业务、经治理的清晰路径，pilot 才能走到生产。",
+        a: "卡点很少出在模型，而在于几十年攒下的杂乱、割裂的数据。没有 LLM 能独自在里面安全穿行，于是 Demo 在样本数据上跑得好好的，一到真实数据就崩。Datus 接上你已有的数仓，几天就编译出一层受治理的上下文层，Agent 拿到一条贯穿业务的清晰通路，pilot 才走得到生产。",
       },
       {
         q: "什么是 Apache Ossie（OSI），Datus 为什么建在它之上？",
-        a: "OSI（Open Semantic Interchange），现为 Apache Ossie，是定义本体与语义模型的开放标准——已有包括 Snowflake、Databricks、Salesforce 与 dbt Labs 在内的 50 多家组织参与。Datus 用 OSI 规范来定义你的模型，而不是专有格式，因此你的上下文层可移植、不绑定厂商。规范对所有人开放；我们的引擎和我们在其中的位置，才是产品。",
+        a: "OSI（Open Semantic Interchange）现在叫 Apache Ossie，是定义本体与语义模型的开放标准，已有 Snowflake、Databricks、Salesforce、dbt Labs 等 50 多家组织参与。Datus 用 OSI 规范定义你的模型，而不是专有格式，因此你的上下文层可以自由迁移、不被厂商绑定。规范对所有人开放；真正的产品，是我们的引擎，以及我们在这套标准里的位置。",
       },
       {
         q: "什么是 Dosi 引擎？",
-        a: "Dosi 是一个 Rust 引擎，把 OSI YAML 编译成 16 种数仓方言的原生 SQL，配合零拷贝 Arrow 流式传输。它正在走向开源，目前已可免费下载使用——CLI、REST、MCP 与 SDK 背后是同一个引擎、同一份答案。",
+        a: "Dosi 是一个 Rust 引擎，把 OSI YAML 编译成 16 种数仓方言的原生 SQL，还带零拷贝 Arrow 流式传输。它正在走向开源，目前已经可以免费下载使用。CLI、REST、MCP 和 SDK 背后，都是同一个引擎、同一份答案。",
       },
       {
         q: "开放内核和 Datus Studio 是什么关系？",
-        a: "开源的 Datus agent、Dosi 引擎与 Apache Ossie 模型是内核，可免费跑在你自己的数仓上。Datus Studio 是其上的商业层：一个上下文感知的 co-pilot，人、BI 与 Agent 用自然语言驱动整栈，并为企业提供 SSO、RBAC 以及私有 / VPC 部署。",
+        a: "开源的 Datus agent、Dosi 引擎和 Apache Ossie 模型构成内核，可以免费跑在你自己的数仓上。Datus Studio 是架在上面的商业层：一个上下文感知的 co-pilot，人、BI 和 Agent 都用自然语言驱动整套技术栈，还为企业提供 SSO、RBAC 以及私有 / VPC 部署。",
       },
       {
         q: "Datus 和 Snowflake Cortex、Databricks Genie 或 Cube 相比如何？",
-        a: "Snowflake Semantic Views 喂给 Cortex Analyst，Databricks Metric Views 喂给 Genie，但两者互不读取——单一厂商内部的上下文到此为止。Datus 站在中立地带：在你已有的数仓之上建一套 Apache Ossie 语义层与本体，编译成 16 种方言的原生 SQL，让 Agent 通过 MCP 调用。",
+        a: "Snowflake Semantic Views 喂给 Cortex Analyst，Databricks Metric Views 喂给 Genie，可两边互不读取，上下文困在单一厂商内部就到此为止。Datus 站在中立地带：在你已有的数仓之上建起一套 Apache Ossie 语义层与本体，编译成 16 种方言的原生 SQL，让 Agent 通过 MCP 直接调用。",
       },
     ],
   },
@@ -635,7 +633,7 @@ const ZH: HomeCopy = {
     lead: (
       <>
         在浏览器里<A href="/pricing/">免费打开 Datus Studio</A>，
-        或者把开源 Agent 与 Dosi 引擎私有部署到你已有的数仓上。
+        或者把开源 Agent 和 Dosi 引擎私有部署到你已有的数仓上。
       </>
     ),
     cta: "开始使用",
