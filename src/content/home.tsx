@@ -142,7 +142,6 @@ const EN: HomeCopy = {
     "Define the churn metric once",
     "Answer: Q3 net revenue by region",
     "Expose the semantic layer over MCP",
-    "Ship the stalled agent pilot to production",
   ],
   proof: [
     { value: "", label: "GitHub stars" },
@@ -413,7 +412,6 @@ const ZH: HomeCopy = {
     "流失率指标只定义一次",
     "回答：Q3 各地区净营收",
     "把语义层暴露到 MCP",
-    "把停滞的 agent pilot 推上生产",
   ],
   proof: [
     { value: "", label: "GitHub Star" },
