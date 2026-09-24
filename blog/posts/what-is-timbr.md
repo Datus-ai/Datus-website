@@ -1,7 +1,7 @@
 ---
 title: "What Is Timbr? Ontology-Based Semantic Layer Built on SQL"
 description: "What Timbr.ai is: a SQL-native ontology over your warehouse — how it differs from Cube and AtScale, and when the extra layer is worth it."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-18
 lastmod: 2026-08-18
 head:

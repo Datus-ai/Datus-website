@@ -1,7 +1,7 @@
 ---
 title: "Introducing Datus Subagents: Specialized Workers for SQL and KPIs"
 description: "Datus 0.3 ships built-in task subagents. AskMetrics answers KPIs from governed metrics; gen_sql and explore handle SQL and schema — not one universal chat."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-17
 lastmod: 2026-08-17
 head:

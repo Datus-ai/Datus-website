@@ -1,7 +1,7 @@
 ---
 title: "What Is the Claude Data Plugin? SQL, Charts & Warehouse MCP"
 description: "What Anthropic's Data plugin is: Cowork and Claude Code workflows for SQL, charts, and dashboards — plus how it differs from Genie and Cortex Analyst."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-22
 lastmod: 2026-08-22
 head:

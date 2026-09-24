@@ -1,7 +1,7 @@
 ---
 title: "What Is Cortex Analyst? Snowflake Natural-Language SQL for BI"
 description: "What Cortex Analyst is: Snowflake's managed text-to-SQL API grounded in Semantic Views — verified queries, REST integration, and why it is not Cortex Code."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-21
 lastmod: 2026-08-21
 head:

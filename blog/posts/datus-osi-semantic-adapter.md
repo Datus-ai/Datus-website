@@ -1,7 +1,7 @@
 ---
 title: "The Datus OSI Semantic Adapter: OSI In, MetricFlow Out"
 description: "The Datus OSI (Apache Ossie) semantic adapter authors vendor-neutral YAML, validates it, and queries metrics via MetricFlow without leaking backend fields into source models."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-17
 lastmod: 2026-08-17
 head:

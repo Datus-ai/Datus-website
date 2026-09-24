@@ -1,7 +1,7 @@
 ---
 title: "Dosi vs MetricFlow: OSI-Native vs dbt-Centric Runtime"
 description: "Compare Dosi and dbt MetricFlow as execution engines: same OSI interchange can feed dbt graph runtime or OSI-native multi-dialect compile — when to use each."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-08-25
 lastmod: 2026-08-25
 head:

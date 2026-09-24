@@ -1,7 +1,7 @@
 ---
 title: "Semantic-Layer-Based Ontology: Agent Context on Apache Ossie"
 description: "A semantic-layer-based ontology starts from governed metrics and relationships, then builds entity context and concept paths for AI agents on Apache Ossie."
-author: "Kostja"
+author: "Evan Paul"
 date: 2026-09-16
 lastmod: 2026-09-16
 head:
