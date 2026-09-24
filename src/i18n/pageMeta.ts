@@ -25,10 +25,10 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "Datus — 企业数据上下文层",
     description:
-      "Datus 把你已有的数仓变成一层经治理的数据上下文层——一套 Apache Ossie 语义层与本体，几天内上线，让企业数据 Agent 可以信任。",
+      "Datus 在你已有的数仓上建起一层受治理的数据上下文层，一套 Apache Ossie 语义层与本体，几天就能上线，让企业数据 Agent 真正信得过。",
     ogTitle: "Datus — 企业数据上下文层",
     ogDescription:
-      "Datus 把你已有的数仓变成一层经治理的数据上下文层——一套 Apache Ossie 语义层与本体，几天内上线，让企业数据 Agent 可以信任。",
+      "Datus 在你已有的数仓上建起一层受治理的数据上下文层，一套 Apache Ossie 语义层与本体，几天就能上线，让企业数据 Agent 真正信得过。",
   },
   "/products/cli/": {
     title: "Datus agent — 终端里的开源数据 CLI",
