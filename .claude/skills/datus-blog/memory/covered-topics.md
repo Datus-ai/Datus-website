@@ -617,3 +617,19 @@ link (`what-is-timbr`, `what-is-ontology`, `from-chatbi-to-data-agent-what-chang
 is orphaned, because the head URL still resolves to a real page. **The old post's
 URL changed**, so it needs a GSC re-index request and its backlinks (if any) now
 land on the new article by design.
+
+### cube-semantic-layer-alternatives
+- Title: Cube.dev Alternatives: Open Semantic Models for AI Agents
+- Target keyword: cube.dev alternatives (cube alternatives, cube semantic layer alternatives, cube.dev competitors)
+- Angle: name the Cube layer you're replacing (Core / Cube Store / Cloud — Core + Store are Apache 2.0, so a Cloud-bill problem isn't a semantic-layer problem), then judge options on whether definitions can leave the tool (no merged Cube→Ossie converter; dbt has one); real "stay on Cube" section; Ossie + Dosi last, framed as running beside Cube
+- Source direction: operator-specified (Evan's Cube keyword-strategy note, reworked per Gate A to avoid a third Cube-vs-Dosi page)
+- Article type: Alternatives (first post on the template)
+- Investment Score: 4.0   Gate A: KEEP — distinct "leave Cube" intent vs cube-agentic-analytics / osi-vs-cube / dosi-with-cube; no top result covers Apache Ossie portability (Colrows' cube-alternatives page is the closest angle)
+- Audit: 84/100, grade A
+- Key sources: cube.dev/pricing; github.com/cube-js/cube; github.com/apache/ossie; docs.getdbt.com (dbt-sl, sl-cache) + getdbt.com/pricing; docs.cloud.google.com/looker/docs/sql-interface; dosi.datus.ai (install, connectors, release-notes, datus-extensions)
+- Internal links added: osi-vs-cube, cube-agentic-analytics, dbt-semantic-layer-metricflow, osi-vs-warehouse-native-semantics, apache-ossie-dosi-quickstart, dosi-with-cube, semantic-layer-tools-list-osi, open-semantic-interchange-osi; reciprocal links FROM cube-agentic-analytics and dosi-with-cube (osi-vs-cube has no Related section)
+- Glossary updated: no (no Cube term)
+- Category: Semantic Layer
+- PR: https://github.com/Datus-ai/Datus-website/pull/87   Status: open
+- Date: 2026-09-25
+- Notes: "cube alternatives" SERP collides with Cube the FP&A suite — keep "Cube.dev" / "semantic layer" in titles. Older Dosi posts say "15+ dialects"; current docs say 16 (retro-audit candidates).
