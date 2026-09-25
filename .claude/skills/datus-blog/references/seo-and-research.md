@@ -8,7 +8,9 @@ useful, accurate, experience-backed pages (E-E-A-T); thin/spun/invented content
 gets buried and drags down the whole domain.
 
 ## Research FIRST — the hard rule
-Never write from memory alone. Before drafting any post:
+Never write from memory alone. The executable version of this rule — the
+research triangle, Research Log, SERP Fit, Synthesis Statement and Source Map —
+is `research-protocol.md`. The summary:
 
 1. **Search the term** on the open web. Pull:
    - Primary/authoritative sources: official docs, specs, standards bodies, the actual vendors' own pages, release notes, reputable engineering blogs, papers.
@@ -27,7 +29,7 @@ Never write from memory alone. Before drafting any post:
 - **Internal links** — 3–6 to existing posts + the `/glossary/` cross-link; set the glossary term's `article` back to this post. Build the hub-and-spoke (link the pillar posts).
 - **Depth + tables** — long-form with ≥1 comparison table; depth is the moat.
 - **Freshness** — accurate `date`/`lastmod`; cite current sources.
-- **Canonical** — `/blog/<slug>/` (build sets it); add to `sitemap.xml`.
+- **Canonical** — `/blog/<slug>/` (build sets it); the blog sitemap is generated at build time — never hand-edit a sitemap.
 - **Differentiation** — the page must say something the current top results don't.
 
 ## What NOT to do (SEO-harmful)

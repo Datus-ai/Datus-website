@@ -1,6 +1,6 @@
 ---
 name: datus-blog
-description: Research, write, wire in, preview and PR one SEO blog post for datus.ai (the Datus-website repo) end to end, then record it so no topic is ever written twice. Use when the operator asks for a blog post — 写一篇 blog、从 /glossary 挑一个方向写文章、写一篇 SEO 博客、新增 blog post、write a blog post, add a post to /blog, publish an article on datus.ai — or asks to iterate on an existing blog PR's review feedback.
+description: Research, write, wire in, preview and PR one SEO blog post for datus.ai (the Datus-website repo) end to end, then record it so no topic is ever written twice. Use when the operator asks for a blog post — 写一篇 blog、从 /glossary 挑一个方向写文章、写一篇 SEO 博客、新增 blog post、write a blog post, add a post to /blog, publish an article on datus.ai — or asks to iterate on an existing blog PR's review feedback, or to audit / refresh already-published posts (检查已发布文章、刷新旧文章、哪些 blog 该更新).
 ---
 
 # Datus Scribe — the datus.ai SEO blog workflow
@@ -25,6 +25,9 @@ artifacts (frontmatter, commits, PR) in **English**, matching the site.
 ## 0. Load before acting (mandatory)
 
 Paths are relative to this skill directory (`.claude/skills/datus-blog/`).
+Items 1–6 load at the start of every job; items 7–11 load at the step that
+names them (don't pull them all in up front); items 12–15 only in the
+situation they describe.
 
 1. [ ] `memory/covered-topics.md` — **read before choosing any topic.** Skip
        anything already covered or a near-duplicate angle. Re-read it at the
@@ -35,20 +38,35 @@ Paths are relative to this skill directory (`.claude/skills/datus-blog/`).
 4. [ ] `references/website-overview.md` — site & blog build pipeline, commands, URLs.
 5. [ ] `references/product-positioning.md` — what Datus is + canonical vocabulary.
 6. [ ] `references/glossary-directions.md` — candidate topics + how to choose.
-7. [ ] `references/porting-external-articles.md` — **only when porting an
+7. [ ] `references/topic-selection.md` — **Step 1.** Gate A (KEEP / MERGE /
+       STOP), the Investment Score, the content-graph hubs, the slug gate.
+8. [ ] `references/article-types.md` — **Steps 1 + 3.** The 8 article types:
+       routing, length floors, Datus-share caps, skeletons, type gates.
+9. [ ] `references/research-protocol.md` — **Step 2.** Research triangle,
+       Research Log, SERP Fit, Synthesis Statement, Source Map + claim levels.
+10. [ ] `references/writing-quality.md` — **Step 3.** Extractability (BLUF),
+       filler list, paragraph rhythm, link placement, how to mention Datus.
+11. [ ] `references/pre-publish-audit.md` + `tools/check-post.mjs` — **Step
+       5.5.** P0 gates G1–G7 and the 10-dimension score; publish-ready ≥ 70.
+12. [ ] `references/retro-audit.md` — **only in refresh mode** (auditing or
+       refreshing posts that are already live).
+13. [ ] `references/porting-external-articles.md` — **only when porting an
        already-published article** (Medium / WeChat / an operator draft): how to
        fetch the real source, pull and compress its images, re-check its facts —
        and how much of the author's body copy you may touch (answer: almost
        none).
-8. [ ] `references/fetching-wechat-articles.md` — **only when the source is a
+14. [ ] `references/fetching-wechat-articles.md` — **only when the source is a
        `mp.weixin.qq.com/s/...` link.** WebFetch returns a 200 decoy page there
        ("环境异常"), so read this before concluding an article is unavailable.
-9. [ ] `references/translating-figures.md` — **whenever a ported article's
+15. [ ] `references/translating-figures.md` — **whenever a ported article's
        diagrams carry non-English labels.** How to redraw a figure in English
        (`blog/figures/**` → `npm run figures:build`), and which images must
        never be redrawn.
 
 `memory/README.md` holds the record format for step 7 of the workflow.
+
+**Byline:** every post you draft is `author: "Evan Paul"` — never `Kostja` or an
+invented name (`references/blog-standard.md` §1).
 
 ## Principles (these override convenience)
 
@@ -142,39 +160,55 @@ git checkout main && git pull
 > 4–8 are unchanged.
 
 ### Step 1 — Choose a direction (and check it's not covered)
+Follow `references/topic-selection.md`.
 1. Open `src/glossary/glossaryData.ts`. Prefer a term with **no `article:` link
-   yet** (an "open direction" — see `references/glossary-directions.md`).
-2. Open `memory/covered-topics.md`. **Skip anything already covered** or a
-   near-duplicate angle. If the best term is partly covered, either pick another
-   or define a genuinely new angle and note the difference.
-3. Evaluate 2–3 candidates on: search value (is it a term people search?), fit
-   with Datus's story, and whitespace (can we say something the current top
-   results don't?).
-4. Announce the pick to the operator in 中文 with a one-line rationale. If two
-   are equally good, ask; otherwise proceed.
+   yet** (an "open direction" — see `references/glossary-directions.md`). If the
+   operator named a topic, start from that instead.
+2. Open `memory/covered-topics.md` and `ls blog/posts/`. **Skip anything already
+   covered** or a near-duplicate angle — compare titles, not only slugs.
+3. For 2–3 candidates: name the **ArticleType** (`references/article-types.md`
+   §1) and the hub / spoke role, run **Gate A** (KEEP / MERGE / STOP), then the
+   **Investment Score** (five factors, keep ≥ 4.0). MERGE means improving an
+   existing post (refresh mode) or writing a narrower spoke — never a second
+   full definition.
+4. Pass the **slug gate**: evergreen (no year), intent-first, unique.
+5. Announce the pick to the operator in 中文 using the template in
+   `topic-selection.md` §5 (direction, type, Gate A, score, slug, one-line
+   rationale). If two are equally good, ask; otherwise proceed.
 
 ### Step 2 — Research FIRST (never skip, never invent)
-Before drafting, gather **current, authoritative** material (see
-`references/seo-and-research.md`):
-- Web-search the term: official docs/specs, primary sources, credible 2025–2026
-  articles, the actual vendors involved.
-- Read enough to understand the concept deeply, its real trade-offs, the current
-  state of the art, and how competitors frame it.
-- Collect the exact facts/numbers/quotes you'll cite, each with a real source URL
-  (these become `rel="nofollow noopener"` external links).
-- Note the current top-ranking pages for the keyword and how to beat them
-  (depth, honesty, a table they lack, a failure-mode walkthrough).
+Follow `references/research-protocol.md`. Before drafting:
+- **R1 project truth** — what Datus actually ships (`product-positioning.md`,
+  the homepage copy in `src/content/home.tsx`, docs.datus.ai, the repo) and how
+  the cluster's existing posts already cover the topic.
+- **R2 search** — the primary keyword + 2–3 variants; People-Also-Ask.
+- **R3 fetch and read** — the top 3–5 ranking pages in full, plus the primary
+  sources behind every claim you'll cite.
+- Produce the **Research Log**, **SERP Fit** (with a 40–60-word snippet-ready
+  definition) and the **Synthesis Statement** — what the SERP misses, a
+  one-line thesis none of the top 5 states, and what changes for the reader.
+  Pass Information Gain IG-1…IG-3.
+- Start the **Source Map**: every claim gets a row with its level (P0 numbers /
+  competitor status / Datus capabilities need an official URL + "as of" date),
+  URL, check date and confidence.
 - If you cannot verify a claim, do not make it. Hedge honestly.
+- **Gate 0R** (`research-protocol.md` §6) must pass before any drafting. These
+  artifacts go into the PR description, not the repo.
 
 ### Step 3 — Write the post
-Create `blog/posts/<slug>.md` following `references/blog-standard.md` exactly:
-- Correct frontmatter (title, description 150–160 chars, author, date, lastmod,
-  `head` with keywords + OG/Twitter + canonical).
+Create `blog/posts/<slug>.md` following `references/blog-standard.md` exactly,
+with the skeleton for its ArticleType (`references/article-types.md` §3) and the
+checks in `references/writing-quality.md` (BLUF in three places, one claim per
+paragraph, paragraphs over lists, link placement, Datus share within the type's
+cap):
+- Correct frontmatter (title, description 150–160 chars, `author: "Evan Paul"`,
+  date, lastmod, `head` with keywords + OG/Twitter + canonical). No `category` /
+  `secondaryCategory` / `slug` fields — categories live in `build-blog.mjs`.
 - House structure for the post type (glossary / comparison / thought-leadership
   / how-to — templates in the standard).
 - Single H1 = title; `## TL;DR` as the first block; bold one-sentence definition
   opener; numbered `##` sections; tables; `## Frequently asked questions` (≥2
-  `###` Q&A → auto FAQPage JSON-LD); `## Related articles`.
+  `###` Q&A → auto FAQPage JSON-LD; 4–6 is the target); `## Related articles`.
   **No Disclosure blocks** — see `references/blog-standard.md` §2.
 - House voice & canonical vocabulary (`references/product-positioning.md`).
   Educational first, not a sales pitch.
@@ -212,6 +246,16 @@ grep -q "https://datus.ai/blog/<slug>/" dist/blog/sitemap.xml && echo "✓ in bl
 grep -q "/blog/sitemap.xml" dist/sitemap.xml && echo "✓ index references blog sitemap"
 ```
 
+### Step 5.5 — Pre-publish audit (before the PR)
+```bash
+node .claude/skills/datus-blog/tools/check-post.mjs <slug> --type <ArticleType> --keyword "<primary keyword>"
+```
+Fix every `FAIL`; resolve or justify every `WARN`. Then run
+`references/pre-publish-audit.md` on the rendered page and the source: P0 gates
+G1–G7 + the type gate, then the 10-dimension score. **Publish-ready = P0 PASS
+and ≥ 70.** Below that, go back to Step 3 (or Step 2 if the fix needs research),
+rebuild, re-preview, re-score. Keep the audit report for the PR body.
+
 ### Step 6 — Open a PR
 ```bash
 git checkout -b blog/<slug>
@@ -222,16 +266,22 @@ git add blog/posts/<slug>.md scripts/build-blog.mjs src/glossary/glossaryData.ts
 #   Note: the memory record ships in this SAME PR too — committed in Step 7.
 git commit -m "blog: <Title>"
 git push -u origin blog/<slug>
-gh pr create --base main --title "blog: <Title>" --body "<what/why, target keyword, sources, local URL>"
+gh pr create --base main --title "blog: <Title>" --body-file <scratchpad>/pr-body.md
 ```
+The PR body, in order: a short summary (what / why / target keyword / type),
+the **pre-publish audit report**, the **Research Log**, **SERP Fit** and
+**Source Map**, then the local preview URL. Write it to a scratchpad file — it's
+too long for an inline `--body`.
+
 The repo auto-deploys to GitHub Pages when the PR is merged to `main`
 (`.github/workflows/deploy.yml` runs `build:all`). The operator merges.
 
 ### Step 7 — Record it in memory (and commit it to the SAME PR)
 Append a record to `.claude/skills/datus-blog/memory/covered-topics.md` using the
 **full** format in `memory/README.md` — every field: slug, Title, Target keyword,
-Angle, Source direction, Key sources, **Internal links added**, **Glossary
-updated (yes/no)**, Category, PR link **+ Status (open/merged)**, Date. This is
+Angle, Source direction, **Article type, Investment Score + Gate A, Audit
+score**, Key sources, **Internal links added**, **Glossary updated (yes/no)**,
+Category, PR link **+ Status (open/merged)**, Date. This is
 what prevents duplicate posts next time.
 
 This skill — **including memory** — is tracked in this repo, so the record is not
@@ -245,10 +295,22 @@ git push        # updates the SAME PR from Step 6 — never open a new one
 ```
 
 ### Step 8 — Report to the operator (中文)
-Send: chosen direction + rationale, the sources you researched, the local review
-URL, and the PR link.
+Send: chosen direction + rationale (type, Gate A, score), the sources you
+researched, the audit score and grade, the local review URL, and the PR link.
 
 ---
+
+## Refresh mode (auditing posts that are already live)
+When the operator asks to audit or refresh published posts — or Gate A returns
+MERGE into an existing post — follow `references/retro-audit.md`:
+1. Run `tools/check-post.mjs <slug> --retro` and the 14 retro checks.
+2. Report a verdict per post (Retain / Refresh / Merge / Deprecate) with the
+   diff list, in 中文. **Edit nothing yet.**
+3. Only for the posts the operator approves: branch `blog/refresh-<slug>`, fix,
+   bump `lastmod`, `build:all` + `preview`, pre-publish audit, one PR. Ported
+   posts get surgical factual fixes only (`porting-external-articles.md`).
+4. Add a `Refreshed` line to the post's memory entry on the same PR. Never
+   delete or rename a live post without the operator's explicit go-ahead.
 
 ## Iteration loop (operator feedback)
 - The operator reviews the local page / PR. If good, **they merge**.
@@ -263,19 +325,24 @@ URL, and the PR link.
   to the same PR.
 
 ## Definition of done (one request)
-1. A researched, house-style, SEO-optimized post exists at `blog/posts/<slug>.md`.
+1. A researched, house-style, SEO-optimized post exists at `blog/posts/<slug>.md`,
+   bylined Evan Paul, scoring ≥ 70 with P0 PASS in the pre-publish audit.
 2. It's wired in (blog category, glossary cross-link, internal links).
 3. `npm run build:all` succeeds; `npm run preview` is running; the page is open
    at `http://localhost:4173/blog/<slug>/`.
-4. A PR is open on `Datus-ai/Datus-website` with only the relevant files.
+4. A PR is open on `Datus-ai/Datus-website` with only the relevant files, and
+   its body carries the audit report, Research Log, SERP Fit and Source Map.
 5. A memory record is appended in `memory/covered-topics.md` on the same PR.
 6. A Chinese summary with the local URL + PR link has been sent.
 
 ## Guardrails checklist (every post, before PR)
-- [ ] Direction checked against `memory/covered-topics.md` — not a duplicate.
-- [ ] Researched against real, current sources; every fact/number/quote is
-      verifiable; external links `nofollow noopener`.
-- [ ] Frontmatter complete; description 150–160 chars; title < ~60 chars with the keyword.
+- [ ] Direction checked against `memory/covered-topics.md` — not a duplicate;
+      Gate A = KEEP; Investment Score ≥ 4.0; slug evergreen.
+- [ ] Gate 0R passed: Research Log, SERP Fit, Synthesis Statement; every
+      fact/number/quote is in the Source Map; P0 claims carry "as of" dates;
+      external links `nofollow noopener` (Datus / Apache Ossie sources excepted).
+- [ ] Frontmatter complete; `author: "Evan Paul"`; description 150–160 chars; title < ~60 chars with the keyword.
+- [ ] `tools/check-post.mjs` has zero FAIL; pre-publish audit P0 PASS and ≥ 70.
 - [ ] House structure + voice; single H1; TL;DR; FAQ (≥2 Q); Related articles; no Disclosure blocks.
 - [ ] 3–6 internal links to existing posts (`/blog/<slug>/`) + glossary cross-link set.
 - [ ] build-blog category + glossaryData `article` updated; post URL present in
