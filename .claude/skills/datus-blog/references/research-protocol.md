@@ -19,7 +19,7 @@ ends up restating the SERP or contradicting the product.
 | Leg | What | Where |
 |---|---|---|
 | **R1 — Project truth** | What Datus actually ships and how the site already covers the topic | `product-positioning.md`, the current homepage copy in `src/content/home.tsx`, docs.datus.ai, the Datus-agent GitHub repo, and the existing posts in the same cluster (`blog/posts/`) |
-| **R2 — Search** | The current SERP for the primary keyword plus 2–3 variants; People-Also-Ask / related searches | Web search |
+| **R2 — Search** | The current SERP for the primary keyword plus 2–3 variants; People-Also-Ask / related searches. Also the **bare** head term, with each top-10 result labelled by which entity it is about (the entity check, `topic-selection.md` §4) | Web search |
 | **R3 — Fetch and read** | The top 3–5 ranking pages **read in full**, plus the primary sources behind the claims you'll cite (specs, official docs, release notes, vendor pages) | Web fetch |
 
 R3 means reading, not skimming snippets. A claim you cite must come from a page
@@ -45,6 +45,7 @@ you actually opened.
 ## SERP Fit
 
 **Search intent**: Definition | Comparison | Tutorial | Tools list | Commercial
+**Entity check** (bare term, top 10): <n>/10 about our entity — Unambiguous | Split | Owned by another entity; others: <entity: n, …>; qualifier used: <…>
 **Top ranking pages**:
 1. URL — covers: …
 2. URL — covers: …
@@ -57,7 +58,9 @@ you actually opened.
 
 Checks, re-run at the self-check step:
 - [ ] The title matches the search intent.
-- [ ] The first 200 words tell the reader they are in the right place.
+- [ ] The first 200 words tell the reader they are in the right place — on a
+      split SERP, the opening paragraph names which entity the page is about.
+- [ ] On a split SERP, the title, slug and keywords meta carry the qualifier.
 - [ ] The FAQ covers the People-Also-Ask questions.
 - [ ] There is a 40–60-word snippet-ready definition (TL;DR first bullet or the
       opening paragraph).
@@ -137,6 +140,6 @@ the core argument.
 
 All must hold, or go back:
 - [ ] R1, R2 and R3 done; Research Log filled.
-- [ ] SERP Fit filled, including the snippet-ready definition.
+- [ ] SERP Fit filled, including the entity check and the snippet-ready definition.
 - [ ] Synthesis Statement written; IG-1 to IG-3 pass.
 - [ ] Every claim you already intend to make has a Source Map row.

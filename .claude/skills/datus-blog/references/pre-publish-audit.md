@@ -35,7 +35,7 @@ Score each 0–10, multiply by weight, sum to 100.
 | Dim | Weight | A 10 looks like |
 |---|:-:|---|
 | A Strategy & intent | 10% | Right search intent; clear hub / spoke role; Gate A reasoning holds |
-| B SEO & SERP fit | 10% | Title and description in range with the keyword; SERP Fit complete; snippet-ready definition |
+| B SEO & SERP fit | 10% | Title and description in range with the keyword; SERP Fit complete, including the entity check; on a split SERP the title / slug carry the qualifier; snippet-ready definition |
 | C Structure | 9% | TL;DR, numbered sections, Conclusion, 4–6 FAQ, Related articles; matches the type skeleton |
 | D Writing & voice | 11% | House voice; no filler (`writing-quality.md` §2); concrete examples |
 | E Fact & E-E-A-T | 20% | Every claim in the Source Map; competitor facts accurate and dated; ≥1 genuine competitor strength |

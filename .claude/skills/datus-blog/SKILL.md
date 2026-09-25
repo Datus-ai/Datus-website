@@ -171,8 +171,13 @@ Follow `references/topic-selection.md`.
    **Investment Score** (five factors, keep ≥ 4.0). MERGE means improving an
    existing post (refresh mode) or writing a narrower spoke — never a second
    full definition.
-4. Pass the **slug gate**: evergreen (no year), intent-first, unique.
-5. Announce the pick to the operator in 中文 using the template in
+4. Run the **entity check** (`topic-selection.md` §4): search the bare head
+   term and label the top 10 by which entity each result is about. Vendor
+   names collide ("Cube" is also an FP&A suite and a game); a split SERP
+   means the title and slug carry a qualifier searchers type (`Cube.dev`,
+   `semantic layer`) and the opening names the entity.
+5. Pass the **slug gate**: evergreen (no year), intent-first, unique, unambiguous.
+6. Announce the pick to the operator in 中文 using the template in
    `topic-selection.md` §5 (direction, type, Gate A, score, slug, one-line
    rationale). If two are equally good, ask; otherwise proceed.
 
@@ -337,7 +342,8 @@ MERGE into an existing post — follow `references/retro-audit.md`:
 
 ## Guardrails checklist (every post, before PR)
 - [ ] Direction checked against `memory/covered-topics.md` — not a duplicate;
-      Gate A = KEEP; Investment Score ≥ 4.0; slug evergreen.
+      Gate A = KEEP; Investment Score ≥ 4.0; slug evergreen; entity check done
+      (qualifier in title / slug / opener if the SERP is split).
 - [ ] Gate 0R passed: Research Log, SERP Fit, Synthesis Statement; every
       fact/number/quote is in the Source Map; P0 claims carry "as of" dates;
       external links `nofollow noopener` (Datus / Apache Ossie sources excepted).

@@ -89,7 +89,7 @@ self-promotion.
 
 ```
 ## TL;DR                     ← the answer by driver, in 4–6 bullets; bullet 1 says when to stay
-Opener                       ← what exactly the reader would be replacing
+Opener                       ← which <incumbent> this is (vendor names collide), then what the reader would be replacing
 ## 1. What you'd actually be replacing
 ## 2. Why teams look for <incumbent> alternatives
 ## 3. How to evaluate an alternative
