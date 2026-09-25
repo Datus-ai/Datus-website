@@ -80,6 +80,10 @@ Score each of 2–3 surviving candidates 1–5 on five factors; take the mean.
 | 3.0–3.9 | Narrow the angle or pick another candidate |
 | < 3.0 | MERGE / STOP |
 
+Score search demand on the **qualified** keyword when the entity check (§4)
+finds the bare term ambiguous — the bare term's volume is shared with
+whatever else carries the name, and most of it isn't yours.
+
 Search demand is a judgement call unless the operator supplies data. If the
 `datus-seo-weekly` report exists, its query and opportunity tables are the best
 evidence available — cite them.
@@ -92,6 +96,29 @@ secondary = head of data / CDO; tertiary = analyst / platform owner.
 A slug is permanent — renaming one later costs a re-index and every inbound
 link (PR #80 had to do exactly that).
 
+### Entity check — run it before choosing the slug
+
+Search the **bare** head term once (e.g. `cube alternatives`, not
+`cube.dev alternatives`) and label each of the top 10 results by which thing it
+is about. Short product and vendor names often collide with other products,
+games or everyday words — "Cube" is also an FP&A planning suite and a video
+game. Do this for every vendor-named topic; don't assume a name is unique
+because it is unique in the data world.
+
+| Share of the top 10 about *our* entity | Verdict | What changes |
+|---|---|---|
+| ≥ 8 | Unambiguous | Nothing |
+| 4–7 | **Split SERP** | Title and slug carry a qualifier; the opening paragraph names which one the page is about |
+| ≤ 3 | **Owned by something else** | Target the qualified variant as the primary keyword; the bare term becomes a secondary keyword at best |
+
+The qualifier must be something searchers actually type: the vendor's
+domain-style name (`Cube.dev`), the category (`semantic layer`), or the
+parent product (`dbt Semantic Layer`). Record the verdict and the labelled top
+10 in the SERP Fit (`research-protocol.md` §3). Example: the bare
+`cube alternatives` SERP in Sept 2026 was split between Cube the FP&A suite,
+Cube World and cube.dev, so the post shipped as `cube-semantic-layer-alternatives`
+with "Cube.dev" in the title and a first-paragraph disambiguation.
+
 | Rule | Detail |
 |---|---|
 | Format | lowercase kebab-case ASCII, ≤ 60 chars, ideally 3–6 words |
@@ -99,12 +126,14 @@ link (PR #80 had to do exactly that).
 | Intent-first | The words a searcher types, not internal code names |
 | Pattern | glossary → `what-is-<term>`; concept comparison → `<a>-vs-<b>`; tools list → `best-<category>` or `<category>-tools`; alternatives → `<vendor>-alternatives` (not `best-<vendor>-alternatives-2026`) |
 | Unique | `ls blog/posts/<slug>.md` must not exist, and no title in the ledger may be near-identical |
+| Unambiguous | Passes the entity check above; on a split SERP the slug carries the qualifier (`cube-semantic-layer-alternatives`, not `cube-alternatives`) |
 
 Anti-patterns (any one fails the slug): a year; `complete-guide-to-*`;
 `*-strategy`; a brand word first (`datus-lakehouse`); a comparison without `vs`
 (`lakehouse-warehouse`); a triple comparison; an unexplained abbreviation when
 the expanded form is what people search (`what-is-cdc` is fine only because the
-SERP uses "CDC"); a `-v2` of an existing canonical.
+SERP uses "CDC"); a `-v2` of an existing canonical; a bare vendor name on a
+split SERP.
 
 ## 5. What to announce to the operator
 
@@ -114,6 +143,7 @@ One short 中文 message before research starts:
 方向：<term>（<ArticleType>，<cluster> 的 <hub|spoke>）
 Gate A：KEEP — <which two conditions>
 Investment Score：<mean>（需求 x / 相关 x / 差异 x / 证据 x / 时效 x）
+SERP 实体检查：<无歧义 | 分裂（前 10 中 n 条是我们说的这个）| 被其他实体占据> → <限定词>
 Slug：<slug>
 理由：<one line>
 ```

@@ -23,7 +23,7 @@ only after the operator agrees to the verdicts.
 | R8 | Reciprocal Related articles | Posts it lists link back where natural |
 | R9 | Information gain | Does it still beat today's SERP? (re-run R2 / R3 briefly) |
 | R10 | Slug | Anti-patterns (`topic-selection.md` §4) — report only; a rename is a separate decision (see PR #80's cost) |
-| R11 | Meta lengths | Title < ~60, description 150–160, keyword present |
+| R11 | Meta lengths | Title < ~60, description 150–160, keyword present; if the bare keyword's SERP is split with another entity (`topic-selection.md` §4 entity check), the title carries the qualifier |
 | R12 | Canonical overreach | A spoke that re-explains a term another post owns |
 | R13 | Evidence | Bare numbers; claims with no source |
 | R14 | Cross-post contradictions | Conflicts with sibling posts or with current positioning (e.g. the Sept 2026 context-layer pivot, 16 Dosi dialects) |
