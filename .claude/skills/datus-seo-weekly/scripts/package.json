@@ -1,0 +1,21 @@
+{
+  "name": "datus-seo-weekly-report-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fetch GSC + GA4 and merge with the datus.ai blog catalog for the weekly SEO report",
+  "scripts": {
+    "sync-blog": "node sync-blog-catalog.mjs",
+    "fetch-gsc": "node fetch-gsc.mjs",
+    "fetch-ga4": "node fetch-ga4.mjs",
+    "merge": "node merge-seo-weekly.mjs",
+    "fetch-all": "npm run sync-blog && npm run fetch-gsc && npm run fetch-ga4 && npm run merge",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@google-analytics/data": "^4.12.0",
+    "dotenv": "^16.4.7",
+    "googleapis": "^144.0.0",
+    "yaml": "^2.7.0"
+  }
+}

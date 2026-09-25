@@ -1,0 +1,68 @@
+# Datus brand-query registry for the weekly SEO report.
+# Add a pattern when a new brand variant shows up in GSC queries.
+
+meta:
+  property: datus.ai
+  gscSiteUrl: "https://datus.ai/"
+  lastUpdated: "2026-09-25"
+  maintainer: growth-team
+
+matching:
+  matchMode: contains
+  caseInsensitive: true
+  stripPunctuation: true
+
+brandGroups:
+  - id: datus-core
+    label: Datus 核心品牌
+    patterns:
+      - datus
+      - datus.ai
+      - datus agent
+      - datus-agent
+      - datus ai
+      - datusagent
+      - datus studio
+
+  - id: dosi
+    label: Dosi 子品牌
+    patterns:
+      - dosi
+      - dosi datus
+      - datus dosi
+
+  - id: typo
+    label: 拼写变体
+    patterns:
+      - datu s
+      - datuss
+      - datus-io
+
+# Competitor names inside a query — tagged isCompetitor, never counted as Datus brand
+competitorBrandTerms:
+  - wren ai
+  - vanna ai
+  - vanna
+  - db-gpt
+  - dbgpt
+  - dataherald
+  - numbers station
+  - claude code
+  - metricflow
+  - cube dev
+
+# Category terms — non-brand, but the strategic query clusters
+categoryTerms:
+  - data engineering agent
+  - data agent
+  - contextual data engineering
+  - nl2sql agent
+  - text to sql
+  - semantic layer
+  - open semantic interchange
+  - osi semantic
+  - apache ossie
+  - ossie
+  - data context layer
+  - context layer
+  - ontology
