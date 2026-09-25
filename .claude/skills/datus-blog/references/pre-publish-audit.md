@@ -22,7 +22,7 @@ image, a mangled table) only show in the browser.
 | **G6 Unlaunched page** | An internal link points at a route that doesn't exist (`writing-quality.md` §4) |
 | **G7 Brand risk** | Disparaging a competitor ("just", "merely", "only does X") or anything that invites a dispute |
 
-Then the type gate (D / T / P / R in `article-types.md` §4).
+Then the type gate (D / A / T / P / R in `article-types.md` §4).
 
 Output: `P0: PASS` or `P0: BLOCKED by G?` with the offending line. A blocked post
 goes back to Step 3 (or Step 2 if the fix needs new research); it does not get a
@@ -64,7 +64,7 @@ gimmick to earn a Yes; it must follow from the Synthesis thesis.
 **Type**: <ArticleType> · **Investment Score**: <mean> · **Keyword**: <kw>
 **check-post.mjs**: <n> pass / <n> warn / 0 fail
 **P0**: PASS
-**Type gate**: <D1–D3 | T1–T3 | P1–P3 | R1–R2>: PASS
+**Type gate**: <D1–D3 | A1–A4 | T1–T3 | P1–P3 | R1–R2>: PASS
 **Score**: <xx>/100 · Grade <X> · **Excellence**: Yes — <what> | No
 
 | Dim | Score | Weight | Note |

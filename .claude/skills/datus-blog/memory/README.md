@@ -21,7 +21,7 @@ write a genuinely different angle and note how it differs.
 - Target keyword: <primary keyword>
 - Angle: <one line — the differentiated thesis>
 - Source direction: <glossary term `slug` | referenced-gap | operator-specified>
-- Article type: <GlossaryTerm | GlossaryComparison | Comparison | ToolsList | Research | Pillar | Product | Tutorial>
+- Article type: <GlossaryTerm | GlossaryComparison | Comparison | Alternatives | ToolsList | Research | Pillar | Product | Tutorial>
 - Investment Score: <mean, e.g. 4.2>   Gate A: <KEEP — reason>
 - Audit: <score>/100, grade <X>
 - Key sources: <2–5 URLs you researched/cited>

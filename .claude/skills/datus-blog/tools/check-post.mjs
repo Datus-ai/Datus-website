@@ -6,7 +6,7 @@
 // Usage (from the repo root):
 //   node .claude/skills/datus-blog/tools/check-post.mjs <slug|path> [--type <ArticleType>] [--keyword "<kw>"] [--retro]
 //
-// --type     GlossaryTerm | GlossaryComparison | Comparison | ToolsList |
+// --type     GlossaryTerm | GlossaryComparison | Comparison | Alternatives | ToolsList |
 //            Research | Pillar | Product | Tutorial  (enables length + Datus-share gates)
 // --keyword  primary keyword; checked in the title and description
 // --retro    auditing an already-published post: new-post-only rules
@@ -29,6 +29,7 @@ const TYPES = {
   glossaryterm: { floor: 2000, datus: 0.15 },
   glossarycomparison: { floor: 2200, datus: 0.15 },
   comparison: { floor: 2000, datus: 0.2 },
+  alternatives: { floor: 2200, datus: 0.2 },
   toolslist: { floor: 2600, datus: 0.25 },
   research: { floor: 2600, datus: 0.25 },
   pillar: { floor: 3000, datus: 0.2 },

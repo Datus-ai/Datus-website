@@ -40,7 +40,7 @@ situation they describe.
 6. [ ] `references/glossary-directions.md` — candidate topics + how to choose.
 7. [ ] `references/topic-selection.md` — **Step 1.** Gate A (KEEP / MERGE /
        STOP), the Investment Score, the content-graph hubs, the slug gate.
-8. [ ] `references/article-types.md` — **Steps 1 + 3.** The 8 article types:
+8. [ ] `references/article-types.md` — **Steps 1 + 3.** The 9 article types:
        routing, length floors, Datus-share caps, skeletons, type gates.
 9. [ ] `references/research-protocol.md` — **Step 2.** Research triangle,
        Research Log, SERP Fit, Synthesis Statement, Source Map + claim levels.

@@ -59,6 +59,7 @@ operator why and propose the next candidate.
 | Another "why context matters for agents" essay | The context cluster is saturated (`contextual-data-engineering`, `context-engine-*`, `how-structured-context-*`, `why-ai-agents-need-semantic-context-*`). Needs a sharply distinct angle or STOP. |
 | OSI standard definition | Link `open-semantic-interchange-osi`; never redefine the standard in full |
 | A tools list for semantic layers | Link the canonical glossary posts rather than re-explaining each concept |
+| "<vendor> alternatives" | Distinct intent from the vendor's deep dive and from the category tools list, so it can be KEEP — but only if organised around reasons to leave (`article-types.md` Alternatives). Re-listing the tools-list catalogue with a new title is MERGE. For Cube: must not restate `cube-agentic-analytics` or `semantic-layer-tools-list-osi` |
 | A Dosi / product piece | Link the OSI hub; never restate the standard |
 
 ## 3. Investment Score
@@ -96,7 +97,7 @@ link (PR #80 had to do exactly that).
 | Format | lowercase kebab-case ASCII, ≤ 60 chars, ideally 3–6 words |
 | Evergreen | **No year in new slugs.** `2026` may appear in the title, never the slug. (Some legacy slugs carry a year; don't copy them.) |
 | Intent-first | The words a searcher types, not internal code names |
-| Pattern | glossary → `what-is-<term>`; concept comparison → `<a>-vs-<b>`; tools list → `best-<category>` or `<category>-tools` |
+| Pattern | glossary → `what-is-<term>`; concept comparison → `<a>-vs-<b>`; tools list → `best-<category>` or `<category>-tools`; alternatives → `<vendor>-alternatives` (not `best-<vendor>-alternatives-2026`) |
 | Unique | `ls blog/posts/<slug>.md` must not exist, and no title in the ledger may be near-identical |
 
 Anti-patterns (any one fails the slug): a year; `complete-guide-to-*`;
