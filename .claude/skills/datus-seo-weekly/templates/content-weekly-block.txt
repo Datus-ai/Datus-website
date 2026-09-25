@@ -1,0 +1,20 @@
+===CONTENT===
+week_of,YYYY-MM-DD~YYYY-MM-DD
+monthly_target_posts,4
+published_this_week,<n>
+published_slugs,<slug>|<slug>
+live_date_overrides,<slug>=YYYY-MM-DD   (only if the live date differs from frontmatter `date`)
+updated_slugs,<slug>|<slug>
+notes,<free text>
+
+===PROJECT_STATUS===
+<project>,<planned|in-progress|live>
+
+===OBSERVATIONS===
+positive,<…>
+negative,<…>
+risk,<…>
+next_week,<…>
+
+===CONVERSION_NOTES===
+<event_name>,<note — e.g. confirm the GA4 event name for the GitHub CTA>

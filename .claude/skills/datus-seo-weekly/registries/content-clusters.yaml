@@ -1,0 +1,47 @@
+# Non-blog page groups for the weekly report.
+# Blog pages are NOT listed here: a /blog/<slug>/ page is grouped by the
+# CATEGORIES entry in scripts/build-blog.mjs that lists its slug (read by
+# sync-blog-catalog.mjs), so this file never drifts from /blog/.
+# Patterns are matched against paths normalised without a trailing slash.
+
+meta:
+  property: datus.ai
+  lastUpdated: "2026-09-25"
+
+pageGroups:
+  - id: homepage
+    label: Homepage
+    pathPatterns: ["/"]
+  - id: zh
+    label: 中文营销页 (/zh)
+    pathPatterns: ["/zh", "/zh/**"]
+  - id: blog-index
+    label: Blog index
+    pathPatterns: ["/blog"]
+  - id: glossary
+    label: Glossary
+    pathPatterns: ["/glossary", "/glossary/**"]
+  - id: osi-tools
+    label: OSI / Apache Ossie tools
+    pathPatterns: ["/osi-field-mapping", "/tools/osi-playground", "/tools/osi-playground/**"]
+  - id: product
+    label: Product pages
+    pathPatterns: ["/products/**", "/mcp", "/chatbot"]
+  - id: stack
+    label: Integrations / databases / models
+    pathPatterns: ["/integrations", "/integrations/**", "/databases", "/models"]
+  - id: conversion
+    label: Pricing / FAQ
+    pathPatterns: ["/pricing", "/faq"]
+  - id: pillar
+    label: DE agent pillar page
+    pathPatterns: ["/data-engineering-agent", "/data-engineering-agent/**"]
+
+# GA4 conversion events — confirm the names against the live GA4 property;
+# the report must say which of these were actually observed.
+conversionEvents:
+  - github_click
+  - file_download
+  - sign_up
+  - login
+  - generate_lead
