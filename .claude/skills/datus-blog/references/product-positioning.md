@@ -19,14 +19,15 @@ The stack, top to bottom ("open core, commercial studio"):
 |---|---|---|
 | **Datus Studio** | Where humans, BI and agents interact; context-aware co-pilot; REST · MCP | **Commercial** (`studio.datus.ai`) |
 | **Datus agent** | Reads schema + SQL history, generates OSI semantic models, runs text-to-SQL and scheduling; CLI · SDK (`pip install datus-agent`, page `/products/cli/`) | **Open source, Apache 2.0** |
-| **Apache Ossie + Dosi engine** | Apache Ossie = the open semantic + ontology standard (formerly Open Semantic Interchange, "OSI"). Dosi compiles OSI to native SQL for **16 dialects**; CLI, REST (Apache Arrow), MCP, Python | Ossie: open standard. **Dosi: not open source** (a Studio component, docs at `dosi.datus.ai`) |
+| **Apache Ossie + Dosi engine** | Apache Ossie = the open semantic + ontology standard (formerly Open Semantic Interchange, "OSI"). Dosi compiles OSI to native SQL for **16 dialects**; CLI, REST (Apache Arrow), MCP, Python | Ossie: open standard. **Dosi: source-available under the Elastic License 2.0, not open source** — free to download and use in production and commercially; the one relevant restriction is offering it as a hosted/managed service. Datus Studio is the commercial platform on top. Executes by SQL pushdown (no cache of its own); pre-1.0 (0.1.11 as of Sept 2026); installs via `curl -fsSL https://dosi.datus.ai/install.sh \| sh` or `pip install dosi-engine`. Source of truth: `dosi.datus.ai` (install / release-notes / datus-extensions pages) |
 
 What this means for blog copy:
 - New posts frame Datus as the **data context layer**; "open-source data
   engineering agent" now describes the **Datus agent** component, not the whole
   company. Existing posts using the older framing are not wrong about the agent
   — don't rewrite them unprompted, but flag contradictions in a retro audit.
-- Never call Dosi or Studio open source. Never say "OSI" without having
+- Never call Dosi or Studio open source. Dosi is **free** (ELv2) — don't write "pricing not published" for the engine itself.
+- Some Dosi semantics live in Datus extensions inside Ossie's `custom_extensions`; other Ossie consumers ignore them. Say so when a post leans on portability. Never say "OSI" without having
   introduced it as Apache Ossie at least once in a post about the standard.
 - Numbers from the homepage (16 dialects) must match; older posts saying
   "15+ dialects" are retro-audit findings.

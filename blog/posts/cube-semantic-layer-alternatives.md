@@ -145,11 +145,11 @@ Each option below uses the same five fields. The order follows fit for the most 
 
 **Best for:** teams that need the same metric definitions compiled for several warehouses and read by AI agents, and that want those definitions in an open standard rather than any one vendor's format.
 
-**Where it wins:** Apache Ossie (incubating, formerly Open Semantic Interchange) is an Apache 2.0 specification for semantic models; it defines and moves semantics but executes nothing. **Dosi** is an execution engine for that format: it compiles Ossie YAML into native SQL for 16 warehouse dialects — DuckDB, Postgres, Snowflake, ClickHouse and StarRocks among them — and serves it over a CLI, REST with Apache Arrow, MCP and Python. Agents get metric-level tools over MCP with structured error codes instead of generating raw SQL; the [10-minute Apache Ossie + Dosi quick start](/blog/apache-ossie-dosi-quickstart/) walks through a first metric query from the CLI and from Claude Code.
+**Where it wins:** Apache Ossie (incubating, formerly Open Semantic Interchange) is an Apache 2.0 specification for semantic models; it defines and moves semantics but executes nothing. <a href="https://dosi.datus.ai/">**Dosi**</a> is an execution engine for that format: it compiles Ossie YAML into native SQL for 16 warehouse dialects — DuckDB, Postgres, Snowflake, ClickHouse and StarRocks among them — and serves it over a CLI, REST with Apache Arrow, MCP and Python. It executes by SQL pushdown — the warehouse runs the compiled query — and installs as two local binaries or with `pip install dosi-engine`. Agents such as Claude Code, Codex or OpenCode get metric-level tools over MCP with structured error codes instead of generating raw SQL, including an attribution tool that explains why a metric changed between two periods. The [10-minute Apache Ossie + Dosi quick start](/blog/apache-ossie-dosi-quickstart/) walks through a first metric query from the CLI and from Claude Code.
 
-**Where it gets harder:** Dosi is newer than every other option here, is not open source (it is a component of the commercial Datus Studio), and does not document a pre-aggregation cache comparable to Cube Store — for sub-second dashboards at high concurrency, Cube is the stronger tool. Moving from Cube also means re-expressing cube data models as Ossie YAML, because no Cube converter exists yet.
+**Where it gets harder:** Dosi is the youngest option here (version 0.1.11 as of September 2026), and Apache Ossie's core spec is itself still pre-1.0 and changing. Dosi is source-available under the Elastic License 2.0, not open source. Because it pushes every query down to the warehouse, there is no pre-aggregation store comparable to Cube Store — for sub-second dashboards at high concurrency, Cube is the stronger tool. Some semantics the core spec can't yet express, such as time grains and window metrics, live in Datus extensions inside Ossie's `custom_extensions` field; the document stays Ossie-valid, but other Ossie consumers ignore those parts. Moving from Cube also means re-expressing cube data models as Ossie YAML, because no Cube converter exists yet.
 
-**Pricing:** Not published (as of September 2026); see <a href="https://dosi.datus.ai/">dosi.datus.ai</a>.
+**Pricing:** Free to download and use in production under the Elastic License 2.0, which rules out offering Dosi as a hosted service (as of September 2026, per the <a href="https://dosi.datus.ai/install/">Dosi install guide</a>); Datus Studio is the commercial platform built on it.
 
 **Moving from Cube:** You don't have to. The pattern in [Dosi with Cube](/blog/dosi-with-cube/) keeps Cube serving dashboards and embedded analytics while Ossie carries the definitions that must travel and Dosi compiles them for the other warehouses and for agents.
 
@@ -166,12 +166,12 @@ What changes that answer is usually a **second consumer that can't read Cube's f
 | | Cube | dbt SL / MetricFlow | AtScale | LookML | Snowflake / Databricks native | Malloy | Apache Ossie + Dosi |
 |---|---|---|---|---|---|---|---|
 | **Open format / converter** | Cube models; no merged Ossie converter | Merged dbt converter in Ossie | Ossie participant | LookML only | Platform YAML | Malloy language | Ossie is the format |
-| **Licence** | Core Apache 2.0; Cloud commercial | MetricFlow Apache 2.0; APIs paid | Proprietary | Proprietary | Platform feature | MIT | Ossie Apache 2.0; Dosi commercial |
-| **Caching** | Pre-aggregations + Cube Store | Result / declarative (Enterprise) | Aggregate awareness | Looker caching | Platform (Databricks materialisation) | None built in | Not documented |
+| **Licence** | Core Apache 2.0; Cloud commercial | MetricFlow Apache 2.0; APIs paid | Proprietary | Proprietary | Platform feature | MIT | Ossie Apache 2.0; Dosi Elastic License 2.0 |
+| **Caching** | Pre-aggregations + Cube Store | Result / declarative (Enterprise) | Aggregate awareness | Looker caching | Platform (Databricks materialisation) | None built in | None (warehouse pushdown) |
 | **Interfaces** | SQL, REST, GraphQL, MCP | Semantic Layer APIs | Excel, Power BI, Tableau | Looker; JDBC (preview, BigQuery) | SQL; platform agents | REST, MCP (Publisher) | CLI, REST + Arrow, MCP, Python |
 | **Warehouse reach** | Many | Many | Many | Many (JDBC: BigQuery) | One platform | Nine engines | 16 dialects |
-| **Entry price (Sept 2026)** | Free tier; $40/dev/mo | $100/seat/mo | Quote | Quote | Compute | Free | Not published |
-| **Main trade-off** | Format lock-in | dbt plan required | Heavier, enterprise | Looker-bound | Platform-bound | Small ecosystem | Newer; no cache |
+| **Entry price (Sept 2026)** | Free tier; $40/dev/mo | $100/seat/mo | Quote | Quote | Compute | Free | Free (ELv2) |
+| **Main trade-off** | Format lock-in | dbt plan required | Heavier, enterprise | Looker-bound | Platform-bound | Small ecosystem | Pre-1.0; no cache |
 
 Read the first row before the others. Every option can serve a dashboard; far fewer let a definition leave the tool that owns it, and that is the property AI agents and multi-warehouse estates stress first.
 
