@@ -162,5 +162,6 @@ Not directly — they occupy different tiers of the data agent stack. Cube is th
 ## Related articles
 
 - [dbt Semantic Layer & MetricFlow: A Complete Guide](/blog/dbt-semantic-layer-metricflow/) — the Git-managed alternative to Cube
+- [Cube.dev alternatives](/blog/cube-semantic-layer-alternatives/) — when to leave Cube, for what, and when to stay
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the concept Cube implements
 - [Open Semantic Interchange (OSI) explained](/blog/open-semantic-interchange-osi/) — the standard that makes semantics portable
