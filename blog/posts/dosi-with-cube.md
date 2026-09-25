@@ -156,5 +156,6 @@ Adopt OSI thinking when definitions must **travel** — second warehouse, tool m
 - [Introducing Dosi](/blog/introducing-dosi/) — the OSI-native execution engine.
 - [Apache Ossie / OSI vs Cube](/blog/osi-vs-cube/) — the standard-versus-product distinction.
 - [Cube agentic analytics](/blog/cube-agentic-analytics/) — Cube's agent layer in depth.
+- [Cube.dev alternatives](/blog/cube-semantic-layer-alternatives/) — when to leave Cube, for what, and when to stay.
 - [Dosi MCP semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — the MCP wiring for OSI metrics.
 - [Why OSI needs an execution engine](/blog/why-osi-needs-execution-engine/) — the interchange-vs-runtime gap.

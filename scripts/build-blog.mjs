@@ -66,7 +66,7 @@ const CATEGORIES = [
       "dbt-semantic-layer-metricflow", "cube-agentic-analytics", "what-is-gooddata",
       "semantic-layer-tools-list-osi", "what-is-ontology", "what-is-timbr", "what-is-atscale",
       "first-native-apache-ossie-engine", "why-osi-needs-execution-engine", "dosi-mcp-semantic-layer-for-agents",
-      "dosi-vs-metricflow", "dosi-with-cube",
+      "dosi-vs-metricflow", "dosi-with-cube", "cube-semantic-layer-alternatives",
       "ai-native-semantic-layer", "apache-ossie-dosi-quickstart",
       "semantic-layer-vs-ontology", "from-semantic-layer-to-ontology",
       "semantic-layer-based-ontology"] },
