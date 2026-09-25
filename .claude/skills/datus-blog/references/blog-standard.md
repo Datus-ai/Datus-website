@@ -10,7 +10,7 @@ Reference exemplar: `blog/posts/what-is-schema-linking.md` (gold-standard glossa
 ---
 title: "What Is X? Definition, <Benefit> & <Differentiator>"   # < ~60 chars, keyword-first, quote if it has a colon
 description: "150–160 chars, compelling, contains the keyword; this is the SERP snippet."
-author: "Evan Paul"        # a byline; existing posts use e.g. Evan Paul / John Smith / Harrison Zhao / Datus Team
+author: "Evan Paul"        # ALWAYS Evan Paul for posts this skill drafts — see "Byline" below
 date: 2026-06-07
 lastmod: 2026-06-07
 head:
@@ -50,6 +50,13 @@ Datus team wrote themselves — first-person engineering accounts, field reports
 launch essays. **A post you drafted does not get this tag.** Ports of an article
 a Datus core developer published elsewhere (Medium, WeChat) do. If you think a
 post you wrote belongs there, ask the operator rather than tagging it.
+
+**Byline.** Every post this skill drafts is bylined `author: "Evan Paul"`. Do not
+invent bylines, and never use `Kostja` (the external SEO partner's placeholder
+byline — all of their posts were re-bylined when they were imported). Use a
+different author only when the operator names one, e.g. a port of an article a
+Datus core developer published under their own name. The corpus also has John
+Smith / Harrison Zhao / Datus Team posts; leave those as they are.
 
 Notes: the build script overrides canonical to `/blog/<slug>/` regardless, but keep the block consistent with recent posts. `og:image` default is `https://datus.ai/logo_dark.svg` (only add a per-post PNG if you actually create one under `blog/public/images/<slug>/`).
 
@@ -95,6 +102,9 @@ Recap the thesis in 2–4 sentences; land the "context evolves → reliability" 
 > parenthetical form. Keep Datus mentions educational and in-body only.
 
 ## 3. Other post templates (skeletons)
+The routing table, length targets, Datus-share caps and per-type skeletons live
+in `article-types.md`. The short versions below are the house flavour of the
+most common three.
 - **Comparison "X vs Y" / "Best … 2026":** TL;DR (first block) → provocative market-claim opener → "the categories, briefly" → one big side-by-side **comparison table** → fair per-option H3 write-ups (with "verify their own numbers" caveats) → "Decision framework" (Question 1/2/3) → recommendation → FAQ → Related articles. For head-to-heads, resolve with "when to use which / they work best together."
 - **Thought-leadership / concept:** 2–3 line thesis hook that names a false binary and dissolves it ("Most copilots help with generation. Data engineering needs execution.") → argument sections ("N reasons", each `###`) → "what changes in practice" → FAQ → "Final takeaway" → "Continue reading" + soft Datus CTA.
 - **How-to / tutorial:** framing → numbered step sections with CLI/YAML code blocks → "next steps" → Try-Studio CTA → practical FAQ.
@@ -114,7 +124,8 @@ Recap the thesis in 2–4 sentences; land the "context evolves → reliability" 
 
 ## 6. Links
 - **Internal:** Markdown, root-relative, short URL: `[text](/blog/<slug>/)`. Only link posts that exist in `blog/posts/`. 3–6 per article + the matching `/glossary/` where relevant. Favor the hub posts (`what-is-data-engineering-agent-2026`, `what-is-semantic-layer`, `contextual-data-engineering`).
-- **External:** raw HTML with `rel="nofollow noopener"`: `<a href="https://…" rel="nofollow noopener">Name</a>`. Use for competitor/reference/source links.
+- **External:** raw HTML with `rel="nofollow noopener"`: `<a href="https://…" rel="nofollow noopener">Name</a>`. Use for competitor/reference/source links. Exceptions that stay dofollow on purpose: Datus's own properties (docs / studio / dosi / GitHub `Datus-ai`) and the official Apache Ossie sources (`ossie.apache.org`, `incubator.apache.org`, `github.com/apache/…`) used as trust signals since PR #79.
+- **Placement** (how many per zone, where the hub link goes): `writing-quality.md` §4.
 
 ## 7. Formatting
 - One H1 only (the title). Body uses `##` / `###` (rarely deeper).

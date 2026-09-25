@@ -21,12 +21,19 @@ write a genuinely different angle and note how it differs.
 - Target keyword: <primary keyword>
 - Angle: <one line — the differentiated thesis>
 - Source direction: <glossary term `slug` | referenced-gap | operator-specified>
+- Article type: <GlossaryTerm | GlossaryComparison | Comparison | Alternatives | ToolsList | Research | Pillar | Product | Tutorial>
+- Investment Score: <mean, e.g. 4.2>   Gate A: <KEEP — reason>
+- Audit: <score>/100, grade <X>
 - Key sources: <2–5 URLs you researched/cited>
 - Internal links added: <slugs linked to/from>
 - Glossary updated: <yes/no — term `article` set>
 - PR: <url>   Status: <open | merged>
 - Date: <YYYY-MM-DD>
 ```
+
+A **refresh** of an existing post (retro-audit mode) is not a new record: add a
+`- Refreshed <YYYY-MM-DD>: <what changed> (PR <url>)` line under that post's
+entry, or under the seed list if it predates the ledger.
 
 Keep it terse and factual. This file is read at the start of every job, so
 signal over prose. If a post is later merged, update its Status.
