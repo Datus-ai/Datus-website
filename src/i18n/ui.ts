@@ -41,6 +41,7 @@ export type UiMessages = {
     contact: string;
     github: string;
     community: string;
+    trustCenter: string;
     rights: string;
   };
   products: {
@@ -171,6 +172,7 @@ export const UI: Record<Locale, UiMessages> = {
       contact: "Contact",
       github: "GitHub",
       community: "Community",
+      trustCenter: "Trust Center",
       rights: "DatusAI, Inc.",
     },
     products: {
@@ -298,6 +300,7 @@ export const UI: Record<Locale, UiMessages> = {
       contact: "联系我们",
       github: "GitHub",
       community: "社区",
+      trustCenter: "信任中心",
       rights: "DatusAI, Inc.",
     },
     products: {

@@ -66,6 +66,15 @@ const Footer = () => {
                   {t.community}
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://app.vanta.com/datus.ai/trust/z81fqjt8aou1i94kudbjj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t.trustCenter}
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
