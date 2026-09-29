@@ -633,3 +633,21 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/87   Status: open
 - Date: 2026-09-25
 - Notes: "cube alternatives" SERP collides with Cube the FP&A suite — keep "Cube.dev" / "semantic layer" in titles. Older Dosi posts say "15+ dialects"; current docs say 16 (retro-audit candidates).
+
+### semantic-layer-in-the-agent-loop
+- Title: Datus September Update: The Semantic Layer in the Agent Loop
+- Target keyword: semantic layer in the agent loop (semantic layer for AI agents, data agent, ontology for AI agents, metric attribution, composable metrics, grain alignment, Dosi Select, Datus Agent 0.4.2)
+- Angle: monthly release + thought-leadership — the semantic layer moves from "defining metrics" to a deterministic checker inside the agent's analysis loop (grain/fanout/ambiguity); three bets (semantic layer in the loop, ontology = bounded business world, composable metrics); then the September releases. Distinct from ai-native-semantic-layer (requirements/definition) and introducing-dosi (product intro) — this is the dated update + the "Dosi Select" (Metric/Dimension/Attribution/Detail) framing
+- Source direction: PORT of operator draft ~/src/blog/datus-sep/04_datus_september_en.md (Harrison Zhao, September 2026 update; not published externally). Body preserved verbatim per porting rules
+- Article type: Product (release/insight port)
+- Investment Score: n/a (operator-directed port)   Gate A: KEEP — no existing post covers the Sept update or the agent-loop thesis; cross-links the Dosi cluster
+- Audit: 11 pass · 4 warn · 0 fail (P0 clean). WARNs justified: Harrison Zhao byline (operator-named), "Wrapping Up" = author's conclusion, 13 internal links (operator asked for fuller linking), run-of-4 short paras = ported figure captions
+- Key sources: dosi.datus.ai; docs.datus.ai; github.com/apache/ossie; github.com/Datus-ai/Datus-agent (all author's own release account — no fact corrections needed)
+- Internal links added: mcp-data-engineering, what-is-semantic-layer, what-is-ontology, what-is-data-agent, what-is-metric-layer, what-is-semantic-model, semantic-layer-vs-ontology, what-is-text-to-sql, introducing-datus-subagents, what-is-data-engineering-agent-2026, introducing-dosi, dosi-mcp-semantic-layer-for-agents, ai-native-semantic-layer
+- Reciprocal links added from: ai-native-semantic-layer, introducing-dosi
+- Images: 5 (blog/public/images/semantic-layer-in-the-agent-loop/) — source diagrams already in English, copied as-is (no redraw), ~1 MB total; no pngquant available locally
+- Deviations from the draft: title "Bringing the Semantic Layer Into the Agent Loop" -> "The Semantic Layer in the Agent Loop" (slug/keyword match); second H1 "September Releases" -> ## with ### release items (one-H1 fix); TL;DR + 5 FAQ added from the article's own claims
+- Glossary updated: no (no matching /glossary term)
+- Category: "Releases"
+- PR: https://github.com/Datus-ai/Datus-website/pull/90   Status: open
+- Date: 2026-09-29
