@@ -318,6 +318,13 @@ export const glossary: GlossaryCategory[] = [
           "An LLM-driven system that plans and executes data workflows end-to-end — schema discovery, SQL generation, validation, and iteration — instead of just autocompleting a single query.",
         article: "/blog/what-is-data-engineering-agent/",
       },
+      {
+        term: "Agentic Analytics",
+        slug: "agentic-analytics",
+        definition:
+          "AI agents that plan and execute a multi-step analytical investigation on their own — deciding what to check next — rather than answering one natural-language question and stopping. Only as reliable as the metric definitions it reasons over.",
+        article: "/blog/what-is-agentic-analytics/",
+      },
     ],
   },
   {

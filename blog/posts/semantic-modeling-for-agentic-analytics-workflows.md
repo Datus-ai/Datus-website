@@ -227,4 +227,5 @@ If your team wants better agent performance in analytics, don’t start by writi
 ## Continue exploring
 
 - Explore Datus semantic and metrics documentation to see how structured context supports reliable analytics workflows.
-- Read **Why AI Agents Need Semantic Context to Work Reliably** for the broader reliability framework behind agentic data workflows.
+- Read [Why AI Agents Need Semantic Context to Work Reliably](/blog/why-ai-agents-need-semantic-context-to-work-reliably/) for the broader reliability framework behind agentic data workflows.
+- Read [What Is Agentic Analytics?](/blog/what-is-agentic-analytics/) for the term's definition, vendor landscape, and governance requirements.

@@ -223,4 +223,5 @@ If you're building **text-to-SQL** or an AI data agent on a real warehouse, star
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed metrics and dimensions, defined
 - [What is schema linking?](/blog/what-is-schema-linking/) — how agents map questions to the right columns and joins
 - [Introducing Dosi](/blog/introducing-dosi/) — the OSI-native execution engine referenced above
+- [What is agentic analytics?](/blog/what-is-agentic-analytics/) — the same governed-metrics problem, one multi-step plan at a time
 - [Datus glossary](/glossary#ai-agents) — short definitions for text-to-SQL, schema linking, and related terms
