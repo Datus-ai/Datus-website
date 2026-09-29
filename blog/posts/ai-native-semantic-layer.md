@@ -179,3 +179,4 @@ Decide which metrics actually guide the business, whether the semantic model sho
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the foundational definition
 - [Why AI Agents Need Semantic Context to Work Reliably](/blog/why-ai-agents-need-semantic-context-to-work-reliably/) — the grounding argument
 - [Semantic-Layer-Based Ontology: Agent Context on Apache Ossie](/blog/semantic-layer-based-ontology/) — the ontology layer built on top of these requirements
+- [Datus September Update: The Semantic Layer in the Agent Loop](/blog/semantic-layer-in-the-agent-loop/) — the semantic layer as a deterministic checker inside the agent's analysis loop
