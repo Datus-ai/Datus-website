@@ -578,6 +578,19 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 - PR: https://github.com/Datus-ai/Datus-website/pull/80   Status: open
 - Date: 2026-09-16
 
+### why-text-to-sql-fails-without-a-semantic-layer
+- Title: Why Text-to-SQL Fails Without a Semantic Layer
+- Target keyword: text-to-sql (text to sql, nl2sql, natural language to sql, text-to-sql agent, text-to-sql llm)
+- Angle: thought-leadership/argument piece distinct from the existing glossary entry `what-is-text-to-sql` (definitional) — argues text-to-SQL fails because raw schema carries no business meaning, walks two worked examples (revenue, active users) where the model silently guesses, cites BIRD + a 2026 dbt Labs benchmark for the accuracy gap, then introduces Dosi as the applied fix. Ends with an honest "when raw text-to-SQL is fine" section
+- Source direction: operator draft (Google-Docs export, `~/Downloads/Why Text-to-SQL Fails Without a Semantic Layer.md`) — cleaned up (de-escaped, fixed malformed table/code fences, unwrapped Google redirect links) and reformatted to house frontmatter/structure; body substance preserved
+- Key sources (verified against live pages before shipping): arxiv.org/abs/2305.03111 (BIRD paper, 40.08% vs. 92.96% human); bird-bench.github.io (current leaderboard top 82.39%, human 92.96%); docs.getdbt.com/blog/semantic-layer-vs-text-to-sql-2026 (64.5% vs. 72.7% overall, 51–62% vs. 100% in-scope — matches the "2023 vs 2026" table, not the later "with minimal modeling" table on the same page); neo4j.com/blog/genai/cut-text2sql-token-costs-up-to-81-... (cited, not quoted with specific stats in-body)
+- Internal links added: what-is-text-to-sql, what-is-semantic-layer, what-is-schema-linking, introducing-dosi, dosi-mcp-semantic-layer-for-agents, open-semantic-interchange-osi
+- Glossary updated: no (existing `text-to-sql` and `semantic-layer` terms already point their `article` field at their own glossary posts, not this one) — added a `/glossary#ai-agents` anchor link from Related articles instead
+- Note: includes a numbered "## References" section (not used elsewhere in the corpus — every other post cites sources as inline nofollow links only). Kept deliberately for stronger E-E-A-T given the benchmark-heavy content; flagged to the operator as a stylistic deviation, not fixed
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/91   Status: open
+- Date: 2026-09-29
+
 ## Note on the three Feishu drafts ported 2026-09-16
 All eight figures across the cluster were redrawn from the drafts' Mermaid-style
 diagrams. The originals carried no titles or captions, so each figure's title is
