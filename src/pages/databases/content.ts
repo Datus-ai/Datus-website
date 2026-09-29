@@ -1,6 +1,6 @@
 import type { Locale } from "../../i18n/config";
 
-export const DB_ADAPTERS_DOCS = "https://docs.datus.ai/database-adapters/";
+export const DB_ADAPTERS_DOCS = "https://docs.datus.ai/dev/configuration/datasources/";
 
 /* -------------------------------------------------------------------------- */
 /*  Content — ported from the datus-design /databases template.               */
@@ -36,7 +36,11 @@ const ADAPTER_META = [
   { name: "DuckDB", type: "duckdb", builtIn: true },
   { name: "PostgreSQL", type: "postgresql", pkg: "datus-postgresql", builtIn: false },
   { name: "MySQL", type: "mysql", pkg: "datus-mysql", builtIn: false },
+  { name: "Oracle", type: "oracle", pkg: "datus-oracle", builtIn: false },
+  { name: "TiDB", type: "tidb", pkg: "datus-tidb", builtIn: false },
   { name: "Snowflake", type: "snowflake", pkg: "datus-snowflake", builtIn: false },
+  { name: "Amazon Redshift", type: "redshift", pkg: "datus-redshift", builtIn: false },
+  { name: "Google BigQuery", type: "bigquery", pkg: "datus-bigquery", builtIn: false },
   { name: "StarRocks", type: "starrocks", pkg: "datus-starrocks", builtIn: false },
   // Amber to match StarRocks — same Cloud Warehouse tier. The positional
   // rotation would land Doris on green, which reads as Lake & Distributed.
@@ -82,8 +86,8 @@ ENGINE = MergeTree
 ORDER BY (user_id, order_day);`;
 
 export const datasourceYaml = `agent:
-  service:
-    databases:
+  services:
+    datasources:
       production:                 # Snowflake
         type: snowflake
         account: \${SNOWFLAKE_ACCOUNT}
@@ -114,7 +118,7 @@ const EN: DatabasesCopy = {
   hero: {
     eyebrow: "Databases",
     heading: "Supported Databases",
-    lead: "Twelve native database adapters, from embedded SQLite and DuckDB to cloud warehouses (Snowflake, StarRocks, Apache Doris, ClickZetta) and lake engines (Hive, Spark, Trino, ClickHouse). All plug in via Python entry points — no adapter code required on your side.",
+    lead: "Sixteen native database adapters, from embedded SQLite and DuckDB to relational engines (PostgreSQL, MySQL, Oracle, TiDB), cloud warehouses (Snowflake, Redshift, BigQuery, StarRocks, Apache Doris, ClickZetta) and lake engines (Hive, Spark, Trino, ClickHouse). All plug in via Python entry points — no adapter code required on your side.",
   },
   builtIn: "Built-in",
   databases: databaseList("Built-in", [
@@ -122,7 +126,11 @@ const EN: DatabasesCopy = {
     "Embedded OLAP for local analytics on Parquet / CSV.",
     "Six SSL modes, multi-schema, materialized views.",
     "INFORMATION_SCHEMA + SHOW CREATE for rich metadata.",
+    "Enterprise OLTP; service-name connect, rich data dictionary.",
+    "Distributed HTAP, MySQL-wire compatible, scales out.",
     "Native SDK with Arrow transport for fast reads.",
+    "AWS columnar MPP warehouse over the Postgres wire.",
+    "Serverless warehouse, standard SQL at any scale.",
     "Multi-catalog + materialized views, MySQL-wire.",
     "Lakehousing, materialized views and hybrid search.",
     "HTTP protocol; database ≡ schema, lightweight DELETE.",
@@ -137,8 +145,8 @@ const EN: DatabasesCopy = {
     lead: "Every adapter implements the same CRUD, DDL, metadata and sampling contract — so subagents work identically across your OLTP, warehouse and lake engines.",
   },
   categories: [
-    { title: "Relational", body: "PostgreSQL, MySQL — the classic OLTP stack with rich metadata endpoints." },
-    { title: "Cloud Warehouse", body: "Snowflake, StarRocks, Apache Doris, ClickZetta — MPP engines with catalog + workspace models." },
+    { title: "Relational", body: "PostgreSQL, MySQL, Oracle, TiDB — the classic OLTP stack with rich metadata endpoints." },
+    { title: "Cloud Warehouse", body: "Snowflake, Redshift, BigQuery, StarRocks, Apache Doris, ClickZetta — MPP engines with catalog + workspace models." },
     { title: "Lake & Distributed", body: "Hive, Spark, Trino — Thrift and HTTP engines over your data lake." },
     { title: "Analytical & Embedded", body: "DuckDB, ClickHouse, SQLite — from local files to columnar OLAP." },
   ],
@@ -172,15 +180,19 @@ const ZH: DatabasesCopy = {
   hero: {
     eyebrow: "数据库",
     heading: "支持的数据库",
-    lead: "十二个原生数据库适配器，从嵌入式的 SQLite、DuckDB，到云数仓（Snowflake、StarRocks、Apache Doris、ClickZetta），再到湖上引擎（Hive、Spark、Trino、ClickHouse）。全部通过 Python entry points 接入——你这边不用写任何适配器代码。",
+    lead: "十六个原生数据库适配器：从嵌入式的 SQLite、DuckDB，到关系型引擎（PostgreSQL、MySQL、Oracle、TiDB）、云数仓（Snowflake、Redshift、BigQuery、StarRocks、Apache Doris、ClickZetta），再到湖上引擎（Hive、Spark、Trino、ClickHouse）。全部通过 Python entry points 接入，你这边不用写任何适配器代码。",
   },
   builtIn: "内置",
   databases: databaseList("内置", [
-    "零配置的文件型存储——做演示和测试再合适不过。",
+    "零配置的文件型存储，做演示和测试再合适不过。",
     "嵌入式 OLAP，在本地直接分析 Parquet / CSV。",
     "六种 SSL 模式，支持多 schema 与物化视图。",
     "通过 INFORMATION_SCHEMA + SHOW CREATE 获取丰富元数据。",
+    "企业级 OLTP；按 service name 连接，数据字典丰富。",
+    "分布式 HTAP，兼容 MySQL 协议，可横向扩展。",
     "原生 SDK 配合 Arrow 传输，读取更快。",
+    "AWS 列式 MPP 数仓，走 Postgres 协议。",
+    "无服务器数仓，标准 SQL，弹性扩展。",
     "多 catalog + 物化视图，走 MySQL 协议。",
     "湖仓一体、物化视图与混合检索。",
     "HTTP 协议；database 等同 schema，支持轻量 DELETE。",
@@ -192,13 +204,13 @@ const ZH: DatabasesCopy = {
   categoriesSection: {
     eyebrow: "统一接口",
     title: "四类引擎，一套接口",
-    lead: "每个适配器都实现同一套 CRUD、DDL、元数据与采样契约——所以子代理在你的 OLTP、数仓和湖上引擎之间表现完全一致。",
+    lead: "每个适配器都实现同一套 CRUD、DDL、元数据与采样契约，因此子代理在你的 OLTP、数仓和湖上引擎之间表现完全一致。",
   },
   categories: [
-    { title: "关系型", body: "PostgreSQL、MySQL——经典 OLTP 组合，元数据接口丰富。" },
-    { title: "云数仓", body: "Snowflake、StarRocks、Apache Doris、ClickZetta——带 catalog 与工作空间模型的 MPP 引擎。" },
-    { title: "湖与分布式", body: "Hive、Spark、Trino——架在数据湖之上的 Thrift 与 HTTP 引擎。" },
-    { title: "分析型与嵌入式", body: "DuckDB、ClickHouse、SQLite——从本地文件到列式 OLAP。" },
+    { title: "关系型", body: "PostgreSQL、MySQL、Oracle、TiDB：经典 OLTP 组合，元数据接口丰富。" },
+    { title: "云数仓", body: "Snowflake、Redshift、BigQuery、StarRocks、Apache Doris、ClickZetta：带 catalog 与工作空间模型的 MPP 引擎。" },
+    { title: "湖与分布式", body: "Hive、Spark、Trino：架在数据湖之上的 Thrift 与 HTTP 引擎。" },
+    { title: "分析型与嵌入式", body: "DuckDB、ClickHouse、SQLite：从本地文件到列式 OLAP。" },
   ],
   table: {
     columns: ["数据库", "类型", "安装包", "特点"],
@@ -219,7 +231,7 @@ const ZH: DatabasesCopy = {
   faqLead: "支持的数据库、适配器安装、自定义驱动，以及权限要求。",
   closing: {
     heading: "几分钟接上你的数仓",
-    lead: "Snowflake、Postgres、MySQL 等都有原生适配器——填上凭据，Agent 就能基于你真实的表结构开始推理。",
+    lead: "Snowflake、Postgres、MySQL 等都有原生适配器，填上凭据，Agent 就能基于你真实的表结构开始推理。",
     docsCta: "Database Adapters 文档",
     modelsCta: "了解支持的模型",
     contributeCta: "贡献一个适配器",
