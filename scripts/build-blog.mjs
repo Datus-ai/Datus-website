@@ -69,7 +69,7 @@ const CATEGORIES = [
       "dosi-vs-metricflow", "dosi-with-cube", "cube-semantic-layer-alternatives",
       "ai-native-semantic-layer", "apache-ossie-dosi-quickstart",
       "semantic-layer-vs-ontology", "from-semantic-layer-to-ontology",
-      "semantic-layer-based-ontology"] },
+      "semantic-layer-based-ontology", "why-text-to-sql-fails-without-a-semantic-layer"] },
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
     slugs: ["what-is-text-to-sql", "what-is-schema-linking", "rag-data-engineering", "what-is-data-catalog",
       "what-is-data-mesh", "what-is-data-agent", "what-is-lakehouse", "what-is-lakehouse-catalog",
