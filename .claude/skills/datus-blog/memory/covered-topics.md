@@ -591,6 +591,19 @@ piece already ported as `ai-native-semantic-layer` from its Medium edition
 - PR: https://github.com/Datus-ai/Datus-website/pull/91   Status: open
 - Date: 2026-09-29
 
+### what-is-agentic-analytics
+- Title: What Is Agentic Analytics? Definition, How It Works & Why It Needs a Semantic Layer
+- Target keyword: agentic analytics (what is agentic analytics, agentic analytics platform, agentic bi, agentic analytics vs conversational analytics, ai agents analytics)
+- Angle: definitional glossary post — Wave 1 item from the "Datus.ai / Dosi — Content Strategy (final)" doc (project cfe2f109-7524-442e-b96b-782b727931f9), chosen over "What Is NL2SQL?" (the doc's literal next item) because NL2SQL already competes for the same head term as `what-is-text-to-sql` and `why-text-to-sql-fails-without-a-semantic-layer` — flagged to the operator as a cannibalization risk per the strategy's own §5 rule, operator agreed to skip it for now. Distinguishes agentic analytics (goal-driven, multi-step) from conversational analytics and autonomous analytics (rules-driven); cites two competing vendors (AtScale, a semantic-layer vendor, and ThoughtSpot, a BI vendor) independently converging on "needs a governed semantic layer" as the reliability requirement; vendor landscape table (ThoughtSpot Spotter, Tableau Next/Agentforce, Qlik, Databricks Genie/Genie Code, Snowflake Cortex Analyst) with verified GA dates; Dosi introduced as the applied semantic layer an orchestrating agent calls mid-plan
+- Source direction: referenced-gap (no existing post owned this generic definitional intent; `cube-agentic-analytics` is a vendor-specific comparison, not a glossary entry)
+- Key sources (fetched and verified, not summarized from memory): atscale.com/glossary/agentic-analytics (autonomous vs. agentic distinction, "no more reliable than the data definitions" quote); thoughtspot.com/data-trends/analytics/agentic-analytics (generative vs. agentic distinction, semantic-layer governance quote); techtarget.com/data-technologies/news/366636078 (Dec 2025, Spotter agents GA "early 2026", Tableau Next launched April 2025); databricks.com press release (Genie Code launched March 11, 2026)
+- Internal links added: what-is-semantic-layer, why-text-to-sql-fails-without-a-semantic-layer, open-semantic-interchange-osi, dosi-mcp-semantic-layer-for-agents, what-is-data-engineering-agent-2026, dosi-with-cube, semantic-modeling-for-agentic-analytics-workflows, what-is-cortex-analyst
+- Reciprocal links added from: cube-agentic-analytics, semantic-modeling-for-agentic-analytics-workflows (also fixed an existing unlinked bold-text reference to why-ai-agents-need-semantic-context-to-work-reliably while there), why-text-to-sql-fails-without-a-semantic-layer
+- Glossary updated: yes — new term "Agentic Analytics" added under AI & Agents (`src/glossary/glossaryData.ts`), `article` set to this post; also added a `/glossary#ai-agents` Related-articles link from the post itself
+- Category: "Semantic Layer"
+- PR: https://github.com/Datus-ai/Datus-website/pull/92   Status: open
+- Date: 2026-09-29
+
 ## Note on the three Feishu drafts ported 2026-09-16
 All eight figures across the cluster were redrawn from the drafts' Mermaid-style
 diagrams. The originals carried no titles or captions, so each figure's title is
