@@ -677,3 +677,21 @@ land on the new article by design.
 - Category: "Releases"
 - PR: https://github.com/Datus-ai/Datus-website/pull/90   Status: open
 - Date: 2026-09-29
+
+
+### what-is-conversational-bi
+- Title: What Is Conversational BI? From Questions to Trusted Metrics
+- Target keyword: conversational BI (conversational business intelligence, conversational analytics)
+- Angle: user-directed follow-ups preserve reviewed business meaning; Dosi shares Apache Ossie definitions across interfaces and supported sources. Retail walkthrough and native SVG diagram; distinct from autonomous agentic analytics.
+- Source direction: operator-specified; approved local draft, shorter and less technical.
+- Article type: GlossaryTerm
+- Investment Score: 4.2   Gate A: KEEP — distinct dialogue intent; existing agentic and text-to-SQL posts remain separate intent owners.
+- Audit: 83.5/100, grade A (subjective editorial assessment); 13 PASS / 1 WARN / 1 FAIL, with user-approved length exception (1415 narrative words vs 2000 floor), shorter paragraph rhythm and unnumbered headings. Dosi emphasis retained as reviewed; automatic share metric counts Datus only.
+- Key sources: https://research.ibm.com/publications/conversational-bi-an-ontology-driven-conversation-system-for-business-intelligence-applications; https://dosi.datus.ai/; https://dosi.datus.ai/agents/; https://dosi.datus.ai/connectors/
+- Internal links added: what-is-agentic-analytics, what-is-semantic-layer, why-text-to-sql-fails-without-a-semantic-layer, semantic-layer-in-the-agent-loop; reciprocal FROM what-is-agentic-analytics; glossary anchor conversational-bi.
+- Glossary updated: yes — new conversational-bi term with article link, EN and ZH; glossary dates and marketing BUILD_DATE updated.
+- Category: Agentic Analytics
+- Images: /images/what-is-conversational-bi/dosi-shared-definitions.svg (repo-native vector, alt text and caption).
+- PR: https://github.com/Datus-ai/Datus-website/pull/93   Status: open
+- Date: 2026-10-12
+- Validation: full build and generated HTML metadata/Article/FAQPage/BreadcrumbList, 5 FAQ entries, links, diagram, sitemap and English-only blog verified; browser preview checked. Content and diagram approved by Joanna before submission.

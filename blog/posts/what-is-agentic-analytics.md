@@ -157,6 +157,8 @@ Ask what happens between questions. If a human has to type every follow-up, it's
 
 ## Related articles
 
+- [What is conversational BI?](/blog/what-is-conversational-bi/) — user-directed questions and follow-ups over governed metrics
+
 - [Why Text-to-SQL Fails Without a Semantic Layer](/blog/why-text-to-sql-fails-without-a-semantic-layer/) — the same governed-metrics problem, one query at a time
 - [Datus September Update: The Semantic Layer in the Agent Loop](/blog/semantic-layer-in-the-agent-loop/) — how Dosi checks grain, fanout, and dimension validity at every step of a multi-step plan
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — governed metrics and dimensions, defined

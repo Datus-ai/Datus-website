@@ -17,7 +17,7 @@ export interface GlossaryCategory {
   terms: GlossaryTerm[];
 }
 
-export const GLOSSARY_UPDATED = "June 2026";
+export const GLOSSARY_UPDATED = "October 2026";
 
 export const glossary: GlossaryCategory[] = [
   {
@@ -271,6 +271,13 @@ export const glossary: GlossaryCategory[] = [
     name: "AI & Agents",
     id: "ai-agents",
     terms: [
+      {
+        term: "Conversational BI",
+        slug: "conversational-bi",
+        definition:
+          "Exploring business data through natural-language questions and follow-ups, with relevant context carried across turns and answers grounded in reviewed definitions.",
+        article: "/blog/what-is-conversational-bi/",
+      },
       {
         term: "Text-to-SQL",
         slug: "text-to-sql",

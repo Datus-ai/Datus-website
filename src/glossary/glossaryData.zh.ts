@@ -7,7 +7,7 @@
 // both. Established English terms (Parquet, RAG, MCP…) stay in English with the
 // Chinese reading alongside where one is in common use.
 
-export const GLOSSARY_UPDATED_ZH = "2026 年 6 月";
+export const GLOSSARY_UPDATED_ZH = "2026 年 10 月";
 
 export const CATEGORY_NAMES_ZH: Record<string, string> = {
   architecture: "架构",
@@ -201,6 +201,11 @@ export const TERMS_ZH: Record<string, { term: string; definition: string }> = {
   },
 
   /* ── AI & Agents ── */
+  "conversational-bi": {
+    term: "Conversational BI",
+    definition:
+      "通过自然语言提问和追问探索业务数据，在多轮对话中保留相关上下文，并依据经过审核的业务定义生成答案。",
+  },
   "text-to-sql": {
     term: "Text-to-SQL",
     definition:
