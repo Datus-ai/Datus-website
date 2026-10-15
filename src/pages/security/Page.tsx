@@ -1,158 +1,122 @@
-import { useEffect, useState } from "react";
 import {
   ArrowDown,
+  ArrowRight,
   ArrowUp,
   ArrowUpRight,
+  Boxes,
+  Check,
+  ChevronDown,
+  Code2,
+  Database,
+  FileText,
+  Fingerprint,
+  KeyRound,
   LockKeyhole,
-  MessageCircle,
+  Mail,
+  MessageSquare,
+  Network,
+  ScanLine,
+  Server,
+  Share2,
+  Shield,
   SlidersHorizontal,
+  Trash2,
 } from "lucide-react";
+import type { ReactNode } from "react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
-import { faqPageJsonLd } from "../../components/FAQ";
+import FAQ from "../../components/FAQ";
 import { CONTACT_EMAIL, TRUST_CENTER_URL } from "../../config/nav";
-import { useLocale, useT } from "../../i18n/LocaleContext";
+import { useHref, useLocale, useT } from "../../i18n/LocaleContext";
 import { UI } from "../../i18n/ui";
 import {
   SECURITY_UPDATED_AT,
   securityPage,
-  type ISecuritySection,
+  type ISecurityDetail,
 } from "./content";
 import "./security.css";
 
-const OVERVIEW_ICONS = [SlidersHorizontal, LockKeyhole, MessageCircle];
-const sectionNumber = (index: number) => String(index + 1).padStart(2, "0");
+const CONTROL_ICONS = [LockKeyhole, Fingerprint, Share2, ScanLine];
+const RESOURCE_ICONS = [Shield, Server, Mail];
 
-function Paragraphs({ items }: { items?: string[] }) {
-  return items?.map((text) => <p key={text}>{text}</p>);
-}
-
-function ResourceLink({ label, href }: { label: string; href: string }) {
-  const external = href.startsWith("https:");
+function SectionHeading({
+  id,
+  eyebrow,
+  title,
+  lead,
+}: {
+  id: string;
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+}) {
   return (
-    <a
-      className="link-arrow"
-      href={href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-    >
-      {label} <ArrowUpRight size={15} aria-hidden="true" />
-    </a>
+    <div className="security-section-head">
+      {eyebrow && <span className="security-kicker">{eyebrow}</span>}
+      <h2 id={id}>{title}</h2>
+      {lead && <p>{lead}</p>}
+    </div>
   );
 }
 
-function SecuritySection({
-  section,
-  index,
-  flowLabel,
+function SecurityDetails({
+  label,
+  items,
 }: {
-  section: ISecuritySection;
-  index: number;
-  flowLabel: string;
+  label: string;
+  items: ISecurityDetail[];
 }) {
   return (
-    <section
-      className="security-section"
-      id={section.id}
-      aria-labelledby={`${section.id}-heading`}
-    >
-      <div className="security-section__heading">
-        <span className="security-section__number" aria-hidden="true">
-          {sectionNumber(index)}
-        </span>
-        <h2 id={`${section.id}-heading`}>{section.title}</h2>
+    <details className="security-details">
+      <summary>
+        {label}
+        <ChevronDown size={15} aria-hidden="true" />
+      </summary>
+      <div className="security-details__body">
+        {items.map((item) => (
+          <div key={item.title}>
+            <h4>{item.title}</h4>
+            {item.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        ))}
       </div>
-      {section.status && (
-        <span className="security-status">{section.status}</span>
-      )}
-      <Paragraphs items={section.paragraphs} />
-      {section.flow && (
-        <ol className="security-flow" aria-label={flowLabel}>
-          {section.flow.map((step) => (
-            <li key={step.label}>
-              <span className="security-flow__step">{step.label}</span>
-              <strong>{step.title}</strong>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
-      )}
-      {section.cards && (
-        <div className="security-deployments">
-          {section.cards.map((card) => (
-            <div className="card" key={card.title}>
-              <h3>{card.title}</h3>
-              <Paragraphs items={card.paragraphs} />
-            </div>
-          ))}
-        </div>
-      )}
-      {section.blocks?.map((block) => (
-        <div key={block.title}>
-          <h3>{block.title}</h3>
-          <Paragraphs items={block.paragraphs} />
-        </div>
-      ))}
-      {section.items && (
-        <ul>
-          {section.items.map((item) => (
-            <li key={item.title}>
-              <strong>{item.title}</strong> {item.body}
-            </li>
-          ))}
-        </ul>
-      )}
-      {section.note && (
-        <div className="security-note">
-          <p>
-            <strong>{section.note.title}</strong> {section.note.body}
-          </p>
-        </div>
-      )}
-      {section.link && <ResourceLink {...section.link} />}
-    </section>
+    </details>
+  );
+}
+
+function FeatureCard({
+  title,
+  body,
+  detailsLabel,
+  details,
+  children,
+}: {
+  title: string;
+  body: string;
+  detailsLabel: string;
+  details: ISecurityDetail[];
+  children: ReactNode;
+}) {
+  return (
+    <article className="security-feature card">
+      <div className="security-feature__intro">
+        <h3>{title}</h3>
+        <p>{body}</p>
+      </div>
+      {children}
+      <SecurityDetails label={detailsLabel} items={details} />
+    </article>
   );
 }
 
 export default function SecurityPage() {
   const t = useT(securityPage);
-  const locale = useLocale();
-  const ui = UI[locale];
-  const { sections, faq } = t;
-  const [activeId, setActiveId] = useState(sections[0].id);
+  const ui = UI[useLocale()];
+  const l = useHref();
+  const v = t.visuals;
 
-  useEffect(() => {
-    const elements = [...sections, faq]
-      .map(({ id }) => document.getElementById(id))
-      .filter((element): element is HTMLElement => !!element);
-    let frame = 0;
-    const update = () => {
-      let active = elements[0];
-      for (const element of elements) {
-        if (element.getBoundingClientRect().top <= 150) {
-          active = element;
-        }
-      }
-      if (active) {
-        setActiveId(active.id);
-      }
-      frame = 0;
-    };
-    const schedule = () => {
-      if (!frame) {
-        frame = requestAnimationFrame(update);
-      }
-    };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      cancelAnimationFrame(frame);
-    };
-  }, [sections, faq]);
-
-  const faqSchema = faqPageJsonLd(faq.items, "/security/", locale);
   return (
     <SiteLayout>
       <div className="security-page" id="top">
@@ -161,19 +125,13 @@ export default function SecurityPage() {
           items={[{ label: ui.nav.home, href: "/" }, { label: t.title }]}
         />
         <section className="security-hero" aria-labelledby="security-title">
-          <div className="container security-hero__inner">
-            <div>
-              <span className="eyebrow">{t.eyebrow}</span>
-              <h1 id="security-title">{t.title}</h1>
-              <p className="lead">{t.lead}</p>
-              <div className="security-hero__meta">
-                <span>
-                  {t.updated}{" "}
-                  <time dateTime={SECURITY_UPDATED_AT}>{t.date}</time>
-                </span>
-                <span>{t.scope}</span>
-              </div>
-            </div>
+          <div className="container">
+            <span className="eyebrow">
+              <Shield size={13} aria-hidden="true" />
+              {t.eyebrow}
+            </span>
+            <h1 id="security-title">{t.title}</h1>
+            <p className="lead">{t.lead}</p>
             <div className="security-hero__actions">
               <a
                 className="btn btn-primary btn-lg"
@@ -181,119 +139,328 @@ export default function SecurityPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {t.trustCenter} <ArrowUpRight size={17} aria-hidden="true" />
+                {t.trustCenter}
+                <ArrowUpRight size={17} aria-hidden="true" />
               </a>
               <a className="btn btn-ghost btn-lg" href="#security-contact">
-                {t.contactAction} <ArrowDown size={17} aria-hidden="true" />
+                {t.contactAction}
+                <ArrowDown size={17} aria-hidden="true" />
               </a>
+            </div>
+            <p className="security-scope">{t.scope}</p>
+          </div>
+        </section>
+
+        <section
+          className="security-section security-features"
+          id="ai-data"
+          aria-labelledby="ai-data-heading"
+        >
+          <div className="container">
+            <SectionHeading id="ai-data-heading" {...t.features} />
+            <div className="security-features__grid">
+              <FeatureCard {...t.models}>
+                <div
+                  className="security-illustration security-model-visual"
+                  aria-hidden="true"
+                >
+                  <div className="security-config">
+                    <div className="security-config__header">
+                      <span>
+                        <SlidersHorizontal size={14} />
+                        {v.modelConnection}
+                      </span>
+                      <span className="security-config__tag">
+                        <Check size={11} />
+                        {v.configuredByYou}
+                      </span>
+                    </div>
+                    <dl>
+                      <div>
+                        <dt>{v.model}</dt>
+                        <dd>{v.modelValue}</dd>
+                      </div>
+                      <div>
+                        <dt>{v.endpoint}</dt>
+                        <dd>{v.endpointValue}</dd>
+                      </div>
+                      <div>
+                        <dt>{v.credential}</dt>
+                        <dd className="security-secret">••••••••••••</dd>
+                      </div>
+                    </dl>
+                  </div>
+                  <div className="security-model-route">
+                    <span className="security-model-route__brand">
+                      <img src="/logo_dark.svg" alt="" />
+                    </span>
+                    <span className="security-model-route__line">
+                      <ArrowRight size={16} />
+                    </span>
+                    <span className="security-model-route__provider">
+                      <Network size={17} />
+                      {v.provider}
+                    </span>
+                  </div>
+                </div>
+              </FeatureCard>
+              <FeatureCard {...t.conversations}>
+                <div
+                  className="security-illustration security-history-visual"
+                  aria-hidden="true"
+                >
+                  <div className="security-history">
+                    <div className="security-history__heading">
+                      <MessageSquare size={14} />
+                      {v.conversation}
+                      <span className="security-history__dots">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                      </span>
+                    </div>
+                    <div className="security-message security-message--question">
+                      <MessageSquare size={14} />
+                      <span>{v.prompt}</span>
+                      <i></i>
+                    </div>
+                    <div className="security-message security-message--context">
+                      <Code2 size={14} />
+                      <span>{v.context}</span>
+                      <i></i>
+                    </div>
+                    <div className="security-message security-message--response">
+                      <FileText size={14} />
+                      <span>{v.response}</span>
+                      <i></i>
+                    </div>
+                    <div className="security-history__footer">
+                      <span>
+                        <span className="security-history__dot"></span>Datus
+                        Studio
+                      </span>
+                      <span className="security-delete">
+                        <Trash2 size={13} />
+                        {v.delete}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </FeatureCard>
+            </div>
+            <p className="security-feature-note">
+              <Shield size={15} aria-hidden="true" />
+              <span>{t.features.note}</span>
+            </p>
+          </div>
+        </section>
+
+        <section
+          className="security-section security-controls"
+          id="security-controls"
+          aria-labelledby="controls-heading"
+        >
+          <div className="container">
+            <SectionHeading id="controls-heading" {...t.controls} />
+            <div className="security-controls__grid">
+              {t.controls.cards.map((card, index) => {
+                const Icon = CONTROL_ICONS[index];
+                return (
+                  <article
+                    className="card security-control"
+                    id={card.id}
+                    key={card.id}
+                  >
+                    <span className="card__icon">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
+                    <h3>{card.title}</h3>
+                    <p className="security-control__body">{card.body}</p>
+                    <SecurityDetails
+                      label={t.controls.detailsLabel}
+                      items={card.details}
+                    />
+                  </article>
+                );
+              })}
+            </div>
+            <p className="security-control-note">{t.controls.note}</p>
+          </div>
+        </section>
+
+        <section
+          className="security-section security-deployment"
+          id="infrastructure"
+          aria-labelledby="deployment-heading"
+        >
+          <div className="container">
+            <SectionHeading id="deployment-heading" {...t.deployment} />
+            <div className="security-deployment__grid">
+              {t.deployment.cards.map((card, index) => (
+                <article
+                  className="card security-deployment-card"
+                  key={card.title}
+                >
+                  <div
+                    className={`security-boundary${index === 1 ? " security-boundary--private" : ""}`}
+                    aria-hidden="true"
+                  >
+                    <span className="security-boundary__label">
+                      {index === 0 ? "AWS" : v.yourInfrastructure}
+                    </span>
+                    {index === 0 ? (
+                      <>
+                        <div className="security-workspaces">
+                          {["01", "02"].map((number) => (
+                            <div className="security-workspace" key={number}>
+                              <Boxes size={26} />
+                              <span>
+                                {v.workspace} {number}
+                              </span>
+                              <small>{v.runtime}</small>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="security-boundary__access">
+                          <LockKeyhole size={13} />
+                          {v.access}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="security-private-nodes">
+                        <div>
+                          <Server size={26} />
+                          <span>{v.runtime}</span>
+                        </div>
+                        <div>
+                          <Database size={26} />
+                          <span>{v.storage}</span>
+                        </div>
+                        <div>
+                          <KeyRound size={26} />
+                          <span>{v.keys}</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <h3>{card.title}</h3>
+                  <p>{card.paragraphs[0]}</p>
+                  <p className="security-deployment-card__note">
+                    {card.paragraphs[1]}
+                  </p>
+                </article>
+              ))}
+            </div>
+            <p className="security-responsibility">
+              {t.deployment.responsibility}
+            </p>
+          </div>
+        </section>
+
+        <section
+          className="security-section security-compliance"
+          id="compliance"
+          aria-labelledby="compliance-heading"
+        >
+          <div className="container">
+            <SectionHeading
+              id="compliance-heading"
+              eyebrow={t.compliance.eyebrow}
+              title={t.compliance.title}
+            />
+            <div className="security-compliance__panel">
+              <div className="security-compliance__mark" aria-hidden="true">
+                <Shield size={38} />
+                <span>SOC 2</span>
+                <span className="security-compliance__line"></span>
+              </div>
+              <div className="security-compliance__copy">
+                <span className="security-status">{t.compliance.status}</span>
+                <p>{t.compliance.body}</p>
+                <a
+                  className="link-arrow"
+                  href={t.compliance.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t.compliance.link.label}
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+              </div>
             </div>
           </div>
         </section>
-        <div className="security-overview">
-          <div className="container grid grid-3">
-            {t.overview.map((item, index) => {
-              const Icon = OVERVIEW_ICONS[index];
-              return (
-                <div className="card" key={item.title}>
-                  <span className="card__icon">
-                    <Icon size={20} aria-hidden="true" />
-                  </span>
-                  <h2 className="card__title">{item.title}</h2>
-                  <p className="card__body">{item.body}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className="container">
-          <div className="security-layout">
-            <aside className="security-sidebar" aria-label={t.toc}>
-              <p className="security-sidebar__title">{t.toc}</p>
-              <nav aria-label={t.toc}>
-                {[...sections, faq].map((section, index) => (
+
+        <section
+          className="security-section security-resources"
+          aria-labelledby="resources-heading"
+        >
+          <div className="container">
+            <SectionHeading id="resources-heading" title={t.resources.title} />
+            <div className="security-resources__grid">
+              {t.resources.cards.map((card, index) => {
+                const Icon = RESOURCE_ICONS[index];
+                const external = card.href.startsWith("https:");
+                return (
                   <a
-                    key={section.id}
-                    href={`#${section.id}`}
-                    aria-current={
-                      activeId === section.id ? "location" : undefined
-                    }
+                    className="security-resource"
+                    href={l(card.href)}
+                    key={card.title}
+                    {...(external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                   >
-                    <span aria-hidden="true">{sectionNumber(index)}</span>
-                    {section.title}
+                    <span className="security-resource__icon">
+                      <Icon size={24} aria-hidden="true" />
+                    </span>
+                    <h3>{card.title}</h3>
+                    <p>{card.body}</p>
+                    <span className="security-resource__action">
+                      {card.action}
+                      <ArrowUpRight size={15} aria-hidden="true" />
+                    </span>
                   </a>
-                ))}
-              </nav>
-              <div className="security-sidebar__contact">
-                <p>{t.contactLabel}</p>
-                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL} ↗</a>
-              </div>
-              <a className="security-back-top" href="#top">
-                {t.backToTop} <ArrowUp size={13} aria-hidden="true" />
-              </a>
-            </aside>
-            <div className="security-article">
-              {sections.map((section, index) => (
-                <SecuritySection
-                  key={section.id}
-                  section={section}
-                  index={index}
-                  flowLabel={t.flowLabel}
-                />
-              ))}
-              <section
-                className="security-section security-faq"
-                id={faq.id}
-                aria-labelledby="security-faq-heading"
-              >
-                <div className="security-section__heading">
-                  <span className="security-section__number" aria-hidden="true">
-                    {sectionNumber(sections.length)}
-                  </span>
-                  <h2 id="security-faq-heading">{faq.title}</h2>
-                </div>
-                <div className="faq__list">
-                  {faq.items.map((item, index) => (
-                    <details
-                      className="faq__item"
-                      key={item.q}
-                      open={index === 0}
-                    >
-                      <summary className="faq__summary">
-                        <h3 className="faq__q">{item.q}</h3>
-                        <span className="faq__icon" aria-hidden="true" />
-                      </summary>
-                      <div className="faq__a">
-                        <p>{item.a}</p>
-                      </div>
-                    </details>
-                  ))}
-                </div>
-                <script
-                  type="application/ld+json"
-                  dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c"),
-                  }}
-                />
-              </section>
+                );
+              })}
             </div>
           </div>
+        </section>
+
+        <div className="security-faq" id={t.faq.id}>
+          <FAQ
+            items={t.faq.items}
+            currentUrl="/security/"
+            eyebrow=""
+            heading={t.faq.title}
+          />
         </div>
+
         <section
           className="security-contact"
           id="security-contact"
-          aria-labelledby="security-contact-heading"
+          aria-labelledby="contact-heading"
         >
           <div className="container">
-            <div className="card security-contact__panel">
+            <div className="security-contact__inner">
               <div>
-                <h2 id="security-contact-heading">{t.contact.title}</h2>
+                <h2 id="contact-heading">{t.contact.title}</h2>
                 <p>{t.contact.body}</p>
               </div>
               <a
                 className="btn btn-primary btn-lg"
                 href={`mailto:${CONTACT_EMAIL}`}
               >
-                {CONTACT_EMAIL} <ArrowUpRight size={17} aria-hidden="true" />
+                {CONTACT_EMAIL}
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+            </div>
+            <div className="security-page-meta">
+              <span>
+                {t.updated} <time dateTime={SECURITY_UPDATED_AT}>{t.date}</time>
+              </span>
+              <a className="security-back-top" href="#top">
+                {t.backToTop}
+                <ArrowUp size={13} aria-hidden="true" />
               </a>
             </div>
           </div>
