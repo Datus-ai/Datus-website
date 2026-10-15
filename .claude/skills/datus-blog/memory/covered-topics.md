@@ -120,6 +120,21 @@ Data Contract, Medallion Architecture, Change Data Capture.
 - Image: /images/what-is-headless-bi/resource-cover.svg
 - PR: https://github.com/Datus-ai/Datus-website/pull/96   Status: open; based on main, independent of website redesign PR #94.
 - Date: 2026-10-15
+
+### semantic-model-examples
+- Title: Semantic Model Examples: A Working Apache Ossie Model
+- Target keyword: semantic model examples
+- Angle: runnable model and seed rows for completed revenue, regional breakdowns, and average order value, with independently checkable answers; distinct from the canonical semantic-model definition.
+- Source direction: operator's content strategy, Semantic Layer pillar spoke.
+- Article type: Tutorial
+- Investment Score: 4.4/5   Gate A: KEEP — distinct example intent, reproducible information gain, clear link to the semantic-model hub.
+- Audit: 84/100, grade A; P0 PASS; check-post 14 pass / 2 static-download warnings / 0 fail.
+- Key sources: https://github.com/apache/ossie/blob/main/core-spec/spec.md; https://dosi.datus.ai/cli/; https://dosi.datus.ai/tutorials/first-metric-query/
+- Internal links added: what-is-semantic-model, what-is-semantic-layer, what-is-conversational-bi, semantic-layer-in-the-agent-loop; reciprocal from what-is-semantic-model.
+- Glossary updated: no — existing semantic-model glossary link continues to point to its canonical definition.
+- Category: Semantic Layer
+- PR: https://github.com/Datus-ai/Datus-website/pull/98   Status: open
+- Date: 2026-10-15
 <!-- Append records here (chronological order) per memory/README.md format. -->
 
 ### what-is-data-contract
