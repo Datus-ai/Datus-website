@@ -6,9 +6,10 @@ output files, diagnostics, discard confirmations, snapshots and downloads follow
 the Studio flow; project saving is omitted because this tool is anonymous.
 
 - Route: `/tools/semantic-model-converter/`, with a `/zh/` mirror.
-- Runtime hostname `localhost`, `127.0.0.1` or IPv6 loopback uses
-  `https://studio-dev.datus.ai`; other hosts use `https://studio.datus.ai`.
-  A localhost production preview also uses dev.
+- All hosts, including the live website and localhost previews, temporarily use
+  `https://studio-dev.datus.ai`. After the production converter API is deployed,
+  restore hostname-based routing in `api.ts` when requested: deployed hosts use
+  `https://studio.datus.ai`, while localhost previews keep using dev.
 - Calls `GET /api/public/semantic-converter/targets` and
   `POST /api/public/semantic-converter/convert`, without credentials or internal
   tokens. No Python deployment is added.
@@ -36,7 +37,8 @@ npm run build:all
 npm run preview
 ```
 
-The unit checks cover hostname selection, UTF-8 limits, model selection,
-unsafe/duplicate output paths, edited buffers, sample hashes and locale parity.
-Verify real API calls from localhost against studio-dev before release; production
-requires the public endpoints to be deployed on studio.datus.ai.
+The unit checks cover API routing on production/preview/localhost hosts, UTF-8
+limits, model selection, unsafe/duplicate output paths, edited buffers, sample
+hashes and locale parity. Verify real API calls against studio-dev before release.
+Production converter API deployment is required before restoring production-host
+routing to studio.datus.ai.
