@@ -70,7 +70,7 @@ function StudioMock() {
   return (
     <MockWindow title="studio.datus.ai">
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", fontFamily: mono }}>
-        <div style={{ padding: 16, display: "grid", gap: 12, background: "rgba(11,18,48,0.45)", borderRight: "1px solid var(--line)" }}>
+        <div style={{ padding: 16, display: "grid", gap: 12, background: "var(--bg-2)", borderRight: "1px solid var(--line)" }}>
           <div style={label}>chat</div>
           <div style={{ borderRadius: 8, border: "1px solid var(--line)", background: "var(--panel)", padding: "8px 10px" }}>
             <div style={label}>you</div>
@@ -351,7 +351,7 @@ export function SurfaceCarousel({ items }: { items: Surface[] }) {
                   flexDirection: "column",
                   justifyContent: "center",
                   padding: "clamp(24px,3vw,44px)",
-                  background: "rgba(11,18,48,0.5)",
+                  background: "var(--bg-2)",
                   borderRight: "1px solid var(--line)",
                 }}
               >

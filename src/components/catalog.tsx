@@ -11,7 +11,7 @@ import type { ReactNode } from "react";
 export const TONES = ["var(--term-cyan)", "var(--term-amber)", "var(--term-green)", "var(--term-pink)"];
 export const toneAt = (i: number) => TONES[i % TONES.length];
 
-export const panelBg = "rgba(11,18,48,0.4)";
+export const panelBg = "var(--bg-2)";
 export const sectionBorder = "1px solid var(--line)";
 
 export function InlineCode({ children }: { children: ReactNode }) {

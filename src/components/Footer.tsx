@@ -2,7 +2,7 @@ import "./Footer.css";
 import { useHref, useLocale } from "../i18n/LocaleContext";
 import { UI } from "../i18n/ui";
 
-const Footer = () => {
+const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
   const year = new Date().getFullYear();
   const locale = useLocale();
   const l = useHref();
@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="site-footer__inner">
         <div className="site-footer__brand">
           <a href={l("/")} className="site-footer__logo" aria-label="Datus">
-            <img src="/logo_dark.svg" alt="Datus" />
+            <img src={logoSrc} alt="Datus" />
           </a>
           <p className="site-footer__tagline">{t.tagline}</p>
         </div>

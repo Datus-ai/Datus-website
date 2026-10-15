@@ -31,7 +31,7 @@ export default function FaqPage() {
       </section>
 
       {/* Products */}
-      <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
+      <section className="section" style={{ background: "var(--bg-2)", borderBlock: "1px solid var(--line)" }}>
         <div className="container">
           <div className="section-head">
             <span className="eyebrow">{t.productsSection.eyebrow}</span>

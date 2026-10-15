@@ -10,6 +10,8 @@ import type { Locale } from "./config";
  * Product names, CLI commands and package names stay in English.
  */
 export type UiMessages = {
+  theme: { toDark: string; toLight: string };
+  install: { terminal: string; quickInstall: string; copy: string; copied: string; failed: string; example: string };
   nav: {
     home: string;
     products: string;
@@ -140,6 +142,8 @@ export type UiMessages = {
 
 export const UI: Record<Locale, UiMessages> = {
   en: {
+    theme: { toDark: "Switch to dark mode", toLight: "Switch to light mode" },
+    install: { terminal: "Terminal", quickInstall: "Quick install", copy: "Copy install command", copied: "Copied", failed: "Could not copy — select the command", example: "Example session" },
     nav: {
       home: "Home",
       products: "Products",
@@ -268,6 +272,8 @@ export const UI: Record<Locale, UiMessages> = {
     },
   },
   zh: {
+    theme: { toDark: "切换到深色模式", toLight: "切换到浅色模式" },
+    install: { terminal: "终端", quickInstall: "快速安装", copy: "复制安装命令", copied: "已复制", failed: "复制失败，请选择命令复制", example: "示例会话" },
     nav: {
       home: "首页",
       products: "产品",
