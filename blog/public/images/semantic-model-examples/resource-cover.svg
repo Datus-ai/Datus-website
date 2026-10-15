@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Semantic model examples: from rows to reviewed answers</title>
+  <desc id="desc">Two source tables flow through a shared Apache Ossie semantic model and produce three checked answers: completed revenue 330, revenue by region, and average order value 82.5.</desc>
+  <rect width="1200" height="750" fill="#f7f7f2"/>
+  <path d="M0 132H1200M0 638H1200" stroke="#e5e3de" stroke-width="2"/>
+  <path d="M60 60H1140" stroke="#402df3" stroke-width="3"/>
+  <text x="60" y="102" fill="#402df3" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="3.5">DATUS / SEMANTIC LAYER</text>
+  <text x="60" y="695" fill="#171717" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="600" letter-spacing="-1.6">From source rows to trusted answers.</text>
+  <text x="60" y="725" fill="#61615c" font-family="Arial,Helvetica,sans-serif" font-size="18">A small model you can check by eye.</text>
+
+  <g font-family="Arial,Helvetica,sans-serif">
+    <text x="60" y="183" fill="#64645f" font-size="16" font-weight="700" letter-spacing="2">SOURCE DATA</text>
+    <text x="438" y="183" fill="#64645f" font-size="16" font-weight="700" letter-spacing="2">BUSINESS DEFINITION</text>
+    <text x="855" y="183" fill="#64645f" font-size="16" font-weight="700" letter-spacing="2">CHECKED ANSWERS</text>
+  </g>
+
+  <g stroke="#a99cf8" stroke-width="2" fill="#eeebfb">
+    <rect x="60" y="221" width="274" height="144" rx="5"/>
+    <rect x="60" y="387" width="274" height="144" rx="5"/>
+  </g>
+  <g fill="#402df3" font-family="Arial,Helvetica,sans-serif">
+    <text x="82" y="257" font-size="25" font-weight="700">orders</text>
+    <text x="82" y="424" font-size="25" font-weight="700">customers</text>
+  </g>
+  <g stroke="#a99cf8" stroke-width="1.6" fill="none">
+    <path d="M82 272H311M82 439H311"/>
+    <path d="M82 294H258M82 317H288M82 340H235"/>
+    <path d="M82 461H251M82 484H288M82 507H230"/>
+  </g>
+  <g fill="#585a56" font-family="Arial,Helvetica,sans-serif" font-size="18">
+    <text x="82" y="296">order_id · status</text>
+    <text x="82" y="320">amount · order_date</text>
+    <text x="82" y="342">customer_id</text>
+    <text x="82" y="464">customer_id</text>
+    <text x="82" y="487">region</text>
+  </g>
+
+  <path d="M334 376H409" fill="none" stroke="#402df3" stroke-width="3"/>
+  <path d="m399 367 10 9-10 9" fill="none" stroke="#402df3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="429" y="221" width="355" height="310" rx="8" fill="#402df3"/>
+  <g font-family="Arial,Helvetica,sans-serif">
+    <text x="458" y="265" fill="#d6d0ff" font-size="16" font-weight="700" letter-spacing="2">APACHE OSSIE MODEL</text>
+    <path d="M458 283H755" stroke="#aaa0f6" stroke-width="2"/>
+    <text x="458" y="332" fill="#ffffff" font-size="31" font-weight="700">retail_orders</text>
+    <text x="458" y="381" fill="#ffffff" font-size="22">completed_revenue</text>
+    <text x="458" y="420" fill="#e6e1ff" font-size="20">status = completed</text>
+    <text x="458" y="459" fill="#e6e1ff" font-size="20">orders → customers</text>
+    <text x="458" y="499" fill="#e6e1ff" font-size="20">month · region</text>
+  </g>
+  <path d="M784 376H829" fill="none" stroke="#402df3" stroke-width="3"/>
+  <path d="m819 367 10 9-10 9" fill="none" stroke="#402df3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g fill="#ffffff" stroke="#c9c1fb" stroke-width="2">
+    <rect x="849" y="221" width="291" height="92" rx="5"/>
+    <rect x="849" y="330" width="291" height="92" rx="5"/>
+    <rect x="849" y="439" width="291" height="92" rx="5"/>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif">
+    <text x="872" y="250" fill="#5e605a" font-size="16">COMPLETED REVENUE</text>
+    <text x="872" y="293" fill="#402df3" font-size="36" font-weight="700">330</text>
+    <text x="872" y="359" fill="#5e605a" font-size="16">BY REGION</text>
+    <text x="872" y="402" fill="#402df3" font-size="28" font-weight="700">East 250  ·  West 80</text>
+    <text x="872" y="468" fill="#5e605a" font-size="16">AVERAGE ORDER VALUE</text>
+    <text x="872" y="511" fill="#402df3" font-size="36" font-weight="700">82.5</text>
+  </g>
+</svg>

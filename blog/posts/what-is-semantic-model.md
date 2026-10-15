@@ -205,6 +205,7 @@ Partially — and that partial automation is the pragmatic sweet spot. A data en
 
 ## Related articles
 
+- [Semantic model examples](/blog/semantic-model-examples/) — a tested Apache Ossie model with source data and expected answers
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the full business dictionary composed of semantic models
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog built from semantic model measures
 - [What is a data catalog?](/blog/what-is-data-catalog/) — discovery metadata vs executable semantics
