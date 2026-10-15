@@ -91,6 +91,9 @@ export default function SemanticConverterPage() {
           <h2>{t.relatedTitle}</h2>
           <ul className="converter-links">
             <li>
+              <a href="/blog/apache-ossie-converters/">{t.convertersArticle}</a>
+            </li>
+            <li>
               <a href={l('/tools/osi-playground/')}>{t.playground}</a>
             </li>
             <li>

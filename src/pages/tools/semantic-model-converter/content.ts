@@ -19,6 +19,7 @@ interface IConverterPageCopy {
   relatedTitle: string;
   playground: string;
   examplesArticle: string;
+  convertersArticle: string;
   ossie: string;
   studio: string;
 }
@@ -81,6 +82,7 @@ export const converterPage: Record<Locale, IConverterPageCopy> = {
     relatedTitle: 'Continue Exploring',
     playground: 'MetricFlow → OSI Playground',
     examplesArticle: 'Semantic Model Examples and YAML Guide',
+    convertersArticle: 'Apache Ossie Conversion Guide',
     ossie: 'Apache Ossie Converter Documentation',
     studio: 'Build and Convert Models in Datus Studio',
   },
@@ -141,6 +143,7 @@ export const converterPage: Record<Locale, IConverterPageCopy> = {
     relatedTitle: '继续探索',
     playground: 'MetricFlow → OSI 试验工具',
     examplesArticle: '语义模型样例与 YAML 指南',
+    convertersArticle: 'Apache Ossie 转换指南（英文）',
     ossie: 'Apache Ossie 转换器文档',
     studio: '在 Datus Studio 中构建和转换模型',
   },

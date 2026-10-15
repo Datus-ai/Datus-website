@@ -178,6 +178,8 @@ Apache Ossie (formerly Open Semantic Interchange, OSI) is developed in the open 
 
 ## Related articles
 
+- [Apache Ossie converters: YAML to dbt, Cube and more](/blog/apache-ossie-converters/) — export formats, worked conversion cases, and target-side checks
+
 - [What is Snowflake OSI?](/blog/what-is-snowflake-osi/) — how Snowflake bridges Semantic Views to Ossie YAML, and what the SYSTEM$ functions actually do
 - [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — how the portable standard pairs with dbt's execution engine
 - [Semantic layer tools in 2026 + OSI status](/blog/semantic-layer-tools-list-osi/) — every tool, with its current Apache Ossie support
