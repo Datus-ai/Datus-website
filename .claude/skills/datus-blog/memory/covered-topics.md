@@ -753,3 +753,19 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/100   Status: open
 - Date: 2026-10-15
 - Validation: full build (104 posts), scoped converter typecheck and 40 checks; desktop/mobile and JavaScript-disabled rendering; Article/FAQPage/BreadcrumbList, five FAQ entries, canonical, internal links, sitemap and English-only blog verified. Production converter API deployment remains a prerequisite recorded in the PR.
+
+### datus-october-level-of-detail
+- Title: Datus October Update: Getting the Level of Detail Right
+- Target keyword: level of detail (DOSI LOD calculations, semantic layer grain)
+- Angle: October release explains how D-LOD makes calculation grain explicit, with examples across user activity, alerts, cohorts, detail rows, and conformed axes.
+- Source direction: operator-provided Google Doc https://docs.google.com/document/d/1ilEe4TepsJeggIODolKjTAPI_voOp5MYX5sZCEvZ_Jc/edit?usp=sharing (unpublished release draft); original prose and six diagrams retained with light factual edits.
+- Article type: Product
+- Investment Score: n/a (operator-directed port)   Gate A: KEEP — distinct October release from September's agent-loop update.
+- Audit: 84/100, grade A; automated 14 pass / 0 warn / 0 fail.
+- Key sources: https://dosi.datus.ai/release-notes/#0113; https://dosi.datus.ai/datus-extensions/#d-lod; https://github.com/Datus-ai/Datus-agent/releases/tag/v0.4.3; https://github.com/apache/ossie/blob/main/core-spec/spec.md
+- Internal links added: semantic-layer-in-the-agent-loop, what-is-semantic-model, semantic-model-examples, dosi-mcp-semantic-layer-for-agents, open-semantic-interchange-osi; reciprocal from semantic-layer-in-the-agent-loop.
+- Glossary updated: no — no matching term.
+- Category: Releases
+- Images: six original PNGs in blog/public/images/datus-october-level-of-detail/.
+- PR: https://github.com/Datus-ai/Datus-website/pull/102   Status: open
+- Date: 2026-10-16
