@@ -1,0 +1,235 @@
+/* Homepage direction: warm Scandinavian minimalism, with the original logo purple.
+   Scoped to both homepage locales while the design is under review. */
+.nordic-home { background: var(--bg); font-size: 16px; overflow-x: clip; }
+.nordic-home .site-nav { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; border-color: var(--line); }
+.nordic-home .site-nav__inner { padding-inline: 40px; gap: 20px; }
+.nordic-home .site-nav__logo img { height: 31px; }
+.nordic-home .site-nav__links { margin-left: 30px; }
+.nordic-home .nav-link { font-weight: 450; font-size: 14px; }
+.nordic-home .nav-link:hover, .nordic-home .nav-lang:hover, .nordic-home .nav-lang[aria-expanded="true"] { color: var(--brand-bright); background: var(--brand-soft); }
+.nordic-home .nav-ghost-btn { border: 0; font-family: inherit; padding-inline: 4px; }
+.nordic-home .site-nav__mobile { background: var(--bg) !important; backdrop-filter: none !important; }
+.nordic-home .btn { border-radius: 4px; font-weight: 500; box-shadow: none; }
+.nordic-home .btn-primary { background: var(--brand); color: #fff; box-shadow: none; }
+.nordic-home .btn-primary:hover { background: #3020c8; box-shadow: none; transform: none; }
+.nordic-home .btn-lg { height: 51px; padding-inline: 23px; font-size: 14px; }
+.nordic-home a:focus-visible, .nordic-home button:focus-visible, .nordic-home summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 5px; }
+.nordic-home .nordic-wrap { width: min(100%, 1240px); margin-inline: auto; padding-inline: 40px; }
+.nordic-label { display: inline-flex; gap: 10px; align-items: center; color: var(--ink-muted); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; line-height: 1.7; font-weight: 500; }
+.nordic-dot { display: inline-block; width: 7px; height: 7px; background: var(--brand); border-radius: 50%; flex-shrink: 0; }
+.nordic-hero { padding-top: 80px; padding-bottom: 32px; }
+.nordic-hero__grid { display: grid; grid-template-columns: 1.18fr 1fr; gap: 56px; align-items: center; }
+.nordic-hero h1 { font-size: clamp(46px, 5.4vw, 76px); line-height: 1.065; letter-spacing: -.06em; font-weight: 450; margin: 29px 0 26px; max-width: 660px; }
+.nordic-hero h1 span { color: var(--brand-bright); }
+.nordic-lead { font-size: 16px; line-height: 1.8; color: var(--ink-dim); max-width: 560px; }
+.nordic-lead strong { font-weight: 550; }
+.nordic-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; margin-top: 32px; }
+.nordic-text-link { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
+.nordic-text-link:hover { color: var(--brand-bright); }
+.nordic-enterprise { display: inline-flex; gap: 10px; align-items: center; background: none; border: 0; padding: 0; color: var(--ink-muted); font: inherit; font-size: 12px; margin-top: 24px; cursor: pointer; }
+.nordic-enterprise:hover { color: var(--brand-bright); }
+.nordic-hero__foot { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.nordic-hero__foot > .nordic-byos { display: flex; gap: 24px; font-size: 12px; color: var(--ink-muted); }
+.nordic-proof { display: grid; grid-template-columns: repeat(4, 1fr); padding-block: 27px 36px; border-bottom: 1px solid var(--line); }
+.nordic-proof > div { padding: 8px 24px; border-left: 1px solid var(--line); }
+.nordic-proof > div:first-child { padding-left: 0; border-left: 0; }
+.nordic-proof strong { display: block; font-size: 18px; font-weight: 500; letter-spacing: -.025em; }
+.nordic-proof span { display: block; margin-top: 8px; font-size: 11px; color: var(--ink-muted); line-height: 1.6; }
+.nordic-section { padding-block: 100px; }
+.nordic-section-head { margin-bottom: 48px; }
+.nordic-section-head h2, .nordic-closing h2 { max-width: 760px; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.2; font-weight: 450; letter-spacing: -.045em; margin: 20px 0; }
+.nordic-section-head .nordic-lead { max-width: 730px; }
+.nordic-problem { display: grid; grid-template-columns: .82fr 1.18fr; gap: 74px; }
+.nordic-problem h2 { font-size: clamp(28px, 3vw, 40px); }
+.nordic-problem .nordic-lead { font-size: 14px; }
+.nordic-comparison__head, .nordic-comparison__row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.nordic-comparison__head { font-size: 11px; color: var(--ink-muted); border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-top: 7px; }
+.nordic-comparison__head span:last-child { color: var(--brand-bright); }
+.nordic-comparison__row { padding-block: 21px; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.85; }
+.nordic-comparison__row p { margin: 0; }
+.nordic-comparison__row p:first-child { color: var(--ink-muted); }
+.nordic-band { background: var(--bg-2); }
+.nordic-layers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+.nordic-layers > div { padding-top: 22px; border-top: 1px solid var(--line-strong); }
+.nordic-index { font-family: var(--font-mono); font-size: 11px; color: var(--brand-bright); }
+.nordic-layers h3 { font-size: 23px; font-weight: 500; letter-spacing: -.025em; margin: 24px 0 12px; }
+.nordic-layers p { font-size: 13px; line-height: 1.7; color: var(--ink-muted); min-height: 45px; }
+.nordic-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.nordic-tags span { font-size: 10px; border: 1px solid var(--line-strong); padding: 5px 8px; }
+.nordic-process { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; list-style: none; gap: 38px 24px; }
+.nordic-knowledge-flow { margin: 0 0 46px; border: 1px solid var(--line); background: var(--panel-solid); }
+.nordic-knowledge-flow img { display: block; width: 100%; height: auto; }
+.nordic-knowledge-flow__dark { display: none !important; }
+[data-theme="dark"] .nordic-knowledge-flow__light { display: none; }
+[data-theme="dark"] .nordic-knowledge-flow__dark { display: block !important; }
+.nordic-knowledge-flow figcaption { padding: 15px 24px; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: 13px; line-height: 1.6; }
+.nordic-process li { border-top: 1px solid var(--line); padding-top: 17px; }
+.nordic-process span { color: var(--brand-bright); font-size: 11px; font-family: var(--font-mono); }
+.nordic-process li > div { margin-top: 15px; font-size: 16px; }
+.nordic-use-cases { padding-top: 0; }
+.nordic-features { display: grid; grid-template-columns: 1fr 1fr; gap: 38px 64px; }
+.nordic-features article { position: relative; border-top: 1px solid var(--line); padding-top: 25px; }
+.nordic-features article > svg { color: var(--brand-bright); }
+.nordic-features .nordic-index { position: absolute; right: 0; top: 28px; }
+.nordic-features h3 { font-size: 23px; letter-spacing: -.03em; line-height: 1.35; font-weight: 450; max-width: 360px; margin: 22px 0 15px; }
+.nordic-features article > div { font-size: 14px; color: var(--ink-dim); line-height: 1.8; max-width: 440px; }
+.nordic-surfaces { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; }
+.nordic-tabs { display: flex; flex-direction: column; }
+.nordic-tabs button { display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 21px 0; font: inherit; font-size: 17px; color: var(--ink-muted); cursor: pointer; }
+.nordic-tabs button[aria-selected="true"] { color: var(--brand-bright); border-bottom-color: var(--brand-bright); }
+.nordic-surface { padding: 42px; background: var(--visual-bg); min-height: 350px; }
+.nordic-surface__icon { color: var(--brand-bright); }
+.nordic-surface h3 { font-weight: 450; font-size: 34px; letter-spacing: -.035em; margin: 24px 0 15px; }
+.nordic-surface code { display: block; margin-top: 28px; font-size: 12px; font-family: var(--font-mono); color: var(--brand-bright); }
+.nordic-integrations { margin-bottom: 30px; }
+.nordic-integration-row { display: flex; gap: 30px; align-items: baseline; padding: 23px 0; border-top: 1px solid var(--line-strong); }
+.nordic-integration-row h3 { flex: 0 0 145px; margin: 0; font-size: 13px; font-weight: 500; }
+.nordic-integration-row > div { display: flex; gap: 26px; flex-wrap: wrap; font-size: 13px; color: var(--ink-muted); flex: 1; }
+.nordic-home .faq { padding-block: 100px 20px; }
+.nordic-home .faq .container { width: min(100%, 1240px); max-width: 1240px !important; padding-inline: 40px; }
+.nordic-home .faq .section-head { max-width: 650px; margin-bottom: 44px !important; }
+.nordic-home .eyebrow { border: 0; background: none; border-radius: 0; padding: 0; color: var(--ink-muted); font-family: inherit; font-size: 11px; letter-spacing: .12em; }
+.nordic-home .faq .h2 { font-size: 40px !important; font-weight: 450; letter-spacing: -.04em; }
+.nordic-home .faq .lead { font-size: 14px; }
+.nordic-home .faq__list { border-color: var(--line); }
+.nordic-home .faq__q { font-size: 16px; font-weight: 500; }
+.nordic-home .faq__summary { padding-block: 23px; }
+.nordic-home .faq__a { color: var(--ink-dim); font-size: 14px; max-width: 740px; }
+.nordic-faq-link { padding-top: 16px; }
+.nordic-closing { text-align: center; padding-block: 115px; }
+.nordic-closing h2 { margin: 22px auto; }
+.nordic-closing .nordic-lead { margin: 0 auto 30px; }
+.nordic-home .site-footer { background: var(--bg-2); color: var(--ink); border-color: var(--line); }
+.nordic-home .site-footer__inner, .nordic-home .site-footer__bar { max-width: 1240px; padding-inline: 40px; }
+.nordic-home .site-footer__inner { padding-block: 60px; }
+.nordic-home .site-footer__tagline, .nordic-home .site-footer__bar { color: var(--ink-muted); }
+.nordic-home .site-footer__heading { color: var(--ink-muted); font-size: 10px; }
+.nordic-home .site-footer__col a { color: var(--ink-dim); font-size: 12px; }
+.nordic-home .site-footer__col a:hover { color: var(--brand-bright); }
+.nordic-home .site-footer__bar { border-color: var(--line); font-size: 11px; }
+@media(min-width:1440px) { .nordic-hero { padding-top: 100px; } }
+@media(max-width:1000px) {
+  .nordic-hero__grid { gap: 30px; }.nordic-hero h1 { font-size: 56px; }
+  .nordic-problem { gap: 40px; grid-template-columns: 1fr; }
+  .nordic-section { padding-block: 75px; }.nordic-use-cases { padding-top: 0; }
+  .nordic-home .site-nav__links { margin-left: 0; }
+}
+@media(max-width:720px) {
+  .nordic-home { --nav-h: 72px; }
+  .nordic-home .site-nav__inner { gap: 8px; }
+  .nordic-home .site-nav__inner > .nav-ghost-btn { display: none; }
+  .nordic-home .nordic-wrap, .nordic-home .site-nav__inner, .nordic-home .faq .container, .nordic-home .site-footer__inner, .nordic-home .site-footer__bar { padding-inline: 24px; }
+  .nordic-hero { padding-top: 48px; }.nordic-hero__grid { grid-template-columns: 1fr; gap: 38px; }
+  .nordic-hero h1 { font-size: clamp(43px, 10vw, 62px); margin-top: 24px; }
+  .nordic-hero .nordic-lead { font-size: 15px; }
+  .nordic-hero__foot { margin-top: 32px; }.nordic-hero__foot > .nordic-byos { gap: 15px; }
+  .nordic-proof { grid-template-columns: 1fr 1fr; row-gap: 24px; }
+  .nordic-proof > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .nordic-proof strong { font-size: 16px; }.nordic-proof span { font-size: 10px; }
+  .nordic-section { padding-block: 64px; }.nordic-use-cases { padding-top: 0; }
+  .nordic-section-head { margin-bottom: 32px; }.nordic-section-head h2 { font-size: 33px; }
+  .nordic-layers { grid-template-columns: 1fr; gap: 32px; }.nordic-layers p { min-height: 0; }
+  .nordic-process { grid-template-columns: 1fr 1fr; }.nordic-features { grid-template-columns: 1fr; gap: 32px; }
+  .nordic-surfaces { grid-template-columns: 1fr; gap: 24px; }.nordic-tabs { flex-direction: row; gap: 13px; flex-wrap: wrap; }
+  .nordic-tabs button { width: auto; flex: 1; font-size: 12px; white-space: nowrap; gap: 8px; padding: 14px 0; }
+  .nordic-surface { padding: 28px; min-height: 0; }.nordic-surface h3 { font-size: 29px; }
+  .nordic-integration-row { gap: 16px; flex-wrap: wrap; }.nordic-integration-row h3 { flex-basis: 100%; }
+  .nordic-integration-row > div { gap: 15px 20px; }.nordic-home .faq { padding-top: 64px; }
+  .nordic-closing { padding-block: 80px; }.nordic-home .site-footer__cols { gap: 20px; }
+}
+@media(prefers-reduced-motion:reduce) { .nordic-home *, .nordic-home *::before, .nordic-home *::after { transition: none !important; animation: none !important; } }
+
+
+/* Dark uses warm charcoal rather than navy; retain the brand purple on actions. */
+
+.nordic-home .nordic-theme-toggle {
+  width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  color: var(--ink-dim); background: none; cursor: pointer;
+}
+.nordic-home .nordic-theme-toggle:hover { color: var(--brand-bright); border-color: var(--brand-bright); background: var(--brand-soft); }
+.nordic-home .nordic-install-window {
+  width: 100%; min-width: 0; align-self: center; border: 1px solid var(--terminal-line);
+  border-radius: 7px; overflow: hidden; background: var(--terminal-bg); color: #e9eddf;
+  box-shadow: 0 10px 30px #0000000a; font-family: var(--font-mono);
+}
+.nordic-install-window__bar {
+  display: flex; align-items: center; gap: 12px; background: var(--terminal-bar);
+  padding: 14px 19px; border-bottom: 1px solid var(--terminal-line); font-size: 10px; color: #b0b8a5;
+}
+.nordic-terminal-dots { display: inline-flex; gap: 5px; }
+.nordic-terminal-dots i { width: 6px; height: 6px; border-radius: 50%; background: #697460; }
+.nordic-install-window__hint { margin-left: auto; font-size: 10px; max-width: 55%; text-align: right; }
+.nordic-home .nordic-install {
+  display: flex; align-items: center; gap: 12px; width: 100%; border: 0; border-bottom: 1px solid var(--terminal-line);
+  padding: 23px 22px; background: #ffffff03; color: #f0f3e9; text-align: left; cursor: pointer;
+}
+.nordic-install:hover { background: #ffffff08; }
+.nordic-install > span { color: #b3a4ff; }
+.nordic-install code { background: none; font-family: inherit; font-size: 12px; white-space: pre; overflow-x: auto; min-width: 0; flex: 1; user-select: text; }
+.nordic-install svg { color: #a5b29a; flex-shrink: 0; }
+.nordic-terminal-session { padding: 23px 22px; font-size: 13px; line-height: 1.9; }
+.nordic-terminal-session__label { color: #9aa58f; font-size: 9px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+.nordic-terminal-line { display: flex; align-items: baseline; gap: 9px; color: #e9eddf; }
+.nordic-terminal-line code { font-family: inherit; font-size: inherit; background: none; overflow-wrap: anywhere; }
+.nordic-terminal-prompt { color: #b3a4ff; flex-shrink: 0; }
+.nordic-terminal-output { margin: 8px 0; color: #a5b29a; font-size: 12px; line-height: 1.8; }
+.nordic-terminal-success { color: #bdcda7; margin: 12px 0; font-size: 12px; }
+.nordic-terminal-question { margin-top: 22px; }
+.nordic-terminal-evolve { color: #b3a4ff; margin-top: 17px; font-size: 12px; }
+.nordic-terminal-cursor { display: block; width: 6px; height: 12px; background: #b3a4ff; margin-top: 22px; }
+.nordic-watermark-section { position: relative; overflow: hidden; }
+.nordic-watermark-section > :not(.nordic-watermark) { position: relative; z-index: 1; }
+.nordic-watermark { position: absolute; pointer-events: none; user-select: none; }
+.nordic-watermark svg { display: block; width: 100%; height: auto; }
+.nordic-watermark--orbit { width: 490px; right: -70px; top: 20px; opacity: .1; }
+.nordic-watermark--arches { width: 330px; right: -35px; top: 28px; opacity: .12; }
+.nordic-watermark--weave { width: 360px; left: -110px; top: 14px; opacity: .13; }
+@media(max-width:1100px) {
+  .nordic-home .site-nav__links { display: none; }
+  .nordic-home .site-nav__burger { display: inline-flex; }
+  .nordic-install code { white-space: normal; overflow-wrap: anywhere; }
+}
+@media(max-width:720px) {
+  .nordic-home .site-nav__logo img { height: 28px; }
+  .nordic-home .site-nav__inner > .btn-sm { font-size: 12px; padding-inline: 12px; }
+  .nordic-home .nordic-install { gap: 8px; padding: 20px 15px; }
+  .nordic-install code { font-size: 10.5px; }
+  .nordic-install-window__bar { padding-inline: 15px; }
+  .nordic-terminal-session { padding: 21px 15px; }
+  .nordic-watermark--orbit { width: 330px; right: -130px; opacity: .075; }
+  .nordic-watermark--arches { right: -110px; width: 270px; }
+  .nordic-watermark--weave { width: 280px; left: -140px; opacity: .08; }
+  .nordic-knowledge-flow { margin-bottom: 34px; }
+  .nordic-knowledge-flow figcaption { padding: 13px 16px; font-size: 12px; }
+}
+@media(max-width:360px) {
+  .nordic-home .site-nav__inner { gap: 6px; }
+  .nordic-home .site-nav__logo img { height: 25px; }
+  .nordic-home .site-nav__inner > .btn-sm { padding-inline: 8px; font-size: 11px; }
+}
+
+/* Editorial resources: category, artwork, headline and a clear reading link. */
+.nordic-resources__head { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:38px; }
+.nordic-resources h2 { margin:16px 0 0; font-size:clamp(32px,3.6vw,48px); font-weight:450; letter-spacing:-.045em; line-height:1.15; }
+.nordic-resources__head > a { padding-bottom:5px; flex-shrink:0; }
+.nordic-resources__grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.nordic-resource { min-width:0; border:1px solid var(--line); background:var(--panel-solid); border-radius:5px; overflow:hidden; }
+.nordic-resource__link { display:flex; flex-direction:column; height:100%; }
+.nordic-resource:focus-within { outline:2px solid var(--brand-bright); outline-offset:5px; }
+.nordic-resource__image { aspect-ratio:1.6; position:relative; overflow:hidden; background:#f7f7f2; border-bottom:1px solid var(--line); }
+.nordic-resource__image img { display:block; width:100%; height:100%; object-fit:cover; }
+.nordic-resource--update .nordic-resource__image { background:#eeebfb; }
+.nordic-resource--update img { object-fit:contain; padding:18px; }
+.nordic-resource--release .nordic-resource__image { background:#402df3; }
+.nordic-resource--release img { position:absolute; width:85%; height:115%; right:-23%; top:-6%; object-fit:contain; filter:brightness(0) invert(1); opacity:.23; }
+.nordic-resource__version { position:absolute; left:28px; top:50%; transform:translateY(-50%); color:#fff; font-family:var(--font-mono); font-size:52px; letter-spacing:-.05em; }
+.nordic-resource__version span { display:block; font-size:11px; letter-spacing:.06em; margin-top:12px; }
+.nordic-resource__body { display:flex; flex-direction:column; flex:1; padding:26px; }
+.nordic-resource__body .nordic-label { color:var(--brand-bright); font-size:10px; }
+.nordic-resource h3 { margin:17px 0 12px; font-weight:500; font-size:23px; line-height:1.3; letter-spacing:-.025em; }
+.nordic-resource p { margin:0 0 28px; font-size:14px; line-height:1.7; color:var(--ink-muted); }
+.nordic-resource__cta { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:auto; padding-top:18px; border-top:1px solid var(--line); font-size:13px; }
+.nordic-resource__link:hover h3, .nordic-resource__link:hover .nordic-resource__cta { color:var(--brand-bright); }
+@media(max-width:900px) { .nordic-resources__grid { gap:16px; } .nordic-resource__body { padding:20px; } .nordic-resource h3 { font-size:20px; } }
+@media(max-width:720px) { .nordic-resources__head { align-items:flex-start; flex-direction:column; } .nordic-resources__grid { grid-template-columns:1fr; gap:28px; } .nordic-resource__body { padding:26px; } .nordic-resource h3 { font-size:24px; } }

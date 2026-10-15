@@ -82,6 +82,8 @@ export type HomeCopy = {
     eyebrow: string;
     heading: string;
     lead: ReactNode;
+    visualAlt: string;
+    visualCaption: string;
     phases: string[];
   };
   useCases: {
@@ -218,6 +220,8 @@ const EN: HomeCopy = {
         real usage.
       </>
     ),
+    visualAlt: "Documents, a warehouse, and ETL scripts converge through Datus into a semantic model ready for team review",
+    visualCaption: "Datus gathers business knowledge from existing documents, warehouses, and ETL scripts into a semantic model your team can review.",
     phases: [
       "Connect",
       "Read schema & SQL",
@@ -485,6 +489,8 @@ const ZH: HomeCopy = {
         <A href="/tools/osi-playground/">Apache Ossie 上下文层</A>，再从真实使用中不断打磨。
       </>
     ),
+    visualAlt: "文档、数仓与 ETL 脚本中的业务知识经 Datus 汇集，形成可供团队审核的语义模型",
+    visualCaption: "Datus 从现有文档、数仓和 ETL 脚本中汇集业务知识，生成可供团队审核的语义模型。",
     phases: [
       "连接",
       "读取表结构与 SQL",

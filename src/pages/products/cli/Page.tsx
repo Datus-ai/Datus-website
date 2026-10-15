@@ -62,7 +62,7 @@ const TONE: Record<string, string> = {
   danger: "var(--term-pink)",
 };
 
-const panelBg = "rgba(11,18,48,0.4)";
+const panelBg = "var(--bg-2)";
 const sectionBorder = "1px solid var(--line)";
 
 export default function CliPage() {

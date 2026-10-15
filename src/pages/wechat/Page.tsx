@@ -1,9 +1,10 @@
+import SiteLayout from "../../components/SiteLayout";
 import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { useFormspree } from "../../hooks/useFormspree";
 
 /* ── 微信公众号专属移动落地页 ──────────────────────────────────────────
-   浅色 + 紫主题，视觉延续 /datafun 会场落地页（#6051F5 → #7B6EF7）。
+   浅色 + 紫主题，视觉延续 /datafun 会场落地页（var(--brand) → var(--brand-bright)）。
    针对微信内置浏览器（WeChat WebView）优化：
    - 不引用 Google Fonts / Google Analytics（大陆网络会挂起，拖慢首屏），
      改用系统中文字体栈（PingFang SC / 微信自带思源黑体）。
@@ -12,14 +13,14 @@ import { useFormspree } from "../../hooks/useFormspree";
    注意：全站 site.css 把 body 设为深色背景，本页用整屏白底容器覆盖之。 */
 
 const C = {
-  brand: "#6051F5",
-  brandBright: "#7B6EF7",
-  ink: "#151515",
-  inkMid: "#404040",
-  inkDim: "#5c5c62",
-  line: "#E8E7F2",
-  cardTop: "#FAFAFC",
-  cardBottom: "#F1F0FB",
+  brand: "var(--brand)",
+  brandBright: "var(--brand-bright)",
+  ink: "var(--ink)",
+  inkMid: "var(--ink-dim)",
+  inkDim: "var(--ink-muted)",
+  line: "var(--line)",
+  cardTop: "var(--panel-solid)",
+  cardBottom: "var(--panel-solid)",
 };
 
 // 系统中文字体栈 —— 微信内置浏览器无法可靠加载 Google Fonts，
@@ -56,8 +57,8 @@ const inputStyle: React.CSSProperties = {
   width: "100%",
   minHeight: 48,
   padding: "0 14px",
-  borderRadius: 12,
-  background: "#fff",
+  borderRadius: 5,
+  background: "var(--panel-solid)",
   border: `1px solid ${C.line}`,
   color: C.ink,
   fontSize: 16, // ≥16px 防止 iOS 聚焦时自动放大
@@ -105,11 +106,11 @@ export default function WechatPage() {
   }
 
   return (
-    <div
+    <SiteLayout><div
       style={{
         minHeight: "100vh",
         width: "100%",
-        background: "#ffffff",
+        background: "var(--bg)",
         color: C.inkMid,
         fontFamily: FONT,
         position: "relative",
@@ -125,7 +126,8 @@ export default function WechatPage() {
           width: 420,
           height: 420,
           background:
-            "radial-gradient(circle, rgba(96,81,245,0.16), transparent 62%)",
+            "url(/brand/evolving-context-transparent.svg) center / contain no-repeat",
+          opacity: 0.07,
           pointerEvents: "none",
         }}
       />
@@ -228,7 +230,7 @@ export default function WechatPage() {
               style={{
                 background: `linear-gradient(180deg, ${C.cardTop}, ${C.cardBottom})`,
                 border: `1px solid ${C.line}`,
-                borderRadius: 16,
+                borderRadius: 5,
                 padding: "16px 18px",
               }}
             >
@@ -254,9 +256,9 @@ export default function WechatPage() {
           id="poc"
           style={{
             marginTop: 30,
-            background: "#fff",
+            background: "var(--panel-solid)",
             border: `1px solid ${C.line}`,
-            borderRadius: 20,
+            borderRadius: 5,
             padding: "24px 20px",
             boxShadow: "0 20px 44px rgba(96,81,245,0.10)",
           }}
@@ -518,6 +520,6 @@ export default function WechatPage() {
           </div>
         </div>
       </div>
-    </div>
+    </div></SiteLayout>
   );
 }
