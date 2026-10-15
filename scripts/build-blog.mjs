@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import MarkdownIt from "markdown-it";
 import anchor from "markdown-it-anchor";
+import { prepareCovers } from "./lib/blog-covers.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -186,7 +187,7 @@ function navHtml() {
   const community = [["GitHub", GITHUB_URL], ["Slack", SLACK_URL], ["Docs", DOCS_URL]].map(([l, h]) =>
     `<a class="nav-dd__item" href="${h}" target="_blank" rel="noopener noreferrer"><span class="nav-dd__item-title">${l}</span></a>`).join("");
   return `<header class="site-nav"><div class="site-nav__inner">
-  <a class="site-nav__logo" href="/" aria-label="Datus home"><img src="/logo_dark.svg" alt="Datus" /></a>
+  <a class="site-nav__logo" href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" /></a>
   <nav class="site-nav__links" aria-label="Primary">
     <div class="nav-dd"><button class="nav-link" type="button">Products ${SVG.chevron}</button>
       <div class="nav-dd__menu">${products}</div></div>
@@ -197,6 +198,7 @@ function navHtml() {
       <div class="nav-dd__menu">${community}</div></div>
   </nav>
   <div class="site-nav__spacer"></div>
+  <button id="theme-toggle" class="nordic-theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">☾</button>
   <a class="nav-ghost-btn" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">${SVG.github}<span class="star">${SVG.star}</span><span id="gh-stars">1.2k</span></a>
   <a class="btn btn-primary btn-sm" href="${STUDIO_URL}">Get started</a>
   <button class="site-nav__burger" type="button" aria-label="Menu" onclick="this.closest('.site-nav').classList.toggle('open')">${SVG.burger}</button>
@@ -205,7 +207,7 @@ function navHtml() {
 
 // Live GitHub star count (mirrors src/hooks/useGitHubStars.ts) for nav parity.
 function navScript() {
-  return `<script>(function(){var K="datus:github-stars",T=216e5;function f(c){if(c<1000)return""+c;var t=c/1000;return t>=10?Math.round(t)+"k":t.toFixed(1)+"k";}
+  return `<script>(function(){var button=document.getElementById("theme-toggle");function apply(dark){document.documentElement.dataset.theme=dark?"dark":"light";button.setAttribute("aria-pressed",String(dark));button.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");button.textContent=dark?"☀":"☾";document.querySelectorAll('img[src="/logo_light.svg"],img[src="/logo_dark.svg"]').forEach(function(img){img.src=dark?"/logo_dark.svg":"/logo_light.svg";});}try{apply(localStorage.getItem("datus-home-theme")==="dark");}catch(e){}button.onclick=function(){var dark=document.documentElement.dataset.theme!=="dark";apply(dark);try{localStorage.setItem("datus-home-theme",dark?"dark":"light");}catch(e){}};})();</script><script>(function(){var K="datus:github-stars",T=216e5;function f(c){if(c<1000)return""+c;var t=c/1000;return t>=10?Math.round(t)+"k":t.toFixed(1)+"k";}
 function s(c){var e=document.getElementById("gh-stars");if(e)e.textContent=f(c);}
 try{var r=JSON.parse(localStorage.getItem(K));if(r&&typeof r.count==="number"){s(r.count);if(r.ts&&Date.now()-r.ts<T)return;}}catch(e){}
 fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){return x.ok?x.json():null}).then(function(d){if(!d||typeof d.stargazers_count!=="number")return;s(d.stargazers_count);try{localStorage.setItem(K,JSON.stringify({count:d.stargazers_count,ts:Date.now()}))}catch(e){}}).catch(function(){});})();</script>`;
@@ -214,7 +216,7 @@ fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){retu
 function footerHtml() {
   const year = new Date().getFullYear();
   return `<footer class="site-foot"><div class="container" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center">
-  <a href="/" aria-label="Datus home"><img src="/logo_dark.svg" alt="Datus" style="height:24px"/></a>
+  <a href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" style="height:24px"/></a>
   <nav style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted)">
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
@@ -522,65 +524,22 @@ function postPage(post) {
 }
 
 function indexPage(posts) {
-  const known = new Set(CATEGORIES.flatMap((c) => c.slugs));
-  const extras = [...posts.keys()].filter((s) => !known.has(s));
-  const cats = extras.length
-    ? [...CATEGORIES, { label: "More essays", description: "", slugs: extras }]
-    : CATEGORIES;
-
-  // A single post row. `dateStr` lets the "Latest" rail show the update date.
-  const postCard = (p, dateStr = fmtDate(p.date)) => `<a class="post-row" href="/blog/${p.slug}/">
-      <div class="post-row__main"><h3 class="post-row__title">${esc(p.title)}</h3>
-      <p class="post-row__desc">${esc(p.description)}</p></div>
-      <span class="post-row__date">${dateStr}</span></a>`;
-
-  // "Product & Insight" rail: only posts tagged `insight` in their frontmatter
-  // — the deep pieces the team wrote themselves. Never automatic, so an
-  // AI-drafted SEO post cannot drift into it. Newest first by the date the
-  // piece was written.
-  const postDate = (p) => Date.parse(p.date) || 0;
-  const insights = [...posts.values()].filter((p) => p.tags.includes(INSIGHT_TAG))
-    .sort((a, b) => postDate(b) - postDate(a));
-  const insightSection = insights.length
-    ? `<section class="blog-cat" id="${INSIGHT_ID}">
-      <div class="blog-cat__head"><h2 class="blog-cat__label">${esc(INSIGHT_LABEL)}</h2>
-      <p class="blog-cat__desc">${esc(INSIGHT_DESC)}</p></div>
-      <div class="post-list">${insights.map((p) => postCard(p)).join("")}</div></section>`
-    : "";
-
-  const sections = insightSection + cats.map((cat) => {
-    const items = cat.slugs.filter((s) => posts.has(s)).map((s) => posts.get(s));
-    if (!items.length) return "";
-    const cards = items.map((p) => postCard(p)).join("");
-    return `<section class="blog-cat" id="${slugify(cat.label)}">
-      <div class="blog-cat__head"><h2 class="blog-cat__label">${esc(cat.label)}</h2>
-      ${cat.description ? `<p class="blog-cat__desc">${esc(cat.description)}</p>` : ""}</div>
-      <div class="post-list">${cards}</div></section>`;
-  }).join("");
-
-  const tabs = (insights.length ? `<a class="blog-tab" href="#${INSIGHT_ID}">${esc(INSIGHT_LABEL)}</a>` : "")
-    + cats.map((c) => `<a class="blog-tab" href="#${slugify(c.label)}">${esc(c.label)}</a>`).join("");
-
-  const crumbs = breadcrumbHtml([
-    { label: "Home", href: "/" },
-    { label: "Blog" },
-  ], "/blog/");
-  const body = `<section class="section" style="padding-top:40px;padding-bottom:32px">
-    <div class="container" style="max-width:880px">
-      ${crumbs}
-      <span class="eyebrow">Datus Blog</span>
-      <h1 style="font-size:clamp(32px,4.6vw,52px);line-height:1.06;letter-spacing:-0.03em;font-weight:750;margin:18px 0 0">
-        A working catalog on agents, semantics, and context.</h1>
-      <p class="lead">Essays and guides on data engineering agents, semantic layers, MCP, and text-to-SQL.</p>
-      <div class="blog-tabs">${tabs}</div>
-    </div></section>
-    <div class="container" style="max-width:880px">${sections}</div>`;
-  return shell({
-    title: "Datus Blog — AI-Native Data Engineering",
-    description: "Essays and guides on data engineering agents, semantic layers, MCP, text-to-SQL, and evolvable context — from the team building Datus.",
-    canonical: `${SITE}/blog/`, body,
-    image: `${SITE}/og/blog-index-1200x630.png`,
-  });
+  // Published date controls the feed; edits never move older articles to the top.
+  const sorted = [...posts.values()].sort((a,b) => (Date.parse(b.date)||0) - (Date.parse(a.date)||0) || a.slug.localeCompare(b.slug));
+  const featured = posts.get("semantic-layer-in-the-agent-loop") || sorted[0];
+  const heroPicks = ["semantic-layer-vs-ontology", "what-is-conversational-bi"].map(slug => posts.get(slug)).filter(Boolean);
+  const memberships = p => [...CATEGORIES.filter(c=>c.slugs.includes(p.slug)).map(c=>slugify(c.label)), ...(p.tags.includes(INSIGHT_TAG)?[INSIGHT_ID]:[]), ...(!categoryFor(p.slug)?['more-essays']:[])];
+  const cats = [{label:INSIGHT_LABEL,id:INSIGHT_ID}, ...CATEGORIES.map(c=>({label:c.label,id:slugify(c.label)})), {label:'More essays',id:'more-essays'}].filter(c=>sorted.some(p=>memberships(p).includes(c.id)));
+  const date = p => `<time datetime="${esc(safeIso(p.date)?.slice(0,10)||'')}">${fmtDate(p.date)}</time>`;
+  const image = (p,lazy=true) => `<img src="${esc(p.listImage)}" alt="" width="1200" height="750" ${lazy?'loading="lazy"':'fetchpriority="high"'} decoding="async"/>`;
+  const card = (p,feed=false) => `<article class="journal-card" ${feed?`data-categories="${memberships(p).join(' ')}" data-published="${esc(safeIso(p.date)||'')}"`:''}><a href="/blog/${p.slug}/"><div class="journal-card__image">${image(p)}</div><div class="journal-card__body"><div class="journal-meta"><span>${esc(categoryFor(p.slug)||'Essay')}</span>${date(p)}</div><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p><span class="journal-read">Read the story <span aria-hidden="true">↗</span></span></div></a></article>`;
+  const body = `<div class="container journal">
+    ${breadcrumbHtml([{label:'Home',href:'/'},{label:'Blog'}],'/blog/')}
+    <header class="journal-intro"><span class="eyebrow">Datus Blog</span><h1>Ideas for a context-aware data stack.</h1><p class="lead">Field notes, product updates, and practical guides from the team building Datus.</p></header>
+    <section class="journal-highlight" aria-labelledby="highlight-heading"><h2 id="highlight-heading" class="journal-section-label">In the spotlight</h2><div class="journal-hero-grid"><a class="journal-feature" href="/blog/${featured.slug}/"><div class="journal-feature__image">${image(featured,false)}</div><div class="journal-feature__body"><div class="journal-meta"><span>Product & Insight</span>${date(featured)}</div><h2>${esc(featured.title)}</h2><p>${esc(featured.description)}</p><span class="journal-read">Explore the story <span aria-hidden="true">↗</span></span></div></a><aside class="journal-hero-picks" aria-labelledby="hero-picks-heading"><h3 id="hero-picks-heading">Editorial picks</h3>${heroPicks.map(p=>`<a class="journal-hero-pick" href="/blog/${p.slug}/"><div class="journal-meta"><span>${esc(categoryFor(p.slug))}</span>${date(p)}</div><h4>${esc(p.title)}</h4><span class="journal-hero-pick__arrow" aria-hidden="true">↗</span></a>`).join('')}</aside></div></section>
+    <section class="journal-latest" id="latest" aria-labelledby="latest-heading"><div class="journal-heading"><h2 id="latest-heading">Latest stories</h2><span>Newest first · by publication date</span></div><nav class="journal-filters" aria-label="Filter stories by category"><a class="blog-tab" href="#latest" data-filter="all" aria-current="true">All stories</a>${cats.map(c=>`<a class="blog-tab" href="#${c.id}" data-filter="${c.id}">${esc(c.label)}</a>`).join('')}</nav><p class="journal-count" role="status" aria-live="polite">${sorted.length} stories</p><div class="journal-grid journal-feed">${sorted.map(p=>card(p,true)).join('')}</div><noscript><p>All stories are shown below, newest first. Enable JavaScript to filter by category.</p></noscript></section>
+    </div><script>(function(){var filters=Array.from(document.querySelectorAll('[data-filter]')),cards=Array.from(document.querySelectorAll('.journal-feed [data-categories]'));function apply(){var requested=location.hash.slice(1),active=filters.some(function(f){return f.dataset.filter===requested})?requested:'all',count=0;cards.forEach(function(c){c.hidden=active!=='all'&&!c.dataset.categories.split(' ').includes(active);if(!c.hidden)count++});filters.forEach(function(f){if(f.dataset.filter===active)f.setAttribute('aria-current','true');else f.removeAttribute('aria-current')});document.querySelector('.journal-count').textContent=count+' '+(count===1?'story':'stories');}filters.forEach(function(f){f.addEventListener('click',function(e){e.preventDefault();history.pushState(null,'',f.getAttribute('href'));apply();})});window.addEventListener('hashchange',apply);window.addEventListener('popstate',apply);apply();})();</script>`;
+  return shell({title:"Datus Blog — AI-Native Data Engineering", description:"Essays and guides on data engineering agents, semantic layers, MCP, text-to-SQL, and evolvable context — from the team building Datus.", canonical:`${SITE}/blog/`,body,image:`${SITE}/og/blog-index-1200x630.png`});
 }
 
 // Frontmatter `tags` accepts either a comma-separated string
@@ -698,7 +657,7 @@ html{scroll-behavior:smooth}
 }
 @media (max-width:640px){.post-row{flex-direction:column;gap:6px}.post-row__date{order:-1}}
 `;
-  return base + "\n" + prose;
+  return base + "\n" + prose + "\n" + readFileSync(join(ROOT, "src", "styles", "nordic-site.css"), "utf8") + "\n" + readFileSync(join(ROOT, "src", "styles", "blog-journal.css"), "utf8");
 }
 
 /* --------------------------- reference pages --------------------------- */
@@ -822,6 +781,8 @@ function main() {
     process.exit(1);
   }
   const posts = readPosts();
+  const covers = prepareCovers(posts, PUBLIC_DIR, categoryFor);
+  write(join(ROOT, "blog", "cover-manifest.json"), JSON.stringify(covers, null, 2) + "\n");
 
   // Copy blog static assets (blog/public/* -> dist/*) so post images resolve at
   // the site root. Without this, every /images/... reference 404s in production.

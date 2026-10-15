@@ -6,8 +6,7 @@ import "./styles/globals.css";
 import { LocaleProvider } from "./i18n/LocaleContext";
 import { localeFromPathname, stripLocale } from "./i18n/config";
 
-// Glossary has its own design system (GlossaryPage.css) and so does not use the
-// shared mount() helper, which pulls in site.css. Everything else matches:
+// Glossary shares the site theme through SiteLayout. Its entry point retains:
 // locale comes from the URL, and a prerendered #root is hydrated rather than
 // re-rendered so the crawler-visible markup is the markup React keeps.
 const pathname = window.location.pathname;

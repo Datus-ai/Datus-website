@@ -105,7 +105,7 @@ export default function ProductPageTemplate({
       </section>
 
       {/* Problem */}
-      <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)", paddingBlock: "clamp(48px,6vw,80px)" }}>
+      <section className="section" style={{ background: "var(--bg-2)", borderBlock: "1px solid var(--line)", paddingBlock: "clamp(48px,6vw,80px)" }}>
         <div className="container" style={{ maxWidth: 880 }}>
           <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>{data.problem.heading}</h2>
           <p className="lead">{data.problem.body}</p>
@@ -142,7 +142,7 @@ export default function ProductPageTemplate({
 
       {/* Quickstart */}
       {data.quickstart && (
-        <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
+        <section className="section" style={{ background: "var(--bg-2)", borderBlock: "1px solid var(--line)" }}>
           <div className="container" style={{ maxWidth: 880 }}>
             <div className="section-head">
               <span className="eyebrow">{t.quickstart}</span>
@@ -161,7 +161,7 @@ export default function ProductPageTemplate({
                   {s.code && (
                     <pre style={{
                       margin: 0, padding: "12px 14px", borderRadius: 8,
-                      background: "#070d22", border: "1px solid var(--line)",
+                      background: "var(--panel-solid)", border: "1px solid var(--line)",
                       fontFamily: "var(--font-mono)", fontSize: 13.5,
                       color: "var(--term-green)", overflowX: "auto",
                     }}>
@@ -181,7 +181,7 @@ export default function ProductPageTemplate({
         <section
           className="section"
           style={{
-            background: "radial-gradient(900px 420px at 50% 0%, var(--brand-soft), transparent 70%), rgba(11,18,48,0.4)",
+            background: "radial-gradient(900px 420px at 50% 0%, var(--brand-soft), transparent 70%), var(--bg-2)",
             borderBlock: "1px solid var(--line)",
           }}
         >

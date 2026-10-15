@@ -31,7 +31,7 @@ const labelStyle: React.CSSProperties = {
   fontSize: 12,
   fontWeight: 600,
   letterSpacing: "0.02em",
-  color: "#CBD5E1",
+  color: "var(--ink-dim)",
   marginBottom: 6,
 };
 
@@ -40,9 +40,9 @@ const inputBaseStyle: React.CSSProperties = {
   height: 40,
   padding: "0 0.85rem",
   borderRadius: 8,
-  background: "rgba(15,23,42,0.6)",
-  border: "1px solid rgba(148,163,184,0.18)",
-  color: "#F1F5F9",
+  background: "var(--panel-solid)",
+  border: "1px solid var(--line-strong)",
+  color: "var(--ink)",
   fontSize: 14,
   fontWeight: 500,
   outline: "none",
@@ -60,12 +60,12 @@ const textareaStyle: React.CSSProperties = {
 };
 
 function focusRing(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
-  e.currentTarget.style.borderColor = "rgba(244,114,182,0.7)";
-  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(244,114,182,0.18)";
+  e.currentTarget.style.borderColor = "var(--brand-soft)";
+  e.currentTarget.style.boxShadow = "0 0 0 3px var(--brand-soft)";
 }
 
 function blurRing(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
-  e.currentTarget.style.borderColor = "rgba(148,163,184,0.18)";
+  e.currentTarget.style.borderColor = "var(--line-strong)";
   e.currentTarget.style.boxShadow = "none";
 }
 
@@ -178,12 +178,12 @@ export function EnterpriseInquiryDialog({
             maxHeight: "calc(100vh - 2rem)",
             overflowY: "auto",
             background:
-              "linear-gradient(180deg, rgba(15,23,42,0.98) 0%, rgba(2,6,23,0.98) 100%)",
-            border: "1px solid rgba(244,114,182,0.25)",
-            borderRadius: 14,
+              "var(--panel-solid)",
+            border: "1px solid var(--brand-soft)",
+            borderRadius: 5,
             padding: "1.75rem",
             boxShadow:
-              "0 30px 80px -20px rgba(244,114,182,0.18), 0 20px 50px -20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05)",
+              "0 30px 80px -20px var(--brand-soft), 0 20px 50px -20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05)",
           }}
           className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
         >
@@ -199,9 +199,9 @@ export function EnterpriseInquiryDialog({
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 8,
-              border: "1px solid rgba(148,163,184,0.18)",
-              background: "rgba(15,23,42,0.6)",
-              color: "#94A3B8",
+              border: "1px solid var(--line-strong)",
+              background: "var(--panel-solid)",
+              color: "var(--ink-muted)",
               cursor: "pointer",
             }}
           >
@@ -229,19 +229,19 @@ export function EnterpriseInquiryDialog({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  background: "rgba(244,114,182,0.12)",
-                  border: "1px solid rgba(244,114,182,0.4)",
+                  background: "var(--brand-soft)",
+                  border: "1px solid var(--brand-soft)",
                   marginBottom: "1rem",
                 }}
               >
-                <CheckCircle2 size={28} style={{ color: "#F9A8D4" }} />
+                <CheckCircle2 size={28} style={{ color: "var(--brand-bright)" }} />
               </div>
               <DialogPrimitive.Title asChild>
                 <h3
                   style={{
                     fontSize: 20,
                     fontWeight: 700,
-                    color: "#FFFFFF",
+                    color: "var(--ink)",
                     margin: 0,
                   }}
                 >
@@ -253,14 +253,14 @@ export function EnterpriseInquiryDialog({
                   margin: "0.5rem 0 1.5rem",
                   fontSize: 14,
                   lineHeight: 1.6,
-                  color: "#94A3B8",
+                  color: "var(--ink-muted)",
                   maxWidth: 380,
                 }}
               >
                 {t.dialogThanksBody}
                 <a
                   href="mailto:contact@datus.ai"
-                  style={{ color: "#F9A8D4", textDecoration: "none" }}
+                  style={{ color: "var(--brand-bright)", textDecoration: "none" }}
                 >
                   contact@datus.ai
                 </a>
@@ -274,9 +274,9 @@ export function EnterpriseInquiryDialog({
                   padding: "0 1.25rem",
                   borderRadius: 8,
                   background:
-                    "linear-gradient(180deg, rgba(244,114,182,0.18) 0%, rgba(15,23,42,0.5) 100%)",
-                  border: "1px solid rgba(244,114,182,0.5)",
-                  color: "#FFFFFF",
+                    "var(--brand-soft)",
+                  border: "1px solid var(--brand-soft)",
+                  color: "var(--ink)",
                   fontSize: 14,
                   fontWeight: 600,
                   cursor: "pointer",
@@ -292,7 +292,7 @@ export function EnterpriseInquiryDialog({
                   style={{
                     fontSize: 20,
                     fontWeight: 700,
-                    color: "#FFFFFF",
+                    color: "var(--ink)",
                     margin: "0 0 0.4rem",
                     letterSpacing: "-0.01em",
                   }}
@@ -305,7 +305,7 @@ export function EnterpriseInquiryDialog({
                   margin: "0 0 1.4rem",
                   fontSize: 13,
                   lineHeight: 1.6,
-                  color: "#94A3B8",
+                  color: "var(--ink-muted)",
                 }}
               >
                 {t.dialogLead}
@@ -321,7 +321,7 @@ export function EnterpriseInquiryDialog({
                 >
                   <div>
                     <label htmlFor="enterprise-name" style={labelStyle}>
-                      {t.fullName.replace(" *", "")} <span style={{ color: "#F9A8D4" }}>*</span>
+                      {t.fullName.replace(" *", "")} <span style={{ color: "var(--brand-bright)" }}>*</span>
                     </label>
                     <input
                       id="enterprise-name"
@@ -337,7 +337,7 @@ export function EnterpriseInquiryDialog({
                   </div>
                   <div>
                     <label htmlFor="enterprise-company" style={labelStyle}>
-                      {t.company.replace(" *", "")} <span style={{ color: "#F9A8D4" }}>*</span>
+                      {t.company.replace(" *", "")} <span style={{ color: "var(--brand-bright)" }}>*</span>
                     </label>
                     <input
                       id="enterprise-company"
@@ -362,7 +362,7 @@ export function EnterpriseInquiryDialog({
                 >
                   <div>
                     <label htmlFor="enterprise-email" style={labelStyle}>
-                      {t.workEmail.replace(" *", "")} <span style={{ color: "#F9A8D4" }}>*</span>
+                      {t.workEmail.replace(" *", "")} <span style={{ color: "var(--brand-bright)" }}>*</span>
                     </label>
                     <input
                       id="enterprise-email"
@@ -440,8 +440,8 @@ export function EnterpriseInquiryDialog({
                       padding: "0 1rem",
                       borderRadius: 8,
                       background: "transparent",
-                      border: "1px solid rgba(148,163,184,0.2)",
-                      color: "#CBD5E1",
+                      border: "1px solid var(--line-strong)",
+                      color: "var(--ink-dim)",
                       fontSize: 14,
                       fontWeight: 500,
                       cursor: "pointer",
@@ -459,16 +459,16 @@ export function EnterpriseInquiryDialog({
                     borderRadius: 8,
                     background:
                       status === "submitting"
-                        ? "rgba(244,114,182,0.18)"
-                        : "linear-gradient(180deg, rgba(244,114,182,0.28) 0%, rgba(15,23,42,0.55) 100%)",
-                    border: "1px solid rgba(244,114,182,0.55)",
-                    color: "#FFFFFF",
+                        ? "var(--brand-soft)"
+                        : "var(--brand-soft)",
+                    border: "1px solid var(--brand-soft)",
+                    color: "var(--ink)",
                     fontSize: 14,
                     fontWeight: 600,
                     letterSpacing: "-0.005em",
                     cursor: status === "submitting" ? "wait" : "pointer",
                     boxShadow:
-                      "inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 16px -8px rgba(244,114,182,0.4)",
+                      "inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 16px -8px var(--brand-soft)",
                     transition: "transform 0.15s ease, box-shadow 0.15s ease",
                   }}
                 >

@@ -1,17 +1,30 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Moon, Sun } from "lucide-react";
 import Footer from "./Footer";
 import SiteNav from "./SiteNav";
+import { useT, useCurrentPath } from "../i18n/LocaleContext";
+import { UI } from "../i18n/ui";
+import "../styles/site.css";
+import "../styles/nordic-site.css";
 
-/**
- * Single source of truth for the page chrome (nav + footer) shared by every
- * marketing page. Wrap each page's content in <SiteLayout>.
- */
-export default function SiteLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="site-root">
-      <SiteNav />
-      <main>{children}</main>
-      <Footer />
-    </div>
-  );
+export default function SiteLayout({ children, className = "", logoSrc, navControls }: { children: ReactNode; className?: string; logoSrc?: string; navControls?: ReactNode }) {
+  const [dark, setDark] = useState(false);
+  const labels = useT(UI).theme;
+  const path = useCurrentPath();
+  const graphic = path.includes("products") ? "context-layers" : path.includes("osi") ? "semantic-lens" : path.includes("pricing") ? "shared-definition" : path.includes("faq") ? "evolving-context" : "relationship-map";
+  useEffect(() => {
+    try { setDark(localStorage.getItem("datus-home-theme") === "dark"); } catch { /* Storage is optional. */ }
+  }, []);
+  useEffect(() => { document.documentElement.dataset.theme = dark ? "dark" : "light"; }, [dark]);
+  function toggle() {
+    const next = !dark;
+    setDark(next);
+    try { localStorage.setItem("datus-home-theme", next ? "dark" : "light"); } catch { /* Retain the in-session choice. */ }
+  }
+  const logo = logoSrc || (dark ? "/logo_dark.svg" : "/logo_light.svg");
+  const label = dark ? labels.toLight : labels.toDark;
+  return <div className={`site-root nordic-site ${className}`}>
+    <SiteNav logoSrc={logo} controls={<><button className="nordic-theme-toggle" type="button" onClick={toggle} title={label} aria-label={label} aria-pressed={dark}>{dark ? <Sun size={18}/> : <Moon size={18}/>}</button>{navControls}</>}/>
+    <main data-graphic={graphic}>{children}</main><Footer logoSrc={logo}/>
+  </div>;
 }
