@@ -429,7 +429,7 @@ const ZH: ISecurityPageCopy = {
     prompt: "你的提问",
     context: "任务上下文",
     response: "模型回复",
-    delete: "自行删除",
+    delete: "可自行删除",
     workspace: "工作区",
     runtime: "Agent 运行环境",
     access: "身份与资源权限",
