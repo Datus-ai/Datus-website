@@ -58,6 +58,7 @@ export const MIRRORED_PATHS = [
   "/glossary/",
   "/osi-field-mapping/",
   "/tools/osi-playground/",
+  "/tools/semantic-model-converter/",
 ] as const;
 
 const MIRRORED = new Set<string>(MIRRORED_PATHS);

@@ -22,6 +22,12 @@ export type PageMeta = {
 };
 
 export const ZH_PAGE_META: Record<string, PageMeta> = {
+  "/tools/semantic-model-converter/": {
+    title: "语义模型转换器：Ossie / Dosi 转 dbt、Cube 等格式 — Datus",
+    description: "免费将 Apache Ossie 或 Dosi YAML 语义模型转换为 Snowflake、dbt、Cube、Omni 等平台格式。内置样例，支持多文件编辑、诊断与 ZIP 下载。",
+    ogTitle: "免费语义模型转换器 — Datus",
+    ogDescription: "输入 Ossie / Dosi YAML，选择目标格式，检查诊断并下载转换结果。",
+  },
   "/policies/cookies/": {
     title: "Cookie 与本地存储政策 — Datus",
     description: "了解 Datus 官网与 Datus Studio 使用 Cookie 和本地存储的用途、保存时间，以及如何管理使用分析。",

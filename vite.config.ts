@@ -24,6 +24,7 @@ const MPA_ROUTES = [
   'policies/cookies',
   'osi-field-mapping',
   'tools/osi-playground',
+  'tools/semantic-model-converter',
 ];
 
 // Locally mirror GitHub Pages behavior: redirect a clean URL like `/products/cli`
