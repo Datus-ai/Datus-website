@@ -23,7 +23,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       {
         title: "Cookies and Similar Technologies",
         paragraphs: [
-          "Cookies are small text files saved by your browser. We also use localStorage and sessionStorage to keep information on your device. This policy covers these technologies by purpose, including necessary uses and optional usage analytics.",
+          "Cookies are small text files saved by your browser. We also use localStorage and sessionStorage to keep information on your device. This policy covers these technologies by purpose, including necessary uses and usage analytics.",
         ],
       },
       {
@@ -36,17 +36,17 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       {
         title: "Usage Analytics — Your Choice",
         paragraphs: [
-          "With your permission, the website uses Google Analytics to understand visits and traffic sources. Datus Studio uses Google Analytics and first-party usage events to understand page and feature usage. The analytics code and identifiers are not activated before you allow them.",
+          "Before you make a choice, the website and cloud-hosted Datus Studio load Google Analytics with analytics storage denied. Google can receive limited page, configured event, and consent measurements without reading or writing analytics cookies. These requests may include page information, timestamps, referrers, browser information, and network information such as the IP address used to connect to Google. Cookieless measurement is not anonymous or zero collection. Accept All enables analytics cookies and regular Google Analytics measurement; Studio first-party usage events and their identifiers are enabled only after acceptance.",
           "Usage events may include a browser identifier, a tab identifier, page paths, referrers, event times, browser information, and interactions with features. Studio events may also be associated with your signed-in account or project; a randomly generated identifier does not make all associated information anonymous.",
-          "Our analytics configuration disables advertising storage, Google signals, and advertising personalization. We do not provide an advertising category in these settings. Necessary security and operational records are assessed separately from optional product analytics.",
+          "Our analytics configuration disables advertising storage, Google signals, and advertising personalization in all three states. We do not provide an advertising category in these settings. Necessary security and operational records are assessed separately from product analytics.",
         ],
       },
       {
         title: "Manage or Withdraw Your Choice",
         paragraphs: [
-          "Choose Reject Non-Essential, Accept All, or manage Usage Analytics in Cookie Settings. Analytics stays off until you allow it. Closing the prompt or settings without saving does not grant permission. Reopen Cookie Settings from the website footer, Studio sign-in page, or Studio settings.",
-          "Your choice is saved for 180 days in this browser, on the site where you make it. The website and Studio do not automatically share consent. You can change or withdraw your choice at any time. Withdrawal stops subsequent analytics collection and removes accessible analytics cookies, identifiers, and pending usage event queues. An already-running analytics page may reload to apply the change. This does not automatically erase records already received by servers.",
-          "If storage is blocked, your choice applies to the current visit but may not be remembered. New purposes or material policy changes may require a new choice.",
+          "Choose Reject Non-Essential, Accept All, or manage Usage Analytics in Cookie Settings. Before you choose, limited cookieless Google Analytics measurement runs. Accept All enables regular analytics. Reject Non-Essential, or saving with Usage Analytics off, stops subsequent analytics, including cookieless measurement. Closing the prompt or settings without saving leaves the current state unchanged; it is not acceptance. Reopen Cookie Settings from the website footer, Studio sign-in page, or Studio settings.",
+          "Your choice is saved for 180 days in this browser, on the site where you make it. The website and Studio do not automatically share consent. You can change or withdraw your choice at any time. Rejection or withdrawal stops subsequent analytics and removes accessible analytics cookies, identifiers, and pending Studio usage event queues. A page with an already-running analytics SDK reloads when the choice can be saved, to stop the SDK. When a choice expires, limited cookieless measurement resumes and the prompt appears again. This does not erase records already received by servers.",
+          "If storage is blocked, your choice applies to the current visit but may not be remembered; an already-loaded GA SDK is disabled without reloading into an older saved choice. New purposes or material policy changes may require a new choice.",
         ],
       },
       {
@@ -87,7 +87,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       ],
       [
         "datus_website_ga* / datus_studio_ga* · Google Analytics",
-        "Consent-controlled analytics cookies on the respective host. Older _ga, _ga_*, _gid or _gat cookies may exist from previous visits and are cleared when analytics is declined.",
+        "Analytics cookies used after acceptance on the respective host; no analytics-cookie access before a choice. Older _ga, _ga_*, _gid or _gat cookies may remain from previous visits and are cleared before a choice or when analytics is declined.",
         "Configured expiration: 180 days; browsers may shorten retention",
       ],
       [
@@ -120,7 +120,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       {
         title: "Cookie 和类似技术",
         paragraphs: [
-          "Cookie 是浏览器保存的小型文本。我们也使用 localStorage 和 sessionStorage 在设备中保存信息。本政策按用途说明这些技术，分为必要用途与可选的使用分析。",
+          "Cookie 是浏览器保存的小型文本。我们也使用 localStorage 和 sessionStorage 在设备中保存信息。本政策按用途说明这些技术，分为必要用途与使用分析。",
         ],
       },
       {
@@ -133,17 +133,17 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       {
         title: "使用分析，由你选择",
         paragraphs: [
-          "经你允许，官网使用 Google Analytics 了解访问情况与流量来源；Datus Studio 使用 Google Analytics 和自建使用事件分析，了解页面与功能的使用情况。在允许前，不启用相应分析代码和标识。",
+          "作出选择前，官网与云端 Datus Studio 会在拒绝分析存储的模式下加载 Google Analytics。Google 可在不读写分析 Cookie 的情况下接收页面、已配置事件及同意状态的有限测量，请求可能包含页面信息、时间、来源、浏览器信息，以及连接 Google 时的 IP 地址等网络信息。无 Cookie 测量不代表匿名或零采集。「全部接受」会开启分析 Cookie 和常规 Google Analytics 测量；Studio 自建使用事件及其标识仅在接受后启用。",
           "使用事件可能包括浏览器标识、标签页标识、页面路径、来源、事件时间、浏览器信息和功能操作。Studio 事件也可能关联已登录账号或项目；随机生成标识不代表所有相关信息均为匿名。",
-          "当前分析配置关闭广告存储、Google signals 和广告个性化，设置中不提供广告类别。必要的安全与运行记录按用途单独评估，与可选的产品统计区分。",
+          "三个状态下均关闭广告存储、Google signals 和广告个性化，设置中不提供广告类别。必要的安全与运行记录按用途单独评估，与产品统计区分。",
         ],
       },
       {
         title: "管理或撤回选择",
         paragraphs: [
-          "你可以选择「拒绝非必要」「全部接受」，也可以在「Cookie 设置」中单独调整使用分析。允许前，使用分析保持关闭。关闭提示或未保存退出设置不表示同意。你可以从官网页脚、Studio 登录页或 Studio 设置中重新打开 Cookie 设置。",
-          "选择在当前浏览器、作出选择的站点保存 180 天。官网与 Studio 不自动共享同意状态。你可以随时修改或撤回；撤回后将停止后续分析采集，并清理可访问的分析 Cookie、标识和待发使用事件队列。页面可能刷新，以停用已运行的分析代码。这不会自动删除服务器已收到的记录。",
-          "如果浏览器禁止保存，选择仅对本次访问生效，下次可能需要重新选择。新增用途或政策发生实质变化时，我们可能重新征求选择。",
+          "你可以选择「拒绝非必要」「全部接受」，也可以在「Cookie 设置」中调整使用分析。未选择时运行有限的无分析 Cookie 测量；「全部接受」开启常规分析；「拒绝非必要」或保持使用分析关闭并保存，会停止后续分析，包括无 Cookie 测量。关闭提示或未保存退出设置不会改变当前状态，也不表示接受。你可以从官网页脚、Studio 登录页或 Studio 设置中重新打开 Cookie 设置。",
+          "选择在当前浏览器、作出选择的站点保存 180 天。官网与 Studio 不自动共享同意状态。你可以随时修改或撤回；拒绝或撤回后停止后续分析，并清理可访问的分析 Cookie、标识和 Studio 待发使用事件队列。已经运行分析 SDK 的页面会在能够保存选择时刷新，以停用 SDK。选择到期后恢复有限的无 Cookie 测量，并重新显示提示。这不会删除服务器已收到的记录。",
+          "如果浏览器禁止保存，选择仅对本次访问生效，下次可能需要重新选择；已加载的 GA SDK 会被禁用，不会通过刷新恢复旧选择。新增用途或政策发生实质变化时，我们可能重新征求选择。",
         ],
       },
       {
@@ -184,7 +184,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       ],
       [
         "datus_website_ga* / datus_studio_ga* · Google Analytics",
-        "各自站点上经同意启用的分析 Cookie。之前访问留下的 _ga、_ga_*、_gid、_gat 等旧 Cookie，会在拒绝分析时清理。",
+        "各自站点上接受后启用的分析 Cookie；作出选择前不读写分析 Cookie。之前访问留下的 _ga、_ga_*、_gid、_gat 等旧 Cookie，会在未选择或拒绝分析时清理。",
         "配置过期时间为 180 天；浏览器可能缩短期限",
       ],
       [

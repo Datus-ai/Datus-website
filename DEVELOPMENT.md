@@ -95,14 +95,22 @@ Push to `main` branch → GitHub Actions automatically deploys to GitHub Pages.
 
 ## Cookie consent and analytics
 
-Marketing pages and the static blog load the same consent entry. Optional GA
-is loaded only after an analytics choice; do not restore eager GA snippets in
-HTML shells. The English and Chinese Cookie Policy routes are prerendered with
-normal locale metadata. Studio links to these routes and stores consent on its
-own origin.
+Marketing pages and the static blog load the same consent entry. Google
+Analytics uses three states: no choice loads the SDK with analytics storage
+`denied` for cookieless measurement; acceptance updates it to `granted` without
+loading a second SDK; explicit rejection or withdrawal disables analytics and
+reloads with the saved refusal so the SDK does not run. If storage is blocked,
+refusal disables the running SDK without reloading into an older saved grant.
+Advertising storage, Google signals, and advertising personalization stay off.
 
-After `npm run build:all`, run `npm run test:cookie-consent`. The browser check
-starts an isolated preview on a free port and verifies that rejection and
-withdrawal stop analytics, basic preferences remain available, and both locales
-and the blog share the same behavior. No external analytics request is sent by
-the test.
+The English and Chinese policies explain that limited measurements reach Google
+before a choice. Website and Studio choices remain origin-specific, valid for
+180 days; expiry returns to the limited state and shows the banner. Studio
+first-party identifiers and usage-event queues remain acceptance-only. Necessary
+settings and diagnostic logging do not depend on the analytics choice.
+
+After `npm run build:all`, run `npm run test:cookie-consent`. External analytics
+is mocked. Verify initial denied-mode measurement without analytics cookies,
+acceptance without duplicate initialization, full stop after rejection,
+withdrawal, expired choices, storage failures, and centered responsive dialogs
+across marketing, Chinese, policy, and blog routes.

@@ -16,7 +16,8 @@ const locale = localeFromPathname(location.pathname);
 const t = COOKIE_UI[locale];
 const win = window as unknown as Record<string, any>;
 let choice = read();
-let wasAllowed = false;
+let analyticsStarted = false;
+let lastStorage: "granted" | "denied" | undefined;
 let dismissed = false;
 let returnFocus: HTMLElement | null = null;
 
@@ -53,20 +54,28 @@ function clearCookies() {
   }
 }
 function synchronizeAnalytics(persisted = true) {
-  const allowed = current()?.analytics === true;
-  win[`ga-disable-${GA_ID}`] = !allowed;
-  if (!allowed) {
-    const previouslyAllowed = wasAllowed;
-    wasAllowed = false;
-    clearCookies();
-    document.getElementById(SCRIPT_ID)?.remove();
-    if (previouslyAllowed && persisted) {
-      wasAllowed = false;
+  const selected = current();
+  const allowed = selected?.analytics === true;
+  const blocked = selected?.analytics === false;
+  win[`ga-disable-${GA_ID}`] = blocked;
+  if (!allowed) clearCookies();
+  if (blocked) {
+    // Unload a running SDK so refusal stops automatic cookieless requests too.
+    // Never reload into an older grant if this browser could not save refusal.
+    if (analyticsStarted && persisted) {
+      document.getElementById(SCRIPT_ID)?.remove();
       location.reload();
     }
     return;
   }
-  if (wasAllowed) return;
+  const storage = allowed ? "granted" : "denied";
+  if (analyticsStarted) {
+    if (lastStorage !== storage) {
+      win.gtag("consent", "update", { analytics_storage: storage });
+      lastStorage = storage;
+    }
+    return;
+  }
   win.dataLayer = win.dataLayer || [];
   win.gtag =
     win.gtag ||
@@ -74,11 +83,12 @@ function synchronizeAnalytics(persisted = true) {
       win.dataLayer.push(arguments);
     };
   win.gtag("consent", "default", {
-    analytics_storage: "granted",
+    analytics_storage: "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
   });
+  if (allowed) win.gtag("consent", "update", { analytics_storage: "granted" });
   win.gtag("js", new Date());
   win.gtag("config", GA_ID, {
     cookie_domain: "none",
@@ -96,8 +106,10 @@ function synchronizeAnalytics(persisted = true) {
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
   document.head.append(script);
-  wasAllowed = true;
+  analyticsStarted = true;
+  lastStorage = storage;
 }
+
 const escape = (value: string) =>
   value.replace(
     /[&<>"']/g,
