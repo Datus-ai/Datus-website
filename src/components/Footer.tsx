@@ -1,6 +1,7 @@
 import "./Footer.css";
 import { useHref, useLocale } from "../i18n/LocaleContext";
 import { UI } from "../i18n/ui";
+import { TRUST_CENTER_URL } from "../config/nav";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -52,6 +53,7 @@ const Footer = () => {
             <h3 className="site-footer__heading">{t.company}</h3>
             <ul>
               <li><a href="mailto:contact@datus.ai">{t.contact}</a></li>
+              <li><a href={l("/security/")}>{t.security}</a></li>
               <li>
                 <a href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
                   {t.github}
@@ -68,7 +70,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://app.vanta.com/datus.ai/trust/z81fqjt8aou1i94kudbjj"
+                  href={TRUST_CENTER_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

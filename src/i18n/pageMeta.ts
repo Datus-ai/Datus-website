@@ -22,6 +22,13 @@ export type PageMeta = {
 };
 
 export const ZH_PAGE_META: Record<string, PageMeta> = {
+  "/security/": {
+    title: "安全与隐私 — Datus",
+    description: "了解 Datus Studio 的模型与数据使用、凭据加密、访问控制、分享安全、部署边界，以及合规进展与安全联系方式。",
+    ogTitle: "安全与隐私 — Datus",
+    ogDescription: "模型由你选择，连接凭据加密保存，会话记录可自行删除。了解 Datus Studio 的安全实践。",
+    twitterDescription: "模型由你选择，连接凭据加密保存，会话记录可自行删除。了解 Datus Studio 的安全实践。",
+  },
   "/": {
     title: "Datus — 企业数据上下文层",
     description:
