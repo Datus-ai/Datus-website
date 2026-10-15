@@ -17,7 +17,7 @@ function check(fn) {
 }
 
 try {
-  const { resolveApiOrigin } = await vite.ssrLoadModule(
+  const { getTargets, convertModel } = await vite.ssrLoadModule(
     '/src/modules/semantic-converter/api.ts',
   );
   const { inspectSource, MAX_SOURCE_BYTES } = await vite.ssrLoadModule(
@@ -30,21 +30,61 @@ try {
   const { SEMANTIC_CONVERTER_UI: copy } =
     await vite.ssrLoadModule('/src/i18n/ui.ts');
 
-  for (const host of ['localhost', '127.0.0.1', '::1', '[::1]']) {
-    check(() =>
-      assert.equal(resolveApiOrigin(host), 'https://studio-dev.datus.ai'),
-    );
-  }
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
 
-  for (const host of [
-    'datus.ai',
-    'www.datus.ai',
-    'preview.example',
-    'localhost.attacker.example',
-  ]) {
-    check(() =>
-      assert.equal(resolveApiOrigin(host), 'https://studio.datus.ai'),
-    );
+  try {
+    for (const host of [
+      'localhost',
+      '127.0.0.1',
+      '::1',
+      '[::1]',
+      'datus.ai',
+      'www.datus.ai',
+      'preview.example',
+      'localhost.attacker.example',
+    ]) {
+      const calls = [];
+      globalThis.window = { location: { hostname: host } };
+      globalThis.fetch = async (url, options) => {
+        calls.push({ url, options });
+
+        return Response.json({
+          success: true,
+          data:
+            options.method === 'POST'
+              ? { target: 'dbt', status: 'success', issues: [], artifacts: [] }
+              : { targets: [{ id: 'dbt' }] },
+        });
+      };
+
+      const { signal } = new AbortController();
+      await getTargets(signal);
+      await convertModel(
+        { source: 'name: sales', target: 'dbt', options: {} },
+        signal,
+      );
+
+      check(() => {
+        assert.deepEqual(
+          calls.map((call) => call.url),
+          [
+            'https://studio-dev.datus.ai/api/public/semantic-converter/targets',
+            'https://studio-dev.datus.ai/api/public/semantic-converter/convert',
+          ],
+          host,
+        );
+        assert.ok(calls.every((call) => call.options.credentials === 'omit'));
+      });
+    }
+  } finally {
+    globalThis.fetch = originalFetch;
+
+    if (originalWindow === undefined) {
+      delete globalThis.window;
+    } else {
+      globalThis.window = originalWindow;
+    }
   }
 
   for (const path of [

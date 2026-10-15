@@ -5,12 +5,8 @@ import type {
 } from './contracts';
 import { validateArtifacts } from './utils/artifacts';
 
-/** Runtime hostname keeps localhost previews on dev even after a production build. */
-export function resolveApiOrigin(hostname: string): string {
-  return ['localhost', '127.0.0.1', '::1', '[::1]'].includes(hostname)
-    ? 'https://studio-dev.datus.ai'
-    : 'https://studio.datus.ai';
-}
+// Temporarily use dev for all hosts until the production converter API is deployed.
+const API_ORIGIN = 'https://studio-dev.datus.ai';
 
 export class ConverterApiError extends Error {
   constructor(
@@ -27,7 +23,7 @@ async function request<T>(
   body?: IConversionRequest,
 ): Promise<T> {
   const response = await fetch(
-    `${resolveApiOrigin(window.location.hostname)}/api/public/semantic-converter/${path}`,
+    `${API_ORIGIN}/api/public/semantic-converter/${path}`,
     {
       method: body ? 'POST' : 'GET',
       credentials: 'omit',
