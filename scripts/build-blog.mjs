@@ -95,7 +95,7 @@ const CATEGORIES = [
       "make-data-agents-truly-usable-ask-explore-and-control-with-confidence",
       "full-stack-data-engineer-harness", "chatbi-to-data-agent-13-months"] },
   { label: "Releases", description: "What's new in Datus.",
-    slugs: ["semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
+    slugs: ["datus-october-level-of-detail", "semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
       "datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
 ];
 

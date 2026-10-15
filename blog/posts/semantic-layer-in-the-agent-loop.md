@@ -162,6 +162,7 @@ An ontology is worth adding once your questions cross objects and relationships,
 
 ## Related articles
 
+- [Datus October Update: Getting the Level of Detail Right](/blog/datus-october-level-of-detail/) — DOSI 0.1.13 adds LOD calculations and Agent 0.4.3 embeds DOSI.
 - [What Makes a Semantic Layer Truly AI-Native?](/blog/ai-native-semantic-layer/) — why the semantic layer needs a runtime, not just a spec, to enter the agent's reasoning loop.
 - [Introducing Dosi: OSI-Native Semantic Layer for Metrics](/blog/introducing-dosi/) — the engine behind these releases, compiling Apache Ossie models to native SQL.
 - [Dosi MCP Semantic Layer for Agents — No SQL Guessing](/blog/dosi-mcp-semantic-layer-for-agents/) — governed metric names and structured errors instead of free-writing SQL.
