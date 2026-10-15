@@ -18,7 +18,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
     lead: "What Datus stores in your browser, why we use it, and how you can choose.",
     updated: "Last updated: October 15, 2026",
     scope:
-      "Applies to datus.ai and Datus Studio. Choices are managed separately on each site and browser.",
+      "Applies to datus.ai and Datus Studio. Google Analytics choices are managed separately on each site and browser. The Studio product-event collection described below applies only to Datus Studio, not the website.",
     sections: [
       {
         title: "Cookies and Similar Technologies",
@@ -34,19 +34,25 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
         ],
       },
       {
-        title: "Usage Analytics — Your Choice",
+        title: "Google Analytics — Your Choice",
         paragraphs: [
-          "Before you make a choice, the website and cloud-hosted Datus Studio load Google Analytics with analytics storage denied. Google can receive limited page, configured event, and consent measurements without reading or writing analytics cookies. These requests may include page information, timestamps, referrers, browser information, and network information such as the IP address used to connect to Google. Cookieless measurement is not anonymous or zero collection. Accept All enables analytics cookies and regular Google Analytics measurement; Studio first-party usage events and their identifiers are enabled only after acceptance.",
-          "Usage events may include a browser identifier, a tab identifier, page paths, referrers, event times, browser information, and interactions with features. Studio events may also be associated with your signed-in account or project; a randomly generated identifier does not make all associated information anonymous.",
+          "Before you make a choice, the website and cloud-hosted Datus Studio load Google Analytics with analytics storage denied. Google can receive limited page, configured event, and consent measurements without reading or writing analytics cookies. These requests may include page information, timestamps, referrers, browser information, and network information such as the IP address used to connect to Google. Cookieless measurement is not anonymous or zero collection. Accept All enables analytics cookies and regular Google Analytics measurement. The Cookie Settings controls apply only to Google Analytics.",
           "Our analytics configuration disables advertising storage, Google signals, and advertising personalization in all three states. We do not provide an advertising category in these settings. Necessary security and operational records are assessed separately from product analytics.",
         ],
       },
       {
         title: "Manage or Withdraw Your Choice",
         paragraphs: [
-          "Choose Reject Non-Essential, Accept All, or manage Usage Analytics in Cookie Settings. Before you choose, limited cookieless Google Analytics measurement runs. Accept All enables regular analytics. Reject Non-Essential, or saving with Usage Analytics off, stops subsequent analytics, including cookieless measurement. Closing the prompt or settings without saving leaves the current state unchanged; it is not acceptance. Reopen Cookie Settings from the website footer, Studio sign-in page, or Studio settings.",
-          "Your choice is saved for 180 days in this browser, on the site where you make it. The website and Studio do not automatically share consent. You can change or withdraw your choice at any time. Rejection or withdrawal stops subsequent analytics and removes accessible analytics cookies, identifiers, and pending Studio usage event queues. A page with an already-running analytics SDK reloads when the choice can be saved, to stop the SDK. When a choice expires, limited cookieless measurement resumes and the prompt appears again. This does not erase records already received by servers.",
+          "Choose Reject Non-Essential, Accept All, or adjust Google Analytics in Cookie Settings. Before you choose, limited cookieless Google Analytics measurement runs. Accept All enables regular Google Analytics. Reject Non-Essential, or saving with Google Analytics off, stops subsequent Google Analytics measurement, including cookieless measurement. Closing the prompt or settings without saving leaves the current state unchanged; it is not acceptance. Reopen Cookie Settings from the website footer, Studio sign-in page, or Studio settings.",
+          "Your choice is saved for 180 days in this browser, on the site where you make it. The website and Studio do not automatically share consent. You can change or withdraw your choice at any time. Rejection or withdrawal stops subsequent Google Analytics measurement and removes accessible Google Analytics cookies. Datus Studio product events, identifiers, and pending event queues are unaffected. A page with an already-running Google Analytics SDK reloads when the choice can be saved, to stop that SDK. When a choice expires, limited cookieless measurement resumes and the prompt appears again. This does not erase records already received by servers.",
           "If storage is blocked, your choice applies to the current visit but may not be remembered; an already-loaded GA SDK is disabled without reloading into an older saved choice. New purposes or material policy changes may require a new choice.",
+        ],
+      },
+      {
+        title: "Datus Studio Product Events",
+        paragraphs: [
+          "Datus Studio collects first-party feature-use events by default to understand product usage and improve the service. These events are sent to Datus and are separate from Google Analytics. Accepting, rejecting, withdrawing, or allowing the Google Analytics choice to expire does not stop these events or clear their identifiers and queues. This collection does not run on datus.ai.",
+          "Studio events may include browser and tab identifiers, page paths, referrers, event times, browser information, IP address, feature interactions, and account, workspace, or project context. The server can identify a signed-in user through the existing login session. Browser and tab identifiers use localStorage and sessionStorage; pending events are buffered locally for delivery and retry. Random identifiers do not make all associated information anonymous. The storage inventory identifies these Studio-specific items. Contact contact@datus.ai with questions or requests about product-event data.",
         ],
       },
       {
@@ -82,7 +88,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       ],
       [
         "datus_website_cookie_consent / datus_studio_cookie_consent · Datus",
-        "Necessary local storage of the analytics choice, policy version, and decision time; separate for each site.",
+        "Necessary local storage of the Google Analytics choice, policy version, and decision time; separate for each site.",
         "180 days",
       ],
       [
@@ -92,13 +98,13 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       ],
       [
         "datus_tracking_anonymous_id / datus_tracking_session_id · Datus",
-        "Consent-controlled Studio browser and tab identifiers for usage events.",
-        "Local browser ID until cleared; tab ID for the tab session. Removed on refusal or when expired permission is checked.",
+        "Studio-only browser and tab identifiers for default first-party product events; independent of the Google Analytics choice.",
+        "Local browser ID until cleared; tab ID for the tab session. Rejecting Google Analytics does not remove them.",
       ],
       [
         "datus_tracking_pending_events:* · Datus",
-        "Pending Studio usage events stored locally for delivery while analytics is allowed.",
-        "Removed on successful delivery, refusal, or an expired-permission check",
+        "Studio-only first-party product events buffered locally for delivery and retry, regardless of the Google Analytics choice.",
+        "Until successful delivery, queue eviction, or browser storage is cleared",
       ],
       [
         "datus:github-stars · Datus",
@@ -115,7 +121,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
     lead: "了解 Datus 在浏览器中保存什么、为什么保存，以及你如何作出选择。",
     updated: "更新于 2026 年 10 月 15 日",
     scope:
-      "适用于 datus.ai 与 Datus Studio。两个站点、不同浏览器分别管理选择。",
+      "适用于 datus.ai 与 Datus Studio。两个站点、不同浏览器分别管理 Google Analytics 选择。下文的 Studio 功能使用事件仅适用于 Datus Studio，官网没有这套自建埋点。",
     sections: [
       {
         title: "Cookie 和类似技术",
@@ -131,19 +137,25 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
         ],
       },
       {
-        title: "使用分析，由你选择",
+        title: "Google Analytics，由你选择",
         paragraphs: [
-          "作出选择前，官网与云端 Datus Studio 会在拒绝分析存储的模式下加载 Google Analytics。Google 可在不读写分析 Cookie 的情况下接收页面、已配置事件及同意状态的有限测量，请求可能包含页面信息、时间、来源、浏览器信息，以及连接 Google 时的 IP 地址等网络信息。无 Cookie 测量不代表匿名或零采集。「全部接受」会开启分析 Cookie 和常规 Google Analytics 测量；Studio 自建使用事件及其标识仅在接受后启用。",
-          "使用事件可能包括浏览器标识、标签页标识、页面路径、来源、事件时间、浏览器信息和功能操作。Studio 事件也可能关联已登录账号或项目；随机生成标识不代表所有相关信息均为匿名。",
+          "作出选择前，官网与云端 Datus Studio 会在拒绝分析存储的模式下加载 Google Analytics。Google 可在不读写分析 Cookie 的情况下接收页面、已配置事件及同意状态的有限测量，请求可能包含页面信息、时间、来源、浏览器信息，以及连接 Google 时的 IP 地址等网络信息。无 Cookie 测量不代表匿名或零采集。「全部接受」会开启分析 Cookie 和常规 Google Analytics 测量。Cookie 设置中的开关仅控制 Google Analytics。",
           "三个状态下均关闭广告存储、Google signals 和广告个性化，设置中不提供广告类别。必要的安全与运行记录按用途单独评估，与产品统计区分。",
         ],
       },
       {
         title: "管理或撤回选择",
         paragraphs: [
-          "你可以选择「拒绝非必要」「全部接受」，也可以在「Cookie 设置」中调整使用分析。未选择时运行有限的无分析 Cookie 测量；「全部接受」开启常规分析；「拒绝非必要」或保持使用分析关闭并保存，会停止后续分析，包括无 Cookie 测量。关闭提示或未保存退出设置不会改变当前状态，也不表示接受。你可以从官网页脚、Studio 登录页或 Studio 设置中重新打开 Cookie 设置。",
-          "选择在当前浏览器、作出选择的站点保存 180 天。官网与 Studio 不自动共享同意状态。你可以随时修改或撤回；拒绝或撤回后停止后续分析，并清理可访问的分析 Cookie、标识和 Studio 待发使用事件队列。已经运行分析 SDK 的页面会在能够保存选择时刷新，以停用 SDK。选择到期后恢复有限的无 Cookie 测量，并重新显示提示。这不会删除服务器已收到的记录。",
+          "你可以选择「拒绝非必要」「全部接受」，也可以在「Cookie 设置」中调整 Google Analytics。未选择时运行有限的无分析 Cookie 测量；「全部接受」开启常规 Google Analytics；「拒绝非必要」或保持 Google Analytics 关闭并保存，会停止后续 Google Analytics 测量，包括无 Cookie 测量。关闭提示或未保存退出设置不会改变当前状态，也不表示接受。你可以从官网页脚、Studio 登录页或 Studio 设置中重新打开 Cookie 设置。",
+          "选择在当前浏览器、作出选择的站点保存 180 天。官网与 Studio 不自动共享同意状态。你可以随时修改或撤回；拒绝或撤回后停止后续 Google Analytics 测量，并清理可访问的 Google Analytics Cookie；不会停用 Datus Studio 功能使用事件，也不会清理其标识和待发队列。已经运行 Google Analytics SDK 的页面会在能够保存选择时刷新，以停用该 SDK。选择到期后恢复有限的无 Cookie 测量，并重新显示提示。这不会删除服务器已收到的记录。",
           "如果浏览器禁止保存，选择仅对本次访问生效，下次可能需要重新选择；已加载的 GA SDK 会被禁用，不会通过刷新恢复旧选择。新增用途或政策发生实质变化时，我们可能重新征求选择。",
+        ],
+      },
+      {
+        title: "Datus Studio 功能使用事件",
+        paragraphs: [
+          "Datus Studio 默认采集自建功能使用事件，用于了解产品使用情况并改进服务。事件发送至 Datus，与 Google Analytics 分别处理。接受、拒绝、撤回或 Google Analytics 选择到期，都不会停用这些事件，也不会清理其标识和待发队列。datus.ai 官网不运行这套自建埋点。",
+          "Studio 事件可能包括浏览器与标签页标识、页面路径、来源、事件时间、浏览器信息、IP 地址、功能操作，以及账号、工作区或项目上下文。服务端可通过已有登录会话识别已登录用户。浏览器与标签页标识使用 localStorage 和 sessionStorage，待发事件在本地缓冲并重试。随机标识不代表所有相关信息均为匿名。存储清单中已标明这些 Studio 专属项目。关于功能使用事件数据的问题或请求，可以通过 contact@datus.ai 联系我们。",
         ],
       },
       {
@@ -179,7 +191,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       ],
       [
         "datus_website_cookie_consent / datus_studio_cookie_consent · Datus",
-        "必要本地存储：分析选择、政策版本和选择时间；两站点分别保存。",
+        "必要本地存储：Google Analytics 选择、政策版本和选择时间；两站点分别保存。",
         "180 天",
       ],
       [
@@ -189,13 +201,13 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       ],
       [
         "datus_tracking_anonymous_id / datus_tracking_session_id · Datus",
-        "经同意启用的 Studio 浏览器与标签页标识，用于使用事件分析。",
-        "浏览器标识保存至清除；标签页标识为标签页会话。拒绝或检查到许可过期时清理。",
+        "仅用于 Studio 默认功能使用事件的浏览器与标签页标识，独立于 Google Analytics 选择。",
+        "浏览器标识保存至清除；标签页标识为标签页会话。拒绝 Google Analytics 不会清理这些标识。",
       ],
       [
         "datus_tracking_pending_events:* · Datus",
-        "允许分析时，在本地等待发送的 Studio 使用事件。",
-        "成功发送、拒绝分析或检查到许可过期时清理",
+        "仅用于 Studio 的自建功能使用事件，在本地等待发送或重试，不受 Google Analytics 选择影响。",
+        "至成功发送、队列淘汰或清除浏览器存储",
       ],
       [
         "datus:github-stars · Datus",

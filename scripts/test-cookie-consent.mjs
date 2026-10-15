@@ -61,6 +61,7 @@ try {
     assert.ok(Math.abs(await page.$eval('.cookie-ui__banner', element => element.getBoundingClientRect().width) - 480) < 1);
     await page.click('.cookie-ui__banner [data-open]');
     assert.equal(await page.$$eval('dialog section', elements => elements.length), 2);
+    assert.ok(!(await page.$eval('.cookie-ui', element => element.textContent)).includes('Tracking'), 'Website consent UI must not imply first-party Tracking');
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewport({ width, height: 844 });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
@@ -122,6 +123,8 @@ try {
   for (const path of ['/policies/cookies/', '/zh/policies/cookies/']) {
     const html = readFileSync(`dist${path}index.html`, 'utf8');
     assert.ok(html.includes(path.startsWith('/zh') ? '有限测量' : 'limited page'));
+    assert.ok(html.includes(path.startsWith('/zh') ? 'Datus Studio 功能使用事件' : 'Datus Studio Product Events'));
+    assert.ok(html.includes(path.startsWith('/zh') ? 'datus.ai 官网不运行这套自建埋点' : 'This collection does not run on datus.ai'));
     assert.ok(html.includes(`href="https://datus.ai${path}"`));
     assert.ok(html.includes('hreflang="zh-Hans"'));
     assert.ok(!html.includes('googletagmanager.com'));

@@ -105,9 +105,11 @@ Advertising storage, Google signals, and advertising personalization stay off.
 
 The English and Chinese policies explain that limited measurements reach Google
 before a choice. Website and Studio choices remain origin-specific, valid for
-180 days; expiry returns to the limited state and shows the banner. Studio
-first-party identifiers and usage-event queues remain acceptance-only. Necessary
-settings and diagnostic logging do not depend on the analytics choice.
+180 days; expiry returns to the limited state and shows the banner. The website
+has no Datus first-party Tracking. Its consent UI describes Google Analytics
+only. The shared policy has a Studio-specific section disclosing default
+first-party product events, independent of the Google Analytics choice. Necessary
+settings and diagnostic logging also remain independent.
 
 After `npm run build:all`, run `npm run test:cookie-consent`. External analytics
 is mocked. Verify initial denied-mode measurement without analytics cookies,

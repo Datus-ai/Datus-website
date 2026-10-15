@@ -12,9 +12,9 @@ export const COOKIE_UI: Record<Locale, Record<string, string>> = {
     close: "Close without saving changes",
     dismiss: "Dismiss for now; limited cookieless measurement continues",
     description:
-      "We use necessary storage to remember your choices. Before you choose, Google Analytics sends limited measurements without analytics cookies. Accept All enables regular analytics; Reject Non-Essential stops subsequent analytics.",
+      "We use necessary storage to remember your choices. Before you choose, Google Analytics sends limited measurements without analytics cookies. Accept All enables regular Google Analytics; Reject Non-Essential stops Google Analytics.",
     intro:
-      "Necessary uses remain available. Before you choose, Google Analytics sends limited measurements without analytics cookies. Enable usage analytics for regular statistics, or leave it off and save to stop analytics.",
+      "Necessary uses remain available. Before you choose, Google Analytics sends limited measurements without analytics cookies. Enable Google Analytics for regular statistics, or leave it off and save to stop Google Analytics.",
     necessary: "Necessary Uses",
     always_on: "Always On",
     necessary_description:
@@ -22,10 +22,10 @@ export const COOKIE_UI: Record<Locale, Record<string, string>> = {
     necessary_details:
       "Your choices are saved in this browser for 180 days, together with the policy version and time of your decision.",
     basic_settings:
-      "Language and theme settings can be changed or reset in the product, independently of usage analytics.",
-    analytics: "Usage Analytics",
+      "Language and theme settings can be changed or reset in the product, independently of Google Analytics.",
+    analytics: "Google Analytics",
     analytics_description:
-      "Enable Google Analytics cookies to understand visits and traffic sources. Rejecting analytics stops subsequent analytics and does not affect browsing.",
+      "Enable Google Analytics cookies to understand visits and traffic sources. Rejecting stops subsequent Google Analytics measurement and does not affect browsing.",
     analytics_details:
       "Before a choice, GA sends limited measurements to Google without reading or writing analytics cookies. This is not anonymous or zero collection. Accepted analytics cookies use a 180-day expiration.",
     details: "View Uses and Retention",
@@ -46,9 +46,9 @@ export const COOKIE_UI: Record<Locale, Record<string, string>> = {
     close: "关闭设置，不保存更改",
     dismiss: "暂时关闭，有限的无分析 Cookie 测量继续运行",
     description:
-      "我们使用必要存储来保存你的选择。作出选择前，Google Analytics 会发送不使用分析 Cookie 的有限测量。「全部接受」开启常规分析；「拒绝非必要」停止后续分析。",
+      "我们使用必要存储来保存你的选择。作出选择前，Google Analytics 会发送不使用分析 Cookie 的有限测量。「全部接受」开启常规 Google Analytics 测量；「拒绝非必要」停止 Google Analytics。",
     intro:
-      "必要用途始终可用。作出选择前，Google Analytics 会发送不使用分析 Cookie 的有限测量。开启使用分析可启用常规统计；保持关闭并保存可停止分析。",
+      "必要用途始终可用。作出选择前，Google Analytics 会发送不使用分析 Cookie 的有限测量。开启 Google Analytics 可启用常规统计；保持关闭并保存可停止 Google Analytics。",
     necessary: "必要用途",
     always_on: "始终启用",
     necessary_description:
@@ -56,10 +56,10 @@ export const COOKIE_UI: Record<Locale, Record<string, string>> = {
     necessary_details:
       "选择保存在当前浏览器中，保存 180 天，包含选择结果、政策版本和选择时间。",
     basic_settings:
-      "语言和主题可在产品设置中调整或重置，不受使用分析开关影响。",
-    analytics: "使用分析",
+      "语言和主题可在产品设置中调整或重置，不受 Google Analytics 开关影响。",
+    analytics: "Google Analytics",
     analytics_description:
-      "开启 Google Analytics Cookie，帮助我们了解页面访问和流量来源。拒绝后停止后续分析，不影响浏览官网。",
+      "开启 Google Analytics Cookie，帮助我们了解页面访问和流量来源。拒绝后停止 Google Analytics 的后续测量，不影响浏览官网。",
     analytics_details:
       "作出选择前，GA 会在不读写分析 Cookie 的情况下向 Google 发送有限测量，不代表匿名或零采集。接受后的分析 Cookie 配置为 180 天过期。",
     details: "查看用途与保存时间",
