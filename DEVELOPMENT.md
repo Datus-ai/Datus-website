@@ -98,9 +98,12 @@ Push to `main` branch → GitHub Actions automatically deploys to GitHub Pages.
 Marketing pages and the static blog load the same consent entry. Google
 Analytics uses three states: no choice loads the SDK with analytics storage
 `denied` for cookieless measurement; acceptance updates it to `granted` without
-loading a second SDK; explicit rejection or withdrawal disables analytics and
-reloads with the saved refusal so the SDK does not run. If storage is blocked,
-refusal disables the running SDK without reloading into an older saved grant.
+loading a second SDK; explicit rejection or withdrawal sets the GA property
+disable flag and clears GA cookies in place. No consent transition reloads or
+navigates the page, including cross-tab refusal and expiry, so unsaved input
+survives. A saved refusal prevents loading GA on subsequent visits. If storage
+is blocked, refusal still disables GA for the current visit. Reacceptance updates
+consent while reusing the SDK.
 Advertising storage, Google signals, and advertising personalization stay off.
 
 The English and Chinese policies explain that limited measurements reach Google

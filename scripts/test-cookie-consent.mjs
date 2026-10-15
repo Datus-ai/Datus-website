@@ -83,17 +83,28 @@ try {
     assert.equal(await page.evaluate(() => window.dataLayer.filter(item => item[0] === 'config').length), 1);
     await page.evaluate(() => window.gtag('event', 'consented_page'));
     await page.waitForFunction(() => performance.getEntriesByType('resource').some(item => item.name.includes('storage=granted')));
-    await page.evaluate(() => { localStorage.setItem('theme', 'dark'); document.cookie = 'datus_lang=zh-CN; Path=/'; });
+    await page.evaluate(() => {
+      localStorage.setItem('theme', 'dark');
+      document.cookie = 'datus_lang=zh-CN; Path=/';
+      window.__unsavedMarker = 'current-page';
+      const input = document.createElement('textarea');
+      input.id = 'unsaved-draft'; input.value = 'unsaved form input';
+      document.body.append(input);
+    });
     await page.click('[data-cookie-settings]');
-    await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('dialog [data-reject]')]);
+    await page.click('dialog [data-reject]');
+    assert.equal(await page.evaluate(() => window.__unsavedMarker), 'current-page', 'Refusal must not reload');
+    assert.equal(await page.$eval('#unsaved-draft', element => element.value), 'unsaved form input');
+    assert.equal(await page.evaluate(() => window['ga-disable-G-EPVCH78EZP']), true);
     const stoppedAt = measurements.length;
     assert.equal(scripts.length, 1, 'Withdrawal must not reload the SDK');
-    assert.equal(await page.$('#datus-consented-analytics'), null);
+    assert.ok(await page.$('#datus-consented-analytics'), 'The disabled SDK stays loaded without discarding the page');
     assert.equal(await hasAnalyticsCookie(), false);
     assert.equal(await page.evaluate(() => localStorage.getItem('theme')), 'dark');
     assert.ok((await page.cookies()).some(cookie => cookie.name === 'datus_lang'));
     await page.reload({ waitUntil: 'networkidle0' });
     assert.equal(measurements.length, stoppedAt, 'Stored refusal blocks even cookieless measurements');
+    assert.equal(await page.$('#datus-consented-analytics'), null, 'A subsequent visit with saved refusal does not load the SDK');
     await page.click('[data-cookie-settings]');
     await page.click('#cookie-analytics');
     await page.click('[data-save]');
@@ -119,6 +130,43 @@ try {
     assert.deepEqual(errors, []);
     console.log(`${path}: limited, accepted, rejected, reaccepted, expired, blocked storage, and centered mobile layouts passed`);
     await context.close();
+  }
+  // A refusal in another tab must preserve the existing document and drafts.
+  {
+    const context = await browser.createBrowserContext();
+    const tabs = [await context.newPage(), await context.newPage()];
+    const navigations = [0, 0];
+    let measurements = 0;
+    for (const [index, page] of tabs.entries()) {
+      page.on('framenavigated', frame => { if (frame === page.mainFrame()) navigations[index]++; });
+      await page.setRequestInterception(true);
+      page.on('request', request => {
+        if (request.url().includes('googletagmanager.com/gtag/js')) return request.respond({ status: 200, contentType: 'application/javascript', body: mockGA });
+        if (request.url().includes('google-analytics.com')) { measurements++; return request.respond({ status: 204, headers: { 'access-control-allow-origin': '*' } }); }
+        if (request.url().startsWith(base)) return request.continue();
+        return request.respond({ status: 200, headers: { 'access-control-allow-origin': '*' }, contentType: 'application/json', body: '{}' });
+      });
+      await page.goto(base + '/', { waitUntil: 'networkidle0' });
+      await page.evaluate(index => {
+        window.__unsavedMarker = index;
+        const input = document.createElement('textarea'); input.id = 'unsaved-draft'; input.value = 'draft-' + index; document.body.append(input);
+      }, index);
+    }
+    await tabs[0].bringToFront(); await tabs[0].click('[data-accept]');
+    await tabs[1].bringToFront();
+    await tabs[1].waitForFunction(() => window.dataLayer.some(item => item[0] === 'consent' && item[1] === 'update' && item[2].analytics_storage === 'granted'), { polling: 100 });
+    await tabs[0].bringToFront(); await tabs[0].click('[data-cookie-settings]'); await tabs[0].click('dialog [data-reject]');
+    await tabs[1].bringToFront(); await tabs[1].waitForFunction(() => window['ga-disable-G-EPVCH78EZP'] === true, { polling: 100 });
+    const stopped = measurements;
+    for (const [index, page] of tabs.entries()) {
+      assert.equal(await page.evaluate(() => window.__unsavedMarker), index);
+      assert.equal(await page.$eval('#unsaved-draft', input => input.value), 'draft-' + index);
+      await page.evaluate(() => window.gtag('event', 'must_not_send'));
+    }
+    assert.deepEqual(navigations, [1, 1], 'Neither local nor cross-tab refusal may navigate');
+    assert.equal(measurements, stopped);
+    await context.close();
+    console.log('Local and cross-tab refusal preserve unsaved state without navigation');
   }
   for (const path of ['/policies/cookies/', '/zh/policies/cookies/']) {
     const html = readFileSync(`dist${path}index.html`, 'utf8');

@@ -44,8 +44,8 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
         title: "Manage or Withdraw Your Choice",
         paragraphs: [
           "Choose Reject Non-Essential, Accept All, or adjust Google Analytics in Cookie Settings. Before you choose, limited cookieless Google Analytics measurement runs. Accept All enables regular Google Analytics. Reject Non-Essential, or saving with Google Analytics off, stops subsequent Google Analytics measurement, including cookieless measurement. Closing the prompt or settings without saving leaves the current state unchanged; it is not acceptance. Reopen Cookie Settings from the website footer, Studio sign-in page, or Studio settings.",
-          "Your choice is saved for 180 days in this browser, on the site where you make it. The website and Studio do not automatically share consent. You can change or withdraw your choice at any time. Rejection or withdrawal stops subsequent Google Analytics measurement and removes accessible Google Analytics cookies. Datus Studio product events, identifiers, and pending event queues are unaffected. A page with an already-running Google Analytics SDK reloads when the choice can be saved, to stop that SDK. When a choice expires, limited cookieless measurement resumes and the prompt appears again. This does not erase records already received by servers.",
-          "If storage is blocked, your choice applies to the current visit but may not be remembered; an already-loaded GA SDK is disabled without reloading into an older saved choice. New purposes or material policy changes may require a new choice.",
+          "Your choice is saved for 180 days in this browser, on the site where you make it. The website and Studio do not automatically share consent. You can change or withdraw your choice at any time. Rejection or withdrawal stops subsequent Google Analytics measurement and removes accessible Google Analytics cookies. Datus Studio product events, identifiers, and pending event queues are unaffected. A running Google Analytics SDK is disabled in the current page using Google's measurement-disable setting; changing your choice does not reload the page or discard unsaved input. When a choice expires, limited cookieless measurement resumes and the prompt appears again. This does not erase records already received by servers.",
+          "If storage is blocked, your choice applies to the current visit but may not be remembered. An already-loaded GA SDK is disabled in place. New purposes or material policy changes may require a new choice.",
         ],
       },
       {
@@ -147,8 +147,8 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
         title: "管理或撤回选择",
         paragraphs: [
           "你可以选择「拒绝非必要」「全部接受」，也可以在「Cookie 设置」中调整 Google Analytics。未选择时运行有限的无分析 Cookie 测量；「全部接受」开启常规 Google Analytics；「拒绝非必要」或保持 Google Analytics 关闭并保存，会停止后续 Google Analytics 测量，包括无 Cookie 测量。关闭提示或未保存退出设置不会改变当前状态，也不表示接受。你可以从官网页脚、Studio 登录页或 Studio 设置中重新打开 Cookie 设置。",
-          "选择在当前浏览器、作出选择的站点保存 180 天。官网与 Studio 不自动共享同意状态。你可以随时修改或撤回；拒绝或撤回后停止后续 Google Analytics 测量，并清理可访问的 Google Analytics Cookie；不会停用 Datus Studio 功能使用事件，也不会清理其标识和待发队列。已经运行 Google Analytics SDK 的页面会在能够保存选择时刷新，以停用该 SDK。选择到期后恢复有限的无 Cookie 测量，并重新显示提示。这不会删除服务器已收到的记录。",
-          "如果浏览器禁止保存，选择仅对本次访问生效，下次可能需要重新选择；已加载的 GA SDK 会被禁用，不会通过刷新恢复旧选择。新增用途或政策发生实质变化时，我们可能重新征求选择。",
+          "选择在当前浏览器、作出选择的站点保存 180 天。官网与 Studio 不自动共享同意状态。你可以随时修改或撤回；拒绝或撤回后停止后续 Google Analytics 测量，并清理可访问的 Google Analytics Cookie；不会停用 Datus Studio 功能使用事件，也不会清理其标识和待发队列。已运行的 Google Analytics SDK 会通过 Google 的测量禁用设置在当前页面停用；修改选择不会刷新页面或丢弃未保存的输入。选择到期后恢复有限的无 Cookie 测量，并重新显示提示。这不会删除服务器已收到的记录。",
+          "如果浏览器禁止保存，选择仅对本次访问生效，下次可能需要重新选择。已加载的 GA SDK 会在当前页面内停用。新增用途或政策发生实质变化时，我们可能重新征求选择。",
         ],
       },
       {

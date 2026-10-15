@@ -53,19 +53,16 @@ function clearCookies() {
       document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax${domain ? `; Domain=${domain}` : ""}`;
   }
 }
-function synchronizeAnalytics(persisted = true) {
+function synchronizeAnalytics() {
   const selected = current();
   const allowed = selected?.analytics === true;
   const blocked = selected?.analytics === false;
   win[`ga-disable-${GA_ID}`] = blocked;
   if (!allowed) clearCookies();
   if (blocked) {
-    // Unload a running SDK so refusal stops automatic cookieless requests too.
-    // Never reload into an older grant if this browser could not save refusal.
-    if (analyticsStarted && persisted) {
-      document.getElementById(SCRIPT_ID)?.remove();
-      location.reload();
-    }
+    // Disable this property's transmission without discarding page/form state.
+    // A later acceptance updates consent while reusing the loaded SDK.
+    lastStorage = undefined;
     return;
   }
   const storage = allowed ? "granted" : "denied";
@@ -170,7 +167,7 @@ function save(analytics: boolean) {
   dismissed = false;
   if (dialog.open) dialog.close();
   render();
-  synchronizeAnalytics(persisted);
+  synchronizeAnalytics();
   scheduleExpiry();
 }
 host.addEventListener("click", (event) => {
