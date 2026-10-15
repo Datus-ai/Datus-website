@@ -160,7 +160,7 @@
   font: inherit;
   flex-shrink: 0;
 }
-.sc-button:hover:not(:disabled) {
+.sc-button:not(.sc-primary):hover:not(:disabled) {
   color: var(--sc-primary);
   border-color: var(--sc-primary);
 }
@@ -168,6 +168,11 @@
   color: #fff;
   background: var(--sc-primary);
   border-color: var(--sc-primary);
+}
+.sc-button.sc-primary:is(:hover, :active, :focus-visible):not(:disabled) {
+  color: #fff;
+  background: var(--brand);
+  border-color: var(--brand);
 }
 .sc-button.sc-danger {
   color: var(--sc-danger);
