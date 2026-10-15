@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Headless BI: one shared definition, many interfaces</title>
+  <desc id="desc">Warehouse data flows into a vendor-neutral metric contract, which branches to a dashboard, an application, and an AI agent. The interfaces are separate from the shared metric definition.</desc>
+  <rect width="1200" height="750" fill="#f7f7f2"/>
+  <path d="M0 141H1200M0 624H1200" stroke="#e4e2dd" stroke-width="2"/>
+  <path d="M64 61H1136" stroke="#402df3" stroke-width="3"/>
+  <text x="64" y="108" fill="#402df3" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="3.5">DATUS / SEMANTIC LAYER</text>
+  <text x="64" y="681" fill="#181818" font-family="Arial,Helvetica,sans-serif" font-size="43" font-weight="600" letter-spacing="-1.5">One definition. Many interfaces.</text>
+  <text x="64" y="712" fill="#656560" font-family="Arial,Helvetica,sans-serif" font-size="18">Headless BI keeps meaning separate from presentation.</text>
+
+  <!-- The source supplies data; the middle layer owns business meaning. -->
+  <g stroke="#402df3" stroke-width="2.5" stroke-linejoin="round">
+    <rect x="64" y="301" width="218" height="174" rx="6" fill="#eeebfb"/>
+    <path d="M64 346H282" fill="none"/>
+    <path d="M96 379H174M96 405H214M96 431H189" fill="none" stroke-linecap="round"/>
+  </g>
+  <circle cx="96" cy="325" r="5" fill="#402df3"/>
+  <circle cx="115" cy="325" r="5" fill="#a99cf8"/>
+  <circle cx="134" cy="325" r="5" fill="#a99cf8"/>
+  <text x="64" y="275" fill="#5b5c58" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" letter-spacing="2">DATA</text>
+  <text x="83" y="521" fill="#181818" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="600">Warehouse</text>
+
+  <path d="M282 388H358" fill="none" stroke="#402df3" stroke-width="3"/>
+  <path d="m348 379 11 9-11 9" fill="none" stroke="#402df3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g>
+    <rect x="378" y="246" width="340" height="286" rx="8" fill="#402df3"/>
+    <path d="M408 302H688" stroke="#aa9df9" stroke-width="2"/>
+    <text x="408" y="280" fill="#d5ceff" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" letter-spacing="2">SHARED METRIC CONTRACT</text>
+    <text x="408" y="367" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="600" letter-spacing="-1">Net revenue</text>
+    <text x="408" y="415" fill="#e8e3ff" font-family="Arial,Helvetica,sans-serif" font-size="20">One approved definition</text>
+    <rect x="408" y="454" width="104" height="38" rx="19" fill="#ffffff" opacity=".18"/>
+    <rect x="526" y="454" width="159" height="38" rx="19" fill="#ffffff" opacity=".18"/>
+    <text x="460" y="480" fill="#ffffff" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="16">metric</text>
+    <text x="606" y="480" fill="#ffffff" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="16">dimensions</text>
+  </g>
+
+  <!-- One contract fans out to independent presentation surfaces. -->
+  <g fill="none" stroke="#402df3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M718 388H762V238H804"/>
+    <path d="M762 388H804"/>
+    <path d="M762 388V538H804"/>
+    <path d="m794 229 10 9-10 9"/>
+    <path d="m794 379 10 9-10 9"/>
+    <path d="m794 529 10 9-10 9"/>
+  </g>
+  <circle cx="762" cy="388" r="7" fill="#402df3"/>
+  <text x="804" y="178" fill="#5b5c58" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" letter-spacing="2">PRESENTATION</text>
+
+  <g fill="#ffffff" stroke="#c9c1fb" stroke-width="2">
+    <rect x="822" y="197" width="310" height="92" rx="6"/>
+    <rect x="822" y="347" width="310" height="92" rx="6"/>
+    <rect x="822" y="497" width="310" height="92" rx="6"/>
+  </g>
+  <g fill="none" stroke="#402df3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="846" y="223" width="48" height="39" rx="3"/>
+    <path d="M853 253l10-10 8 5 13-16"/>
+    <rect x="846" y="373" width="48" height="39" rx="3"/>
+    <path d="M854 382h32M854 391h23M854 400h29"/>
+    <circle cx="870" cy="533" r="10"/>
+    <path d="M861 540l-8 11m26-11 8 11"/>
+    <circle cx="850" cy="555" r="4"/>
+    <circle cx="890" cy="555" r="4"/>
+  </g>
+  <g fill="#181818" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="600">
+    <text x="918" y="253">Dashboard</text>
+    <text x="918" y="403">Application</text>
+    <text x="918" y="553">AI agent</text>
+  </g>
+</svg>
