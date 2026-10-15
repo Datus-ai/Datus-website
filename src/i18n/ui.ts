@@ -28,6 +28,8 @@ export type UiMessages = {
     language: string;
   };
   footer: {
+    cookiePolicy: string;
+    cookieSettings: string;
     tagline: string;
     products: string;
     resources: string;
@@ -159,6 +161,8 @@ export const UI: Record<Locale, UiMessages> = {
       language: "Language",
     },
     footer: {
+      cookiePolicy: "Cookie Policy",
+      cookieSettings: "Cookie Settings",
       tagline:
         "The open-source data engineering agent with an evolvable Context Engine — natural language to governed, production-ready data work.",
       products: "Products",
@@ -288,6 +292,8 @@ export const UI: Record<Locale, UiMessages> = {
       language: "语言",
     },
     footer: {
+      cookiePolicy: "Cookie 政策",
+      cookieSettings: "Cookie 设置",
       tagline:
         "开源的数据工程 Agent，内置可演进的上下文引擎，用自然语言完成可治理、可上生产的数据工作。",
       products: "产品",

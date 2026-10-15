@@ -91,3 +91,31 @@ Content here...
 ## Deployment
 
 Push to `main` branch → GitHub Actions automatically deploys to GitHub Pages.
+
+
+## Cookie consent and analytics
+
+Marketing pages and the static blog load the same consent entry. Google
+Analytics uses three states: no choice loads the SDK with analytics storage
+`denied` for cookieless measurement; acceptance updates it to `granted` without
+loading a second SDK; explicit rejection or withdrawal sets the GA property
+disable flag and clears GA cookies in place. No consent transition reloads or
+navigates the page, including cross-tab refusal and expiry, so unsaved input
+survives. A saved refusal prevents loading GA on subsequent visits. If storage
+is blocked, refusal still disables GA for the current visit. Reacceptance updates
+consent while reusing the SDK.
+Advertising storage, Google signals, and advertising personalization stay off.
+
+The English and Chinese policies explain that limited measurements reach Google
+before a choice. Website and Studio choices remain origin-specific, valid for
+180 days; expiry returns to the limited state and shows the banner. The website
+has no Datus first-party Tracking. Its consent UI describes Google Analytics
+only. The shared policy has a Studio-specific section disclosing default
+first-party product events, independent of the Google Analytics choice. Necessary
+settings and diagnostic logging also remain independent.
+
+After `npm run build:all`, run `npm run test:cookie-consent`. External analytics
+is mocked. Verify initial denied-mode measurement without analytics cookies,
+acceptance without duplicate initialization, full stop after rejection,
+withdrawal, expired choices, storage failures, and centered responsive dialogs
+across marketing, Chinese, policy, and blog routes.

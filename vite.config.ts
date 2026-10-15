@@ -21,6 +21,7 @@ const MPA_ROUTES = [
   'pricing',
   'faq',
   'security',
+  'policies/cookies',
   'osi-field-mapping',
   'tools/osi-playground',
 ];
@@ -197,8 +198,12 @@ export default defineConfig(() => ({
     target: 'esnext',
     outDir: 'dist',
     rollupOptions: {
+      output: {
+        entryFileNames: chunk => chunk.name === 'cookie-consent' ? 'assets/cookie-consent.js' : 'assets/[name]-[hash].js',
+      },
       input: {
         main: path.resolve(__dirname, 'index.html'),
+        'cookie-consent': path.resolve(__dirname, 'src/cookie-consent/main.ts'),
         ...Object.fromEntries(
           MPA_ROUTES.map((route) => [
             route.replace(/\//g, '-'),
