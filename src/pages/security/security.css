@@ -336,7 +336,9 @@ button {
 }
 .security-back-top {
   margin-top: 24px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--ink-muted);
   font-size: 12.5px;
 }
