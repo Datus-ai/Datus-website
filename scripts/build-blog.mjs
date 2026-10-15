@@ -68,7 +68,7 @@ const CATEGORIES = [
       "dosi-vs-metricflow", "dosi-with-cube", "cube-semantic-layer-alternatives",
       "ai-native-semantic-layer", "apache-ossie-dosi-quickstart",
       "semantic-layer-vs-ontology", "from-semantic-layer-to-ontology",
-      "semantic-layer-based-ontology", "why-text-to-sql-fails-without-a-semantic-layer"] },
+      "semantic-layer-based-ontology", "ontology-for-ai-agents-five-approaches", "why-text-to-sql-fails-without-a-semantic-layer"] },
   { label: "Agentic Analytics", description: "AI agents that plan and run multi-step analytical work — and what has to be true underneath for it to be reliable.",
     slugs: ["what-is-agentic-analytics", "what-is-conversational-bi", "cube-agentic-analytics"] },
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
