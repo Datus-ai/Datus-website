@@ -232,6 +232,7 @@ Incrementally is the only way that sticks. Start with one team, one domain, and 
 
 ## Related articles
 
+- [What is headless BI?](/blog/what-is-headless-bi/) — how shared metrics reach dashboards, apps, and agents
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the emerging open standard that makes the semantic layer portable across tools
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the metrics-focused subset of a semantic layer
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — how agents differ from copilots and where context fits

@@ -109,6 +109,17 @@ Data Contract, Medallion Architecture, Change Data Capture.
 ---
 
 ## New posts (written by this agent)
+
+### what-is-headless-bi
+- Title: What Is Headless BI? Shared Metrics Beyond Dashboards
+- Target keyword: headless BI
+- Angle: shared metric definitions beyond dashboards, including apps and AI agents; practical evaluation criteria and the role of a vendor-neutral semantic layer.
+- Article type: GlossaryTerm
+- Internal links added: what-is-semantic-layer and related semantic-layer articles; reciprocal link from what-is-semantic-layer.
+- Category: Semantic Layer
+- Image: /images/what-is-headless-bi/resource-cover.svg
+- PR: https://github.com/Datus-ai/Datus-website/pull/96   Status: open; based on main, independent of website redesign PR #94.
+- Date: 2026-10-15
 <!-- Append records here (chronological order) per memory/README.md format. -->
 
 ### what-is-data-contract
