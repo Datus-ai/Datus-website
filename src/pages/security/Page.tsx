@@ -403,7 +403,7 @@ export default function SecurityPage() {
                 const external = card.href.startsWith("https:");
                 return (
                   <a
-                    className="security-resource"
+                    className={`security-resource${index === 0 ? " security-resource--featured" : ""}`}
                     href={l(card.href)}
                     key={card.title}
                     {...(external
@@ -413,12 +413,14 @@ export default function SecurityPage() {
                     <span className="security-resource__icon">
                       <Icon size={24} aria-hidden="true" />
                     </span>
-                    <h3>{card.title}</h3>
-                    <p>{card.body}</p>
-                    <span className="security-resource__action">
-                      {card.action}
-                      <ArrowUpRight size={15} aria-hidden="true" />
-                    </span>
+                    <div className="security-resource__copy">
+                      <h3>{card.title}</h3>
+                      <p>{card.body}</p>
+                      <span className="security-resource__action">
+                        {card.action}
+                        <ArrowUpRight size={15} aria-hidden="true" />
+                      </span>
+                    </div>
                   </a>
                 );
               })}
