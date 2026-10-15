@@ -20,6 +20,7 @@ const MPA_ROUTES = [
   'chatbot',
   'pricing',
   'faq',
+  'security',
   'osi-field-mapping',
   'tools/osi-playground',
 ];

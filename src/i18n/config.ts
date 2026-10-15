@@ -53,6 +53,7 @@ export const MIRRORED_PATHS = [
   "/chatbot/",
   "/pricing/",
   "/faq/",
+  "/security/",
   "/glossary/",
   "/osi-field-mapping/",
   "/tools/osi-playground/",

@@ -14,6 +14,8 @@ export const DOSI_URL = "https://dosi.datus.ai";
 export const SLACK_URL =
   "https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg";
 export const CONTACT_EMAIL = "contact@datus.ai";
+export const TRUST_CENTER_URL =
+  "https://app.vanta.com/datus.ai/trust/z81fqjt8aou1i94kudbjj";
 
 export interface NavLink {
   label: string;

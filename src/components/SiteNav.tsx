@@ -124,6 +124,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   const t = UI[locale].nav;
   return (
     <div
+      className="site-nav__mobile-menu"
       style={{
         position: "fixed",
         inset: `var(--nav-h) 0 0 0`,

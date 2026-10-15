@@ -12,6 +12,7 @@ import McpPage from "./pages/mcp/Page";
 import ChatbotPage from "./pages/chatbot/Page";
 import PricingPage from "./pages/pricing/Page";
 import FaqPage from "./pages/faq/Page";
+import SecurityPage from "./pages/security/Page";
 import OsiFieldMappingPage from "./pages/osi-field-mapping/Page";
 import OsiPlaygroundPage from "./pages/tools/osi-playground/Page";
 import GlossaryPage from "./components/GlossaryPage";
@@ -43,6 +44,7 @@ const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/chatbot/", page: () => <ChatbotPage /> },
   { path: "/pricing/", page: () => <PricingPage /> },
   { path: "/faq/", page: () => <FaqPage /> },
+  { path: "/security/", page: () => <SecurityPage /> },
   { path: "/osi-field-mapping/", page: () => <OsiFieldMappingPage /> },
   { path: "/tools/osi-playground/", page: () => <OsiPlaygroundPage /> },
   { path: "/glossary/", page: () => <GlossaryPage /> },

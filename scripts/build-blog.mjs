@@ -219,6 +219,7 @@ function footerHtml() {
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
     <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
+    <a href="/security/">Security &amp; Privacy</a>
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
   <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
