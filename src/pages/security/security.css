@@ -611,6 +611,8 @@ html {
 .security-resources__grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  max-width: 900px;
+  margin: 0 auto;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   background: var(--panel);
