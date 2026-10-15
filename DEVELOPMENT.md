@@ -91,3 +91,18 @@ Content here...
 ## Deployment
 
 Push to `main` branch → GitHub Actions automatically deploys to GitHub Pages.
+
+
+## Cookie consent and analytics
+
+Marketing pages and the static blog load the same consent entry. Optional GA
+is loaded only after an analytics choice; do not restore eager GA snippets in
+HTML shells. The English and Chinese Cookie Policy routes are prerendered with
+normal locale metadata. Studio links to these routes and stores consent on its
+own origin.
+
+After `npm run build:all`, run `npm run test:cookie-consent`. The browser check
+starts an isolated preview on a free port and verifies that rejection and
+withdrawal stop analytics, basic preferences remain available, and both locales
+and the blog share the same behavior. No external analytics request is sent by
+the test.

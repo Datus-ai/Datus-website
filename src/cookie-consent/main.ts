@@ -1,0 +1,227 @@
+import { COOKIE_UI } from "../i18n/cookie";
+import { localeFromPathname, localizePath } from "../i18n/config";
+
+const KEY = "datus_website_cookie_consent";
+const VERSION = "2026-10-15";
+const AGE = 180 * 24 * 60 * 60 * 1000;
+const GA_ID = "G-EPVCH78EZP";
+const SCRIPT_ID = "datus-consented-analytics";
+interface IChoice {
+  necessary: true;
+  analytics: boolean;
+  version: string;
+  savedAt: number;
+}
+const locale = localeFromPathname(location.pathname);
+const t = COOKIE_UI[locale];
+const win = window as unknown as Record<string, any>;
+let choice = read();
+let wasAllowed = false;
+let dismissed = false;
+let returnFocus: HTMLElement | null = null;
+
+function read(): IChoice | null {
+  try {
+    const value = JSON.parse(localStorage.getItem(KEY) || "null");
+    const age = Date.now() - value?.savedAt;
+    if (
+      value?.version === VERSION &&
+      value.necessary === true &&
+      typeof value.analytics === "boolean" &&
+      Number.isFinite(value.savedAt) &&
+      age >= 0 &&
+      age < AGE
+    )
+      return value;
+  } catch {
+    /* Optional analytics defaults off when storage is unavailable. */
+  }
+  return null;
+}
+function current(): IChoice | null {
+  return choice && Date.now() - choice.savedAt < AGE ? choice : null;
+}
+function clearCookies() {
+  const parts = location.hostname.split(".");
+  const domains = ["", ...parts.map((_, i) => parts.slice(i).join("."))];
+  for (const part of document.cookie.split(";")) {
+    const name = part.trim().split("=")[0];
+    if (!/^(_ga($|_)|_gid$|_gat($|_)|datus_website_ga($|_))/.test(name))
+      continue;
+    for (const domain of domains)
+      document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax${domain ? `; Domain=${domain}` : ""}`;
+  }
+}
+function synchronizeAnalytics(persisted = true) {
+  const allowed = current()?.analytics === true;
+  win[`ga-disable-${GA_ID}`] = !allowed;
+  if (!allowed) {
+    const previouslyAllowed = wasAllowed;
+    wasAllowed = false;
+    clearCookies();
+    document.getElementById(SCRIPT_ID)?.remove();
+    if (previouslyAllowed && persisted) {
+      wasAllowed = false;
+      location.reload();
+    }
+    return;
+  }
+  if (wasAllowed) return;
+  win.dataLayer = win.dataLayer || [];
+  win.gtag =
+    win.gtag ||
+    function (..._args: unknown[]) {
+      win.dataLayer.push(arguments);
+    };
+  win.gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  win.gtag("js", new Date());
+  win.gtag("config", GA_ID, {
+    cookie_domain: "none",
+    cookie_prefix: "datus_website",
+    cookie_expires: 15_552_000,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    page_location: location.origin + location.pathname,
+    page_referrer: document.referrer
+      ? new URL(document.referrer).origin + new URL(document.referrer).pathname
+      : "",
+  });
+  const script = document.createElement("script");
+  script.id = SCRIPT_ID;
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.append(script);
+  wasAllowed = true;
+}
+const escape = (value: string) =>
+  value.replace(
+    /[&<>"']/g,
+    (char) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
+        char
+      ]!,
+  );
+const policyHref = localizePath("/policies/cookies/", locale);
+const policy = `<a href="${policyHref}">${escape(t.policy)}</a>`;
+const host = document.createElement("div");
+host.className = "cookie-ui";
+host.innerHTML = `
+<aside class="cookie-ui__banner" aria-labelledby="cookie-banner-title" hidden>
+ <button class="cookie-ui__close" type="button" data-dismiss aria-label="${escape(t.dismiss)}">×</button>
+ <h2 id="cookie-banner-title">${escape(t.title)}</h2><p>${escape(t.description)} ${policy}</p>
+ <div class="cookie-ui__actions"><button type="button" data-open>${escape(t.manage)}</button><button type="button" data-reject>${escape(t.reject)}</button><button type="button" data-accept>${escape(t.accept)}</button></div>
+</aside>
+<dialog class="cookie-ui__dialog" aria-labelledby="cookie-settings-title" aria-describedby="cookie-settings-intro">
+ <header><div><small>${escape(t.brand)}</small><h2 id="cookie-settings-title">${escape(t.settings)}</h2></div><button class="cookie-ui__close" type="button" data-close aria-label="${escape(t.close)}">×</button></header>
+ <div class="cookie-ui__body"><p id="cookie-settings-intro">${escape(t.intro)}</p>${policy}
+ <section><div class="cookie-ui__heading"><h3>${escape(t.necessary)}</h3><span>${escape(t.always_on)}</span></div><p>${escape(t.necessary_description)}</p><details><summary>${escape(t.details)}</summary><p>${escape(t.necessary_details)}</p></details></section>
+ <section><div class="cookie-ui__heading"><label for="cookie-analytics">${escape(t.analytics)}</label><input type="checkbox" id="cookie-analytics" aria-label="${escape(t.analytics)}"></div><p>${escape(t.analytics_description)}</p><details><summary>${escape(t.details)}</summary><p>${escape(t.analytics_details)}</p></details></section>
+ <p class="cookie-ui__scope">${escape(t.scope)}</p></div>
+ <footer><button type="button" data-reject>${escape(t.reject)}</button><button type="button" data-save>${escape(t.save)}</button></footer>
+</dialog><p class="cookie-ui__status" role="status" hidden></p>`;
+document.body.append(host);
+const banner = host.querySelector<HTMLElement>(".cookie-ui__banner")!;
+const dialog = host.querySelector<HTMLDialogElement>("dialog")!;
+const toggle = host.querySelector<HTMLInputElement>("#cookie-analytics")!;
+const status = host.querySelector<HTMLElement>("[role=status]")!;
+function render() {
+  banner.hidden = !!current() || dismissed;
+}
+function open(opener?: HTMLElement) {
+  returnFocus = opener || (document.activeElement as HTMLElement);
+  toggle.checked = current()?.analytics ?? false;
+  host.querySelectorAll("details").forEach((item) => {
+    item.open = false;
+  });
+  if (!dialog.open) dialog.showModal();
+}
+function save(analytics: boolean) {
+  choice = {
+    necessary: true,
+    analytics,
+    savedAt: Date.now(),
+    version: VERSION,
+  };
+  let persisted = true;
+  try {
+    localStorage.setItem(KEY, JSON.stringify(choice));
+  } catch {
+    persisted = false;
+  }
+  status.textContent = persisted ? "" : t.storage_error;
+  status.hidden = persisted;
+  dismissed = false;
+  if (dialog.open) dialog.close();
+  render();
+  synchronizeAnalytics(persisted);
+  scheduleExpiry();
+}
+host.addEventListener("click", (event) => {
+  const button = (event.target as Element).closest("button");
+  if (!button) return;
+  if (button.hasAttribute("data-open")) open(button);
+  if (button.hasAttribute("data-close")) dialog.close();
+  if (button.hasAttribute("data-reject")) save(false);
+  if (button.hasAttribute("data-accept")) save(true);
+  if (button.hasAttribute("data-save")) save(toggle.checked);
+  if (button.hasAttribute("data-dismiss")) {
+    dismissed = true;
+    render();
+    document.querySelector<HTMLElement>("[data-cookie-settings]")?.focus();
+  }
+});
+dialog.addEventListener("close", () => {
+  if (
+    returnFocus?.isConnected &&
+    returnFocus.getClientRects().length &&
+    !returnFocus.closest("[hidden]")
+  )
+    returnFocus.focus();
+  else document.querySelector<HTMLElement>("[data-cookie-settings]")?.focus();
+});
+document.addEventListener("click", (event) => {
+  const opener = (event.target as Element).closest<HTMLElement>(
+    "[data-cookie-settings]",
+  );
+  if (opener) open(opener);
+});
+window.addEventListener("storage", (event) => {
+  if (event.key === KEY || event.key === null) {
+    choice = read();
+    dismissed = false;
+    render();
+    synchronizeAnalytics();
+    scheduleExpiry();
+  }
+});
+let expiryTimer: ReturnType<typeof setTimeout>;
+function scheduleExpiry() {
+  clearTimeout(expiryTimer);
+  if (choice)
+    expiryTimer = setTimeout(
+      () => {
+        expire();
+        scheduleExpiry();
+      },
+      Math.min(Math.max(0, AGE - (Date.now() - choice.savedAt)), 2_147_483_647),
+    );
+}
+const expire = () => {
+  if (choice && !current()) {
+    choice = null;
+    dismissed = false;
+    render();
+    synchronizeAnalytics();
+    scheduleExpiry();
+  }
+};
+window.addEventListener("pageshow", expire);
+window.addEventListener("focus", expire);
+scheduleExpiry();
+render();
+synchronizeAnalytics();

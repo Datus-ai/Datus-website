@@ -21,7 +21,6 @@ const POSTS_DIR = join(ROOT, "blog", "posts");
 const PUBLIC_DIR = join(ROOT, "blog", "public");
 const DIST = join(ROOT, "dist");
 const SITE = "https://datus.ai";
-const GA_ID = "G-EPVCH78EZP";
 const GITHUB_URL = "https://github.com/Datus-ai/Datus-agent";
 const STUDIO_URL = "https://studio.datus.ai/overview?utm_source=datus.ai&utm_medium=blog&utm_campaign=get_started";
 const SLACK_URL = "https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg";
@@ -220,6 +219,8 @@ function footerHtml() {
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
     <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
     <a href="/security/">Security &amp; Privacy</a>
+    <a href="/policies/cookies/">Cookie Policy</a>
+    <button type="button" data-cookie-settings>Cookie Settings</button>
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
   <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
@@ -227,10 +228,8 @@ function footerHtml() {
 }
 
 function gaHtml() {
-  return `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag("consent","default",{ad_storage:"denied",analytics_storage:"granted",ad_user_data:"denied",ad_personalization:"denied",wait_for_update:500});</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
-<script>gtag("js",new Date());gtag("config","${GA_ID}");</script>`;
+  return '<link rel="stylesheet" href="/cookie-consent.css" />'
+    + '<script type="module" src="/assets/cookie-consent.js"></script>';
 }
 
 function shell({

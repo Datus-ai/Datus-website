@@ -330,25 +330,10 @@
 }
     </script>
 
-    <!-- Google tag (gtag.js) with Consent Mode v2 -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("consent", "default", {
-        ad_storage: "denied",
-        analytics_storage: "granted",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        wait_for_update: 500,
-      });
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPVCH78EZP"></script>
-    <script>
-      gtag("js", new Date());
-      gtag("config", "G-EPVCH78EZP");
-    </script>
+    <!-- Optional analytics is initialized by the consent entry. -->
+
+      <link rel="stylesheet" href="/cookie-consent.css" />
+    <script type="module" src="/src/cookie-consent/main.ts"></script>
   </head>
 
   <body>
