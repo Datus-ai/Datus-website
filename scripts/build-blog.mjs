@@ -60,7 +60,7 @@ const CATEGORIES = [
       "what-is-databricks-genie", "what-is-cortex-analyst", "what-is-claude-data-plugin",
       "from-chatbi-to-data-agent-what-changes"] },
   { label: "Semantic Layer", description: "What a semantic layer is, and how it differs from a metric layer, model, ontology, or catalog.",
-    slugs: ["what-is-semantic-layer", "what-is-headless-bi", "what-is-metric-layer", "what-is-semantic-model", "semantic-layer-vs-ontology-difference",
+    slugs: ["what-is-semantic-layer", "what-is-headless-bi", "semantic-model-examples", "what-is-metric-layer", "what-is-semantic-model", "semantic-layer-vs-ontology-difference",
       "open-semantic-interchange-osi", "what-is-snowflake-osi", "osi-vs-metricflow", "osi-vs-dbt-metricflow", "osi-vs-lookml",
       "osi-vs-warehouse-native-semantics", "osi-vs-rdf-owl", "osi-vs-cube", "semantic-vs-syntactic-interoperability",
       "dbt-semantic-layer-metricflow", "what-is-gooddata",
@@ -698,6 +698,10 @@ html{scroll-behavior:smooth}
   .post-hero--media .post-hero__media{order:-1}
 }
 @media (max-width:640px){.post-row{flex-direction:column;gap:6px}.post-row__date{order:-1}}
+@media (max-width:640px){
+  .post-main{width:100%}
+  .prose table{display:block;max-width:100%;overflow-x:auto}
+}
 `;
   return base + "\n" + prose;
 }

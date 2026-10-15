@@ -1,0 +1,77 @@
+# Tested with Dosi 0.1.11. This engine release reads the semantic_model list
+# form; the unreleased Apache Ossie 0.2 development spec uses a flat document.
+version: "0.2.0.dev0"
+semantic_model:
+  - name: retail_orders
+    description: Completed-order revenue and customer analysis
+    datasets:
+      - name: orders
+        source: main.orders
+        primary_key: [order_id]
+        fields:
+          - name: order_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: order_id
+          - name: customer_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: customer_id
+          - name: order_date
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: order_date
+            dimension:
+              is_time: true
+          - name: status
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: status
+          - name: amount
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: amount
+      - name: customers
+        source: main.customers
+        primary_key: [customer_id]
+        fields:
+          - name: customer_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: customer_id
+          - name: region
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: region
+    relationships:
+      - name: orders_to_customers
+        from: orders
+        to: customers
+        from_columns: [customer_id]
+        to_columns: [customer_id]
+    metrics:
+      - name: completed_revenue
+        description: Order amount from completed orders only
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: "SUM(CASE WHEN orders.status = 'completed' THEN orders.amount ELSE 0 END)"
+      - name: completed_orders
+        description: Number of completed orders
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: "COUNT(CASE WHEN orders.status = 'completed' THEN orders.order_id END)"
+      - name: average_order_value
+        description: Completed revenue divided by completed order count
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: "SUM(CASE WHEN orders.status = 'completed' THEN orders.amount ELSE 0 END) / NULLIF(COUNT(CASE WHEN orders.status = 'completed' THEN orders.order_id END), 0)"
