@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="540" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">Portability has several layers</title>
+  <desc id="desc">Editorial quote card in Datus dark navy and violet: A model file can be portable while the execution engine, access policy, or action workflow remains specific to a platform.</desc>
+  <rect width="1200" height="540" fill="#0c0d22"/>
+  <path d="M55 55H1145" stroke="#7765ff" stroke-width="3"/>
+  <text x="55" y="94" fill="#a99cff" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" letter-spacing="3">DATUS / PORTABILITY</text>
+  <text x="55" y="209" fill="#a99cff" font-family="Arial,Helvetica,sans-serif" font-size="102" font-weight="700">“</text>
+  <text x="132" y="206" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="47" font-weight="600" letter-spacing="-1.3">A model file can be portable while</text>
+  <text x="132" y="270" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="47" font-weight="600" letter-spacing="-1.3">the execution engine, access policy,</text>
+  <text x="132" y="334" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="47" font-weight="600" letter-spacing="-1.3">or action workflow remains specific</text>
+  <text x="132" y="398" fill="#a99cff" font-family="Arial,Helvetica,sans-serif" font-size="47" font-weight="600" letter-spacing="-1.3">to a platform.</text>
+  <path d="M55 463H1145" stroke="#3c366a" stroke-width="2"/>
+  <text x="55" y="503" fill="#aaa8c8" font-family="Arial,Helvetica,sans-serif" font-size="17">ONTOLOGY FOR AI AGENTS  ·  FIVE APPROACHES</text>
+  <g fill="none" stroke="#4e438f" stroke-width="2"><circle cx="1064" cy="118" r="30"/><circle cx="1113" cy="150" r="13"/><circle cx="1019" cy="156" r="9"/><path d="m1089 134 12 10m-59-7-14 13"/></g>
+</svg>

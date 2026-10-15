@@ -721,3 +721,19 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/93   Status: open
 - Date: 2026-10-12
 - Validation: full build and generated HTML metadata/Article/FAQPage/BreadcrumbList, 5 FAQ entries, links, diagram, sitemap and English-only blog verified; browser preview checked. Content and diagram approved by Joanna before submission.
+
+### ontology-for-ai-agents-five-approaches
+- Title: Ontology for AI Agents: Five Approaches to Business Context
+- Target keyword: ontology for AI agents
+- Angle: five architecture approaches differ in where business meaning lives; use a wrong-answer procurement scenario to decide which layer to fix.
+- Source direction: operator-provided Medium essay by Joanna He, repurposed for Datus with updated sourcing and brand visuals.
+- Article type: Research
+- Investment Score: n/a (operator-directed port)   Gate A: KEEP — a five-approach landscape and selection guide, distinct from the site's ontology definition and semantic-layer comparison posts.
+- Audit: 82/100, grade A; automated 12 pass / 2 justified warnings / 0 fail.
+- Key sources: https://ossie.apache.org/; https://docs.snowflake.com/en/user-guide/views-semantic/semantic-view-yaml-spec; https://docs.databricks.com/aws/en/uc-semantics/metric-views/yaml-reference; https://www.w3.org/TR/owl-primer/; https://www.palantir.com/docs/foundry/ontology
+- Internal links added: what-is-ontology, what-is-semantic-layer, semantic-layer-vs-ontology, from-semantic-layer-to-ontology, semantic-layer-based-ontology, first-native-apache-ossie-engine; reciprocal from what-is-ontology.
+- Glossary updated: no — no matching glossary term.
+- Category: Semantic Layer
+- Images: four original SVGs in blog/public/images/ontology-for-ai-agents-five-approaches/.
+- PR: https://github.com/Datus-ai/Datus-website/pull/99   Status: open
+- Date: 2026-10-15

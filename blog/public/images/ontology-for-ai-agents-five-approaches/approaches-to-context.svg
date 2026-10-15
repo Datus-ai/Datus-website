@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Five approaches to business context for AI agents</title>
+  <desc id="desc">A Datus-style flat diagram shows one central question, where meaning lives, connecting to five approaches: open standard, platform-native model, metrics as code, knowledge graph, and operational object model.</desc>
+  <rect width="1200" height="800" fill="#f7f7f2"/>
+  <path d="M64 55H1136" stroke="#402df3" stroke-width="3"/>
+  <text x="64" y="91" fill="#402df3" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" letter-spacing="3">DATUS / AGENT CONTEXT</text>
+  <text x="64" y="157" fill="#181818" font-family="Arial,Helvetica,sans-serif" font-size="43" font-weight="600" letter-spacing="-1.4">Where should business meaning live?</text>
+  <text x="64" y="195" fill="#656560" font-family="Arial,Helvetica,sans-serif" font-size="21">Five architectural starting points for ontology and semantic context</text>
+
+  <path d="M107 260V697" fill="none" stroke="#402df3" stroke-width="3"/>
+  <circle cx="107" cy="260" r="11" fill="#402df3"/>
+  <circle cx="107" cy="697" r="11" fill="#402df3"/>
+
+  <g font-family="Arial,Helvetica,sans-serif">
+    <g>
+      <path d="M107 289H161" stroke="#402df3" stroke-width="3"/>
+      <circle cx="107" cy="289" r="7" fill="#402df3"/>
+      <rect x="161" y="240" width="975" height="98" rx="6" fill="#eeebfb" stroke="#d3cbfb" stroke-width="2"/>
+      <rect x="161" y="240" width="12" height="98" fill="#402df3"/>
+      <text x="200" y="278" fill="#402df3" font-size="17" font-weight="700" letter-spacing="2">01 / OPEN STANDARD</text>
+      <text x="200" y="312" fill="#181818" font-size="24" font-weight="600">Portable definitions across tools</text>
+      <text x="913" y="296" fill="#5b5c58" font-size="18" text-anchor="middle">Semantic specification</text>
+    </g>
+    <g>
+      <path d="M107 391H161" stroke="#402df3" stroke-width="3"/>
+      <circle cx="107" cy="391" r="7" fill="#402df3"/>
+      <rect x="161" y="342" width="975" height="98" rx="6" fill="#ffffff" stroke="#d3cbfb" stroke-width="2"/>
+      <rect x="161" y="342" width="12" height="98" fill="#9385f6"/>
+      <text x="200" y="380" fill="#402df3" font-size="17" font-weight="700" letter-spacing="2">02 / PLATFORM-NATIVE</text>
+      <text x="200" y="414" fill="#181818" font-size="24" font-weight="600">Definitions near data and governance</text>
+      <text x="913" y="398" fill="#5b5c58" font-size="18" text-anchor="middle">Warehouse or lakehouse</text>
+    </g>
+    <g>
+      <path d="M107 493H161" stroke="#402df3" stroke-width="3"/>
+      <circle cx="107" cy="493" r="7" fill="#402df3"/>
+      <rect x="161" y="444" width="975" height="98" rx="6" fill="#eeebfb" stroke="#d3cbfb" stroke-width="2"/>
+      <rect x="161" y="444" width="12" height="98" fill="#402df3"/>
+      <text x="200" y="482" fill="#402df3" font-size="17" font-weight="700" letter-spacing="2">03 / METRICS AS CODE</text>
+      <text x="200" y="516" fill="#181818" font-size="24" font-weight="600">Versioned measures, dimensions, joins</text>
+      <text x="913" y="500" fill="#5b5c58" font-size="18" text-anchor="middle">Semantic model</text>
+    </g>
+    <g>
+      <path d="M107 595H161" stroke="#402df3" stroke-width="3"/>
+      <circle cx="107" cy="595" r="7" fill="#402df3"/>
+      <rect x="161" y="546" width="975" height="98" rx="6" fill="#ffffff" stroke="#d3cbfb" stroke-width="2"/>
+      <rect x="161" y="546" width="12" height="98" fill="#9385f6"/>
+      <text x="200" y="584" fill="#402df3" font-size="17" font-weight="700" letter-spacing="2">04 / KNOWLEDGE GRAPH</text>
+      <text x="200" y="618" fill="#181818" font-size="24" font-weight="600">Typed entities, relationships, inference</text>
+      <text x="913" y="602" fill="#5b5c58" font-size="18" text-anchor="middle">Ontology + instances</text>
+    </g>
+    <g>
+      <path d="M107 697H161" stroke="#402df3" stroke-width="3"/>
+      <circle cx="107" cy="697" r="7" fill="#402df3"/>
+      <rect x="161" y="648" width="975" height="98" rx="6" fill="#eeebfb" stroke="#d3cbfb" stroke-width="2"/>
+      <rect x="161" y="648" width="12" height="98" fill="#402df3"/>
+      <text x="200" y="686" fill="#402df3" font-size="17" font-weight="700" letter-spacing="2">05 / OPERATIONAL MODEL</text>
+      <text x="200" y="720" fill="#181818" font-size="24" font-weight="600">Objects, permissions, and actions</text>
+      <text x="913" y="704" fill="#5b5c58" font-size="18" text-anchor="middle">Business workflow</text>
+    </g>
+  </g>
+</svg>

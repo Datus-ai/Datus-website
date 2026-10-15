@@ -160,6 +160,7 @@ They need the layer that matches the failure. If the agent gets the *number* wro
 
 ## Related articles
 
+- [Ontology for AI agents: five approaches](/blog/ontology-for-ai-agents-five-approaches/) — where teams place business meaning and how to choose a starting point.
 - [Ontology vs semantic layer](/blog/semantic-layer-vs-ontology-difference/) — the dedicated comparison — measurement vs meaning.
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the execution plane that binds concepts to metrics and SQL.
 - [Apache Ossie / OSI vs RDF/OWL](/blog/osi-vs-rdf-owl/) — how the two generations of machine-readable meaning relate.
