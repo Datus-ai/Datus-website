@@ -21,6 +21,8 @@ const TEMPLATE = pathToFileURL(resolve(__dirname, "og-template.html")).href;
 const OUT_DIR = resolve(ROOT, "src/public/og");
 
 const CARDS = [
+  { slug: "tools-semantic-model-converter", eyebrow: "Free Developer Tool", title: "One semantic model, multiple export formats",
+    subtitle: "Convert Ossie / Dosi YAML to Snowflake, dbt, Cube, Omni and more. Inspect, edit and download." },
   { slug: "home", title: "The enterprise data context layer",
     subtitle: "An Apache Ossie semantic layer and ontology your data agents can trust — live in days." },
   { slug: "faq", eyebrow: "FAQ", title: "Questions about the enterprise data context layer" },
@@ -70,10 +72,13 @@ async function main() {
     headless: "new",
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
+  const selected = process.argv.slice(2);
+  const cards = selected.length ? CARDS.filter(card => selected.includes(card.slug)) : CARDS;
+
   try {
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
-    for (const card of CARDS) {
+    for (const card of cards) {
       await page.goto(`${TEMPLATE}?${qs(card)}`, { waitUntil: "networkidle0" });
       await page.waitForFunction("window.__ogReady === true", { timeout: 15000 });
       const out = resolve(OUT_DIR, `${card.slug}-1200x630.png`);
@@ -83,7 +88,7 @@ async function main() {
   } finally {
     await browser.close();
   }
-  console.log(`\nDone — ${CARDS.length} cards written to src/public/og/`);
+  console.log(`\nDone — ${cards.length} cards written to src/public/og/`);
 }
 
 main().catch((err) => {

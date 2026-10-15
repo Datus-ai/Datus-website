@@ -1,4 +1,5 @@
 import { renderToString } from "react-dom/server";
+import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
 import App from "./App";
 import DatafunPage from "./pages/datafun/Page";
 import CliPage from "./pages/products/cli/Page";
@@ -16,6 +17,7 @@ import CookiePolicyPage from "./pages/policies/cookies/Page";
 import SecurityPage from "./pages/security/Page";
 import OsiFieldMappingPage from "./pages/osi-field-mapping/Page";
 import OsiPlaygroundPage from "./pages/tools/osi-playground/Page";
+import SemanticConverterPage from "./pages/tools/semantic-model-converter/Page";
 import GlossaryPage from "./components/GlossaryPage";
 import { LocaleProvider } from "./i18n/LocaleContext";
 import { LOCALES, isMirrored, localizePath, type Locale } from "./i18n/config";
@@ -49,6 +51,7 @@ const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/security/", page: () => <SecurityPage /> },
   { path: "/osi-field-mapping/", page: () => <OsiFieldMappingPage /> },
   { path: "/tools/osi-playground/", page: () => <OsiPlaygroundPage /> },
+  { path: "/tools/semantic-model-converter/", page: () => <SemanticConverterPage /> },
   { path: "/glossary/", page: () => <GlossaryPage /> },
 ];
 
@@ -71,6 +74,12 @@ export const ROUTES: { out: string; path: string; locale: Locale; node: JSX.Elem
     })),
   );
 
-export function render(node: JSX.Element): string {
-  return renderToString(node);
+export function render(node: JSX.Element): { html: string; styles: string } {
+  // Use a fresh cache for each locale/route so prerendered controls include
+  // their initial styles, rather than waiting for a client-side state change.
+  const cache = createCache();
+  const html = renderToString(<StyleProvider cache={cache}>{node}</StyleProvider>);
+  const styles = cache.cache.size ? extractStyle(cache) : "";
+
+  return { html, styles };
 }

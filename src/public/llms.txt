@@ -13,6 +13,8 @@ Datus pairs large language models with a persistent semantic context engine (met
 
 ## Resources
 
+- [Semantic Model Converter](https://datus.ai/tools/semantic-model-converter/): Convert Ossie or Dosi YAML to vendor formats, review diagnostics, and download editable files or ZIP archives.
+
 - [Integrations](https://datus.ai/integrations/): Warehouses, catalogs, and tools Datus connects to.
 - [Pricing](https://datus.ai/pricing/): Plans for individuals, teams, and enterprise.
 - [Glossary](https://datus.ai/glossary/): Definitions for data engineering, semantic layer, and agent concepts.

@@ -737,3 +737,19 @@ land on the new article by design.
 - Images: four original SVGs in blog/public/images/ontology-for-ai-agents-five-approaches/.
 - PR: https://github.com/Datus-ai/Datus-website/pull/99   Status: open
 - Date: 2026-10-15
+
+### apache-ossie-converters
+- Title: Apache Ossie Converters: YAML to dbt, Cube and More
+- Target keyword: Apache Ossie converters (Ossie YAML converter, semantic model converter, Ossie to dbt, Ossie to Cube, Ossie to Snowflake)
+- Angle: choose exports by their artifact contract; reproduce three pinned Apache fixtures, distinguish offline conversion checks from destination import/execution, and retain source/options/results for upgrades. Conversion workflow spoke, distinct from the OSI definition hub and semantic-model-examples.
+- Source direction: operator-specified; title and slug selected by Arno; added to the existing converter PR.
+- Article type: Tutorial
+- Investment Score: 4.2 (demand 2, relevance 5, differentiation 5, evidence 5, shelf life 4; qualitative demand estimate, no volume data)   Gate A: KEEP — distinct export intent, reproducible cases, clear OSI hub relationship.
+- Audit: 85.5/100, grade A (subjective editorial assessment); P0 and P1–P3 PASS; automated check 14 PASS / 0 WARN / 0 FAIL.
+- Key sources: https://github.com/apache/ossie/blob/main/core-spec/spec.md; https://github.com/apache/ossie/blob/main/converters/README.md; https://github.com/apache/ossie/blob/main/converters/dbt/README.md; https://github.com/apache/ossie-converters; pinned NVIDIA fixture at eabe562128c4fe2ca4ec30780fa743317ca8a81e. Hosted catalog/options and three real studio-dev conversion outcomes checked 2026-10-15.
+- Internal links added: open-semantic-interchange-osi, semantic-model-examples, osi-vs-metricflow, apache-ossie-dosi-quickstart; reciprocal FROM open-semantic-interchange-osi and semantic-model-examples; bidirectional tool-page link in both locales (blog remains English only).
+- Glossary updated: no — this is a conversion tutorial, not a new glossary term; existing definition ownership remains with canonical articles.
+- Category: Semantic Layer
+- PR: https://github.com/Datus-ai/Datus-website/pull/100   Status: open
+- Date: 2026-10-15
+- Validation: full build (104 posts), scoped converter typecheck and 40 checks; desktop/mobile and JavaScript-disabled rendering; Article/FAQPage/BreadcrumbList, five FAQ entries, canonical, internal links, sitemap and English-only blog verified. Production converter API deployment remains a prerequisite recorded in the PR.

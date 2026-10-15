@@ -60,7 +60,7 @@ const CATEGORIES = [
       "from-chatbi-to-data-agent-what-changes"] },
   { label: "Semantic Layer", description: "What a semantic layer is, and how it differs from a metric layer, model, ontology, or catalog.",
     slugs: ["what-is-semantic-layer", "what-is-headless-bi", "semantic-model-examples", "what-is-metric-layer", "what-is-semantic-model", "semantic-layer-vs-ontology-difference",
-      "open-semantic-interchange-osi", "what-is-snowflake-osi", "osi-vs-metricflow", "osi-vs-dbt-metricflow", "osi-vs-lookml",
+      "open-semantic-interchange-osi", "apache-ossie-converters", "what-is-snowflake-osi", "osi-vs-metricflow", "osi-vs-dbt-metricflow", "osi-vs-lookml",
       "osi-vs-warehouse-native-semantics", "osi-vs-rdf-owl", "osi-vs-cube", "semantic-vs-syntactic-interoperability",
       "dbt-semantic-layer-metricflow", "what-is-gooddata",
       "semantic-layer-tools-list-osi", "what-is-ontology", "what-is-timbr", "what-is-atscale",

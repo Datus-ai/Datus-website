@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/apache/ossie",
+  "revision": "eabe562128c4fe2ca4ec30780fa743317ca8a81e",
+  "fixtures": [
+    {
+      "file": "omni_sales.yml",
+      "path": "converters/omni/tests/fixtures/fixtureA_ossie.yaml",
+      "sha256": "261e17855bd22e011c1d35649d85d576608d7b13c0a75f9e30cd4f3890ebb6a6"
+    },
+    {
+      "file": "nvidia_sales.yml",
+      "path": "converters/nvidia/tests/fixtures/sales.ossie.yaml",
+      "sha256": "d72fe920ee7469456d7851c79408095d383a7f3aed1b1e102ce1c817da958319"
+    },
+    {
+      "file": "tpcds_retail.yml",
+      "path": "converters/orionbelt/tests/fixtures/tpcds_ossie.yaml",
+      "sha256": "613fb292bf3edc10f79d6f04466b48d2430ede9bad95543a9d2aff9102200c04"
+    }
+  ]
+}

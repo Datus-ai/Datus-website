@@ -49,13 +49,13 @@ async function main() {
         console.warn(`[prerender] skip ${out} — built shell not found`);
         continue;
       }
-      const html = render(node);
+      const { html, styles } = render(node);
       const shell = readFileSync(file, "utf8");
       if (!shell.includes(ROOT_DIV)) {
         console.warn(`[prerender] skip ${out} — no empty #root to inject into`);
         continue;
       }
-      writeFileSync(file, shell.replace(ROOT_DIV, `<div id="root">${html}</div>`));
+      writeFileSync(file, shell.replace("</head>", `${styles}</head>`).replace(ROOT_DIV, `<div id="root">${html}</div>`));
       done++;
     }
     console.log(`[prerender] prerendered ${done} marketing pages`);
