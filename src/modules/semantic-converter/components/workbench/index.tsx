@@ -28,17 +28,19 @@ interface IConfirmation {
   action: () => void;
 }
 
+const DEFAULT_SAMPLE = SAMPLES[0];
+
 export function SemanticConverterWorkbench() {
   const t = useConverterCopy();
   const locale = useLocale();
   const instanceId = useId();
-  const [source, setSource] = useState('');
-  const [sourceName, setSourceName] = useState('source.yml');
-  const [sampleId, setSampleId] = useState<string>();
+  const [source, setSource] = useState(DEFAULT_SAMPLE.source);
+  const [sourceName, setSourceName] = useState(DEFAULT_SAMPLE.filename);
+  const [sampleId, setSampleId] = useState<string | undefined>(DEFAULT_SAMPLE.id);
   const [catalog, setCatalog] = useState<ICatalog | null>(null);
   const [catalogError, setCatalogError] = useState(false);
   const [catalogAttempt, setCatalogAttempt] = useState(0);
-  const [targetId, setTargetId] = useState('');
+  const [targetId, setTargetId] = useState(DEFAULT_SAMPLE.target);
   const [options, setOptions] = useState<IConversionOptions>({});
   const [result, setResult] = useState<IConversionResult | null>(null);
   const [resultRequest, setResultRequest] = useState('');
@@ -85,6 +87,8 @@ export function SemanticConverterWorkbench() {
     [source, targetId, options, target],
   );
   const hasResults = Boolean(result?.artifacts.length);
+  const hasSourceEdits =
+    source !== (SAMPLES.find((item) => item.id === sampleId)?.source ?? '');
   const snapshotChanged = Boolean(
     result && resultRequest !== JSON.stringify(request),
   );
@@ -135,12 +139,12 @@ export function SemanticConverterWorkbench() {
       event.returnValue = '';
     }
 
-    if (source || hasResults || busy) {
+    if (hasSourceEdits || hasResults || busy) {
       window.addEventListener('beforeunload', beforeUnload);
     }
 
     return () => window.removeEventListener('beforeunload', beforeUnload);
-  }, [source, hasResults, busy]);
+  }, [hasSourceEdits, hasResults, busy]);
 
   function selectTarget(value: string) {
     setTargetId(value);
@@ -148,7 +152,7 @@ export function SemanticConverterWorkbench() {
   }
 
   function replaceSource(action: () => void) {
-    if (source) {
+    if (source && hasSourceEdits) {
       setConfirmation({ kind: 'source', action });
     } else {
       action();

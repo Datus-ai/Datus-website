@@ -114,7 +114,7 @@ export function ResultFiles({
     <div className="sc-file-layout">
       {artifacts.length > 1 ? (
         <Allotment proportionalLayout={false}>
-          <Allotment.Pane preferredSize={180} minSize={100}>
+          <Allotment.Pane preferredSize={230} minSize={100}>
             <div className="sc-file-tree">
               <div className="sc-files-title">{t.files}</div>
               <Tree
