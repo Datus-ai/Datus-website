@@ -35,9 +35,9 @@ head:
 
 ## TL;DR
 
-- A **business glossary** records what a term means, who approved it, and when to use it. A **semantic layer** binds that meaning to data, calculation rules, relationships, and a query interface. You need the glossary to settle intent and the layer when multiple consumers must compute the same answer.
-- The handoff is a testable contract: term → source fields → metric logic → expected result. Neither a polished definition nor valid SQL proves the contract is correct on its own.
-- An AI agent can use the shared metric instead of guessing from column names, but a metric still needs a human owner and checks against source data.
+- A **business glossary** approves a term's meaning; a **semantic layer** maps it to data and a queryable calculation.
+- The handoff is testable: term → source fields → metric logic → expected result.
+- Agents can reuse the metric instead of guessing from column names. A human still owns the definition.
 
 **A business glossary and a semantic layer solve different parts of the same problem.** The glossary gives people an approved meaning for a term such as “active paying customer.” The semantic layer connects that meaning to specific tables, filters, time rules, and joins so a dashboard or agent can calculate it. The useful question is not which one replaces the other. It is whether the calculation still matches the approved definition.
 
@@ -45,7 +45,7 @@ head:
 
 *The glossary is the decision about meaning; the model is the executable contract for a particular analytical use.*
 
-## 1. What each layer owns
+## What each layer owns
 
 A **business glossary** is a maintained set of business terms and definitions. A term can have an owner, synonyms, exclusions, approval status, and links to related terms or data assets. It helps Finance, Product, and Data agree on what they are discussing before anybody writes a query. You can see a short [business glossary definition](/glossary/#business-glossary) in the site's glossary. A <a href="https://www.collibra.com/blog/what-is-a-business-glossary" rel="nofollow noopener">business glossary guide from Collibra</a> describes that role as a common language and distinguishes it from a data dictionary, which describes physical elements. Glossary tooling varies: some products also attach policies, lineage, and technical mappings. The boundary here is about the job the artifact performs, not a claim that every vendor ships the same feature set.
 
@@ -64,7 +64,7 @@ A [semantic layer](/blog/what-is-semantic-layer/) takes the approved meaning clo
 
 This division is useful even when one platform contains both features. A glossary can hold the policy while a semantic model expresses it; the fact that both appear in one interface does not remove the review step between them. The remaining practical question is how to test the translation from policy to result.
 
-## 2. A worked example: “active paying customer”
+## A worked example: “active paying customer”
 
 Suppose a subscription team asks, “How many active paying customers did we have in the last 30 days?” The following tiny dataset is **illustrative**, not a Datus customer dataset or a product benchmark. It is small enough to audit by eye. It also makes several otherwise invisible decisions explicit: whether trial accounts count, whether cancelled orders count, which date sets the window, and whether two orders from one customer count once or twice.
 
@@ -82,7 +82,7 @@ The expected answer is **one customer: 102**. This is a check on the *example da
 
 That glossary entry also needs a named owner. The data team can propose that “paying” means `accounts.status = 'paying'`, but a customer-success or finance owner must confirm whether an account with an expired subscription still qualifies. The sample uses account status as its approved test; another business could define payment from invoices instead. The point of the glossary is to expose that choice before it hardens into SQL.
 
-## 3. Turn the definition into a query contract
+## Turn the definition into a query contract
 
 The semantic model records the agreed path from the term to physical data. In this example, `accounts.customer_id` identifies a customer, `orders.customer_id` links each order to its account, `orders.status` identifies completed orders, and `orders.completed_at` supplies business time. The `accounts` table must be unique on `customer_id`; otherwise a join could multiply orders before counting. A [semantic model](/blog/what-is-semantic-model/) gives those fields names and descriptions, then defines a metric using the agreed eligibility rule.
 
@@ -110,7 +110,7 @@ The SQL returns one on the five rows above when the parameters are September 16 
 
 This is why a glossary-to-model handoff should contain more than a term name and a column mapping. It needs the approved population, event, time axis, aggregation grain, allowed breakdowns, and at least one fixture with an expected answer. The worked [Apache Ossie semantic model example](/blog/semantic-model-examples/) shows the next step for readers who want to inspect a model and its checked SQL. This article stays with the governance-to-execution boundary rather than duplicating that full YAML tutorial.
 
-## 4. What breaks when the two drift apart
+## What breaks when the two drift apart
 
 The most common mismatch is a glossary change that never reaches the model. Suppose the owner revises “active paying customer” to require an order that was not later refunded. The glossary now says one thing, while a metric that filters only `orders.status = 'completed'` still says another. The model can be perfectly valid and still answer the *old* question. A semantic compiler cannot infer a policy change from a sentence in a document that no one has connected to the metric.
 
@@ -122,7 +122,7 @@ The owner, data steward, and model author can prevent these mismatches with a sh
 
 Identity is another handoff decision. If the account system and order system use different customer identifiers, a shared term cannot make them equivalent by naming them both “customer.” The team must verify the mapping or state that the metric covers only one source. Document the limitation in the glossary and model description so a later agent does not treat an incomplete population as the whole business.
 
-## 5. Where an AI agent fits
+## Where an AI agent fits
 
 An agent asked for “active customers” sees only a phrase until it finds the approved definition and the corresponding metric. Column names such as `customer_status`, `last_seen_at`, and `order_date` are clues, not business policy. A retrieved glossary entry can help the agent interpret the request, but it still needs a queryable metric or a reviewed plan to produce a number. This is the distinction behind [why text-to-SQL fails without a semantic layer](/blog/why-text-to-sql-fails-without-a-semantic-layer/): syntactically valid SQL can answer the wrong version of a business question.
 
@@ -130,7 +130,7 @@ The safe flow is to resolve the term, choose the matching metric, inspect its av
 
 Nor should the agent treat a metric name as proof of correctness. The model may be stale, a join key may be dirty, or a source table may have changed. Ask for a known test case before allowing an agent to reuse a metric widely. If the test returns the expected customer 102 for the illustrative fixture, you have checked one important path from phrase to answer. You have not proved every future window and segment correct.
 
-## 6. How Datus applies the handoff
+## How Datus applies the handoff
 
 As of October 2026, <a href="https://docs.datus.ai/dev/knowledge_base/semantic_model/">Datus's semantic-model documentation</a> says the agent authors semantic models as Apache Ossie YAML through Dosi. A model names datasets, fields, relationships, and metrics; the YAML is the source of truth, while the Knowledge Base carries a searchable projection for agents and interfaces. Its <a href="https://docs.datus.ai/dev/knowledge_base/metrics/">metrics documentation</a> separates definition, discovery, and execution: the model defines the metric, the Knowledge Base helps find it, and a semantic adapter compiles the query. That separation is useful for the glossary handoff because an approved term can point to one reviewed metric instead of each consumer inventing a formula.
 
@@ -138,9 +138,9 @@ The product does not decide which business definition an organization should app
 
 For a reader evaluating a stack, the practical question is whether the approved definition can travel from a human review into a model that an agent and the team's other consumers can inspect. The answer depends on the integration and the metric, not on a vendor label. A governance platform may be the better place to own term approval and stewardship; a semantic execution layer is useful when several tools need to compute the approved term. They can work together.
 
-## 7. Choose what to build first
+## Choose what to build first
 
-Start with the glossary when people disagree about the word itself. “Active customer” might mean a paying account to Finance and a weekly app visitor to Product. No semantic model can reconcile those meanings until the owner decides whether they are two separate terms. Record both if necessary, with distinct names and scopes. A single ambiguous term does more harm than two clear definitions.
+Start with the glossary when people disagree about the word itself. “Active customer” might mean a paying account to Finance and a weekly app visitor to Product. No semantic model can reconcile those meanings until the owner decides whether they are two separate terms. Record both if necessary, with distinct names and scopes. Record the reporting timezone too: without it, the same late-night event can fall into different days across teams. A single ambiguous term does more harm than two clear definitions.
 
 Start with a semantic model when the definition is already settled but each dashboard repeats the same join and filter logic. In that case, a long documentation project may postpone a simpler fix: turn the agreed rule into one reviewed metric, test it, and link it back to a short glossary entry. If only one report uses a calculation, a well-tested query may be sufficient for now. A shared layer earns its maintenance cost when another consumer needs the same business rule.
 
