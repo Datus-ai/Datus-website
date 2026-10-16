@@ -65,6 +65,7 @@ export function siteNav(locale: Locale): NavItem[] {
     { label: t.integrations, children: integrationsNav(locale) },
     { label: t.pricing, href: "/pricing/" },
     { label: t.blog, href: "/blog/", external: true },
+    { label: t.support, href: "/support/" },
     {
       label: t.community,
       children: [

@@ -54,6 +54,7 @@ export const MIRRORED_PATHS = [
   "/pricing/",
   "/faq/",
   "/security/",
+  "/support/",
   "/policies/cookies/",
   "/glossary/",
   "/osi-field-mapping/",
