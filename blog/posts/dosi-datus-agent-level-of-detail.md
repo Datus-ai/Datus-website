@@ -1,5 +1,5 @@
 ---
-title: "Datus October Update: Getting the Level of Detail Right"
+title: "DOSI 0.1.13 + Datus Agent 0.4.3: Getting the Level of Detail Right"
 description: "DOSI 0.1.13 adds level of detail calculations for governed metrics, while Datus Agent 0.4.3 brings DOSI into its workflow and adds SQL lineage analysis."
 author: "Evan Paul"
 date: 2026-10-16
@@ -11,7 +11,7 @@ head:
       content: "DOSI level of detail, LOD calculations, Datus Agent 0.4.3, DOSI 0.1.13, semantic layer grain, SQL lineage analysis"
   - - meta
     - property: og:title
-      content: "Datus October Update: Getting the Level of Detail Right"
+      content: "DOSI 0.1.13 + Datus Agent 0.4.3: Getting the Level of Detail Right"
   - - meta
     - property: og:description
       content: "DOSI 0.1.13 adds level of detail calculations for governed metrics, while Datus Agent 0.4.3 brings DOSI into its workflow and adds SQL lineage analysis."
@@ -20,19 +20,19 @@ head:
       content: article
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/datus-october-level-of-detail/
+      content: https://datus.ai/blog/dosi-datus-agent-level-of-detail/
   - - meta
     - property: og:image
-      content: https://datus.ai/images/datus-october-level-of-detail/cover-level-of-detail.png
+      content: https://datus.ai/images/dosi-datus-agent-level-of-detail/cover-level-of-detail.png
   - - meta
     - name: twitter:card
       content: summary_large_image
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/datus-october-level-of-detail/
+      href: https://datus.ai/blog/dosi-datus-agent-level-of-detail/
 ---
 
-# Datus October Update: Getting the Level of Detail Right
+# DOSI 0.1.13 + Datus Agent 0.4.3: Getting the Level of Detail Right
 
 ## TL;DR
 
@@ -40,9 +40,9 @@ head:
 - LOD is defined through an Apache Ossie custom_extensions entry. DOSI understands and runs the Datus extension; LOD is not yet a portable Ossie core calculation.
 - Datus Agent 0.4.3 uses DOSI directly for metric discovery, queries, attribution, and model validation. It also adds SQL lineage analysis to help map an unfamiliar project.
 
-DOSI 0.1.13 and Datus Agent 0.4.3 are here. This month’s theme is Level of Detail: making it clear whether a number is calculated per user, per order, per day, or at another level before it appears in an answer.
+DOSI 0.1.13 and Datus Agent 0.4.3 are here. This release focuses on Level of Detail: making it clear whether a number is calculated per user, per order, per day, or at another level before it appears in an answer.
 
-![Datus October update cover: session events become days per user, then users grouped by active-day count.](/images/datus-october-level-of-detail/cover-level-of-detail.png)
+![DOSI 0.1.13 and Datus Agent 0.4.3 cover: session events become days per user, then users grouped by active-day count.](/images/dosi-datus-agent-level-of-detail/cover-level-of-detail.png)
 
 ## One question, two levels of detail
 
@@ -52,7 +52,7 @@ First, count distinct active days per user. Then count users by active-day total
 
 The distinction is easy to miss because both steps use familiar aggregates. The first produces one active-day count for each user; the second counts users whose first result equals three. Counting session rows in the outer query would give extra weight to users with more sessions, while counting distinct users without the first step would lose the number of days. A correct answer depends on declaring the grain of the intermediate value, not merely choosing the right `COUNT` expression.
 
-![Session rows become a fixed count of active days for each user, then users are grouped by that count.](/images/datus-october-level-of-detail/active-days-per-user.png)
+![Session rows become a fixed count of active days for each user, then users are grouped by that count.](/images/dosi-datus-agent-level-of-detail/active-days-per-user.png)
 
 Example query using the sessions.active_day fixed field defined below:
 
@@ -138,7 +138,7 @@ Model-format note: These are focused excerpts, not complete model files. Every `
 
 A level of detail over another dataset. Imagine a flights table and a separate alerts table. A fixed field on each flight can count its open alerts using the relationship declared between them. Flights with no matching open alert get a count of zero, so “show flights with no open alerts” becomes a filter on that field. The calculation stays attached to each flight without multiplying flight rows by the number of alerts.
 
-![Flights and alerts are counted across datasets; the flight with no open alert has a zero count.](/images/datus-october-level-of-detail/cross-dataset-alerts.png)
+![Flights and alerts are counted across datasets; the flight with no open alert has a zero count.](/images/dosi-datus-agent-level-of-detail/cross-dataset-alerts.png)
 
 Model excerpt: the field lives on flights. Define open_alerts on flight_alerts with the same COUNT(CASE WHEN flight_alerts.status = 'OPEN' THEN flight_alerts.alert_id END) aggregate shown in the field; the relationship maps alerts to flights.
 
@@ -169,7 +169,7 @@ dosi select --from flights \
 
 A level of detail with a window of its own. To find January active users who did not log in during February, first select the January users. Then use a fixed per-user field that counts February login days and keep users whose count is zero. The field’s underlying metric declares start and end parameters; the query supplies the February dates. This lets the cohort period and the comparison period answer their separate parts of the question.
 
-![January active users are checked against a separate February login-day window to find those who did not return.](/images/datus-october-level-of-detail/separate-cohort-window.png)
+![January active users are checked against a separate February login-day window to find those who did not return.](/images/dosi-datus-agent-level-of-detail/separate-cohort-window.png)
 
 Model excerpt: define login_days as COUNT(DISTINCT logins.login_day). The parameterized login_days_in_window metric filters that base, and the fixed field repeats its aggregate SQL.
 
@@ -199,7 +199,7 @@ Assuming active_users counts distinct logins.user_id, the outer filter chooses J
 
 Detail queries read levels of detail. After seeing a grouped answer, an analyst can use dosi select to list the actual flights with zero open alerts or the users with at least two active days. A fixed field on the starting dataset can be shown, filtered, and sorted like another field. DOSI attaches one calculated value to each matching record, so the row list keeps its original grain.
 
-![A grouped count of users active at least two days leads to detail rows listing each user and active-day value.](/images/datus-october-level-of-detail/detail-rows.png)
+![A grouped count of users active at least two days leads to detail rows listing each user and active-day value.](/images/dosi-datus-agent-level-of-detail/detail-rows.png)
 
 Using the fixed sessions.active_day field above, list the users behind the 2+ day bucket:
 
@@ -213,7 +213,7 @@ dosi select --from sessions \
 
 Two fact tables can also share an LOD axis. For example, a sessions table can calculate days with a session per user, while an orders table calculates days with an order per user. A declared D-CONFORM pairing aligns those fixed fields, so DOSI can report users by session-day count and users by order-day count on the same “number of days” axis. It aggregates each fact separately before aligning the results; it does not join the raw session and order rows and multiply the counts.
 
-![Session and order facts each calculate days per user, then align counts on a shared number-of-days axis.](/images/datus-october-level-of-detail/conformed-lod-axis.png)
+![Session and order facts each calculate days per user, then align counts on a shared number-of-days axis.](/images/dosi-datus-agent-level-of-detail/conformed-lod-axis.png)
 
 Model excerpt: define session_days as COUNT(DISTINCT sessions.event_date) and order_days as COUNT(DISTINCT orders.event_date). Each fixed field repeats its base aggregate; D-CONFORM pairs the axes.
 
