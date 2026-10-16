@@ -119,3 +119,17 @@ is mocked. Verify initial denied-mode measurement without analytics cookies,
 acceptance without duplicate initialization, full stop after rejection,
 withdrawal, expired choices, storage failures, and centered responsive dialogs
 across marketing, Chinese, policy, and blog routes.
+
+## Public support center
+
+`/support/` and `/zh/support/` are public marketing routes. Page copy and the
+12 help guides live in `src/pages/support/content.ts`; the page reuses the site
+navigation, footer, FAQ, and locale helpers. Search runs locally over those
+guides and FAQ. Feedback points to Studio; email and community links use the
+existing contact channels. There is no support-ticket backend in this repo.
+
+After `npm run build:all`, run `npm run test:support` to check both locales:
+prerendered body content, canonical/hreflang/FAQ data, search and guide dialogs,
+focus restoration, template copying and failure feedback, locale links,
+responsive layouts, sitemap entries, and blog links. External network calls are
+stubbed; screenshots are written to `/tmp/datus-support-production/`.

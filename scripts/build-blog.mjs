@@ -192,6 +192,7 @@ function navHtml() {
     <a class="nav-link" href="/integrations/">Integrations</a>
     <a class="nav-link" href="/pricing/">Pricing</a>
     <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/support/">Support</a>
     <div class="nav-dd"><button class="nav-link" type="button">Community ${SVG.chevron}</button>
       <div class="nav-dd__menu">${community}</div></div>
   </nav>
@@ -218,6 +219,7 @@ function footerHtml() {
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
     <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
+    <a href="/support/">Support</a>
     <a href="/security/">Security &amp; Privacy</a>
     <a href="/policies/cookies/">Cookie Policy</a>
     <button type="button" data-cookie-settings>Cookie Settings</button>

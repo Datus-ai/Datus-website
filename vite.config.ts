@@ -21,6 +21,7 @@ const MPA_ROUTES = [
   'pricing',
   'faq',
   'security',
+  'support',
   'policies/cookies',
   'osi-field-mapping',
   'tools/osi-playground',

@@ -15,6 +15,7 @@ import PricingPage from "./pages/pricing/Page";
 import FaqPage from "./pages/faq/Page";
 import CookiePolicyPage from "./pages/policies/cookies/Page";
 import SecurityPage from "./pages/security/Page";
+import SupportPage from "./pages/support/Page";
 import OsiFieldMappingPage from "./pages/osi-field-mapping/Page";
 import OsiPlaygroundPage from "./pages/tools/osi-playground/Page";
 import SemanticConverterPage from "./pages/tools/semantic-model-converter/Page";
@@ -49,6 +50,7 @@ const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/faq/", page: () => <FaqPage /> },
   { path: "/policies/cookies/", page: () => <CookiePolicyPage /> },
   { path: "/security/", page: () => <SecurityPage /> },
+  { path: "/support/", page: () => <SupportPage /> },
   { path: "/osi-field-mapping/", page: () => <OsiFieldMappingPage /> },
   { path: "/tools/osi-playground/", page: () => <OsiPlaygroundPage /> },
   { path: "/tools/semantic-model-converter/", page: () => <SemanticConverterPage /> },

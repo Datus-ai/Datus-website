@@ -34,6 +34,12 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogTitle: "Cookie 与本地存储政策 — Datus",
     ogDescription: "必要用途与使用分析：了解 Datus 的 Cookie 和本地存储，以及你的选择。",
   },
+  "/support/": {
+    title: "支持与帮助 — Datus",
+    description: "查找 Datus Studio 的账号登录、数据库连接、模型配置、项目权限、报告与大盘、部署集成帮助，通过反馈、邮件或 Slack 联系 Datus 团队。",
+    ogTitle: "支持与帮助 — Datus",
+    ogDescription: "使用指南、常见问题与支持渠道：找到答案，继续你的工作。",
+  },
   "/security/": {
     title: "安全与隐私 — Datus",
     description: "了解 Datus Studio 的模型与数据使用、凭据加密、访问控制、分享安全、部署边界，以及合规进展与安全联系方式。",
