@@ -753,3 +753,20 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/100   Status: open
 - Date: 2026-10-15
 - Validation: full build (104 posts), scoped converter typecheck and 40 checks; desktop/mobile and JavaScript-disabled rendering; Article/FAQPage/BreadcrumbList, five FAQ entries, canonical, internal links, sitemap and English-only blog verified. Production converter API deployment remains a prerequisite recorded in the PR.
+
+### business-glossary-vs-semantic-layer
+- Title: Business Glossary vs Semantic Layer: From Terms to SQL
+- Target keyword: business glossary vs semantic layer (business glossary, glossary to metric, semantic model)
+- Angle: an approved active-paying-customer term becomes a query contract with source mapping, population, time window, distinct grain, illustrative SQL, and a hand-checked answer. Distinct from the semantic-layer definition and runnable Ossie model tutorial.
+- Source direction: operator-approved next topic from the Datus.ai / Dosi content strategy, following the October release post.
+- Article type: GlossaryComparison
+- Investment Score: 4.6 (demand 3, relevance 5, differentiation 5, evidence 5, shelf life 5)   Gate A: KEEP — distinct comparison intent and concrete tested handoff; direct comparison query volume unmeasured.
+- Audit: 87/100, grade A; automated 15 pass / 0 warn / 0 fail; P0 PASS.
+- Key sources: https://www.collibra.com/blog/what-is-a-business-glossary; https://www.collibra.com/blog/what-is-a-semantic-layer-how-shared-business-meaning-powers-better-ai-and-analytics; https://docs.datus.ai/dev/knowledge_base/semantic_model/; https://docs.datus.ai/dev/knowledge_base/metrics/; https://dosi.datus.ai/; https://ossie.apache.org/
+- Internal links added: what-is-semantic-layer, what-is-semantic-model, semantic-model-examples, why-text-to-sql-fails-without-a-semantic-layer, what-is-data-catalog; reciprocal from what-is-semantic-layer.
+- Glossary updated: yes — new Business Glossary term in English and Chinese, linked to this comparison post.
+- Category: Semantic Layer
+- Images: original SVG cover in blog/public/images/business-glossary-vs-semantic-layer/.
+- PR: https://github.com/Datus-ai/Datus-website/pull/103   Status: open
+- Date: 2026-10-16
+- Validation: full build, desktop/mobile preview, no horizontal overflow or console errors, SQL fixture returns one, both glossary locales and sitemap verified.

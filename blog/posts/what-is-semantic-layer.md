@@ -232,6 +232,7 @@ Incrementally is the only way that sticks. Start with one team, one domain, and 
 
 ## Related articles
 
+- [Business glossary vs semantic layer](/blog/business-glossary-vs-semantic-layer/) — from an approved term to a tested metric.
 - [What is headless BI?](/blog/what-is-headless-bi/) — how shared metrics reach dashboards, apps, and agents
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the emerging open standard that makes the semantic layer portable across tools
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the metrics-focused subset of a semantic layer

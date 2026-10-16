@@ -85,6 +85,13 @@ export const glossary: GlossaryCategory[] = [
         article: "/blog/what-is-semantic-layer/",
       },
       {
+        term: "Business Glossary",
+        slug: "business-glossary",
+        definition:
+          "A maintained set of approved business terms, definitions, owners, and usage rules. It agrees what a metric means; a semantic layer maps that meaning to data and makes the calculation queryable.",
+        article: "/blog/business-glossary-vs-semantic-layer/",
+      },
+      {
         term: "Metric Layer",
         slug: "metric-layer",
         definition:

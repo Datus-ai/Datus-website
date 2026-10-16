@@ -63,6 +63,11 @@ export const TERMS_ZH: Record<string, { term: string; definition: string }> = {
     definition:
       "位于原始表与消费方之间、对业务实体与指标（营收、活跃用户、流失）的共享定义。它保证每个看板、Notebook 和 AI Agent 用同一种方式算出同一个数。",
   },
+  "business-glossary": {
+    term: "业务术语表 (Business Glossary)",
+    definition:
+      "一组持续维护、经过确认的业务术语，记录定义、负责人和使用规则。它约定指标的业务含义；语义层再把这种含义映射到数据，形成可查询的计算规则。",
+  },
   "metric-layer": {
     term: "指标层 (Metric Layer)",
     definition:
