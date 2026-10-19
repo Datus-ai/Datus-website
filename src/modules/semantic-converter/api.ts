@@ -2,6 +2,8 @@ import type {
   ICatalog,
   IConversionRequest,
   IConversionResult,
+  IImportCatalog,
+  IImportRequest,
 } from './contracts';
 import { validateArtifacts } from './utils/artifacts';
 
@@ -20,7 +22,7 @@ export class ConverterApiError extends Error {
 async function request<T>(
   path: string,
   signal: AbortSignal,
-  body?: IConversionRequest,
+  body?: IConversionRequest | IImportRequest,
 ): Promise<T> {
   const response = await fetch(
     `${API_ORIGIN}/api/public/semantic-converter/${path}`,
@@ -70,6 +72,34 @@ export async function convertModel(
     !['success', 'partial', 'blocked'].includes(result.status) ||
     !Array.isArray(result.issues) ||
     result.target !== body.target
+  ) {
+    throw new ConverterApiError(502);
+  }
+
+  validateArtifacts(result.artifacts);
+  return result;
+}
+
+export async function getSources(signal: AbortSignal): Promise<IImportCatalog> {
+  const catalog = await request<IImportCatalog>('sources', signal);
+
+  if (!Array.isArray(catalog.sources) || !catalog.sources.length) {
+    throw new ConverterApiError(502);
+  }
+
+  return catalog;
+}
+
+export async function importModel(
+  body: IImportRequest,
+  signal: AbortSignal,
+): Promise<IConversionResult> {
+  const result = await request<IConversionResult>('import', signal, body);
+
+  if (
+    !['success', 'partial', 'blocked'].includes(result.status) ||
+    !Array.isArray(result.issues) ||
+    result.target !== 'ossie'
   ) {
     throw new ConverterApiError(502);
   }

@@ -17,9 +17,8 @@ function check(fn) {
 }
 
 try {
-  const { getTargets, convertModel } = await vite.ssrLoadModule(
-    '/src/modules/semantic-converter/api.ts',
-  );
+  const { getTargets, convertModel, getSources, importModel } =
+    await vite.ssrLoadModule('/src/modules/semantic-converter/api.ts');
   const { inspectSource, MAX_SOURCE_BYTES } = await vite.ssrLoadModule(
     '/src/modules/semantic-converter/utils/source.ts',
   );
@@ -30,6 +29,13 @@ try {
   const { SEMANTIC_CONVERTER_UI: copy } =
     await vite.ssrLoadModule('/src/i18n/ui.ts');
 
+  const { createSession, inputSnapshot, validSourceBundle } =
+    await vite.ssrLoadModule(
+      '/src/modules/semantic-converter/utils/session.ts',
+    );
+  const { importExample } = await vite.ssrLoadModule(
+    '/src/modules/semantic-converter/examples/index.ts',
+  );
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;
 
@@ -51,10 +57,13 @@ try {
 
         return Response.json({
           success: true,
-          data:
-            options.method === 'POST'
+          data: String(url).endsWith('/import')
+            ? { target: 'ossie', status: 'success', issues: [], artifacts: [] }
+            : options.method === 'POST'
               ? { target: 'dbt', status: 'success', issues: [], artifacts: [] }
-              : { targets: [{ id: 'dbt' }] },
+              : String(url).endsWith('/sources')
+                ? { sources: [{ id: 'cube', available: true }] }
+                : { targets: [{ id: 'dbt' }] },
         });
       };
 
@@ -65,18 +74,49 @@ try {
         signal,
       );
 
+      await getSources(signal);
+      await importModel(
+        { source_format: 'cube', files: importExample('cube') },
+        signal,
+      );
+
       check(() => {
         assert.deepEqual(
           calls.map((call) => call.url),
           [
             'https://studio-dev.datus.ai/api/public/semantic-converter/targets',
             'https://studio-dev.datus.ai/api/public/semantic-converter/convert',
+            'https://studio-dev.datus.ai/api/public/semantic-converter/sources',
+            'https://studio-dev.datus.ai/api/public/semantic-converter/import',
           ],
           host,
         );
         assert.ok(calls.every((call) => call.options.credentials === 'omit'));
       });
     }
+    globalThis.fetch = async () =>
+      Response.json({
+        success: true,
+        data: { target: 'dbt', status: 'success', issues: [], artifacts: [] },
+      });
+    await assert.rejects(() =>
+      importModel(
+        { source_format: 'cube', files: importExample('cube') },
+        new AbortController().signal,
+      ),
+    );
+    checks++;
+    globalThis.fetch = async () =>
+      new Response('', { status: 429, headers: { 'Retry-After': '60' } });
+    await assert.rejects(
+      () =>
+        importModel(
+          { source_format: 'cube', files: importExample('cube') },
+          new AbortController().signal,
+        ),
+      (error) => error.status === 429 && error.retryAfter === '60',
+    );
+    checks++;
   } finally {
     globalThis.fetch = originalFetch;
 
@@ -177,6 +217,42 @@ try {
   );
   check(() => assert.deepEqual(inspectSource(multi).datasets, []));
   check(() => assert.deepEqual(inspectSource(multi, 'second').datasets, ['b']));
+
+  const bundle = importExample('cube');
+  check(() => assert.equal(bundle.length, 3));
+  check(() => assert.equal(validSourceBundle(bundle), true));
+  check(() => assert.equal(validSourceBundle([]), false));
+  check(() => assert.equal(validSourceBundle(bundle, 1024 * 1024, 2), false));
+  check(() =>
+    assert.equal(
+      validSourceBundle([{ path: '汉.yml', content: '' }], 5),
+      false,
+    ),
+  );
+  check(() =>
+    assert.equal(
+      validSourceBundle([{ path: '../a.yml', content: 'a' }]),
+      false,
+    ),
+  );
+  check(() =>
+    assert.equal(
+      validSourceBundle([
+        { path: 'a.yml', content: '' },
+        { path: 'A.yml', content: '' },
+      ]),
+      false,
+    ),
+  );
+  const session = createSession('cube', bundle);
+  const snapshot = inputSnapshot(session);
+  bundle[0].content += '# edit';
+  check(() => assert.notEqual(inputSnapshot(session), snapshot));
+  check(() => assert.ok(!importExample('cube')[0].content.endsWith('# edit')));
+  check(() => assert.equal(importExample('unknown').length, 0));
+  for (const id of ['cube', 'omni', 'dbt', 'microsoft']) {
+    check(() => assert.equal(validSourceBundle(importExample(id)), true));
+  }
 
   const manifest = JSON.parse(
     readFileSync('src/modules/semantic-converter/samples/sources.json', 'utf8'),

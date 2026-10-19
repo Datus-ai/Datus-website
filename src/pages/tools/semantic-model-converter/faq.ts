@@ -5,7 +5,7 @@ export const converterFaq: Record<Locale, FaqItem[]> = {
   en: [
     {
       q: 'What input does the semantic model converter accept?',
-      a: 'The tool accepts Apache Ossie semantic model YAML and supported Dosi extensions, up to 1 MiB of UTF-8 text. Paste a model, upload a .yml or .yaml file, or load an included upstream example. It does not accept an arbitrary vendor configuration as the source; use the separate OSI Playground for its MetricFlow-to-OSI workflow.',
+      a: 'Choose Import to Ossie for supported vendor models, including Cube YAML bundles, Omni project files, compiled dbt semantic_manifest.json and offline Power BI model.bim JSON. Choose Export from Ossie for Apache Ossie YAML and supported Dosi extensions. Imports accept up to 50 files and 1 MiB total UTF-8 content including paths. Each direction includes prefilled examples; the deployed catalog determines available formats.',
     },
     {
       q: 'Is this a YAML-to-YAML formatter?',
@@ -17,7 +17,7 @@ export const converterFaq: Record<Locale, FaqItem[]> = {
     },
     {
       q: 'Are my YAML files processed in the browser?',
-      a: 'The browser holds your editable input and output, but conversion runs on Datus servers. Clicking Convert submits a snapshot of the current YAML and settings. No account is required. The tool does not persist source models or results; refresh or close the page to clear them, and download files you want to keep.',
+      a: 'The browser holds your editable input and output, but conversion runs on Datus servers. Clicking Convert submits a snapshot of all current source files and settings. No account is required. The tool does not persist source models or results; refresh or close the page to clear them, and download files you want to keep.',
     },
     {
       q: 'Why do some results show Needs Review or Blocked?',
@@ -27,7 +27,7 @@ export const converterFaq: Record<Locale, FaqItem[]> = {
   zh: [
     {
       q: '语义模型转换器接受什么输入？',
-      a: '工具接受 Apache Ossie 语义模型 YAML 及支持的 Dosi 扩展，输入最多为 1 MiB UTF-8 文本。可以粘贴模型、上传 .yml 或 .yaml 文件，或加载内置上游样例。工具不接受任意厂商配置作为源文件；MetricFlow 转 OSI 请使用单独的 OSI 试验工具。',
+      a: '“导入 Ossie”接受支持的厂商模型，包括 Cube YAML 文件组、Omni 项目文件、已编译的 dbt semantic_manifest.json 和离线 Power BI model.bim JSON；“从 Ossie 导出”接受 Apache Ossie YAML 及支持的 Dosi 扩展。导入最多支持 50 个文件，UTF-8 内容与路径合计不超过 1 MiB。两个方向均提供预填充样例，实际可用格式以已部署服务的列表为准。',
     },
     {
       q: '这只是 YAML 格式化工具吗？',
@@ -39,7 +39,7 @@ export const converterFaq: Record<Locale, FaqItem[]> = {
     },
     {
       q: 'YAML 是否完全在浏览器中处理？',
-      a: '浏览器保留可编辑的输入与输出，但实际转换在 Datus 服务器执行。点击转换时，会提交当前 YAML 和配置的内容快照，无需注册。工具不持久保存源模型或结果；刷新或关闭页面后清除，请下载需要保留的文件。',
+      a: '浏览器保留可编辑的输入与输出，但实际转换在 Datus 服务器执行。点击转换时，会提交所有当前源文件和配置的内容快照，无需注册。工具不持久保存源模型或结果；刷新或关闭页面后清除，请下载需要保留的文件。',
     },
     {
       q: '为什么有些结果显示“需要检查”或“已阻止”？',

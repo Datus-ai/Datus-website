@@ -3,7 +3,7 @@ title: "Apache Ossie Converters: YAML to dbt, Cube and More"
 description: "Use Apache Ossie converters to export semantic model YAML to dbt, Cube, Snowflake and more. Try examples, inspect output files, and check conversion limits."
 author: "Evan Paul"
 date: 2026-10-15
-lastmod: 2026-10-15
+lastmod: 2026-10-19
 head:
   - - meta
     - name: keywords
@@ -43,6 +43,8 @@ head:
 **Apache Ossie** is the open specification formerly known as Open Semantic Interchange, or OSI, for exchanging semantic metadata across analytics, AI, and BI systems. Our [Apache Ossie / OSI overview](/blog/open-semantic-interchange-osi/) explains the standard; this guide follows the practical export path from YAML to the files another platform consumes.
 
 The useful starting question is what you want to hand to the destination: a manifest, a model document, or a directory of related definitions. That choice determines the converter, its options, and the checks you should run afterward. The walkthrough below uses real Apache fixtures and the browser workbench, with the expected artifacts recorded as of October 15, 2026.
+
+Already have a Cube, Omni, dbt or Power BI definition? Follow the companion [guide to importing semantic models into Ossie](/blog/convert-semantic-models-to-ossie/) for complete source bundles, prefilled examples and import diagnostics.
 
 ## 1. Identify the source model and conversion direction
 
@@ -221,6 +223,8 @@ No. Success reports the outcome of the available offline conversion checks. Impo
 The October 2026 public workbench is anonymous and free, with input-size and server-side request limits. YAML is sent to Datus servers when you click Convert, so this is a hosted conversion workflow. The tool does not persist input models or generated files; download the output you need before leaving. If a model must stay inside your environment, use a suitable upstream converter locally and inspect its own dependencies and data-handling behavior.
 
 ## Related articles
+
+- [Convert semantic models to Ossie](/blog/convert-semantic-models-to-ossie/) — the companion vendor-to-Ossie import workflow
 
 - [Apache Ossie / Open Semantic Interchange overview](/blog/open-semantic-interchange-osi/) — the standard and its place in the semantic stack
 - [Semantic model examples](/blog/semantic-model-examples/) — fields, relationships, and reviewed business definitions

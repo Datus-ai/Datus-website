@@ -5,7 +5,7 @@ import { useHref, useLocale, useT } from '../../../i18n/LocaleContext';
 import { UI } from '../../../i18n/ui';
 import { absoluteUrl } from '../../../i18n/config';
 import { SemanticConverterWorkbench } from '../../../modules/semantic-converter/components/workbench';
-import { converterPage, TARGET_FORMATS } from './content';
+import { converterPage, TARGET_FORMATS, IMPORT_FORMATS } from './content';
 import { converterFaq } from './faq';
 import './page.css';
 
@@ -63,6 +63,13 @@ export default function SemanticConverterPage() {
       </section>
       <section className="section converter-alt">
         <div className="container converter-prose">
+          <h2>{t.importsTitle}</h2>
+          <p>{t.importsIntro}</p>
+          <ul className="converter-formats">
+            {IMPORT_FORMATS.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
+          </ul>
           <h2>{t.formatsTitle}</h2>
           <p>{t.formatsIntro}</p>
           <ul className="converter-formats">
@@ -90,6 +97,11 @@ export default function SemanticConverterPage() {
           ))}
           <h2>{t.relatedTitle}</h2>
           <ul className="converter-links">
+            <li>
+              <a href="/blog/convert-semantic-models-to-ossie/">
+                {t.importArticle}
+              </a>
+            </li>
             <li>
               <a href="/blog/apache-ossie-converters/">{t.convertersArticle}</a>
             </li>
