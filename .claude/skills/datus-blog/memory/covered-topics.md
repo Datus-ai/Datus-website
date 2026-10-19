@@ -758,7 +758,7 @@ land on the new article by design.
 - Title: Business Glossary vs Semantic Layer: From Terms to SQL
 - Target keyword: business glossary vs semantic layer (business glossary, glossary to metric, semantic model)
 - Angle: an approved active-paying-customer term becomes a query contract with source mapping, population, time window, distinct grain, illustrative SQL, and a hand-checked answer. Distinct from the semantic-layer definition and runnable Ossie model tutorial.
-- Source direction: operator-approved next topic from the Datus.ai / Dosi content strategy, following the October release post.
+- Source direction: operator-approved next topic from the Datus.ai / Dosi content strategy, following the DOSI 0.1.13 and Datus Agent 0.4.3 release post.
 - Article type: GlossaryComparison
 - Investment Score: 4.6 (demand 3, relevance 5, differentiation 5, evidence 5, shelf life 5)   Gate A: KEEP — distinct comparison intent and concrete tested handoff; direct comparison query volume unmeasured.
 - Audit: 87/100, grade A; automated 15 pass / 0 warn / 0 fail; P0 PASS.
@@ -770,3 +770,19 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/103   Status: open
 - Date: 2026-10-16
 - Validation: full build, desktop/mobile preview, no horizontal overflow or console errors, SQL fixture returns one, both glossary locales and sitemap verified.
+
+### dosi-datus-agent-level-of-detail
+- Title: DOSI 0.1.13 + Datus Agent 0.4.3: Getting the Level of Detail Right
+- Target keyword: level of detail (DOSI LOD calculations, semantic layer grain)
+- Angle: the DOSI 0.1.13 and Datus Agent 0.4.3 releases explain how D-LOD makes calculation grain explicit, with examples across user activity, alerts, cohorts, detail rows, and conformed axes.
+- Source direction: operator-provided Google Doc https://docs.google.com/document/d/1ilEe4TepsJeggIODolKjTAPI_voOp5MYX5sZCEvZ_Jc/edit?usp=sharing (unpublished release draft); original prose and six diagrams retained with light factual edits.
+- Article type: Product
+- Investment Score: n/a (operator-directed port)   Gate A: KEEP — distinct product releases from September's agent-loop update.
+- Audit: 84/100, grade A; automated 13 pass / 1 title-length warn / 0 fail.
+- Key sources: https://dosi.datus.ai/release-notes/#0113; https://dosi.datus.ai/datus-extensions/#d-lod; https://github.com/Datus-ai/Datus-agent/releases/tag/v0.4.3; https://github.com/apache/ossie/blob/main/core-spec/spec.md
+- Internal links added: semantic-layer-in-the-agent-loop, what-is-semantic-model, semantic-model-examples, dosi-mcp-semantic-layer-for-agents, open-semantic-interchange-osi; reciprocal from semantic-layer-in-the-agent-loop.
+- Glossary updated: no — no matching term.
+- Category: Releases
+- Images: six PNGs in blog/public/images/dosi-datus-agent-level-of-detail/ (updated cover plus five explanatory figures).
+- PR: https://github.com/Datus-ai/Datus-website/pull/102   Status: merged
+- Date: 2026-10-16

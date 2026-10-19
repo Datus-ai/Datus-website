@@ -95,7 +95,7 @@ const CATEGORIES = [
       "make-data-agents-truly-usable-ask-explore-and-control-with-confidence",
       "full-stack-data-engineer-harness", "chatbi-to-data-agent-13-months"] },
   { label: "Releases", description: "What's new in Datus.",
-    slugs: ["semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
+    slugs: ["dosi-datus-agent-level-of-detail", "semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
       "datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
 ];
 
@@ -192,6 +192,7 @@ function navHtml() {
     <a class="nav-link" href="/integrations/">Integrations</a>
     <a class="nav-link" href="/pricing/">Pricing</a>
     <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/support/">Support</a>
     <div class="nav-dd"><button class="nav-link" type="button">Community ${SVG.chevron}</button>
       <div class="nav-dd__menu">${community}</div></div>
   </nav>
@@ -218,6 +219,7 @@ function footerHtml() {
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
     <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
+    <a href="/support/">Support</a>
     <a href="/security/">Security &amp; Privacy</a>
     <a href="/policies/cookies/">Cookie Policy</a>
     <button type="button" data-cookie-settings>Cookie Settings</button>

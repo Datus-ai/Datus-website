@@ -26,6 +26,8 @@ const CARDS = [
   { slug: "home", title: "The enterprise data context layer",
     subtitle: "An Apache Ossie semantic layer and ontology your data agents can trust — live in days." },
   { slug: "faq", eyebrow: "FAQ", title: "Questions about the enterprise data context layer" },
+  { slug: "support", eyebrow: "Support & Help", title: "Find answers. Keep moving.",
+    subtitle: "Datus Studio guides, common questions, and ways to reach the team." },
   { slug: "security", eyebrow: "Security & Privacy", title: "Security at Datus Studio",
     subtitle: "Your choice of models. Encrypted credentials. Deletable conversation history." },
   { slug: "integrations", eyebrow: "Integrations", title: "Datus works with your entire data stack",

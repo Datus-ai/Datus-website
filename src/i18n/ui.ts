@@ -12,6 +12,7 @@ import type { Locale } from "./config";
 export type UiMessages = {
   nav: {
     home: string;
+    support: string;
     products: string;
     integrations: string;
     pricing: string;
@@ -45,6 +46,7 @@ export type UiMessages = {
     github: string;
     community: string;
     trustCenter: string;
+    support: string;
     security: string;
     rights: string;
   };
@@ -146,6 +148,7 @@ export const UI: Record<Locale, UiMessages> = {
   en: {
     nav: {
       home: "Home",
+      support: "Support",
       products: "Products",
       integrations: "Integrations",
       pricing: "Pricing",
@@ -180,6 +183,7 @@ export const UI: Record<Locale, UiMessages> = {
       github: "GitHub",
       community: "Community",
       trustCenter: "Trust Center",
+      support: "Support & Help",
       security: "Security & Privacy",
       rights: "DatusAI, Inc.",
     },
@@ -278,6 +282,7 @@ export const UI: Record<Locale, UiMessages> = {
   zh: {
     nav: {
       home: "首页",
+      support: "支持与帮助",
       products: "产品",
       integrations: "集成",
       pricing: "定价",
@@ -312,6 +317,7 @@ export const UI: Record<Locale, UiMessages> = {
       github: "GitHub",
       community: "社区",
       trustCenter: "信任中心",
+      support: "支持与帮助",
       security: "安全与隐私",
       rights: "DatusAI, Inc.",
     },
