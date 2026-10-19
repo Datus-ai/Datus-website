@@ -201,6 +201,7 @@ export function SemanticConverterWorkbench() {
             <ImportConfiguration
               catalog={state.importCatalog}
               failed={state.catalogError}
+              errorStatus={state.catalogErrorStatus}
               formatId={session.formatId}
               options={session.options}
               busy={busy}

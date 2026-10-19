@@ -39,8 +39,8 @@ export function useWorkbench() {
     null,
   );
   const [catalogErrors, setCatalogErrors] = useState({
-    import: false,
-    export: false,
+    import: 0,
+    export: 0,
   });
   const [attempt, setAttempt] = useState(0);
   const [converting, setConverting] = useState(false);
@@ -125,16 +125,19 @@ export function useWorkbench() {
 
   useEffect(() => {
     const abort = new AbortController();
-    setCatalogErrors({ import: false, export: false });
+    setCatalogErrors({ import: 0, export: 0 });
     void getTargets(abort.signal)
       .then((value) => {
         if (!abort.signal.aborted) {
           setCatalog(value);
         }
       })
-      .catch(() => {
+      .catch((failure) => {
         if (!abort.signal.aborted) {
-          setCatalogErrors((old) => ({ ...old, export: true }));
+          setCatalogErrors((old) => ({
+            ...old,
+            export: failure instanceof ConverterApiError ? failure.status : -1,
+          }));
         }
       });
     void getSources(abort.signal)
@@ -143,9 +146,12 @@ export function useWorkbench() {
           setImportCatalog(value);
         }
       })
-      .catch(() => {
+      .catch((failure) => {
         if (!abort.signal.aborted) {
-          setCatalogErrors((old) => ({ ...old, import: true }));
+          setCatalogErrors((old) => ({
+            ...old,
+            import: failure instanceof ConverterApiError ? failure.status : -1,
+          }));
         }
       });
     return () => abort.abort();
@@ -379,7 +385,8 @@ export function useWorkbench() {
     session,
     catalog,
     importCatalog,
-    catalogError: catalogErrors[direction],
+    catalogError: Boolean(catalogErrors[direction]),
+    catalogErrorStatus: catalogErrors[direction],
     busy,
     converting,
     downloading,
