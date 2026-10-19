@@ -99,6 +99,13 @@ export const glossary: GlossaryCategory[] = [
         article: "/blog/what-is-metric-layer/",
       },
       {
+        term: "Entity-Attribute-Value (EAV)",
+        slug: "entity-attribute-value",
+        definition:
+          "A database pattern that stores an entity's changing properties as attribute-value rows. Useful for sparse custom fields; analytical queries must still define types, cardinality, and the entity grain.",
+        article: "/blog/what-is-entity-attribute-value-model/",
+      },
+      {
         term: "Dimensional Modeling",
         slug: "dimensional-modeling",
         definition:

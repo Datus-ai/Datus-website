@@ -241,6 +241,7 @@ No. Validation catches structural and expression errors. It cannot decide whethe
 - [Apache Ossie converters: YAML to dbt, Cube and more](/blog/apache-ossie-converters/) — export formats, worked conversion cases, and target-side checks
 
 - [What is a semantic model?](/blog/what-is-semantic-model/) — the concept behind these examples
+- [Entity-attribute-value (EAV) modeling](/blog/what-is-entity-attribute-value-model/) — shape flexible attribute rows before defining an entity metric
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — how models serve a larger business vocabulary
 - [What is conversational BI?](/blog/what-is-conversational-bi/) — one interface that can use shared definitions
 - [The semantic layer in the agent loop](/blog/semantic-layer-in-the-agent-loop/) — how agents use governed definitions

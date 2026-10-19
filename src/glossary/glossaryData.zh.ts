@@ -73,6 +73,11 @@ export const TERMS_ZH: Record<string, { term: string; definition: string }> = {
     definition:
       "语义层中更窄的一种形态，专注于指标定义——通常用 YAML 或 MetricFlow、Cube 这类 DSL 表达。",
   },
+  "entity-attribute-value": {
+    term: "实体—属性—值 (EAV)",
+    definition:
+      "一种数据库建模方式：把实体的可变属性存成属性—值记录。适合稀疏的自定义字段；用于分析时，仍需明确数据类型、属性是否可重复，以及按什么粒度统计实体。",
+  },
   "dimensional-modeling": {
     term: "维度建模 (Dimensional Modeling)",
     definition:
