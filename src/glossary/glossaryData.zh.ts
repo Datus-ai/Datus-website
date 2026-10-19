@@ -211,6 +211,11 @@ export const TERMS_ZH: Record<string, { term: string; definition: string }> = {
   },
 
   /* ── AI & Agents ── */
+  "composable-analytics": {
+    term: "可组合分析 (Composable Analytics)",
+    definition:
+      "把数据访问、指标定义、查询与展示组件作为可复用的部分来构建分析体验。Agent 可以按问题组合新的页面，底层指标仍保持可审核、可复用。",
+  },
   "conversational-bi": {
     term: "Conversational BI",
     definition:
