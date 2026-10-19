@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">From EAV attribute rows to an analytical customer model</title>
+  <desc id="desc">Five attribute rows describe three customers. A reviewed one-row-per-customer view produces the correct customer count for analytics and agents.</desc>
+  <rect width="1200" height="630" fill="#f7f7f2"/>
+  <path d="M48 54H1152" stroke="#402df3" stroke-width="3"/>
+  <g font-family="Inter,system-ui,Arial,sans-serif">
+    <text x="48" y="89" fill="#402df3" font-size="17" font-weight="700" letter-spacing="3">DATUS / DATA MODELING</text>
+    <text x="48" y="151" fill="#171717" font-size="40" font-weight="700" letter-spacing="-1.2">Entity–Attribute–Value, made queryable</text>
+    <text x="48" y="187" fill="#676761" font-size="19">Store flexible properties. Define the grain before you count.</text>
+
+    <rect x="48" y="231" width="325" height="290" rx="14" fill="#ffffff" stroke="#d7d1fa" stroke-width="2"/>
+    <text x="72" y="267" fill="#402df3" font-size="14" font-weight="700" letter-spacing="2">EAV SOURCE</text>
+    <text x="72" y="308" fill="#171717" font-size="24" font-weight="700">5 attribute rows</text>
+    <path d="M72 329H349" stroke="#e6e2ff" stroke-width="2"/>
+    <text x="74" y="359" fill="#77776f" font-size="14">ENTITY</text><text x="169" y="359" fill="#77776f" font-size="14">ATTRIBUTE</text><text x="294" y="359" fill="#77776f" font-size="14">VALUE</text>
+    <text x="74" y="394" fill="#30302d" font-size="17">101</text><text x="169" y="394" fill="#30302d" font-size="17">plan</text><text x="294" y="394" fill="#30302d" font-size="17">Pro</text>
+    <text x="74" y="423" fill="#30302d" font-size="17">101</text><text x="169" y="423" fill="#30302d" font-size="17">region</text><text x="294" y="423" fill="#30302d" font-size="17">West</text>
+    <text x="74" y="452" fill="#30302d" font-size="17">102</text><text x="169" y="452" fill="#30302d" font-size="17">plan</text><text x="294" y="452" fill="#30302d" font-size="17">Pro</text>
+    <text x="74" y="481" fill="#30302d" font-size="17">…</text><text x="169" y="481" fill="#30302d" font-size="17">…</text><text x="294" y="481" fill="#30302d" font-size="17">…</text>
+
+    <rect x="438" y="269" width="324" height="213" rx="14" fill="#402df3"/>
+    <text x="462" y="305" fill="#dcd6ff" font-size="14" font-weight="700" letter-spacing="2">REVIEW THE CONTRACT</text>
+    <text x="462" y="349" fill="#ffffff" font-size="24" font-weight="700">One row per customer</text>
+    <path d="M462 369H738" stroke="#9e91f8" stroke-width="2"/>
+    <text x="462" y="402" fill="#ffffff" font-size="17">Key · type · missing value</text>
+    <text x="462" y="432" fill="#ffffff" font-size="17">Duplicate · time rule</text>
+
+    <rect x="827" y="231" width="325" height="290" rx="14" fill="#ffffff" stroke="#d7d1fa" stroke-width="2"/>
+    <text x="851" y="267" fill="#402df3" font-size="14" font-weight="700" letter-spacing="2">ANALYTICAL MODEL</text>
+    <text x="851" y="308" fill="#171717" font-size="24" font-weight="700">3 customer rows</text>
+    <path d="M851 329H1128" stroke="#e6e2ff" stroke-width="2"/>
+    <text x="852" y="359" fill="#77776f" font-size="14">ID</text><text x="924" y="359" fill="#77776f" font-size="14">PLAN</text><text x="1037" y="359" fill="#77776f" font-size="14">REGION</text>
+    <text x="852" y="394" fill="#30302d" font-size="17">101</text><text x="924" y="394" fill="#30302d" font-size="17">Pro</text><text x="1037" y="394" fill="#30302d" font-size="17">West</text>
+    <text x="852" y="423" fill="#30302d" font-size="17">102</text><text x="924" y="423" fill="#30302d" font-size="17">Pro</text><text x="1037" y="423" fill="#30302d" font-size="17">East</text>
+    <text x="852" y="452" fill="#30302d" font-size="17">103</text><text x="924" y="452" fill="#30302d" font-size="17">Free</text><text x="1037" y="452" fill="#30302d" font-size="17">—</text>
+    <text x="852" y="491" fill="#402df3" font-size="16" font-weight="700">One checked customer metric</text>
+    <text x="48" y="576" fill="#6b6a65" font-size="16">Flexible storage → reviewed shape → shared definition</text>
+  </g>
+  <path d="M382 376H428M418 366L428 376L418 386M772 376H817M807 366L817 376L807 386" fill="none" stroke="#402df3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
