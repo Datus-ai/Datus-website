@@ -1,0 +1,14 @@
+[
+  {
+    "path": "model/cubes/orders.yml",
+    "content": "cubes:\n  - name: orders\n    sql_table: ANALYTICS.PUBLIC.ORDERS\n    description: One row per order\n    joins:\n      - name: customers\n        sql: \"{CUBE}.customer_id = {customers}.id\"\n        relationship: many_to_one\n    dimensions:\n      - name: id\n        sql: id\n        type: number\n        primary_key: true\n      - name: customer_id\n        sql: customer_id\n        type: number\n      - name: ordered_at\n        sql: ordered_at\n        type: time\n      - name: amount\n        sql: amount\n        type: number\n    measures:\n      - name: revenue\n        sql: \"{CUBE}.amount\"\n        type: sum\n        description: Total order revenue\n      - name: order_count\n        type: count\n"
+  },
+  {
+    "path": "model/cubes/customers.yml",
+    "content": "cubes:\n  - name: customers\n    sql_table: ANALYTICS.PUBLIC.CUSTOMERS\n    description: Customer attributes\n    dimensions:\n      - name: id\n        sql: id\n        type: number\n        primary_key: true\n      - name: name\n        sql: name\n        type: string\n      - name: segment\n        sql: segment\n        type: string\n"
+  },
+  {
+    "path": "model/views/commerce.yml",
+    "content": "views:\n  - name: commerce\n    description: Orders and customer revenue\n    cubes:\n      - join_path: orders\n        includes:\n          - id\n          - ordered_at\n          - revenue\n          - order_count\n      - join_path: orders.customers\n        includes:\n          - name\n          - segment\n"
+  }
+]

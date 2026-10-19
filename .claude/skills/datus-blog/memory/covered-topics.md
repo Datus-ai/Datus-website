@@ -786,3 +786,20 @@ land on the new article by design.
 - Images: six PNGs in blog/public/images/dosi-datus-agent-level-of-detail/ (updated cover plus five explanatory figures).
 - PR: https://github.com/Datus-ai/Datus-website/pull/102   Status: merged
 - Date: 2026-10-16
+
+
+### convert-semantic-models-to-ossie
+- Title: Convert Semantic Models to Ossie: Cube, dbt and More
+- Target keyword: convert semantic models to Ossie (Apache Ossie import, Cube to Ossie, dbt to Ossie, Omni to Ossie, Power BI to Ossie)
+- Angle: import a complete dependency bundle or compiled semantic artifact, then review native-language diagnostics and retain a source/snapshot/result/reconciliation acceptance record. Companion to the existing export tutorial; does not redefine the OSI hub.
+- Source direction: operator-specified; ships with the bidirectional website workbench.
+- Article type: Tutorial
+- Investment Score: 4.2 (demand 2 / relevance 5 / differentiation 5 / evidence 5 / shelf life 4; qualitative demand estimate)   Gate A: KEEP — distinct inbound conversion intent with reproduced positive/negative bundle cases.
+- Audit: 87.7/100, grade A (subjective editorial assessment); P0 and P1–P3 PASS; automated 13 PASS / 1 justified WARN / 0 FAIL. Eight source links retained to substantiate distinct platform contracts and source migration.
+- Key sources: https://github.com/apache/ossie/blob/main/converters/cube/README.md; https://github.com/apache/ossie/blob/main/converters/dbt/README.md; https://docs.getdbt.com/reference/artifacts/sl-manifest; https://github.com/apache/ossie/blob/main/converters/omni/README.md; https://github.com/apache/ossie/blob/main/converters/microsoft/README.md; https://cube.dev/blog/introducing-apache-ossie-integration; https://github.com/apache/ossie-converters
+- Internal links added: apache-ossie-converters, open-semantic-interchange-osi, dbt-semantic-layer-metricflow, apache-ossie-dosi-quickstart, semantic-model-examples; reciprocal FROM apache-ossie-converters; tool page links to the new post in both locales.
+- Glossary updated: no — conversion tutorial; existing definition ownership is unchanged.
+- Category: Semantic Layer
+- PR: https://github.com/Datus-ai/Datus-website/pull/105   Status: open
+- Date: 2026-10-19
+- Validation: 56 converter checks, scoped TypeScript, full build (107 posts), prerender/canonical/hreflang/sitemaps, Article/FAQPage/BreadcrumbList, English-only blog, reciprocal links; 57 browser assertions and 18 screenshots against the production website build with real local SaaS/backend conversion via a documented transport bridge. studio-dev import catalog still returned 404; prior converter/backend/SaaS deployments are prerequisites, with an unavailable/retry UI rather than a production-readiness claim.

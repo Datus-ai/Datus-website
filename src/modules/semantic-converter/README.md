@@ -42,3 +42,26 @@ limits, model selection, unsafe/duplicate output paths, edited buffers, sample
 hashes and locale parity. Verify real API calls against studio-dev before release.
 Production converter API deployment is required before restoring production-host
 routing to studio.datus.ai.
+
+## Bidirectional workbench
+
+`GET /sources` and `POST /import` use the same public API origin as export.
+Import requires the corresponding backend/SaaS deployment. A missing catalog
+shows an unavailable/retry state while the export direction remains usable.
+Source options and disabled export-only entries come from that catalog.
+
+Import accepts a complete bundle (up to 50 files / 1 MiB including UTF-8 paths),
+local folders preserving relative paths, and pasted definitions. `examples/`
+contains independently authored Cube, Omni, compiled dbt and offline Microsoft
+BIM test definitions copied from the Studio examples, with no customer data.
+These are distinct from the original pinned Apache export fixtures in `samples/`.
+
+Both directions start with a prefilled example and retain separate temporary
+sessions. For an import-focused link, use `?direction=import&example=cube`
+(or `omni`, `dbt`, `microsoft`). URL values are allowlisted example IDs;
+model contents are never put in URLs. Conversion uses a click-time snapshot of
+all files and options. The website does not save files to a Studio project.
+
+On desktop, Allotment resizes source/result panes and the 230px output file tree.
+On narrow screens, input and output stack vertically. Native expression warnings
+remain visible; successful file conversion is not warehouse execution validation.

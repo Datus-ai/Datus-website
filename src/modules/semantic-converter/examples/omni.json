@@ -1,0 +1,18 @@
+[
+  {
+    "path": "views/orders.view.yaml",
+    "content": "catalog: ANALYTICS\nschema: PUBLIC\ntable_name: ORDERS\ndescription: One row per order\ndimensions:\n  id:\n    primary_key: true\n  customer_id: {}\n  ordered_at:\n    timeframes:\n    - raw\n    - date\n    - week\n    - month\n    - quarter\n    - year\n  amount: {}\nmeasures:\n  revenue:\n    sql: ${amount}\n    aggregate_type: sum\n    description: Total order revenue\n  order_count:\n    sql: ${id}\n    aggregate_type: count_distinct\n"
+  },
+  {
+    "path": "views/customers.view.yaml",
+    "content": "catalog: ANALYTICS\nschema: PUBLIC\ntable_name: CUSTOMERS\ndescription: Customer attributes\ndimensions:\n  id:\n    primary_key: true\n  name: {}\n  segment: {}\n"
+  },
+  {
+    "path": "relationships.yaml",
+    "content": "- join_from_view: orders\n  join_to_view: customers\n  on_sql: ${orders.customer_id} = ${customers.id}\n  relationship_type: many_to_one\n"
+  },
+  {
+    "path": "topics/commerce.topic.yaml",
+    "content": "base_view: orders\ndescription: Orders and customer revenue\njoins:\n  customers: {}\n"
+  }
+]

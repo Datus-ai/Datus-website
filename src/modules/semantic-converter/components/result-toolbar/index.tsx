@@ -12,7 +12,9 @@ export function ResultToolbar({
   downloading,
   onDiscard,
   onDownload,
+  importing,
 }: {
+  importing: boolean;
   result: IConversionResult;
   targetLabel: string;
   canExport: boolean;
@@ -49,7 +51,9 @@ export function ResultToolbar({
               content={
                 <div className="sc-details">
                   <ConverterTips>{t.temporary_hint}</ConverterTips>
-                  <ConverterTips>{t.validation_hint}</ConverterTips>
+                  <ConverterTips>
+                    {importing ? t.import_validation_hint : t.validation_hint}
+                  </ConverterTips>
                 </div>
               }
             >

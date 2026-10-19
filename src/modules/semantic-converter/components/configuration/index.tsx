@@ -1,9 +1,10 @@
 import { Input, Select } from 'antd';
-import { ArrowRightLeft, Database, LoaderCircle, X } from 'lucide-react';
+import { ArrowRightLeft, LoaderCircle, X } from 'lucide-react';
 import type { ICatalog, IConversionOptions } from '../../contracts';
 import { useConverterCopy } from '../../copy';
 import { inspectSource } from '../../utils/source';
 import { ConverterTips } from '../tips';
+import { DialectLabel } from '../dialect-label';
 
 interface IConfigurationProps {
   catalog: ICatalog | null;
@@ -12,6 +13,7 @@ interface IConfigurationProps {
   options: IConversionOptions;
   info: ReturnType<typeof inspectSource>;
   busy: boolean;
+  converting: boolean;
   validInput: boolean;
   onRetry: () => void;
   onTargetChange: (target: string) => void;
@@ -28,6 +30,7 @@ export function Configuration(props: IConfigurationProps) {
     options,
     info,
     busy,
+    converting,
     validInput,
     onRetry,
     onTargetChange,
@@ -45,28 +48,6 @@ export function Configuration(props: IConfigurationProps) {
 
   function label(key: string, fallback: string): string {
     return t.options[key as keyof typeof t.options] ?? fallback;
-  }
-
-  function dialectLabel(dialect: string) {
-    const icon = (
-      {
-        SNOWFLAKE: 'snowflake',
-        BIGQUERY: 'bigquery',
-        DATABRICKS: 'spark',
-        STARROCKS: 'starrocks',
-        POSTGRES: 'postgresql',
-      } as Record<string, string>
-    )[dialect];
-    return (
-      <span className="sc-dialect">
-        {icon ? (
-          <img src={`/semantic-converter/icons/${icon}.png`} alt="" />
-        ) : (
-          <Database size={12} />
-        )}
-        {dialect}
-      </span>
-    );
   }
 
   return (
@@ -179,7 +160,10 @@ export function Configuration(props: IConfigurationProps) {
                         'STARROCKS',
                         'POSTGRES',
                       ]),
-                    ].map((value) => ({ value, label: dialectLabel(value) }))}
+                    ].map((value) => ({
+                      value,
+                      label: <DialectLabel dialect={value} />,
+                    }))}
                   />
                 ) : (
                   <Input
@@ -230,7 +214,7 @@ export function Configuration(props: IConfigurationProps) {
             )}
             {busy ? t.converting : t.convert}
           </button>
-          {busy && (
+          {converting && (
             <button type="button" className="sc-button" onClick={onCancel}>
               <X size={12} />
               {t.cancel_conversion}

@@ -532,3 +532,179 @@
 .sc-details {
   color: var(--ink);
 }
+
+/* Both directions keep source and generated files visible beside each other. */
+.sc-body {
+  height: 740px;
+}
+.sc-editors {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  display: flex;
+}
+.sc-editors > .split-view {
+  width: 100%;
+}
+.sc-source {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.sc-source-editor {
+  height: auto;
+  flex: 1;
+  min-height: 0;
+}
+.sc-panel-title {
+  height: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--sc-border);
+  background: var(--sc-panel);
+}
+.sc-panel-title > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sc-source-actions {
+  margin-left: 0;
+  flex-wrap: nowrap;
+  padding: 6px 12px;
+  min-height: 40px;
+  border-bottom: 1px solid var(--sc-border);
+}
+.sc-source-actions .ant-select {
+  width: 0;
+  min-width: 80px;
+  flex: 1;
+}
+.sc-source-file-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--sc-header-height);
+  height: var(--sc-header-height);
+  padding: 0 12px;
+  border-bottom: 1px solid var(--sc-border);
+}
+.sc-source-file-bar .ant-select {
+  min-width: 0;
+  flex: 1;
+  font-size: 11px;
+}
+.sc-source-notes {
+  flex-shrink: 0;
+}
+.sc-result-toolbar {
+  min-height: 40px;
+  padding: 6px 8px;
+  gap: 6px;
+}
+.sc-result-toolbar .sc-summary strong {
+  display: none;
+}
+.sc-result-toolbar .sc-actions {
+  gap: 6px;
+}
+.sc-result-toolbar .sc-save-state {
+  border-left: 0;
+  padding-left: 0;
+}
+.sc-result-toolbar .sc-info {
+  font-size: 12px;
+}
+.sc-result-metadata {
+  gap: 6px;
+}
+.sc-fixed-target {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 0 8px;
+  border: 1px solid var(--sc-border);
+  border-radius: 6px;
+  color: var(--sc-secondary);
+}
+.sc-fixed-target svg:last-child {
+  margin-left: auto;
+}
+.sc-paste-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sc-paste-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sc-paste-form textarea {
+  font: 12px/1.5 monospace;
+}
+.sc-direction button:disabled {
+  cursor: not-allowed;
+}
+.sc-source-file-bar .sc-danger {
+  color: var(--sc-danger);
+}
+@media (max-width: 900px) {
+  .sc-body {
+    height: auto;
+    flex-direction: column;
+  }
+  .sc-configuration {
+    flex-basis: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: 1px solid var(--sc-border);
+    overflow: visible;
+  }
+  .sc-stacked {
+    flex-direction: column;
+  }
+  .sc-stacked .sc-source,
+  .sc-stacked .sc-results {
+    height: 580px;
+    min-height: 580px;
+    flex: none;
+  }
+  .sc-stacked .sc-source {
+    border-bottom: 1px solid var(--sc-border);
+  }
+  .sc-source-editor {
+    height: auto;
+  }
+  .sc-source-actions .ant-select {
+    flex-basis: auto;
+    width: 0;
+  }
+}
+@media (max-width: 440px) {
+  .sc-configuration {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sc-source-actions {
+    flex-wrap: wrap;
+  }
+  .sc-source-actions .ant-select {
+    flex-basis: 100%;
+  }
+}
+.sc-editors .sc-results {
+  height: 100%;
+}
+@media (max-width: 900px) {
+  .sc-stacked .sc-results {
+    height: 580px;
+  }
+}
