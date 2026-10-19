@@ -173,7 +173,7 @@ That depends on the engine. Dosi can compile Apache Ossie models to SQL for mult
 
 ## Related articles
 
-- [Composable analytics: agent-built dashboards, governed metrics](/blog/composable-analytics-agent-built-dashboards/) — use shared definitions in generated views
+- [Composable analytics: agent-built views, governed metrics](/blog/composable-analytics-agent-built-dashboards/) — use shared definitions in generated views
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the business definitions underneath headless BI
 - [What is a semantic model?](/blog/what-is-semantic-model/) — the model that expresses metrics and relationships
 - [What is conversational BI?](/blog/what-is-conversational-bi/) — one interface for asking questions about shared metrics

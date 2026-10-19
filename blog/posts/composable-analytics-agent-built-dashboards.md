@@ -1,5 +1,5 @@
 ---
-title: "Composable Analytics: Agent-Built Dashboards, Governed Metrics"
+title: "Composable Analytics: Agent-Built Views, Governed Metrics"
 description: "Composable analytics lets agents assemble HTML dashboards from governed metrics. See how reusable definitions support generated views and fixed reports."
 author: "Evan Paul"
 date: 2026-10-19
@@ -10,7 +10,7 @@ head:
       content: "composable analytics, agent-generated dashboards, AI dashboard generation, semantic layer for AI agents, HTML dashboard, dashboard as code"
   - - meta
     - property: og:title
-      content: "Composable Analytics: Agent-Built Dashboards, Governed Metrics"
+      content: "Composable Analytics: Agent-Built Views, Governed Metrics"
   - - meta
     - property: og:description
       content: "Composable analytics lets agents assemble HTML dashboards from governed metrics. See how reusable definitions support generated views and fixed reports."
@@ -31,7 +31,7 @@ head:
       href: https://datus.ai/blog/composable-analytics-agent-built-dashboards/
 ---
 
-# Composable Analytics: Agent-Built Dashboards, Governed Metrics
+# Composable Analytics: Agent-Built Views, Governed Metrics
 
 ## TL;DR
 

@@ -816,5 +816,35 @@ land on the new article by design.
 - Internal links added: what-is-semantic-model, what-is-semantic-layer, what-is-schema-linking, semantic-model-examples; reciprocal from semantic-model-examples.
 - Glossary updated: yes — Entity-Attribute-Value (EAV) in English and Chinese, linked to this post.
 - Category: Semantic Layer
-- PR: https://github.com/Datus-ai/Datus-website/pull/106   Status: open
+- PR: https://github.com/Datus-ai/Datus-website/pull/106   Status: merged
+- Date: 2026-10-19
+
+### composable-analytics-agent-built-dashboards
+- Title: Composable Analytics: Agent-Built Views, Governed Metrics
+- Target keyword: composable analytics (agent-built dashboards, governed metrics)
+- Angle: reusable metric definitions and query interfaces let agents compose fit-for-purpose views while persistent dashboards retain a role in monitoring and approved reporting.
+- Source direction: operator-specified companion article to the dashboard debate; distinct architecture-first intent.
+- Article type: GlossaryTerm
+- Investment Score: n/a (operator-directed)   Gate A: KEEP — distinct definition and architecture intent.
+- Audit: automated 15 pass / 0 warn / 0 fail.
+- Key sources: https://docs.datus.ai/dev/subagent/gen_visual_dashboard/; https://www.sisense.com/whitepapers/guide-to-composable-analytics-five-critical-capabilities/; https://dosi.datus.ai/rest-api/
+- Internal links added: what-is-headless-bi, what-is-agentic-analytics, what-is-semantic-layer, is-the-dashboard-dead; reciprocal from what-is-headless-bi.
+- Glossary updated: yes — Composable Analytics in English and Chinese.
+- Category: Agentic Analytics
+- PR: pending   Status: local draft
+- Date: 2026-10-19
+
+### is-the-dashboard-dead
+- Title: Is the Dashboard Dead?
+- Target keyword: is the dashboard dead (agent-generated dashboards)
+- Angle: dashboards remain useful as visual answers; agents change the authoring workflow, while semantic definitions and publication checks keep the result trustworthy.
+- Source direction: operator-specified companion opinion article; distinct workflow and evaluation intent.
+- Article type: Research (closest available template for an opinion-led analysis)
+- Investment Score: n/a (operator-directed)   Gate A: KEEP — distinct answer to the dashboard-debate query.
+- Audit: automated 14 pass / 0 warn / 0 fail.
+- Key sources: https://docs.datus.ai/dev/subagent/gen_visual_dashboard/; https://www.linkedin.com/posts/atikantjain_accessanalytic-agenticai-powerbi-activity-7495456988995170304-df4L; https://www.reddit.com/r/BusinessIntelligence/comments/1qulihh/anyone_else_seeing_fewer_dashboard_requests_this/
+- Internal links added: composable-analytics-agent-built-dashboards, what-is-headless-bi, what-is-agentic-analytics, what-is-conversational-bi.
+- Glossary updated: no — no dedicated glossary term.
+- Category: Agentic Analytics
+- PR: pending   Status: local draft
 - Date: 2026-10-19

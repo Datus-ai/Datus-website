@@ -111,6 +111,16 @@ It also changes what should be saved. Keep the metric definition and its tests. 
 
 So is the dashboard dead? **No. The blank-canvas-first workflow is losing its monopoly.** A visual answer can now be generated as part of an investigation, then revised in minutes. Some of those answers will be temporary; others will mature into the stable dashboards teams still need. The more views we can create, the more important it becomes to keep their metrics, access, and meaning consistent.
 
+## How to decide whether a generated view is ready to share
+
+Start with one question and one agreed metric. Suppose a sales team asks for completed order revenue by week and region. Before treating the generated page as a report, write down what “completed” means, which date field determines the week, whether refunds are included, and whose region the filter represents. The agent can suggest a chart, but these choices determine the answer. If the semantic model already defines them, the page should use that definition. If it cannot, label the result as an exploratory calculation and ask for review before circulating it as an official number.
+
+Next, test the page with a question that has a known answer. Run the same metric, period, and filters in a trusted report or query, then compare the headline total. Change the region filter and check that the rows and totals change together. Try a period with no matching orders: the page should explain that there is no data, not draw a misleading flat line. Inspect the chart labels and units as carefully as the SQL. A viewer needs to know whether the line represents revenue, order count, or a percentage, and whether the dates refer to order creation or completion. These are simple tests, but they catch the difference between a plausible picture and a defensible analytical answer.
+
+Then check the experience from the recipient's side. Can the intended audience open the page and see only data they are allowed to see? Do filters still work when the author's local service is closed? Can someone understand the result on a phone, with a keyboard, or without relying on color alone? An HTML file with live queries is not self-contained merely because it opens in a browser. If the page depends on a local backend, share a static snapshot for a one-time update or deploy an approved service for ongoing use. Document which option you chose so readers do not mistake yesterday's snapshot for a live view.
+
+Finally, decide whether the page deserves a permanent home. A one-off investigation can end with an answer and a reproducible metric request. A view used in a weekly meeting needs an owner, a stable link, a refresh expectation, and a way to retire or revise it when the business question changes. This is where the generated page becomes a maintained dashboard: not when the agent finishes drawing it, but when a team accepts responsibility for its numbers and its audience. The decision keeps the speed of agent-assisted authoring without turning every exploratory view into another unmanaged report.
+
 ## Conclusion
 
 Agents can change how quickly a dashboard is made, but they do not remove the need to see, share, and trust an analytical result. Use persistent dashboards for recurring questions and monitoring. Use agent-built HTML views when the question is new or changing. Put governed definitions beneath both, and make the promotion from temporary view to trusted report an explicit decision.
@@ -139,7 +149,7 @@ You can send a file, but whether it works as a live dashboard depends on its dat
 
 ## Related articles
 
-- [Composable analytics: agent-built dashboards, governed metrics](/blog/composable-analytics-agent-built-dashboards/) — the reusable architecture behind generated views.
+- [Composable analytics: agent-built views, governed metrics](/blog/composable-analytics-agent-built-dashboards/) — the reusable architecture behind generated views.
 - [What is headless BI?](/blog/what-is-headless-bi/) — separate metric definitions from one visual interface.
 - [What is agentic analytics?](/blog/what-is-agentic-analytics/) — how agents plan multi-step investigations.
 - [What is conversational BI?](/blog/what-is-conversational-bi/) — asking follow-up questions against business data.
