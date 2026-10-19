@@ -13,6 +13,7 @@ import { DialectLabel } from '../dialect-label';
 export function ImportConfiguration({
   catalog,
   failed,
+  errorStatus,
   formatId,
   options,
   busy,
@@ -26,6 +27,7 @@ export function ImportConfiguration({
 }: {
   catalog: IImportCatalog | null;
   failed: boolean;
+  errorStatus: number;
   formatId: string;
   options: IImportOptions;
   busy: boolean;
@@ -51,7 +53,13 @@ export function ImportConfiguration({
       <h3>{t.configuration}</h3>
       {failed ? (
         <div className="sc-catalog-error">
-          <ConverterTips type="warning">{t.import_unavailable}</ConverterTips>
+          <ConverterTips type="warning">
+            {errorStatus === 404
+              ? t.import_unavailable
+              : errorStatus === 429
+                ? t.rate_limited
+                : t.import_catalog_failed}
+          </ConverterTips>
           <button className="sc-button" type="button" onClick={onRetry}>
             {t.retry}
           </button>
