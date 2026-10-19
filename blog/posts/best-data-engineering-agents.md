@@ -3,7 +3,7 @@ title: "Best Data Engineering Agents in 2026: An Honest Comparison"
 description: "Best data engineering agents in 2026 compared by stack fit, context, openness, and enterprise readiness."
 author: "John Smith"
 date: 2026-06-10
-lastmod: 2026-06-10
+lastmod: 2026-10-19
 head:
   - - meta
     - name: keywords
@@ -36,7 +36,7 @@ head:
 ## TL;DR
 
 - Eight products compete for the **data engineering agent** label in 2026, split across four categories: platform-embedded, prompt-as-agent, vertical SaaS, and open-source framework.
-- **No single agent wins for every team.** The right choice depends on your stack (single-warehouse or multi-warehouse), your need for persistent context, and whether you prioritize speed of setup or long-term control.
+- **No single agent wins for every team.** The right choice depends on your stack (single-warehouse or multi-warehouse), your need for persistent context, and where the agent and its model run.
 - If everything lives in **one warehouse**, use the platform's agent (BigQuery DEA for GCP, Cortex Code for Snowflake). If you have **two or more**, you need a stack-agnostic agent or a context layer that travels.
 - The deepest split in the market is **context persistence**: four agents remember across sessions, three do not.
 
@@ -125,6 +125,10 @@ The most honest answer is that no single agent wins for everyone. The right choi
 
 - **Engineering side (pipeline development, schema design, context management, agent delivery):** Datus, Altimate, or Cortex Code. Datus for multi-warehouse context engineering, Altimate for dbt-native harness work, Cortex Code for Snowflake-native pipeline development.
 - **Analysis side (self-service queries, ad-hoc analysis, dashboard data):** Wren AI or TextQL. Wren AI for open-source semantic-layer-driven analyst self-service, TextQL for enterprise AI data scientist capabilities with compliance requirements.
+
+### Question 4: Where must the agent run?
+
+Teams looking for **agents for data engineering** often need more than SQL generation: pipeline work, schema inspection, reusable context and a deployment path their security team can approve. A private or on-prem agent requires both a deployment you control and a model endpoint compatible with your data policy. A local CLI that sends retrieved schema to a cloud LLM is still a cloud-connected workflow. Compare the agent process, model endpoint, context storage, network egress and identity controls together. The [private deployment checklist](/blog/open-source-data-engineering-agents/#private-and-on-prem-data-agents) explains those boundaries; the [enterprise agent guide](/blog/enterprise-data-engineering-agent/) covers team-level governance.
 
 ### Quick-reference decision table
 

@@ -1,19 +1,19 @@
 ---
-title: "dbt Semantic Layer & MetricFlow: Architecture and Limits"
-description: "How MetricFlow powers dbt's Semantic Layer, where it works, where it falls short, and how AI data agents and OSI-native alternatives extend governed metrics."
+title: "dbt MetricFlow Explained: Best Fit, Limits & OSI Options"
+description: "MetricFlow fits dbt teams that govern metrics in Git. See where it works, when an Apache Ossie runtime such as Dosi helps, and how to choose for AI agents."
 author: "Evan Paul"
 date: 2026-06-09
-lastmod: 2026-09-12
+lastmod: 2026-10-19
 head:
   - - meta
     - name: keywords
       content: "dbt semantic layer, MetricFlow, MetricFlow architecture, MetricFlow license, MetricFlow Apache 2.0, dbt semantic layer explained, dbt metrics, semantic layer dbt, MetricFlow alternatives, Dosi"
   - - meta
     - property: og:title
-      content: "dbt Semantic Layer & MetricFlow: Architecture and Limits"
+      content: "dbt MetricFlow Explained: Best Fit, Limits & OSI Options"
   - - meta
     - property: og:description
-      content: "How MetricFlow powers dbt's Semantic Layer, where it works, where it falls short, and how AI data agents and OSI-native alternatives extend governed metrics."
+      content: "MetricFlow fits dbt teams that govern metrics in Git. See where it works, when an Apache Ossie runtime such as Dosi helps, and how to choose for AI agents."
   - - meta
     - property: og:type
       content: article
@@ -31,7 +31,7 @@ head:
       href: https://datus.ai/blog/dbt-semantic-layer-metricflow/
 ---
 
-# dbt Semantic Layer & MetricFlow: Architecture and Limits
+# dbt MetricFlow Explained: Best Fit, Limits & OSI Options
 
 ## TL;DR
 
