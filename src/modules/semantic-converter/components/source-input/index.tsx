@@ -36,7 +36,7 @@ export function SourceInput({
   onFiles: (files: IImportFile[]) => void;
   onExample: (id: string) => void;
   onReading: (value: boolean) => void;
-  confirm: (kind?: 'source' | 'results') => Promise<boolean>;
+  confirm: (kind?: 'source' | 'results' | 'files') => Promise<boolean>;
 }) {
   const t = useConverterCopy();
   const fileInput = useRef<HTMLInputElement>(null);
@@ -72,7 +72,7 @@ export function SourceInput({
       (replace ||
         (!importing &&
           (session.inputDirty || session.result?.artifacts.length))) &&
-      !(await confirm('source'))
+      !(await confirm('files'))
     ) {
       return false;
     }

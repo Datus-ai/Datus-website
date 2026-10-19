@@ -163,13 +163,23 @@ export function useWorkbench() {
   }, [dirty]);
 
   async function confirm(
-    kind: 'source' | 'results' = 'results',
+    kind: 'source' | 'results' | 'files' = 'results',
   ): Promise<boolean> {
     return Boolean(
       await modal.confirm({
-        title: kind === 'source' ? t.replace_title : t.discard_title,
-        content: kind === 'source' ? t.replace_hint : t.discard_hint,
-        okText: kind === 'source' ? t.replace : t.discard,
+        title:
+          kind === 'files'
+            ? t.replace_files_title
+            : kind === 'source'
+              ? t.replace_title
+              : t.discard_title,
+        content:
+          kind === 'files'
+            ? t.replace_files_hint
+            : kind === 'source'
+              ? t.replace_hint
+              : t.discard_hint,
+        okText: kind === 'results' ? t.discard : t.replace,
         cancelText: t.cancel,
         okButtonProps: { danger: true },
       }),
