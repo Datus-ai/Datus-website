@@ -831,7 +831,7 @@ land on the new article by design.
 - Internal links added: what-is-headless-bi, what-is-agentic-analytics, what-is-semantic-layer, is-the-dashboard-dead; reciprocal from what-is-headless-bi.
 - Glossary updated: yes — Composable Analytics in English and Chinese.
 - Category: Agentic Analytics
-- PR: pending   Status: local draft
+- PR: https://github.com/Datus-ai/Datus-website/pull/108   Status: open
 - Date: 2026-10-19
 
 ### is-the-dashboard-dead
@@ -846,5 +846,5 @@ land on the new article by design.
 - Internal links added: composable-analytics-agent-built-dashboards, what-is-headless-bi, what-is-agentic-analytics, what-is-conversational-bi.
 - Glossary updated: no — no dedicated glossary term.
 - Category: Agentic Analytics
-- PR: pending   Status: local draft
+- PR: https://github.com/Datus-ai/Datus-website/pull/108   Status: open
 - Date: 2026-10-19
