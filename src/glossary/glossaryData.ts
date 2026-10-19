@@ -286,6 +286,13 @@ export const glossary: GlossaryCategory[] = [
     id: "ai-agents",
     terms: [
       {
+        term: "Composable Analytics",
+        slug: "composable-analytics",
+        definition:
+          "An approach to building analytical experiences from reusable data access, metric definitions, queries, and presentation components. An agent can compose a view for a question while the underlying metric remains reviewable and reusable.",
+        article: "/blog/composable-analytics-agent-built-dashboards/",
+      },
+      {
         term: "Conversational BI",
         slug: "conversational-bi",
         definition:

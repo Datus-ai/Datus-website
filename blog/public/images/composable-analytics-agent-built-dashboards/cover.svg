@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Composable analytics: one semantic model, many agent-built views</title>
+  <desc id="desc">A question enters an agent, which draws on a shared semantic model to compose an HTML dashboard with KPI cards, a chart, and a table.</desc>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#d8d5e9"/></pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M1 1 L7 4.5 L1 8" fill="none" stroke="#402df3" stroke-width="1.8"/></marker>
+  </defs>
+  <rect width="1200" height="630" fill="#f7f7f2"/>
+  <rect width="1200" height="630" fill="url(#dots)" opacity=".52"/>
+  <rect x="28" y="28" width="1144" height="574" rx="25" fill="#fcfcfa" stroke="#dfdde8" stroke-width="2"/>
+  <g fill="#402df3" font-family="Inter, system-ui, Arial, sans-serif" font-weight="800"><text x="72" y="105" font-size="30">DATUS</text><text x="72" y="153" font-size="21">COMPOSABLE ANALYTICS</text></g>
+  <text x="72" y="186" font-family="Inter, system-ui, Arial, sans-serif" font-size="16" fill="#5f5b71">One governed definition. A view shaped for the question.</text>
+
+  <g font-family="Inter, system-ui, Arial, sans-serif">
+    <rect x="72" y="252" width="246" height="135" rx="18" fill="#f4f2ff" stroke="#9f96ff" stroke-width="2"/>
+    <text x="94" y="285" font-size="12" font-weight="700" letter-spacing="1.5" fill="#6057ba">BUSINESS QUESTION</text>
+    <text x="94" y="324" font-size="19" font-weight="650" fill="#211e35">Why did revenue</text>
+    <text x="94" y="352" font-size="19" font-weight="650" fill="#211e35">change this week?</text>
+
+    <path d="M323 319H389" fill="none" stroke="#402df3" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="397" y="252" width="204" height="135" rx="18" fill="#402df3"/>
+    <circle cx="444" cy="300" r="19" fill="none" stroke="#ddd9ff" stroke-width="2"/>
+    <circle cx="444" cy="300" r="5" fill="#ddd9ff"/>
+    <path d="M443 278v-10M465 300h10M443 322v10M421 300h-10" stroke="#ddd9ff" stroke-width="2"/>
+    <text x="479" y="307" font-size="23" font-weight="700" fill="white">Agent</text>
+    <text x="425" y="352" font-size="13" fill="#e5e2ff">select · query · compose</text>
+
+    <path d="M607 319H670" fill="none" stroke="#402df3" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="678" y="223" width="420" height="254" rx="17" fill="white" stroke="#bbb6d9" stroke-width="2"/>
+    <rect x="678" y="223" width="420" height="41" rx="17" fill="#eeecff"/>
+    <rect x="678" y="247" width="420" height="17" fill="#eeecff"/>
+    <circle cx="700" cy="244" r="5" fill="#a69dff"/><circle cx="717" cy="244" r="5" fill="#a69dff"/><circle cx="734" cy="244" r="5" fill="#a69dff"/>
+    <text x="761" y="249" font-size="12" fill="#514a8a">generated-view.html</text>
+    <rect x="699" y="283" width="99" height="66" rx="9" fill="#f4f2ff"/>
+    <text x="713" y="302" font-size="11" fill="#685faf">REVENUE</text><text x="713" y="333" font-size="23" font-weight="700" fill="#402df3">$420k</text>
+    <rect x="809" y="283" width="108" height="66" rx="9" fill="#f4f2ff"/>
+    <text x="823" y="302" font-size="11" fill="#685faf">ORDERS</text><text x="823" y="333" font-size="23" font-weight="700" fill="#402df3">12.8k</text>
+    <rect x="929" y="283" width="149" height="66" rx="9" fill="#f8f8f6" stroke="#dad8e6"/>
+    <text x="946" y="322" font-size="14" fill="#5f5b71">Region ▾</text>
+    <path d="M701 427H1074" stroke="#e2e0ec" stroke-width="1"/>
+    <path d="M704 414 L755 388 L803 399 L855 374 L904 389 L953 366 L1003 377 L1072 357" fill="none" stroke="#402df3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="699" y="455" font-size="11" fill="#827d95">WK 1</text><text x="1045" y="455" font-size="11" fill="#827d95">WK 12</text>
+
+    <path d="M500 392V492H868V478" fill="none" stroke="#8074ed" stroke-width="2" stroke-dasharray="5 6"/>
+    <rect x="317" y="490" width="423" height="69" rx="13" fill="#eeeaff" stroke="#b8b0fa"/>
+    <circle cx="349" cy="525" r="13" fill="#402df3"/>
+    <circle cx="399" cy="525" r="13" fill="#6b59f5"/>
+    <circle cx="449" cy="525" r="13" fill="#9588f8"/>
+    <path d="M363 525h22M413 525h22" stroke="#402df3" stroke-width="2"/>
+    <text x="480" y="520" font-size="17" font-weight="700" fill="#2c2458">Shared semantic model</text>
+    <text x="480" y="542" font-size="12" fill="#696183">metrics · dimensions · rules</text>
+  </g>
+</svg>
