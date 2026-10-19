@@ -767,8 +767,9 @@ land on the new article by design.
 - Glossary updated: yes — new Business Glossary term in English and Chinese, linked to this comparison post.
 - Category: Semantic Layer
 - Images: original SVG cover in blog/public/images/business-glossary-vs-semantic-layer/.
-- PR: https://github.com/Datus-ai/Datus-website/pull/103   Status: open
+- PR: https://github.com/Datus-ai/Datus-website/pull/103   Status: merged
 - Date: 2026-10-16
+
 - Validation: full build, desktop/mobile preview, no horizontal overflow or console errors, SQL fixture returns one, both glossary locales and sitemap verified.
 
 ### dosi-datus-agent-level-of-detail
@@ -787,7 +788,6 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/102   Status: merged
 - Date: 2026-10-16
 
-
 ### convert-semantic-models-to-ossie
 - Title: Convert Semantic Models to Ossie: Cube, dbt and More
 - Target keyword: convert semantic models to Ossie (Apache Ossie import, Cube to Ossie, dbt to Ossie, Omni to Ossie, Power BI to Ossie)
@@ -803,3 +803,18 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/105   Status: open
 - Date: 2026-10-19
 - Validation: 56 converter checks, scoped TypeScript, full build (107 posts), prerender/canonical/hreflang/sitemaps, Article/FAQPage/BreadcrumbList, English-only blog, reciprocal links; 57 browser assertions and 18 screenshots against the production website build with real local SaaS/backend conversion via a documented transport bridge. studio-dev import catalog still returned 404; prior converter/backend/SaaS deployments are prerequisites, with an unavailable/retry UI rather than a production-readiness claim.
+
+### what-is-entity-attribute-value-model
+- Title: Entity-Attribute-Value (EAV) Model: Examples and Tradeoffs
+- Target keyword: entity-attribute-value model (EAV pattern, EAV database design, EAV analytics)
+- Angle: distinguish flexible attribute-row storage from analytical entity grain with a verified five-rows/three-customers SQL fixture, then show the typed, tested handoff into a semantic model.
+- Source direction: saved Cube keyword plan; distinct Semantic Layer spoke following business-glossary-vs-semantic-layer.
+- Article type: GlossaryTerm
+- Investment Score: 4.4 (demand 4, relevance 4, differentiation 5, evidence 4, shelf life 5)   Gate A: KEEP — distinct database-design intent and a reproducible analytics/agent example.
+- Audit: 86/100, grade A; automated 15 pass / 0 warn / 0 fail; P0 PASS.
+- Key sources: https://mariadb.com/docs/server/ha-and-performance/optimization-and-tuning/optimizing-tables/entity-attribute-value-implementation; https://docs.cube.dev/recipes/data-modeling/entity-attribute-value; https://www.postgresql.org/docs/current/datatype-json.html; https://docs.datus.ai/dev/knowledge_base/semantic_model/
+- Internal links added: what-is-semantic-model, what-is-semantic-layer, what-is-schema-linking, semantic-model-examples; reciprocal from semantic-model-examples.
+- Glossary updated: yes — Entity-Attribute-Value (EAV) in English and Chinese, linked to this post.
+- Category: Semantic Layer
+- PR: https://github.com/Datus-ai/Datus-website/pull/106   Status: open
+- Date: 2026-10-19
