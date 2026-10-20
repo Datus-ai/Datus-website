@@ -3,7 +3,7 @@ title: "What an Enterprise Data Engineering Agent Actually Needs"
 description: "Enterprise data engineering agent requirements: shared context, RBAC, auditability, reliability, and governance."
 author: "John Smith"
 date: 2026-06-03
-lastmod: 2026-06-03
+lastmod: 2026-10-19
 head:
   - - meta
     - name: keywords
@@ -41,6 +41,8 @@ Enterprise data engineering agents need six things that personal agents can skip
 A [data engineering agent](/blog/what-is-data-engineering-agent-2026/) that works for a single engineer on a single laptop is a productivity tool. A data engineering agent that works for fifty engineers, three hundred analysts, and a security team that audits every database query is infrastructure. The gap between the two is not a matter of scale. It is a matter of architecture.
 
 This article outlines the six requirements that separate an agent suitable for enterprise deployment from one suitable for personal use—and what each requirement means in practice. For the broader agent landscape, see the [best data engineering agents comparison](/blog/best-data-engineering-agents-2026/).
+
+If the requirement is a **private or on-prem data agent**, apply these checks to the deployment as well as the product: document where the agent, model endpoint, context store and logs run; restrict network egress and database credentials; and verify the identity controls before production use. The [self-hosted agent checklist](/blog/open-source-data-engineering-agents/#private-and-on-prem-data-agents) separates these boundaries, while the [agents for data engineering comparison](/blog/best-data-engineering-agents/) helps narrow the product shortlist.
 
 ## 1. Shared and versioned context
 

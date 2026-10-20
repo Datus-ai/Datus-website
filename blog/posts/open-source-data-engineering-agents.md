@@ -1,19 +1,19 @@
 ---
-title: "Open Source Data Engineering Agents: Why They Exist, When to Use One, and What Your Options Are"
-description: "Open-source data engineering agents compared: Datus, Wren AI, Altimate, and when self-hosting is worth it."
+title: "Open-Source Data Engineering Agents: Private Deployment"
+description: "Compare open-source data engineering agents and learn what a private deployment must check: model endpoint, data flow, credentials, and access controls."
 author: "John Smith"
 date: 2026-06-02
-lastmod: 2026-06-02
+lastmod: 2026-10-19
 head:
   - - meta
     - name: keywords
       content: "open source data engineering agent, open source data agent, self-hosted data engineering agent, Apache 2.0 data agent, free data engineering agent"
   - - meta
     - property: og:title
-      content: "Open Source Data Engineering Agents: Why They Exist, When to Use One, and What Your Options Are"
+      content: "Open-Source Data Engineering Agents: Private Deployment"
   - - meta
     - property: og:description
-      content: "Open-source data engineering agents compared: Datus, Wren AI, Altimate, and when self-hosting is worth it."
+      content: "Compare open-source data engineering agents and learn what a private deployment must check: model endpoint, data flow, credentials, and access controls."
   - - meta
     - property: og:type
       content: article
@@ -30,7 +30,7 @@ head:
     - rel: canonical
       href: https://datus.ai/blog/posts/open-source-data-engineering-agents
 ---
-# Open Source Data Engineering Agents: Why They Exist, When to Use One, and What Your Options Are
+# Open-Source Data Engineering Agents: Private Deployment
 
 ## TL;DR
 
@@ -61,7 +61,13 @@ Open-source agents do not automatically solve this problem—reading the source 
 
 When you give a cloud-hosted agent access to your warehouse, you are extending your security perimeter to include the agent's infrastructure. If the agent's cloud is compromised, your warehouse is compromised. For many enterprises, this is a non-starter—vendor security reviews alone can add months to the procurement process.
 
-Open-source agents that support self-hosting let you run the agent on your own infrastructure, behind your own firewall, with your own IAM policies. The agent never leaves your network. Your warehouse credentials never touch a third-party server. This is the default posture for most enterprise data teams, and open-source agents are the only ones that fully support it.
+Open-source agents that support self-hosting let you run the agent on your own infrastructure. That controls where the agent process and its local context store run, but it does not by itself determine where prompts, schema details, tool results or credentials go. A self-hosted agent configured to call a cloud LLM still sends data to that model endpoint. Review the full request path, logs, telemetry and network egress before describing a deployment as private.
+
+#### Private and on-prem data agents
+
+For a **private data agent** or **on-prem data agent**, check five boundaries before a pilot: (1) where the agent process runs; (2) which model endpoint receives prompts and retrieved context; (3) where the context store and logs persist; (4) which network destinations the agent can contact; and (5) which identity and database permissions each user or subagent receives. A local install satisfies only the first boundary. An air-gapped claim requires a separate network and dependency review.
+
+Datus's [agent configuration documentation](https://docs.datus.ai/configuration/agent/) describes custom self-hosted model endpoints through `agent.models`, and the [Datus overview](https://docs.datus.ai/) describes embedded LanceDB/SQLite for local context and PostgreSQL for shared context. Those options make a private architecture possible, subject to the model, deployment and network configuration your team actually chooses. For organizational controls, use the [enterprise data engineering agent checklist](/blog/enterprise-data-engineering-agent/); for the broader [agents for data engineering comparison](/blog/best-data-engineering-agents/), evaluate deployment alongside stack fit and context persistence.
 
 ### No platform lock-in: the agent travels with your stack
 
@@ -142,7 +148,7 @@ It does, reliably, in four scenarios:
 
 **You have more than one warehouse.** Platform agents work in one. Open-source agents work across all of them. The setup cost is paid once; the benefit accrues across every warehouse you add.
 
-**You handle regulated data.** PII, PHI, financial data under SOX, any data subject to GDPR with residency requirements. Self-hosting is not optional—it is a compliance requirement. Open-source agents are the only ones that fully support it.
+**You handle regulated or sensitive data.** A private deployment may help you meet residency and security requirements, but the requirements differ by jurisdiction and contract. Review model-provider terms, network egress, logging, data retention and access controls with your security team. Self-hosting is one deployment option, not a compliance certificate.
 
 **You plan to be using this agent in two years.** The agent you choose today becomes harder to replace the longer you use it—context accumulates, workflows form around it, team members learn its patterns. If you expect the agent to be part of your infrastructure long-term, the vendor risk of closed-source options increases with time. Open-source agents can be forked, maintained by your team, or sustained by a community even if the original company changes direction.
 

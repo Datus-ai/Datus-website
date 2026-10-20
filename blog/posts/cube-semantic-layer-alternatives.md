@@ -1,19 +1,19 @@
 ---
-title: "Cube.dev Alternatives: Open Semantic Models for AI Agents"
-description: "Cube.dev alternatives compared for 2026: dbt MetricFlow, AtScale, LookML, Snowflake, Databricks, Malloy and Apache Ossie — and when staying on Cube is right."
+title: "Cube.dev Alternatives: Stay for Speed or Choose Portability?"
+description: "Compare Cube.dev alternatives by use case: keep Cube for embedded analytics, use dbt for governed metrics, or use Ossie and Dosi for portable agent queries."
 author: "Evan Paul"
 date: 2026-09-25
-lastmod: 2026-09-25
+lastmod: 2026-10-19
 head:
   - - meta
     - name: keywords
       content: "cube.dev alternatives, cube alternatives, cube semantic layer alternatives, cube.dev competitors, open source semantic layer, semantic layer for AI agents, Apache Ossie, dbt Semantic Layer vs Cube, Cube Cloud pricing"
   - - meta
     - property: og:title
-      content: "Cube.dev Alternatives: Open Semantic Models for AI Agents"
+      content: "Cube.dev Alternatives: Stay for Speed or Choose Portability?"
   - - meta
     - property: og:description
-      content: "Cube.dev alternatives compared for 2026: dbt MetricFlow, AtScale, LookML, Snowflake, Databricks, Malloy and Apache Ossie — and when staying on Cube is right."
+      content: "Compare Cube.dev alternatives by use case: keep Cube for embedded analytics, use dbt for governed metrics, or use Ossie and Dosi for portable agent queries."
   - - meta
     - property: og:type
       content: article
@@ -31,15 +31,15 @@ head:
       href: https://datus.ai/blog/cube-semantic-layer-alternatives/
 ---
 
-# Cube.dev Alternatives: Open Semantic Models for AI Agents
+# Cube.dev Alternatives: Stay for Speed or Choose Portability?
 
 ## TL;DR
 
 - **Stay on Cube** if your pain is latency, embedded multi-tenant analytics or serving one model to many APIs — Cube's pre-aggregations, Cube Store and SQL / REST / GraphQL / MCP surface are hard to beat. If the pain is only the Cube Cloud bill, Cube Core and Cube Store are Apache 2.0 and self-hostable: you may be replacing a hosting plan, not a semantic layer.
-- **dbt Semantic Layer (MetricFlow)** fits teams whose metrics already live next to dbt models; MetricFlow has been Apache 2.0 since October 2025 and dbt is one of four formats with a merged Apache Ossie converter.
+- **dbt Semantic Layer (MetricFlow)** fits teams whose metrics already live next to dbt models; MetricFlow has been Apache 2.0 since October 2025 and dbt has a reference converter in Apache Ossie.
 - **AtScale** fits Excel- and Power BI-heavy enterprises; **LookML** fits Looker shops; **Snowflake Semantic Views** or **Databricks Metric Views** fit single-platform estates; **Malloy** fits teams that want an MIT-licensed modeling language.
 - **Apache Ossie (OSI) + Dosi** fits teams that need one set of definitions to compile for several warehouses and to be read by agents over MCP — and it can run alongside Cube rather than replace it.
-- The question most comparisons skip: **can your definitions leave the tool you pick?** As of September 2026 there is no merged Cube-to-Ossie converter, so every move off Cube starts with re-expressing cube data models.
+- The question most comparisons skip: **can your definitions leave the tool you pick?** The Apache Ossie converter directory checked in October 2026 has no merged Cube converter, so plan to map and test Cube models before moving them.
 
 "Cube alternatives" is an ambiguous search. Half the results are about Cube the FP&A planning suite, and a few about a video game; this page is about **Cube (cube.dev)**, the open-source semantic layer and agentic analytics platform. If you run Cube today, or have it on a shortlist, the useful question is not "what else is there" but "which part of Cube am I trying to replace, and what happens to my metric definitions when I do". This guide answers that for seven realistic options, including the one most lists leave out: not leaving.
 
@@ -55,7 +55,7 @@ That split changes the conversation. A team that is unhappy with <a href="https:
 
 Four drivers come up repeatedly, and each points to a different alternative. Naming yours first saves you from evaluating tools that solve someone else's problem.
 
-**Definitions that can't travel.** Cube data models are Cube's format. Cube joined the Open Semantic Interchange launch initiative and sits in the working group, but the <a href="https://github.com/apache/ossie">Apache Ossie repository</a> lists reference converters for dbt, GoodData, Apache Polaris and Salesforce — none for Cube. For a team that wants the same revenue definition in a BI tool, a notebook, an agent and a second warehouse, that is the gap that matters, and it is covered in depth in [Apache Ossie (OSI) vs Cube](/blog/osi-vs-cube/).
+**Definitions that can't travel.** Cube data models are Cube's format. Cube joined the Open Semantic Interchange initiative, but the <a href="https://github.com/apache/ossie/tree/main/converters">Apache Ossie converter directory</a> checked in October 2026 contains paths for dbt, GoodData, Snowflake, Databricks, Omni and others, with no merged Cube converter. For a team that wants the same revenue definition in a BI tool, a notebook, an agent and a second warehouse, that is the gap that matters, and it is covered in depth in [Apache Ossie (OSI) vs Cube](/blog/osi-vs-cube/).
 
 **Metrics already live in dbt.** Many teams adopted Cube before dbt had a semantic layer of its own. When the transformation code and the metric code are maintained by the same people in the same repository, a second modeling layer starts to look like duplicated work.
 
@@ -85,7 +85,7 @@ Each option below uses the same five fields. The order follows fit for the most 
 
 **Best for:** analytics engineering teams that already run dbt and want one repository for models and metrics.
 
-**Where it wins:** Metrics are YAML in the dbt project, reviewed and versioned with the models they depend on. MetricFlow, the engine underneath, was <a href="https://www.getdbt.com/blog/open-source-metricflow-governed-metrics" rel="nofollow noopener">open-sourced under Apache 2.0 on October 14, 2025</a>, and dbt is one of the four formats with a merged Apache Ossie converter — the clearest portability story of any option here. Caching exists: result caching and declarative caching from saved queries, a detail several comparisons miss.
+**Where it wins:** Metrics are YAML in the dbt project, reviewed and versioned with the models they depend on. MetricFlow, the engine underneath, was <a href="https://www.getdbt.com/blog/open-source-metricflow-governed-metrics" rel="nofollow noopener">open-sourced under Apache 2.0 on October 14, 2025</a>, and dbt has a reference converter in Apache Ossie. Test the specific metrics you need before relying on a round trip. Caching exists: result caching and declarative caching from saved queries, a detail several comparisons miss.
 
 **Where it gets harder:** The hosted Semantic Layer APIs require a paid dbt plan — Starter at $100 per seat per month with 5,000 queried metrics per month as of September 2026 — and the <a href="https://docs.getdbt.com/docs/use-dbt-semantic-layer/sl-cache" rel="nofollow noopener">caching features are Enterprise-only</a>. There is no dedicated pre-aggregation store comparable to Cube Store, so latency depends on your warehouse. Embedded, multi-tenant analytics is not what it was built for.
 
@@ -147,7 +147,7 @@ Each option below uses the same five fields. The order follows fit for the most 
 
 **Where it wins:** Apache Ossie (incubating, formerly Open Semantic Interchange) is an Apache 2.0 specification for semantic models; it defines and moves semantics but executes nothing. <a href="https://dosi.datus.ai/">**Dosi**</a> is an execution engine for that format: it compiles Ossie YAML into native SQL for 16 warehouse dialects — DuckDB, Postgres, Snowflake, ClickHouse and StarRocks among them — and serves it over a CLI, REST with Apache Arrow, MCP and Python. It executes by SQL pushdown — the warehouse runs the compiled query — and installs as two local binaries or with `pip install dosi-engine`. Agents such as Claude Code, Codex or OpenCode get metric-level tools over MCP with structured error codes instead of generating raw SQL, including an attribution tool that explains why a metric changed between two periods. The [10-minute Apache Ossie + Dosi quick start](/blog/apache-ossie-dosi-quickstart/) walks through a first metric query from the CLI and from Claude Code.
 
-**Where it gets harder:** Dosi is the youngest option here (version 0.1.11 as of September 2026), and Apache Ossie's core spec is itself still pre-1.0 and changing. Dosi is source-available under the Elastic License 2.0, not open source. Because it pushes every query down to the warehouse, there is no pre-aggregation store comparable to Cube Store — for sub-second dashboards at high concurrency, Cube is the stronger tool. Some semantics the core spec can't yet express, such as time grains and window metrics, live in Datus extensions inside Ossie's `custom_extensions` field; the document stays Ossie-valid, but other Ossie consumers ignore those parts. Moving from Cube also means re-expressing cube data models as Ossie YAML, because no Cube converter exists yet.
+**Where it gets harder:** Dosi is a newer option, and Apache Ossie's core spec is still evolving. Dosi is source-available under the Elastic License 2.0, not open source. Because it pushes every query down to the warehouse, there is no pre-aggregation store comparable to Cube Store — for sub-second dashboards at high concurrency, Cube is the stronger tool. Some semantics the core spec can't yet express, such as time grains and window metrics, live in Datus extensions inside Ossie's `custom_extensions` field; the document stays Ossie-valid, but other Ossie consumers ignore those parts. Moving from Cube still requires mapping and validating its models against Ossie YAML; the checked Apache Ossie directory has no merged Cube converter.
 
 **Pricing:** Free to download and use in production under the Elastic License 2.0, which rules out offering Dosi as a hosted service (as of September 2026, per the <a href="https://dosi.datus.ai/install/">Dosi install guide</a>); Datus Studio is the commercial platform built on it.
 
@@ -190,13 +190,13 @@ If two paths apply, the tie-breaker is portability: pick the option whose defini
 
 ## 8. Moving off Cube
 
-Whatever you pick, plan for the definitions to be re-expressed rather than converted. With no Apache Ossie converter for cube data models, a migration is a translation project: list the measures and dimensions consumers actually use (usually far fewer than the model contains), translate those first, and leave the long tail until something asks for it.
+Whatever you pick, plan for the definitions to be re-expressed rather than converted. Without a merged Cube converter in the checked Apache Ossie directory, a migration is a translation project: list the measures and dimensions consumers actually use (usually far fewer than the model contains), translate those first, and leave the long tail until something asks for it.
 
 Run both systems in parallel and reconcile metric by metric — same filters, same time grain, same result — before switching any consumer. Move one consumer at a time. Agents and notebooks are often the easiest first movers because they have no saved dashboards to rebuild; embedded applications are usually last. What carries over cleanly is the warehouse itself and any dbt models Cube was reading; what does not is Cube-specific security context, pre-aggregation definitions and embedded front-end integrations. If you are moving towards Apache Ossie, the Datus agent can draft Ossie semantic models from your schema and SQL history, which shortens the first pass without removing the need to review every definition.
 
 ## 9. How this comparison was checked
 
-Facts in this article were checked on September 25, 2026 against each vendor's own pricing pages, product documentation and GitHub repositories, and against the Apache Ossie repository for converter status. Pricing and feature status change often in this market — confirm against current vendor documentation before you decide, particularly anything marked as preview.
+Product and pricing facts in this article were checked on September 25, 2026 against vendor documentation; Apache Ossie converter status was rechecked on October 19, 2026 against its repository. Pricing and feature status change often in this market — confirm against current vendor documentation before you decide, particularly anything marked as preview.
 
 ## Conclusion
 
@@ -214,7 +214,7 @@ It depends on the layer you want to replace. For code-first metrics next to dbt,
 
 ### Does Cube support Apache Ossie (OSI)?
 
-Not yet as a shipped feature. Cube joined the Open Semantic Interchange launch initiative, but as of September 2026 the Apache Ossie repository has reference converters for dbt, GoodData, Apache Polaris and Salesforce and none for Cube. Treat Cube's Ossie support as a roadmap item to track.
+Not as a verified native feature. Cube joined the Open Semantic Interchange initiative, but the [Apache Ossie converter directory](https://github.com/apache/ossie/tree/main/converters) checked in October 2026 has no merged Cube converter. Ask Cube for a current import/export demonstration before assuming model portability.
 
 ### Can I use Cube and an alternative together?
 
@@ -226,7 +226,7 @@ The one that serves agents the same governed definitions your dashboards use, ov
 
 ### How long does it take to migrate off Cube?
 
-It depends on how many measures consumers actually use, not on the size of the model. Because no converter exists, every definition is translated by hand and reconciled against Cube's results, so teams that start with the handful of metrics behind their key dashboards and agents move far faster than teams that try to port the whole model at once.
+It depends on how many measures consumers actually use, not on the size of the model. Without a merged Cube converter in the checked Apache Ossie directory, plan to map definitions and reconcile them against Cube's results, so teams that start with the handful of metrics behind their key dashboards and agents move far faster than teams that try to port the whole model at once.
 
 ## Related articles
 

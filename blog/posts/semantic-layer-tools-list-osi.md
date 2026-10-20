@@ -1,19 +1,19 @@
 ---
-title: "Semantic Layer Tools in 2026: Complete List + OSI (Apache Ossie) Status"
-description: "Every semantic layer tool in 2026 — dbt MetricFlow, Cube, AtScale, Snowflake, LookML and more — with each one's current OSI (Apache Ossie) support status."
+title: "Semantic Layer Tools Compared: Stack Fit & Apache Ossie"
+description: "Compare 16 semantic layer tools for dbt metrics, embedded BI, warehouse-native views and portable AI agents. See Dosi's Apache Ossie path and each tool's fit."
 author: "Evan Paul"
 date: 2026-07-21
-lastmod: 2026-09-13
+lastmod: 2026-10-19
 head:
   - - meta
     - name: keywords
       content: "Apache Ossie, Apache Ossie incubating, Ossie semantic model specification, semantic layer tools, semantic layer tools list, OSI support, Open Semantic Interchange, dbt Semantic Layer, Cube semantic layer, AtScale, Snowflake Semantic Views, semantic layer comparison 2026"
   - - meta
     - property: og:title
-      content: "Semantic Layer Tools in 2026: Complete List + OSI (Apache Ossie) Status"
+      content: "Semantic Layer Tools Compared: Stack Fit & Apache Ossie"
   - - meta
     - property: og:description
-      content: "Every semantic layer tool in 2026 — dbt MetricFlow, Cube, AtScale, Snowflake, LookML and more — with each one's current OSI (Apache Ossie) support status."
+      content: "Compare 16 semantic layer tools for dbt metrics, embedded BI, warehouse-native views and portable AI agents. See Dosi's Apache Ossie path and each tool's fit."
   - - meta
     - property: og:type
       content: article
@@ -31,117 +31,74 @@ head:
       href: https://datus.ai/blog/semantic-layer-tools-list-osi/
 ---
 
-# Semantic Layer Tools in 2026: Complete List + OSI (Apache Ossie) Status
+# Semantic Layer Tools Compared: Stack Fit & Apache Ossie
 
 > **Apache Ossie (aka OSI).** This page covers **Open Semantic Interchange (OSI)**, renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This article uses **Apache Ossie / OSI** interchangeably.
 
-A vendor-neutral directory of every [semantic layer](/blog/what-is-semantic-layer/) tool available in mid-2026 — 15 products across three architecture categories — with the most up-to-date OSI (Apache Ossie) compatibility status for each.
+A comparison of 16 [semantic layer](/blog/what-is-semantic-layer/) tools across three architecture categories. Start with the way your team defines metrics and serves them; then check whether the definitions can move through Apache Ossie and reach AI agents. The interoperability notes were reviewed in October 2026.
 
 ## TL;DR
 
-- **15 semantic layer tools** are available in 2026, split into three architecture categories: standalone (dbt Semantic Layer, Cube, AtScale), platform-native (Snowflake Semantic Views, Databricks Metric Views, Looker LookML, Power BI), and API/BI-native (GoodData, ThoughtSpot, Sigma, Lightdash, Preset, Omni, Domo, Dremio).
-- **No product ships native OSI support yet.** Open Semantic Interchange entered the Apache Incubator as **Apache Ossie** in July 2026. The only working OSI path today is through reference converters in the `apache/ossie` repository.
-- **Four converters are merged**: dbt (MetricFlow), GoodData, Salesforce, and Apache Polaris. A Spark converter is in review.
-- **50+ organizations** participate in the OSI working group, including Snowflake, Databricks, dbt Labs, Cube, AtScale, ThoughtSpot, and Atlan. Participation signals intent; it does not equal shipped support.
-- **OSI compatibility will be a differentiating factor by late 2026.** Tools with merged converters and active working-group participation are the safest bets for teams that want portable, multi-tool semantic definitions.
+- **dbt MetricFlow** fits Git-governed metrics in dbt; **Cube** fits embedded analytics and pre-aggregated dashboards; **warehouse-native views** fit teams committed to one platform.
+- **Dosi** runs Apache Ossie models directly across 16 SQL dialects and exposes governed metrics to agents over MCP. Dosi is source-available under Elastic License 2.0, not open source.
+- **A converter is not the same as native support.** Apache Ossie has reference converters for several vendor formats, but the direction and fidelity vary. Check the specific mapping before migrating a model.
+- If you need portability, separate the **model format** from the **runtime** and test one representative metric end to end.
 
 ## 1. The three architecture categories
 
 Semantic layer tools in 2026 fall into three architectural buckets. The category you pick shapes portability, performance, and lock-in — and it also shapes how quickly a vendor can adopt [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/). Before scanning the full grid in the next section, it helps to know which trade-off each bucket is making.
 
-**Standalone / pure-play semantic layers** treat the semantic layer as the product. They sit between your warehouse and consumption tools — BI, notebooks, APIs, and AI agents — without bundling a full BI suite or requiring a single cloud. **dbt Semantic Layer (MetricFlow)** is code-first: metrics live as YAML versioned next to transformations, with JDBC/GraphQL and an MCP server for agents, while MetricFlow itself is open source and the Semantic Layer API still requires dbt Cloud (see the [dbt Semantic Layer / MetricFlow guide](/blog/dbt-semantic-layer-metricflow/)). **Cube** is API-first and headless, with pre-aggregation caching across 25+ connectors and a broad surface (SQL, REST, GraphQL, MCP, plus a dedicated AI API) — covered in [Cube for agentic analytics](/blog/cube-agentic-analytics/). **AtScale** is virtual OLAP with intelligent query pushdown and MDX/DAX/SQL/REST access for teams that still live in Excel, Power BI, or Tableau. These three are the clearest "buy a semantic layer" options when you want semantics to travel with the stack rather than live inside one platform.
+**Standalone / pure-play semantic layers** treat the semantic layer as the product. They sit between your warehouse and consumption tools — BI, notebooks, APIs, and AI agents — without bundling a full BI suite or requiring a single cloud. **dbt Semantic Layer (MetricFlow)** is code-first: metrics live as YAML versioned next to transformations, with JDBC/GraphQL and an MCP server for agents, while MetricFlow itself is open source and the Semantic Layer API still requires dbt Cloud (see the [dbt Semantic Layer / MetricFlow guide](/blog/dbt-semantic-layer-metricflow/)). **Cube** is API-first and headless, with pre-aggregation caching and a broad SQL, REST, GraphQL, and MCP surface — covered in [Cube for agentic analytics](/blog/cube-agentic-analytics/). **AtScale** emphasizes OLAP access for Excel, Power BI, and Tableau. **Dosi** compiles vendor-neutral Apache Ossie models into warehouse SQL and serves them over CLI, REST, Python, and MCP; it has no Cube-style pre-aggregation store. The choice depends on whether your priority is dbt workflow, embedded performance, legacy BI, or portable definitions for agents.
 
 **Platform-native semantic layers** embed definitions inside a warehouse or BI control plane. They are the lowest-friction path when your estate already lives on one platform — and the highest-friction path if you add a second. **Snowflake Semantic Views** and **Databricks Metric Views** ship with Cortex Analyst and Genie for natural-language querying, at the cost of definitions that do not leave the host. **Looker (LookML)** still offers the tightest BI-to-model loop in the Google ecosystem, with Gemini-assisted modeling and broad SQL dialect coverage historically coupled to Looker. **Microsoft Power BI semantic models** dominate Microsoft shops but remain DAX-centric and Fabric-aligned. If zero extra infrastructure is the requirement, start here; if portable, multi-tool definitions are the requirement, treat platform lock-in as an explicit trade-off rather than a surprise.
 
 **API / BI-native semantic layers** embed modeling inside analytics products, so semantics are a feature of the BI or query platform rather than a standalone layer. **GoodData** stands out for an OSI converter already merged and an AI-native repositioning around FlexQuery — see [GoodData's shift from BI to AI-native](/blog/what-is-gooddata/). **ThoughtSpot** markets search-driven analytics with a self-described "OSI-compatible" posture. Spreadsheet-style **Sigma**, dbt-native open-source **Lightdash**, Superset-based **Preset**, hybrid-modeling **Omni**, end-to-end **Domo**, and lakehouse query engine **Dremio** (with an open-source Community Edition and active Apache Ossie advocacy) all sit in the OSI working-group conversation to varying degrees. Choose this bucket when the BI product is already the system of record for how the business sees metrics — and verify whether those definitions can ever leave that product.
 
-## 2. The full product list: features, pricing, and OSI status
+## 2. Semantic layer tools at a glance
 
-The table below is the single reference grid for this article: every tool from the categories above, plus entry pricing and OSI support status as of July 2026. Use it when you need a side-by-side scan; use the category prose above when you need to understand architectural fit. Treat every pricing figure as an entry signal to verify with the vendor, not a quote.
+The 16 options below solve different problems. The Apache Ossie column describes a verifiable path, not a claim that every feature round-trips. Converter status is based on the [Apache Ossie converter directory](https://github.com/apache/ossie/tree/main/converters), checked October 2026; pricing varies by plan and should be checked directly with each vendor.
 
-| Tool | Category | Open Source | Entry Pricing (July 2026) | AI Agent Access | OSI Status |
-|---|---|---|---|---|---|
-| **dbt Semantic Layer** | Standalone | MetricFlow: yes; SL: dbt Cloud required | $100/user/mo (Starter); 5K queried metrics included | JDBC, GraphQL, MCP | 🟢 **Converter merged** |
-| **Cube** | Standalone | Yes (Core, Apache 2.0) | $40/dev/mo (Cloud Starter); self-hosted free | SQL, REST, GraphQL, MCP, AI API | 🟡 Working group member |
-| **AtScale** | Standalone | No (SML language open-sourced) | $10–28/DSO/mo; floors $2,500–7,000/mo | MDX, DAX, SQL, REST, MCP | 🟡 Working group member |
-| **Snowflake Semantic Views** | Platform-native | No | Usage-based (Snowflake compute) | Cortex Analyst, SQL | 🟡 Working group (leader) |
-| **Databricks Metric Views** | Platform-native | No | Included in Databricks compute | Genie, SQL | 🟡 Working group member |
-| **Looker (LookML)** | Platform-native | No | ~$5,000/mo starting | Looker API, Modeler | 🔴 Not in public working group |
-| **Power BI semantic model** | Platform-native | No | Microsoft 365 / Fabric pricing | Power BI API | 🔴 Not participating |
-| **GoodData** | API/BI-native | Partial | Enterprise custom | REST, GoodData Cloud | 🟢 **Converter merged** |
-| **ThoughtSpot** | API/BI-native | No | Enterprise custom | ThoughtSpot API | 🟡 Working group; self-described "OSI-compatible" |
-| **Sigma** | API/BI-native | No | Enterprise custom | Sigma API | 🟡 Working group member |
-| **Lightdash** | API/BI-native | Yes (open-source) | Free (self-hosted); Cloud pricing TBD | SQL, REST | 🟡 Working group member |
-| **Preset (Superset)** | API/BI-native | Yes (Apache 2.0) | Free (self-hosted); Cloud from $500/mo | SQL, REST | 🟡 Working group member |
-| **Omni** | API/BI-native | No | Enterprise custom | Omni API | 🟡 Working group member |
-| **Domo** | API/BI-native | No | Enterprise custom | Domo API | 🟡 Working group member |
-| **Dremio** | API/BI-native | Yes (Community Edition, Apache 2.0) | Cloud consumption-based; Community free | AI semantic search, REST | 🟡 Working group; active Apache Ossie promoter |
+| Tool | Best fit | How agents access it | Apache Ossie path |
+|---|---|---|---|
+| **dbt Semantic Layer / MetricFlow** | Metrics governed alongside dbt transformations | dbt Semantic Layer API and MCP | Reference dbt converter |
+| **Cube** | Embedded analytics, APIs, and pre-aggregated dashboards | SQL, REST, GraphQL, MCP | No merged Cube converter in the checked directory; verify current project status |
+| **AtScale** | OLAP-style access for existing BI tools | SQL, MDX, DAX, REST | Ask for an import/export demonstration |
+| **Dosi** | One vendor-neutral model for multiple SQL dialects and agents | CLI, REST, Python, MCP | Executes Apache Ossie models directly; Elastic License 2.0 |
+| **Snowflake Semantic Views** | Snowflake-first analytics | SQL, Cortex Analyst | Reference Snowflake converter |
+| **Databricks Metric Views** | Unity Catalog-first analytics | SQL, Genie | Reference Databricks converter |
+| **Looker (LookML)** | Governed modeling for Looker dashboards | Looker API | Verify conversion for your LookML constructs |
+| **Power BI semantic model** | Microsoft BI and DAX workflows | Power BI APIs | Verify current Microsoft converter and mapping support |
+| **GoodData** | BI-native logical data models | GoodData APIs | Reference GoodData converter |
+| **ThoughtSpot** | Search-driven analytics | ThoughtSpot APIs | Verify vendor import/export support |
+| **Sigma** | Spreadsheet-style cloud analytics | Sigma APIs | Reference Sigma converter |
+| **Lightdash** | dbt-based open-source BI | Lightdash APIs | Verify export/import for your model |
+| **Preset (Superset)** | Self-hosted BI and visualization | SQL and platform APIs | Verify export/import for your model |
+| **Omni** | BI-native modeling across sources | Omni APIs | Reference Omni converter |
+| **Domo** | BI plus data integration | Domo APIs | Verify export/import for your model |
+| **Dremio** | Lakehouse queries and analytics | SQL and platform APIs | Verify export/import for your model |
 
-**OSI Status legend**:
-- 🟢 **Converter merged**: Reference OSI converter code merged in [github.com/apache/ossie](https://github.com/apache/ossie) — the tool has a working (if not product-grade) path to OSI.
-- 🟡 **Working group member**: The vendor participates in the OSI initiative but has not shipped a converter or native support. Intent is signaled; delivery is unproven.
-- 🔴 **Not participating**: The vendor is not listed in OSI public working-group rosters and has not announced plans. Semantic definitions authored in this tool may remain trapped in its ecosystem.
+**The comparison conclusion:** stay in dbt if Git-governed metrics are the central workflow; choose Cube when embedded latency and caching dominate; choose a warehouse-native view if your data and users stay on that platform. If an agent must query governed metrics across several SQL dialects without adopting one BI vendor's model, Apache Ossie plus Dosi is the direct model-and-runtime path. Dosi is source-available, not open source; Cube Core and MetricFlow have different licenses and deployment choices. See the [Cube.dev alternatives guide](/blog/cube-semantic-layer-alternatives/) and [MetricFlow guide](/blog/dbt-semantic-layer-metricflow/) for the detailed trade-offs.
 
-Reading the grid as a buyer: only **dbt Semantic Layer** and **GoodData** show a merged converter among the fifteen products listed here (Salesforce and Apache Polaris also have converters but are not semantic-layer products in this directory). Most of the market sits in the yellow band — credible intent without a shippable interchange path. Looker and Power BI are the clearest red cells for teams that care about portable definitions. Pricing columns are entry signals, not TCO; enterprise quotes for ThoughtSpot, Sigma, Omni, Domo, and GoodData still dominate mid-market and above. For AI agent access, Cube's surface is the broadest on paper; dbt and AtScale are the other standalone options with explicit MCP or multi-protocol hooks.
+## 3. What Apache Ossie support means
 
-## 3. What "OSI support" actually means — and doesn't mean — in 2026
+**Native model runtime:** Dosi reads Apache Ossie YAML and compiles it into warehouse SQL. The [Dosi documentation](https://dosi.datus.ai/) describes 16 dialects and a native MCP server. This is different from translating an existing vendor model into Ossie.
 
-OSI (Open Semantic Interchange, now **Apache Ossie**) is easy to misunderstand. Here is a precise breakdown of what exists and what does not. For the standard itself, see the dedicated [OSI explainer](/blog/open-semantic-interchange-osi/) and how it differs from an execution engine in [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/).
+**Reference converter:** The [Apache Ossie repository](https://github.com/apache/ossie/tree/main/converters) contains mappings for dbt, GoodData, Snowflake, Databricks, Omni, Sigma and other formats. A repository directory proves a conversion path exists; it does not prove that every measure, security rule, time grain or extension survives a round trip. Check the converter's direction, tests and issues against your own model before calling it portable.
 
-### Level 1: Reference converters (real, working, on GitHub)
+**Vendor participation:** Joining an interoperability initiative is useful context, but it does not by itself create an import or export workflow. Ask for a demonstration with one of your real metrics, including a join, a filter and a time dimension.
 
-The Apache Ossie repository at [github.com/apache/ossie](https://github.com/apache/ossie) contains working reference converters — command-line tools that translate between vendor-specific semantic formats and the OSI specification:
+## 4. How to shortlist a semantic layer
 
-| Converter | Direction | Status |
-|---|---|---|
-| dbt (MetricFlow) → OSI | dbt YAML to OSI format | ✅ Merged |
-| GoodData → OSI | GoodData semantic model to OSI format | ✅ Merged |
-| Salesforce → OSI | Salesforce semantic definitions to OSI format | ✅ Merged |
-| Apache Polaris → OSI | Polaris Iceberg catalog to OSI format | ✅ Merged |
-| Spark → OSI | Spark SQL semantics to OSI format | 🔄 In review |
+1. **Name the primary consumer.** A high-concurrency embedded dashboard, a dbt project, an internal BI estate and an AI agent have different interface and latency needs.
+2. **Pick one representative metric.** Include the join path, time grain, filter and access boundary that usually cause discrepancies.
+3. **Test portability.** If the model starts in a vendor format, run its Apache Ossie converter and compare results before and after. Record anything stored only in vendor-specific extensions.
+4. **Test the operational path.** Check the agent or BI interface, deployment location, query cost and who reviews metric changes. A portable file alone does not solve execution or governance.
 
-These converters are reference implementations — they demonstrate the mapping and validate the specification. They are not product-grade import/export features in any vendor's UI. Using them today means running a CLI command, not clicking a button.
-
-### Level 2: Working group participation (intent, not delivery)
-
-More than 50 organizations have joined the OSI working group. Cloud platforms in the room include Snowflake (initiative lead), Databricks, and Google BigQuery. Standalone semantic-layer vendors include dbt Labs, Cube, and AtScale. On the BI and analytics side, participants include Qlik, Preset (Superset), Sigma, ThoughtSpot, Omni, Domo, Lightdash, and Hex. Governance and infrastructure vendors — Alation, Atlan, Collibra, Select Star, DataHub (Acryl), Informatica, Starburst, Denodo, and Dremio — sit alongside enterprises such as BlackRock, Blue Yonder, Salesforce, Instacart, Coalesce, and Collate.
-
-Participation is a credible signal — especially when direct competitors sit in the same room — but it is not a guarantee. The standard's long-term viability depends on whether the largest platforms ship native OSI import/export, not just attend meetings.
-
-### Level 3: Native product support (not yet shipped by anyone)
-
-As of July 2026, **no semantic layer product ships a user-facing OSI import or export feature.** The first wave of native support — a BI tool offering "Import OSI semantic model" as a first-class feature — is expected within 2026, based on the velocity of the working group and the dbt/GoodData converter merges. The timing depends on individual vendor roadmaps, not the specification itself.
-
-## 4. How to think about OSI when evaluating a semantic layer today
-
-If you are choosing a semantic layer in mid-2026, OSI compatibility should be a factor — but it should not be the deciding factor. Fit to stack, team skills, and consumption patterns still come first. OSI readiness is how you avoid painting yourself into a format that cannot travel later.
-
-### Four questions to ask a semantic layer vendor about OSI
-
-1. **"Do you participate in the OSI working group?"** If yes, they are at the table. If no, ask why — especially if they compete with Snowflake or dbt.
-2. **"Is there a reference converter for your format in the Apache Ossie repository?"** If yes, the mapping is technically understood. If no, the work has not started.
-3. **"What is your timeline for native OSI import/export?"** Most vendors will not give a hard date in mid-2026. The ones who can give you a quarter are further along than the ones who cannot.
-4. **"If I build my semantic model in your tool today, will I be able to export it to OSI without re-authoring?"** The honest answer for most tools in July 2026 is "not yet." The useful answer from future-facing vendors should include a concrete path.
-
-### The OSI readiness scorecard
-
-Once those answers are on the table, map your primary requirement to a short list. The scorecard below is a starting shortlist, not a ranking of product quality overall.
-
-| If your primary requirement is… | Your best bet today | OSI path |
-|---|---|---|
-| **Code-first, Git versioned metrics in dbt** | dbt Semantic Layer (MetricFlow) | Converter merged; strongest OSI alignment |
-| **API-first, embedded analytics, multi-tool consumption** | Cube | Working group; broadest API surface |
-| **Enterprise OLAP, legacy BI tools (Excel, Power BI, Tableau)** | AtScale | Working group; MDX/DAX compatibility |
-| **Single platform, zero additional infrastructure** | Snowflake Semantic Views or Databricks Metric Views | Platform lock-in is the trade-off; both in working group |
-| **BI-native semantics tightly integrated with your BI tool** | LookML (Looker) or Power BI semantic model | Neither in working group; highest lock-in risk |
-| **Open-source, self-hosted, dbt-integrated BI** | Lightdash or Preset (Superset) | Both in working group; community-driven pace |
-| **End-to-end platform (BI + data integration + semantics)** | Domo or Omni | Both in working group |
-
-The pattern in the scorecard is consistent with the main grid: dbt is the only shortlist entry with a merged converter today; Cube and AtScale are the portable standalone bets with working-group cover; platform-native and BI-native picks trade speed of adoption for interchange risk, with Looker and Power BI carrying the highest lock-in signal on OSI participation.
+For a cross-warehouse agent workflow, [Dosi's Apache Ossie runtime](/blog/introducing-dosi/) offers a different choice from a semantic layer coupled to a BI or warehouse stack: the definitions stay in the open standard, while the runtime generates SQL for the selected warehouse. For dashboard traffic that needs pre-aggregation, a dedicated caching layer such as Cube can still be appropriate. These tools can coexist when the team has both requirements.
 
 ## 5. Beyond the list: why OSI matters for AI agents specifically
 
-This article is a tools list. But the reason OSI compatibility will matter by late 2026 is not only BI tool interoperability — it is AI agent reliability.
+This article is a tools list. Apache Ossie compatibility matters for more than BI interoperability: agents need governed definitions they can use without guessing at raw schemas.
 
 AI agents — text-to-SQL engines, chat BI interfaces, data copilots, and [data engineering agents](/blog/what-is-data-engineering-agent-2026/) — are the most demanding consumers of semantic metadata. They need machine-readable metric definitions, verified join paths, and governed business terms. Without them, agents generate confident wrong answers by guessing at business meaning from raw column names.
 
@@ -149,33 +106,33 @@ OSI provides the **format** for governed, portable semantic definitions that age
 
 That is the distinction between the semantic layer tools in this list — which define metrics, dimensions, and joins — and a data engineering agent, which generates, validates, and evolves those definitions over time. OSI is the interchange format that makes the definitions portable. Agent-driven [context evolution](/blog/contextual-data-engineering/) is the mechanism that keeps them current.
 
-For teams building AI-native data stacks, the durable architecture is: author semantics in one of the tools above → interchange through OSI → keep them current through agent-driven feedback. The list in this article is the "author" layer. OSI is the "interchange" layer. The evolution cycle is the missing piece that most organizations under-invest in — and the one that determines whether a semantic layer becomes load-bearing infrastructure or a snapshot that goes stale between modeling sprints.
+For teams building AI-native data stacks, the durable architecture is: author semantics → use an Apache Ossie model or a tested converter where one exists → execute against the target warehouse → feed reviewed corrections back into the model. The standard handles the shared format; a runtime and a review process do the rest. This distinction keeps portability promises tied to a working path rather than to a vendor logo in a working group.
 
 ## Conclusion
 
-Fifteen semantic layer tools are available in 2026. Four have working OSI converters in the broader Apache Ossie ecosystem. None of the products in this directory ship native OSI import/export yet. That will change — likely before the end of the year — but the advice for teams evaluating semantic layers today stays practical: pick the tool that fits your current stack and team, prioritize working-group participation and merged converters when portability matters, and do not wait for the standard to start governing metrics. The teams that "wait for the standard" will have nothing to standardize. The teams that build governed semantic models today — in MetricFlow, Cube, or the platform that already runs their warehouse — will have something valuable to export when native OSI support arrives.
+The best semantic layer depends on where metrics are authored and consumed. dbt MetricFlow is a natural fit for dbt-managed metrics; Cube fits embedded analytics and caching; platform-native views fit a single warehouse. Apache Ossie offers a vendor-neutral definition format, and Dosi executes that format for multiple warehouses and agent interfaces. For portability, verify an actual model conversion or run an Ossie model directly rather than relying on a vendor's working-group membership.
 
 ## Frequently asked questions
 
-### How many semantic layer tools are there in 2026?
+### How many semantic layer tools are compared here?
 
-At least 15, split across three categories: standalone pure-play semantic layers (dbt Semantic Layer, Cube, AtScale), platform-native layers embedded in warehouses or BI tools (Snowflake Semantic Views, Databricks Metric Views, Looker LookML, Power BI), and API/BI-native tools where semantics are a product feature (GoodData, ThoughtSpot, Sigma, Lightdash, Preset, Omni, Domo, Dremio).
+Sixteen: four standalone runtimes, four platform-native layers and eight BI/API-native options. This is a useful shortlist, not an exhaustive count of the market.
 
-### Which semantic layer tools support OSI (Apache Ossie)?
+### Which tools work with Apache Ossie?
 
-As of July 2026, no product ships native OSI support. Four products have reference converters merged in the [Apache Ossie](/blog/open-semantic-interchange-osi/) repository: dbt (MetricFlow), GoodData, Salesforce, and Apache Polaris. Over 50 organizations participate in the OSI working group, signaling intent but not shipped features. The first native OSI import/export in a BI tool is expected by the end of 2026.
+Dosi executes Ossie models natively. The [Apache Ossie repository](https://github.com/apache/ossie/tree/main/converters) also has reference converters for formats including dbt, GoodData, Snowflake, Databricks, Omni and Sigma. Conversion direction and coverage vary, so validate your own model before migrating.
 
-### What is the difference between a reference converter and native OSI support?
+### Is a converter the same as native Apache Ossie support?
 
-A reference converter (merged in github.com/apache/ossie) is a CLI tool that demonstrates the mapping between a vendor's format and the OSI specification. It proves the mapping is technically understood. Native OSI support means a vendor ships a user-facing feature — e.g., "Export as OSI" in a UI or "Import OSI model" from an API. No vendor ships native OSI support as of July 2026.
+No. A converter translates between a vendor format and Ossie; it can leave vendor-specific behavior in extensions or omit unsupported constructs. A native runtime reads Ossie definitions directly. Neither guarantees that every BI dashboard, security setting or cached query moves with the model.
 
-### Which semantic layer tool is best for AI agents?
+### Which semantic layer fits AI agents?
 
-Cube offers the broadest API surface for AI agent consumption (SQL, REST, GraphQL, MCP, and a dedicated AI API endpoint). dbt Semantic Layer serves JDBC and GraphQL APIs with an MCP server for AI agents. AtScale provides MCP access with GenAI-ready context. For AI agents that need to query governed metrics across platforms, Cube's API breadth is the strongest match today; for teams already on dbt, MetricFlow's JDBC/GraphQL plus OSI alignment is the natural choice.
+Use the governed metric definitions already trusted by your team. A dbt-first team can use dbt's agent interface; an embedded-analytics team may already use Cube's MCP or APIs. If the same definitions must travel across warehouse dialects, Apache Ossie with Dosi exposes metrics to agents over MCP without requiring an agent to guess SQL from raw schemas.
 
-### Is an open-source semantic layer better for avoiding vendor lock-in?
+### Does open-source licensing prevent lock-in?
 
-Yes, with nuance. An open-source core (Cube Core, Lightdash, Preset, Dremio Community Edition) means you control deployment and are not forced into a specific cloud or pricing meter. However, open-source tools that do not participate in OSI still produce definitions in their proprietary format — which is lock-in of a different kind. The strongest anti-lock-in position is: open-source core + OSI working-group participation (Cube, Lightdash, Preset) or open format + OSI converter merged (dbt MetricFlow, which is open-source at the MetricFlow layer but requires dbt Cloud for the Semantic Layer API).
+It helps with deployment control but does not automatically make definitions portable. Check both the software license and the model format. MetricFlow and Cube Core are open-source components; Dosi uses the Elastic License 2.0 but reads the open Apache Ossie format.
 
 ## Apache Ossie / OSI: official resources
 
@@ -188,7 +145,7 @@ Yes, with nuance. An open-source core (Cube Core, Lightdash, Preset, Dremio Comm
 ## Related articles
 
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the definition, and why static models break under AI agents.
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard behind the OSI status column, and who is behind it.
+- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard behind the interoperability paths in this comparison.
 - [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the interchange standard vs the execution engine, and why you need both.
-- [dbt Semantic Layer / MetricFlow](/blog/dbt-semantic-layer-metricflow/) — the only tool in this list with a merged converter, in depth.
+- [dbt Semantic Layer / MetricFlow](/blog/dbt-semantic-layer-metricflow/) — dbt-centered metrics and their trade-offs, in depth.
 - [What Is a Data Engineering Agent?](/blog/what-is-data-engineering-agent-2026/) — the layer that keeps portable semantics from going stale.
