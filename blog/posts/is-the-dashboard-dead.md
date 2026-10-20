@@ -1,19 +1,19 @@
 ---
-title: "Is the Dashboard Dead?"
-description: "Is the dashboard dead? Agents can build HTML views from a question, but visual reporting still matters. See how the semantic layer keeps metrics consistent."
+title: "AI Dashboards: Is the Dashboard Dead?"
+description: "What is an AI dashboard? See how agents turn a question into a visual report, where semantic metrics keep it consistent, and when fixed dashboards still win."
 author: "Evan Paul"
 date: 2026-10-19
-lastmod: 2026-10-19
+lastmod: 2026-10-20
 head:
   - - meta
     - name: keywords
-      content: "is the dashboard dead, dashboards are dead, AI-generated dashboards, agent-generated dashboards, semantic layer, dashboard automation"
+      content: "AI dashboard, AI dashboards, AI generated dashboard, agent-generated dashboard, is the dashboard dead, semantic layer"
   - - meta
     - property: og:title
-      content: "Is the Dashboard Dead?"
+      content: "AI Dashboards: Is the Dashboard Dead?"
   - - meta
     - property: og:description
-      content: "Is the dashboard dead? Agents can build HTML views from a question, but visual reporting still matters. See how the semantic layer keeps metrics consistent."
+      content: "What is an AI dashboard? See how agents turn a question into a visual report, where semantic metrics keep it consistent, and when fixed dashboards still win."
   - - meta
     - property: og:type
       content: article
@@ -31,17 +31,23 @@ head:
       href: https://datus.ai/blog/is-the-dashboard-dead/
 ---
 
-# Is the Dashboard Dead?
+# AI Dashboards: Is the Dashboard Dead?
 
 ## TL;DR
 
-- **No.** The dashboard still helps people see and share what matters. The part becoming optional is manually dragging every chart into place for every new question.
-- An agent can assemble an HTML view from a question. A semantic layer keeps its metrics and filters tied to reviewed business definitions.
+- **An AI dashboard uses AI to help create or explore a visual answer.** An agent-generated dashboard can assemble an HTML view from a question; a semantic layer keeps its metrics tied to reviewed definitions.
+- Dashboards are still useful. What can change is the manual work of building a new layout for every question.
 - Keep persistent dashboards for recurring monitoring and approved reporting. Generate a view when the question changes faster than a fixed layout can.
 
 “Dashboards are dead” is a useful provocation. It is a poor description of what people are actually giving up. A manager who sees revenue fall still wants a trend, a regional breakdown, and a table of the orders behind the change. What they may no longer want is a ticket to the BI team, a new blank canvas, and another long-lived dashboard built for a question that will be different next week.
 
 The better question is **who builds the visual answer, and what gives its numbers meaning?** Today an agent can generate a page with cards, charts, tables, and filters. That page can be a dashboard even if no one opened a drag-and-drop editor. But if the agent invents the definition of revenue on the fly, a faster page is simply a faster way to publish an inconsistent number. The shape of the interface can change quickly; the underlying metric should change through a deliberate review.
+
+## What is an AI dashboard?
+
+**An AI dashboard is a visual report that uses AI to help people build charts, explore data, or ask follow-up questions.** Some products add AI assistance to a dashboard editor. An agent-generated dashboard goes further: it turns a question into a page of metrics, charts, tables, and filters. Either way, the numbers still need clear definitions and access controls.
+
+Those two ways of building a dashboard answer different needs. AI assistance can make an established reporting workflow quicker without changing its publishing model. An agent can instead assemble a temporary view for a question the team has not anticipated. A useful test is to ask what the AI actually does: suggest a chart, answer a follow-up, write a query, generate the whole page, or maintain it after publication? “AI dashboard” alone does not tell you which of these capabilities you get.
 
 ## What the old workflow made expensive
 
@@ -55,19 +61,19 @@ There is nothing inherently wrong with a visual editor. It gives people direct c
 
 That is the first distinction hidden by the slogan. The **dashboard as a visual form** is still useful. The **dashboard as the unit of manual authoring** is becoming less necessary. Treating those as the same thing turns a practical workflow change into an argument about whether people still like charts. They do. The real issue is whether every useful chart needs to begin as a hand-built, permanent artifact.
 
-## What an agent changes
+## How an agent-generated AI dashboard gets built
 
 Imagine asking, “Show completed order revenue for twelve weeks, then split the decline by region and product line.” An agent can plan the relevant queries, render a trend and breakdown, and place the results on a browser page. A follow-up question can change the page: add a comparison period, replace a bar chart with a table, or make region a filter. The reader still gets a dashboard-like visual answer. The layout is now assembled in response to a question rather than chosen from an empty canvas in advance.
 
 The agent should not get to reinvent the metric every time it redraws the page. If “completed order revenue” already has a reviewed definition, the generated page should request that definition and disclose its filters and time window. This is the role of a [semantic layer](/blog/what-is-semantic-layer/): it provides reusable business meaning beneath whichever interface displays the result. The agent may choose the view; the semantic model constrains the calculation. If a suitable governed metric does not exist, the query becomes an analytical proposal that needs review, not a silently approved new definition.
 
-![Agent-built dashboard architecture: the question reaches an agent, which uses governed semantic metrics to query data and compose an HTML view; the same metric can serve a persistent report.](/images/is-the-dashboard-dead/agent-built-architecture.svg)
+![After architecture: an AI agent interprets the question, draws on reviewed semantic metrics, runs a query through a configured runtime, and generates a view that can be reviewed for recurring use.](/images/is-the-dashboard-dead/agent-built-architecture.svg)
 
-*The semantic model is the durable part. The agent can create a one-time HTML view or help produce a recurring page without duplicating the metric logic.*
+*The AI agent generates the layout; the semantic model supplies reviewed definitions when available. A generated view becomes a recurring dashboard only after a team reviews and maintains it.*
 
 The diagram does not imply that every generated page is safe to publish. The data service still has to enforce access rules. The browser still needs a place to send live filter queries. The page still needs accessible labels, honest scales, and a way for a reader to check the metric behind a number. Those are product and operating choices, not properties of the word “agent.” Making the canvas fast moves attention to these contracts; it does not remove them.
 
-This is also why [composable analytics](/blog/composable-analytics-agent-built-dashboards/) is a better name for the architectural shift than “the end of dashboards.” Reusable definitions, query interfaces, and presentation components can be assembled for different tasks. A daily report, an application view, and a generated dashboard may all show the same metric. The valuable ability is to change one view without losing agreement with the others.
+This is also why [composable analytics](/blog/composable-analytics-agent-built-dashboards/) is a better name for the architectural shift than “the end of dashboards.” Reusable definitions, query interfaces, and presentation components can be assembled for different tasks. A daily report, an application view, and a generated AI dashboard may all show the same metric. The valuable ability is to change one view without losing agreement with the others.
 
 ## Where persistent dashboards still win
 
@@ -87,7 +93,7 @@ Another <a href="https://www.reddit.com/r/BusinessIntelligence/comments/1ucsi9k/
 
 These posts are viewpoints, not evidence that one architecture has already won. They agree on a narrower, useful principle: make interaction more flexible while keeping meaning and responsibility visible. A team can test that principle against a real metric and audience instead of treating a slogan as a product roadmap.
 
-## A real Datus example, with clear boundaries
+## An AI dashboard example from Datus, with clear boundaries
 
 Datus Agent's documented <a href="https://docs.datus.ai/dev/subagent/gen_visual_dashboard/">HTML Dashboard Generation</a> shows that this is already more than a future sketch. Its `gen_visual_dashboard` subagent can start with a question or existing metrics and create a page with KPI cards, charts, tables, and filters. It can use semantic metrics and dimensions when they fit the request; it can also use SQL and other project context. That distinction matters. A page built from a governed metric has a stronger claim to consistency than one built from a new ad-hoc SQL calculation, even if both pages look equally polished.
 
@@ -111,7 +117,7 @@ It also changes what should be saved. Keep the metric definition and its tests. 
 
 So is the dashboard dead? **No. The blank-canvas-first workflow is losing its monopoly.** A visual answer can now be generated as part of an investigation, then revised in minutes. Some of those answers will be temporary; others will mature into the stable dashboards teams still need. The more views we can create, the more important it becomes to keep their metrics, access, and meaning consistent.
 
-## How to decide whether a generated view is ready to share
+## How to decide whether an AI dashboard is ready to share
 
 Start with one question and one agreed metric. Suppose a sales team asks for completed order revenue by week and region. Before treating the generated page as a report, write down what “completed” means, which date field determines the week, whether refunds are included, and whose region the filter represents. The agent can suggest a chart, but these choices determine the answer. If the semantic model already defines them, the page should use that definition. If it cannot, label the result as an exploratory calculation and ask for review before circulating it as an official number.
 
@@ -127,13 +133,17 @@ Agents can change how quickly a dashboard is made, but they do not remove the ne
 
 ## Frequently asked questions
 
+### What makes a dashboard an AI dashboard?
+
+AI can help create visualizations, answer questions about a dashboard, or generate a new page from a prompt. The term covers these different workflows, so check which task the AI performs and whether the result is a temporary view or a maintained report.
+
+### Can AI create a dashboard from a prompt?
+
+Yes. For example, Datus Agent's documented HTML Dashboard Generation workflow can start with a question or existing metrics and generate a page with charts, tables, KPI cards, and filters. The result still needs review of its metric definitions, data access, and sharing setup before a team treats it as an approved report.
+
 ### Will AI agents replace dashboards?
 
 They can replace some of the manual assembly work and produce visual answers for one-off questions. Teams still benefit from stable dashboards for shared monitoring, alerts, and signed-off reporting. The practical change is that a dashboard can become an output of an agent workflow rather than a page that someone always builds from scratch.
-
-### Is an agent-generated HTML page a dashboard?
-
-It can be. If it presents metrics through charts, tables, and filters for a defined analytical purpose, it performs the job of a dashboard. Its file format does not decide whether it is trustworthy. Metric provenance, access, refresh, and visual review do.
 
 ### Why does the semantic layer matter if the agent can write SQL?
 

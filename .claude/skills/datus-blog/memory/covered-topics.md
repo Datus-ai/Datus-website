@@ -846,5 +846,6 @@ land on the new article by design.
 - Internal links added: composable-analytics-agent-built-dashboards, what-is-headless-bi, what-is-agentic-analytics, what-is-conversational-bi.
 - Glossary updated: no — no dedicated glossary term.
 - Category: Agentic Analytics
-- PR: https://github.com/Datus-ai/Datus-website/pull/108   Status: open
+- PR: https://github.com/Datus-ai/Datus-website/pull/108   Status: merged
 - Date: 2026-10-19
+- Refreshed: 2026-10-20 — retargeted the existing URL to "AI dashboard" with a definition, search-intent FAQ, and an after diagram that locates the AI agent, semantic model, and query runtime; audit 14 pass / 0 warn / 0 fail. PR: https://github.com/Datus-ai/Datus-website/pull/110 (open).
