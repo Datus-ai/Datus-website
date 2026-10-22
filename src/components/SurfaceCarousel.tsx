@@ -15,6 +15,8 @@ export type Surface = {
   /** May contain an inline anchor linking to the surface's deep-dive page. */
   tagline: ReactNode;
   start: string;
+  preview?: "dosi" | "studio" | "agent" | "connect";
+  screenshot?: { src: string; alt: string; caption: string };
 };
 
 const mono = "var(--font-mono)";

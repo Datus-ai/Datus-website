@@ -26,7 +26,7 @@
 }
 html, body, .site-root { background: var(--bg); color: var(--ink); }
 .site-root { overflow-x: clip; }
-.site-nav { background: var(--bg); backdrop-filter: none; border-color: var(--line); }
+.site-nav { background: var(--bg); backdrop-filter: none; border-bottom: 0; }
 .site-nav__inner { max-width: 1440px; padding-inline: 32px; gap: 16px; }
 .site-nav__logo img { height: 31px; }
 .site-nav__links { margin-left: 24px; }
@@ -63,7 +63,7 @@ html, body, .site-root { background: var(--bg); color: var(--ink); }
 .prose code { background: var(--brand-soft); color: var(--brand-bright); }
 .prose pre { background: var(--terminal-bg); }
 .prose pre code { color: #eeefe7; background: none; }
-@media(max-width:1100px) { .site-nav__links { display: none; } .site-nav__burger { display: inline-flex; } }
+@media(max-width:1240px) { .site-nav__links { display: none; } .site-nav__burger { display: inline-flex; } }
 @media(max-width:720px) { :root { --nav-h: 72px; } .site-nav__inner { padding-inline: 20px; gap: 8px; } .site-nav__inner > .nav-ghost-btn { display:none; } .site-nav__logo img { height: 27px; } .site-root:not(.nordic-home) > main::before { width: 320px; opacity: .045; } .section { padding-block: 64px; } }
 
 .site-root .btn-primary, .site-root .btn-primary:hover { color: #fff; }

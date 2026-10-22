@@ -17,11 +17,11 @@ import { Diagnostics } from '../diagnostics';
 import { ConverterTips } from '../tips';
 import '../../styles.css';
 
-export function SemanticConverterWorkbench() {
+export function SemanticConverterWorkbench({initialDirection = 'export'}: {initialDirection?: IDirection} = {}) {
   const t = useConverterCopy();
   const locale = useLocale();
   const instanceId = useId();
-  const state = useWorkbench();
+  const state = useWorkbench(initialDirection);
   const { session, direction, busy } = state;
   const importing = direction === 'import';
   const result = session.result;

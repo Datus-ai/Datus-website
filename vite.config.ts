@@ -13,6 +13,7 @@ const MPA_ROUTES = [
   'products/vscode',
   'products/studio',
   'products/enterprise',
+  'solutions/semantic-layer',
   'integrations',
   'databases',
   'models',
@@ -201,11 +202,12 @@ export default defineConfig(() => ({
     outDir: 'dist',
     rollupOptions: {
       output: {
-        entryFileNames: chunk => chunk.name === 'cookie-consent' ? 'assets/cookie-consent.js' : 'assets/[name]-[hash].js',
+        entryFileNames: chunk => ['cookie-consent','site-motion'].includes(chunk.name) ? `assets/${chunk.name}.js` : 'assets/[name]-[hash].js',
       },
       input: {
         main: path.resolve(__dirname, 'index.html'),
         'cookie-consent': path.resolve(__dirname, 'src/cookie-consent/main.ts'),
+        'site-motion': path.resolve(__dirname, 'src/site-motion.ts'),
         ...Object.fromEntries(
           MPA_ROUTES.map((route) => [
             route.replace(/\//g, '-'),

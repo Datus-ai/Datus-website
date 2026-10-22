@@ -68,8 +68,10 @@ function CtaButton({ cta }: { cta: ProductCTA }) {
 export default function ProductPageTemplate({
   data,
   breadcrumb,
+  afterHero,
 }: {
   data: ProductPageData;
+  afterHero?: ReactNode;
   breadcrumb?: { items: Crumb[]; currentUrl: string };
 }) {
   const locale = useLocale();
@@ -103,6 +105,8 @@ export default function ProductPageTemplate({
           )}
         </div>
       </section>
+
+      {afterHero}
 
       {/* Problem */}
       <section className="section" style={{ background: "var(--bg-2)", borderBlock: "1px solid var(--line)", paddingBlock: "clamp(48px,6vw,80px)" }}>

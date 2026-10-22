@@ -23,8 +23,8 @@ const OUT_DIR = resolve(ROOT, "src/public/og");
 const CARDS = [
   { slug: "tools-semantic-model-converter", eyebrow: "Free Developer Tool", title: "One semantic model, multiple export formats",
     subtitle: "Convert Ossie / Dosi YAML to Snowflake, dbt, Cube, Omni and more. Inspect, edit and download." },
-  { slug: "home", title: "The enterprise data context layer",
-    subtitle: "An Apache Ossie semantic layer and ontology your data agents can trust — live in days." },
+  { slug: "home", style: "home", title: "The trusted enterprise context for AI agents",
+    subtitle: "Business-aware. Agent-native. Audit-ready.", tag: "Shared context · executable semantics" },
   { slug: "faq", eyebrow: "FAQ", title: "Questions about the enterprise data context layer" },
   { slug: "support", eyebrow: "Support & Help", title: "Find answers. Keep moving.",
     subtitle: "Datus Studio guides, common questions, and ways to reach the team." },
@@ -66,6 +66,7 @@ const qs = (c) =>
     title: c.title,
     ...(c.subtitle ? { subtitle: c.subtitle } : {}),
     ...(c.tag ? { tag: c.tag } : {}),
+    ...(c.style ? { style: c.style } : {}),
   }).toString();
 
 async function main() {

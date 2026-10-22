@@ -1,0 +1,6 @@
+/* Initialized only after an observer is ready; never hide static/no-JS HTML. */
+.site-section-reveal[data-section-state=pending] { opacity:0; }
+.site-section-reveal[data-section-state=entering] { animation:site-section-enter .65s cubic-bezier(.2,.65,.3,1) both; }
+@keyframes site-section-enter { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { .site-section-reveal[data-section-state] { opacity:1; transform:none; animation:none; } }
+@media print { .site-section-reveal[data-section-state] { opacity:1!important; transform:none!important; animation:none!important; } }

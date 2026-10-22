@@ -1,4 +1,44 @@
 {
+  "composable-analytics-agent-built-dashboards": {
+    "image": "/images/composable-analytics-agent-built-dashboards/cover.svg",
+    "source": "reused"
+  },
+  "convert-semantic-models-to-ossie": {
+    "image": "/images/convert-semantic-models-to-ossie/editorial-cover.svg",
+    "source": "generated-flat-svg"
+  },
+  "is-the-dashboard-dead": {
+    "image": "/images/is-the-dashboard-dead/manual-dashboard-architecture.svg",
+    "source": "reused"
+  },
+  "what-is-entity-attribute-value-model": {
+    "image": "/images/what-is-entity-attribute-value-model/cover.svg",
+    "source": "reused"
+  },
+  "business-glossary-vs-semantic-layer": {
+    "image": "/images/business-glossary-vs-semantic-layer/cover.svg",
+    "source": "reused"
+  },
+  "dosi-datus-agent-level-of-detail": {
+    "image": "/images/dosi-datus-agent-level-of-detail/cover-level-of-detail.png",
+    "source": "reused"
+  },
+  "apache-ossie-converters": {
+    "image": "/images/apache-ossie-converters/editorial-cover.svg",
+    "source": "generated-flat-svg"
+  },
+  "ontology-for-ai-agents-five-approaches": {
+    "image": "/images/ontology-for-ai-agents-five-approaches/cover-business-meaning.svg",
+    "source": "reused"
+  },
+  "semantic-model-examples": {
+    "image": "/images/semantic-model-examples/resource-cover.svg",
+    "source": "reused"
+  },
+  "what-is-headless-bi": {
+    "image": "/images/what-is-headless-bi/resource-cover.svg",
+    "source": "reused"
+  },
   "what-is-conversational-bi": {
     "image": "/images/what-is-conversational-bi/resource-cover.png",
     "source": "reused"

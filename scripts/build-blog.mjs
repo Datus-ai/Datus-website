@@ -191,6 +191,7 @@ function navHtml() {
   <nav class="site-nav__links" aria-label="Primary">
     <div class="nav-dd"><button class="nav-link" type="button">Products ${SVG.chevron}</button>
       <div class="nav-dd__menu">${products}</div></div>
+    <div class="nav-dd"><button class="nav-link" type="button">Solutions ${SVG.chevron}</button><div class="nav-dd__menu"><a class="nav-dd__item" href="/solutions/semantic-layer/"><span class="nav-dd__item-title">Semantic Layer</span><span class="nav-dd__item-desc">Shared business definitions for teams and AI agents.</span></a></div></div>
     <a class="nav-link" href="/integrations/">Integrations</a>
     <a class="nav-link" href="/pricing/">Pricing</a>
     <a class="nav-link" href="/blog/">Blog</a>
@@ -229,7 +230,7 @@ function footerHtml() {
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
   <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
-</div></footer>`;
+</div><div class="container" style="padding-top:24px;font-size:11px;line-height:1.8;color:var(--ink-muted)"><p>Apache Ossie (incubating) is a project in the Apache Incubator at the Apache Software Foundation (ASF). Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.</p><a href="https://ossie.apache.org/" style="text-decoration:underline;text-underline-offset:3px">About Apache Ossie (incubating)</a></div></footer>`;
 }
 
 function gaHtml() {
@@ -264,7 +265,7 @@ function shell({
 <meta name="twitter:image" content="${image}" />
 ${head}
 ${gaHtml()}
-</head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div>${navScript()}</body></html>`;
+</head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div>${navScript()}<script type="module" src="/assets/site-motion.js"></script></body></html>`;
 }
 
 /* ----------------------------- breadcrumbs ----------------------------- */
@@ -664,7 +665,7 @@ html{scroll-behavior:smooth}
   .prose table{display:block;max-width:100%;overflow-x:auto}
 }
 `;
-  return base + "\n" + prose + "\n" + readFileSync(join(ROOT, "src", "styles", "nordic-site.css"), "utf8") + "\n" + readFileSync(join(ROOT, "src", "styles", "blog-journal.css"), "utf8");
+  return base + "\n" + prose + "\n" + readFileSync(join(ROOT, "src", "styles", "nordic-site.css"), "utf8") + "\n" + readFileSync(join(ROOT, "src", "styles", "blog-journal.css"), "utf8") + "\n" + readFileSync(join(ROOT, "src", "styles", "section-reveal.css"), "utf8");
 }
 
 /* --------------------------- reference pages --------------------------- */

@@ -1,0 +1,26 @@
+.stack-integrations .nordic-integration-row { display:grid; grid-template-columns:110px minmax(0,1fr) minmax(270px,340px); gap:26px; align-items:start; padding:30px 0; }
+.stack-integrations .nordic-integration-row h3 { margin:12px 0 0; }
+.stack-integrations .stack-integrations__logos { display:flex; flex-wrap:wrap; gap:20px 12px; }
+.stack-integrations__vendor { width:80px; text-align:center; }
+.stack-integrations .nordic-vendor-logo { width:80px; }
+.stack-integrations__mode { display:block; color:var(--ink-muted); font-size:10px; line-height:1.5; margin-top:4px; }
+.stack-integrations__flow { min-width:0; border-left:1px solid var(--line-strong); padding-left:22px; }
+.stack-integrations__flow dl { margin:0; }
+.stack-integrations__flow dl > div { display:grid; grid-template-columns:62px minmax(0,1fr); gap:12px; margin-bottom:9px; }
+.stack-integrations__flow dt { font-size:10px; font-weight:600; line-height:1.65; color:var(--brand-bright); padding-top:2px; }
+.stack-integrations__flow dd { margin:0; font-size:12px; line-height:1.65; color:var(--ink-dim); }
+.stack-integrations__guides { display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:15px; }
+.stack-integrations__guides a { display:inline-flex; align-items:center; gap:5px; color:var(--ink); font-size:11px; line-height:1.6; text-decoration:underline; text-decoration-color:var(--line-strong); text-underline-offset:4px; }
+.stack-integrations__guides a:hover { color:var(--brand-bright); }
+.stack-integrations__guides a:focus-visible { outline:2px solid var(--brand-bright); outline-offset:5px; }
+@media(max-width:1050px){
+ .stack-integrations .nordic-integration-row { grid-template-columns:110px minmax(0,1fr); }
+ .stack-integrations__flow { grid-column:2; padding-left:0; border-left:0; }
+}
+@media(max-width:600px){
+ .stack-integrations .nordic-integration-row { grid-template-columns:minmax(0,1fr); gap:22px; }
+ .stack-integrations .nordic-integration-row h3 { margin:0; }
+ .stack-integrations__flow { grid-column:1; }
+ .stack-integrations .stack-integrations__logos { gap:18px 10px; }
+ .stack-integrations__flow dl > div { grid-template-columns:65px minmax(0,1fr); }
+}

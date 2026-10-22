@@ -35,6 +35,7 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
           <div className="site-footer__col">
             <h3 className="site-footer__heading">{t.resources}</h3>
             <ul>
+              <li><a href={l("/solutions/semantic-layer/")}>{UI[locale].nav.semanticLayer}</a></li>
               <li><a href={l("/integrations/")}>{t.integrations}</a></li>
               <li><a href={l("/pricing/")}>{t.pricing}</a></li>
               {/* The blog is English-only — no /zh mirror, so the href is left bare. */}
@@ -83,6 +84,8 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
           </div>
         </nav>
       </div>
+
+      <div className="site-footer__apache"><p>{t.apacheDisclaimer}</p><a href="https://ossie.apache.org/">{t.apacheNoticeLink}</a></div>
 
       <div className="site-footer__bar">
         <span>© {year} {t.rights}</span>

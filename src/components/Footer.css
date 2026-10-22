@@ -103,3 +103,7 @@
     gap: 8px;
   }
 }
+
+.site-footer__apache { max-width:1180px; margin:0 auto; padding:24px 24px 30px; border-top:1px solid var(--line-strong); color:var(--ink-muted); font-size:11px; line-height:1.8; }
+.site-footer__apache p { margin:0 0 8px; }
+.site-footer__apache a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
