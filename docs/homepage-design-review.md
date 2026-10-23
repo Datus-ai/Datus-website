@@ -12,9 +12,10 @@ than these screenshots. The standalone visual identity project stays separate.
 - Present three usage paths: data engineers working with Datus Agent in Studio;
   analysts building dashboards and HTML reports; and business users analysing
   through configured MCP clients.
-- Enrich reports with cohort selection, KPIs, margin rankings, contribution share,
-  return-rate comparisons, customer detail and expandable calculation evidence.
-  Retain only ChatGPT and Claude in the active client-logo list.
+- Distinguish dashboards with filters and linked charts from dated HTML report
+  snapshots with fixed results and findings. External MCP clients compose their
+  own answers, tables and follow-ups from returned data, without embedding the
+  Studio report interface. Retain ChatGPT and Claude in the client-logo list.
 - Remove the light-mode architecture watermark and separate Ossie caption.
 - Keep the five-step animated context workflow, explain the open Ossie
   specification and compatible DOSI runtime, and place the main CTA before FAQ
@@ -30,13 +31,19 @@ than these screenshots. The standalone visual identity project stays separate.
 
 ![Semantic definitions in light mode](previews/homepage-open-context/ossie-rich-definitions-light.png)
 
-## Analyst workflow
+## Analyst: dashboard with filters
 
-![Agent-built dashboard and HTML report preview](previews/homepage-open-context/audience-analyst-rich-dark.png)
+![Dashboard with linked filters and charts](previews/homepage-open-context/analyst-dashboard-distinct-light.png)
+
+## Analyst: saved HTML report
+
+![Dated report snapshot with findings and calculation sources](previews/homepage-open-context/analyst-report-snapshot-light.png)
+
+[View the report in dark mode](previews/homepage-open-context/analyst-report-snapshot-dark.png)
 
 ## Business-user workflow
 
-![Configured MCP client illustration](previews/homepage-open-context/audience-business-rich-dark.png)
+![Configured MCP client illustration](previews/homepage-open-context/business-client-native-dark.png)
 
 Product fragments adapt existing product source and recorded Northstar demo
 artifacts. The client illustration is not a live ChatGPT or Claude session;

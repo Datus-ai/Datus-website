@@ -71,3 +71,11 @@ These are QA artifacts, not assets to ship as interactive UI.
   with cohort selection, KPIs, margin ranking, contribution share, return-rate
   comparison, customer details and an HTML report composition. They do not
   fabricate a time series or execute a live query.
+
+- `AgentConsumptionRichPreviews.tsx` and
+  `agent-consumption-rich-previews.css` preserve the earlier three-way rich
+  report composition (`aud-rich-` selectors, `hp-audiences-rich` wrapper).
+  Active `AgentConsumptionPreviews.tsx` now deliberately separates a
+  parameterized dashboard illustration, a saved report snapshot, and a
+  third-party-client answer. `audienceScenarioUi.ts` owns the paired EN/ZH
+  scenario copy; `audience-scenarios.css` styles these distinct compositions.

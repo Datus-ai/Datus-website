@@ -221,3 +221,42 @@ switching, customer selection, artifact tabs, client switching and SQL disclosur
 were checked in the browser. EN/ZH phone widths 390/320 have no document-width
 overflow. Light/dark report surfaces were checked; screenshots are local under
 `output/homepage-open-context/` with the `rich` suffix. The operator approved publishing this iteration to PR #94.
+
+### Distinct dashboard, report and MCP consumption (2026-10-23)
+
+The operator requested a clearer representation of the actual product's data
+lifecycles. Current SaaS renderers and data providers were verified against
+Datus-saas main `474f7d915434423ae9c4911438657e0287a65f9d`: dashboards use a
+remote query provider; reports read bundled, saved query results. The current
+publication MCP guide distinguishes structured tool responses, orchestrated by
+the external client, from the separate Datus Chat API.
+
+The homepage therefore separates the three compositions:
+
+- Dashboard: cohort filters, linked values and customer detail, plus a finite
+  filter → query → chart animation. This is a local interaction over recorded
+  Northstar rows; it makes no network/database call.
+- HTML Report: a document-like snapshot with V1/date fixture metadata, a fixed
+  narrative, contribution graphic, customer table, findings and a read-only
+  Calculation & Sources disclosure. It has no query filters. Source tables are
+  limited to those actually referenced by the recorded compiled SQL, excluding
+  the broader model's unused membership/catalog sources.
+- Third-party client: a Datus tool disclosure, client-composed text/table with
+  inline comparison bars and suggested follow-up questions. Follow-ups switch
+  between cohort comparison and customer order/return details. It does not
+  embed a Studio dashboard/report, create a published artifact, or send a real
+  message/query. ChatGPT/Claude branding identifies the illustrative client.
+
+The earlier rich composition is archived as `AgentConsumptionRichPreviews`.
+The active Studio sidebar changes its response and query-file representation
+with the chosen artifact. Finite cursor cues guide the HTML Report tab and the
+first follow-up; reduced motion removes animated movement.
+
+Validation: full production build, bilingual prerender and focused TypeScript
+checks passed. Keyboard artifact switching, cohort filtering, customer detail,
+report evidence, both follow-up answers and client selection were verified.
+Light/dark product surfaces were checked at 1440×780 and 1366×680. Chinese report
+at 390px and expanded follow-up at 320px had no document-width overflow. No
+console warnings/errors were captured on the fresh test tab. Current captures
+remain local as `analyst-report-snapshot-light.png`,
+`analyst-report-snapshot-dark.png` and `business-client-native-dark.png`.
