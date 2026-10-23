@@ -362,6 +362,7 @@ export default function SupportPage() {
                 className="support-text-link"
                 href={`${STUDIO_HOME}/deployment`}
                 {...external}
+                rel="noopener"
               >
                 {t.deployment}
                 <ArrowUpRight size={15} aria-hidden="true" />

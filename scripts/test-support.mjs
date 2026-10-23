@@ -86,6 +86,12 @@ try {
       await page.$eval("h1", (el) => el.textContent),
       scenario.title,
     );
+    const deploymentRel = await page.$eval(
+      'a[href="https://studio.datus.ai/deployment"]',
+      (el) => [...el.relList],
+    );
+    assert.ok(deploymentRel.includes("noopener"));
+    assert.ok(!deploymentRel.includes("noreferrer"), "Deployment docs must retain referral attribution");
     const seo = await page.evaluate(() => ({
       lang: document.documentElement.lang,
       canonical: document
