@@ -62,3 +62,12 @@ These are QA artifacts, not assets to ship as interactive UI.
   two-path layout.
 - `src/public/brand/product-modules/{studio,agent,dosi,ossie}.svg`: original flat
   module drawings reused in the architecture and local three-way comparison.
+
+- `AgentConsumptionBasicPreviews.tsx` and
+  `agent-consumption-basic-previews.css` preserve the initial simple analyst and
+  assistant examples. Their selectors use `aud-basic-`; use an
+  `hp-audiences-basic` wrapper when composing that older version. Active report
+  previews now use `northstarReport.ts` (curated recorded customer economics),
+  with cohort selection, KPIs, margin ranking, contribution share, return-rate
+  comparison, customer details and an HTML report composition. They do not
+  fabricate a time series or execute a live query.

@@ -57,7 +57,6 @@ export function LaunchOverview(){
    <div className="hp-architecture-core"><div className="hp-architecture-brand">Datus</div>{module(0)}{module(1)}<div className="hp-architecture-foundation"><span>{t.foundation}</span>{module(2)}{module(3)}</div></div>
    <ArchitectureFlow output/>
    <div className="hp-architecture-end hp-architecture-end--outputs"><h3>{t.destinations}</h3>{t.outputs.map((label,i)=>{const Icon=outputIcons[i];return <div key={label}><Icon size={19} strokeWidth={1.5}/><span>{label}</span></div>})}</div>
-   <figcaption>{t.standardNote}</figcaption>
   </figure>}
   <PillarOverview/>
  </section>;

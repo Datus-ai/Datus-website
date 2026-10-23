@@ -1,0 +1,36 @@
+import type { Locale } from '../i18n/config';
+
+const en={
+ title:'Premier customer intelligence',period:'Delivered Sep 2025–Sep 2026',
+ scope:'Report cohort',premier:'Premier',all:'All customers',
+ margin:'Contribution margin',orders:'Delivered orders',customers:'Customers',returns:'Order return rate',
+ ranking:'Margin by customer',share:'Share of total margin',compare:'Premier vs. all customers',
+ cohort:'Selected cohort',total:'All customers',table:'Customer detail',customer:'Customer',
+ returnRate:'Returns',status:'Premier status',qualified:'Qualified',notQualified:'Not qualified',
+ empty:'No delivered orders',select:'Select a customer to inspect',clear:'Show cohort summary',
+ selection:'Selected customer',ofTotal:'of total margin',policy:'Qualification rules',
+ rule:'Margin ≥ $3,000 · orders ≥ 6 · return rate ≤ 20%',
+ summary:'Premier customers contribute 53.3% of total margin with 50% of delivered orders.',
+ findingTitle:'What stands out',finding:'Maya Chen contributes 53.0% of Premier margin. The qualifying cohort has a 9.5% order return rate, compared with 14.3% overall.',
+ methodTitle:'Calculation & scope',method:'Contribution margin includes refunds, product costs, recovered costs, delivery, payment fees and return handling. The same model determines customer qualification.',
+ document:'Customer economics review',reportTag:'Analysis report',
+ source:'Northstar demo · recorded cohort',marginPerOrder:'Margin / order',
+ columns:['Customer','Orders','Margin','Return rate'],
+};
+export const NORTHSTAR_REPORT_UI:Record<Locale,typeof en>={en,zh:{
+ title:'Premier 客户经营分析',period:'交付窗口：2025 年 9 月—2026 年 9 月',
+ scope:'报告客户群',premier:'Premier 客户',all:'全部客户',
+ margin:'贡献利润',orders:'已交付订单',customers:'客户数',returns:'订单退货率',
+ ranking:'客户利润排名',share:'占总利润的比例',compare:'Premier 与全部客户对比',
+ cohort:'当前客户群',total:'全部客户',table:'客户明细',customer:'客户',
+ returnRate:'退货率',status:'Premier 状态',qualified:'符合条件',notQualified:'未达条件',
+ empty:'无已交付订单',select:'选择客户查看详情',clear:'查看客户群汇总',
+ selection:'当前客户',ofTotal:'占总利润',policy:'资格判定规则',
+ rule:'利润 ≥ $3,000 · 订单 ≥ 6 · 退货率 ≤ 20%',
+ summary:'Premier 客户贡献了总利润的 53.3%，占已交付订单的 50%。',
+ findingTitle:'关键发现',finding:'Maya Chen 贡献了 Premier 客户利润的 53.0%。符合条件的客户群订单退货率为 9.5%，全部客户则为 14.3%。',
+ methodTitle:'计算口径与范围',method:'贡献利润计入退款、商品成本、回收成本、配送、支付手续费及退货处理成本。同一份模型也用于判断客户是否符合条件。',
+ document:'客户经营分析报告',reportTag:'分析报告',
+ source:'Northstar 演示 · 客户群执行记录',marginPerOrder:'每笔订单利润',
+ columns:['客户','订单','利润','退货率'],
+}};

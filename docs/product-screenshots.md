@@ -194,3 +194,30 @@ recorded calculation disclosure were exercised. Studio file/chat/SQL/results
 steps and the expanded dialog all retain neutral dark surfaces. No horizontal
 document overflow was observed in these cases. The overview keeps four original
 module illustrations and uses inline pillar-heading icons on shorter laptops.
+
+### Rich analyst and business-user reports (2026-10-23)
+
+The active analyst preview now renders a multi-panel customer economics dashboard
+and an HTML report with findings and calculation scope. Both include cohort
+selection, KPI summaries, margin ranking, share of total margin and a comparison
+of order return rates. The dashboard includes a selectable customer table; a
+selected customer reveals margin per order. The assistant composition embeds the
+same charts and metrics in a ChatGPT/Claude-style response and keeps its expandable
+calculation/SQL evidence. Only ChatGPT and Claude remain in the client-logo list.
+
+All numbers derive from curated `Northstar-Premier-Demo/expected-results.json`,
+kept in `src/content/northstarReport.ts`. Premier A is 3 customers, 21 delivered
+orders, $13,821.89 margin and 2 returned orders (9.5%); all customers are 8,
+42 orders, $25,955.07 margin and 6 returned orders (14.3%). No time series or
+performance claim is fabricated. The earlier simple compositions and their
+scoped styles remain in `AgentConsumptionBasicPreviews.tsx`.
+
+The homepage architecture's light-mode canvas is now neutral/transparent without
+its purple watermark, and its separate Apache Ossie (incubating) caption is
+removed. The architecture's spec layer and the site's ASF information remain.
+
+Validation: production build and focused TypeScript checks passed. Cohort
+switching, customer selection, artifact tabs, client switching and SQL disclosure
+were checked in the browser. EN/ZH phone widths 390/320 have no document-width
+overflow. Light/dark report surfaces were checked; screenshots are local under
+`output/homepage-open-context/` with the `rich` suffix. The operator approved publishing this iteration to PR #94.

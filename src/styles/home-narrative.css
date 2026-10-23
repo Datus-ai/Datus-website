@@ -410,8 +410,8 @@
  .hp-architecture-end>div{transition:none}.hp-architecture-end>div:hover{transform:none}
 }
 
-/* First improve light-theme contrast; architecture geometry awaits selection. */
-:root:not([data-theme=dark]) .hp-architecture{padding:24px;background:#efedf7;border-radius:12px;box-shadow:0 16px 38px -24px #4a357a33}
+/* Neutral light-theme architecture canvas; module surfaces keep their contrast. */
+:root:not([data-theme=dark]) .hp-architecture{padding:24px;background:transparent;border-radius:12px;box-shadow:none}
 :root:not([data-theme=dark]) .hp-architecture-core,:root:not([data-theme=dark]) .hp-architecture-module,:root:not([data-theme=dark]) .hp-architecture-end>div{background:#fff}
 :root:not([data-theme=dark]) .hp-architecture-foundation{background:#e9e4f8}
 @media(max-width:720px){:root:not([data-theme=dark]) .hp-architecture{padding:18px 12px}}
@@ -464,3 +464,5 @@
  .hp-overview .hp-pillar-columns h3{grid-column:2;grid-row:1}
  .hp-overview .hp-pillar-columns p,.hp-overview .hp-pillar-columns .nordic-text-link{grid-column:1/-1}
 }
+
+:root:not([data-theme=dark]) .hp-architecture::before{display:none}

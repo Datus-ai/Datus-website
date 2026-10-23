@@ -12,6 +12,10 @@ than these screenshots. The standalone visual identity project stays separate.
 - Present three usage paths: data engineers working with Datus Agent in Studio;
   analysts building dashboards and HTML reports; and business users analysing
   through configured MCP clients.
+- Enrich reports with cohort selection, KPIs, margin rankings, contribution share,
+  return-rate comparisons, customer detail and expandable calculation evidence.
+  Retain only ChatGPT and Claude in the active client-logo list.
+- Remove the light-mode architecture watermark and separate Ossie caption.
 - Keep the five-step animated context workflow, explain the open Ossie
   specification and compatible DOSI runtime, and place the main CTA before FAQ
   and the latest resources.
@@ -20,7 +24,7 @@ than these screenshots. The standalone visual identity project stays separate.
 
 ## Architecture and three foundations
 
-![Architecture and three foundations](previews/homepage-open-context/architecture-modules-dark.png)
+![Architecture and three foundations](previews/homepage-open-context/architecture-neutral-light.png)
 
 ## Rich semantic definitions
 
@@ -28,11 +32,11 @@ than these screenshots. The standalone visual identity project stays separate.
 
 ## Analyst workflow
 
-![Agent-built dashboard and HTML report preview](previews/homepage-open-context/audience-analyst-dark.png)
+![Agent-built dashboard and HTML report preview](previews/homepage-open-context/audience-analyst-rich-dark.png)
 
 ## Business-user workflow
 
-![Configured MCP client illustration](previews/homepage-open-context/audience-business-users-dark.png)
+![Configured MCP client illustration](previews/homepage-open-context/audience-business-rich-dark.png)
 
 Product fragments adapt existing product source and recorded Northstar demo
 artifacts. The client illustration is not a live ChatGPT or Claude session;
