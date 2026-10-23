@@ -1,6 +1,6 @@
 import "./GlossaryPage.css";
-import Footer from "./Footer";
-import LanguageSwitcher from "./LanguageSwitcher";
+import SiteLayout from "./SiteLayout";
+
 import { allTerms, glossaryFor, glossaryUpdated } from "../glossary/glossaryData";
 import { useHref, useLocale } from "../i18n/LocaleContext";
 import { UI } from "../i18n/ui";
@@ -60,36 +60,8 @@ const GlossaryPage = () => {
   const glossary = glossaryFor(locale);
 
   return (
-    <div className="glossary">
-      {/* Header */}
-      <header className="glossary-header">
-        <div className="glossary-header__inner">
-          <a href={l("/")} className="glossary-header__logo" aria-label="Datus">
-            <img src="/logo_dark.svg" alt="Datus" />
-          </a>
-          <nav className="glossary-header__nav" aria-label="Primary">
-            {/* The blog is English-only, so this href is never prefixed. */}
-            <a href="/blog/">{ui.nav.blog}</a>
-            <a href="https://docs.datus.ai" target="_blank" rel="noopener noreferrer">
-              {ui.nav.docs}
-            </a>
-            <a href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
-              {ui.nav.github}
-            </a>
-            <LanguageSwitcher />
-            <a
-              className="glossary-header__cta"
-              href="https://studio.datus.ai/overview"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {ui.nav.getStarted}
-            </a>
-          </nav>
-        </div>
-      </header>
-
-      <main className="glossary-main">
+    <SiteLayout className="glossary">
+      <div className="glossary-main">
         {/* Breadcrumb */}
         <nav className="glossary-breadcrumb" aria-label="Breadcrumb">
           <ol>
@@ -172,10 +144,9 @@ const GlossaryPage = () => {
             </a>
           </div>
         </section>
-      </main>
+      </div>
 
-      <Footer />
-    </div>
+    </SiteLayout>
   );
 };
 

@@ -1,0 +1,8 @@
+.nordic-pillar-columns { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:44px; }
+.nordic-pillar-columns article { border-top:1px solid var(--line-strong); padding-top:24px; }
+.nordic-pillar-columns h3 { margin:0 0 16px; font-size:24px; line-height:1.3; font-weight:500; letter-spacing:-.025em; color:var(--ink); }
+.nordic-pillar-columns p { margin:0; font-size:16px; line-height:1.8; color:var(--ink-dim); }
+@media(max-width:900px){ .nordic-pillar-columns { gap:26px; } .nordic-pillar-columns h3 { font-size:21px; } }
+@media(max-width:650px){ .nordic-pillar-columns { grid-template-columns:1fr; gap:30px; } }
+
+.nordic-pillar-column-icon { display:block; color:var(--brand-bright); margin-bottom:20px; }

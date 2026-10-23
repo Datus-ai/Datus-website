@@ -20,10 +20,10 @@ import type { IDirection, ISession } from '../utils/session';
 import { MAX_SOURCE_BYTES, inspectSource } from '../utils/source';
 import { downloadArtifacts, workingArtifacts } from '../utils/artifacts';
 
-export function useWorkbench() {
+export function useWorkbench(initialDirection: IDirection = 'export') {
   const t = useConverterCopy();
   const [modal, contextHolder] = Modal.useModal();
-  const [direction, setDirection] = useState<IDirection>('export');
+  const [direction, setDirection] = useState<IDirection>(initialDirection);
   const [sessions, setSessions] = useState<Record<IDirection, ISession>>(
     () => ({
       export: createSession(
@@ -108,7 +108,9 @@ export function useWorkbench() {
   useEffect(() => {
     // Only non-sensitive, allowlisted local sample IDs enter the URL. Keep SSR deterministic.
     const params = new URLSearchParams(window.location.search);
-    if (params.get('direction') === 'import') {
+    if (params.get('direction') === 'export') {
+      setDirection('export');
+    } else if (params.get('direction') === 'import') {
       const example = params.get('example') ?? 'cube';
       const files = importExample(example);
       setDirection('import');

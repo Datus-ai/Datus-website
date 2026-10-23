@@ -22,6 +22,12 @@ export type PageMeta = {
 };
 
 export const ZH_PAGE_META: Record<string, PageMeta> = {
+  "/solutions/semantic-layer/": {
+    title: "面向团队与 AI Agent 的语义层解决方案 — Datus",
+    description: "将文档、SQL 和数仓知识转为共享语义模型。在 Datus Studio 中审核业务定义，通过 DOSI 执行，并核查 SQL 与源数据血缘。",
+    ogTitle: "语义层解决方案 — Datus",
+    ogDescription: "让团队与 AI Agent 共享业务定义，使用原生 SQL 执行，追溯结果来源。",
+  },
   "/tools/semantic-model-converter/": {
     title: "语义模型转换器：导入与导出 Apache Ossie — Datus",
     description: "免费将 Cube、dbt、Omni 等平台模型导入 Apache Ossie，或将 Ossie / Dosi YAML 导出为其他格式。内置样例，支持多文件编辑、诊断与下载。",
@@ -48,12 +54,12 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     twitterDescription: "模型由你选择，连接凭据加密保存，会话记录可自行删除。了解 Datus Studio 的安全实践。",
   },
   "/": {
-    title: "Datus — 企业数据上下文层",
+    title: "Datus — 面向 AI Agent 的可信企业业务上下文",
     description:
-      "Datus 在你已有的数仓上建起一层受治理的数据上下文层，一套 Apache Ossie 语义层与本体，几天就能上线，让企业数据 Agent 真正信得过。",
-    ogTitle: "Datus — 企业数据上下文层",
+      "Datus 为 AI Agent 提供开放的数据上下文，连接业务本体、受治理的指标与数据来源。团队可以审核语义定义，并检查 DOSI 的执行依据。",
+    ogTitle: "Datus — 面向 AI Agent 的可信企业业务上下文",
     ogDescription:
-      "Datus 在你已有的数仓上建起一层受治理的数据上下文层，一套 Apache Ossie 语义层与本体，几天就能上线，让企业数据 Agent 真正信得过。",
+      "面向 AI Agent 的开放数据上下文：关联业务含义，复用语义定义，通过 DOSI 检查执行依据。",
   },
   "/products/cli/": {
     title: "Datus agent — 终端里的开源数据 CLI",

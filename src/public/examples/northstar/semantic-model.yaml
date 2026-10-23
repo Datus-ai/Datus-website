@@ -1,0 +1,885 @@
+version: 0.2.0.dev0
+semantic_model:
+- name: northstar_complete
+  description: Nine original source tables. Facts are scoped consistently; DOSI separately
+    aggregates source amounts and composes the business metrics.
+  datasets:
+  - name: customers
+    source: crm.dim_customer
+    primary_key:
+    - customer_id
+    fields:
+    - name: customer_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: customer_id
+      dimension: {}
+    - name: full_name
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: full_name
+      dimension: {}
+    - name: email
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: email
+      dimension: {}
+    - name: city
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: city
+      dimension: {}
+    - name: state
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: state
+      dimension: {}
+    - name: joined_at
+      datatype: Date
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: joined_at
+      dimension: {}
+    - name: is_employee
+      datatype: Boolean
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: is_employee
+      dimension: {}
+    - name: identity_status
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: identity_status
+      dimension: {}
+    - name: fixed_booked_revenue
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: SUM((lines.gross_sales_cents-lines.discount_cents)*0.01)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(booked_revenue,
+          customers.customer_id)"}}'
+    - name: fixed_refund_amount
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(refunds.merchandise_refund_cents*0.01)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(refund_amount,
+          customers.customer_id)"}}'
+    - name: fixed_product_cost
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(line_costs.cogs_cents*0.01)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(product_cost,
+          customers.customer_id)"}}'
+    - name: fixed_recovered_product_cost
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(returns.recoverable_cogs_credit_cents*0.01)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(recovered_product_cost,
+          customers.customer_id)"}}'
+    - name: fixed_outbound_shipping
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(deliveries.shipping_cost_cents*0.01)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(outbound_shipping,
+          customers.customer_id)"}}'
+    - name: fixed_payment_fees
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(line_costs.payment_fee_cents*0.01)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(payment_fees,
+          customers.customer_id)"}}'
+    - name: fixed_return_handling
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(returns.processing_cost_cents*0.01)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(return_handling,
+          customers.customer_id)"}}'
+    - name: fixed_order_count
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: COUNT(DISTINCT orders.order_id)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(order_count,
+          customers.customer_id)"}}'
+    - name: fixed_returned_order_count
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: COUNT(DISTINCT CASE WHEN orders.is_returned THEN orders.order_id
+            END)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false, "lod": {"expr": "fixed(returned_order_count,
+          customers.customer_id)"}}'
+    - name: customer_margin
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: CASE WHEN fixed_order_count>0 THEN COALESCE(fixed_booked_revenue,0)-COALESCE(fixed_refund_amount,0)-COALESCE(fixed_product_cost,0)+COALESCE(fixed_recovered_product_cost,0)-COALESCE(fixed_outbound_shipping,0)-COALESCE(fixed_payment_fees,0)-COALESCE(fixed_return_handling,0)
+            END
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: customer_orders
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: COALESCE(fixed_order_count,0)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: customer_returned_orders
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: COALESCE(fixed_returned_order_count,0)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: customer_return_rate
+      datatype: Decimal
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: COALESCE(fixed_returned_order_count,0)*1.0/NULLIF(fixed_order_count,0)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: premier_a
+      datatype: Boolean
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: COALESCE((CASE WHEN fixed_order_count>0 THEN COALESCE(fixed_booked_revenue,0)-COALESCE(fixed_refund_amount,0)-COALESCE(fixed_product_cost,0)+COALESCE(fixed_recovered_product_cost,0)-COALESCE(fixed_outbound_shipping,0)-COALESCE(fixed_payment_fees,0)-COALESCE(fixed_return_handling,0)
+            END)>=3000 AND fixed_order_count>=6 AND (COALESCE(fixed_returned_order_count,0)*1.0/NULLIF(fixed_order_count,0))<=0.20,FALSE)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: premier_b
+      datatype: Boolean
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: COALESCE((CASE WHEN fixed_order_count>0 THEN COALESCE(fixed_booked_revenue,0)-COALESCE(fixed_refund_amount,0)-COALESCE(fixed_product_cost,0)+COALESCE(fixed_recovered_product_cost,0)-COALESCE(fixed_outbound_shipping,0)-COALESCE(fixed_payment_fees,0)-COALESCE(fixed_return_handling,0)
+            END)>=4000 AND fixed_order_count>=6 AND (COALESCE(fixed_returned_order_count,0)*1.0/NULLIF(fixed_order_count,0))<=0.20,FALSE)
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+  - name: products
+    source: catalog.dim_product
+    primary_key:
+    - product_id
+    fields:
+    - name: product_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: product_id
+      dimension: {}
+    - name: sku
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: sku
+      dimension: {}
+    - name: product_name
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: product_name
+      dimension: {}
+    - name: category
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: category
+      dimension: {}
+    - name: list_price_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: list_price_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: unit_cost_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: unit_cost_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: cost_version
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: cost_version
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+  - name: orders
+    source: SELECT o.* FROM commerce.fct_orders o JOIN crm.dim_customer c USING(customer_id)
+      WHERE o.status='delivered' AND NOT o.is_test AND o.delivered_at>=DATE '2025-09-20'
+      AND o.delivered_at<DATE '2026-09-20' AND NOT c.is_employee AND c.identity_status='resolved'
+      AND EXISTS (SELECT 1 FROM commerce.fct_order_lines l WHERE l.order_id=o.order_id
+      AND l.delivered_qty>0)
+    primary_key:
+    - order_id
+    fields:
+    - name: order_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_id
+      dimension: {}
+    - name: customer_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: customer_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: ordered_at
+      datatype: Date
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: ordered_at
+      dimension: {}
+    - name: delivered_at
+      datatype: Date
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: delivered_at
+      dimension: {}
+    - name: status
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: status
+      dimension: {}
+    - name: currency
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: currency
+      dimension: {}
+    - name: is_test
+      datatype: Boolean
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: is_test
+      dimension: {}
+    - name: order_amount_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_amount_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: is_returned
+      datatype: Boolean
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: is_returned
+      dimension: {}
+  - name: lines
+    source: SELECT l.* FROM commerce.fct_order_lines l JOIN commerce.fct_orders o
+      ON l.order_id=o.order_id JOIN crm.dim_customer c ON o.customer_id=c.customer_id
+      WHERE o.status='delivered' AND NOT o.is_test AND o.delivered_at>=DATE '2025-09-20'
+      AND o.delivered_at<DATE '2026-09-20' AND NOT c.is_employee AND c.identity_status='resolved'
+      AND l.delivered_qty>0
+    primary_key:
+    - order_line_id
+    fields:
+    - name: order_line_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_line_id
+      dimension: {}
+    - name: order_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: product_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: product_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: delivered_qty
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: delivered_qty
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: gross_sales_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: gross_sales_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: discount_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: discount_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+  - name: deliveries
+    source: SELECT d.* FROM logistics.fct_order_logistics d JOIN commerce.fct_orders
+      o USING(order_id) JOIN crm.dim_customer c USING(customer_id) WHERE o.status='delivered'
+      AND NOT o.is_test AND o.delivered_at>=DATE '2025-09-20' AND o.delivered_at<DATE
+      '2026-09-20' AND NOT c.is_employee AND c.identity_status='resolved'
+    primary_key:
+    - order_id
+    fields:
+    - name: order_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_id
+      dimension: {}
+    - name: shipping_cost_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: shipping_cost_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+  - name: line_costs
+    source: SELECT a.* FROM finance.fct_order_line_costs a JOIN commerce.fct_order_lines
+      l ON a.order_line_id=l.order_line_id JOIN commerce.fct_orders o ON l.order_id=o.order_id
+      JOIN crm.dim_customer c ON o.customer_id=c.customer_id WHERE o.status='delivered'
+      AND NOT o.is_test AND o.delivered_at>=DATE '2025-09-20' AND o.delivered_at<DATE
+      '2026-09-20' AND NOT c.is_employee AND c.identity_status='resolved' AND l.delivered_qty>0
+    primary_key:
+    - order_line_id
+    fields:
+    - name: order_line_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_line_id
+      dimension: {}
+    - name: cogs_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: cogs_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: allocated_shipping_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: allocated_shipping_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: payment_fee_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: payment_fee_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+  - name: returns
+    source: SELECT a.* FROM returns.fct_return_events a JOIN commerce.fct_order_lines
+      l ON a.order_line_id=l.order_line_id JOIN commerce.fct_orders o ON l.order_id=o.order_id
+      JOIN crm.dim_customer c ON o.customer_id=c.customer_id WHERE o.status='delivered'
+      AND NOT o.is_test AND o.delivered_at>=DATE '2025-09-20' AND o.delivered_at<DATE
+      '2026-09-20' AND NOT c.is_employee AND c.identity_status='resolved' AND l.delivered_qty>0
+      AND a.status='received' AND a.received_at<DATE '2026-10-20'
+    primary_key:
+    - return_event_id
+    fields:
+    - name: return_event_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: return_event_id
+      dimension: {}
+    - name: order_line_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_line_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: received_at
+      datatype: Date
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: received_at
+      dimension: {}
+    - name: status
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: status
+      dimension: {}
+    - name: returned_qty
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: returned_qty
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: recoverable_cogs_credit_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: recoverable_cogs_credit_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: processing_cost_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: processing_cost_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+  - name: refunds
+    source: SELECT a.*, o.customer_id AS customer_id FROM finance.fct_refund_events
+      a JOIN commerce.fct_order_lines l ON a.order_line_id=l.order_line_id JOIN commerce.fct_orders
+      o ON l.order_id=o.order_id JOIN crm.dim_customer c ON o.customer_id=c.customer_id
+      WHERE o.status='delivered' AND NOT o.is_test AND o.delivered_at>=DATE '2025-09-20'
+      AND o.delivered_at<DATE '2026-09-20' AND NOT c.is_employee AND c.identity_status='resolved'
+      AND l.delivered_qty>0 AND a.status='posted' AND a.posted_at<DATE '2026-10-20'
+    primary_key:
+    - refund_event_id
+    fields:
+    - name: refund_event_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: refund_event_id
+      dimension: {}
+    - name: order_line_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: order_line_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: return_event_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: return_event_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: posted_at
+      datatype: Date
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: posted_at
+      dimension: {}
+    - name: status
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: status
+      dimension: {}
+    - name: merchandise_refund_cents
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: merchandise_refund_cents
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: customer_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: customer_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v":"1.11","is_dimension":false}'
+  - name: memberships
+    source: membership.fct_membership_terms
+    primary_key:
+    - membership_term_id
+    fields:
+    - name: membership_term_id
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: membership_term_id
+      dimension: {}
+    - name: customer_id
+      datatype: Integer
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: customer_id
+      custom_extensions:
+      - vendor_name: DATUS
+        data: '{"v": "1.11", "is_dimension": false}'
+    - name: rule_version
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: rule_version
+      dimension: {}
+    - name: valid_from
+      datatype: Date
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: valid_from
+      dimension: {}
+    - name: valid_to
+      datatype: Date
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: valid_to
+      dimension: {}
+    - name: benefit_version
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: benefit_version
+      dimension: {}
+    - name: status
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: status
+      dimension: {}
+  - name: benefits
+    description: Illustrative benefit policy catalog from the approved scenario; inline
+      policy data, not an additional warehouse source table.
+    source: SELECT 'STANDARD_DELIVERY' AS benefit_id, 'Two standard deliveries per
+      membership year' AS description UNION ALL SELECT 'PRIORITY_SUPPORT' AS benefit_id,
+      'Priority customer support' AS description UNION ALL SELECT 'EARLY_ACCESS' AS
+      benefit_id, 'Early access to collections' AS description UNION ALL SELECT 'DESIGN_CONSULTATION'
+      AS benefit_id, 'One design consultation per membership year' AS description
+    primary_key:
+    - benefit_id
+    fields:
+    - name: benefit_id
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: benefit_id
+      dimension: {}
+    - name: description
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: description
+      dimension: {}
+  - name: entitlements
+    description: Read-only interpretation of BENEFITS_V1 membership records. Illustrative
+      rights, not redemption records or product activation.
+    source: SELECT m.membership_term_id || ':' || b.benefit_id AS entitlement_id,m.membership_term_id,b.benefit_id
+      FROM membership.fct_membership_terms m CROSS JOIN (SELECT 'STANDARD_DELIVERY'
+      AS benefit_id, 'Two standard deliveries per membership year' AS description
+      UNION ALL SELECT 'PRIORITY_SUPPORT' AS benefit_id, 'Priority customer support'
+      AS description UNION ALL SELECT 'EARLY_ACCESS' AS benefit_id, 'Early access
+      to collections' AS description UNION ALL SELECT 'DESIGN_CONSULTATION' AS benefit_id,
+      'One design consultation per membership year' AS description) b WHERE m.benefit_version='BENEFITS_V1'
+    primary_key:
+    - entitlement_id
+    fields:
+    - name: entitlement_id
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: entitlement_id
+      dimension: {}
+    - name: membership_term_id
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: membership_term_id
+      dimension: {}
+    - name: benefit_id
+      datatype: String
+      expression:
+        dialects:
+        - dialect: ANSI_SQL
+          expression: benefit_id
+      dimension: {}
+  relationships:
+  - name: lines_to_orders
+    from: lines
+    to: orders
+    from_columns:
+    - order_id
+    to_columns:
+    - order_id
+  - name: orders_to_customers
+    from: orders
+    to: customers
+    from_columns:
+    - customer_id
+    to_columns:
+    - customer_id
+  - name: lines_to_products
+    from: lines
+    to: products
+    from_columns:
+    - product_id
+    to_columns:
+    - product_id
+  - name: line_costs_to_lines
+    from: line_costs
+    to: lines
+    from_columns:
+    - order_line_id
+    to_columns:
+    - order_line_id
+  - name: deliveries_to_orders
+    from: deliveries
+    to: orders
+    from_columns:
+    - order_id
+    to_columns:
+    - order_id
+  - name: returns_to_lines
+    from: returns
+    to: lines
+    from_columns:
+    - order_line_id
+    to_columns:
+    - order_line_id
+  - name: refunds_to_lines
+    from: refunds
+    to: lines
+    from_columns:
+    - order_line_id
+    to_columns:
+    - order_line_id
+  - name: memberships_to_customers
+    from: memberships
+    to: customers
+    from_columns:
+    - customer_id
+    to_columns:
+    - customer_id
+  - name: entitlements_to_memberships
+    from: entitlements
+    to: memberships
+    from_columns:
+    - membership_term_id
+    to_columns:
+    - membership_term_id
+  - name: entitlements_to_benefits
+    from: entitlements
+    to: benefits
+    from_columns:
+    - benefit_id
+    to_columns:
+    - benefit_id
+  - name: refunds_to_returns
+    from: refunds
+    to: returns
+    from_columns:
+    - return_event_id
+    to_columns:
+    - return_event_id
+  - name: refunds_customer_grain_alignment
+    from: refunds
+    to: customers
+    from_columns:
+    - customer_id
+    to_columns:
+    - customer_id
+    custom_extensions:
+    - vendor_name: DATUS
+      data: '{"v": "1.11", "cardinality": "many_to_many", "requires": ["cardinality"]}'
+  metrics:
+  - name: booked_revenue
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: SUM((lines.gross_sales_cents-lines.discount_cents)*0.01)
+  - name: refund_amount
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(refunds.merchandise_refund_cents*0.01)
+  - name: product_cost
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(line_costs.cogs_cents*0.01)
+  - name: recovered_product_cost
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(returns.recoverable_cogs_credit_cents*0.01)
+  - name: outbound_shipping
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(deliveries.shipping_cost_cents*0.01)
+  - name: payment_fees
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(line_costs.payment_fee_cents*0.01)
+  - name: return_handling
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: SUM(returns.processing_cost_cents*0.01)
+  - name: order_count
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: COUNT(DISTINCT orders.order_id)
+  - name: returned_order_count
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: COUNT(DISTINCT CASE WHEN orders.is_returned THEN orders.order_id
+          END)
+  - name: contribution_margin
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: COALESCE(SUM((lines.gross_sales_cents-lines.discount_cents)*0.01),0)-COALESCE(SUM(refunds.merchandise_refund_cents*0.01),0)-COALESCE(SUM(line_costs.cogs_cents*0.01),0)+COALESCE(SUM(returns.recoverable_cogs_credit_cents*0.01),0)-COALESCE(SUM(deliveries.shipping_cost_cents*0.01),0)-COALESCE(SUM(line_costs.payment_fee_cents*0.01),0)-COALESCE(SUM(returns.processing_cost_cents*0.01),0)
+    custom_extensions:
+    - vendor_name: DATUS
+      data: '{"v": "1.11", "derive": {"type": "compose", "expr": "COALESCE(booked_revenue,0)-COALESCE(refund_amount,0)-COALESCE(product_cost,0)+COALESCE(recovered_product_cost,0)-COALESCE(outbound_shipping,0)-COALESCE(payment_fees,0)-COALESCE(return_handling,0)"}}'
+  - name: order_return_rate
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: COUNT(DISTINCT CASE WHEN orders.is_returned THEN orders.order_id
+          END)*1.0/NULLIF(COUNT(DISTINCT orders.order_id),0)
+    custom_extensions:
+    - vendor_name: DATUS
+      data: '{"v": "1.11", "derive": {"type": "compose", "expr": "returned_order_count*1.0/NULLIF(order_count,0)"}}'
+  - name: qualified_customer_count
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: COUNT(DISTINCT customers.customer_id)

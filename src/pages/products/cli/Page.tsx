@@ -1,3 +1,5 @@
+import ProductInterfacePreview from "../../../components/ProductInterfacePreview";
+import { INTERFACE_PREVIEWS } from "../../../content/interfacePreviews";
 import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import SiteLayout from "../../../components/SiteLayout";
 import Breadcrumb from "../../../components/Breadcrumb";
@@ -62,13 +64,14 @@ const TONE: Record<string, string> = {
   danger: "var(--term-pink)",
 };
 
-const panelBg = "rgba(11,18,48,0.4)";
+const panelBg = "var(--bg-2)";
 const sectionBorder = "1px solid var(--line)";
 
 export default function CliPage() {
   const { hero: cliHero, parity, lifecycle, modelNeutral, guardrails, ecosystem, closing, claudeCodeNote, faqLead } =
     useT(cliPage);
   const faqItems = useT(cliFaq);
+  const preview = useT(INTERFACE_PREVIEWS);
   const locale = useLocale();
   const ui = UI[locale];
   const l = useHref();
@@ -103,6 +106,8 @@ export default function CliPage() {
           </div>
         </div>
       </section>
+
+      <section className="section agent-product-preview" aria-label={preview.builder} style={{paddingTop:0,paddingBottom:64}}><div className="container" style={{maxWidth:1240}}><ProductInterfacePreview kind="agent"/></div></section>
 
       {/* Section 0, Claude Code parity */}
       <section className="section" style={{ background: panelBg, borderBlock: sectionBorder }}>

@@ -3,7 +3,7 @@
   background:
     radial-gradient(1100px 520px at 50% -8%, rgba(56, 189, 248, 0.08), transparent 60%),
     #060a14;
-  color: #e2e8f0;
+  color: var(--ink);
   font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
 }
@@ -36,14 +36,14 @@
   gap: 24px;
 }
 .glossary-header__nav > a {
-  color: #cbd5e1;
+  color: var(--ink-dim);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 .glossary-header__nav > a:hover {
-  color: #fff;
+  color: var(--ink);
 }
 /* The shared language switcher renders as a plain nav link here — glossary has
    its own design system and does not load site.css. */
@@ -95,18 +95,18 @@
   gap: 8px;
 }
 .glossary-breadcrumb a {
-  color: #94a3b8;
+  color: var(--ink-muted);
   text-decoration: none;
   transition: color 0.15s ease;
 }
 .glossary-breadcrumb a:hover {
-  color: #f8fafc;
+  color: var(--ink);
 }
 .glossary-breadcrumb [aria-current="page"] {
-  color: #cbd5e1;
+  color: var(--ink-dim);
 }
 .glossary-breadcrumb__sep {
-  color: #64748b;
+  color: var(--ink-muted);
   user-select: none;
 }
 
@@ -121,7 +121,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #38bdf8;
+  color: var(--brand-bright);
 }
 .glossary-hero__title {
   margin: 0;
@@ -129,18 +129,18 @@
   line-height: 1.05;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #f8fafc;
+  color: var(--ink);
 }
 .glossary-hero__subtitle {
   margin: 20px 0 0;
   font-size: 1.125rem;
   line-height: 1.6;
-  color: #94a3b8;
+  color: var(--ink-muted);
 }
 .glossary-hero__meta {
   margin: 20px 0 0;
   font-size: 13px;
-  color: #64748b;
+  color: var(--ink-muted);
 }
 
 /* ---------- Category nav ---------- */
@@ -165,7 +165,7 @@
   border-radius: 9999px;
   border: 1px solid rgba(148, 163, 184, 0.18);
   background: rgba(148, 163, 184, 0.05);
-  color: #cbd5e1;
+  color: var(--ink-dim);
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
@@ -173,12 +173,12 @@
 }
 .glossary-nav__link:hover {
   border-color: rgba(56, 189, 248, 0.5);
-  color: #fff;
+  color: var(--ink);
   background: rgba(56, 189, 248, 0.08);
 }
 .glossary-nav__count {
   font-size: 11px;
-  color: #64748b;
+  color: var(--ink-muted);
 }
 
 /* ---------- Sections ---------- */
@@ -199,11 +199,11 @@
   font-size: 1.6rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #f1f5f9;
+  color: var(--ink);
 }
 .glossary-section__count {
   font-size: 13px;
-  color: #64748b;
+  color: var(--ink-muted);
 }
 
 .glossary-grid {
@@ -227,20 +227,20 @@
   margin: 0 0 10px;
   font-size: 1.05rem;
   font-weight: 600;
-  color: #f8fafc;
+  color: var(--ink);
 }
 .glossary-card__def {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #94a3b8;
+  color: var(--ink-muted);
 }
 .glossary-card__link {
   display: inline-block;
   margin-top: 12px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #38bdf8;
+  color: var(--brand-bright);
   text-decoration: none;
 }
 .glossary-card__link:hover {
@@ -262,12 +262,12 @@
   margin: 0;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--ink);
 }
 .glossary-cta p {
   margin: 14px auto 0;
   max-width: 52ch;
-  color: #94a3b8;
+  color: var(--ink-muted);
   line-height: 1.6;
 }
 .glossary-cta__actions {
@@ -295,11 +295,11 @@
 }
 .glossary-cta__secondary {
   border: 1px solid rgba(148, 163, 184, 0.3);
-  color: #cbd5e1;
+  color: var(--ink-dim);
 }
 .glossary-cta__secondary:hover {
   border-color: rgba(56, 189, 248, 0.5);
-  color: #fff;
+  color: var(--ink);
 }
 
 @media (max-width: 720px) {
@@ -313,3 +313,11 @@
     display: none;
   }
 }
+
+.glossary { background:var(--bg); color:var(--ink); }
+.glossary-nav { top:var(--nav-h); background:var(--bg); backdrop-filter:none; position:relative; top:auto; }
+.glossary-card, .glossary-cta { background:var(--panel-solid); border:1px solid var(--line); border-radius:5px; }
+.glossary-nav__link { background:var(--panel); border-color:var(--line); border-radius:4px; }
+.glossary-nav__link:hover, .glossary-card:hover { border-color:var(--brand-bright); transform:none; }
+.glossary-cta__primary { background:var(--brand); color:white; border-radius:4px; }
+.glossary-cta__secondary { color:var(--ink); border-color:var(--line); border-radius:4px; }

@@ -46,6 +46,7 @@ export const MIRRORED_PATHS = [
   "/products/vscode/",
   "/products/studio/",
   "/products/enterprise/",
+  "/solutions/semantic-layer/",
   "/integrations/",
   "/databases/",
   "/models/",

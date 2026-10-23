@@ -1,5 +1,5 @@
 import { ChevronDown, Github, Menu, Star, X } from "lucide-react";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   GITHUB_URL,
   STUDIO_URL,
@@ -61,7 +61,7 @@ function NavEntry({ item }: { item: NavItem }) {
   );
 }
 
-export default function SiteNav() {
+export default function SiteNav({ logoSrc = "/logo_dark.svg", controls }: { logoSrc?: string; controls?: ReactNode }) {
   const stars = useGitHubStars();
   const [open, setOpen] = useState(false);
   const locale = useLocale();
@@ -72,7 +72,7 @@ export default function SiteNav() {
     <header className="site-nav">
       <div className="site-nav__inner">
         <a className="site-nav__logo" href={l("/")} aria-label="Datus">
-          <img src="/logo_dark.svg" alt="Datus" />
+          <img src={logoSrc} alt="Datus" />
         </a>
 
         <nav className="site-nav__links" aria-label="Primary">
@@ -82,6 +82,8 @@ export default function SiteNav() {
         </nav>
 
         <div className="site-nav__spacer" />
+
+        {controls}
 
         <LanguageSwitcher />
 
@@ -124,7 +126,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   const t = UI[locale].nav;
   return (
     <div
-      className="site-nav__mobile-menu"
+      className="site-nav__mobile"
       style={{
         position: "fixed",
         inset: `var(--nav-h) 0 0 0`,

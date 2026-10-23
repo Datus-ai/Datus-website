@@ -6,6 +6,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <style>
+  @font-face { font-family: "Datus Inter"; src: url("../src/public/fonts/inter/inter-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; }
   body {
@@ -120,10 +121,23 @@
   }
   .foot .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.6); }
   .foot .tag { font-weight: 500; color: rgba(255,255,255,0.6); }
+  .card.home-card { background: #F7F7F2; color: #252624; font-family: "Datus Inter", Arial, sans-serif; }
+  .home-card::before, .home-card .term { display: none; }
+  .home-card .logo path:not(:last-child) { fill: #252624; }
+  .home-card .logo path:last-child { fill: #402DF3; }
+  .home-card .headline { font-size: 66px; font-weight: 500; line-height: 1.1; letter-spacing: -2.8px; max-width: 760px; }
+  .home-card .headline.small { font-size: 64px; }
+  .home-card .subtitle { color: #696B63; font-size: 28px; margin-top: 24px; }
+  .home-card .foot { color: #252624; font-size: 22px; }
+  .home-card .foot .dot { background: #402DF3; }
+  .home-card .foot .tag { color: #696B63; }
+  .home-motif { display: none; position: absolute; right: 42px; top: 144px; width: 390px; height: auto; opacity: .72; }
+  .home-card .home-motif { display: block; }
 </style>
 </head>
 <body>
   <div class="card">
+    <img class="home-motif" src="../src/public/brand/loop-field-transparent.svg" alt="" />
     <div class="term" aria-hidden="true"><span class="dots">● ● ●</span>  datus-cli
 <span class="pr">datus ❯</span> <span class="kw">SELECT</span> metric, <span class="kw">SUM</span>(value) <span class="kw">AS</span> total
         <span class="kw">FROM</span> revenue.daily
@@ -157,6 +171,7 @@
     const title = (p.get("title") || "").trim();
     const subtitle = (p.get("subtitle") || "").trim();
     const tag = (p.get("tag") || "").trim();
+    if (p.get("style") === "home") document.querySelector(".card").classList.add("home-card");
 
     const ebEl = document.getElementById("eyebrow");
     if (eyebrow) ebEl.textContent = eyebrow; else ebEl.classList.add("hidden");
@@ -171,7 +186,9 @@
     if (tag) document.getElementById("tag").textContent = tag;
 
     window.__ogReady = false;
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+    Promise.all([document.fonts ? document.fonts.ready : Promise.resolve(),
+      ...Array.from(document.images).map(img => img.complete ? Promise.resolve() : new Promise(resolve => { img.onload = resolve; img.onerror = resolve; }))
+    ]).then(() => {
       window.__ogReady = true;
     });
   </script>
