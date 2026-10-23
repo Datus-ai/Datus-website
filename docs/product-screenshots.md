@@ -24,6 +24,24 @@ The Interfaces section now uses responsive HTML/React demonstrations, not screen
 
 Implementation: `src/components/ProductInterfacePreview.tsx`; bilingual UI labels: `src/content/interfacePreviews.ts`. UI identifiers, sample field names, configuration, and code remain in English.
 
+### Laptop homepage layout (2026-10-23)
+
+The homepage uses a compact rhythm at widths of at least 1024px and viewport heights up to 950px. Section spacing and heading margins are reduced; complete inline product previews scale with viewport height and retain their expand control. The comparison diagram has compact internal spacing, with no clipped source nodes. The integration list becomes manually selected category tabs on laptops, preserving the logos, read/run/output explanations and guide links. Tall desktop and mobile layouts keep the original full list; static HTML still includes all category content.
+
+Production build and homepage TypeScript checks passed. Browser checks covered 1366×680, 1440×780 and 1512×850, Chinese at 1512×850, and a 390×844 mobile regression check. No document-width overflow or comparison-diagram vertical clipping was found. All four interface tabs and integration category switching worked; mobile showed all seven integration groups. Light/dark layout checks passed with no captured console errors or warnings. At 1440×780, the interface section decreased from approximately 1244px to 696px, the workflow section from 1040px to 654px, and the default integration section from 2135px to 542px. Expanded content and shorter windows can still scroll naturally rather than crop text.
+
+### Restored hero terminal motion (2026-10-23)
+
+The live homepage and original `origin/main` hero implementation were checked to restore both animation systems: eight warehouse names crossfade with the original 2200ms hold and 320ms fade, while the original `RotatingPrompt` component types at 55ms per character, holds for 1500ms, deletes at 28ms, and repeats across all localized prompts. Its blinking inline cursor is restored; the duplicate static bottom cursor was removed. The approved redesign copy, terminal shell, install command and laptop spacing remain in use. Timers pause offscreen/in hidden documents, and reduced-motion visitors see complete static prompt text. The prompt reserves two lines to avoid page movement between phrases.
+
+### Interfaces-only height correction (2026-10-23)
+
+The operator clarified that the overly tall section was Interfaces, not the shared-context comparison. The last comparison-specific compact stylesheet and footer wrapper were removed, restoring that section to its preceding layout, including its vertically stacked ontology/model inside the Datus boundary.
+
+Only `#interfaces` now gets dedicated desktop fit rules at widths of 900px and above, including windows taller than the earlier 950px cutoff. Complete inline previews scale with available viewport height; their expand controls remain available. Product descriptions and all four tabs remain present; dialogs and other pages are unaffected.
+
+Browser measurements at 1366×680 (592px below navigation): DOSI 547px, Studio 469px, Datus Agent 469px, MCP/API/CLI 509px. DOSI measures 709px at 1512×850 (762px available), and 720px at 1058×984 (896px available). No document-width overflow was observed. Production build and whitespace checks passed.
+
 ### Northstar Premier demo update (2026-10-21)
 
 The DOSI-category preview now uses curated data from the supplied `Northstar-Premier-Demo/gui/semantic-model.json`: all 11 concept mappings and 11 relationships, plus the nine primary physical source mappings. The dataset contains invented people and transactions. Benefit/entitlement policy datasets are illustrative, and qualification remains distinct from approved membership.
@@ -39,3 +57,140 @@ The operator requested removing the generic “interactive preview / sample data
 MCP and Chat API layouts follow the supplied integration-dialog references and the local SaaS `modules/publication/components/integration-modal/{guide-pane,snippets}.tsx/ts` implementation. All displayed endpoints, project IDs and keys are placeholders. Nothing is requested from a live service. MCP uses `tools/list` with the required dual Accept types; Chat API uses the subagent header and body field and SSE. Version and language controls update the displayed code. MCP/API/CLI switches sit outside the product frame. CLI is an independent local terminal, not a Studio panel.
 
 Studio cycles through project files, Agent conversation, SQL, and query results every 2.8 seconds while visible. Manual selection pauses the walkthrough, and the pause/play control and expanded window share the tour state. Reduced-motion preferences stop automatic animation. Pointer invitations begin when the preview enters the viewport and run for three cycles.
+
+## Homepage: open data context narrative (2026-10-23)
+
+The homepage now follows the approved EN/ZH narrative: business ontology and semantic layer → trustworthy execution → open definitions → five-stage context workflow → two adoption paths → illustrative industry scenarios. `homeNarrative.ts` contains the complete paired page copy. There is no separate repeated pillar-summary section.
+
+The layered business-model visual is an explanatory overview, not a shipped product interface. Its ontology labels express business relationships; it does not claim every ontology extension is part of Apache Ossie. The runtime evidence viewer uses the exact `NORTHSTAR_MODEL_EXCERPT`, recorded `NORTHSTAR.compiledSql` and result rows, and the existing 32-node/56-edge lineage. It never executes a query. The previous-value/proposed-value MR is a local review fixture, not a historical customer merge request.
+
+Five-stage workflow uses existing source-backed components: `GatherKnowledge` (project context initialization, not automatic model creation), `DraftModel` (editor plus attached Agent context), `SemanticHubReview` (lineage, YAML diff, approval and merge), and the read-only runtime evidence. The Evolve stage opens the same review UI at the proposed change; it does not auto-approve a change or imply automatic learning. Selecting, focusing or interacting pauses automatic progression; the countdown is the tab underline. Expanded previews retain the same local component state. Semantic Hub IDs are now unique per mounted instance, including solution-page reuse.
+
+Studio and developer integration previews reuse the existing complete workspace and MCP/API/CLI UI adaptations. They use white/charcoal product surfaces independently from the page background. The original animated hero terminal remains intact. No authenticated application, real merge, database write, or live success response is simulated by this work.
+
+The homepage's modeling compatibility logos are limited to the existing converter's Cube/dbt examples. Agent and consuming-tool logos represent integration paths to inspect, not a claim of a new native connector for every tool. Each industry example is explicitly illustrative and links to a relevant modeling or execution explanation. DOSI's ELv2 license remains distinct from the open Ossie specification and the open-source datus-agent project.
+
+Validation for this narrative: complete production build, homepage TypeScript and whitespace checks passed. Both local EN and ZH URLs returned HTTP 200 with full body copy in the response. Self-canonicals, en/zh-Hans/x-default alternates, unique IDs, Chinese internal links and localized evidence-anchor targets passed; blog output remains English-only. No warning/error entries were captured on the fresh homepage test tab.
+
+Browser checks covered 1366×680, 1440×780, 1512×850 (Chinese), 1058×984, and mobile widths 390/320. No document-width overflow was observed. At 1366×680, runtime evidence including the lineage/result tab is bounded at 588px; the Open section is 585px and developer interfaces 546px, against 592px below the navigation. At 1440×780 the default sections measure business model 563px, runtime 621px, Open 625px, workflow 616px and team interfaces 623px. Deliberately expanded walkthroughs can scroll.
+
+Verified layer switching and keyboard navigation, runtime artifact tabs, automatic workflow advancement, integrated countdown/pause state, Approve → Merge, Evolve's initial diff, walkthrough expand/collapse, complete Studio dialog open/close, developer MCP/CLI switching, and light/dark product backgrounds. The 12 grouped compatibility logos loaded successfully. Captures are local in `output/homepage-open-context/` and are not website runtime assets.
+
+## Launch-ready homepage overview and pillar narrative (2026-10-23)
+
+The approved follow-up changes the order to: Hero → overall architecture / launch video → three pillar columns → Business-aware (connected business model) → Agent-native (Studio / developer workflows) → Audit-ready (DOSI evidence) → How it works → open specification and execution → industry → summary CTA → resources → FAQ. Pillar-column links navigate to the corresponding detail sections, using locale-preserving fragments.
+
+The new bilingual architecture retains the four approved layers: Datus Studio, Datus Agent, DOSI Engine and Apache Ossie Spec. DOSI/Ossie share an ontology + semantic-model foundation. All knowledge sources join a common input to the Datus boundary; consumers branch from a common output. This is an overview of product relationships, not a live workflow or a claim that ontology extensions belong to the Ossie specification.
+
+The launch video belongs in the second section, preserving the developer terminal in the hero. Until approved media is available, the architecture renders without a fake play button or a coming-soon placeholder. `src/config/homeLaunchMedia.ts` can replace the architecture with a native controlled video: set `src` to the actual playable video asset URL (not a YouTube share-page URL), `poster` to its poster, and `captions.en` / `captions.zh` to WebVTT URLs. Keep `src:null` until ready. The video does not autoplay; no third-party video player is loaded by the current page.
+
+Open definitions now centers on the distinction: Apache Ossie is the open specification; DOSI is a compatible execution runtime that validates supported definitions and generates native SQL. The compatibility, converter and supported-source links remain accessible; DOSI's ELv2 license stays explicit. The previous four integration-logo groups no longer carry the explanation of openness.
+
+Validation for the launch narrative: TypeScript, complete production build, bilingual prerender and whitespace checks passed. Both EN/ZH HTTP responses contain the complete overview and pillar copy, correct self-canonicals and en/zh-Hans/x-default alternates. Static checks verify unique IDs, three matching detail anchors, pillar/detail order, one summary CTA before resources, and the architecture fallback while no video is configured. Browser checks covered English at 1440×780, 1366×680 and 1512×850, English mobile at 390/320 widths, and Chinese at 1512×850 plus 390px in dark mode. No document-width overflow was observed. The overview is 527px tall and the pillar summary 334px at 1366×680. Pillar links retained the Chinese locale and navigated to the correct detail section. No browser warning/error entries were captured. New local captures: `output/homepage-open-context/launch-overview-light.png` and `three-pillars-light.png`.
+
+## PR #94: combined overview, dark default and full workflow (2026-10-23)
+
+GitHub metadata was checked directly: open PR #94, **Refresh Datus website design**, uses `codex/website-visual-identity` as its source branch in `Datus-ai/Datus-website`. The active worktree is that branch. These local homepage edits already belong to the redesign PR's branch; no branch migration or independent VI-repository change is required.
+
+The architecture/video area and the three pillar columns now form one `#overview` section with one H2. `#pillars` remains a fragment target inside it, without another visible heading. The launch video configuration remains available and the summary CTA remains before Resources.
+
+The entire marketing/product/glossary/blog site defaults to dark. `scripts/lib/site-theme.mjs` adds the dark HTML attribute and early preference script to Vite shells and generated blog HTML. React prerenders the dark logo/control state; the static blog does likewise. Missing, invalid or unavailable stored preferences use dark; an explicitly saved light choice is preserved across both rendering systems. `test:site-theme` exercises the actual bootstrap script and its shell injection.
+
+How it works uses a sticky vertical step list on desktop and the full source-backed UI beside it. The marketing frame no longer has a fixed height, vertical clipping, or an extra expand button. The lineage canvas renders its complete 535px height; source initialization, model editor, review diff and native pane scroll behaviors remain available. The section grows to fit each scene. On phones, steps form a compact row above a naturally stacked full UI. Keyboard orientation matches the breakpoint; manual selection/focus pauses autoplay and the countdown stays in the active underline. Pause/Play was checked to avoid a focus/click toggle race.
+
+Validation: TypeScript, complete production build, the theme bootstrap/shell tests, and whitespace checks passed. Both home locales and representative product/glossary/blog HTML have a dark default shell and exactly one early theme script; unique IDs and canonicals remain intact. HTTP checks returned 200 for EN/ZH home, Studio, blog index and a blog article. A fresh localhost visitor saw dark on home and blog; switching to light persisted into Studio, and switching back to dark persisted into the Chinese solution page. No browser warnings/errors were captured on the fresh test tab.
+
+At 1440×780 the desktop step buttons share a left column, the source initialization scene is 592px tall and the full review scene is 801px tall; the lineage canvas is 535px with no vertical clipping. At 1920×1080 the model-editing scene is 923px wide and 590px tall. The Chinese mobile model scene naturally grows to 919px at 390px width, without document-width overflow or a marketing expand control; its tab orientation becomes horizontal. Source selection → confirmation, YAML review → Approve → Merge, Pause/Play and up/down keyboard navigation were verified. Final local captures: `output/homepage-open-context/workflow-full-dark-desktop.png` and `overview-pillars-merged-dark.png`.
+
+### Audit-ready: four linked product fragments (2026-10-23)
+
+The 01–04 execution chain is now an accessible, manually selected tablist. Each
+step controls one product fragment: Semantic Hub YAML review; the recorded
+Northstar semantic request with model excerpt; exact recorded compiler SQL; and
+recorded results with the full interactive lineage graph. Arrow keys and
+Home/End move between steps. There is no automatic progression for these tabs.
+The earlier three-tab `RuntimeEvidence` remains reusable by archived workflows.
+
+`AuditRuntimePreview.tsx` reuses the Semantic Hub review component and Northstar
+fixtures. Approval and merge affect local preview state only. The request view
+shows compilation inputs rather than fabricating successful validation logs.
+SQL and results remain recorded artifacts, with localized provenance notes.
+
+The mockup has its own neutral white or charcoal surface, theme-specific border,
+raised window chrome and shadow. Frame scrolling keeps the product fragment
+legible on laptops without scaling the UI down; mobile layouts stack naturally.
+
+### Smaller illustrations and focused Audit-ready demo (2026-10-23)
+
+Business-aware now uses three compact SVG illustrations: business relationships,
+semantic definitions/source mapping, and existing knowledge brought into Agent
+context. They are explanatory drawings, not an invented full product workspace.
+The preceding layered diagram source is retained in
+`BusinessModelLayeredPreview.tsx`; reusable UI components remain available. Motion pauses offscreen and respects reduced motion.
+
+Audit-ready has no left prose column. Its full-width stage shows a reduced YAML
+change/approval fragment, compilation input, compiler SQL excerpt (with a full
+SQL disclosure), and a report with Calculation & Sources. No lineage graph is
+mounted in this section. The report/inspector composition follows the local
+SaaS source `modules/ide/components/DatusEditor/preview-registry/report.tsx` and
+`modules/artifact/components/artifact-insight/{query-detail,index}.tsx`; labels
+follow `locales/en/artifact_insight.json`. It adapts the layout for a small
+marketing demo rather than claiming an exact running application screenshot.
+
+The report uses recorded Northstar rows, the exact contribution-margin expression,
+and only physical tables named in the recorded compiler SQL. Report data and
+attribution are combined for demonstration; no persisted production report or
+historical approval is claimed. The compact approval is local fixture state.
+`AuditRuntimeDetailedPreview.tsx` preserves the prior four full product fragments,
+and `RuntimeEvidence` preserves the earlier three-tab evidence viewer.
+
+Resources now follow FAQ and reuse distinct covers for three articles from the
+latest publication batch (2026-10-19), verified on the public blog 2026-10-23.
+Footer navigation is denser; the complete ASF notice remains, in 10px type.
+
+The light architecture backdrop now has a separate lavender surface with white
+modules. Geometry remains unchanged pending selection. Three local visual
+options, with identical architecture copy, are preserved in
+`output/architecture-directions/index.html`: offset sheets, flowing ribbons,
+and context orbits. They are preview-only and excluded from the public build.
+
+### Rich business definitions and three consumer roles (2026-10-23)
+
+Business-aware now shows six Ossie core metadata groups: metrics, dimensions,
+relationships, source/key mappings, labels/descriptions, and AI context
+(instructions, synonyms and examples). These are supported by
+`dosi-model/src/spec.rs`; the visual does not present Datus LOD extensions as
+core Ossie fields. The compact Northstar ontology uses eight curated concepts
+and the actual relationships from `northstarPreview.ts`. Selection reveals the
+mapped dataset, identity keys and business properties. Qualification remains
+separate from membership. The previous three simple scenes remain in
+`BusinessContextBasicIllustration.tsx`.
+
+Agent-native now has data-engineer, analyst and business-user paths. Engineers
+reuse the Studio workspace/tour. Its theme variables now override the pale
+backgrounds previously forced by the file/chat/SQL/result tour steps, including
+the expanded dialog. Analysts see an Agent conversation plus dashboard/HTML
+report artifact tabs, adapted from Studio and the report artifact renderer.
+The business-user panel is an explicitly illustrative ChatGPT/Claude-style MCP
+client with recorded Northstar rows and definition/SQL disclosure. It sends no
+message and establishes no external connection. Client marks indicate configured
+MCP usage paths, not universal native integrations or endorsement; the existing
+DOSI source documents Claude Code and Codex clients. Per-client setup is required.
+All role demos use the existing sample/recorded artifacts rather than invented
+live success responses. The older two-path composition is retained in
+`WorkingPathsTwoAudiencePreview.tsx`.
+
+The four architecture modules now have original flat SVG drawings for the shared
+workspace, main/subagents, runtime compilation, and open model specification.
+Common input/output buses and their motion remain intact. The same illustrations
+are included in all three local architecture explorations; the preceding draft
+remains in `output/architecture-directions/before-module-illustrations.html`.
+
+Role and metadata validation: TypeScript (including archived variants), complete
+production build and whitespace checks pass. Browser checks cover EN desktop
+1440×780, compact 1366×680, and Chinese 390/320px widths. Metadata facet switching,
+Northstar node selection, dashboard/HTML-report switching, client selection and
+recorded calculation disclosure were exercised. Studio file/chat/SQL/results
+steps and the expanded dialog all retain neutral dark surfaces. No horizontal
+document overflow was observed in these cases. The overview keeps four original
+module illustrations and uses inline pillar-heading icons on shorter laptops.

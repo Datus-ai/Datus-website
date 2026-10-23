@@ -272,7 +272,7 @@
 .nordic-closing .nordic-lead { margin: 0 auto 30px; }
 .nordic-home .site-footer { background: var(--bg-2); color: var(--ink); border-color: var(--line); }
 .nordic-home .site-footer__inner, .nordic-home .site-footer__bar { max-width: 1240px; padding-inline: 40px; }
-.nordic-home .site-footer__inner { padding-block: 60px; }
+.nordic-home .site-footer__inner { padding-block: 30px 20px; }
 .nordic-home .site-footer__tagline, .nordic-home .site-footer__bar { color: var(--ink-muted); }
 .nordic-home .site-footer__heading { color: var(--ink-muted); font-size: 10px; }
 .nordic-home .site-footer__col a { color: var(--ink-dim); font-size: 12px; }
@@ -382,6 +382,12 @@
 .nordic-terminal-output { margin: 8px 0; color: #a5b29a; font-size: 12px; line-height: 1.8; }
 .nordic-terminal-success { color: #bdcda7; margin: 12px 0; font-size: 12px; }
 .nordic-terminal-question { margin-top: 22px; }
+.nordic-terminal-warehouse { display:inline-block; min-width:10ch; transition:opacity .32s ease; }
+.nordic-terminal-question { min-height:3.8em; }
+.nordic-terminal-question .term__cmd { color:#e9eddf; }
+.nordic-terminal-question .term__prompt { color:#b3a4ff; }
+.nordic-terminal-question .cursor { background:#b3a4ff; }
+.nordic-terminal-session[data-running=false] .cursor { animation-play-state:paused; }
 .nordic-terminal-evolve { color: #b3a4ff; margin-top: 17px; font-size: 12px; }
 .nordic-terminal-cursor { display: block; width: 6px; height: 12px; background: #b3a4ff; margin-top: 22px; }
 .nordic-watermark-section { position: relative; overflow: hidden; }

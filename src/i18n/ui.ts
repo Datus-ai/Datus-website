@@ -685,3 +685,9 @@ export const SEMANTIC_CONVERTER_UI = {
     }
   }
 };
+
+/** Shared interaction labels for homepage product and evidence walkthroughs. */
+export const HOME_WALKTHROUGH_UI:Record<Locale,{pause:string;play:string;selectLayer:string;inspect:string;close:string;next:string}>={
+ en:{pause:'Pause automatic steps',play:'Play automatic steps',selectLayer:'Explore the connected layers',inspect:'Explore the product walkthrough',close:'Close product walkthrough',next:'Next step'},
+ zh:{pause:'暂停自动切换',play:'播放自动步骤',selectLayer:'查看相连的业务上下文',inspect:'查看产品流程演示',close:'关闭产品流程演示',next:'下一步'},
+};

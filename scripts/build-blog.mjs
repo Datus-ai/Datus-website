@@ -12,6 +12,7 @@ import matter from "gray-matter";
 import MarkdownIt from "markdown-it";
 import anchor from "markdown-it-anchor";
 import { prepareCovers } from "./lib/blog-covers.mjs";
+import { withSiteTheme } from "./lib/site-theme.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -187,7 +188,7 @@ function navHtml() {
   const community = [["GitHub", GITHUB_URL], ["Slack", SLACK_URL], ["Docs", DOCS_URL]].map(([l, h]) =>
     `<a class="nav-dd__item" href="${h}" target="_blank" rel="noopener noreferrer"><span class="nav-dd__item-title">${l}</span></a>`).join("");
   return `<header class="site-nav"><div class="site-nav__inner">
-  <a class="site-nav__logo" href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" /></a>
+  <a class="site-nav__logo" href="/" aria-label="Datus home"><img src="/logo_dark.svg" alt="Datus" /></a>
   <nav class="site-nav__links" aria-label="Primary">
     <div class="nav-dd"><button class="nav-link" type="button">Products ${SVG.chevron}</button>
       <div class="nav-dd__menu">${products}</div></div>
@@ -200,7 +201,7 @@ function navHtml() {
       <div class="nav-dd__menu">${community}</div></div>
   </nav>
   <div class="site-nav__spacer"></div>
-  <button id="theme-toggle" class="nordic-theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">☾</button>
+  <button id="theme-toggle" class="nordic-theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="true">☀</button>
   <a class="nav-ghost-btn" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">${SVG.github}<span class="star">${SVG.star}</span><span id="gh-stars">1.2k</span></a>
   <a class="btn btn-primary btn-sm" href="${STUDIO_URL}">Get started</a>
   <button class="site-nav__burger" type="button" aria-label="Menu" onclick="this.closest('.site-nav').classList.toggle('open')">${SVG.burger}</button>
@@ -209,7 +210,7 @@ function navHtml() {
 
 // Live GitHub star count (mirrors src/hooks/useGitHubStars.ts) for nav parity.
 function navScript() {
-  return `<script>(function(){var button=document.getElementById("theme-toggle");function apply(dark){document.documentElement.dataset.theme=dark?"dark":"light";button.setAttribute("aria-pressed",String(dark));button.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");button.textContent=dark?"☀":"☾";document.querySelectorAll('img[src="/logo_light.svg"],img[src="/logo_dark.svg"]').forEach(function(img){img.src=dark?"/logo_dark.svg":"/logo_light.svg";});}try{apply(localStorage.getItem("datus-home-theme")==="dark");}catch(e){}button.onclick=function(){var dark=document.documentElement.dataset.theme!=="dark";apply(dark);try{localStorage.setItem("datus-home-theme",dark?"dark":"light");}catch(e){}};})();</script><script>(function(){var K="datus:github-stars",T=216e5;function f(c){if(c<1000)return""+c;var t=c/1000;return t>=10?Math.round(t)+"k":t.toFixed(1)+"k";}
+  return `<script>(function(){var button=document.getElementById("theme-toggle");function apply(dark){document.documentElement.dataset.theme=dark?"dark":"light";button.setAttribute("aria-pressed",String(dark));button.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");button.textContent=dark?"☀":"☾";document.querySelectorAll('img[src="/logo_light.svg"],img[src="/logo_dark.svg"]').forEach(function(img){img.src=dark?"/logo_dark.svg":"/logo_light.svg";});}try{apply(localStorage.getItem("datus-home-theme")!=="light");}catch(e){apply(true);}button.onclick=function(){var dark=document.documentElement.dataset.theme!=="dark";apply(dark);try{localStorage.setItem("datus-home-theme",dark?"dark":"light");}catch(e){}};})();</script><script>(function(){var K="datus:github-stars",T=216e5;function f(c){if(c<1000)return""+c;var t=c/1000;return t>=10?Math.round(t)+"k":t.toFixed(1)+"k";}
 function s(c){var e=document.getElementById("gh-stars");if(e)e.textContent=f(c);}
 try{var r=JSON.parse(localStorage.getItem(K));if(r&&typeof r.count==="number"){s(r.count);if(r.ts&&Date.now()-r.ts<T)return;}}catch(e){}
 fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){return x.ok?x.json():null}).then(function(d){if(!d||typeof d.stargazers_count!=="number")return;s(d.stargazers_count);try{localStorage.setItem(K,JSON.stringify({count:d.stargazers_count,ts:Date.now()}))}catch(e){}}).catch(function(){});})();</script>`;
@@ -218,7 +219,7 @@ fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){retu
 function footerHtml() {
   const year = new Date().getFullYear();
   return `<footer class="site-foot"><div class="container" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center">
-  <a href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" style="height:24px"/></a>
+  <a href="/" aria-label="Datus home"><img src="/logo_dark.svg" alt="Datus" style="height:24px"/></a>
   <nav style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted)">
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
@@ -735,7 +736,7 @@ function buildReferencePages() {
 /* ------------------------------- write ------------------------------- */
 function write(file, content) {
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, content);
+  writeFileSync(file, file.endsWith('.html') ? withSiteTheme(content) : content);
 }
 
 // Full ISO datetime if d is a valid date, else "" (guards against bad frontmatter).

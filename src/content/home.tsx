@@ -134,19 +134,12 @@ export type HomeCopy = {
 
 const EN: HomeCopy = {
   hero: {
-    eyebrow: "Datus · enterprise context for AI agents",
+    eyebrow: "Open data context for AI agents",
     titleLead: "The trusted ",
     titleAccent: "enterprise context",
     titleTail: " for AI agents.",
     stackTitle: true,
-    lead: (
-      <>
-        Datus gives AI agents the business context they need and teams a way to inspect the
-        results. It brings together business concepts, governed metrics, and data provenance.
-        Datus Agent helps turn knowledge from your documents, warehouses, and ETL scripts into
-        semantic models your team can review.
-      </>
-    ),
+    lead: <>Connect business ontology, governed metrics, and data provenance in one shared context layer. Give agents business meaning they can use—and teams the evidence to inspect their work.</>,
     ctaPrimary: "Try Datus in Studio",
     ctaDeveloper: "Quickstart DOSI",
     contact: "Talk to us about your enterprise data stack",
@@ -346,16 +339,11 @@ const EN: HomeCopy = {
 
 const ZH: HomeCopy = {
   hero: {
-    eyebrow: "Datus · 面向 AI Agent 的企业级业务上下文",
+    eyebrow: "面向 AI Agent 的开放数据上下文",
     titleLead: "让 AI Agent 拥有",
     titleAccent: "可信的企业业务上下文",
     titleTail: "。",
-    lead: (
-      <>
-        Datus 将业务概念、受治理的指标和数据血缘连接起来，让 AI Agent 理解业务，也让团队能够检查分析结果。
-        Datus Agent 帮助团队从现有文档、数仓和 ETL 脚本中整理知识，生成可审核的语义模型。
-      </>
-    ),
+    lead: <>在共享的上下文层中，连接业务本体、受治理的指标与数据来源。让 Agent 使用明确的业务含义，让团队有据可依地核查工作。</>,
     ctaPrimary: "在 Studio 体验 Datus",
     ctaDeveloper: "查看 DOSI 快速开始",
     contact: "想在企业数据栈中使用？联系我们",

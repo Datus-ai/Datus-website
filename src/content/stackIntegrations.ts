@@ -1,10 +1,11 @@
 import type { Locale } from '../i18n/config';
 
 type StackRow = { name: string; vendors: { name: string; mode: string; logo?: string }[]; read: string; run: string; output: string; guides: { label: string; href: string }[] };
-type StackCopy = { labels: string[]; rows: StackRow[] };
+type StackCopy = { navigation: string; labels: string[]; rows: StackRow[] };
 const docs = 'https://docs.datus.ai/dev/';
 export const STACK_INTEGRATIONS: Record<Locale, StackCopy> = {
   en: {
+    navigation: 'Integration categories',
     labels: ['Reads', 'Runs in', 'Produces'],
     rows: [
       { name: 'Models', vendors: ['OpenAI','Anthropic','Gemini','DeepSeek','Qwen','Ollama','Bedrock'].map(name=>({name,mode:'LLM endpoint'})).concat([{name:'BYO',mode:'Your endpoint'}]), read: 'Task prompts and permitted business context.', run: 'Your configured hosted or local model endpoint.', output: 'Model drafts, SQL and explanations.', guides: [{label:'Configure a model',href:docs+'configuration/agent/'}] },
@@ -17,6 +18,7 @@ export const STACK_INTEGRATIONS: Record<Locale, StackCopy> = {
     ],
   },
   zh: {
+    navigation: '集成类别',
     labels: ['读取内容', '执行位置', '输出内容'],
     rows: [
       { name:'模型', vendors:['OpenAI','Anthropic','Gemini','DeepSeek','Qwen','Ollama','Bedrock'].map(name=>({name,mode:'模型端点'})).concat([{name:'BYO',mode:'自定义端点'}]), read:'任务提示与获准使用的业务上下文。',run:'你配置的云端或本地模型端点。',output:'模型草稿、SQL 与解释。',guides:[{label:'配置模型',href:docs+'configuration/agent/'}]},

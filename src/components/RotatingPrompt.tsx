@@ -11,7 +11,7 @@ const TYPE_MS = 55;
 const DELETE_MS = 28;
 const HOLD_MS = 1500;
 
-export default function RotatingPrompt({ phrases }: { phrases: string[] }) {
+export default function RotatingPrompt({ phrases, running = true, reducedMotion = false }: { phrases: string[]; running?: boolean; reducedMotion?: boolean }) {
   const PHRASES = phrases;
   const [index, setIndex] = useState(0);
   const [text, setText] = useState("");
@@ -20,6 +20,7 @@ export default function RotatingPrompt({ phrases }: { phrases: string[] }) {
   );
 
   useEffect(() => {
+    if (!running || reducedMotion || !PHRASES.length) return;
     const full = PHRASES[index];
 
     if (phase === "typing") {
@@ -49,7 +50,7 @@ export default function RotatingPrompt({ phrases }: { phrases: string[] }) {
     }
     setPhase("typing");
     setIndex((i) => (i + 1) % PHRASES.length);
-  }, [text, phase, index]);
+  }, [text, phase, index, PHRASES, running, reducedMotion]);
 
   return (
     <span className="term__line">
@@ -62,7 +63,7 @@ export default function RotatingPrompt({ phrases }: { phrases: string[] }) {
       </span>
       <span aria-hidden="true">
         <span className="term__prompt">datus&nbsp;&gt;&nbsp;</span>
-        <span className="term__cmd">{text}</span>
+        <span className="term__cmd">{reducedMotion ? PHRASES[0] : text}</span>
         <span className="cursor" />
       </span>
     </span>

@@ -56,10 +56,10 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "Datus — 面向 AI Agent 的可信企业业务上下文",
     description:
-      "Datus 连接业务概念、受治理的指标和数据血缘。Datus Agent 辅助构建可审核的语义模型，DOSI 执行兼容 Apache Ossie 的定义。",
+      "Datus 为 AI Agent 提供开放的数据上下文，连接业务本体、受治理的指标与数据来源。团队可以审核语义定义，并检查 DOSI 的执行依据。",
     ogTitle: "Datus — 面向 AI Agent 的可信企业业务上下文",
     ogDescription:
-      "理解业务、面向 Agent、可供审查。Datus 为团队和 AI Agent 提供共享的业务上下文。",
+      "面向 AI Agent 的开放数据上下文：关联业务含义，复用语义定义，通过 DOSI 检查执行依据。",
   },
   "/products/cli/": {
     title: "Datus agent — 终端里的开源数据 CLI",

@@ -10,19 +10,23 @@ import "../styles/section-reveal.css";
 import { setupSectionReveals } from "../lib/section-reveal";
 
 export default function SiteLayout({ children, className = "", logoSrc, navControls }: { children: ReactNode; className?: string; logoSrc?: string; navControls?: ReactNode }) {
-  const [dark, setDark] = useState(false);
+  // Match the dark prerendered shell; only an explicit saved light choice wins.
+  const [dark, setDark] = useState(true);
   const root=useRef<HTMLDivElement>(null);
   useEffect(()=>root.current?setupSectionReveals(root.current):undefined,[]);
   const labels = useT(UI).theme;
   const path = useCurrentPath();
   const graphic = path.includes("products") ? "context-layers" : path.includes("osi") ? "semantic-lens" : path.includes("pricing") ? "shared-definition" : path.includes("faq") ? "evolving-context" : "relationship-map";
   useEffect(() => {
-    try { setDark(localStorage.getItem("datus-home-theme") === "dark"); } catch { /* Storage is optional. */ }
+    let next = true;
+    try { next = localStorage.getItem("datus-home-theme") !== "light"; } catch { /* Dark is also the storage-free default. */ }
+    setDark(next);
+    document.documentElement.dataset.theme = next ? "dark" : "light";
   }, []);
-  useEffect(() => { document.documentElement.dataset.theme = dark ? "dark" : "light"; }, [dark]);
   function toggle() {
     const next = !dark;
     setDark(next);
+    document.documentElement.dataset.theme = next ? "dark" : "light";
     try { localStorage.setItem("datus-home-theme", next ? "dark" : "light"); } catch { /* Retain the in-session choice. */ }
   }
   const logo = logoSrc || (dark ? "/logo_dark.svg" : "/logo_light.svg");

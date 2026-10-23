@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Pause, Play } from 'lucide-react';
-import { useT } from '../i18n/LocaleContext';
+import { ArrowUpRight, Pause, Play } from 'lucide-react';
+import { useHref, useT } from '../i18n/LocaleContext';
 import { INDUSTRY_USE_CASES } from '../content/industryUseCases';
 import '../styles/industry-use-cases.css';
 export default function IndustryUseCases(){
- const t=useT(INDUSTRY_USE_CASES);
+ const t=useT(INDUSTRY_USE_CASES),l=useHref();
  const [active,setActive]=useState(0);
  const [paused,setPaused]=useState(false);
  const [visible,setVisible]=useState(false);
@@ -22,7 +22,7 @@ export default function IndustryUseCases(){
    {t.items.map((item,index)=><article key={item.id} id={`industry-panel-${item.id}`} role="tabpanel" aria-labelledby={`industry-tab-${item.id}`} hidden={active!==index} tabIndex={0}>
     <img className="industry-use-cases__background" src={item.image} alt={item.alt} width="1600" height="1000" loading="lazy" decoding="async"/>
     <div className="industry-use-cases__shade" aria-hidden="true"/>
-    <div className="industry-use-cases__copy"><h3>{item.title}</h3><p>{item.body}</p><div className="industry-use-cases__question"><span>{t.example}</span><blockquote>{item.question}</blockquote></div></div>
+    <div className="industry-use-cases__copy"><h3>{item.title}</h3><p>{item.body}</p><div className="industry-use-cases__question"><span>{t.example}</span><blockquote>{item.question}</blockquote></div><a className="hp-industry-link" href={l(item.href)}>{item.link}<ArrowUpRight size={14}/></a></div>
    </article>)}
    <button type="button" className="industry-use-cases__motion" aria-label={paused?t.playMotion:t.pauseMotion} onClick={()=>setPaused(!paused)}>{paused?<Play size={16}/>:<Pause size={16}/>}</button>
   </div>

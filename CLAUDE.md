@@ -125,6 +125,8 @@ page.
 | context | 上下文 | never 情境 in a data setting |
 | Subagent | 子代理 | 子代理 in body copy; `Subagent` may stay in headings and product names |
 | Semantic Layer | 语义层 | |
+| ontology / business ontology | 本体 / 业务本体 | ontology connects business concepts and relationships to semantic definitions |
+| runtime / semantic execution runtime | 运行时 / 语义执行运行时 | DOSI may also be used independently |
 | semantic model | 语义模型 | |
 | metrics | 指标 | |
 | Reference SQL | Reference SQL | product concept, kept in English |
@@ -286,3 +288,10 @@ These are approved website-wide design rules. Apply them to new pages and simila
 - The website header and hero have **no dividing line between them**, across pages, locales, themes and viewport sizes. Do not add a header bottom border, hero top border, pseudo-element separator or shadow that recreates that line.
 - Keep this in the shared navigation styles (`src/styles/site.css` and the Nordic theme styles), so React pages and generated blog pages inherit the same treatment. Header background behavior can remain page-specific.
 - This rule concerns the website header/hero boundary. It does not remove borders inside product previews, navigation dropdowns or content sections.
+
+# 8. Default website theme
+
+- All marketing and product pages, glossary pages, and generated blog pages start in **dark mode** when no preference is stored. The HTML shell is dark even without JavaScript.
+- Honor an explicit light choice saved under `datus-home-theme`; use the same storage key in React and the static blog. Unavailable storage falls back to dark.
+- Reuse `scripts/lib/site-theme.mjs` for the early head script and shell attributes. Vite and the blog generator both apply it, before first paint, so routes do not flash the opposite theme.
+- Theme controls, logos and prerendered React markup must agree with the dark default. Keep the visitor's ability to toggle both themes.
