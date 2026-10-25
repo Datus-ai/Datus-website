@@ -15,6 +15,7 @@ import PricingPage from "./pages/pricing/Page";
 import FaqPage from "./pages/faq/Page";
 import CookiePolicyPage from "./pages/policies/cookies/Page";
 import PrivacyPolicyPage from "./pages/policies/privacy/Page";
+import TermsPage from "./pages/policies/terms/Page";
 import SecurityPage from "./pages/security/Page";
 import SupportPage from "./pages/support/Page";
 import OsiFieldMappingPage from "./pages/osi-field-mapping/Page";
@@ -51,6 +52,7 @@ const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/faq/", page: () => <FaqPage /> },
   { path: "/policies/cookies/", page: () => <CookiePolicyPage /> },
   { path: "/policies/privacy/", page: () => <PrivacyPolicyPage /> },
+  { path: "/policies/terms/", page: () => <TermsPage /> },
   { path: "/security/", page: () => <SecurityPage /> },
   { path: "/support/", page: () => <SupportPage /> },
   { path: "/osi-field-mapping/", page: () => <OsiFieldMappingPage /> },

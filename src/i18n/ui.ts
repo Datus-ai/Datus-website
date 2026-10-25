@@ -32,6 +32,7 @@ export type UiMessages = {
     semanticConverter: string;
     cookiePolicy: string;
     privacyPolicy: string;
+    termsOfService: string;
     cookieSettings: string;
     tagline: string;
     products: string;
@@ -169,6 +170,7 @@ export const UI: Record<Locale, UiMessages> = {
       semanticConverter: "Semantic Model Converter",
       cookiePolicy: "Cookie Policy",
       privacyPolicy: "Privacy Statement",
+      termsOfService: "Terms of Service",
       cookieSettings: "Cookie Settings",
       tagline:
         "The open-source data engineering agent with an evolvable Context Engine — natural language to governed, production-ready data work.",
@@ -304,6 +306,7 @@ export const UI: Record<Locale, UiMessages> = {
       semanticConverter: "语义模型转换器",
       cookiePolicy: "Cookie 政策",
       privacyPolicy: "隐私声明",
+      termsOfService: "服务条款",
       cookieSettings: "Cookie 设置",
       tagline:
         "开源的数据工程 Agent，内置可演进的上下文引擎，用自然语言完成可治理、可上生产的数据工作。",

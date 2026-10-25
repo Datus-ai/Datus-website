@@ -15,8 +15,11 @@ export type LegalDocument = {
   sections: { id: string; title: string; blocks: LegalBlock[] }[];
 };
 
-function linkedText(text: string): ReactNode[] {
-  return text.split(/(https?:\/\/[^\s]+|contact@datus\.ai)/g).map((part, index) => {
+function linkedText(text: string, linkPrivacyStatement: boolean): ReactNode[] {
+  return text.split(/(https?:\/\/[^\s]+|contact@datus\.ai|Privacy Statement)/g).map((part, index) => {
+    if (part === "Privacy Statement" && linkPrivacyStatement) {
+      return <a key={index} href="/policies/privacy/">{part}</a>;
+    }
     if (part === "contact@datus.ai") {
       return <a key={index} href="mailto:contact@datus.ai">{part}</a>;
     }
@@ -31,9 +34,13 @@ function linkedText(text: string): ReactNode[] {
 export default function LegalPolicyPage({
   document,
   path,
+  dateLabel = "Effective Date",
+  linkPrivacyStatement = false,
 }: {
   document: LegalDocument;
   path: string;
+  dateLabel?: string;
+  linkPrivacyStatement?: boolean;
 }) {
   const locale = useLocale();
   return (
@@ -46,7 +53,7 @@ export default function LegalPolicyPage({
         <header className="legal-policy__header">
           <p className="legal-policy__eyebrow">DatusAI, Inc. / Policies</p>
           <h1>{document.title}</h1>
-          <p className="legal-policy__date">Effective Date: {document.effectiveDate}</p>
+          <p className="legal-policy__date">{dateLabel}: {document.effectiveDate}</p>
         </header>
         <div className="legal-policy__grid">
           <nav className="legal-policy__toc" aria-label="Table of contents">
@@ -63,10 +70,10 @@ export default function LegalPolicyPage({
                 <h2>{section.title}</h2>
                 {section.blocks.map((block, index) => block.type === "list" ? (
                   <ul key={index}>
-                    {block.items.map((item) => <li key={item}>{linkedText(item)}</li>)}
+                    {block.items.map((item) => <li key={item}>{linkedText(item, linkPrivacyStatement)}</li>)}
                   </ul>
                 ) : (
-                  <p key={index}>{linkedText(block.text)}</p>
+                  <p key={index}>{linkedText(block.text, linkPrivacyStatement)}</p>
                 ))}
               </section>
             ))}

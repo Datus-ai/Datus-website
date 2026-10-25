@@ -1,0 +1,446 @@
+{
+  "title": "Terms of Service",
+  "effectiveDate": "October 26, 2026",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "1. AGREEMENT TO TERMS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "These Terms of Service constitute a legally binding agreement between you, acting for business purposes and, where applicable, on behalf of the business entity you are authorised to represent, and DatusAI, Inc. (“we”, “us”, or “our”). They govern your access to and use of https://datus.ai/ and the related websites, web applications, online interfaces and services we provide for Datus Agent, DOSI and Datus Studio that display or link to these Terms (collectively, the “Site”). We are registered in California, United States, at 101 Jefferson Dr, Ste 235, Menlo Park, California 94025, US. BY ACCESSING OR USING THE SITE, YOU AGREE TO THESE TERMS. IF YOU DO NOT AGREE, DO NOT USE THE SITE. A separately signed customer contract, NDA, DPA or other agreement governs its own subject matter and prevails over these Terms in the event of a conflict. Software made available under an open-source or other separate licence remains subject to that licence."
+        },
+        {
+          "type": "paragraph",
+          "text": "Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference, subject to the order of precedence in these Terms. We may make changes or modifications to these Terms of Use from time to time. We will update the “Last updated” date and notify you of changes by email and in-product notification. For material changes, we will give at least 30 calendar days’ advance notice; the notice will state the effective date, which will be no earlier than 30 days after notice. Changes strictly necessary to comply with urgent legal requirements or address an urgent security risk may take effect immediately, with notice by email and in-product notification as soon as reasonably practicable. Non-material corrections may take effect when posted, with the updated date shown. These changes do not override a signed order form or other negotiated agreement, and commercial pricing and renewal remain governed by the separate customer contract. Please ensure that you review the applicable Terms so that you understand which Terms apply. Subject to any consent required by applicable law, continued use after the stated effective date constitutes acceptance of the revised Terms."
+        },
+        {
+          "type": "paragraph",
+          "text": "The information provided on the Site is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Site from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable."
+        },
+        {
+          "type": "paragraph",
+          "text": "Unless a separate written agreement with DatusAI expressly permits otherwise, you may submit only public datasets that you have the lawful right to submit and use. You must not submit or connect private or confidential business datasets, private banking or financial records, medical or health records, sensitive personal information, children’s personal information or other regulated data. Without such an agreement, you must not use the Site for workloads requiring industry-specific compliance such as HIPAA, FISMA or GLBA. Public availability does not mean that information is free of personal information or third-party rights."
+        },
+        {
+          "type": "paragraph",
+          "text": "You must have the rights and permissions necessary to use any data you submit. Public availability does not remove privacy, confidentiality, intellectual property or other legal restrictions. The restrictions in this section apply regardless of whether the source is publicly accessible, except to the extent expressly permitted by the applicable separate written agreement."
+        },
+        {
+          "type": "paragraph",
+          "text": "The Site is intended for users who are at least 18 years old. Persons under the age of 18 are not permitted to use or register for the Site."
+        },
+        {
+          "type": "paragraph",
+          "text": "If we learn that a person under 18 has opened an account, we will restrict the account, investigate and promptly delete improperly collected personal information, subject to applicable legal requirements. Report suspected cases to contact@datus.ai. Do not submit children’s personal information through the public website or other online features subject to the restrictions in section 1."
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. INTELLECTUAL PROPERTY RIGHTS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Unless otherwise indicated, the Site is our proprietary property and all source code, our proprietary databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) are owned or controlled by us or licensed to us, and are protected by copyright and trademark laws and various other intellectual property rights and unfair competition laws of the United States, international copyright laws, and international conventions. The Content and the Marks are provided on the Site “AS IS” for your information and authorized business use. Except as expressly provided in these Terms of Use, no part of the Site and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited outside your authorised use under these Terms and any applicable separate agreement, without our express prior written permission. User Content, defined below, is excluded from our Content."
+        },
+        {
+          "type": "paragraph",
+          "text": "Provided that you are eligible to use the Site, you are granted a limited license to access and use the Site and to download or print a copy of any portion of the Content to which you have properly gained access solely for your authorised internal business use. We reserve all rights not expressly granted to you in and to the Site, the Content and the Marks. Any separately applicable software licence or customer contract governs the rights granted under that agreement."
+        },
+        {
+          "type": "paragraph",
+          "text": "As between you and DatusAI, Inc., you retain your rights in User Content and own the SQL, code, reports and other results generated for you through Datus Agent, DOSI, or Datus Studio (“Output”), to the extent permitted by applicable law. We assign to you any rights we may have in that Output. “You” means the business user or business entity using the Site; individual registered users exercise those rights as authorized by that customer. This does not transfer ownership of the Site, our underlying software, or third-party materials. Output may not be unique, and ownership language does not guarantee copyright protection. You must have a qualified person review and validate Output before executing SQL or code or relying on a report. These requirements apply to all three products."
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. USER REPRESENTATIONS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "By using the Site, you represent and warrant that: (1) you have the legal capacity and you agree to comply with these Terms of Use; (2) you are not a minor in the jurisdiction in which you reside; (3) you will access the Site through automated means only through interfaces, agents, scripts or integrations we authorize; (4) you will not use the Site for any illegal or unauthorized purpose; and (5) your use of the Site will not violate any applicable law or regulation."
+        },
+        {
+          "type": "paragraph",
+          "text": "You may use only the APIs, agents, scripts, integrations and export features that we make available or expressly authorise, subject to documented usage limits, permissions and security controls. Reselling, sublicensing or hosting the DatusAI service for third parties requires our prior written authorisation. These restrictions do not remove your rights in Output under section 2 or rights under a separately applicable open-source licence or customer contract. Human review of generated SQL, code and reports remains required."
+        },
+        {
+          "type": "paragraph",
+          "text": "If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Site (or any portion thereof)."
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. SEPARATE COMMERCIAL AGREEMENTS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Commercial access to Datus products and services is arranged through a separate customer contract. Pricing, per-seat and annual billing, bank or ACH payments, AWS Marketplace billing, taxes, payment deadlines, renewals, cancellation and refunds are determined by that contract and any applicable marketplace terms. Merely accessing the Site or accepting these Terms does not place an order, enrol you in a paid subscription or authorise recurring charges."
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "5. STOPPING USE AND ACCOUNT ASSISTANCE",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "You may stop using the Site at any time and may contact contact@datus.ai for account assistance. Stopping use does not by itself cancel a separately contracted service. Termination, cancellation, remaining access and refund rights under a customer contract are governed by that contract."
+        },
+        {
+          "type": "paragraph",
+          "text": "If you are unsatisfied with our services, please email us at contact@datus.ai."
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "6. PROHIBITED ACTIVITIES",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "You may not access or use the Site for any purpose other than that for which we make the Site available. The Site may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us. Authorized internal business use within the scope of your authorised access is expressly approved. The restrictions below do not prohibit use of documented APIs, authorized agents, permitted exports of your own data, or rights under an applicable open-source license."
+        },
+        {
+          "type": "paragraph",
+          "text": "As a user of the Site, you agree not to:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Systematically retrieve data or other content from the Site to create or compile, directly or indirectly, a collection, compilation, database, or directory except through authorized functionality or with written permission from us."
+        },
+        {
+          "type": "paragraph",
+          "text": "Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords."
+        },
+        {
+          "type": "paragraph",
+          "text": "Circumvent, disable, or otherwise interfere with security-related features of the Site, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the Site and/or the Content contained therein."
+        },
+        {
+          "type": "paragraph",
+          "text": "Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Site."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use any information obtained from the Site in order to harass, abuse, or harm another person."
+        },
+        {
+          "type": "paragraph",
+          "text": "Make improper use of our support services or submit false reports of abuse or misconduct."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Site in a manner inconsistent with any applicable laws or regulations. Engage in unauthorized framing of or linking to the Site."
+        },
+        {
+          "type": "paragraph",
+          "text": "Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party’s uninterrupted use and enjoyment of the Site or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Site."
+        },
+        {
+          "type": "paragraph",
+          "text": "Engage in unauthorized automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools."
+        },
+        {
+          "type": "paragraph",
+          "text": "Delete the copyright or other proprietary rights notice from any Content. Attempt to impersonate another user or person or use the username of another user."
+        },
+        {
+          "type": "paragraph",
+          "text": "Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats (“gifs”), 1×1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as “spyware” or “passive collection mechanisms” or “pcms”)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Interfere with, disrupt, or create an undue burden on the Site or the networks or services connected to the Site."
+        },
+        {
+          "type": "paragraph",
+          "text": "Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Site to you."
+        },
+        {
+          "type": "paragraph",
+          "text": "Attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site."
+        },
+        {
+          "type": "paragraph",
+          "text": "Copy or adapt the Site’s software except as authorized by us or permitted by an applicable license or law."
+        },
+        {
+          "type": "paragraph",
+          "text": "Except as permitted by applicable law, decipher, decompile, disassemble, or reverse engineer any of the software comprising or in any way making up a part of the Site."
+        },
+        {
+          "type": "paragraph",
+          "text": "Except as may be the result of standard search engine or Internet browser usage, documented APIs, or other automation expressly authorized by us, use, launch, develop, or distribute any automated system, including without limitation, any spider, robot, cheat utility, scraper, or offline reader that accesses the Site, or using or launching any unauthorized script or other software."
+        },
+        {
+          "type": "paragraph",
+          "text": "Make any unauthorized use of the Site, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Site as part of any unauthorized effort to compete with us, or resell the Site or Content outside your authorised usage rights."
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "7. USER GENERATED CONTRIBUTIONS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Where enabled for your account, the Site may support team collaboration, report and dashboard sharing, and Chatbot links or website embedding. Internal access follows the selected user or group permissions. If public sharing is enabled, anyone holding the link may view the shared report or dashboard, or interact with the Chatbot, without signing in. Owners and authorised administrators can manage access and revoke public sharing; viewing and editing permissions are controlled separately. “Contributions” means material you intentionally submit or share through these features. “User Content” means prompts, queries, files and other materials you submit through the permitted features. Submitting content does not automatically make it public. All submissions remain subject to the data restrictions in section 1 and any applicable feature permissions or usage limits. When creating or sharing Contributions, you represent and warrant that:"
+        },
+        {
+          "type": "paragraph",
+          "text": "The creation, distribution, transmission, public display, or performance, and the accessing, downloading, or copying of your Contributions do not and will not infringe the proprietary rights, including but not limited to the copyright, patent, trademark, trade secret, or moral rights of any third party."
+        },
+        {
+          "type": "paragraph",
+          "text": "You are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize us, the Site, and other users of the Site to use your Contributions in any manner contemplated by the Site and these Terms of Use."
+        },
+        {
+          "type": "paragraph",
+          "text": "You have the written consent, release, and/or permission of each and every identifiable individual person in your Contributions to use the name or likeness of each and every such identifiable individual person to enable inclusion and use of your Contributions in any manner contemplated by the Site and these Terms of Use."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions are not false, inaccurate, or misleading."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions are not unsolicited or unauthorized advertising, promotional materials, pyramid schemes, chain letters, spam, mass mailings, or other forms of solicitation."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as determined by us)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions do not ridicule, mock, disparage, intimidate, or abuse anyone."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions are not used to harass or threaten (in the legal sense of those terms) any other person and to promote violence against a specific person or class of people."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions do not violate any applicable law, regulation, or rule."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions do not violate the privacy or publicity rights of any third party."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions do not violate any applicable law concerning child pornography, or otherwise intended to protect the health or well-being of minors."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions do not include any offensive comments that are connected to race, national origin, gender, sexual preference, or physical handicap."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your Contributions do not otherwise violate, or link to material that violates, any provision of these Terms of Use, or any applicable law or regulation."
+        },
+        {
+          "type": "paragraph",
+          "text": "Any use of the Site in violation of the foregoing violates these Terms of Use and may result in, among other things, termination or suspension of your rights to use the Site."
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "8. CONTRIBUTION LICENSE",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We process account information, contact details, support communications and usage information as described in our Privacy Statement. We use permitted User Content only as needed to provide and secure the features you request, operate your selected sharing settings and comply with law, subject to any applicable customer contract and DPA. Do not submit confidential information through the public website or online features that are not authorised to receive it. Confidential exchanges require a separately signed NDA, using a DatusAI template or a customer template accepted by both parties. Processing enterprise customer business data is governed by the separate customer contract and DPA; the NDA alone does not define data-processing permissions."
+        },
+        {
+          "type": "paragraph",
+          "text": "By submitting suggestions or other feedback regarding the Site, you agree that we can use and share such feedback for any purpose without compensation to you."
+        },
+        {
+          "type": "paragraph",
+          "text": "We do not assert ownership over your Contributions. You retain ownership and the associated intellectual property rights. You are responsible for ensuring that Contributions you upload or intentionally share comply with the agreement and applicable law. This responsibility does not excuse DatusAI’s own breach, breach of confidentiality, unlawful disclosure or intentional misconduct, and does not require you to waive claims concerning DatusAI’s own conduct. Liability under these website Terms is addressed in sections 17 and 18; any separately signed agreement governs its own subject matter."
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "9. SUBMISSIONS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "You acknowledge and agree that any voluntarily provided product suggestions, ideas, or feedback regarding the Site (\"Submissions\") provided by you to us are non-confidential and shall become our sole property. We shall own exclusive rights, including all intellectual property rights, and shall be entitled to the unrestricted use and dissemination of these Submissions for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you. You hereby waive all moral rights to any such Submissions, and you hereby warrant that any such Submissions are original with you or that you have the right to submit such Submissions. You agree there shall be no recourse against us for any alleged or actual infringement or misappropriation of any proprietary right in your Submissions. Submissions exclude User Content, generated Output, support materials and information identified as confidential. You assign to DatusAI all transferable intellectual property rights you hold in those voluntary Submissions. If a right cannot be assigned, you grant DatusAI a perpetual, worldwide, irrevocable, royalty-free license to use it to the extent permitted by law."
+        }
+      ]
+    },
+    {
+      "id": "section-10",
+      "title": "10. SITE MANAGEMENT",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We may monitor use of the Site to detect violations and protect service security, within the access permitted by these Terms and the Privacy Statement. We may restrict access, remove affected Contributions or suspend an account only to the extent reasonably necessary to address unlawful use, a material breach, a credible security threat or a binding legal requirement. Where reasonably practicable, we will explain the issue and allow you to remedy it before acting. Urgent legal or security measures may take effect immediately, with notice as soon as reasonably practicable. We limit the scope and duration of a restriction and restore access when its grounds are resolved. Paid-service suspension and customer-data obligations remain governed by the separate customer contract and DPA."
+        }
+      ]
+    },
+    {
+      "id": "section-11",
+      "title": "11. TERM AND TERMINATION",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "These Terms remain in effect while you use the Site. You may end your use at any time. We may suspend or end access for the reasons and subject to the safeguards in section 10, or discontinue features under section 12, subject to any separately signed customer contract. Ending access under these Terms does not by itself terminate or change that contract. Intellectual property, responsibility for earlier conduct, applicable privacy obligations and provisions that by their nature survive will continue to apply."
+        },
+        {
+          "type": "paragraph",
+          "text": "If we terminate or suspend your account, you may not evade that restriction by creating another account under your name, a false or borrowed name, or the name of a third party. This does not prevent an authorized restoration of access under the agreed cure process. We reserve the right to take appropriate legal action where permitted by applicable law."
+        }
+      ]
+    },
+    {
+      "id": "section-12",
+      "title": "12. MODIFICATIONS AND INTERRUPTIONS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We may change, modify or discontinue the Site or its features, subject to any applicable customer contract. For planned material reductions in functionality or planned discontinuation, we will give at least 30 calendar days’ advance notice by email and in-product notification. Necessary changes for urgent legal requirements or material security threats may take effect immediately, with notice as soon as reasonably practicable. Availability, maintenance, notice and commercial remedies specifically agreed in a separate customer contract remain governed by that contract."
+        },
+        {
+          "type": "paragraph",
+          "text": "Maintenance, hardware or software problems may cause interruptions, delays or errors. You may submit support requests through the in-product ticket feature or contact@datus.ai. The Customer Service Team handles these requests. These Terms do not establish guaranteed response or resolution times, production uptime commitments or service credits. Any support commitments or SLA are governed by a separate agreement."
+        }
+      ]
+    },
+    {
+      "id": "section-13",
+      "title": "13. GOVERNING LAW",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "These Terms are governed by the laws of the State of California and applicable United States federal law, without regard to conflict-of-laws principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply. Disputes are subject to section 14 and any non-waivable applicable law."
+        }
+      ]
+    },
+    {
+      "id": "section-14",
+      "title": "14. DISPUTE RESOLUTION",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The parties will first attempt in good faith to resolve a dispute through negotiations for 30 calendar days after written notice describing the dispute. Notices to DatusAI must be sent to contact@datus.ai; notices to the customer must be sent to its designated account or contractual contact. A party may seek urgent injunctive relief to protect confidential information, intellectual property or security without waiting for that period. The negotiation period does not extend a mandatory legal filing deadline."
+        },
+        {
+          "type": "paragraph",
+          "text": "If the dispute is not resolved, the parties submit to the exclusive jurisdiction of the state courts located in San Francisco County, California, and the United States District Court for the Northern District of California, as appropriate to the court’s subject-matter jurisdiction. Each party consents to personal jurisdiction and venue there. These Terms do not require binding arbitration or impose a class-action waiver. A separately signed dispute-resolution agreement and non-waivable law prevail."
+        }
+      ]
+    },
+    {
+      "id": "section-15",
+      "title": "15. CORRECTIONS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The Site may contain typographical errors, inaccuracies or omissions in descriptions, pricing references, availability or other information. We may correct or update that information. A website correction does not amend an accepted customer contract or authorise a charge. Contractual pricing changes require the agreement or process specified in that separate contract."
+        }
+      ]
+    },
+    {
+      "id": "section-16",
+      "title": "16. DISCLAIMER",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "THE SITE IS PROVIDED “AS IS” AND “AS AVAILABLE”, EXCEPT AS EXPRESSLY AGREED IN A SEPARATELY SIGNED AGREEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE DISCLAIM IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. WE DO NOT GUARANTEE UNINTERRUPTED OPERATION, ERROR-FREE SOFTWARE OR ACCURATE, COMPLETE OR UNIQUE AI OUTPUT. YOU MUST REVIEW SQL, CODE, REPORTS AND OTHER OUTPUT BEFORE EXECUTING OR RELYING ON THEM. AI OUTPUT IS NOT A SUBSTITUTE FOR YOUR OWN VALIDATION OR PROFESSIONAL JUDGMENT. THIS DISCLAIMER DOES NOT EXCLUDE RIGHTS OR LIABILITY THAT APPLICABLE LAW DOES NOT ALLOW TO BE EXCLUDED, OR OVERRIDE AN EXPRESS OBLIGATION IN A SEPARATELY SIGNED AGREEMENT."
+        }
+      ]
+    },
+    {
+      "id": "section-17",
+      "title": "17. LIMITATIONS OF LIABILITY",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Liability for products and services supplied under a separate customer contract, including any fee-based cap and agreed exceptions, is governed by that contract. Those commercial fee provisions are not automatically applied to use of the Site under these Terms. Nothing in these Terms limits liability that applicable law does not permit to be limited."
+        }
+      ]
+    },
+    {
+      "id": "section-18",
+      "title": "18. THIRD-PARTY CLAIMS AND SEPARATE CONTRACTS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "You remain responsible for using the Site and submitting or sharing content lawfully, as described in sections 1, 6, 7 and 8. Any negotiated obligation to defend or indemnify a party, including product infringement protection for paid services, is governed by the applicable separately signed agreement. These website Terms do not replace that allocation or excuse DatusAI’s own unlawful conduct."
+        }
+      ]
+    },
+    {
+      "id": "section-19",
+      "title": "19. USER DATA",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Account details, support communications and usage records are personal information where applicable and are handled under the Privacy Statement. Data submitted through the Site must comply with section 1 and any applicable separate written agreement. Where DatusAI accesses or processes customer business data on a customer’s behalf, the scope of access and processing, security, retention, return, deletion and provider responsibilities are governed by the applicable customer contract and DPA. These responsibilities depend on the processing actually performed and are not determined solely by the name or location of a deployment."
+        },
+        {
+          "type": "paragraph",
+          "text": "Where made available for your account, you may use the product controls to export project files such as SQL, code, knowledge documents, semantic models and report or dashboard source files in their original formats, including SQL, Markdown, YAML or JSON. Folders or projects may be packaged as ZIP files, and query results may be downloaded as CSV or XLSX. This describes the available self-service features; any contractual post-termination export assistance or retention period is governed by the separate customer contract."
+        },
+        {
+          "type": "paragraph",
+          "text": "AI features may use third-party model services or a customer-selected model configuration where enabled. Task-relevant prompts, conversations, database schemas, SQL or code, file excerpts and query results may be sent to the selected provider. Submit only data permitted under section 1 and any applicable separate written agreement, and review the applicable provider terms. DatusAI does not use your content to train models."
+        },
+        {
+          "type": "paragraph",
+          "text": "Third-party model providers determine their own processing locations, retention and training practices under the applicable provider terms and account settings. Deleting a DatusAI project or history does not by itself delete independently retained provider copies. Customer-contracted model arrangements and enterprise data-processing obligations are addressed in the applicable customer contract and DPA."
+        }
+      ]
+    },
+    {
+      "id": "section-20",
+      "title": "20. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Using the Site, sending us emails and submitting online forms may result in electronic communications about your account, use of our services or requests. We may provide notices by email and within the Site as described in these Terms, to the extent permitted by law. Accepting these Terms does not purchase a paid subscription, accept a paid order form or authorise automatic billing. Commercial contracts are concluded through a separate agreed process. Marketing email choices remain separate and are described in the Privacy Statement."
+        }
+      ]
+    },
+    {
+      "id": "section-21",
+      "title": "21. MISCELLANEOUS",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "These Terms and the applicable policies expressly referenced in them govern your use of the Site. Separately signed customer contracts, NDAs, DPAs and SLAs continue to govern their own subject matter and prevail in the event of a conflict with these Terms. Failure to enforce a provision does not waive it. If a provision is unenforceable, the remaining provisions continue to apply to the extent permitted by law. These Terms do not create a partnership, joint venture, employment or agency relationship. Any transfer of rights and obligations under a separate customer contract is governed by that contract. Applicable confidentiality, data protection and individual statutory rights continue to apply."
+        }
+      ]
+    },
+    {
+      "id": "section-22",
+      "title": "22. CONTACT US",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us at:"
+        },
+        {
+          "type": "paragraph",
+          "text": "DatusAI, Inc. — 101 Jefferson Dr, Ste 235, Menlo Park, California 94025, US"
+        },
+        {
+          "type": "paragraph",
+          "text": "Customer Service Team • Email: contact@datus.ai • Website: https://datus.ai/"
+        }
+      ]
+    }
+  ]
+}

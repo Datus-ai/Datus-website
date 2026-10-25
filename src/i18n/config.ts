@@ -64,7 +64,7 @@ export const MIRRORED_PATHS = [
 
 // The supplied legal English is the approved publication body; the Chinese
 // translation in the source document is labelled as an internal review aid.
-export const ENGLISH_ONLY_PATHS = ["/policies/privacy/"] as const;
+export const ENGLISH_ONLY_PATHS = ["/policies/privacy/", "/policies/terms/"] as const;
 
 const MIRRORED = new Set<string>(MIRRORED_PATHS);
 
