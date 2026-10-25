@@ -87,6 +87,7 @@ const Footer = () => {
       <div className="site-footer__bar">
         <span>© {year} {t.rights}</span>
         <a href={l("/policies/cookies/")}>{t.cookiePolicy}</a>
+        <a href={l("/policies/privacy/")}>{t.privacyPolicy}</a>
         <button type="button" data-cookie-settings>{t.cookieSettings}</button>
       </div>
     </footer>

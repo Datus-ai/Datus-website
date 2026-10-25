@@ -7,6 +7,7 @@
  */
 export {
   DEFAULT_LOCALE,
+  ENGLISH_ONLY_PATHS,
   HREFLANG,
   HTML_LANG,
   LOCALES,

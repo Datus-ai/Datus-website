@@ -1,0 +1,297 @@
+{
+  "title": "Privacy Statement",
+  "effectiveDate": "October 26, 2026",
+  "sections": [
+    {
+      "id": "p1",
+      "title": "P1 Introduction",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "DatusAI, Inc. provides Datus Agent, DOSI, and Datus Studio as business-only subscription products through https://datus.ai/. Our services are offered to business customers."
+        },
+        {
+          "type": "paragraph",
+          "text": "This Privacy Statement covers personal information that DatusAI processes for its own website, account and subscription administration, marketing, customer support, business relationship management, service security and related operational purposes. For these activities, DatusAI determines the purposes and means of processing and acts as the controller where applicable. It does not set the detailed contractual rules for business data that we process on behalf of an enterprise customer (Customer Business Data), including personal information contained in that data. That processing is governed by the applicable customer contract and separate data processing agreement (DPA), as explained in P6. The distinction depends on the processing we actually perform and the purpose of that processing, rather than the product name or deployment model alone."
+        },
+        {
+          "type": "paragraph",
+          "text": "We understand that you are aware of and care about your own personal privacy interests, and we take that seriously. This Privacy Notice describes DatusAI, Inc.’s policies and practices regarding its collection and use of your personal data, and sets forth your privacy rights. We recognize that information privacy is an ongoing responsibility, and so we will from time to time update this Privacy Notice as we undertake new personal data practices or adopt new privacy policies. We will post material updates with a revised effective date and notify account contacts by email and in-product notification. For material changes, we give at least 30 calendar days’ advance notice, stating the effective date. Urgent changes necessary to comply with law or address a material security risk may take effect immediately, with notice as soon as reasonably practicable. Non-material corrections take effect when posted. A changed policy does not itself authorize processing that requires a separate lawful basis or consent. Where required, we will obtain consent before applying a new processing purpose; continued use alone does not supply that consent."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "title": "P2 Privacy contact",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "DatusAI, Inc. has its registered office and business address at 101 Jefferson Dr, Ste 235, Menlo Park, California 94025, US. For questions about our personal data practices or to exercise your privacy rights, please contact the Customer Service Team at contact@datus.ai."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "P3 How we collect and use (process) your personal information",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We collect the information you provide when registering, signing in, managing a profile, contacting us or using the services. Email-and-password registration requires your name, email address and password; Google and enterprise single sign-on provide an identity identifier, name, email address and any available profile image. The corresponding sign-in method cannot operate without the required authentication information. Profile images and biographies are optional."
+        },
+        {
+          "type": "paragraph",
+          "text": "Feedback requires a category and description of the issue. Screenshots and contact details are optional; feedback submitted while signed in is associated with the account. Enterprise inquiry forms collect the fields described in P5. We do not currently store payment information."
+        },
+        {
+          "type": "paragraph",
+          "text": "We use this information to provide prospects and customers with services. "
+        },
+        {
+          "type": "paragraph",
+          "text": "We may use your name, business contact details and communication preferences to send you information about Datus products, new features, offers, events and other updates that may interest you. Marketing audiences are limited to people who directly subscribe or give verifiable permission; registering an account, attending an event, a partner introduction or appearing in a third-party contact record does not automatically enroll you in marketing. We send these communications in accordance with your preferences and applicable law, obtaining your consent where required."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can opt out at any time by clicking the unsubscribe link in our marketing emails or contacting us at contact@datus.ai. Unsubscribing is free and does not require an account login. We retain limited information as needed to respect your opt-out choice. Opting out of marketing does not stop essential communications about your account, subscription, security or support requests."
+        },
+        {
+          "type": "paragraph",
+          "text": "We use Mailchimp and Sequenzy to manage email communications. We record the source, wording, time and status of marketing consent. Our marketing emails identify DatusAI, accurately describe their purpose and include our postal address. We suppress recipients before the next campaign and no later than 24 hours after an opt-out, or sooner where required by law. We stop marketing to individuals who unsubscribe or otherwise object to receiving it. Opt-outs apply across our marketing lists in both platforms, and imported lists are checked against a shared suppression record. Resubscription requires a fresh affirmative request. Minimal suppression records are used only to honor opt-outs and reviewed annually for necessity."
+        },
+        {
+          "type": "paragraph",
+          "text": "We use account and contact information to register and administer users, workspaces and subscriptions; support communications to resolve requests; and technical and usage information to operate, secure, troubleshoot and improve the services. Where applicable, we use permitted contact information for marketing and events and necessary records to comply with law or establish and defend legal claims. Customer Business Data processed on a customer’s behalf is governed by the customer contract and DPA described in P6."
+        },
+        {
+          "type": "paragraph",
+          "text": "We process personal information for the purposes described above as permitted by applicable law. Where consent is required for optional marketing or non-essential tracking, we obtain it and provide an easy way to withdraw it. Processing Customer Business Data on a customer’s behalf is addressed separately in the customer contract and DPA."
+        },
+        {
+          "type": "paragraph",
+          "text": "We do not sell personal information. We may advertise through Meta, LinkedIn or Google Ads. Our policy is not to provide personal information for cross-site tracking or cross-context behavioral advertising. We use contextual or non-personalized campaigns and aggregate campaign reporting where possible. We do not deploy remarketing pixels, cross-site advertising cookies, advertising identifiers, customer-list or hashed-email audience uploads, conversion APIs carrying personal information, or enhanced conversion features that conflict with this policy. Hashing does not by itself make a contact anonymous. Necessary platform interactions can still involve personal data; non-personalized advertising is not automatically exempt from consent rules. We obtain any legally required consent before optional tracking, make rejection and withdrawal easy, and keep the service available without optional advertising consent."
+        },
+        {
+          "type": "paragraph",
+          "text": "For the purposes covered by this Privacy Statement, we receive information directly from individuals, from customer administrators who invite or manage users, and through event registrations and business partners. Customer-connected databases and files processed on a customer’s behalf fall within P6. We do not currently obtain contacts from a third-party contact database."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "P4 Website and account usage information",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We process technical and usage information that we receive for the website, account and operational purposes covered by this Privacy Statement. This includes IP addresses, browser and device information, page visits, feature activity, account and workspace or project identifiers, errors and timing information. Access to backend and operations logs is restricted according to personnel roles. These records are distinct from database content, prompts, SQL, code, files, conversations and query results processed on a customer’s behalf, which are governed by P6. Retention of the personal information covered here is described in P11."
+        },
+        {
+          "type": "paragraph",
+          "text": "We use website operations and technical information to deliver and secure the website and understand use of the services. The separate Google Analytics and product-usage statistics described in P5 have different controls."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "title": "P5 Cookies and tracking technologies",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Before you make a choice, our public website and cloud-hosted Datus Studio load Google Analytics with analytics storage denied. Google can receive limited page, configured event and consent measurements without reading or writing analytics cookies. These requests may include page information, timestamps, referrers, browser information and network information such as the IP address used to connect to Google. This cookieless measurement is not anonymous or zero collection. Selecting “Accept All” enables analytics cookies and regular Google Analytics measurement. Rejecting non-essential cookies, or saving Cookie Settings with Google Analytics off, stops subsequent Google Analytics measurement, including cookieless measurement. Withdrawing your choice also stops subsequent measurement and clears accessible Google Analytics cookies. When a choice expires, limited cookieless measurement resumes. The public website and Datus Studio save your choices separately for 180 days; Studio users can change their choice from the login page or preferences. Advertising personalisation is disabled."
+        },
+        {
+          "type": "paragraph",
+          "text": "Datus Studio also collects its own product feature-usage statistics by default. These first-party events are separate from Google Analytics and do not run on the public website. The Google Analytics choice does not control this separate Studio collection, and rejecting Google Analytics does not stop it."
+        },
+        {
+          "type": "paragraph",
+          "text": "Our website uses Google Analytics for measurement and Formspree to receive enterprise inquiries. Submitting an inquiry sends your name, work email address, company, role, message and source page to Formspree so we can respond. Further Cookie and local-storage details and choices appear in our Cookie and Local Storage Policy at https://datus.ai/policies/cookies/."
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "title": "P6 Customer business data and separate agreements",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Where DatusAI actually accesses or processes Customer Business Data on an enterprise customer’s behalf, the applicable customer contract and separate DPA govern that processing. This may include access to database schemas, queries, prompts, SQL or code, files, conversations and results, including copies supplied for troubleshooting. Those agreements specify the permitted purposes and instructions, access permissions, security measures, retention, export and deletion rules, and the appointment and responsibilities of service providers and subprocessors. Their applicable data-processing terms prevail over this Privacy Statement in the event of a conflict concerning that processing, subject to applicable law."
+        },
+        {
+          "type": "paragraph",
+          "text": "The scope of processing governed by the customer contract and DPA depends on the information DatusAI actually receives, accesses, stores or otherwise processes and the purpose of the activity. A deployment label alone does not determine those responsibilities. Processing of Customer Business Data, including access granted for support or another agreed service, is outside the detailed scope of this Privacy Statement. Independent third-party model services and their handling of data are governed by the applicable provider terms and customer arrangements, rather than this Privacy Statement."
+        },
+        {
+          "type": "paragraph",
+          "text": "For example, the business contact details and ticket records we use to manage a support relationship are covered by this Privacy Statement; customer database extracts supplied solely to investigate that customer’s issue remain Customer Business Data governed by the customer contract and DPA. This Privacy Statement does not grant DatusAI independent rights to use Customer Business Data for marketing or model training."
+        },
+        {
+          "type": "paragraph",
+          "text": "We do not make solely automated decisions about individuals with legal or similarly significant effects for the purposes covered by this Privacy Statement. Rights in generated output and human review requirements are addressed in the applicable service terms."
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "title": "P7 Sharing information with third parties",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We disclose personal information covered by this Privacy Statement to service providers that support our website and business operations, including hosting and storage, account authentication and communications, email marketing, analytics, customer support, and security and compliance services. Where these providers process personal information on our behalf, they are subject to applicable confidentiality and data protection obligations. Information about processing locations appears in P8. The appointment and responsibilities of providers processing Customer Business Data on a customer’s behalf are governed by the customer contract and DPA described in P6."
+        },
+        {
+          "type": "paragraph",
+          "text": "Suppliers processing personal information on our behalf for the purposes covered by this Privacy Statement are required to enter into written data protection terms and process it for our documented purposes and instructions. Their employees may access information as needed to perform that work. These arrangements do not give suppliers unrestricted rights to use the information for their own purposes."
+        },
+        {
+          "type": "paragraph",
+          "text": "Mailchimp and Sequenzy process the contact, subscription and suppression information supplied to send and manage email communications. Depending on enabled features, delivery, open and click information may also be processed."
+        },
+        {
+          "type": "paragraph",
+          "text": "You may contact contact@datus.ai for information about our service providers and applicable data protection arrangements."
+        },
+        {
+          "type": "paragraph",
+          "text": "Apart from the service providers and integrations described above, we disclose personal information only where necessary and permitted by law: to an affiliate performing an identified service purpose under appropriate safeguards; to professional advisers subject to confidentiality; to meet a valid legal demand or establish, exercise or defend legal claims; or to protect life or address a serious safety or security emergency. We assess the request, disclose only the necessary information, and notify the customer or individual unless prohibited by law or notice would undermine the lawful protective purpose. Affiliates do not receive unrestricted independent marketing or training rights. We may share statistics only after aggregation and effective de-identification so recipients cannot reasonably identify, single out or relink an individual; we use minimisation and appropriate contractual restrictions against re-identification. Pseudonymised information remains personal information. This does not grant a new right to use confidential Customer Data or Output for advertising or general model training."
+        },
+        {
+          "type": "paragraph",
+          "text": "In a merger, acquisition or transfer of the relevant business or assets, necessary information may be disclosed to advisers and a prospective or actual successor under confidentiality and data protection safeguards. The successor must assume the relevant protection obligations. DatusAI coordinates the notice and, where legally permitted, informs affected account contacts before their information becomes subject to a materially different privacy policy. Any new use requires its own lawful basis and consent where required. A corporate transaction does not itself authorize unrelated marketing or model training."
+        },
+        {
+          "type": "paragraph",
+          "text": "Our public website links to our GitHub repository, Slack community and Vanta trust center, and to Datus documentation, DOSI and Datus Studio. When you follow an external link, the destination provider processes information under its own privacy terms. Product integrations that transmit Customer Data are distinct from these website links and depend on the features you choose to connect."
+        }
+      ]
+    },
+    {
+      "id": "p8",
+      "title": "P8 Transferring personal data to the U.S.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "DatusAI stores and processes the personal information covered by this Privacy Statement in the United States and does not transfer that information outside the United States. We use AWS in the eastern United States to host the SaaS infrastructure supporting our services. Engineering and customer-support personnel access relevant information from the United States only where necessary for support, troubleshooting or security. The locations of independent processing by third-party model providers are determined by their applicable terms and customer arrangements. That independent processing is separate from DatusAI’s processing covered by this Privacy Statement; Customer Business Data processing is addressed in P6 and the applicable customer contract and DPA."
+        },
+        {
+          "type": "paragraph",
+          "text": "For more information or if you have any questions, please contact us at contact@datus.ai"
+        }
+      ]
+    },
+    {
+      "id": "p9",
+      "title": "P9 Data Subject rights",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Depending on your location and applicable law, you may have the following rights regarding your personal information. These rights are subject to the conditions and exceptions provided by applicable law:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Right to be informed",
+            "Right of access",
+            "Right to rectification",
+            "Right to erasure",
+            "Right to restrict processing",
+            "Right of data portability",
+            "Right to object",
+            "Rights related to automated decision making including profiling"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "This Privacy Notice is intended to provide you with information about what personal data DatusAI, Inc. collects about you and how it is used. "
+        },
+        {
+          "type": "paragraph",
+          "text": "If you wish to confirm that DatusAI, Inc. is processing your personal data, or to have access to the personal data DatusAI, Inc. may have about you, please contact us."
+        },
+        {
+          "type": "paragraph",
+          "text": "You may also request information about: the purpose of the processing; the categories of personal data concerned; who else outside DatusAI, Inc. might have received the data from DatusAI, Inc.; what the source of the information was (if you didn’t provide it directly to DatusAI, Inc.); and how long it will be stored. You have a right to correct (rectify) the record of your personal data maintained by DatusAI, Inc. if it is inaccurate. You may request that DatusAI, Inc. erase that data or cease processing it, subject to certain exceptions. You may also request that DatusAI, Inc. cease using your data for direct marketing purposes. In many countries, you have a right to lodge a complaint with the appropriate data protection authority if you have concerns about how DatusAI, Inc. processes your personal data. Where the right to portability applies, we will provide the relevant data in a structured, commonly used, machine-readable format and transmit it to another controller where technically feasible. You may withdraw consent at any time without affecting the lawfulness of earlier consent-based processing."
+        },
+        {
+          "type": "paragraph",
+          "text": "Reasonable access to your personal data will be provided at no cost, except where applicable law permits a fee. Send requests to the Customer Service Team at contact@datus.ai. We respond within the time required by applicable law and explain any permitted extension or refusal, together with available complaint or review options. We use proportionate identity and authority checks where needed. Where our customer controls the personal data, we refer the request to that customer and assist as required by the DPA."
+        },
+        {
+          "type": "paragraph",
+          "text": "For questions or complaints concerning the processing of your personal data, email contact@datus.ai. You may also have the right to complain to a competent privacy regulator or seek other remedies under applicable law. This Privacy Statement does not limit those rights."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can opt out of marketing communications at any time using the options in P3. Where processing relies on your consent, you may withdraw it without affecting the lawfulness of processing before withdrawal. Individual rights under applicable law remain separate from contractual arrangements for Customer Business Data under P6."
+        }
+      ]
+    },
+    {
+      "id": "p10",
+      "title": "P10 Security of your information",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We use multi-factor authentication, least-privilege permissions and access reviews, staff confidentiality and security training, supplier security reviews, backup-recovery exercises and ongoing code, dependency and image security scanning. Access is limited according to assigned responsibilities. We also use external security testing. No system eliminates every security risk. You may report suspected incidents to contact@datus.ai."
+        },
+        {
+          "type": "paragraph",
+          "text": "We assess and respond to personal data breaches affecting information covered by this Privacy Statement and notify affected individuals and authorities where and within the time required by applicable law. Notification and cooperation obligations for incidents affecting Customer Business Data processed on a customer’s behalf are governed by the customer contract, DPA and applicable law."
+        }
+      ]
+    },
+    {
+      "id": "p11",
+      "title": "P11 Data storage and retention",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "We retain personal information covered by this Privacy Statement only as long as needed for the purposes described here, subject to applicable legal requirements. Minimal opt-out suppression records are retained only as long as necessary to honor the opt-out, reviewed annually and not reused for marketing. Customer Business Data retention, export, deletion and the treatment of provider copies and backups are governed by the customer contract and DPA described in P6. Those contractual arrangements do not limit an individual’s rights under applicable law. For storage, erasure or portability questions, contact the Customer Service Team at contact@datus.ai."
+        },
+        {
+          "type": "paragraph",
+          "text": "Production infrastructure and security logs covered by this Privacy Statement are retained for 365 days. Customer Business Data contained in logs or support materials remains subject to the customer contract and DPA; the operational-log period does not grant an independent right to retain or reuse that data."
+        },
+        {
+          "type": "paragraph",
+          "text": "We retain account and workspace administration records covered by this Privacy Statement during the relationship and delete unneeded operational copies within 60 days after it ends. Necessary contract, invoice and accounting evidence may be retained for seven years after the relevant financial year, subject to applicable requirements. Ordinary support records may be retained for 24 months after resolution. Customer Business Data supplied in support materials remains subject to the customer contract and DPA. Legal holds are restricted to relevant records, reviewed periodically and ended when no longer required."
+        }
+      ]
+    },
+    {
+      "id": "p12",
+      "title": "P12 Children’s data",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Our services are intended for business users aged 18 or over. People under 18 may not open or use an account. If we learn that an under-18 user has provided personal information through an account, we will restrict that account, investigate and promptly delete the improperly collected information, subject to applicable legal requirements. Please report suspected cases to contact@datus.ai. Personal information about children within Customer Business Data is a separate matter governed by the customer contract and DPA; this Privacy Statement does not authorize its submission or processing."
+        }
+      ]
+    },
+    {
+      "id": "p13",
+      "title": "P13 Questions, concerns or complaints",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "If you have questions, concerns, complaints, or would like to exercise your rights, please contact us at:"
+        },
+        {
+          "type": "paragraph",
+          "text": "DatusAI, Inc."
+        },
+        {
+          "type": "paragraph",
+          "text": "Customer Service Team"
+        },
+        {
+          "type": "paragraph",
+          "text": "101 Jefferson Dr, Ste 235, Menlo Park, California 94025, US"
+        },
+        {
+          "type": "paragraph",
+          "text": "contact@datus.ai"
+        }
+      ]
+    }
+  ]
+}

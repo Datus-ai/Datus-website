@@ -62,6 +62,10 @@ export const MIRRORED_PATHS = [
   "/tools/semantic-model-converter/",
 ] as const;
 
+// The supplied legal English is the approved publication body; the Chinese
+// translation in the source document is labelled as an internal review aid.
+export const ENGLISH_ONLY_PATHS = ["/policies/privacy/"] as const;
+
 const MIRRORED = new Set<string>(MIRRORED_PATHS);
 
 /** True when `path` (an unprefixed, English-form path) has a `/zh` mirror. */
