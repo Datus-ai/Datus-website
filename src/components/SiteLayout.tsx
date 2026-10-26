@@ -8,12 +8,14 @@ import "../styles/site.css";
 import "../styles/nordic-site.css";
 import "../styles/section-reveal.css";
 import { setupSectionReveals } from "../lib/section-reveal";
+import { setupStudioCampaignHandoff } from "../lib/studio-campaign";
 
 export default function SiteLayout({ children, className = "", logoSrc, navControls }: { children: ReactNode; className?: string; logoSrc?: string; navControls?: ReactNode }) {
   // Match the dark prerendered shell; only an explicit saved light choice wins.
   const [dark, setDark] = useState(true);
   const root=useRef<HTMLDivElement>(null);
   useEffect(()=>root.current?setupSectionReveals(root.current):undefined,[]);
+  useEffect(()=>root.current?setupStudioCampaignHandoff(root.current):undefined,[]);
   const labels = useT(UI).theme;
   const path = useCurrentPath();
   const graphic = path.includes("products") ? "context-layers" : path.includes("osi") ? "semantic-lens" : path.includes("pricing") ? "shared-definition" : path.includes("faq") ? "evolving-context" : "relationship-map";

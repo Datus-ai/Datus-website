@@ -109,8 +109,9 @@ Advertising storage, Google signals, and advertising personalization stay off.
 The English and Chinese policies explain that limited measurements reach Google
 before a choice. Website and Studio choices remain origin-specific, valid for
 180 days; expiry returns to the limited state and shows the banner. The website
-has no Datus first-party Tracking. Its consent UI describes Google Analytics
-only. The shared policy has a Studio-specific section disclosing default
+has no Datus first-party event collector. Its usage-analytics choice controls
+Google Analytics and temporary campaign-source storage. The shared policy has
+a Studio-specific section disclosing default
 first-party product events, independent of the Google Analytics choice. Necessary
 settings and diagnostic logging also remain independent.
 
@@ -119,6 +120,44 @@ is mocked. Verify initial denied-mode measurement without analytics cookies,
 acceptance without duplicate initialization, full stop after rejection,
 withdrawal, expired choices, storage failures, and centered responsive dialogs
 across marketing, Chinese, policy, and blog routes.
+
+## Studio CTA link tags
+
+Prerendered marketing links to Studio use **only `utm_content`** for the website CTA's
+page and placement (for example `home_hero` or
+`solutions_semantic_layer_header`). Chinese links prefix the value with
+`zh_`. Reuse `src/lib/studio-cta.ts` so prerendered and hydrated links agree.
+Keep the original Studio destination path.
+
+Do not invent `utm_source`, `utm_medium`, or `utm_campaign` for website
+placements. After hydration, `src/lib/studio-campaign.ts` copies only those
+three fields from an external tagged arrival onto tagged Studio CTAs, retaining
+the button's own `utm_content`. Without explicit UTM, recognized search hosts
+from `document.referrer` supply a source plus `organic`, never an invented
+campaign. See `src/lib/organic-search.ts` for exact allowed hosts and common
+paid-click identifiers that disable this inference and discard stale attribution.
+Explicit UTM wins over inferred search; a new search replaces cached campaigns.
+An arrival with UTM replaces the entire campaign; missing fields are not filled
+from an older campaign. Values must be
+non-empty, at most 100 characters, and contain no control characters.
+
+After accepting usage analytics, campaign fields and their capture time are
+stored in `sessionStorage` for 30 minutes from capture, without sliding expiry.
+Before acceptance, after refusal, or with unavailable storage, only the current
+URL's values or recognized current search referrer can be forwarded. No complete
+referrer URL or search terms are stored. Refusal, withdrawal, and expired consent clear
+the cache. Dynamic menus, native new-tab opening, and back/forward restoration
+use the same decorated hrefs. Separate tabs do not share session storage.
+No new event collector, visitor ID, cross-domain consent, or registration event
+is added. Studio must retain incoming parameters through its own sign-up flow.
+See [the handoff specification](docs/studio-utm-handoff.md).
+The generated blog's existing tags and support action links are outside this
+marketing-link change.
+
+After `npm run build:all`, run `npm run test:studio-campaign` to check URL
+allowlisting, source/medium/campaign handoff, consent, expiration, locale and
+mobile navigation, blocked storage, and campaign replacement. External requests
+are mocked. Run `npm run test:cookie-consent` after consent-related changes.
 
 ## Public support center
 
