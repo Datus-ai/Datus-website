@@ -54,10 +54,10 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     twitterDescription: "模型由你选择，连接凭据加密保存，会话记录可自行删除。了解 Datus Studio 的安全实践。",
   },
   "/": {
-    title: "Datus — 面向 AI Agent 的可信企业业务上下文",
+    title: "Datus — 面向 AI Agent 的可信企业数据上下文",
     description:
       "Datus 为 AI Agent 提供开放的数据上下文，连接业务本体、受治理的指标与数据来源。团队可以审核语义定义，并检查 DOSI 的执行依据。",
-    ogTitle: "Datus — 面向 AI Agent 的可信企业业务上下文",
+    ogTitle: "Datus — 面向 AI Agent 的可信企业数据上下文",
     ogDescription:
       "面向 AI Agent 的开放数据上下文：关联业务含义，复用语义定义，通过 DOSI 检查执行依据。",
   },

@@ -23,7 +23,7 @@ const OUT_DIR = resolve(ROOT, "src/public/og");
 const CARDS = [
   { slug: "tools-semantic-model-converter", eyebrow: "Free Developer Tool", title: "One semantic model, multiple export formats",
     subtitle: "Convert Ossie / Dosi YAML to Snowflake, dbt, Cube, Omni and more. Inspect, edit and download." },
-  { slug: "home", style: "home", title: "The trusted enterprise context for AI agents",
+  { slug: "home", style: "home", title: "The trusted enterprise data context for AI agents",
     subtitle: "Business-aware. Agent-native. Audit-ready.", tag: "Shared context · executable semantics" },
   { slug: "faq", eyebrow: "FAQ", title: "Questions about the enterprise data context layer" },
   { slug: "support", eyebrow: "Support & Help", title: "Find answers. Keep moving.",

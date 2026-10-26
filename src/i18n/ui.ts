@@ -185,7 +185,7 @@ export const UI: Record<Locale, UiMessages> = {
       cookiePolicy: "Cookie Policy",
       cookieSettings: "Cookie Settings",
       tagline:
-        "Trusted enterprise context for AI agents. Business-aware. Agent-native. Audit-ready.",
+        "Trusted enterprise data context for AI agents. Business-aware. Agent-native. Audit-ready.",
       products: "Products",
       resources: "Resources",
       company: "Company",
@@ -328,7 +328,7 @@ export const UI: Record<Locale, UiMessages> = {
       cookiePolicy: "Cookie 政策",
       cookieSettings: "Cookie 设置",
       tagline:
-        "为 AI Agent 提供可信的企业业务上下文。理解业务、面向 Agent、可供审查。",
+        "为 AI Agent 提供可信的企业数据上下文。理解业务、面向 Agent、可供审查。",
       products: "产品",
       resources: "资源",
       company: "公司",

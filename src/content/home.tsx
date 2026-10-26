@@ -136,7 +136,7 @@ const EN: HomeCopy = {
   hero: {
     eyebrow: "Open data context for AI agents",
     titleLead: "The trusted ",
-    titleAccent: "enterprise context",
+    titleAccent: "enterprise data context",
     titleTail: " for AI agents.",
     stackTitle: true,
     lead: <>Connect business ontology, governed metrics, and data provenance in one shared context layer. Give agents business meaning they can use—and teams the evidence to inspect their work.</>,
@@ -341,7 +341,7 @@ const ZH: HomeCopy = {
   hero: {
     eyebrow: "面向 AI Agent 的开放数据上下文",
     titleLead: "让 AI Agent 拥有",
-    titleAccent: "可信的企业业务上下文",
+    titleAccent: "可信的企业数据上下文",
     titleTail: "。",
     lead: <>在共享的上下文层中，连接业务本体、受治理的指标与数据来源。让 Agent 使用明确的业务含义，让团队有据可依地核查工作。</>,
     ctaPrimary: "在 Studio 体验 Datus",

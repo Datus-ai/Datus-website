@@ -31,7 +31,7 @@
 .nordic-hero h1 span { color: var(--brand-bright); }
 .nordic-hero h1.nordic-hero__title--stacked { font-size: clamp(44px, 5.4vw, 72px); }
 .nordic-hero h1.nordic-hero__title--stacked .nordic-hero__title-line { display: block; color: var(--ink); white-space: nowrap; }
-.nordic-hero h1.nordic-hero__title--stacked .nordic-hero__title-line--accent { color: var(--brand-bright); }
+.nordic-hero h1.nordic-hero__title--stacked .nordic-hero__title-line--accent { color: var(--brand-bright); font-size: .89em; }
 .nordic-lead { font-size: 16px; line-height: 1.8; color: var(--ink-dim); max-width: 560px; }
 .nordic-lead strong { font-weight: 550; }
 .nordic-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; margin-top: 32px; }

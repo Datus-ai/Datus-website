@@ -295,3 +295,14 @@ These are approved website-wide design rules. Apply them to new pages and simila
 - Honor an explicit light choice saved under `datus-home-theme`; use the same storage key in React and the static blog. Unavailable storage falls back to dark.
 - Reuse `scripts/lib/site-theme.mjs` for the early head script and shell attributes. Vite and the blog generator both apply it, before first paint, so routes do not flash the opposite theme.
 - Theme controls, logos and prerendered React markup must agree with the dark default. Keep the visitor's ability to toggle both themes.
+
+# 9. Approved company positioning
+
+Use **The trusted enterprise data context for AI agents.** in company positioning.
+Keep **data** in **enterprise data context**, including page titles, the homepage,
+footer, share images, and marketing assets. Chinese: **面向 AI Agent 的可信企业数据上下文**.
+Line breaks may adapt to the available space; retain the approved words.
+The three pillars remain **Business-aware. Agent-native. Audit-ready.**
+The broader visual identity and its current assets live in the separate
+`Datus-visual-identity` repository; do not bring that project's complete source
+or asset collection into this website repository.
