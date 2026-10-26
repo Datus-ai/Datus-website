@@ -1,6 +1,7 @@
 import { useRef, type CSSProperties } from 'react';
 import { ArrowRight, ArrowUpRight, Bot, Database, FileCheck2, Layers3, Pause, Play } from 'lucide-react';
-import { useT } from '../../../i18n/LocaleContext';
+import { useLocale, useT } from '../../../i18n/LocaleContext';
+import { studioCtaUrl } from '../../../lib/studio-cta';
 import { SOLUTION_EXPERIENCE } from './experience';
 import { SEMANTIC_LAYER_SOLUTION } from './content';
 import { STUDIO_LOGIN_URL } from '../../../config/nav';
@@ -9,6 +10,7 @@ import { UI } from '../../../i18n/ui';
 import '../../../styles/tab-countdown.css';
 
 export function ExecutionFlow() {
+ const studioHref = studioCtaUrl(STUDIO_LOGIN_URL, 'semantic_layer_workflow', useLocale());
  const t = useT(SOLUTION_EXPERIENCE), hero=useT(SEMANTIC_LAYER_SOLUTION),ui=useT(UI).common;
  const track=useRef<HTMLDivElement>(null),tabs=useTimedTabs(track,t.flowStages.length),active=tabs.active;
  const icons = [Layers3, FileCheck2, Database, Bot];
@@ -26,7 +28,7 @@ export function ExecutionFlow() {
    <div><span className="solution-flow-detail">{stage.detail}</span><p>{stage.body}</p></div>
    <div className="solution-flow-terms" aria-label={stage.detail}>{stage.terms.map(term => <span key={term}>{term}</span>)}</div>
   </div>)}</div>
-  <div className="solution-start"><div><h3>{t.startTitle}</h3><p>{t.startParts.map((part,i)=>part.highlight?<strong className="solution-keyword" key={i}>{part.text}</strong>:part.text)}</p></div><a className="btn btn-primary" href={STUDIO_LOGIN_URL}>{hero.primary}<ArrowUpRight size={16}/></a></div>
+  <div className="solution-start"><div><h3>{t.startTitle}</h3><p>{t.startParts.map((part,i)=>part.highlight?<strong className="solution-keyword" key={i}>{part.text}</strong>:part.text)}</p></div><a className="btn btn-primary" href={studioHref}>{hero.primary}<ArrowUpRight size={16}/></a></div>
   <p className="solution-standard">{t.license}</p>
  </section>;
 }

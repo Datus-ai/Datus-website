@@ -7,7 +7,8 @@ import {
   type NavItem,
 } from "../config/nav";
 import { formatStarCount, useGitHubStars } from "../hooks/useGitHubStars";
-import { useHref, useLocale } from "../i18n/LocaleContext";
+import { useCurrentPath, useHref, useLocale } from "../i18n/LocaleContext";
+import { studioCtaUrl, studioNavTag } from "../lib/studio-cta";
 import { UI } from "../i18n/ui";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -67,6 +68,7 @@ export default function SiteNav({ logoSrc = "/logo_dark.svg", controls }: { logo
   const locale = useLocale();
   const l = useHref();
   const t = UI[locale].nav;
+  const studioHref = studioCtaUrl(STUDIO_URL, studioNavTag(useCurrentPath(), "header"), locale);
 
   return (
     <header className="site-nav">
@@ -100,7 +102,7 @@ export default function SiteNav({ logoSrc = "/logo_dark.svg", controls }: { logo
           {formatStarCount(stars)}
         </a>
 
-        <a className="btn btn-primary btn-sm" href={STUDIO_URL}>
+        <a className="btn btn-primary btn-sm" href={studioHref}>
           {t.getStarted}
         </a>
 
@@ -124,6 +126,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   const locale = useLocale();
   const l = useHref();
   const t = UI[locale].nav;
+  const studioHref = studioCtaUrl(STUDIO_URL, studioNavTag(useCurrentPath(), "mobile_menu"), locale);
   return (
     <div
       className="site-nav__mobile"
@@ -188,7 +191,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         )}
         <a
           className="btn btn-primary btn-lg"
-          href={STUDIO_URL}
+          href={studioHref}
           style={{ marginTop: 18 }}
         >
           {t.getStartedFree}

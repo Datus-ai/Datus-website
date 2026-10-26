@@ -4,6 +4,7 @@ import FAQ from '../../../components/FAQ';
 import { useHref, useLocale, useT } from '../../../i18n/LocaleContext';
 import { UI } from '../../../i18n/ui';
 import { absoluteUrl } from '../../../i18n/config';
+import { studioCtaUrl } from '../../../lib/studio-cta';
 import { SemanticConverterWorkbench } from '../../../modules/semantic-converter/components/workbench';
 import { converterPage, TARGET_FORMATS, IMPORT_FORMATS } from './content';
 import { converterFaq } from './faq';
@@ -121,7 +122,7 @@ export default function SemanticConverterPage() {
               </a>
             </li>
             <li>
-              <a href="https://studio.datus.ai/?utm_source=datus.ai&utm_medium=tool&utm_campaign=semantic-model-converter">
+              <a href={studioCtaUrl('https://studio.datus.ai/', 'semantic_converter_resources', locale)}>
                 {t.studio}
               </a>
             </li>

@@ -4,6 +4,7 @@ import {
 import type { ProductPageData } from "../../../components/ProductPageTemplate";
 import { SLACK_URL, STUDIO_URL } from "../../../config/nav";
 import type { Locale } from "../../../i18n/config";
+import { studioCtaUrl } from "../../../lib/studio-cta";
 
 // STUDIO_URL = the overview page (hosts the demo video).
 const REGISTER_URL = "https://studio.datus.ai/";
@@ -16,7 +17,7 @@ const EN: ProductPageData = {
   subhead:
     "No install, no config. Connect your warehouse and watch a data engineering agent build context, write validated SQL, and answer real questions in minutes.",
   heroCtas: [
-    { label: "Watch demo video", href: STUDIO_URL, external: true, variant: "primary" },
+    { label: "Watch demo video", href: studioCtaUrl(STUDIO_URL, "studio_hero_demo", "en"), external: true, variant: "primary" },
     { label: "Join Slack for an invite code", href: SLACK_URL, external: true, variant: "ghost" },
     { label: "On-prem deployment", href: ENTERPRISE_CONTACT_URL, variant: "ghost" },
   ],
@@ -72,7 +73,7 @@ const EN: ProductPageData = {
     body: "Join our Slack for an invite code and free test tokens, then create your account.",
     ctas: [
       { label: "Join Slack for an invite code", href: SLACK_URL, external: true, variant: "primary" },
-      { label: "Create your account", href: REGISTER_URL, external: true, variant: "ghost" },
+      { label: "Create your account", href: studioCtaUrl(REGISTER_URL, "studio_closing_signup", "en"), external: true, variant: "ghost" },
     ],
   },
 };
@@ -83,7 +84,7 @@ const ZH: ProductPageData = {
   subhead:
     "免安装、免配置。连上你的数仓，几分钟内就能看到一个数据工程 Agent 自己构建上下文、写出经过校验的 SQL，并回答真实的业务问题。",
   heroCtas: [
-    { label: "观看演示视频", href: STUDIO_URL, external: true, variant: "primary" },
+    { label: "观看演示视频", href: studioCtaUrl(STUDIO_URL, "studio_hero_demo", "zh"), external: true, variant: "primary" },
     { label: "加入 Slack 获取邀请码", href: SLACK_URL, external: true, variant: "ghost" },
     { label: "私有化部署", href: ENTERPRISE_CONTACT_URL, variant: "ghost" },
   ],
@@ -139,7 +140,7 @@ const ZH: ProductPageData = {
     body: "加入我们的 Slack 获取邀请码和免费测试额度，然后注册账号。",
     ctas: [
       { label: "加入 Slack 获取邀请码", href: SLACK_URL, external: true, variant: "primary" },
-      { label: "注册账号", href: REGISTER_URL, external: true, variant: "ghost" },
+      { label: "注册账号", href: studioCtaUrl(REGISTER_URL, "studio_closing_signup", "zh"), external: true, variant: "ghost" },
     ],
   },
 };

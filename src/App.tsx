@@ -7,7 +7,8 @@ import HomeResources from "./components/HomeResources";
 import RotatingPrompt from "./components/RotatingPrompt";
 import { EnterpriseInquiryDialog } from "./components/EnterpriseInquiryDialog";
 import { DOSI_URL, STUDIO_LOGIN_URL } from "./config/nav";
-import { useHref, useT } from "./i18n/LocaleContext";
+import { useHref, useLocale, useT } from "./i18n/LocaleContext";
+import { studioCtaUrl } from "./lib/studio-cta";
 import { HOME_NARRATIVE } from "./content/homeNarrative";
 import { LaunchOverview, BusinessModel, TrustworthyRuntime, OpenContext, ContextJourney, WorkingPaths } from "./components/HomeNarrative";
 import { HOME, type HomeCopy } from "./content/home";
@@ -38,6 +39,7 @@ function InstallCommand({ children }: { children?: ReactNode }) {
 }
 
 function Hero({ t }: { t: HomeCopy }) {
+  const studioHref = studioCtaUrl(STUDIO_LOGIN_URL, "home_hero", useLocale());
   return <section className="nordic-hero nordic-wrap">
     <div className="nordic-hero__grid">
       <div className="nordic-hero__copy">
@@ -50,7 +52,7 @@ function Hero({ t }: { t: HomeCopy }) {
           </> : <>{t.hero.titleLead}<span>{t.hero.titleAccent}</span>{t.hero.titleTail}</>}
         </h1>
         <div className="nordic-lead">{t.hero.lead}</div>
-        <div className="nordic-actions"><a className="btn btn-primary btn-lg" href={STUDIO_LOGIN_URL}>{t.hero.ctaPrimary}<ArrowUpRight size={18}/></a><a className="nordic-text-link" href={DOSI_URL} target="_blank" rel="noopener noreferrer">{t.hero.ctaDeveloper}<ArrowUpRight size={16}/></a></div>
+        <div className="nordic-actions"><a className="btn btn-primary btn-lg" href={studioHref}>{t.hero.ctaPrimary}<ArrowUpRight size={18}/></a><a className="nordic-text-link" href={DOSI_URL} target="_blank" rel="noopener noreferrer">{t.hero.ctaDeveloper}<ArrowUpRight size={16}/></a></div>
         <EnterpriseInquiryDialog><button className="nordic-enterprise">{t.hero.contact}<ArrowRight size={15}/></button></EnterpriseInquiryDialog>
       </div>
       <HeroTerminal t={t}/>
@@ -95,6 +97,7 @@ export default function App() {
   const t = useT(HOME);
   const l = useHref();
   const story = useT(HOME_NARRATIVE);
+  const studioHref = studioCtaUrl(STUDIO_LOGIN_URL, "home_closing", useLocale());
 
   return <SiteLayout className="nordic-home">
     <Hero t={t}/>
@@ -105,7 +108,7 @@ export default function App() {
     <ContextJourney/>
     <OpenContext/>
     <IndustryUseCases/>
-    <section id="get-started" className="nordic-closing nordic-wrap nordic-watermark-section"><Watermark variant="weave"/><span className="nordic-dot"/><h2>{story.closing.heading}</h2><div className="nordic-lead">{story.closing.lead}</div><a className="btn btn-primary btn-lg" href={STUDIO_LOGIN_URL}>{story.closing.primary}<ArrowUpRight size={18}/></a><a className="nordic-text-link" href={DOSI_URL}>{story.closing.secondary}<ArrowUpRight size={16}/></a></section>
+    <section id="get-started" className="nordic-closing nordic-wrap nordic-watermark-section"><Watermark variant="weave"/><span className="nordic-dot"/><h2>{story.closing.heading}</h2><div className="nordic-lead">{story.closing.lead}</div><a className="btn btn-primary btn-lg" href={studioHref}>{story.closing.primary}<ArrowUpRight size={18}/></a><a className="nordic-text-link" href={DOSI_URL}>{story.closing.secondary}<ArrowUpRight size={16}/></a></section>
     <FAQ items={story.faq.items} currentUrl="/" lead={story.faq.lead} maxWidth={1180}/>
     <div className="nordic-wrap nordic-faq-link"><a className="nordic-text-link" href={l('/faq/')}>{story.faq.browseAll}<ArrowRight size={16}/></a></div>
     <HomeResources/>

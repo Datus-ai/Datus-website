@@ -3,7 +3,8 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import SiteLayout from '../../../components/SiteLayout';
 import Breadcrumb from '../../../components/Breadcrumb';
 import FAQ from '../../../components/FAQ';
-import { useHref, useT } from '../../../i18n/LocaleContext';
+import { useHref, useLocale, useT } from '../../../i18n/LocaleContext';
+import { studioCtaUrl } from '../../../lib/studio-cta';
 import { UI } from '../../../i18n/ui';
 import { STUDIO_LOGIN_URL } from '../../../config/nav';
 import { SEMANTIC_LAYER_SOLUTION } from './content';
@@ -19,13 +20,14 @@ import './style.css';
 
 export default function SemanticLayerSolution() {
  const t = useT(SEMANTIC_LAYER_SOLUTION), x = useT(SOLUTION_EXPERIENCE), ui = useT(UI), c=useT(CONVERSION_COPY), l = useHref();
+ const locale = useLocale();
  const [scrolled,setScrolled]=useState(false);
  useEffect(()=>{const update=()=>setScrolled(window.scrollY>35);update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update)},[]);
  return <SiteLayout className={`semantic-solution${scrolled?' solution-scrolled':''}`}>
   <Breadcrumb currentUrl="/solutions/semantic-layer/" items={[{ label: ui.nav.home, href: '/' }, { label: ui.nav.solutions, noSchema: true }, { label: ui.nav.semanticLayer }]}/>
   <section className="solution-hero" aria-labelledby="semantic-solution-title">
    <SemanticLens/>
-   <div className="solution-hero__copy"><span className="eyebrow">{t.eyebrow}</span><h1 id="semantic-solution-title">{t.titleBefore}<span className="solution-hero__accent">{t.titleAccent}</span>{t.titleAfter}</h1><p className="lead">{t.leadBefore}<a className="solution-hero__dosi" href="https://dosi.datus.ai/">DOSI</a>{t.leadAfter}</p><div className="solution-actions"><a className="btn btn-primary btn-lg" href={STUDIO_LOGIN_URL}>{t.primary}<ArrowUpRight size={17}/></a><a className="solution-link" href="#solution-workflow">{t.secondary}<ArrowDown size={16}/></a></div></div>
+   <div className="solution-hero__copy"><span className="eyebrow">{t.eyebrow}</span><h1 id="semantic-solution-title">{t.titleBefore}<span className="solution-hero__accent">{t.titleAccent}</span>{t.titleAfter}</h1><p className="lead">{t.leadBefore}<a className="solution-hero__dosi" href="https://dosi.datus.ai/">DOSI</a>{t.leadAfter}</p><div className="solution-actions"><a className="btn btn-primary btn-lg" href={studioCtaUrl(STUDIO_LOGIN_URL, 'semantic_layer_hero', locale)}>{t.primary}<ArrowUpRight size={17}/></a><a className="solution-link" href="#solution-workflow">{t.secondary}<ArrowDown size={16}/></a></div></div>
   </section>
   <section id="shared-definition" className="container solution-section" aria-labelledby="solution-shared-title">
    <h2 id="solution-shared-title">{x.sharedTitle}</h2><p className="lead">{x.sharedLead}</p>
@@ -47,6 +49,6 @@ export default function SemanticLayerSolution() {
   </section>
   <FAQ items={x.faqs} heading={x.faqTitle} currentUrl="/solutions/semantic-layer/"/>
   <section className="container solution-reading" aria-labelledby="solution-reading-title"><h2 id="solution-reading-title">{x.reading}</h2><div>{x.resources.map(item => <a key={item.href} className="solution-link" href={l(item.href)}>{item.title}<ArrowUpRight size={15}/></a>)}</div></section>
-  <section className="solution-band"><div className="container solution-section solution-closing"><h2>{t.closing}</h2><p className="lead">{t.closingLead}</p><a className="btn btn-primary btn-lg" href={STUDIO_LOGIN_URL}>{t.primary}<ArrowUpRight size={17}/></a></div></section>
+  <section className="solution-band"><div className="container solution-section solution-closing"><h2>{t.closing}</h2><p className="lead">{t.closingLead}</p><a className="btn btn-primary btn-lg" href={studioCtaUrl(STUDIO_LOGIN_URL, 'semantic_layer_closing', locale)}>{t.primary}<ArrowUpRight size={17}/></a></div></section>
  </SiteLayout>;
 }

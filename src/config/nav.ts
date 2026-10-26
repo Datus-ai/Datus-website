@@ -4,9 +4,8 @@ import { UI } from "../i18n/ui";
 
 export { GITHUB_URL };
 
-/** Studio entry — primary conversion target. UTM so studio.datus.ai can attribute. */
-export const STUDIO_URL =
-  "https://studio.datus.ai/overview?utm_source=datus.ai&utm_medium=nav&utm_campaign=get_started";
+/** Base destinations; callers add only utm_content with studioCtaUrl. */
+export const STUDIO_URL = "https://studio.datus.ai/overview";
 
 /** Direct sign-in for homepage trial CTAs; the overview/demo URL stays separate. */
 export const STUDIO_LOGIN_URL = "https://studio.datus.ai/login";
