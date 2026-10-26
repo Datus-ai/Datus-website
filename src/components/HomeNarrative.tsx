@@ -27,9 +27,21 @@ function tabKey(event:KeyboardEvent<HTMLButtonElement>,index:number,count:number
 }
 
 function ArchitectureFlow({output=false}:{output?:boolean}){
- const desktop=[40,120,200].map(y=>output?`M0 120H35V${y}H70`:`M0 ${y}H25V120H70`);
- const mobile=[50,150,250].map(x=>output?`M150 0V20H${x}V40`:`M${x} 0V20H150V40`);
- return <div className={`hp-architecture-bus hp-architecture-bus--${output?'output':'input'}`} aria-hidden="true">{[desktop,mobile].map((paths,index)=><svg key={index} className={index?'hp-bus-mobile':'hp-bus-desktop'} viewBox={index?'0 0 300 40':'0 0 70 240'} preserveAspectRatio="none">{paths.map((d,i)=><g key={i}><path className="hp-flow-track" d={d}/><path className="hp-flow-packet" d={d} pathLength="100" style={{'--flow-delay':`${i*.65+(output?2.6:0)}s`} as CSSProperties}/></g>)}</svg>)}</div>;
+ // Soft branches share a single entry/exit instead of targeting product layers.
+ const desktop=[40,120,200].map(y=>output
+  ?`M0 120C52 120 48 ${y} 100 ${y}`
+  :`M0 ${y}C52 ${y} 48 120 100 120`);
+ const mobile=[50,150,250].map(x=>output
+  ?`M150 0C150 24 ${x} 20 ${x} 44`
+  :`M${x} 0C${x} 24 150 20 150 44`);
+ return <div className={`hp-architecture-bus hp-architecture-bus--${output?'output':'input'}`} aria-hidden="true">
+  {[desktop,mobile].map((paths,index)=><svg key={index} className={index?'hp-bus-mobile':'hp-bus-desktop'} viewBox={index?'0 0 300 44':'0 0 100 240'} preserveAspectRatio="none">
+   {paths.map((d,i)=><g key={i}>
+    <path className="hp-flow-track" d={d}/>
+    <path className="hp-flow-packet" d={d} pathLength="100" style={{'--flow-delay':`${i*.65+(output?2.6:0)}s`} as CSSProperties}/>
+   </g>)}
+  </svg>)}
+ </div>;
 }
 
 /** Source and application branches connect to one shared Datus boundary. */

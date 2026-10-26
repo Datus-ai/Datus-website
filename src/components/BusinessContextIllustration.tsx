@@ -9,7 +9,7 @@ import { BusinessOntologyIllustration, OssieDefinitionIllustration } from './Bus
 export default function BusinessContextIllustration({kind}:{kind:number}){
  const t=useT(HOME_NARRATIVE).model.illustration,root=useRef<HTMLDivElement>(null),[flowing,setFlowing]=useState(false);
  useEffect(()=>{let visible=false;const update=()=>setFlowing(visible&&!document.hidden);const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;update()},{threshold:.2});if(root.current)observer.observe(root.current);document.addEventListener('visibilitychange',update);return()=>{observer.disconnect();document.removeEventListener('visibilitychange',update)}},[]);
- const node=(x:number,y:number,label:string,Icon:typeof Bot,accent=false)=><g className={accent?'bc-node bc-node--accent':'bc-node'}><circle cx={x} cy={y} r="30"/><g transform={`translate(${x-12} ${y-12})`}><Icon size={24} strokeWidth={1.4}/></g><text x={x} y={y+53} textAnchor="middle">{label}</text></g>;
+ const node=(x:number,y:number,label:string,Icon:typeof Bot,accent=false)=><g className={accent?'bc-node bc-node--accent':'bc-node'}><circle cx={x} cy={y} r="30"/><g transform={`translate(${x-12} ${y-12})`}><Icon size={24} strokeWidth={1.4}/></g><text x={x} y={y+(kind===2?45:53)} textAnchor="middle">{label}</text></g>;
  if(kind===0)return <BusinessOntologyIllustration/>;
  if(kind===1)return <OssieDefinitionIllustration/>;
  return <div ref={root} className="bc-art" data-kind={kind} data-flowing={flowing}><svg viewBox="0 0 560 270" role="img" aria-label={t.labels[kind]}>
