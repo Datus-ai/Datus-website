@@ -291,10 +291,10 @@ These are approved website-wide design rules. Apply them to new pages and simila
 
 # 8. Default website theme
 
-- All marketing and product pages, glossary pages, and generated blog pages start in **dark mode** when no preference is stored. The HTML shell is dark even without JavaScript.
-- Honor an explicit light choice saved under `datus-home-theme`; use the same storage key in React and the static blog. Unavailable storage falls back to dark.
+- All marketing and product pages, glossary pages, and generated blog pages start in **light mode** when no preference is stored. The HTML shell is light even without JavaScript.
+- Honor an explicit dark choice saved under `datus-home-theme`; use the same storage key in React and the static blog. Unavailable storage falls back to light.
 - Reuse `scripts/lib/site-theme.mjs` for the early head script and shell attributes. Vite and the blog generator both apply it, before first paint, so routes do not flash the opposite theme.
-- Theme controls, logos and prerendered React markup must agree with the dark default. Keep the visitor's ability to toggle both themes.
+- Theme controls, logos and prerendered React markup must agree with the light default. Keep the visitor's ability to toggle both themes.
 
 # 9. Approved company positioning
 

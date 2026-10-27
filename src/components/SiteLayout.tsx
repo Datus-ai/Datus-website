@@ -11,8 +11,8 @@ import { setupSectionReveals } from "../lib/section-reveal";
 import { setupStudioCampaignHandoff } from "../lib/studio-campaign";
 
 export default function SiteLayout({ children, className = "", logoSrc, navControls }: { children: ReactNode; className?: string; logoSrc?: string; navControls?: ReactNode }) {
-  // Match the dark prerendered shell; only an explicit saved light choice wins.
-  const [dark, setDark] = useState(true);
+  // Match the light prerendered shell; only an explicit saved dark choice wins.
+  const [dark, setDark] = useState(false);
   const root=useRef<HTMLDivElement>(null);
   useEffect(()=>root.current?setupSectionReveals(root.current):undefined,[]);
   useEffect(()=>root.current?setupStudioCampaignHandoff(root.current):undefined,[]);
@@ -20,8 +20,8 @@ export default function SiteLayout({ children, className = "", logoSrc, navContr
   const path = useCurrentPath();
   const graphic = path.includes("products") ? "context-layers" : path.includes("osi") ? "semantic-lens" : path.includes("pricing") ? "shared-definition" : path.includes("faq") ? "evolving-context" : "relationship-map";
   useEffect(() => {
-    let next = true;
-    try { next = localStorage.getItem("datus-home-theme") !== "light"; } catch { /* Dark is also the storage-free default. */ }
+    let next = false;
+    try { next = localStorage.getItem("datus-home-theme") === "dark"; } catch { /* Light is also the storage-free default. */ }
     setDark(next);
     document.documentElement.dataset.theme = next ? "dark" : "light";
   }, []);
