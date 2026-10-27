@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <style>
   @font-face { font-family: "Datus Inter"; src: url("../src/public/fonts/inter/inter-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; }
   body {
-    font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-family: "Datus Inter", system-ui, Arial, sans-serif;
     color: #fff;
     overflow: hidden;
   }
@@ -121,13 +118,14 @@
   }
   .foot .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.6); }
   .foot .tag { font-weight: 500; color: rgba(255,255,255,0.6); }
-  .card.home-card { background: #F7F7F2; color: #252624; font-family: "Datus Inter", Arial, sans-serif; }
+  .card.home-card { background: #F7F7F2; color: #252624; font-family: "Datus Inter", system-ui, Arial, sans-serif; }
   .home-card::before, .home-card .term { display: none; }
   .home-card .logo path:not(:last-child) { fill: #252624; }
   .home-card .logo path:last-child { fill: #402DF3; }
   .home-card .headline { font-size: 66px; font-weight: 500; line-height: 1.1; letter-spacing: -2.8px; max-width: 760px; }
   .home-card .headline.small { font-size: 64px; }
-  .home-card .subtitle { color: #696B63; font-size: 28px; margin-top: 24px; }
+  .home-card .eyebrow { color:#402DF3; border:0; background:none; padding:0; font-size:18px; letter-spacing:1px; }
+  .home-card .subtitle { color: #696B63; font-size: 26px; margin-top: 24px; max-width:650px; }
   .home-card .foot { color: #252624; font-size: 22px; }
   .home-card .foot .dot { background: #402DF3; }
   .home-card .foot .tag { color: #696B63; }

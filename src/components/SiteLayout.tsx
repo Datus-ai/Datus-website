@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Moon, Sun } from "lucide-react";
 import Footer from "./Footer";
+import PageEntities from "./PageEntities";
 import SiteNav from "./SiteNav";
 import { useT, useCurrentPath } from "../i18n/LocaleContext";
 import { UI } from "../i18n/ui";
@@ -35,6 +36,6 @@ export default function SiteLayout({ children, className = "", logoSrc, navContr
   const label = dark ? labels.toLight : labels.toDark;
   return <div ref={root} className={`site-root nordic-site ${className}`}>
     <SiteNav logoSrc={logo} controls={<><button className="nordic-theme-toggle" type="button" onClick={toggle} title={label} aria-label={label} aria-pressed={dark}>{dark ? <Sun size={18}/> : <Moon size={18}/>}</button>{navControls}</>}/>
-    <main data-graphic={graphic}>{children}</main><Footer logoSrc={logo}/>
+    <PageEntities/><main data-graphic={graphic}>{children}</main><Footer logoSrc={logo}/>
   </div>;
 }

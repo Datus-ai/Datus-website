@@ -1,45 +1,60 @@
 # Datus
 
-> Datus is a context-aware data engineering agent. It connects to your warehouse, learns your semantic layer, and turns natural language into trustworthy SQL and production data pipelines — so a one-person data team can move like ten.
+> The trusted enterprise data context for AI agents.
 
-Datus pairs large language models with a persistent semantic context engine (metrics, schema links, lineage, and governance) so agents produce reliable, explainable results instead of plausible-but-wrong SQL. It ships as a CLI, a VS Code extension, a hosted Studio, and an Enterprise platform.
+Datus connects business ontology, semantic definitions, and data provenance in a shared data context layer. Teams can review business meaning; agents can use it in data engineering and analysis. The three pillars are Business-aware, Agent-native, and Audit-ready.
 
-## Products
+## Product relationships
 
-- [Datus CLI](https://datus.ai/products/cli/): Run the modern data stack from your terminal — agentic SQL, pipelines, and context.
-- [VS Code Extension](https://datus.ai/products/vscode/): Bring context and data agents into your editor.
-- [Datus Studio](https://datus.ai/products/studio/): The easiest way to start — free, hosted, no setup.
-- [Enterprise](https://datus.ai/products/enterprise/): Shared context, governance, and long-running agents for teams.
+- Datus Studio is the shared workspace for agent-driven data engineering and analysis. It brings files, SQL, results, and Agent conversations together.
+- Datus Agent is an open-source data Agent for engineering and analysis. Semantic modeling is one capability alongside broader SQL and data workflows.
+- DOSI is Datus's semantic execution runtime and can also be used independently. It validates compatible Apache Ossie definitions and compiles supported queries into native SQL for the selected supported data source.
+- Apache Ossie (incubating) is the open, vendor-neutral specification. DOSI is a compatible runtime licensed under Elastic License 2.0; DOSI is not open-source. Datus Agent is open-source under Apache-2.0.
 
-## Resources
+Ontology expresses business concepts and relationships connected to the semantic layer. Semantic definitions include metrics, dimensions, calculations, and source mappings. Reviewable definitions, generated SQL, and source references help teams inspect results; they do not automatically guarantee correctness. Reusing definitions across sources does not imply cross-warehouse federated execution or automatic learning from all feedback.
 
-- [Semantic Model Converter](https://datus.ai/tools/semantic-model-converter/): Convert Ossie or Dosi YAML to vendor formats, review diagnostics, and download editable files or ZIP archives.
+## Start here
 
-- [Integrations](https://datus.ai/integrations/): Warehouses, catalogs, and tools Datus connects to.
-- [Pricing](https://datus.ai/pricing/): Plans for individuals, teams, and enterprise.
-- [Glossary](https://datus.ai/glossary/): Definitions for data engineering, semantic layer, and agent concepts.
-- [FAQ](https://datus.ai/faq/): Common questions about Datus.
-- [Documentation](https://docs.datus.ai): Product and API docs.
+- [Datus](https://datus.ai/): Company positioning, product relationships, and capabilities.
+- [Semantic Layer Solution](https://datus.ai/solutions/semantic-layer/): Shared business definitions, review workflows, and semantic execution for teams and agents.
+- [Datus Studio](https://datus.ai/products/studio/): Team workspace for agent-driven data work.
+- [Datus Agent](https://datus.ai/products/cli/): Open-source data engineering and analysis Agent.
+- [DOSI](https://dosi.datus.ai/): Semantic execution runtime and supported interfaces.
+- [Apache Ossie](https://ossie.apache.org/): The open specification project.
+- [Datus documentation](https://docs.datus.ai/): Product documentation and configuration.
 
-## Blog
+## Integration and modeling resources
 
-- [Blog](https://datus.ai/blog/): All essays on agentic data engineering, semantic layers, and the agentic data stack.
-- [What Is a Data Engineering Agent? A Practical Guide with Datus](https://datus.ai/blog/what-is-data-engineering-agent/): Business and technical primer.
-- [Data Engineering Agent Architecture for Production](https://datus.ai/blog/data-engineering-agent-architecture/): Architecture and rollout path from prototype to production.
-- [Why Data Engineering Agents Need Layered Subagents](https://datus.ai/blog/data-engineering-agent/data-engineering-agent-layered-subagent/): The layered subagent pattern for domain-scoped agents.
-- [7 High-Impact Data Engineering Agent Use Cases (Powered by Datus)](https://datus.ai/blog/data-engineering-agent-use-cases/): Practical scenarios and ROI.
-- [From Human-First Data Systems to the Agentic Data Stack](https://datus.ai/blog/agentic-data-stack/): How the data stack changes when agents are first-class users.
-- [SQL Agents Are Broken Without Context. Meet Datus.](https://datus.ai/blog/meet_datus/): Why semantic context is the missing piece for reliable agents.
-- [What Is a Semantic Layer?](https://datus.ai/blog/what-is-semantic-layer/): Definition, examples, and how it differs from a metric layer.
-- [What Is Text-to-SQL?](https://datus.ai/blog/what-is-text-to-sql/): How it works and why context matters.
-- [MCP and Data Engineering](https://datus.ai/blog/mcp-data-engineering/): The protocol that connects your entire data stack.
+- [Databases](https://datus.ai/databases/): Supported native database adapters and configuration.
+- [Models](https://datus.ai/models/): Model-provider configuration.
+- [Integrations](https://datus.ai/integrations/): Supported integrations and workflows.
+- [Semantic Model Converter](https://datus.ai/tools/semantic-model-converter/): Supported import and export paths, editable examples, and conversion diagnostics. Review compatibility before execution.
+- [Apache Ossie Playground](https://datus.ai/tools/osi-playground/): Explore and validate supported semantic-model examples.
+- [OSI Field Mapping](https://datus.ai/osi-field-mapping/): Compare semantic-model field mappings.
+- [MCP](https://datus.ai/mcp/): Agent access through MCP.
+- [Enterprise](https://datus.ai/products/enterprise/): Enterprise adoption and deployment information.
+- [Pricing](https://datus.ai/pricing/): Current plans and commercial details.
 
-## Community
+## Learning and support
 
-- [GitHub](https://github.com/Datus-ai/Datus-agent): Open-source Datus agent.
-- [Slack](https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg): Community and support.
+- [Blog](https://datus.ai/blog/): English articles on data agents, semantic layers, ontology, and analytics.
+- [Glossary](https://datus.ai/glossary/): Definitions for data engineering and AI concepts.
+- [FAQ](https://datus.ai/faq/): Common product questions.
+- [Support](https://datus.ai/support/): Guides and support channels.
+- [Security](https://datus.ai/security/): Published security practices and boundaries.
+- [Chinese homepage](https://datus.ai/zh/): Chinese marketing pages use the same English-form paths after /zh/. Blog articles remain English-only.
+- [Datus Agent source](https://github.com/Datus-ai/Datus-agent): Open-source Agent repository.
 
-## Optional
+## Policies
 
-- [Sitemap](https://datus.ai/sitemap.xml): Full list of marketing pages.
-- [Blog sitemap](https://datus.ai/blog/sitemap.xml): Full list of blog posts.
+- [Privacy Statement](https://datus.ai/policies/privacy/)
+- [Terms of Service](https://datus.ai/policies/terms/)
+- [Cookie Policy](https://datus.ai/policies/cookies/)
+
+## URL discovery
+
+- [Sitemap index](https://datus.ai/sitemap.xml): Marketing and blog sitemap locations.
+- [Marketing sitemap](https://datus.ai/sitemap-pages.xml): Canonical marketing URLs, languages, and modification dates.
+- [Blog sitemap](https://datus.ai/blog/sitemap.xml): Canonical article URLs and article modification dates.
+
+This file is a navigation and product-summary aid. Product pages and documentation provide the current scope and limitations of each capability.

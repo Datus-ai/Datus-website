@@ -43,10 +43,12 @@ const CARDS = [
   { slug: "glossary", eyebrow: "Glossary", title: "The data engineering glossary",
     subtitle: "Plain-language definitions for the modern, AI-native data stack." },
   { slug: "pricing", eyebrow: "Pricing", title: "Free for individuals, custom for enterprises" },
-  { slug: "products-cli", eyebrow: "Datus agent", title: "The open-source data CLI for your terminal",
-    subtitle: "Generates Apache Ossie semantic models from your schema and SQL history. Apache-2.0." },
-  { slug: "products-studio", eyebrow: "Datus Studio", title: "The commercial context-aware co-pilot",
-    subtitle: "Humans, BI and agents drive the whole stack in natural language." },
+  { slug: "products-cli", style: "home", eyebrow: "Datus Agent", title: "Open-source data engineering and analysis",
+    subtitle: "SQL, data workflows, and reusable business context. Your warehouse. Your models." },
+  { slug: "products-studio", style: "home", eyebrow: "Datus Studio", title: "A shared workspace for agent-driven data work",
+    subtitle: "Bring files, SQL, results, and Agent conversations together." },
+  { slug: "solutions-semantic-layer", style: "home", eyebrow: "Semantic Layer", title: "Business meaning, ready for teams and agents",
+    subtitle: "Apache Ossie defines the model. DOSI turns compatible definitions into native SQL." },
   { slug: "products-enterprise", eyebrow: "Enterprise", title: "Governed context for enterprise agent teams",
     subtitle: "SSO, RBAC, SQL policy and private / VPC deployment on the warehouse you own." },
   { slug: "products-vscode", eyebrow: "VS Code", title: "A data agent and context in your editor" },
@@ -80,7 +82,7 @@ async function main() {
 
   try {
     const page = await browser.newPage();
-    await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
+    await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
     for (const card of cards) {
       await page.goto(`${TEMPLATE}?${qs(card)}`, { waitUntil: "networkidle0" });
       await page.waitForFunction("window.__ogReady === true", { timeout: 15000 });

@@ -172,3 +172,30 @@ prerendered body content, canonical/hreflang/FAQ data, search and guide dialogs,
 focus restoration, template copying and failure feedback, locale links,
 responsive layouts, sitemap entries, and blog links. External network calls are
 stubbed; screenshots are written to `/tmp/datus-support-production/`.
+
+## SEO and AI-readable product summaries
+
+Keep English metadata in each route's `index.html` and Chinese metadata in
+`src/i18n/pageMeta.ts` aligned with the approved positioning. The homepage,
+Studio, Datus Agent and Semantic Layer solution use `src/seo/entities.ts` for
+localized JSON-LD, prerendered by `PageEntities`. Their shared company/product
+IDs stay stable across languages; each WebPage URL and title follows its locale.
+Do not add parallel Organization or application schemas to these HTML heads.
+Datus Agent is Apache-2.0; DOSI uses Elastic License 2.0 and executes compatible
+Apache Ossie definitions. Apache Ossie is the open specification.
+
+`src/public/llms.txt` is a curated navigation/summary aid, not a replacement for
+crawlable HTML or a promise of AI citations. Update it when product positioning
+or important canonical routes change. Leave crawler access policy in
+`blog/public/robots.txt` explicit.
+
+The sitemap index derives each child date from that child's recorded modification
+dates. The blog index uses the latest article modification date (or its maintained
+fallback date); individual article dates stay unchanged. Do not substitute build
+time for content changes. Marketing dates remain in `scripts/lib/i18n-shells.mjs`.
+
+After `npm run build:all`, run `npm run test:seo` for metadata, canonical URLs,
+languages, JSON-LD identities/licensing, image existence, llms links and sitemap
+dates. For updated share images, run `npm run og:build -- products-cli
+products-studio solutions-semantic-layer` before rebuilding. Exports are 1200 ×
+630 with the bundled Inter font; inspect the images after editing their copy.

@@ -24,9 +24,9 @@ export type PageMeta = {
 export const ZH_PAGE_META: Record<string, PageMeta> = {
   "/solutions/semantic-layer/": {
     title: "面向团队与 AI Agent 的语义层解决方案 — Datus",
-    description: "将文档、SQL 和数仓知识转为共享语义模型。在 Datus Studio 中审核业务定义，通过 DOSI 执行，并核查 SQL 与源数据血缘。",
+    description: "将业务关系、指标与源数据映射连接为可审核的语义层。Apache Ossie 提供开放规范，DOSI 将兼容的定义转为原生 SQL 执行。",
     ogTitle: "语义层解决方案 — Datus",
-    ogDescription: "让团队与 AI Agent 共享业务定义，使用原生 SQL 执行，追溯结果来源。",
+    ogDescription: "团队与 AI Agent 共享业务定义，通过 DOSI 执行兼容的 Apache Ossie 模型，并核查 SQL 与结果来源。",
   },
   "/tools/semantic-model-converter/": {
     title: "语义模型转换器：导入与导出 Apache Ossie — Datus",
@@ -62,13 +62,10 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
       "面向 AI Agent 的开放数据上下文：关联业务含义，复用语义定义，通过 DOSI 检查执行依据。",
   },
   "/products/cli/": {
-    title: "Datus agent — 终端里的开源数据 CLI",
-    description:
-      "开源的 Datus agent（Datus CLI）跑在终端里——读取表结构与 SQL 历史生成 OSI 语义模型，自带数仓与模型，生成经过校验的 SQL。Apache-2.0 许可。",
-    ogTitle: "Datus agent — 开源数据 CLI",
-    ogDescription:
-      "在终端里运行 Datus agent——生成 OSI 语义模型，你的数仓、你的模型、你的上下文。Apache-2.0 许可。",
-    twitterDescription: "在终端里运行 Datus agent——你的数仓、你的模型、你的上下文。",
+    title: "Datus Agent — 开源的数据工程与分析 Agent",
+    description: "支持数据工程与分析的开源数据 Agent。使用自己的数仓与模型，处理 SQL、数据管道和可复用的业务上下文；语义建模是其能力之一。",
+    ogTitle: "Datus Agent — 开源的数据工程与分析 Agent",
+    ogDescription: "将可复用的业务上下文用于数据工程与分析，使用自己的数仓与模型。",
   },
   "/products/vscode/": {
     title: "Datus for VS Code — 编辑器里的数据 Agent 与上下文",
@@ -78,13 +75,10 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogDescription: "在 VS Code 中行内生成经过校验的 SQL、感知表结构，并带 Agent 对话面板。",
   },
   "/products/studio/": {
-    title: "Datus Studio — 托管版数据工程 Agent",
-    description:
-      "Datus Studio 是最省事的上手方式：托管的数据工程 Agent，连上数仓、构建上下文、写出经过校验的 SQL——免安装，早期体验期免费。",
-    ogTitle: "Datus Studio — 托管版数据工程 Agent",
-    ogDescription:
-      "托管的 Datus 工作空间——连上数仓，几分钟拿到可信答案。早期体验期免费。",
-    twitterDescription: "托管的 Datus 工作空间——连上数仓，几分钟拿到可信答案。",
+    title: "Datus Studio — Agent 驱动的数据工作空间",
+    description: "在 Datus Studio 中整合文件、SQL、结果与 Agent 对话。团队协作开展 Agent 驱动的数据工程与分析，并审核共享业务上下文。",
+    ogTitle: "Datus Studio — Agent 驱动的数据工作空间",
+    ogDescription: "整合文件、SQL、结果与 Agent 对话，让团队协作开展数据工程与分析。",
   },
   "/products/enterprise/": {
     title: "Datus 企业版 — 可治理的企业 Agent 团队",
