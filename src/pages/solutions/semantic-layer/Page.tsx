@@ -23,7 +23,7 @@ export default function SemanticLayerSolution() {
  const locale = useLocale();
  const [scrolled,setScrolled]=useState(false);
  useEffect(()=>{const update=()=>setScrolled(window.scrollY>35);update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update)},[]);
- return <SiteLayout className={`semantic-solution${scrolled?' solution-scrolled':''}`}>
+ return <SiteLayout className={`semantic-solution${scrolled?' solution-scrolled':''}`} staggerSections>
   <Breadcrumb currentUrl="/solutions/semantic-layer/" items={[{ label: ui.nav.home, href: '/' }, { label: ui.nav.solutions, noSchema: true }, { label: ui.nav.semanticLayer }]}/>
   <section className="solution-hero" aria-labelledby="semantic-solution-title">
    <SemanticLens/>

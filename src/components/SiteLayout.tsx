@@ -10,11 +10,11 @@ import "../styles/section-reveal.css";
 import { setupSectionReveals } from "../lib/section-reveal";
 import { setupStudioCampaignHandoff } from "../lib/studio-campaign";
 
-export default function SiteLayout({ children, className = "", logoSrc, navControls }: { children: ReactNode; className?: string; logoSrc?: string; navControls?: ReactNode }) {
+export default function SiteLayout({ children, className = "", logoSrc, navControls, staggerSections = false }: { children: ReactNode; className?: string; logoSrc?: string; navControls?: ReactNode; staggerSections?: boolean }) {
   // Match the light prerendered shell; only an explicit saved dark choice wins.
   const [dark, setDark] = useState(false);
   const root=useRef<HTMLDivElement>(null);
-  useEffect(()=>root.current?setupSectionReveals(root.current):undefined,[]);
+  useEffect(()=>root.current?setupSectionReveals(root.current,{stagger:staggerSections}):undefined,[staggerSections]);
   useEffect(()=>root.current?setupStudioCampaignHandoff(root.current):undefined,[]);
   const labels = useT(UI).theme;
   const path = useCurrentPath();

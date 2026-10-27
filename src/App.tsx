@@ -99,7 +99,7 @@ export default function App() {
   const story = useT(HOME_NARRATIVE);
   const studioHref = studioCtaUrl(STUDIO_LOGIN_URL, "home_closing", useLocale());
 
-  return <SiteLayout className="nordic-home">
+  return <SiteLayout className="nordic-home" staggerSections>
     <Hero t={t}/>
     <LaunchOverview/>
     <BusinessModel/>
