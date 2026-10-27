@@ -13,13 +13,13 @@ import SemanticLens from './SemanticLens';
 import ModelingWorkflow from './ModelingWorkflow';
 import SemanticReuse from './SemanticReuse';
 import SemanticModelPreview from './SemanticModelPreview';
-import ModelConversion from './ModelConversion';
-import { CONVERSION_COPY } from './conversionCopy';
+import ModelOrigins from './ModelOrigins';
+import { MODEL_ORIGINS_COPY } from './modelOriginsCopy';
 import { SOLUTION_EXPERIENCE } from './experience';
 import './style.css';
 
 export default function SemanticLayerSolution() {
- const t = useT(SEMANTIC_LAYER_SOLUTION), x = useT(SOLUTION_EXPERIENCE), ui = useT(UI), c=useT(CONVERSION_COPY), l = useHref();
+ const t = useT(SEMANTIC_LAYER_SOLUTION), x = useT(SOLUTION_EXPERIENCE), ui = useT(UI), c=useT(MODEL_ORIGINS_COPY), l = useHref();
  const locale = useLocale();
  const [scrolled,setScrolled]=useState(false);
  useEffect(()=>{const update=()=>setScrolled(window.scrollY>35);update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update)},[]);
@@ -35,7 +35,7 @@ export default function SemanticLayerSolution() {
   </section>
   <section id="open-foundation" className="solution-band" aria-labelledby="solution-neutral-title"><div className="container solution-section">
    <div className="solution-neutral-head"><div><h2 id="solution-neutral-title">{x.neutralTitle}</h2><p className="lead">{x.neutralLeadParts.map((part,i)=>part.highlight?<strong className="solution-keyword" key={i}>{part.text}</strong>:part.text)}</p></div><aside className="solution-ossie-definition"><h3>{c.ossieTitle}</h3><p>{c.ossieBody}</p><a className="solution-link" href="https://ossie.apache.org/">{c.ossieLink}<ArrowUpRight size={14}/></a></aside></div>
-   <ModelConversion/>
+   <ModelOrigins/>
   </div></section>
   <ExecutionFlow/>
   <section id="modeling-workspace" className="solution-band" aria-labelledby="solution-build-title"><div className="container solution-section">

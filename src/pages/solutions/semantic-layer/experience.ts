@@ -9,9 +9,9 @@ const en = {
  ],
  neutralTitle: 'Your business definitions. Independent of your stack.',
  neutralLeadParts: [
-  { text: 'Convert supported semantic models from your existing tools into Apache Ossie, an ', highlight: false },
+  { text: 'Capture business definitions from existing SQL, supported BI dashboards, and new requirements. Keep them in Apache Ossie, an ', highlight: false },
   { text: 'open', highlight: true }, { text: ', ', highlight: false }, { text: 'vendor-neutral', highlight: true },
-  { text: ' standard. Review the generated YAML, then use compatible definitions as a starting point for Datus.', highlight: false },
+  { text: ' standard your team can review, maintain, and reuse.', highlight: false },
  ],
  standard: 'Built on Apache Ossie (incubating)',
 
@@ -19,7 +19,7 @@ const en = {
  flowLead: 'Apache Ossie is the core specification behind DOSI’s semantic execution. DOSI reads compatible Ossie models, validates their definitions, and compiles semantic queries into native SQL for your configured warehouse.',
  flowHint: 'Select a stage to see its role.',
  flowStages: [
-  { title: 'Your Ossie model', caption: 'An open foundation', body: 'Start with converted definitions or a compatible model written in Ossie YAML. Keep datasets, dimensions, metrics, and relationships together for your team to review.', detail: 'Shared definitions', terms: ['Metrics', 'Dimensions', 'Relationships'] },
+  { title: 'Your Ossie model', caption: 'An open foundation', body: 'Start with reviewed definitions drawn from your SQL, dashboard queries, or new business requirements. Keep datasets, dimensions, metrics, and relationships together in a compatible Ossie model.', detail: 'Shared definitions', terms: ['Metrics', 'Dimensions', 'Relationships'] },
   { title: 'DOSI', caption: 'Ossie at the core', body: 'DOSI uses the Apache Ossie specification as its foundation. It validates compatible models and compiles supported semantic queries into the target SQL dialect, with diagnostics and SQL your team can inspect.', detail: 'Semantic execution', terms: ['Model validation', 'Native SQL', 'Reviewable queries'] },
   { title: 'Your warehouse', caption: 'Execute at the source', body: 'The configured warehouse runs the generated SQL against its data. Source connections and mappings determine where a query executes.', detail: 'Source execution', terms: ['Configured connection', 'Source data', 'Query results'] },
   { title: 'Teams & agents', caption: 'Use the result', body: 'Use the returned data through supported interfaces. Teams, applications, and agents can query against the same compatible model.', detail: 'Shared access', terms: ['CLI', 'REST / Python', 'MCP'] },
@@ -72,9 +72,9 @@ export const SOLUTION_EXPERIENCE: Record<Locale, typeof en> = { en, zh: {
  ],
  neutralTitle: '让业务定义独立于单一技术栈。',
  neutralLeadParts: [
-  { text: '将已有工具中受支持的语义模型转换为 Apache Ossie。这一标准', highlight: false },
+  { text: '从已有 SQL、受支持的 BI 看板及新需求中整理业务定义，以 Apache Ossie 格式保存。这一标准', highlight: false },
   { text: '开放', highlight: true }, { text: '、', highlight: false }, { text: '厂商中立', highlight: true },
-  { text: '。核查生成的 YAML 后，就能以兼容的定义为基础，开始使用 Datus。', highlight: false },
+  { text: '，便于团队审核、维护和复用。', highlight: false },
  ],
  standard: '基于 Apache Ossie（孵化中）',
 
@@ -82,7 +82,7 @@ export const SOLUTION_EXPERIENCE: Record<Locale, typeof en> = { en, zh: {
  flowLead: 'Apache Ossie 是 DOSI 语义执行的核心规范。DOSI 读取兼容的 Ossie 模型，校验业务定义，再将语义查询编译为已配置数仓的原生 SQL。',
  flowHint: '选择一个环节，了解它的作用。',
  flowStages: [
-  { title: '你的 Ossie 模型', caption: '开放的定义基础', body: '从转换后的定义或兼容的 Ossie YAML 模型开始，将数据集、维度、指标与关系放在一起，便于团队共同审核。', detail: '共享定义', terms: ['指标', '维度', '业务关系'] },
+  { title: '你的 Ossie 模型', caption: '开放的定义基础', body: '从 SQL、看板查询或新业务需求中整理并审核定义，将数据集、维度、指标与关系统一保存在兼容的 Ossie 模型中。', detail: '共享定义', terms: ['指标', '维度', '业务关系'] },
   { title: 'DOSI', caption: '以 Ossie 为核心', body: 'DOSI 以 Apache Ossie 规范为基础，校验兼容的模型，将受支持的语义查询编译为目标 SQL 方言。团队可以核查诊断信息与生成的 SQL。', detail: '语义执行', terms: ['模型校验', '原生 SQL', '可审核的查询'] },
   { title: '你的数仓', caption: '在数据源中执行', body: '由已配置的数仓对其数据执行生成的 SQL。数据源连接与映射决定查询的执行位置。', detail: '数据源执行', terms: ['已配置的连接', '源数据', '查询结果'] },
   { title: '团队与 Agent', caption: '使用查询结果', body: '通过受支持的接口使用返回的数据，让团队、应用与 Agent 基于同一份兼容模型查询。', detail: '共享访问', terms: ['CLI', 'REST / Python', 'MCP'] },

@@ -1,6 +1,0 @@
-.solution-converter { margin-top:42px; }
-.solution-converter__intro { display:flex; align-items:flex-end; justify-content:space-between; gap:35px; margin-bottom:22px; }
-.solution-converter__intro h3 { font-size:24px; font-weight:500; line-height:1.3; letter-spacing:-.025em; margin:0 0 12px; }
-.solution-converter__intro p { font-size:14px; line-height:1.8; max-width:720px; color:var(--ink-dim); margin:0; }
-.solution-converter__intro>a { flex-shrink:0; font-size:12px; }
-@media(max-width:700px) { .solution-converter__intro { flex-direction:column; align-items:flex-start; gap:16px; } }
