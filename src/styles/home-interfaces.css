@@ -1,0 +1,17 @@
+/* The full Interfaces panel fits below navigation, without a height cutoff. */
+@media (min-width:900px) {
+ #interfaces { padding-block:16px; }
+ #interfaces .nordic-section-head { margin-bottom:16px; }
+ #interfaces .nordic-section-head h2 { max-width:100%; font-size:clamp(28px,2.5vw,36px); line-height:1.15; margin-block:8px 10px; }
+ #interfaces .nordic-section-head .nordic-lead { max-width:100%; font-size:14px; line-height:1.5; }
+ #interfaces .nordic-surfaces { grid-template-columns:180px minmax(0,1fr); gap:26px; }
+ #interfaces .nordic-tabs button { padding-block:16px; }
+ #interfaces .nordic-surface { min-height:0; }
+ #interfaces .nordic-surface__copy { padding:12px 20px; }
+ #interfaces .nordic-surface__copy .nordic-lead { max-width:100%; font-size:14px; line-height:1.6; }
+ #interfaces .pi-positioning-headline { font-size:20px; margin-block:0 6px; }
+ #interfaces .nordic-surface > .pi-preview { width:min(calc(100% - 32px),calc(clamp(240px,100svh - 450px,420px) * 1.741935)); margin-inline:auto; }
+ #interfaces .pi-preview .pi-preview-actions { padding-block:8px; }
+ #interfaces .pi-external-tabs { margin-bottom:6px; }
+ #interfaces .pi-external-tabs > button { padding-block:6px; }
+}

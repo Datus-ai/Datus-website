@@ -2,14 +2,16 @@ import { ArrowRight, HelpCircle } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
 import FAQ from "../../components/FAQ";
-import { SLACK_URL } from "../../config/nav";
+import { SLACK_URL, STUDIO_START_URL } from "../../config/nav";
+import { studioCtaUrl } from "../../lib/studio-cta";
 import { useHref, useLocale, useT } from "../../i18n/LocaleContext";
 import { UI } from "../../i18n/ui";
 import { faqPage } from "./content";
 
 export default function FaqPage() {
   const t = useT(faqPage);
-  const ui = UI[useLocale()];
+  const locale = useLocale();
+  const ui = UI[locale];
   const l = useHref();
   return (
     <SiteLayout>
@@ -31,7 +33,7 @@ export default function FaqPage() {
       </section>
 
       {/* Products */}
-      <section className="section" style={{ background: "rgba(11,18,48,0.4)", borderBlock: "1px solid var(--line)" }}>
+      <section className="section" style={{ background: "var(--bg-2)", borderBlock: "1px solid var(--line)" }}>
         <div className="container">
           <div className="section-head">
             <span className="eyebrow">{t.productsSection.eyebrow}</span>
@@ -76,8 +78,8 @@ export default function FaqPage() {
               {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 24 }}>
-              <a className="btn btn-primary btn-lg" href="https://docs.datus.ai" target="_blank" rel="noopener noreferrer">
-                {t.closing.docs} <ArrowRight size={17} />
+              <a className="btn btn-primary btn-lg" href={studioCtaUrl(STUDIO_START_URL, "faq_closing", locale)}>
+                {t.closing.signup} <ArrowRight size={17} />
               </a>
               <a className="btn btn-ghost btn-lg" href="https://github.com/Datus-ai/Datus-agent" target="_blank" rel="noopener noreferrer">
                 {t.closing.github}

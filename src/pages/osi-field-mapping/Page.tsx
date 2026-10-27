@@ -8,6 +8,8 @@ import { useHref, useLocale, useT } from "../../i18n/LocaleContext";
 import { UI } from "../../i18n/ui";
 import { osiFieldMappingFaq } from "./faq";
 import { osiMappingPage } from "./content";
+import { STUDIO_START_URL } from "../../config/nav";
+import { studioCtaUrl } from "../../lib/studio-cta";
 
 /* -------------------------------------------------------------------------- */
 /*  Presentation helpers                                                       */
@@ -80,7 +82,8 @@ const labelStyle: React.CSSProperties = {
 export default function OsiFieldMappingPage() {
   const t = useT(osiMappingPage);
   const faqItems = useT(osiFieldMappingFaq);
-  const ui = UI[useLocale()];
+  const locale = useLocale();
+  const ui = UI[locale];
   const l = useHref();
   return (
     <SiteLayout>
@@ -195,7 +198,10 @@ export default function OsiFieldMappingPage() {
               {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
-              <a className="btn btn-lg btn-primary" href={l("/tools/osi-playground/")}>
+              <a className="btn btn-lg btn-primary" href={studioCtaUrl(STUDIO_START_URL, "osi_field_mapping_closing", locale)}>
+                {t.closing.signupCta} <ArrowRight size={17} />
+              </a>
+              <a className="btn btn-lg btn-ghost" href={l("/tools/osi-playground/")}>
                 {t.closing.cta} <ArrowRight size={17} />
               </a>
             </div>

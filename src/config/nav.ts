@@ -4,9 +4,14 @@ import { UI } from "../i18n/ui";
 
 export { GITHUB_URL };
 
-/** Studio entry — primary conversion target. UTM so studio.datus.ai can attribute. */
-export const STUDIO_URL =
-  "https://studio.datus.ai/overview?utm_source=datus.ai&utm_medium=nav&utm_campaign=get_started";
+/** Base destinations; callers add only utm_content with studioCtaUrl. */
+export const STUDIO_URL = "https://studio.datus.ai/overview";
+
+/** Global Get started buttons enter Studio directly. */
+export const STUDIO_START_URL = "https://studio.datus.ai/";
+
+/** Direct sign-in for homepage trial CTAs; the overview/demo URL stays separate. */
+export const STUDIO_LOGIN_URL = "https://studio.datus.ai/login";
 
 export const DOCS_URL = "https://docs.datus.ai";
 /** Dosi engine lives on its own subdomain; the nav links straight out to it. */
@@ -62,6 +67,7 @@ export function siteNav(locale: Locale): NavItem[] {
   const t = UI[locale].nav;
   return [
     { label: t.products, children: productsNav(locale) },
+    { label: t.solutions, children: [{ label: t.semanticLayer, href: "/solutions/semantic-layer/", description: t.semanticLayerDesc }] },
     { label: t.integrations, children: integrationsNav(locale) },
     { label: t.pricing, href: "/pricing/" },
     { label: t.blog, href: "/blog/", external: true },

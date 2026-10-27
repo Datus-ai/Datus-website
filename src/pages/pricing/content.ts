@@ -1,5 +1,7 @@
-import { GITHUB_URL, STUDIO_URL } from "../../config/nav";
+import { UI } from "../../i18n/ui";
+import { GITHUB_URL, STUDIO_START_URL } from "../../config/nav";
 import type { Locale } from "../../i18n/config";
+import { studioCtaUrl } from "../../lib/studio-cta";
 
 export interface Tier {
   name: string;
@@ -48,7 +50,7 @@ const EN: PricingCopy = {
         "Chat, subagents & evolving context",
         "Free during early access",
       ],
-      cta: { label: "Sign up free", href: STUDIO_URL },
+      cta: { label: UI.en.common.tryStudio, href: studioCtaUrl(STUDIO_START_URL, "pricing_cloud_signup", "en") },
       featured: true,
     },
     {
@@ -97,7 +99,7 @@ const ZH: PricingCopy = {
         "对话、子代理与可演进的上下文",
         "早期体验期免费",
       ],
-      cta: { label: "免费注册", href: STUDIO_URL },
+      cta: { label: UI.zh.common.tryStudio, href: studioCtaUrl(STUDIO_START_URL, "pricing_cloud_signup", "zh") },
       featured: true,
     },
     {

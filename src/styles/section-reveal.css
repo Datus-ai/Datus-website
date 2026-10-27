@@ -1,0 +1,13 @@
+/* Initialized only after an observer is ready; never hide static/no-JS HTML. */
+.site-section-reveal[data-section-state=pending] { opacity:0; }
+.site-section-reveal[data-section-state=entering] { animation:site-section-enter .65s cubic-bezier(.2,.65,.3,1) both; }
+@keyframes site-section-enter { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+.site-section-reveal[data-section-stagger=true][data-section-state=entering] { animation-duration:.9s; }
+.site-section-reveal[data-section-stagger=true][data-section-state=entering] .site-section-step {
+ animation:site-section-step-enter .52s cubic-bezier(.2,.65,.3,1) var(--section-step-delay,0ms) both;
+}
+@keyframes site-section-step-enter { from { opacity:0; translate:0 8px; } to { opacity:1; translate:none; } }
+@media(prefers-reduced-motion:reduce) { .site-section-reveal .site-section-step { opacity:1; translate:none; animation:none!important; } }
+@media print { .site-section-reveal .site-section-step { opacity:1!important; translate:none!important; animation:none!important; } }
+@media(prefers-reduced-motion:reduce) { .site-section-reveal[data-section-state] { opacity:1; transform:none; animation:none; } }
+@media print { .site-section-reveal[data-section-state] { opacity:1!important; transform:none!important; animation:none!important; } }

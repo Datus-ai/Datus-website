@@ -60,12 +60,12 @@ try {
     assert.equal(commands.find(item => item[0] === 'config')[2].page_location, base + path);
     assert.ok(Math.abs(await page.$eval('.cookie-ui__banner', element => element.getBoundingClientRect().width) - 480) < 1);
     await page.click('.cookie-ui__banner [data-open]');
-    assert.equal(await page.$$eval('dialog section', elements => elements.length), 2);
+    assert.equal(await page.$$eval('.cookie-ui__dialog section', elements => elements.length), 2);
     assert.ok(!(await page.$eval('.cookie-ui', element => element.textContent)).includes('Tracking'), 'Website consent UI must not imply first-party Tracking');
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewport({ width, height: 844 });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), width);
-      const center = await page.$eval('dialog', element => {
+      const center = await page.$eval('.cookie-ui__dialog', element => {
         const rect = element.getBoundingClientRect();
         return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2, targetX: innerWidth / 2, targetY: innerHeight / 2 };
       });
@@ -85,6 +85,7 @@ try {
     await page.waitForFunction(() => performance.getEntriesByType('resource').some(item => item.name.includes('storage=granted')));
     await page.evaluate(() => {
       localStorage.setItem('theme', 'dark');
+      sessionStorage.setItem('datus_website_campaign', JSON.stringify({ fields: { utm_source: 'newsletter' }, capturedAt: Date.now() }));
       document.cookie = 'datus_lang=zh-CN; Path=/';
       window.__unsavedMarker = 'current-page';
       const input = document.createElement('textarea');
@@ -92,7 +93,7 @@ try {
       document.body.append(input);
     });
     await page.click('[data-cookie-settings]');
-    await page.click('dialog [data-reject]');
+    await page.click('.cookie-ui__dialog [data-reject]');
     assert.equal(await page.evaluate(() => window.__unsavedMarker), 'current-page', 'Refusal must not reload');
     assert.equal(await page.$eval('#unsaved-draft', element => element.value), 'unsaved form input');
     assert.equal(await page.evaluate(() => window['ga-disable-G-EPVCH78EZP']), true);
@@ -101,6 +102,7 @@ try {
     assert.ok(await page.$('#datus-consented-analytics'), 'The disabled SDK stays loaded without discarding the page');
     assert.equal(await hasAnalyticsCookie(), false);
     assert.equal(await page.evaluate(() => localStorage.getItem('theme')), 'dark');
+    assert.equal(await page.evaluate(() => sessionStorage.getItem('datus_website_campaign')), null, 'Withdrawal clears campaign storage on every route, including the blog');
     assert.ok((await page.cookies()).some(cookie => cookie.name === 'datus_lang'));
     await page.reload({ waitUntil: 'networkidle0' });
     assert.equal(measurements.length, stoppedAt, 'Stored refusal blocks even cookieless measurements');
@@ -155,7 +157,7 @@ try {
     await tabs[0].bringToFront(); await tabs[0].click('[data-accept]');
     await tabs[1].bringToFront();
     await tabs[1].waitForFunction(() => window.dataLayer.some(item => item[0] === 'consent' && item[1] === 'update' && item[2].analytics_storage === 'granted'), { polling: 100 });
-    await tabs[0].bringToFront(); await tabs[0].click('[data-cookie-settings]'); await tabs[0].click('dialog [data-reject]');
+    await tabs[0].bringToFront(); await tabs[0].click('[data-cookie-settings]'); await tabs[0].click('.cookie-ui__dialog [data-reject]');
     await tabs[1].bringToFront(); await tabs[1].waitForFunction(() => window['ga-disable-G-EPVCH78EZP'] === true, { polling: 100 });
     const stopped = measurements;
     for (const [index, page] of tabs.entries()) {

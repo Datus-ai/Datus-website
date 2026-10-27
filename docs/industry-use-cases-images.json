@@ -1,0 +1,19 @@
+{
+  "generatedWith": "Built-in image_gen tool",
+  "date": "2026-10-21",
+  "usage": "Illustrative industry scenarios. Not customer case studies or photographs of Datus customers.",
+  "assets": [
+    {
+      "file": "src/public/product/industries/retail.jpg",
+      "prompt": "Generate one wide landscape 16:10 photograph for a Datus developer-product website industry use case. Photorealistic editorial photography, restrained Swedish/Scandinavian art direction, soft natural daylight, off-white and cool grey palette with a very subtle purple detail, believable materials, realistic scale, quiet confident composition, no overlaid text, no logos, no watermarks, no charts or floating UI, no robots, no isometric or 3D illustrations. This must be a usable photograph, not a diagram. An apparel ecommerce fulfillment workspace with shelves of neatly packed orders and a return inspection desk, cardboard parcels, folded clothing, one worker seen from behind checking a returned garment, concrete retail operations. Wide cinematic but natural composition."
+    },
+    {
+      "file": "src/public/product/industries/finance.jpg",
+      "prompt": "Generate one wide landscape 16:10 photograph for a Datus developer-product website industry use case. Photorealistic editorial photography, restrained Swedish/Scandinavian art direction, soft natural daylight, off-white and cool grey palette with a very subtle purple detail, believable materials, realistic scale, quiet confident composition, no overlaid text, no logos, no watermarks, no charts or floating UI, no robots, no isometric or 3D illustrations. This must be a usable photograph, not a diagram. A modern financial operations workspace seen diagonally from behind a small team, two analysts reconciling anonymized merchant settlement reports on laptops, paper reports without legible text, subtle city office background, no cash, coins, stock trading screens or staged handshakes."
+    },
+    {
+      "file": "src/public/product/industries/manufacturing.jpg",
+      "prompt": "Generate one wide landscape 16:10 photograph for a Datus developer-product website industry use case. Photorealistic editorial photography, restrained Swedish/Scandinavian art direction, soft natural daylight, off-white and cool grey palette with a very subtle purple detail, believable materials, realistic scale, quiet confident composition, no overlaid text, no logos, no watermarks, no charts or floating UI, no robots, no isometric or 3D illustrations. This must be a usable photograph, not a diagram. A clean real manufacturing production floor with industrial machinery and warehouse shelving, an operations engineer in neutral workwear examining a tablet beside a production station, realistic factory environment, natural light through high windows, no futuristic effects."
+    }
+  ]
+}

@@ -2,7 +2,8 @@ import { ArrowRight } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
 import FAQ from "../../components/FAQ";
-import { GITHUB_URL } from "../../config/nav";
+import { GITHUB_URL, STUDIO_START_URL } from "../../config/nav";
+import { studioCtaUrl } from "../../lib/studio-cta";
 import {
   CatalogSection,
   CodeBlock,
@@ -17,7 +18,7 @@ import {
 import { useHref, useLocale, useT } from "../../i18n/LocaleContext";
 import { UI } from "../../i18n/ui";
 import { modelsFaq } from "./faq";
-import { PROVIDER_DOCS, modelsPage, pipelineYaml } from "./content";
+import { modelsPage, pipelineYaml } from "./content";
 
 /* -------------------------------------------------------------------------- */
 /*  Page                                                                       */
@@ -26,7 +27,8 @@ import { PROVIDER_DOCS, modelsPage, pipelineYaml } from "./content";
 export default function ModelsPage() {
   const t = useT(modelsPage);
   const faqItems = useT(modelsFaq);
-  const ui = UI[useLocale()];
+  const locale = useLocale();
+  const ui = UI[locale];
   const l = useHref();
   const providers = t.providers;
   const providerAuth = t.auth.matrix;
@@ -222,8 +224,8 @@ export default function ModelsPage() {
               {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
-              <a className="btn btn-lg btn-primary" href={PROVIDER_DOCS} target="_blank" rel="noopener noreferrer">
-                {t.closing.docsCta} <ArrowRight size={17} />
+              <a className="btn btn-lg btn-primary" href={studioCtaUrl(STUDIO_START_URL, "models_closing", locale)}>
+                {t.closing.signupCta} <ArrowRight size={17} />
               </a>
               <a className="btn btn-lg btn-ghost" href={l("/databases/")}>
                 {t.closing.databasesCta} <ArrowRight size={17} />

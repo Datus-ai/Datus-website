@@ -1,0 +1,16 @@
+.pi-real-lineage { height:557px; }
+.pi-real-lineage__lanes { position:absolute; inset:20px 0 auto; color:#80738d; font-size:10px; }
+.pi-real-lineage__lanes span { position:absolute; }
+.pi-real-lineage__edges { position:absolute; inset:0; width:836px; height:510px; fill:none; stroke-width:1.2; }
+.pi-real-lineage__edges .is-dim { stroke:#cbd0dd; opacity:.42; }
+.pi-real-lineage__edges .is-active { stroke:#8d78d9; opacity:.85; stroke-width:1.6; }
+.pi-screen .pi-real-lineage__node { position:absolute; height:28px; padding:0 7px; display:flex; align-items:center; gap:5px; border:1px solid #dedfe9; border-radius:4px; background:#fff; font-size:9px; white-space:nowrap; color:#6b7182; }
+.pi-real-lineage__node span { overflow:hidden; text-overflow:ellipsis; }
+.pi-real-lineage__node svg { flex-shrink:0; color:#9a8cba; }
+.pi-screen .pi-real-lineage__node[data-active=true] { border-color:#b8a9e1; color:#4b3d6a; }
+.pi-screen .pi-real-lineage__node[aria-pressed=true] { background:#ede7ff; border-color:#8060da; color:#4023a5; box-shadow:0 0 0 2px #7651cb16; }
+.pi-screen .pi-real-lineage__node--3 { border-left:3px solid #8260d5; }
+.pi-real-lineage .pi-canvas-note { left:14px; bottom:27px; font-size:9px; }
+.pi-lineage-upstream { font-size:9px; color:#746581; padding-top:9px; overflow-wrap:anywhere; }
+.pi-lineage-upstream > div { padding:5px 0; border-bottom:1px solid #efecf5; }
+.pi-inspector .pi-lineage-expression { max-height:135px; overflow:auto; font-size:9px; }

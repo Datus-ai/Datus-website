@@ -3,7 +3,8 @@ import { ArrowRight } from "lucide-react";
 import SiteLayout from "../../../components/SiteLayout";
 import Breadcrumb from "../../../components/Breadcrumb";
 import FAQ from "../../../components/FAQ";
-import { DOCS_URL } from "../../../config/nav";
+import { STUDIO_START_URL } from "../../../config/nav";
+import { studioCtaUrl } from "../../../lib/studio-cta";
 import {
   CatalogSection,
   FeatureCard,
@@ -49,7 +50,8 @@ function Prose({ children }: { children: ReactNode }) {
 export default function OsiPlaygroundPage() {
   const t = useT(osiPlaygroundPage);
   const faqItems = useT(osiPlaygroundFaq);
-  const ui = UI[useLocale()];
+  const locale = useLocale();
+  const ui = UI[locale];
   const l = useHref();
   return (
     <SiteLayout>
@@ -222,8 +224,8 @@ export default function OsiPlaygroundPage() {
               {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
-              <a className="btn btn-lg btn-primary" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
-                {t.closing.featuresCta} <ArrowRight size={17} />
+              <a className="btn btn-lg btn-primary" href={studioCtaUrl(STUDIO_START_URL, "osi_playground_closing", locale)}>
+                {t.closing.signupCta} <ArrowRight size={17} />
               </a>
               <a className="btn btn-lg btn-ghost" href={l("/osi-field-mapping/")}>
                 {t.closing.mappingCta} <ArrowRight size={17} />

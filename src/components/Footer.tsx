@@ -3,7 +3,7 @@ import { useHref, useLocale } from "../i18n/LocaleContext";
 import { UI } from "../i18n/ui";
 import { TRUST_CENTER_URL } from "../config/nav";
 
-const Footer = () => {
+const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
   const year = new Date().getFullYear();
   const locale = useLocale();
   const l = useHref();
@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="site-footer__inner">
         <div className="site-footer__brand">
           <a href={l("/")} className="site-footer__logo" aria-label="Datus">
-            <img src="/logo_dark.svg" alt="Datus" />
+            <img src={logoSrc} alt="Datus" />
           </a>
           <p className="site-footer__tagline">{t.tagline}</p>
         </div>
@@ -35,6 +35,7 @@ const Footer = () => {
           <div className="site-footer__col">
             <h3 className="site-footer__heading">{t.resources}</h3>
             <ul>
+              <li><a href={l("/solutions/semantic-layer/")}>{UI[locale].nav.semanticLayer}</a></li>
               <li><a href={l("/integrations/")}>{t.integrations}</a></li>
               <li><a href={l("/pricing/")}>{t.pricing}</a></li>
               {/* The blog is English-only — no /zh mirror, so the href is left bare. */}
@@ -83,6 +84,8 @@ const Footer = () => {
           </div>
         </nav>
       </div>
+
+      <div className="site-footer__apache"><p><a href="https://ossie.apache.org/">{t.apacheDisclaimer.project}</a>{t.apacheDisclaimer.afterProject}<a href="https://www.apache.org/">{t.apacheDisclaimer.foundation}</a>{t.apacheDisclaimer.afterFoundation}</p></div>
 
       <div className="site-footer__bar">
         <span>© {year} {t.rights}</span>

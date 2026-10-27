@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { existsSync, statSync, readFileSync } from 'node:fs';
+import { withSiteTheme } from './scripts/lib/site-theme.mjs';
 
 // Every MPA entry served from a directory. Used both for the rollup inputs and
 // the clean-URL redirect plugin below, so the two never drift apart.
@@ -13,6 +14,7 @@ const MPA_ROUTES = [
   'products/vscode',
   'products/studio',
   'products/enterprise',
+  'solutions/semantic-layer',
   'integrations',
   'databases',
   'models',
@@ -151,7 +153,7 @@ const serveBlogPublic = () => {
 };
 
 export default defineConfig(() => ({
-  plugins: [react(), cleanUrls(), zhDevRoutes(), serveBuiltBlog(), serveBlogPublic()],
+  plugins: [react(), { name:'site-theme', transformIndexHtml:withSiteTheme }, cleanUrls(), zhDevRoutes(), serveBuiltBlog(), serveBlogPublic()],
   base: '/',
   publicDir: 'src/public', 
   resolve: {
@@ -203,11 +205,12 @@ export default defineConfig(() => ({
     outDir: 'dist',
     rollupOptions: {
       output: {
-        entryFileNames: chunk => chunk.name === 'cookie-consent' ? 'assets/cookie-consent.js' : 'assets/[name]-[hash].js',
+        entryFileNames: chunk => ['cookie-consent','site-motion'].includes(chunk.name) ? `assets/${chunk.name}.js` : 'assets/[name]-[hash].js',
       },
       input: {
         main: path.resolve(__dirname, 'index.html'),
         'cookie-consent': path.resolve(__dirname, 'src/cookie-consent/main.ts'),
+        'site-motion': path.resolve(__dirname, 'src/site-motion.ts'),
         ...Object.fromEntries(
           MPA_ROUTES.map((route) => [
             route.replace(/\//g, '-'),

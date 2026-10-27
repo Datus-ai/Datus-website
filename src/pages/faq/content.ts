@@ -1,3 +1,4 @@
+import { UI } from "../../i18n/ui";
 import type { FaqItem } from "../../components/FAQ";
 import type { Locale } from "../../i18n/config";
 
@@ -18,7 +19,7 @@ export interface FaqPageCopy {
   closing: {
     heading: string;
     lead: string;
-    docs: string;
+    signup: string;
     github: string;
     slack: string;
   };
@@ -39,7 +40,7 @@ const EN: FaqPageCopy = {
   },
   products: [
     {
-      name: "Datus CLI",
+      name: "Datus Agent",
       href: "/products/cli/",
       body: "The open-source core: a data engineering agent in your terminal. Point it at your warehouse and your own model, build an evolving context engine, and generate validated SQL. Apache-2.0 licensed.",
     },
@@ -93,7 +94,7 @@ const EN: FaqPageCopy = {
   closing: {
     heading: "Still have a question?",
     lead: "Read the docs, browse the open-source repo, or ask the team in our community Slack.",
-    docs: "Read the docs",
+    signup: UI.en.common.tryStudio,
     github: "View on GitHub",
     slack: "Ask in Slack",
   },
@@ -113,7 +114,7 @@ const ZH: FaqPageCopy = {
   },
   products: [
     {
-      name: "Datus CLI",
+      name: "Datus Agent",
       href: "/products/cli/",
       body: "开源内核：装在终端里的数据工程 Agent。把它指向你的数仓和你自己的模型，构建可演进的上下文引擎，并生成经过校验的 SQL。采用 Apache-2.0 许可。",
     },
@@ -163,7 +164,7 @@ const ZH: FaqPageCopy = {
   closing: {
     heading: "还有问题？",
     lead: "看看文档、逛逛开源仓库，或者到我们的社区 Slack 里直接问团队。",
-    docs: "阅读文档",
+    signup: UI.zh.common.tryStudio,
     github: "在 GitHub 上查看",
     slack: "去 Slack 提问",
   },

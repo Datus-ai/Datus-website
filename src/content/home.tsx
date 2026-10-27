@@ -1,3 +1,4 @@
+import { UI } from "../i18n/ui";
 import type { ReactNode } from "react";
 import type { Locale } from "../i18n/config";
 import { useHref } from "../i18n/LocaleContext";
@@ -35,11 +36,9 @@ export function A({
 /**
  * Homepage copy, one branch per locale.
  *
- * Positioning: Datus is an enterprise **data context layer** — an Apache Ossie
- * (OSI) semantic layer and ontology, live in days, that data agents can trust.
- * Locked terminology from datus-i18n-spec.md §5: 数据上下文层, 语义层, 本体,
- * 上下文层, Apache Ossie / OSI, Dosi. Product names, CLI commands and vendor
- * names stay in English.
+ * Positioning: Datus gives AI agents shared enterprise business context.
+ * Datus Agent assists model creation; DOSI executes compatible Apache Ossie
+ * models. Keep the three pillars aligned with the launch messaging document.
  */
 export type HomeCopy = {
   hero: {
@@ -47,12 +46,15 @@ export type HomeCopy = {
     titleLead: string;
     titleAccent: string;
     titleTail?: string;
+    stackTitle?: boolean;
     lead: ReactNode;
     ctaPrimary: string;
-    ctaGithub: string;
+    ctaDeveloper: string;
     contact: string;
     byoWarehouse: ReactNode;
     byoModel: ReactNode;
+    ownWarehouse: ReactNode;
+    ownModel: ReactNode;
   };
   terminal: {
     connected: string;
@@ -71,24 +73,45 @@ export type HomeCopy = {
     colProblem: string;
     colDatus: string;
     rows: { problem: string; solution: ReactNode }[];
+    visual: {
+      question: string;
+      beforeTitle: string;
+      beforeHint: string;
+      silos: { team: string; metric: string; definition: string; tool: string; result: string; warehouse: "snowflake" | "bigquery" | "postgresql" }[];
+      afterTitle: string;
+      afterHint: string;
+      sharedResult: string;
+      knowledge: string[];
+      ontology: string;
+      ontologyDetail: string;
+      model: string;
+      reviewed: string;
+      audit: string;
+      metrics: string;
+      metricNames: string[];
+      relationships: string;
+      relationshipExample: string;
+      consumers: string[];
+      trace: string[];
+      selectedSource: string;
+    };
+    dragHint: string;
+    detailsLabel: string;
   };
-  layers: {
+  pillars: {
     eyebrow: string;
     heading: string;
     lead: ReactNode;
-    items: { name: string; caption: string; chips: string[] }[];
+    rotation: { nextIn: string; pause: string; play: string };
+    items: { name: string; caption: string; chips: string[]; visual: { alt: string; labels: string[] } }[];
   };
   lifecycle: {
     eyebrow: string;
     heading: string;
     lead: ReactNode;
+    visualAlt: string;
+    visualCaption: string;
     phases: string[];
-  };
-  useCases: {
-    eyebrow: string;
-    heading: string;
-    lead: string;
-    items: { title: string; body: ReactNode }[];
   };
   surfaces: {
     eyebrow: string;
@@ -102,6 +125,7 @@ export type HomeCopy = {
     lead: string;
     model: string;
     byo: string;
+    byoTitle: string;
     groups: string[];
     seeAll: string;
   };
@@ -111,268 +135,203 @@ export type HomeCopy = {
 
 const EN: HomeCopy = {
   hero: {
-    eyebrow: "Enterprise data context layer · Apache Ossie",
-    titleLead: "A working ",
-    titleAccent: "data context layer",
-    titleTail: " in days.",
-    lead: (
-      <>
-        Every enterprise has a data agent mandate; very few can ship one. Datus turns the{" "}
-        <A href="/databases/">warehouse you already own</A> into a governed data context layer — an{" "}
-        <strong>Apache Ossie</strong> semantic layer and ontology, not a general-purpose memory. The
-        context your data agents can trust, live in days and evolving with every query.
-      </>
-    ),
-    ctaPrimary: "Get started, free",
-    ctaGithub: "Star on GitHub",
-    contact: "Bringing it to your enterprise? Contact us",
-    byoWarehouse: <>Bring your own <A href="/databases/">warehouse</A></>,
-    byoModel: <>Bring your own <A href="/models/">model</A></>,
+    eyebrow: "Open data context for AI agents",
+    titleLead: "The trusted ",
+    titleAccent: "enterprise data context",
+    titleTail: " for AI agents.",
+    stackTitle: true,
+    lead: <>Connect business ontology, governed metrics, and data provenance in one shared context layer. Give agents business meaning they can use—and teams the evidence to inspect their work.</>,
+    ctaPrimary: UI.en.common.tryStudio,
+    ctaDeveloper: "Quickstart DOSI",
+    contact: "Talk to us about your enterprise data stack",
+    byoWarehouse: <>Business-aware · Agent-native · Audit-ready</>,
+    byoModel: <>Built on <A href="/tools/osi-playground/">Apache Ossie</A> (incubating)</>,
+    ownWarehouse: <>Bring your own <A href="/databases/">warehouse</A></>,
+    ownModel: <>Bring your own <A href="/models/">model</A></>,
   },
   terminal: {
-    connected: "↳ read schema · SQL history · lineage → OSI semantic models generated",
-    ready: "✓ Apache Ossie context layer ready — ontology, metrics, governed SQL",
-    pipeline: "compile → validate → govern → serve",
-    captured: " · via Dosi engine, 16 dialects",
-    selfEvolve: "↻ evolve: refine the ontology & metrics from every query",
-    memory: "· one governed definition, many surfaces",
+    connected: "↳ gather schema · SQL history · business knowledge",
+    ready: "✓ semantic model drafted — ready for team review",
+    pipeline: "review model → DOSI validates → plan metric query",
+    captured: " · compile warehouse-native SQL",
+    selfEvolve: "↻ inspect definitions, SQL & lineage",
+    memory: "· teams approve meaning and validate source data",
   },
   prompts: [
-    "Map our revenue ontology",
+    "Show net revenue by region",
     "Define the churn metric once",
     "Answer: Q3 net revenue by region",
     "Expose the semantic layer over MCP",
   ],
   proof: [
     { value: "", label: "GitHub stars" },
-    { value: "Apache Ossie", label: "Open semantic + ontology standard" },
+    { value: "Apache Ossie → DOSI", label: "From open spec to execution" },
     { value: "16 dialects", label: "One OSI spec, native SQL" },
-    { value: "Days, not quarters", label: "Connect to a working context layer" },
+    { value: "CLI · MCP", label: "Also available through REST and Python" },
   ],
   problem: {
-    eyebrow: "The mandate",
-    heading: "Every enterprise has a data agent mandate. Very few can ship one.",
-    lead: "The blocker is not the model. It is decades of messy, siloed data no agent can safely navigate on its own — so the pilot stalls and the bill arrives anyway. Datus gives agents a governed path through it.",
-    colProblem: "Without a context layer",
+    eyebrow: "Why shared context matters",
+    heading: "One business question should not produce three different answers.",
+    lead: "Metrics drift when dashboards, notebooks, and agents each reconstruct the same calculation. Datus helps teams review business definitions once and make them available to the tools that need them.",
+    colProblem: "When meaning is scattered",
     colDatus: "With Datus",
+    dragHint: "Drag to compare",
+    detailsLabel: "Read the comparison",
+    visual: {
+      question: "What is net revenue?",
+      beforeTitle: "Three teams. Three metric stacks.",
+      beforeHint: "Illustrative example: each workflow uses a different definition",
+      silos: [
+        { team: "Sales", metric: "Net revenue", definition: "Booked sales", tool: "Dashboard", result: "$1.24M", warehouse: "snowflake" },
+        { team: "Finance", metric: "Net revenue", definition: "After refunds", tool: "Notebook", result: "$1.08M", warehouse: "bigquery" },
+        { team: "Operations", metric: "Net revenue", definition: "Open orders included", tool: "Agent", result: "$1.31M", warehouse: "postgresql" },
+      ],
+      afterTitle: "One shared business context",
+      afterHint: "Illustrative example: one reviewed definition",
+      sharedResult: "$1.08M",
+      knowledge: ["Documents", "ETL scripts", "Warehouse schemas"],
+      ontology: "Ontology-grade context",
+      ontologyDetail: "Concepts and relationships agents can use",
+      model: "Datus semantic model",
+      reviewed: "Team reviewed",
+      audit: "Inspectable path",
+      metrics: "Metrics inside the model",
+      metricNames: ["Net revenue", "Customer churn"],
+      relationships: "Business relationships",
+      relationshipExample: "Customer → Order",
+      consumers: ["Dashboards", "Notebooks", "Agents"],
+      trace: ["Definitions", "Generated SQL", "Lineage"],
+      selectedSource: "Native SQL for a selected source",
+    },
     rows: [
       {
-        problem: "Agents guess at joins and definitions, then answer confidently wrong.",
-        solution:
-          "Agents query through a governed Apache Ossie semantic layer and ontology — no room to hallucinate.",
+        problem: "Teams define the same metric differently across reports and tools.",
+        solution: "Reviewed metric definitions and business relationships give teams and agents a shared vocabulary.",
       },
       {
-        problem: "A full data overhaul takes quarters, so the pilot dies on real data.",
+        problem: "Useful business knowledge sits across documents, warehouses, and ETL scripts.",
         solution: (
           <>
-            Fast start, zero overhaul — connect the <A href="/databases/">warehouse you own</A> and get
-            a working data context layer in days.
+            Datus Agent helps gather that knowledge into <A href="/tools/osi-playground/">semantic
+            models</A> your team can review and refine.
           </>
         ),
       },
       {
-        problem: "Every team defines the same metric differently; the numbers never agree.",
+        problem: "An agent's answer is hard to verify when its calculations stay hidden.",
         solution: (
           <>
-            One shared, governed definition for <A href="/integrations/">producers, consumers and
-            agents</A> alike — one source of truth, many surfaces.
+            DOSI exposes inspectable definitions, generated SQL, and lineage so teams can examine
+            how a supported result was produced.
           </>
         ),
       },
     ],
   },
-  layers: {
-    eyebrow: "The stack",
-    heading: "Open core, commercial studio",
+  pillars: {
+    eyebrow: "Three pillars",
+    heading: "From business meaning to answers you can inspect.",
+    rotation: { nextIn: "Next in {seconds}s", pause: "Pause slideshow", play: "Play slideshow" },
     lead: (
       <>
-        One standards-based stack: a commercial <A href="/products/studio/">Studio</A> on top, an
-        open-source agent in the middle, the Apache Ossie standard and the Dosi engine underneath.
+        Datus connects business meaning to agent workflows and gives teams the evidence to review
+        analytical results. <A href="/products/studio/">Studio</A> is the team experience; Datus
+        Agent assists modeling, while DOSI executes compatible semantic models.
       </>
     ),
     items: [
       {
-        name: "Datus Studio",
-        caption: "Commercial · where humans, BI and agents interact",
-        chips: ["Co-pilot", "BI", "AI agents", "REST · MCP"],
+        name: "Business-aware",
+        caption: "Connect business concepts, relationships, and governed metrics so agents work from a shared vocabulary.",
+        chips: ["Business concepts", "Reviewed metrics", "Source mappings"],
+        visual: { alt: "Customer and order concepts connect to a reviewed net revenue metric in a semantic model, mapped to warehouse data.", labels: ["Business meaning", "Customer", "Order", "Net revenue", "Reviewed semantic model", "Warehouse data", "Source mappings"] },
       },
       {
-        name: "Datus agent",
-        caption: "Open source · generates the models, runs the work",
-        chips: ["OSI models", "text-to-SQL", "CLI · SDK", "Apache 2.0"],
+        name: "Agent-native",
+        caption: "Datus Agent helps build reviewable models from existing knowledge; DOSI makes compatible definitions available to agents.",
+        chips: ["Assisted modeling", "Team review", "MCP access"],
+        visual: { alt: "Datus Agent drafts a semantic model from existing knowledge. A team reviews it, then DOSI executes compatible definitions for AI agents through MCP.", labels: ["Existing knowledge", "Datus Agent", "Team review", "Apache Ossie model", "DOSI", "MCP", "AI agents"] },
       },
       {
-        name: "Apache Ossie + Dosi engine",
-        caption: "The standard · defines and compiles the semantics",
-        chips: ["Ontology", "OSI → SQL", "16 dialects", "Open standard"],
+        name: "Audit-ready",
+        caption: "Inspect the ontology’s business relationships and trace results through metric definitions, generated SQL, and source lineage.",
+        chips: ["Ontology context", "SQL & definitions", "Source lineage"],
+        visual: { alt: "Trace an analytical result through ontology relationships, its metric definition, and generated SQL to the warehouse source.", labels: ["Analytical result", "Net revenue", "Metric definition", "Generated SQL", "Warehouse source", "Reviewable lineage", "Inspect each step", "Ontology relationships"] },
       },
     ],
   },
   lifecycle: {
-    eyebrow: "How it builds",
-    heading: "From a raw warehouse to a context layer agents trust",
+    eyebrow: "How it works",
+    heading: "From scattered knowledge to executable business context",
     lead: (
       <>
-        Datus reads what you already have and compiles it into a governed{" "}
-        <A href="/tools/osi-playground/">Apache Ossie context layer</A> — then keeps refining it from
-        real usage.
+        Datus Agent helps draft a model from what your team already knows. Your team reviews the
+        business meaning; DOSI validates compatible <A href="/tools/osi-playground/">Apache Ossie
+        models</A> and compiles supported requests to native SQL.
       </>
     ),
-    phases: [
-      "Connect",
-      "Read schema & SQL",
-      "Generate OSI models",
-      "Map ontology",
-      "Define metrics",
-      "Govern access",
-      "Agents query",
-      "Evolve",
-    ],
-  },
-  useCases: {
-    eyebrow: "The wedge",
-    heading: "Where the data context layer pays for itself",
-    lead: "Start with one governed domain, prove it in an afternoon, then expand domain by domain.",
-    items: [
-      {
-        title: "Turn a stalled agent pilot into production",
-        body: (
-          <>
-            The demo worked on sample data and died on the real thing. Datus gives that pilot a
-            governed context layer over the real warehouse, so it finally ships.
-          </>
-        ),
-      },
-      {
-        title: "One definition across a fragmented BI estate",
-        body: (
-          <>
-            Same metric, three definitions, two platforms. Datus compiles one{" "}
-            <A href="/osi-field-mapping/">Apache Ossie semantic layer</A> that BI, humans and agents
-            all read.
-          </>
-        ),
-      },
-      {
-        title: "Agents that reason over an ontology, not raw tables",
-        body: (
-          <>
-            Ontology teaches agents what things mean and how they connect, so they navigate the
-            business instead of guessing at joins.
-          </>
-        ),
-      },
-      {
-        title: "A semantic layer your agents call over MCP",
-        body: (
-          <>
-            Expose the governed context over <A href="/mcp/">native MCP</A>, so Claude, Cursor or your
-            own agents query through definitions, not raw SQL.
-          </>
-        ),
-      },
-    ],
+    visualAlt: "Documents, a warehouse, and ETL scripts converge through Datus into a semantic model ready for team review",
+    visualCaption: "Datus gathers business knowledge from existing documents, warehouses, and ETL scripts into a semantic model your team can review.",
+    phases: ["Connect sources", "Gather knowledge", "Draft a model", "Team review",
+      "DOSI validates", "Request a metric", "Inspect SQL & lineage", "Refine definitions"],
   },
   surfaces: {
     eyebrow: "Interfaces",
-    heading: "Same engine, same answers — everywhere your team works",
-    lead: "CLI, REST with Apache Arrow, native MCP and a Python SDK. One data context layer, every surface — humans, BI and agents get the same governed answer.",
+    heading: "One context, available to teams and agents",
+    lead: "Explore business context in DOSI, work together in Studio, build with Datus Agent, or connect through MCP, API, and CLI.",
     items: [
-      {
-        id: "studio",
-        name: "Studio",
-        tagline: (
-          <>
-            The commercial <A href="/products/studio/">context-aware co-pilot</A> where teams drive the
-            whole stack in natural language — map entities, define metrics and answer questions,
-            grounded in your governed context layer.
-          </>
-        ),
-        start: "open studio.datus.ai",
-      },
-      {
-        id: "cli",
-        name: "Datus agent",
-        tagline: (
-          <>
-            The open-source <A href="/products/cli/">Datus agent</A> reads your schema and SQL history,
-            generates OSI semantic models with no hand-written YAML, then handles datasets, text-to-SQL
-            and scheduling — all under Apache 2.0.
-          </>
-        ),
-        start: "pip install datus-agent",
-      },
-      {
-        id: "chatbot",
-        name: "Chatbot",
-        tagline: (
-          <>
-            Embed the context layer in Slack, Feishu or Microsoft Teams so every channel becomes a{" "}
-            <A href="/chatbot/">self-serve data interface</A> — answers that match the governed
-            definitions, not one-off SQL.
-          </>
-        ),
-        start: "/datus in Slack",
-      },
-      {
-        id: "mcp",
-        name: "MCP Server",
-        tagline: (
-          <>
-            Expose your entire governed context over the{" "}
-            <A href="/mcp/">Model Context Protocol</A>. Plug it into Claude, Cursor or Windsurf so any
-            agent reasons over your ontology and metrics — same engine, same answers.
-          </>
-        ),
-        start: "datus mcp serve",
-      },
+      { id: "dosi", name: "DOSI", tagline: <><strong className="pi-positioning-headline">Business meaning, ready to execute.</strong>DOSI turns compatible Apache Ossie models into native SQL across 16 dialects. Bring semantic models and ontology together, give teams and agents consistent business definitions, and inspect how every answer is built—without tying your business logic to one vendor’s stack.</>, start: "dosi --model commerce.yaml lineage dump", preview: "dosi" },
+      { id: "studio", name: "Studio", tagline: <>Bring files, SQL, results, and Agent conversations together in <A href="/products/studio/">Datus Studio</A>, a shared workspace for your team.</>, start: "open studio.datus.ai", preview: "studio" },
+      { id: "agent", name: "Datus Agent", tagline: <>Configure a main Agent and specialized subagents to explore data, build semantic models, and generate SQL with shared context.</>, start: "pip install datus-agent", preview: "agent" },
+      { id: "mcp-cli", name: "MCP / API / CLI", tagline: <>Connect your own agents through <A href="/mcp/">MCP</A>, embed Subagent conversations through the API, or work from your own terminal with CLI tools.</>, start: "dosi-server --model commerce.yaml --mcp-stdio", preview: "connect" },
     ],
   },
   stack: {
     eyebrow: "Integrations",
-    heading: "On the modern data stack you already run",
-    lead: "Point Datus at your warehouse, catalog, semantic layer and BI. The Dosi engine compiles OSI to native SQL for 16 warehouse dialects, so nothing has to migrate.",
+    heading: "Build on the stack you already run",
+    lead: "Keep your tools. See what Datus reads, where work runs, and what comes back into your workflow. Each logo shows the connection method.",
     model: "Model",
     byo: "BYO",
+    byoTitle: "Bring your own model",
     groups: ["Warehouse", "Modeling", "Semantic Layer", "Catalog", "BI", "Orchestration"],
     seeAll: "See all integrations",
   },
   faq: {
-    lead: "The data context layer, Apache Ossie, the Dosi engine, open core and how Datus compares.",
+    lead: "How Datus Agent, DOSI, and Apache Ossie work together.",
     browseAll: "Browse all FAQs",
     items: [
       {
-        q: "What is a data context layer?",
-        a: "A data context layer is a governed semantic layer and ontology built directly on your warehouse: it teaches AI what your entities, metrics and relationships mean, and gives it clean, governed paths to measure them. Unlike a general-purpose memory store, it is grounded in the data itself — the context an enterprise data agent needs to answer correctly instead of guessing at joins and definitions.",
+        q: "What does Datus give AI agents?",
+        a: "Datus connects business concepts, governed metric definitions, and data provenance so agents can use shared business meaning. Teams review the definitions and remain responsible for validating the source data and results.",
       },
       {
-        q: "Why does an enterprise agent mandate stall without one?",
-        a: "The blocker is rarely the model. It is decades of messy, siloed data no LLM can safely navigate on its own, so the demo works on sample data and dies on the real thing. Datus connects to the warehouse you already own and compiles a governed context layer in days — agents get clear, governed paths through the business, so the pilot reaches production.",
+        q: "How do Datus Agent and DOSI work together?",
+        a: "Datus Agent helps draft and refine semantic models from existing knowledge. After your team reviews business meaning, DOSI validates compatible Apache Ossie models, plans supported metric queries, and compiles native SQL for the selected data source.",
       },
       {
-        q: "What is Apache Ossie (OSI) and why does Datus build on it?",
-        a: "OSI (Open Semantic Interchange), now Apache Ossie, is an open standard for defining ontology and semantic models — backed by 50+ organizations including Snowflake, Databricks, Salesforce and dbt Labs. Datus defines your models in OSI specs rather than a proprietary format, so your context layer is portable and vendor-neutral. The spec is open to everyone; our engine and our position in it are the product.",
+        q: "What is Apache Ossie?",
+        a: "Apache Ossie is the open semantic model standard used for compatible definitions. DOSI makes those definitions executable. Supported converters and extensions determine what can be exchanged; portability does not mean every engine supports every feature.",
       },
       {
-        q: "What is the Dosi engine?",
-        a: "Dosi is a Rust engine that compiles OSI YAML to native SQL for 16 warehouse dialects, with zero-copy Arrow streaming. It is on its way to open source and already free to download and use — the same engine and the same answers behind the CLI, REST, MCP and the SDK.",
+        q: "Is DOSI open source?",
+        a: "Datus Agent is open source. DOSI is a Datus semantic execution module and a standalone developer tool built on the open Apache Ossie standard. You can explore it in Studio or follow the DOSI developer quickstart.",
       },
       {
-        q: "How does the open core relate to Datus Studio?",
-        a: "The open-source Datus agent, the Dosi engine and the Apache Ossie models are the core, free to run on your own warehouse. Datus Studio is the commercial layer on top: a context-aware co-pilot where humans, BI and agents drive the whole stack in natural language, with SSO, RBAC and private / VPC deployment for enterprises.",
+        q: "What does audit-ready mean?",
+        a: "Definitions, generated SQL, and lineage give reviewers a basis for examining supported calculations. Audit-ready describes traceability and reviewability; it does not mean automatic certification. Teams still approve business definitions and validate source data.",
       },
       {
-        q: "How does Datus compare to Snowflake Cortex, Databricks Genie or Cube?",
-        a: "Snowflake Semantic Views feed Cortex Analyst and Databricks Metric Views feed Genie, but neither reads the other — context inside one vendor stops there. Datus sits on neutral ground: an Apache Ossie semantic layer and ontology on the warehouse you already own, compiled to native SQL across 16 dialects, that agents call over MCP.",
+        q: "Does DOSI join data across warehouses?",
+        a: "Datus can share business definitions across supported sources. A DOSI query executes against the selected source; this does not imply live cross-warehouse federation.",
       },
     ],
   },
   closing: {
-    heading: "Give your data agents a context layer they can trust.",
+    heading: "Give AI agents context your team can review.",
     lead: (
       <>
-        Open Datus Studio <A href="/pricing/">free in your browser</A>, or self-host the open-source
-        agent and Dosi engine on the warehouse you already own.
+        <A href="/products/studio/">Try Datus in Studio</A> to explore shared business context,
+        or follow the DOSI quickstart to make compatible semantic models executable.
       </>
     ),
     cta: "Get started",
@@ -381,259 +340,200 @@ const EN: HomeCopy = {
 
 const ZH: HomeCopy = {
   hero: {
-    eyebrow: "企业数据上下文层 · Apache Ossie",
-    titleLead: "快速构建 ",
-    titleAccent: "AI 原生语义层",
-    titleTail: "",
-    lead: (
-      <>
-        几乎每家企业都被要求落地数据 Agent，能真正交付的却寥寥无几。Datus 直接在你
-        <A href="/databases/">已有的数仓</A>上，建起一层受治理的数据上下文层。它是一套{" "}
-        <strong>Apache Ossie</strong> 语义层与本体，而不是通用记忆。这份上下文，你的数据 Agent
-        才真正信得过：几天就能上线，还会随每一次查询不断演进。
-      </>
-    ),
-    ctaPrimary: "免费开始使用",
-    ctaGithub: "在 GitHub 上 Star",
-    contact: "想在企业里落地？联系我们",
-    byoWarehouse: <>自带<A href="/databases/">数仓</A></>,
-    byoModel: <>自带<A href="/models/">模型</A></>,
+    eyebrow: "面向 AI Agent 的开放数据上下文",
+    titleLead: "让 AI Agent 拥有",
+    titleAccent: "可信的企业数据上下文",
+    titleTail: "。",
+    lead: <>在共享的上下文层中，连接业务本体、受治理的指标与数据来源。让 Agent 使用明确的业务含义，让团队有据可依地核查工作。</>,
+    ctaPrimary: UI.zh.common.tryStudio,
+    ctaDeveloper: "查看 DOSI 快速开始",
+    contact: "想在企业数据栈中使用？联系我们",
+    byoWarehouse: <>理解业务 · 面向 Agent · 可供审查</>,
+    byoModel: <>基于 <A href="/tools/osi-playground/">Apache Ossie</A>（孵化中）</>,
+    ownWarehouse: <>使用你自己的<A href="/databases/">数仓</A></>,
+    ownModel: <>使用你自己的<A href="/models/">模型</A></>,
   },
   terminal: {
-    connected: "↳ 读取表结构 · SQL 历史 · 血缘 → 生成 OSI 语义模型",
-    ready: "✓ Apache Ossie 上下文层就绪：本体、指标、受治理的 SQL",
-    pipeline: "编译 → 校验 → 治理 → 服务",
-    captured: " · 由 Dosi 引擎编译，覆盖 16 种方言",
-    selfEvolve: "↻ 持续演进：从每一次查询中打磨本体与指标",
-    memory: "· 一份口径，多个入口",
+    connected: "↳ 汇集表结构 · SQL 历史 · 业务知识",
+    ready: "✓ 语义模型草稿已生成，等待团队审核",
+    pipeline: "审核模型 → DOSI 校验 → 规划指标查询",
+    captured: " · 编译为数仓原生 SQL",
+    selfEvolve: "↻ 查看定义、SQL 与血缘",
+    memory: "· 业务口径由团队批准，源数据由团队验证",
   },
   prompts: [
-    "梳理我们的营收本体",
+    "按地区查看净营收",
     "流失率指标只定义一次",
     "回答：Q3 各地区净营收",
     "把语义层暴露到 MCP",
   ],
   proof: [
     { value: "", label: "GitHub Star" },
-    { value: "Apache Ossie", label: "开放的语义 + 本体标准" },
-    { value: "16 种方言", label: "一份 OSI 规范，原生 SQL" },
-    { value: "几天，而非几个季度", label: "接上就有可用的上下文层" },
+    { value: "Apache Ossie → DOSI", label: "从开放规范到执行" },
+    { value: "16 种方言", label: "一份 OSI 规范，生成原生 SQL" },
+    { value: "CLI · MCP", label: "也支持 REST 与 Python 接口" },
   ],
   problem: {
-    eyebrow: "落地难题",
-    heading: "每家企业都被要求落地数据 Agent，真正能交付的却很少。",
-    lead: "真正的卡点不是模型，而是几十年沉淀下来的杂乱、割裂的数据。没有哪个 Agent 能独自在里面安全穿行，于是 pilot 迟迟推不动，账单却照样寄来。Datus 为 Agent 铺出一条受治理的通路。",
-    colProblem: "没有上下文层",
+    eyebrow: "为什么需要共享上下文",
+    heading: "同一个业务问题，不该得到三种不同的答案。",
+    lead: "当大盘、笔记本和 Agent 各自重写同一个指标的算法，口径就会逐渐分叉。Datus 帮助团队审核业务定义，再让需要它们的工具共同使用。",
+    colProblem: "业务口径分散时",
     colDatus: "有了 Datus",
+    dragHint: "拖动查看前后变化",
+    detailsLabel: "查看文字说明",
+    visual: {
+      question: "净营收是多少？",
+      beforeTitle: "三个团队，三套指标烟囱",
+      beforeHint: "示意数据：每个工作流使用不同的指标口径",
+      silos: [
+        { team: "销售", metric: "净营收", definition: "按已下单金额", tool: "大盘", result: "$124 万", warehouse: "snowflake" },
+        { team: "财务", metric: "净营收", definition: "扣除退款后", tool: "笔记本", result: "$108 万", warehouse: "bigquery" },
+        { team: "运营", metric: "净营收", definition: "含未结订单", tool: "Agent", result: "$131 万", warehouse: "postgresql" },
+      ],
+      afterTitle: "统一的业务上下文",
+      afterHint: "示意数据：团队审核一套统一口径",
+      sharedResult: "$108 万",
+      knowledge: ["文档", "ETL 脚本", "数仓 Schema"],
+      ontology: "本体级业务上下文",
+      ontologyDetail: "让 Agent 理解业务概念与关系",
+      model: "Datus 语义模型",
+      reviewed: "团队已审核",
+      audit: "可审查路径",
+      metrics: "模型内的指标",
+      metricNames: ["净营收", "客户流失率"],
+      relationships: "业务关系",
+      relationshipExample: "客户 → 订单",
+      consumers: ["大盘", "笔记本", "Agent"],
+      trace: ["业务定义", "生成的 SQL", "血缘"],
+      selectedSource: "为选定的数据源生成原生 SQL",
+    },
     rows: [
       {
-        problem: "Agent 全靠猜来拼 join、凑口径，然后一本正经地答错。",
-        solution:
-          "Agent 只能通过受治理的 Apache Ossie 语义层与本体查询，没有胡编的余地。",
+        problem: "各团队在不同报表和工具里重复定义同一指标。",
+        solution: "经过审核的指标定义与业务关系，让团队和 Agent 共用一套业务语言。",
       },
       {
-        problem: "把数据彻底重构一遍要好几个季度，pilot 撑不到真实数据就先夭折了。",
+        problem: "有用的业务知识散落在文档、数仓和 ETL 脚本中。",
         solution: (
           <>
-            起步快、零重构。接上你<A href="/databases/">已有的数仓</A>，几天就能拥有可用的数据上下文层。
+            Datus Agent 帮助团队将这些知识整理成可审核、可完善的
+            <A href="/tools/osi-playground/">语义模型</A>。
           </>
         ),
       },
       {
-        problem: "同一个指标，每个团队各有各的算法，数字永远对不齐。",
+        problem: "看不到计算过程，就难以核查 Agent 给出的答案。",
         solution: (
           <>
-            让<A href="/integrations/">数据的生产者、消费者和 Agent</A>共用同一份受治理的口径。一处定义，处处一致。
+            DOSI 提供可检查的定义、生成的 SQL 和血缘，帮助团队核查支持范围内的计算结果。
           </>
         ),
       },
     ],
   },
-  layers: {
-    eyebrow: "产品结构",
-    heading: "开放内核，商业 Studio",
+  pillars: {
+    eyebrow: "三大支柱",
+    heading: "从业务含义，到可核查的分析结果。",
+    rotation: { nextIn: "{seconds} 秒后切换", pause: "暂停轮播", play: "播放轮播" },
     lead: (
       <>
-        一套基于开放标准的技术栈：上层是商业化的 <A href="/products/studio/">Studio</A>，中层是开源 Agent，
-        底层是 Apache Ossie 标准和 Dosi 引擎。
+        Datus 将业务含义带入 Agent 工作流，也让团队有依据核查分析结果。
+        <A href="/products/studio/">Studio</A> 是团队使用 Datus 的入口；Datus Agent 辅助建模，DOSI 执行兼容的语义模型。
       </>
     ),
     items: [
       {
-        name: "Datus Studio",
-        caption: "商业 · 人、BI 与 Agent 的交互入口",
-        chips: ["Co-pilot", "BI", "AI Agent", "REST · MCP"],
+        name: "理解业务",
+        caption: "连接业务概念、关系与受治理的指标，让 Agent 使用团队共享的业务语言。",
+        chips: ["业务概念", "审核过的指标", "数据源映射"],
+        visual: { alt: "客户与订单等业务概念关联到语义模型中的净营收指标，再映射到数仓数据。", labels: ["业务含义", "客户", "订单", "净营收", "团队审核的语义模型", "数仓数据", "数据源映射"] },
       },
       {
-        name: "Datus agent",
-        caption: "开源 · 生成模型、执行任务",
-        chips: ["OSI 模型", "text-to-SQL", "CLI · SDK", "Apache 2.0"],
+        name: "面向 Agent",
+        caption: "Datus Agent 帮助团队从现有知识构建可审核的模型，DOSI 让兼容的定义可供 Agent 使用。",
+        chips: ["辅助建模", "团队审核", "MCP 接入"],
+        visual: { alt: "Datus Agent 根据已有知识起草语义模型，团队审核后，DOSI 通过 MCP 为 AI Agent 执行兼容的定义。", labels: ["已有知识", "Datus Agent", "团队审核", "Apache Ossie 模型", "DOSI", "MCP", "AI Agent"] },
       },
       {
-        name: "Apache Ossie + Dosi 引擎",
-        caption: "标准 · 定义并编译语义",
-        chips: ["本体", "OSI → SQL", "16 种方言", "开放标准"],
+        name: "可供审查",
+        caption: "核查本体中的业务关系，沿着指标定义、生成的 SQL 和数据源血缘追溯结果。",
+        chips: ["本体关系", "SQL 与业务定义", "数据源血缘"],
+        visual: { alt: "沿着本体关系、指标定义、生成的 SQL 和数仓数据源追溯分析结果，逐步核查计算依据。", labels: ["分析结果", "净营收", "指标定义", "生成的 SQL", "数仓数据源", "可审核的血缘", "逐步核查计算依据", "本体关系"] },
       },
     ],
   },
   lifecycle: {
-    eyebrow: "如何构建",
-    heading: "从原始数仓，到 Agent 可信任的上下文层",
+    eyebrow: "工作方式",
+    heading: "将分散的业务知识转化为可执行的上下文",
     lead: (
       <>
-        Datus 读取你手上已有的一切，编译成一层受治理的{" "}
-        <A href="/tools/osi-playground/">Apache Ossie 上下文层</A>，再从真实使用中不断打磨。
+        Datus Agent 根据团队已有的知识辅助构建模型；团队审核业务口径；
+        DOSI 校验兼容的 <A href="/tools/osi-playground/">Apache Ossie 模型</A>，
+        将支持范围内的请求编译为原生 SQL。
       </>
     ),
-    phases: [
-      "连接",
-      "读取表结构与 SQL",
-      "生成 OSI 模型",
-      "映射本体",
-      "定义指标",
-      "治理访问",
-      "Agent 查询",
-      "持续演进",
-    ],
-  },
-  useCases: {
-    eyebrow: "切入点",
-    heading: "数据上下文层从哪里开始回本",
-    lead: "先从一个治理好的业务域入手，一个下午就能验证，再一个域一个域地铺开。",
-    items: [
-      {
-        title: "把停滞的 agent pilot 推上生产",
-        body: (
-          <>
-            Demo 在样本数据上好好的，一碰真实数据就崩。Datus 在真实数仓之上给这个 pilot
-            铺一层受治理的上下文层，它才终于能上线。
-          </>
-        ),
-      },
-      {
-        title: "在四分五裂的 BI 版图里统一口径",
-        body: (
-          <>
-            同一个指标，三种定义，散在两个平台。Datus 编译出一套
-            <A href="/osi-field-mapping/">Apache Ossie 语义层</A>，BI、人和 Agent 读的都是同一份。
-          </>
-        ),
-      },
-      {
-        title: "让 Agent 在本体上推理，而不是在裸表上猜",
-        body: (
-          <>
-            本体告诉 Agent 每个概念是什么、彼此如何关联，于是它能在业务里找路，而不是靠猜去拼 join。
-          </>
-        ),
-      },
-      {
-        title: "让 Agent 通过 MCP 调用你的语义层",
-        body: (
-          <>
-            用<A href="/mcp/">原生 MCP</A> 把受治理的上下文开放出去，Claude、Cursor
-            或你自己的 Agent 都按口径查询，而不是直接写裸 SQL。
-          </>
-        ),
-      },
-    ],
+    visualAlt: "文档、数仓与 ETL 脚本中的业务知识经 Datus 汇集，形成可供团队审核的语义模型",
+    visualCaption: "Datus 从现有文档、数仓和 ETL 脚本中汇集业务知识，生成可供团队审核的语义模型。",
+    phases: ["连接数据源", "汇集知识", "起草语义模型", "团队审核",
+      "DOSI 校验", "请求指标", "查看 SQL 与血缘", "完善定义"],
   },
   surfaces: {
     eyebrow: "接口",
-    heading: "同一个引擎，同一份答案，覆盖团队工作的每一处",
-    lead: "CLI、基于 Apache Arrow 的 REST、原生 MCP，还有 Python SDK。一层数据上下文层接通所有入口，人、BI 和 Agent 拿到的都是同一份受治理的答案。",
+    heading: "一份业务上下文，供团队和 Agent 使用",
+    lead: "在 DOSI 中探索业务上下文，在 Studio 中协作，使用 Datus Agent 构建，或通过 MCP、API 和 CLI 连接。",
     items: [
-      {
-        id: "studio",
-        name: "Studio",
-        tagline: (
-          <>
-            商业版的<A href="/products/studio/">上下文感知 co-pilot</A>。团队用自然语言驱动整套技术栈，
-            映射实体、定义指标、回答问题，全都落在你受治理的上下文层之上。
-          </>
-        ),
-        start: "open studio.datus.ai",
-      },
-      {
-        id: "cli",
-        name: "Datus agent",
-        tagline: (
-          <>
-            开源的 <A href="/products/cli/">Datus agent</A> 读取你的表结构和 SQL 历史，
-            不用手写 YAML 就能生成 OSI 语义模型，再一手包办数据集、text-to-SQL 和调度，全部基于 Apache 2.0。
-          </>
-        ),
-        start: "pip install datus-agent",
-      },
-      {
-        id: "chatbot",
-        name: "Chatbot",
-        tagline: (
-          <>
-            把上下文层嵌进 Slack、飞书或 Microsoft Teams，每个群都变成
-            <A href="/chatbot/">自助取数入口</A>，答案对齐统一治理的口径，而不是临时拼的 SQL。
-          </>
-        ),
-        start: "/datus in Slack",
-      },
-      {
-        id: "mcp",
-        name: "MCP Server",
-        tagline: (
-          <>
-            通过 <A href="/mcp/">Model Context Protocol</A> 把整套受治理的上下文开放出去。
-            接进 Claude、Cursor 或 Windsurf，任何 Agent 都能基于你的本体和指标推理，同一个引擎，同一份答案。
-          </>
-        ),
-        start: "datus mcp serve",
-      },
+      { id: "dosi", name: "DOSI", tagline: <><strong className="pi-positioning-headline">让业务含义成为可执行的上下文。</strong>DOSI 将兼容的 Apache Ossie 模型编译为原生 SQL，支持 16 种 SQL 方言。将语义模型与本体结合，让团队和 Agent 使用一致的业务定义，追溯答案的生成过程，让业务逻辑独立于单一厂商的技术栈。</>, start: "dosi --model commerce.yaml lineage dump", preview: "dosi" },
+      { id: "studio", name: "Studio", tagline: <>在 <A href="/products/studio/">Datus Studio</A> 中，将文件、SQL、查询结果与 Agent 对话汇集到团队的共享工作区。</>, start: "open studio.datus.ai", preview: "studio" },
+      { id: "agent", name: "Datus Agent", tagline: <>配置主 Agent 和专门的子代理，基于共享上下文探索数据、构建语义模型并生成 SQL。</>, start: "pip install datus-agent", preview: "agent" },
+      { id: "mcp-cli", name: "MCP / API / CLI", tagline: <>通过 <A href="/mcp/">MCP</A> 连接你自己的 Agent，通过 API 将子代理对话嵌入应用，或在自己的终端中使用 CLI 工具。</>, start: "dosi-server --model commerce.yaml --mcp-stdio", preview: "connect" },
     ],
   },
   stack: {
     eyebrow: "集成",
-    heading: "适配你已经在跑的 modern data stack",
-    lead: "让 Datus 对接你的数仓、数据目录、语义层和 BI。Dosi 引擎把 OSI 编译成 16 种数仓方言的原生 SQL，什么都不用迁移。",
+    heading: "基于你现有的技术栈构建",
+    lead: "沿用现有工具，看清 Datus 读取什么、在哪里执行，以及向工作流程输出什么。每个 logo 下方标明接入方式。",
     model: "模型",
     byo: "自带",
+    byoTitle: "使用你自己的模型",
     groups: ["数仓", "建模", "语义层", "数据目录", "BI", "编排调度"],
     seeAll: "查看全部集成",
   },
   faq: {
-    lead: "数据上下文层、Apache Ossie、Dosi 引擎、开放内核，以及 Datus 与同类方案的对比。",
+    lead: "了解 Datus Agent、DOSI 与 Apache Ossie 如何协同工作。",
     browseAll: "浏览全部常见问题",
     items: [
       {
-        q: "什么是数据上下文层？",
-        a: "数据上下文层直接建在你的数仓之上，是一套受治理的语义层与本体。它告诉 AI 你的实体、指标和关系分别代表什么，并给出干净、受治理的度量路径。和通用记忆存储不同，它扎根于数据本身，这正是企业数据 Agent 想答对、而不是靠猜 join 和口径时，真正需要的上下文。",
+        q: "Datus 为 AI Agent 提供什么？",
+        a: "Datus 连接业务概念、受治理的指标定义与数据血缘，让 Agent 使用共享的业务含义。团队审核这些定义，并继续负责验证源数据与结果。",
       },
       {
-        q: "为什么没有它，企业的 Agent 落地任务就会停滞？",
-        a: "卡点很少出在模型，而在于几十年攒下的杂乱、割裂的数据。没有 LLM 能独自在里面安全穿行，于是 Demo 在样本数据上跑得好好的，一到真实数据就崩。Datus 接上你已有的数仓，几天就编译出一层受治理的上下文层，Agent 拿到一条贯穿业务的清晰通路，pilot 才走得到生产。",
+        q: "Datus Agent 和 DOSI 如何协同？",
+        a: "Datus Agent 帮助团队从现有知识起草和完善语义模型。团队审核业务口径后，DOSI 校验兼容的 Apache Ossie 模型，规划支持范围内的指标查询，并为选定的数据源编译原生 SQL。",
       },
       {
-        q: "什么是 Apache Ossie（OSI），Datus 为什么建在它之上？",
-        a: "OSI（Open Semantic Interchange）现在叫 Apache Ossie，是定义本体与语义模型的开放标准，已有 Snowflake、Databricks、Salesforce、dbt Labs 等 50 多家组织参与。Datus 用 OSI 规范定义你的模型，而不是专有格式，因此你的上下文层可以自由迁移、不被厂商绑定。规范对所有人开放；真正的产品，是我们的引擎，以及我们在这套标准里的位置。",
+        q: "Apache Ossie 是什么？",
+        a: "Apache Ossie 是用于兼容定义的开放语义模型标准，DOSI 让这些定义可执行。模型能交换到什么程度取决于受支持的转换器和扩展；可迁移不代表每个引擎都支持同样的功能。",
       },
       {
-        q: "什么是 Dosi 引擎？",
-        a: "Dosi 是一个 Rust 引擎，把 OSI YAML 编译成 16 种数仓方言的原生 SQL，还带零拷贝 Arrow 流式传输。它正在走向开源，目前已经可以免费下载使用。CLI、REST、MCP 和 SDK 背后，都是同一个引擎、同一份答案。",
+        q: "DOSI 是开源的吗？",
+        a: "Datus Agent 是开源项目。DOSI 是 Datus 的语义执行模块，也可作为独立开发者工具使用；它基于开放的 Apache Ossie 标准。你可以在 Studio 中体验，也可以查看 DOSI 的开发者快速开始。",
       },
       {
-        q: "开放内核和 Datus Studio 是什么关系？",
-        a: "开源的 Datus agent、Dosi 引擎和 Apache Ossie 模型构成内核，可以免费跑在你自己的数仓上。Datus Studio 是架在上面的商业层：一个上下文感知的 co-pilot，人、BI 和 Agent 都用自然语言驱动整套技术栈，还为企业提供 SSO、RBAC 以及私有 / VPC 部署。",
+        q: "“可供审查”具体指什么？",
+        a: "定义、生成的 SQL 和血缘为审核者提供核查计算的依据。它强调可追溯、可审核，并不代表自动取得认证。团队仍需批准业务口径并验证源数据。",
       },
       {
-        q: "Datus 和 Snowflake Cortex、Databricks Genie 或 Cube 相比如何？",
-        a: "Snowflake Semantic Views 喂给 Cortex Analyst，Databricks Metric Views 喂给 Genie，可两边互不读取，上下文困在单一厂商内部就到此为止。Datus 站在中立地带：在你已有的数仓之上建起一套 Apache Ossie 语义层与本体，编译成 16 种方言的原生 SQL，让 Agent 通过 MCP 直接调用。",
+        q: "DOSI 会实时跨数仓关联数据吗？",
+        a: "Datus 可以在受支持的数据源之间共享业务定义。一次 DOSI 查询在选定的数据源执行；这不代表它会实时联邦查询多个数仓。",
       },
     ],
   },
   closing: {
-    heading: "给你的数据 Agent 一层可以信任的上下文层。",
+    heading: "让 AI Agent 使用团队能够审核的上下文。",
     lead: (
       <>
-        在浏览器里<A href="/pricing/">免费打开 Datus Studio</A>，
-        或者把开源 Agent 和 Dosi 引擎私有部署到你已有的数仓上。
+        <A href="/products/studio/">在 Studio 中体验 Datus</A>，
+        或查看 DOSI 快速开始，让兼容的语义模型可执行。
       </>
     ),
     cta: "开始使用",

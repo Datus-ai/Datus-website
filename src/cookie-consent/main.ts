@@ -1,17 +1,17 @@
 import { COOKIE_UI } from "../i18n/cookie";
 import { localeFromPathname, localizePath } from "../i18n/config";
+import { clearStoredWebsiteCampaign } from "../lib/studio-campaign";
+import {
+  COOKIE_CHOICE_KEY as KEY,
+  COOKIE_CHOICE_VERSION as VERSION,
+  COOKIE_CHOICE_AGE as AGE,
+  ANALYTICS_CONSENT_EVENT,
+  readCookieChoice as read,
+  type CookieChoice as IChoice,
+} from "./choice";
 
-const KEY = "datus_website_cookie_consent";
-const VERSION = "2026-10-15";
-const AGE = 180 * 24 * 60 * 60 * 1000;
 const GA_ID = "G-EPVCH78EZP";
 const SCRIPT_ID = "datus-consented-analytics";
-interface IChoice {
-  necessary: true;
-  analytics: boolean;
-  version: string;
-  savedAt: number;
-}
 const locale = localeFromPathname(location.pathname);
 const t = COOKIE_UI[locale];
 const win = window as unknown as Record<string, any>;
@@ -21,24 +21,6 @@ let lastStorage: "granted" | "denied" | undefined;
 let dismissed = false;
 let returnFocus: HTMLElement | null = null;
 
-function read(): IChoice | null {
-  try {
-    const value = JSON.parse(localStorage.getItem(KEY) || "null");
-    const age = Date.now() - value?.savedAt;
-    if (
-      value?.version === VERSION &&
-      value.necessary === true &&
-      typeof value.analytics === "boolean" &&
-      Number.isFinite(value.savedAt) &&
-      age >= 0 &&
-      age < AGE
-    )
-      return value;
-  } catch {
-    /* Optional analytics defaults off when storage is unavailable. */
-  }
-  return null;
-}
 function current(): IChoice | null {
   return choice && Date.now() - choice.savedAt < AGE ? choice : null;
 }
@@ -57,6 +39,8 @@ function synchronizeAnalytics() {
   const selected = current();
   const allowed = selected?.analytics === true;
   const blocked = selected?.analytics === false;
+  if (!allowed) clearStoredWebsiteCampaign();
+  window.dispatchEvent(new CustomEvent(ANALYTICS_CONSENT_EVENT, { detail: allowed }));
   win[`ga-disable-${GA_ID}`] = blocked;
   if (!allowed) clearCookies();
   if (blocked) {

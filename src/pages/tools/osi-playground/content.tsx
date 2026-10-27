@@ -1,3 +1,4 @@
+import { UI } from "../../../i18n/ui";
 import type { ReactNode } from "react";
 import type { Locale } from "../../../i18n/config";
 
@@ -25,7 +26,7 @@ export interface OsiPlaygroundCopy {
   why: { eyebrow: string; title: string; lead: string; items: { title: string; description: string }[] };
   comparison: { eyebrow: string; title: string; lead: string; columns: [string, string, string, string] };
   faqLead: string;
-  closing: { heading: string; lead: string; featuresCta: string; mappingCta: string };
+  closing: { heading: string; lead: string; signupCta: string; mappingCta: string };
 }
 
 const EN: OsiPlaygroundCopy = {
@@ -127,7 +128,7 @@ const EN: OsiPlaygroundCopy = {
   closing: {
     heading: "Let a data engineering agent read your OSI.",
     lead: "Datus grounds every SQL query, pipeline and dashboard answer in your semantic layer — OSI, MetricFlow, Cube or LookML, take your pick.",
-    featuresCta: "See Datus features",
+    signupCta: UI.en.common.tryStudio,
     mappingCta: "OSI field mapping",
   },
 };
@@ -229,7 +230,7 @@ const ZH: OsiPlaygroundCopy = {
   closing: {
     heading: "让数据工程 Agent 来读你的 OSI。",
     lead: "Datus 会把每一条 SQL 查询、每一条管道、每一个看板答案都锚定在你的语义层上——OSI、MetricFlow、Cube 或 LookML，随你选。",
-    featuresCta: "了解 Datus 功能",
+    signupCta: UI.zh.common.tryStudio,
     mappingCta: "OSI 字段映射",
   },
 };

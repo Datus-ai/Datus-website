@@ -1,3 +1,4 @@
+import { UI } from "../../i18n/ui";
 import type { Locale } from "../../i18n/config";
 
 export const DB_ADAPTERS_DOCS = "https://docs.datus.ai/dev/configuration/datasources/";
@@ -27,7 +28,7 @@ export interface DatabasesCopy {
   migration: { eyebrow: string; heading: string; lead: string };
   config: { eyebrow: string; title: string; lead: string };
   faqLead: string;
-  closing: { heading: string; lead: string; docsCta: string; modelsCta: string; contributeCta: string };
+  closing: { heading: string; lead: string; signupCta: string; modelsCta: string; contributeCta: string };
 }
 
 // Adapter type strings and package names are identifiers — never translated.
@@ -170,7 +171,7 @@ const EN: DatabasesCopy = {
   closing: {
     heading: "Connect Your Warehouse in Minutes",
     lead: "Native adapters for Snowflake, Postgres, MySQL and more — drop in credentials and the agent starts reasoning over your real schema.",
-    docsCta: "Database Adapters docs",
+    signupCta: UI.en.common.tryStudio,
     modelsCta: "Explore models",
     contributeCta: "Contribute an adapter",
   },
@@ -232,7 +233,7 @@ const ZH: DatabasesCopy = {
   closing: {
     heading: "几分钟接上你的数仓",
     lead: "Snowflake、Postgres、MySQL 等都有原生适配器，填上凭据，Agent 就能基于你真实的表结构开始推理。",
-    docsCta: "Database Adapters 文档",
+    signupCta: UI.zh.common.tryStudio,
     modelsCta: "了解支持的模型",
     contributeCta: "贡献一个适配器",
   },

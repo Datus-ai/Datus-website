@@ -1,0 +1,101 @@
+/* Laptop rhythm: reduce whitespace and scale complete previews, never crop copy. */
+@media (min-width:1024px) and (max-height:950px) {
+ .nordic-home .nordic-section { padding-block:clamp(24px,4svh,38px); }
+ .nordic-home .nordic-section-head,.nordic-home .nordic-problem .nordic-section-head { margin-bottom:22px; }
+ .nordic-home .nordic-section-head h2,.nordic-home .nordic-problem .nordic-section-head h2,.nordic-home .nordic-closing h2 { max-width:100%; font-size:clamp(28px,2.6vw,36px); line-height:1.15; margin-block:10px 12px; }
+ .nordic-home .nordic-section-head .nordic-lead { max-width:1080px; font-size:14px; line-height:1.65; }
+ .nordic-home .nordic-hero { padding-top:28px; padding-bottom:18px; }
+ .nordic-home .nordic-hero h1 { margin-block:18px; }
+ .nordic-home .nordic-hero .nordic-lead { font-size:15px; line-height:1.65; }
+ .nordic-home .nordic-actions { margin-top:22px; }
+ .nordic-home .nordic-enterprise { margin-top:16px; }
+ .nordic-home .nordic-hero__foot { margin-top:24px; padding-top:16px; }
+ .nordic-home .nordic-proof { padding-block:16px; }
+ .nordic-home .nordic-problem { padding-block:20px; }
+ .nordic-home .nordic-context-comparison__stage { height:420px; }
+ .nordic-home .nordic-context-diagram__heading p { display:none; }
+ .nordic-home .nordic-context-consumers > div { display:grid; grid-template-columns:auto auto; justify-content:center; gap:2px 5px; }
+ .nordic-home .nordic-context-consumers__result { grid-column:1 / -1; font-size:22px; text-align:center; }
+ .nordic-home .nordic-context-comparison__hint { margin-top:4px; }
+ .nordic-home .nordic-context-comparison__details { margin-top:4px; }
+ .nordic-home .nordic-context-diagram { padding:14px 20px; }
+ .nordic-home .nordic-context-diagram__heading h3 { font-size:19px; }
+ .nordic-home .nordic-context-diagram__heading p { font-size:11px; }
+ .nordic-home .nordic-context-diagram__question { margin:12px 0 8px; padding-bottom:4px; }
+ .nordic-home .nordic-context-comparison__side--after .nordic-context-diagram > .nordic-context-diagram__question { margin:8px 0 4px; }
+ .nordic-home .nordic-context-silo__shaft { min-height:85px; }
+ .nordic-home .nordic-context-silo__output { min-height:64px; }
+ .nordic-home .nordic-lineage-flow { flex-basis:14px; min-height:12px; max-height:18px; }
+ .nordic-home .nordic-context-datus-boundary { padding:7px 12px; }
+ .nordic-home .nordic-context-model__mark { width:20px; height:20px; font-size:13px; }
+ .nordic-home .nordic-context-datus-boundary > .nordic-context-ontology { min-height:34px; }
+ .nordic-home .nordic-context-ontology svg { height:34px; }
+ .nordic-home .nordic-context-datus-boundary > .nordic-lineage-flow { flex-basis:10px; min-height:10px; height:10px; }
+ .nordic-home .nordic-context-model { padding-top:6px; }
+ .nordic-home .nordic-context-model__body { margin-top:6px; }
+ .nordic-home .nordic-context-model__body > div { min-height:44px; padding-block:2px; }
+ .nordic-home .nordic-context-model__chips { margin-top:4px; }
+ .nordic-home .nordic-context-model__chips > span,.nordic-home .nordic-context-model__relation { padding-block:2px; }
+ .nordic-home .nordic-context-model__relation { margin-top:4px; }
+ .nordic-home .nordic-context-audit { margin-top:6px; padding-top:5px; }
+ .nordic-home .nordic-context-knowledge > div { min-height:25px; padding-block:2px; }
+ .nordic-home .nordic-context-warehouses { margin-top:3px; padding-top:3px; }
+ .nordic-home .nordic-context-warehouses img { width:18px; height:18px; }
+ .nordic-home .kj { gap:28px; }
+ .nordic-home .kj-steps > button { padding-block:13px; }
+ .nordic-home .kj-description { margin-top:6px; }
+ .nordic-home .kj-scene { max-height:min(400px,calc(100svh - 270px)); }
+ .nordic-home .kj-controls { padding-block:10px; }
+ .nordic-home .nordic-surfaces { grid-template-columns:180px minmax(0,1fr); gap:26px; }
+ .nordic-home .nordic-surface { min-height:0; }
+ .nordic-home .nordic-surface__copy { padding:14px 20px; }
+ .nordic-home .nordic-surface__copy .nordic-lead { max-width:100%; font-size:14px; line-height:1.6; }
+ .nordic-home .pi-positioning-headline { font-size:20px; margin-block:0 6px; }
+ .nordic-home .nordic-surface > .pi-preview { width:min(calc(100% - 32px),calc(clamp(240px,100svh - 410px,340px) * 1.741935)); margin-inline:auto; }
+ .nordic-home .pi-preview .pi-preview-actions { padding-block:8px; }
+ .nordic-home .pi-external-tabs { margin-bottom:6px; }
+ .nordic-home .pi-external-tabs > button { padding-block:6px; }
+ .nordic-home .industry-use-cases__tabs { margin-bottom:14px; }
+ .nordic-home .industry-use-cases__tabs button { padding-block:10px; }
+ .nordic-home .industry-use-cases__stage article { min-height:clamp(320px,calc(100svh - 340px),420px); }
+ .nordic-home .industry-use-cases__copy { padding:28px 36px; }
+ .nordic-home .industry-use-cases h3 { font-size:30px; margin-bottom:16px; }
+ .nordic-home .industry-use-cases__copy > p { line-height:1.65; margin-bottom:20px; }
+ .nordic-home .industry-use-cases__question { padding-top:14px; }
+ .nordic-home .nordic-pillar-columns article { padding-top:18px; }
+ .nordic-home .nordic-pillar-column-icon { margin-bottom:12px; }
+ .nordic-home .nordic-resources__head { margin-bottom:22px; }
+ .nordic-home .nordic-resources__head h2 { font-size:36px; margin-block:10px; }
+ .nordic-home .nordic-resource__image { aspect-ratio:2.2; }
+ .nordic-home .nordic-resource__body { padding:20px; }
+ .nordic-home .nordic-resource h3 { font-size:21px; margin-block:12px 10px; }
+ .nordic-home .nordic-resource p { margin-bottom:18px; }
+ .nordic-home .faq { padding-block:32px 16px; }
+ .nordic-home .faq .section-head { margin-bottom:22px !important; }
+ .nordic-home .faq .h2 { font-size:34px !important; }
+ .nordic-home .faq__summary { padding-block:15px; }
+ .nordic-home .nordic-closing { padding-block:48px; }
+ .nordic-home .stack-integrations__tabs { display:flex; flex-wrap:wrap; gap:8px 24px; border-bottom:1px solid var(--line); margin-bottom:8px; }
+ .nordic-home .stack-integrations__tabs button { border:0; border-bottom:2px solid transparent; padding:12px 0; background:none; color:var(--ink-muted); font:inherit; font-size:13px; cursor:pointer; }
+ .nordic-home .stack-integrations__tabs button[aria-selected=true] { color:var(--brand-bright); border-bottom-color:currentColor; }
+ .nordic-home .stack-integrations__tabs button:focus-visible { outline:2px solid var(--brand-bright); outline-offset:4px; }
+ .nordic-home .stack-integrations .nordic-integration-row { padding-block:22px; border-top:0; }
+ .nordic-home .stack-integrations { margin-bottom:12px; }
+}
+
+@media (min-width:1024px) and (max-height:740px) {
+ .nordic-home .nordic-section { padding-block:18px; }
+ .nordic-home .nordic-section-head h2,.nordic-home .nordic-problem .nordic-section-head h2 { font-size:30px; }
+ .nordic-home .nordic-section-head .nordic-lead { font-size:13px; line-height:1.55; }
+ .nordic-home .nordic-hero h1.nordic-hero__title--stacked { font-size:64px; }
+ .nordic-home .nordic-hero .nordic-lead { font-size:14px; }
+ .nordic-home .nordic-problem { padding-block:12px; }
+ .nordic-home .nordic-problem .nordic-section-head { margin-bottom:16px; }
+ /* The Before/After labels already identify both sides on shorter screens. */
+ .nordic-home .nordic-context-diagram__heading { display:none; }
+ .nordic-home .nordic-context-diagram { line-height:1.35; }
+ .nordic-home .nordic-context-comparison__stage { height:375px; }
+ .nordic-home .nordic-context-consumers > div { line-height:1.25; }
+ .nordic-home .kj-steps > button { padding-block:9px; }
+ .nordic-home .kj-steps strong { font-size:15px; }
+}

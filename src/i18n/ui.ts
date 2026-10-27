@@ -10,10 +10,15 @@ import type { Locale } from "./config";
  * Product names, CLI commands and package names stay in English.
  */
 export type UiMessages = {
+  theme: { toDark: string; toLight: string };
+  install: { terminal: string; quickInstall: string; copy: string; copied: string; failed: string; example: string };
   nav: {
     home: string;
     support: string;
     products: string;
+    solutions: string;
+    semanticLayer: string;
+    semanticLayerDesc: string;
     integrations: string;
     pricing: string;
     blog: string;
@@ -29,6 +34,7 @@ export type UiMessages = {
     language: string;
   };
   footer: {
+    apacheDisclaimer: { project: string; afterProject: string; foundation: string; afterFoundation: string };
     semanticConverter: string;
     cookiePolicy: string;
     privacyPolicy: string;
@@ -75,9 +81,12 @@ export type UiMessages = {
     heading: string;
   };
   common: {
+    tryStudio: string;
     capabilities: string;
     whatYouGet: string;
     quickstart: string;
+    pauseAnimation: string;
+    playAnimation: string;
   };
   /** Enterprise contact form + dialog (shared by several pages). */
   form: {
@@ -148,10 +157,15 @@ export type UiMessages = {
 
 export const UI: Record<Locale, UiMessages> = {
   en: {
+    theme: { toDark: "Switch to dark mode", toLight: "Switch to light mode" },
+    install: { terminal: "Terminal", quickInstall: "Quick install", copy: "Copy install command", copied: "Copied", failed: "Could not copy — select the command", example: "Example session" },
     nav: {
       home: "Home",
       support: "Support",
       products: "Products",
+      solutions: "Solutions",
+      semanticLayer: "Semantic Layer",
+      semanticLayerDesc: "Shared business definitions for teams and AI agents.",
       integrations: "Integrations",
       pricing: "Pricing",
       blog: "Blog",
@@ -167,13 +181,19 @@ export const UI: Record<Locale, UiMessages> = {
       language: "Language",
     },
     footer: {
+      apacheDisclaimer: {
+        project: "Apache Ossie (incubating)",
+        afterProject: " is a project in the Apache Incubator at the ",
+        foundation: "Apache Software Foundation (ASF)",
+        afterFoundation: ". Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.",
+      },
       semanticConverter: "Semantic Model Converter",
       cookiePolicy: "Cookie Policy",
       privacyPolicy: "Privacy Statement",
       termsOfService: "Terms of Service",
       cookieSettings: "Cookie Settings",
       tagline:
-        "The open-source data engineering agent with an evolvable Context Engine — natural language to governed, production-ready data work.",
+        "Trusted enterprise data context for AI agents. Business-aware. Agent-native. Audit-ready.",
       products: "Products",
       resources: "Resources",
       company: "Company",
@@ -192,14 +212,14 @@ export const UI: Record<Locale, UiMessages> = {
       rights: "DatusAI, Inc.",
     },
     products: {
-      cli: "Datus agent",
-      cliDesc: "Open source — generates OSI models and runs the work.",
-      dosi: "Dosi engine",
-      dosiDesc: "Compiles OSI to native SQL for 16 dialects. Free to download.",
+      cli: "Datus Agent",
+      cliDesc: "Open source — helps build reviewable semantic models.",
+      dosi: "DOSI",
+      dosiDesc: "Executes compatible Apache Ossie models.",
       vscode: "VS Code Extension",
       vscodeDesc: "Bring context and agents into your editor.",
       studio: "Datus Studio",
-      studioDesc: "The commercial context-aware co-pilot.",
+      studioDesc: "Explore shared business context with your team.",
       enterprise: "Enterprise",
       enterpriseDesc: "Shared context, governance, long-running agents.",
       allIntegrations: "All Integrations",
@@ -214,9 +234,12 @@ export const UI: Record<Locale, UiMessages> = {
       heading: "Frequently asked questions",
     },
     common: {
+      tryStudio: "Get Started Free",
       capabilities: "Capabilities",
       whatYouGet: "What you get",
       quickstart: "Quickstart",
+      pauseAnimation: "Pause animation",
+      playAnimation: "Play animation",
     },
     form: {
       fullName: "Full name *",
@@ -284,10 +307,15 @@ export const UI: Record<Locale, UiMessages> = {
     },
   },
   zh: {
+    theme: { toDark: "切换到深色模式", toLight: "切换到浅色模式" },
+    install: { terminal: "终端", quickInstall: "快速安装", copy: "复制安装命令", copied: "已复制", failed: "复制失败，请选择命令复制", example: "示例会话" },
     nav: {
       home: "首页",
       support: "支持与帮助",
       products: "产品",
+      solutions: "解决方案",
+      semanticLayer: "语义层",
+      semanticLayerDesc: "让团队与 AI Agent 共享业务定义。",
       integrations: "集成",
       pricing: "定价",
       blog: "博客",
@@ -303,13 +331,19 @@ export const UI: Record<Locale, UiMessages> = {
       language: "语言",
     },
     footer: {
+      apacheDisclaimer: {
+        project: "Apache Ossie（孵化中）",
+        afterProject: "是 ",
+        foundation: "Apache 软件基金会（ASF）",
+        afterFoundation: "旗下 Apache Incubator 中的项目。孵化过程涉及对社区和治理机制的审核，不代表对代码成熟度或稳定性的评价，也不表示该项目已获得 ASF 的全面认可。Apache 和 Apache Ossie 是 ASF 的商标。Datus 是独立产品，不代表 ASF 的认可或背书。",
+      },
       semanticConverter: "语义模型转换器",
       cookiePolicy: "Cookie 政策",
       privacyPolicy: "隐私声明",
       termsOfService: "服务条款",
       cookieSettings: "Cookie 设置",
       tagline:
-        "开源的数据工程 Agent，内置可演进的上下文引擎，用自然语言完成可治理、可上生产的数据工作。",
+        "为 AI Agent 提供可信的企业数据上下文。理解业务、面向 Agent、可供审查。",
       products: "产品",
       resources: "资源",
       company: "公司",
@@ -328,14 +362,14 @@ export const UI: Record<Locale, UiMessages> = {
       rights: "DatusAI, Inc.",
     },
     products: {
-      cli: "Datus agent",
-      cliDesc: "开源，生成 OSI 模型、执行任务。",
-      dosi: "Dosi 引擎",
-      dosiDesc: "把 OSI 编译成 16 种方言的原生 SQL，可免费下载。",
+      cli: "Datus Agent",
+      cliDesc: "开源，辅助构建可供团队审核的语义模型。",
+      dosi: "DOSI",
+      dosiDesc: "执行兼容 Apache Ossie 的语义模型。",
       vscode: "VS Code 插件",
       vscodeDesc: "把上下文和 Agent 带进你的编辑器。",
       studio: "Datus Studio",
-      studioDesc: "商业化的上下文感知 co-pilot。",
+      studioDesc: "与团队一起探索共享的业务上下文。",
       enterprise: "企业版",
       enterpriseDesc: "共享上下文、治理能力、长时运行 Agent。",
       allIntegrations: "全部集成",
@@ -350,9 +384,12 @@ export const UI: Record<Locale, UiMessages> = {
       heading: "常见问题",
     },
     common: {
+      tryStudio: "免费开始使用",
       capabilities: "核心能力",
       whatYouGet: "你能得到什么",
       quickstart: "快速开始",
+      pauseAnimation: "暂停动态",
+      playAnimation: "播放动态",
     },
     form: {
       fullName: "姓名 *",
@@ -663,4 +700,10 @@ export const SEMANTIC_CONVERTER_UI = {
       "sql_dialect": "说明输入表达式所用方言，不进行 SQL 翻译。"
     }
   }
+};
+
+/** Shared interaction labels for homepage product and evidence walkthroughs. */
+export const HOME_WALKTHROUGH_UI:Record<Locale,{pause:string;play:string;selectLayer:string;inspect:string;close:string;next:string}>={
+ en:{pause:'Pause automatic steps',play:'Play automatic steps',selectLayer:'Explore the connected layers',inspect:'Explore the product walkthrough',close:'Close product walkthrough',next:'Next step'},
+ zh:{pause:'暂停自动切换',play:'播放自动步骤',selectLayer:'查看相连的业务上下文',inspect:'查看产品流程演示',close:'关闭产品流程演示',next:'下一步'},
 };

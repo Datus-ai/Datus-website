@@ -81,7 +81,9 @@
     "merge:builds": "node scripts/clean-landing-page.js",
     "preview": "vite preview --port 4173",
     "test:cookie-consent": "node scripts/test-cookie-consent.mjs",
+    "test:studio-campaign": "node scripts/test-studio-campaign.mjs",
     "test:support": "node scripts/test-support.mjs",
+    "test:site-theme": "node scripts/test-site-theme.mjs",
     "test:semantic-converter": "node scripts/test-semantic-converter.mjs",
     "typecheck:semantic-converter": "tsc --noEmit --jsx react-jsx --module esnext --target es2022 --moduleResolution bundler --lib dom,dom.iterable,es2022 --allowSyntheticDefaultImports --skipLibCheck --types vite/client,node src/pages/tools/semantic-model-converter/main.tsx"
   }

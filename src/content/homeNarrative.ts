@@ -1,0 +1,213 @@
+import { UI } from "../i18n/ui";
+import type { Locale } from '../i18n/config';
+
+const en = {
+ overview:{
+  eyebrow:'Datus, at a glance',heading:'One shared context. From business knowledge to agent action.',
+  lead:'A workspace for teams, a complete data Agent, and semantic execution grounded in an open specification. Datus brings them together around your business context.',
+  sources:'Existing knowledge',inputs:['Documents','SQL & ETL','Warehouses'],destinations:'Put context to work',outputs:['Teams','AI agents','Applications & BI'],
+  foundation:'Ontology + semantic model',
+  modules:[
+   {name:'Datus Studio',body:'A shared workspace for Agent-driven data engineering.'},
+   {name:'Datus Agent',body:'A complete data Agent for engineering and analysis.'},
+   {name:'DOSI Engine',body:'Execute compatible Ossie definitions as native SQL.'},
+   {name:'Apache Ossie Spec',body:'An open, vendor-neutral semantic modeling specification.'},
+  ],
+  standardNote:'Apache Ossie (incubating)',videoTitle:'See Datus in a business workflow',
+ },
+ pillars:{
+  eyebrow:'What shared context makes possible',heading:'Three foundations for shared business context.',
+  lead:'Give agents business meaning, bring it into their work, and keep the evidence within reach.',
+  items:[
+   {name:'Business-aware',body:'Connect business concepts and relationships to metrics, calculations, and source data.',link:'Explore business meaning',href:'#shared-context'},
+   {name:'Agent-native',body:'Work with Datus Agent in Studio, or bring context and execution into your own agent workflows.',link:'Explore Agent workflows',href:'#interfaces'},
+   {name:'Audit-ready',body:'Review definitions, inspect generated SQL, and trace results back to their source.',link:'Explore execution evidence',href:'#runtime'},
+  ],
+ },
+ model: {
+  eyebrow: 'Business-aware', heading: 'Give agents a model of your business.',
+  lead: 'Bring business concepts, relationships, and calculation rules together. Datus connects your business ontology to a reusable semantic layer, with definitions your team can review.',
+  layers: [
+   {name:'Business ontology', detail:'Connect business concepts and relationships to your semantic definitions, so an Agent can follow what a customer, order, or transaction means.', question:'Connect the concepts behind your business.', terms:['Customer','places','Order','fulfilled by','Supplier']},
+   {name:'Semantic layer', detail:'Datus Agent helps draft reusable metrics, dimensions, and calculations. Keep each definition linked to the fields it uses.', question:'Make business definitions reusable.', terms:['Metrics','Dimensions','Calculations','Source mappings']},
+   {name:'Existing data', detail:'Bring selected documents, SQL, and warehouse schemas into Datus Agent’s context to ground the model in knowledge your team already has.', question:'Start with the knowledge you already have.', terms:['Warehouses','Documents','SQL & ETL']},
+  ],
+  illustration:{customer:'Customer',order:'Order',line:'Order line',places:'places',contains:'contains',metric:'Metrics',dimension:'Dimensions',mapping:'Source mapping',documents:'Documents',sql:'SQL & ETL',warehouse:'Warehouse schemas',context:'Shared context',labels:['Connected business concepts','Reusable semantic definitions','Existing knowledge brought together']},
+  connection:'Connected meaning, from source data to business relationships', link:'Explore the semantic layer',
+ },
+ runtime: {
+  eyebrow:'Audit-ready', heading:'Business meaning, backed by a trustworthy runtime.',
+  lead:'Review definitions, inspect DOSI’s native SQL, and check the sources and calculations behind a report.',
+  role:'Datus’s semantic execution module. Also available as a standalone runtime.',
+  chain:['Reviewed definitions','DOSI validation & planning','Native SQL','Inspectable results'],
+  walkthrough:{
+   workspace:'Northstar · execution evidence',
+   titles:['Review a model change','Inspect the semantic request','Read the generated SQL','Inspect a report’s calculation and sources'],
+   notes:[
+    'Semantic Hub · review fixture. Approve and Merge only change this preview.',
+    'Input from the recorded Northstar compilation. Inspect the requested fields and model; no live validation runs here.',
+    'Recorded DOSI compiler output · DuckDB. No query runs in this preview.',
+    'Northstar · recorded results and model definitions. This report does not run a query.',
+   ],
+   request:'Semantic request',model:'Model definition',source:'Semantic dataset',filter:'Filter',fields:'Requested fields',
+   results:'Query results',lineage:'Source lineage',rows:'3 rows',inspect:'Click a step to explore',
+   simplified:{file:'northstar_premier.yaml',before:'Previous',after:'Proposed',review:'Review example',approve:'Approve',approved:'Approved',merge:'Merge',merged:'Merged',replay:'Replay',
+    requestTitle:'Metric query',target:'Execution target',sqlExcerpt:'Compiler output · excerpt',fullSql:'View full SQL',
+    report:'Premier customer report',metric:'Customer margin',insight:'Calculation & Sources',source:'Source',calculation:'Calculation',
+    sourceHeading:'Tables read by the query',calculationHeading:'Referenced metric',filter:'Filter',recorded:'Northstar · recorded artifacts',clickMetric:'Inspect customer margin',
+   },
+  },
+  evidence:[
+   {title:'Rules guide execution.',body:'Declared relationships, calculation grain, and supported fan-out checks guide query planning.'},
+   {title:'Boundaries stay explicit.',body:'Unsupported requests return an explicit error so teams can identify what needs to change.'},
+   {title:'Follow the evidence.',body:'Inspect model definitions, generated SQL, results, and lineage before relying on an answer.'},
+  ],
+  tabs:['Definition','Generated SQL','Lineage & results'],
+  recorded:'Northstar · recorded DuckDB execution', excerpt:'Source excerpt · omitted lines marked # …',
+  sqlNote:'Recorded SQL from the supplied demo. This preview does not run a query.',
+  lineageNote:'Explore the actual source → dataset → metric dependencies. Results below come from the recorded demo.',
+  resultColumns:['Customer','Margin','Orders','Return rate'],
+  link:'Start with DOSI',
+ },
+ open: {
+  eyebrow:'An open foundation', heading:'Open definitions. Native execution.',
+  lead:'Apache Ossie is an open, vendor-neutral specification for semantic models. DOSI makes compatible Ossie definitions executable as native SQL.',
+  definition:'Keep business meaning in reviewable Ossie files. Convert supported existing models, then validate and execute them with DOSI on the data source you choose.',
+  flow:[{name:'Apache Ossie',role:'Open specification',detail:'Define datasets, relationships, dimensions, and metrics in reviewable files.'},{name:'DOSI',role:'Compatible execution runtime',detail:'Validate supported definitions, plan the request, and generate native SQL.'},{name:'Your data source',role:'Native SQL execution',detail:'Run on the selected supported source; inspect the SQL and returned results.'}],
+  links:[{href:'/tools/osi-playground/',label:'Explore the Ossie specification'},{href:'/tools/semantic-model-converter/',label:'Convert existing models'},{href:'/databases/',label:'View supported data sources'}],
+  license:'Apache Ossie (incubating) is an open specification. DOSI is a compatible runtime distributed under Elastic License 2.0.',
+ },
+ journey: {
+  eyebrow:'How it works',heading:'Build context from the knowledge you already have.',
+  lead:'Start with the knowledge already present in your data systems. Datus Agent helps turn it into connected models that teams can review, execute, and improve.',
+  steps:[
+   {name:'Discover',title:'Start with existing knowledge.',body:'Connect approved data sources and bring business documents, SQL, and ETL knowledge into the workspace.',evidence:'Project initialization · select existing SQL and context files. Initialization creates project context; modeling follows.'},
+   {name:'Model',title:'Make business meaning explicit.',body:'Use Datus Agent to help organize semantic definitions, business concepts, and relationships. Keep the model open beside the source knowledge.',evidence:'Studio · file editor and Agent conversation with attached SQL context.'},
+   {name:'Review',title:'Review the model as a team.',body:'Trace source mappings, calculations, and dependencies. Inspect the YAML diff, then approve and merge reviewed changes.',evidence:'Semantic Hub · full lineage → YAML diff → Approve → Merge. Actions in this walkthrough stay in the preview.'},
+   {name:'Execute',title:'Inspect what the model executes.',body:'DOSI validates compatible models and plans supported requests as native SQL. Follow the recorded output back to its definitions.',evidence:'Northstar · exact source excerpt and recorded DuckDB SQL. No query is executed by this preview.'},
+   {name:'Evolve',title:'Carry reviewed changes forward.',body:'Keep confirmed corrections in the shared model so later work can reuse them. Your team decides which changes become shared context.',evidence:'Semantic Hub · review and merge a proposed YAML correction. Feedback becomes reusable through an explicit review.'},
+  ],
+  preview:'Product walkthrough', openPreview:'Open full walkthrough', closePreview:'Close walkthrough',
+ },
+ experience:{
+  eyebrow:'Agent-native',heading:'Work together. Build into your agents.',
+  lead:'A shared context, with a workspace for your team and execution paths for the tools you build.',
+  paths:[
+   {name:'For teams',title:'Bring the work together in Studio.',body:'Combine files, SQL, results, and Agent conversations in Datus Studio. Collaborate on data work, review context, and inspect the evidence behind an analysis.',href:'/products/studio/',link:'Explore Datus Studio'},
+   {name:'For developers',title:'Use a complete data Agent—or build your own.',body:'Datus Agent supports data engineering and analysis; semantic modeling is one of its capabilities. Connect DOSI execution to your own workflows through MCP, API, Python, or CLI.',href:'/products/cli/',link:'Explore Datus Agent'},
+  ],
+  developerModes:['Agent integration','Terminal'], developerNote:'MCP and API connect your application. CLI runs in your own terminal.',
+ },
+ faq:{
+  lead:'The relationships, boundaries, and choices behind shared business context.',browseAll:'Browse all FAQs',
+  items:[
+   {q:'What does “open” mean for Datus?',a:'Open refers to inspectable, reusable definitions based on the Apache Ossie specification and supported interfaces that work with your stack. DOSI uses Elastic License 2.0. The datus-agent project is open-source; these are different licensing models.'},
+   {q:'How do ontology and a semantic layer work together?',a:'Ontology expresses business concepts, roles, and relationships. A semantic layer defines metrics, dimensions, calculations, and mappings to source data. Datus connects them so teams and agents can relate business meaning to the definitions behind a query.'},
+   {q:'Where does query execution happen?',a:'DOSI turns compatible definitions into native SQL for the selected supported data source. Its adapters and interfaces determine the execution path. Reusing definitions across sources does not imply automatic cross-warehouse federation.'},
+   {q:'How can a team check an answer?',a:'Inspect the model and its source mappings, trace lineage, review generated SQL, and validate the returned data. Supported validation and planning checks expose execution constraints; teams still review business meaning and source-data quality.'},
+   {q:'How do Studio, Datus Agent, and DOSI fit together?',a:'Studio is the workspace for collaborative Agent-driven data work. Datus Agent is a complete data Agent for engineering and analysis. DOSI is the semantic execution module and can also be used independently through its supported interfaces.'},
+  ],
+ },
+ closing:{heading:'Put shared business context to work.',lead:'Business meaning for agents. A workflow your team can share. Execution you can inspect. Start in Studio or build with DOSI.',primary:UI.en.common.tryStudio,secondary:'Quickstart DOSI'},
+};
+
+export const HOME_NARRATIVE:Record<Locale,typeof en>={en,zh:{
+ overview:{
+  eyebrow:'Datus 全景',heading:'共享业务上下文，连接已有知识与 Agent 行动。',
+  lead:'团队工作区、完整的数据 Agent，以及基于开放规范的语义执行能力——Datus 围绕业务上下文，将它们连接起来。',
+  sources:'已有知识',inputs:['业务文档','SQL 与 ETL','数仓'],destinations:'使用共享上下文',outputs:['团队','AI Agent','应用与 BI'],
+  foundation:'本体与语义模型',
+  modules:[
+   {name:'Datus Studio',body:'团队协作开展 Agent 驱动数据工程的工作区。'},
+   {name:'Datus Agent',body:'支持数据工程与分析的完整数据 Agent。'},
+   {name:'DOSI Engine',body:'将兼容的 Ossie 定义转为原生 SQL 执行。'},
+   {name:'Apache Ossie Spec',body:'开放、中立的语义建模规范。'},
+  ],standardNote:'Apache Ossie（孵化中）',videoTitle:'通过业务场景了解 Datus',
+ },
+ pillars:{
+  eyebrow:'共享上下文带来的价值',heading:'让共享上下文真正可用。',
+  lead:'让 Agent 使用业务含义，将上下文带入工作，并让团队随时检查依据。',
+  items:[
+   {name:'理解业务',body:'将业务概念与关系，连接到指标、计算和源数据。',link:'了解业务含义',href:'#shared-context'},
+   {name:'融入 Agent 工作流程',body:'在 Studio 中使用 Datus Agent，也能将上下文与执行接入自己的 Agent 工作流程。',link:'了解 Agent 工作流程',href:'#interfaces'},
+   {name:'执行有据可查',body:'审核定义、检查生成的 SQL，并将结果追溯到源头。',link:'检查执行依据',href:'#runtime'},
+  ],
+ },
+ model:{
+  eyebrow:'理解业务',heading:'让 Agent 理解你的业务。',
+  lead:'把业务概念、关系和计算规则连接起来。Datus 将业务本体与可复用的语义层关联，让团队能够审核定义，确认它们所表达的业务含义。',
+  layers:[
+   {name:'业务本体',detail:'将业务概念和关系对应到语义定义，让 Agent 能够沿着模型理解客户、订单和交易的含义。',question:'连接业务概念与关系。',terms:['客户','下单','订单','履约方','供应商']},
+   {name:'语义层',detail:'Datus Agent 辅助起草可复用的指标、维度和计算定义，并将定义对应到使用的字段。',question:'让业务定义可以复用。',terms:['指标','维度','计算定义','源数据映射']},
+   {name:'现有数据',detail:'将选定的文档、SQL 和数仓表结构引入 Datus Agent 的上下文，以团队已有知识作为建模依据。',question:'从已有知识出发。',terms:['数仓','业务文档','SQL 与 ETL']},
+  ],illustration:{customer:'客户',order:'订单',line:'订单明细',places:'下单',contains:'包含',metric:'指标',dimension:'维度',mapping:'源数据映射',documents:'业务文档',sql:'SQL 与 ETL',warehouse:'数仓表结构',context:'共享上下文',labels:['相互关联的业务概念','可复用的语义定义','汇集已有知识']},connection:'从源数据到业务关系，含义始终相连',link:'了解语义层解决方案',
+ },
+ runtime:{
+  eyebrow:'执行有据可查',heading:'让业务含义进入可信的执行过程。',
+  lead:'审核定义，检查 DOSI 生成的原生 SQL，并在报告中核查数据来源与计算口径。',
+  role:'Datus 的语义执行模块，也可作为独立运行时使用。',
+  chain:['审核后的定义','DOSI 验证与规划','原生 SQL','可检查的结果'],
+  walkthrough:{
+   workspace:'Northstar · 执行依据',
+   titles:['审核模型变更','检查语义请求','查看生成的 SQL','核查报告的计算口径与数据来源'],
+   notes:[
+    'Semantic Hub · 审核示例。Approve 和 Merge 操作仅在预览中生效。',
+    '来自 Northstar 编译记录的输入。检查请求字段与模型；预览不会运行实时验证。',
+    'DOSI 编译器输出记录 · DuckDB。预览不会运行查询。',
+    'Northstar · 结果记录与模型定义。此报告不会运行查询。',
+   ],
+   request:'语义请求',model:'模型定义',source:'语义数据集',filter:'筛选条件',fields:'请求字段',
+   results:'查询结果',lineage:'源数据血缘',rows:'3 行',inspect:'点击步骤，查看对应界面',
+   simplified:{file:'northstar_premier.yaml',before:'修改前',after:'修改后',review:'审核示例',approve:'Approve',approved:'Approved',merge:'Merge',merged:'Merged',replay:'重新演示',
+    requestTitle:'指标查询',target:'执行目标',sqlExcerpt:'编译输出 · 节选',fullSql:'查看完整 SQL',
+    report:'Premier 客户报告',metric:'客户利润',insight:'计算口径与数据来源',source:'数据来源',calculation:'计算口径',
+    sourceHeading:'查询读取的表',calculationHeading:'引用的指标',filter:'筛选条件',recorded:'Northstar · 执行记录',clickMetric:'检查客户利润的计算依据',
+   },
+  },
+  evidence:[
+   {title:'按声明的规则执行。',body:'使用模型声明的关系、计算粒度和受支持的 fan-out 检查来规划查询。'},
+   {title:'明确表达执行边界。',body:'无法支持的请求返回明确错误，帮助团队判断需要修正哪些定义或请求。'},
+   {title:'沿着依据核查结果。',body:'检查业务定义、生成的 SQL、执行结果与血缘，再判断结果是否符合业务要求。'},
+  ],tabs:['模型定义','生成的 SQL','血缘与结果'],recorded:'Northstar · DuckDB 执行记录',excerpt:'源文件节选 · # … 表示省略的内容',
+  sqlNote:'SQL 来自演示项目的执行记录。预览不会运行查询。',lineageNote:'点击节点，查看源表、数据集与指标间的实际依赖。下方结果来自演示项目的执行记录。',
+  resultColumns:['客户','利润','订单数','退货率'],link:'开始使用 DOSI',
+ },
+ open:{
+  eyebrow:'以开放规范为基础',heading:'开放的定义，原生的执行。',
+  lead:'Apache Ossie 是开放、中立的语义模型规范。DOSI 让兼容的 Ossie 定义转为可执行的原生 SQL。',
+  definition:'用可审核的 Ossie 文件维护业务含义，转换受支持的已有模型，再用 DOSI 验证并在所选数据源中执行。',
+  flow:[{name:'Apache Ossie',role:'开放规范',detail:'用可审核的文件，定义数据集、关系、维度与指标。'},{name:'DOSI',role:'兼容的执行运行时',detail:'验证受支持的定义，规划请求并生成原生 SQL。'},{name:'你选择的数据源',role:'执行原生 SQL',detail:'在所选的受支持数据源中运行，检查 SQL 与返回结果。'}],
+  links:[{href:'/tools/osi-playground/',label:'了解 Ossie 规范'},{href:'/tools/semantic-model-converter/',label:'转换已有模型'},{href:'/databases/',label:'查看支持的数据源'}],
+  license:'Apache Ossie（孵化中）是开放规范。DOSI 是兼容的运行时，采用 Elastic License 2.0。',
+ },
+ journey:{
+  eyebrow:'工作原理',heading:'从已有知识，构建可复用的上下文。',
+  lead:'从数据系统已有的知识出发。Datus Agent 辅助整理相互关联的模型，让团队能够审核、执行并持续完善。',
+  steps:[
+   {name:'发现',title:'从已有知识出发。',body:'连接获准使用的数据源，将业务文档以及 SQL、ETL 中的知识引入工作区。',evidence:'项目初始化 · 选择已有 SQL 与上下文文件。初始化生成项目上下文，后续再开展建模。'},
+   {name:'建模',title:'把业务含义明确写入模型。',body:'使用 Datus Agent 辅助整理语义定义、业务概念和关系。在同一工作区对照源知识与模型。',evidence:'Studio · 文件编辑器、Agent 对话与附加的 SQL 上下文。'},
+   {name:'审核',title:'与团队共同核查模型。',body:'追溯源映射、计算与依赖，查看 YAML 差异，再批准并合并审核后的变更。',evidence:'Semantic Hub · 完整血缘 → YAML 差异 → Approve → Merge。演示操作仅在预览内生效。'},
+   {name:'执行',title:'检查模型如何转为计算。',body:'DOSI 验证兼容模型，将受支持的请求规划为原生 SQL，并让团队从执行记录追溯到定义。',evidence:'Northstar · 真实模型节选与 DuckDB SQL 执行记录。预览不会运行查询。'},
+   {name:'演进',title:'让审核后的改进持续复用。',body:'将确认后的修正纳入共享模型，供后续工作复用。由团队决定哪些变更成为共享上下文。',evidence:'Semantic Hub · 审核并合并 YAML 修正。通过明确的审核流程，让反馈成为可复用的定义。'},
+  ],preview:'产品流程演示',openPreview:'展开完整流程',closePreview:'关闭流程演示',
+ },
+ experience:{
+  eyebrow:'融入 Agent 工作流程',heading:'团队协作，也能接入自己的 Agent。',
+  lead:'共享同一份上下文：团队在工作区中协作，开发者将执行能力接入自己的工具。',
+  paths:[
+   {name:'面向团队',title:'在 Studio 中连接每一项工作。',body:'在 Datus Studio 中结合文件、SQL、结果与 Agent 对话，协作开展数据工作、审核上下文，并检查分析背后的依据。',href:'/products/studio/',link:'了解 Datus Studio'},
+   {name:'面向开发者',title:'使用完整的数据 Agent，也能构建自己的流程。',body:'Datus Agent 支持数据工程与分析，语义建模是其能力之一。通过 MCP、API、Python 或 CLI，将 DOSI 执行接入自己的工作流程。',href:'/products/cli/',link:'了解 Datus Agent'},
+  ],developerModes:['Agent 集成','终端'],developerNote:'MCP 与 API 连接应用，CLI 在用户自己的终端运行。',
+ },
+ faq:{
+  lead:'了解共享业务上下文的产品关系、执行边界与使用方式。',browseAll:'查看全部常见问题',
+  items:[
+   {q:'Datus 所说的“开放”是什么？',a:'开放指基于 Apache Ossie 规范、可以检查和复用的定义，以及能接入现有技术栈的受支持接口。DOSI 采用 Elastic License 2.0；datus-agent 是开源项目，两者的许可不同。'},
+   {q:'本体与语义层如何配合？',a:'本体表达业务概念、角色和关系；语义层定义指标、维度、计算与源数据映射。Datus 将两者关联，让团队与 Agent 能将业务含义对应到查询背后的定义。'},
+   {q:'查询在哪里执行？',a:'DOSI 将兼容定义转为所选受支持数据源的原生 SQL，具体执行路径由适配器和接口决定。跨数据源复用定义，并不意味着自动进行跨数仓联邦查询。'},
+   {q:'团队如何核查结果？',a:'检查模型及源映射、追溯血缘、审核生成的 SQL，并核验返回数据。受支持的验证与规划检查会明确执行约束；团队仍需审核业务含义和源数据质量。'},
+   {q:'Studio、Datus Agent 与 DOSI 有什么关系？',a:'Studio 是团队协作开展 Agent 驱动数据工作的工作区；Datus Agent 是支持工程与分析的完整数据 Agent；DOSI 是语义执行模块，也可通过受支持接口独立使用。'},
+  ],
+ },
+ closing:{heading:'让共享业务上下文，真正用起来。',lead:'让 Agent 理解业务，让团队协同工作，让执行有据可查。从 Studio 开始，或将 DOSI 接入自己的流程。',primary:UI.zh.common.tryStudio,secondary:'DOSI 快速开始'},
+}};

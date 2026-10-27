@@ -125,6 +125,8 @@ page.
 | context | 上下文 | never 情境 in a data setting |
 | Subagent | 子代理 | 子代理 in body copy; `Subagent` may stay in headings and product names |
 | Semantic Layer | 语义层 | |
+| ontology / business ontology | 本体 / 业务本体 | ontology connects business concepts and relationships to semantic definitions |
+| runtime / semantic execution runtime | 运行时 / 语义执行运行时 | DOSI may also be used independently |
 | semantic model | 语义模型 | |
 | metrics | 指标 | |
 | Reference SQL | Reference SQL | product concept, kept in English |
@@ -253,3 +255,54 @@ preview` and verify:
 - [ ] terminology matches §2
 - [ ] headless-load a few `/zh` pages: no console errors, no hydration mismatch
 - [ ] the non-blog sitemap contains the `/zh` mirrors and no Chinese blog URLs
+
+---
+
+# 6. Website motion conventions
+
+These are approved website-wide design rules. Apply them to new pages and similar interactions without waiting for the operator to ask again.
+
+## 6.1 Autoplay tabs
+
+- Autoplay tabs display their countdown **in the existing thick bottom border of the active tab**. The border is the progress track; never add a second, detached progress bar.
+- Reuse `src/hooks/useTimedTabs.ts` and `src/styles/tab-countdown.css` for new tab rotations. The current default is 6.5 seconds per panel. The timer and underline must share a cycle and duration.
+- Pause when the tabs leave the viewport, the document is hidden, or the visitor chooses Pause. Resuming preserves elapsed time. A manual selection resets that panel's countdown.
+- Provide a visible Pause/Play control. Keyboard focus/navigation pauses rotation; support arrow keys and Home/End without stealing focus during automatic transitions.
+- Respect `prefers-reduced-motion`: keep the content manually navigable and disable automatic rotation.
+
+## 6.2 Section entrances
+
+- Every major content section uses a subtle entrance when it enters the viewport: fade in with a small upward movement, once per page load.
+- Use the shared `setupSectionReveals` in `src/lib/section-reveal.ts`. React pages inherit it through `SiteLayout`; generated blog pages load `src/site-motion.ts` and the same section styles.
+- Do not stack a second entrance on a section that already has an authored intro, such as the homepage hero. Use `data-reveal-skip` for an intentional custom entrance.
+- Animate marketing sections rather than nested tool panes, code editors, controls, or modal contents. Preserve readability, layout, keyboard access, anchor navigation, printing, SSR and no-JavaScript rendering.
+- Reduced-motion visitors see the complete content immediately. Never hide prerendered content by default or depend on an animation to make it readable.
+
+## 6.3 Interactive product walkthroughs
+
+- Where a preview requires several clicks, guide the next action with a subtle cursor/click animation. Move the cue to the next real control after the visitor acts; never perform approval or merge actions automatically.
+- Cues must not intercept clicks, alter accessible control names, or obscure important content. Pause looping cues offscreen/in the background and provide a static cue for reduced motion.
+
+# 7. Header and hero continuity
+
+- The website header and hero have **no dividing line between them**, across pages, locales, themes and viewport sizes. Do not add a header bottom border, hero top border, pseudo-element separator or shadow that recreates that line.
+- Keep this in the shared navigation styles (`src/styles/site.css` and the Nordic theme styles), so React pages and generated blog pages inherit the same treatment. Header background behavior can remain page-specific.
+- This rule concerns the website header/hero boundary. It does not remove borders inside product previews, navigation dropdowns or content sections.
+
+# 8. Default website theme
+
+- All marketing and product pages, glossary pages, and generated blog pages start in **light mode** when no preference is stored. The HTML shell is light even without JavaScript.
+- Honor an explicit dark choice saved under `datus-home-theme`; use the same storage key in React and the static blog. Unavailable storage falls back to light.
+- Reuse `scripts/lib/site-theme.mjs` for the early head script and shell attributes. Vite and the blog generator both apply it, before first paint, so routes do not flash the opposite theme.
+- Theme controls, logos and prerendered React markup must agree with the light default. Keep the visitor's ability to toggle both themes.
+
+# 9. Approved company positioning
+
+Use **The trusted enterprise data context for AI agents.** in company positioning.
+Keep **data** in **enterprise data context**, including page titles, the homepage,
+footer, share images, and marketing assets. Chinese: **面向 AI Agent 的可信企业数据上下文**.
+Line breaks may adapt to the available space; retain the approved words.
+The three pillars remain **Business-aware. Agent-native. Audit-ready.**
+The broader visual identity and its current assets live in the separate
+`Datus-visual-identity` repository; do not bring that project's complete source
+or asset collection into this website repository.

@@ -1,12 +1,12 @@
+import { UI } from "../../../i18n/ui";
 import {
   BadgeCheck, Boxes, Cloud, GitBranch, GitPullRequest, MessageSquare, Share2, Sparkles, Zap,
 } from "lucide-react";
 import type { ProductPageData } from "../../../components/ProductPageTemplate";
-import { SLACK_URL, STUDIO_URL } from "../../../config/nav";
+import { SLACK_URL, STUDIO_START_URL } from "../../../config/nav";
 import type { Locale } from "../../../i18n/config";
+import { studioCtaUrl } from "../../../lib/studio-cta";
 
-// STUDIO_URL = the overview page (hosts the demo video).
-const REGISTER_URL = "https://studio.datus.ai/";
 const ENTERPRISE_CONTACT_URL = "/products/enterprise/#contact";
 const ENTERPRISE_URL = "/products/enterprise/";
 
@@ -16,8 +16,8 @@ const EN: ProductPageData = {
   subhead:
     "No install, no config. Connect your warehouse and watch a data engineering agent build context, write validated SQL, and answer real questions in minutes.",
   heroCtas: [
-    { label: "Watch demo video", href: STUDIO_URL, external: true, variant: "primary" },
-    { label: "Join Slack for an invite code", href: SLACK_URL, external: true, variant: "ghost" },
+    { label: UI.en.common.tryStudio, href: studioCtaUrl(STUDIO_START_URL, "studio_hero_signup", "en"), external: true, variant: "primary" },
+    { label: "Join Slack group", href: SLACK_URL, external: true, variant: "ghost" },
     { label: "On-prem deployment", href: ENTERPRISE_CONTACT_URL, variant: "ghost" },
   ],
   problem: {
@@ -71,8 +71,8 @@ const EN: ProductPageData = {
     heading: "Get your invite code and start free.",
     body: "Join our Slack for an invite code and free test tokens, then create your account.",
     ctas: [
-      { label: "Join Slack for an invite code", href: SLACK_URL, external: true, variant: "primary" },
-      { label: "Create your account", href: REGISTER_URL, external: true, variant: "ghost" },
+      { label: UI.en.common.tryStudio, href: studioCtaUrl(STUDIO_START_URL, "studio_closing_signup", "en"), external: true, variant: "primary" },
+      { label: "Join Slack group", href: SLACK_URL, external: true, variant: "ghost" },
     ],
   },
 };
@@ -83,8 +83,8 @@ const ZH: ProductPageData = {
   subhead:
     "免安装、免配置。连上你的数仓，几分钟内就能看到一个数据工程 Agent 自己构建上下文、写出经过校验的 SQL，并回答真实的业务问题。",
   heroCtas: [
-    { label: "观看演示视频", href: STUDIO_URL, external: true, variant: "primary" },
-    { label: "加入 Slack 获取邀请码", href: SLACK_URL, external: true, variant: "ghost" },
+    { label: UI.zh.common.tryStudio, href: studioCtaUrl(STUDIO_START_URL, "studio_hero_signup", "zh"), external: true, variant: "primary" },
+    { label: "加入 Slack 群组", href: SLACK_URL, external: true, variant: "ghost" },
     { label: "私有化部署", href: ENTERPRISE_CONTACT_URL, variant: "ghost" },
   ],
   problem: {
@@ -138,8 +138,8 @@ const ZH: ProductPageData = {
     heading: "领取邀请码，免费开始。",
     body: "加入我们的 Slack 获取邀请码和免费测试额度，然后注册账号。",
     ctas: [
-      { label: "加入 Slack 获取邀请码", href: SLACK_URL, external: true, variant: "primary" },
-      { label: "注册账号", href: REGISTER_URL, external: true, variant: "ghost" },
+      { label: UI.zh.common.tryStudio, href: studioCtaUrl(STUDIO_START_URL, "studio_closing_signup", "zh"), external: true, variant: "primary" },
+      { label: "加入 Slack 群组", href: SLACK_URL, external: true, variant: "ghost" },
     ],
   },
 };

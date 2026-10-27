@@ -1,0 +1,13 @@
+/* The existing tab separator is the countdown track. No second progress bar. */
+.tab-countdown-line{position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:var(--brand-bright,#7052ff);transform-origin:left;pointer-events:none;z-index:2;animation:tab-countdown var(--tab-duration,6.5s) linear forwards paused}
+.tab-countdown-line[data-running=true]{animation-play-state:running}
+@keyframes tab-countdown{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.nordic-pillar-tabs>button::before{display:none}
+.nordic-pillar-tabs>button{overflow:visible}
+.kj-steps>button{border-top:0;border-bottom:1px solid var(--line);overflow:visible}
+.pi-studio-tour{align-items:stretch}
+.pi-studio-tour>button:not(.pi-tour-play){border-bottom:1px solid transparent;margin-bottom:-1px}
+.pi-northstar .pi-segment{padding-bottom:0;border-radius:0;background:transparent;gap:10px}
+.pi-northstar .pi-segment>button{position:relative;border-bottom:1px solid #ded9ec;border-radius:0;margin-bottom:0}
+.pi-northstar .pi-segment>button[aria-pressed=true]{background:transparent;box-shadow:none}
+@media(prefers-reduced-motion:reduce){.tab-countdown-line[data-running=true]{animation:none}}

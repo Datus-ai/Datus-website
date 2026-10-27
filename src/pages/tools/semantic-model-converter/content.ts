@@ -1,3 +1,4 @@
+import { UI } from "../../../i18n/ui";
 import type { Locale } from '../../../i18n/config';
 
 interface IConverterPageCopy {
@@ -107,7 +108,7 @@ export const converterPage: Record<Locale, IConverterPageCopy> = {
     examplesArticle: 'Semantic Model Examples and YAML Guide',
     convertersArticle: 'Apache Ossie Conversion Guide',
     ossie: 'Apache Ossie Converter Documentation',
-    studio: 'Build and Convert Models in Datus Studio',
+    studio: UI.en.common.tryStudio,
   },
   zh: {
     title: '语义模型转换器',
@@ -188,7 +189,7 @@ export const converterPage: Record<Locale, IConverterPageCopy> = {
     examplesArticle: '语义模型样例与 YAML 指南',
     convertersArticle: 'Apache Ossie 转换指南（英文）',
     ossie: 'Apache Ossie 转换器文档',
-    studio: '在 Datus Studio 中构建和转换模型',
+    studio: UI.zh.common.tryStudio,
   },
 };
 
