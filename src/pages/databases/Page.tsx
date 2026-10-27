@@ -2,7 +2,8 @@ import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
 import FAQ from "../../components/FAQ";
-import { DOCS_URL, GITHUB_URL } from "../../config/nav";
+import { GITHUB_URL, STUDIO_START_URL } from "../../config/nav";
+import { studioCtaUrl } from "../../lib/studio-cta";
 import {
   CatalogSection,
   CodeBlock,
@@ -26,7 +27,8 @@ import { DB_ADAPTERS_DOCS, databasesPage, datasourceYaml, migrationExample } fro
 export default function DatabasesPage() {
   const t = useT(databasesPage);
   const faqItems = useT(databasesFaq);
-  const ui = UI[useLocale()];
+  const locale = useLocale();
+  const ui = UI[locale];
   const l = useHref();
   const databases = t.databases;
   return (
@@ -193,8 +195,8 @@ export default function DatabasesPage() {
               {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
-              <a className="btn btn-lg btn-primary" href={DB_ADAPTERS_DOCS} target="_blank" rel="noopener noreferrer">
-                {t.closing.docsCta} <ArrowRight size={17} />
+              <a className="btn btn-lg btn-primary" href={studioCtaUrl(STUDIO_START_URL, "databases_closing", locale)}>
+                {t.closing.signupCta} <ArrowRight size={17} />
               </a>
               <a className="btn btn-lg btn-ghost" href={l("/models/")}>
                 {t.closing.modelsCta} <ArrowRight size={17} />

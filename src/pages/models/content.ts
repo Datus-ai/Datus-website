@@ -1,4 +1,5 @@
 import type { Locale } from "../../i18n/config";
+import { UI } from "../../i18n/ui";
 
 export const PROVIDER_DOCS = "https://docs.datus.ai/models/providers/";
 
@@ -38,7 +39,7 @@ export interface ModelsCopy {
   };
   routing: { eyebrow: string; heading: string; lead: string; tags: string[] };
   faqLead: string;
-  closing: { heading: string; lead: string; docsCta: string; databasesCta: string; githubCta: string };
+  closing: { heading: string; lead: string; signupCta: string; databasesCta: string; githubCta: string };
 }
 
 export const pipelineYaml = `pipeline:
@@ -136,7 +137,7 @@ const EN: ModelsCopy = {
   closing: {
     heading: "Route the Right Model at Every Step",
     lead: "Configure planners, coders and rerankers per provider — Anthropic, OpenAI, Gemini, or your own self-hosted endpoint, all from one YAML.",
-    docsCta: "Model provider docs",
+    signupCta: UI.en.common.tryStudio,
     databasesCta: "Explore databases",
     githubCta: "View on GitHub",
   },
@@ -226,7 +227,7 @@ const ZH: ModelsCopy = {
   closing: {
     heading: "每一步都用对模型",
     lead: "按厂商配置 planner、coder 与 reranker——Anthropic、OpenAI、Gemini，或者你自己部署的端点，全部由一份 YAML 管理。",
-    docsCta: "模型厂商文档",
+    signupCta: UI.zh.common.tryStudio,
     databasesCta: "了解支持的数据库",
     githubCta: "在 GitHub 上查看",
   },

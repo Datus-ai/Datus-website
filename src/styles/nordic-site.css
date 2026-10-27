@@ -68,6 +68,12 @@ html, body, .site-root { background: var(--bg); color: var(--ink); }
 .prose pre code { color: #eeefe7; background: none; }
 @media(max-width:1240px) { .site-nav__links { display: none; } .site-nav__burger { display: inline-flex; } }
 @media(max-width:720px) { :root { --nav-h: 72px; } .site-nav__inner { padding-inline: 20px; gap: 8px; } .site-nav__inner > .nav-ghost-btn { display:none; } .site-nav__logo img { height: 27px; } .site-root:not(.nordic-home) > main::before { width: 320px; opacity: .045; } .section { padding-block: 64px; } }
+@media(max-width:420px) {
+ .site-nav__inner > .btn-sm { max-width:136px; white-space:normal; line-height:1.25; text-align:center; }
+ .site-root:not(.nordic-home) .site-nav__inner { padding-inline:12px; gap:6px; }
+ .site-root:not(.nordic-home) .site-nav__inner > .btn-sm { font-size:11px; padding:8px 10px; }
+ .site-root:not(.nordic-home) .site-nav__logo img { height:24px; }
+}
 
 .site-root .btn-primary, .site-root .btn-primary:hover { color: #fff; }
 .site-root:not(.nordic-home) > main[data-graphic="context-layers"]::before { mask-image:url('/brand/context-layers-transparent.svg'); }

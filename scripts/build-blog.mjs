@@ -25,6 +25,7 @@ const DIST = join(ROOT, "dist");
 const SITE = "https://datus.ai";
 const GITHUB_URL = "https://github.com/Datus-ai/Datus-agent";
 const STUDIO_URL = "https://studio.datus.ai/overview?utm_source=datus.ai&utm_medium=blog&utm_campaign=get_started";
+const STUDIO_NAV_URL = "https://studio.datus.ai/?utm_source=datus.ai&utm_medium=blog&utm_campaign=get_started&utm_content=blog_header";
 const SLACK_URL = "https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg";
 const DOCS_URL = "https://docs.datus.ai";
 
@@ -203,7 +204,7 @@ function navHtml() {
   <div class="site-nav__spacer"></div>
   <button id="theme-toggle" class="nordic-theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">☾</button>
   <a class="nav-ghost-btn" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">${SVG.github}<span class="star">${SVG.star}</span><span id="gh-stars">1.2k</span></a>
-  <a class="btn btn-primary btn-sm" href="${STUDIO_URL}">Get started</a>
+  <a class="btn btn-primary btn-sm" href="${STUDIO_NAV_URL}">Get Started Free</a>
   <button class="site-nav__burger" type="button" aria-label="Menu" onclick="this.closest('.site-nav').classList.toggle('open')">${SVG.burger}</button>
 </div></header>`;
 }
@@ -516,7 +517,7 @@ function postPage(post) {
   });
   const inner = `<div class="prose">${wrapTldr(cover.html)}</div>
     <div class="post-cta">
-      <a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Try Studio free</a>
+      <a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Get Started Free</a>
       <a class="btn btn-ghost btn-lg" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ Star on GitHub</a>
     </div>`;
   const body = articleBody({ crumbs, hero, inner, html: cover.html, canonical });
@@ -715,7 +716,7 @@ function buildReferencePages() {
       image: cover.image, imageAlt: cover.alt,
     });
     const inner = `<div class="prose">${wrapTldr(cover.html)}</div>
-      <div class="post-cta"><a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Try Studio free</a>
+      <div class="post-cta"><a class="btn btn-primary btn-lg" href="${STUDIO_URL}">Get Started Free</a>
       <a class="btn btn-ghost btn-lg" href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">★ Star on GitHub</a></div>`;
     const body = articleBody({ crumbs, hero, inner, html: cover.html, canonical });
     const html = shell({

@@ -1,3 +1,4 @@
+import { UI } from "../../i18n/ui";
 import type { Locale } from "../../i18n/config";
 
 /* -------------------------------------------------------------------------- */
@@ -215,7 +216,7 @@ const EN: IntegrationsCopy = {
   closing: {
     heading: "Bring Your Stack, We Plug In",
     lead: "Databases, models, semantic layers, BI copilots and observability — every layer is a plugin.",
-    startCta: "Get started free",
+    startCta: UI.en.common.tryStudio,
     docsCta: "Read the docs",
     githubCta: "Browse adapters on GitHub",
   },
@@ -345,7 +346,7 @@ const ZH: IntegrationsCopy = {
   closing: {
     heading: "把你的技术栈带来，我们负责接上",
     lead: "数据库、模型、语义层、BI Copilot 与可观测性——每一层都是插件。",
-    startCta: "免费开始使用",
+    startCta: UI.zh.common.tryStudio,
     docsCta: "阅读文档",
     githubCta: "在 GitHub 上浏览适配器",
   },

@@ -51,6 +51,7 @@ async function campaign(page, selector, expected) {
   const href = await page.$eval(selector, link => link.href);
   const url = new URL(href);
   assert.equal(url.hostname, 'studio.datus.ai');
+  if (selector.startsWith('.site-nav')) assert.equal(url.pathname, '/', 'Navigation enters Studio at its root');
   assert.deepEqual(Object.fromEntries(url.searchParams), expected);
   return href;
 }

@@ -1,3 +1,4 @@
+import { UI } from "../i18n/ui";
 import type { Locale } from '../i18n/config';
 
 const en = {
@@ -107,7 +108,7 @@ const en = {
    {q:'How do Studio, Datus Agent, and DOSI fit together?',a:'Studio is the workspace for collaborative Agent-driven data work. Datus Agent is a complete data Agent for engineering and analysis. DOSI is the semantic execution module and can also be used independently through its supported interfaces.'},
   ],
  },
- closing:{heading:'Put shared business context to work.',lead:'Business meaning for agents. A workflow your team can share. Execution you can inspect. Start in Studio or build with DOSI.',primary:'Try Datus in Studio',secondary:'Quickstart DOSI'},
+ closing:{heading:'Put shared business context to work.',lead:'Business meaning for agents. A workflow your team can share. Execution you can inspect. Start in Studio or build with DOSI.',primary:UI.en.common.tryStudio,secondary:'Quickstart DOSI'},
 };
 
 export const HOME_NARRATIVE:Record<Locale,typeof en>={en,zh:{
@@ -208,5 +209,5 @@ export const HOME_NARRATIVE:Record<Locale,typeof en>={en,zh:{
    {q:'Studio、Datus Agent 与 DOSI 有什么关系？',a:'Studio 是团队协作开展 Agent 驱动数据工作的工作区；Datus Agent 是支持工程与分析的完整数据 Agent；DOSI 是语义执行模块，也可通过受支持接口独立使用。'},
   ],
  },
- closing:{heading:'让共享业务上下文，真正用起来。',lead:'让 Agent 理解业务，让团队协同工作，让执行有据可查。从 Studio 开始，或将 DOSI 接入自己的流程。',primary:'在 Studio 中试用 Datus',secondary:'DOSI 快速开始'},
+ closing:{heading:'让共享业务上下文，真正用起来。',lead:'让 Agent 理解业务，让团队协同工作，让执行有据可查。从 Studio 开始，或将 DOSI 接入自己的流程。',primary:UI.zh.common.tryStudio,secondary:'DOSI 快速开始'},
 }};

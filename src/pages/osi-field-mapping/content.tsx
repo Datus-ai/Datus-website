@@ -1,3 +1,4 @@
+import { UI } from "../../i18n/ui";
 import type { ReactNode } from "react";
 import { InlineCode } from "../../components/catalog";
 import { DOCS_URL } from "../../config/nav";
@@ -49,7 +50,7 @@ export interface OsiMappingCopy {
   useCasesSection: { eyebrow: string; title: string; lead: string };
   useCases: { id: string; title: string; description: ReactNode }[];
   faqLead: string;
-  closing: { heading: string; lead: string; cta: string };
+  closing: { heading: string; lead: string; signupCta: string; cta: string };
 }
 
 const EN: OsiMappingCopy = {
@@ -228,6 +229,7 @@ const EN: OsiMappingCopy = {
   closing: {
     heading: "Try the OSI Playground.",
     lead: "Paste your MetricFlow YAML, get OSI back — validation, conversion and diff all run in your browser.",
+    signupCta: UI.en.common.tryStudio,
     cta: "Open OSI Playground",
   },
 };
@@ -399,6 +401,7 @@ const ZH: OsiMappingCopy = {
   closing: {
     heading: "去试试 OSI Playground。",
     lead: "贴进你的 MetricFlow YAML，拿回 OSI——校验、转换与 diff 全部在浏览器里完成。",
+    signupCta: UI.zh.common.tryStudio,
     cta: "打开 OSI Playground",
   },
 };

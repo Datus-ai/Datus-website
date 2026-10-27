@@ -1,3 +1,4 @@
+import { UI } from "../i18n/ui";
 import type { ReactNode } from "react";
 import type { Locale } from "../i18n/config";
 import { useHref } from "../i18n/LocaleContext";
@@ -140,7 +141,7 @@ const EN: HomeCopy = {
     titleTail: " for AI agents.",
     stackTitle: true,
     lead: <>Connect business ontology, governed metrics, and data provenance in one shared context layer. Give agents business meaning they can use—and teams the evidence to inspect their work.</>,
-    ctaPrimary: "Try Datus in Studio",
+    ctaPrimary: UI.en.common.tryStudio,
     ctaDeveloper: "Quickstart DOSI",
     contact: "Talk to us about your enterprise data stack",
     byoWarehouse: <>Business-aware · Agent-native · Audit-ready</>,
@@ -344,7 +345,7 @@ const ZH: HomeCopy = {
     titleAccent: "可信的企业数据上下文",
     titleTail: "。",
     lead: <>在共享的上下文层中，连接业务本体、受治理的指标与数据来源。让 Agent 使用明确的业务含义，让团队有据可依地核查工作。</>,
-    ctaPrimary: "在 Studio 体验 Datus",
+    ctaPrimary: UI.zh.common.tryStudio,
     ctaDeveloper: "查看 DOSI 快速开始",
     contact: "想在企业数据栈中使用？联系我们",
     byoWarehouse: <>理解业务 · 面向 Agent · 可供审查</>,

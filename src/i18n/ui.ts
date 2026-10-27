@@ -79,6 +79,7 @@ export type UiMessages = {
     heading: string;
   };
   common: {
+    tryStudio: string;
     capabilities: string;
     whatYouGet: string;
     quickstart: string;
@@ -229,6 +230,7 @@ export const UI: Record<Locale, UiMessages> = {
       heading: "Frequently asked questions",
     },
     common: {
+      tryStudio: "Get Started Free",
       capabilities: "Capabilities",
       whatYouGet: "What you get",
       quickstart: "Quickstart",
@@ -376,6 +378,7 @@ export const UI: Record<Locale, UiMessages> = {
       heading: "常见问题",
     },
     common: {
+      tryStudio: "免费开始使用",
       capabilities: "核心能力",
       whatYouGet: "你能得到什么",
       quickstart: "快速开始",

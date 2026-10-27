@@ -2,7 +2,7 @@ import { ChevronDown, Github, Menu, Star, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import {
   GITHUB_URL,
-  STUDIO_URL,
+  STUDIO_START_URL,
   siteNav,
   type NavItem,
 } from "../config/nav";
@@ -68,7 +68,7 @@ export default function SiteNav({ logoSrc = "/logo_dark.svg", controls }: { logo
   const locale = useLocale();
   const l = useHref();
   const t = UI[locale].nav;
-  const studioHref = studioCtaUrl(STUDIO_URL, studioNavTag(useCurrentPath(), "header"), locale);
+  const studioHref = studioCtaUrl(STUDIO_START_URL, studioNavTag(useCurrentPath(), "header"), locale);
 
   return (
     <header className="site-nav">
@@ -103,7 +103,7 @@ export default function SiteNav({ logoSrc = "/logo_dark.svg", controls }: { logo
         </a>
 
         <a className="btn btn-primary btn-sm" href={studioHref}>
-          {t.getStarted}
+          {UI[locale].common.tryStudio}
         </a>
 
         <button
@@ -126,7 +126,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   const locale = useLocale();
   const l = useHref();
   const t = UI[locale].nav;
-  const studioHref = studioCtaUrl(STUDIO_URL, studioNavTag(useCurrentPath(), "mobile_menu"), locale);
+  const studioHref = studioCtaUrl(STUDIO_START_URL, studioNavTag(useCurrentPath(), "mobile_menu"), locale);
   return (
     <div
       className="site-nav__mobile"
@@ -194,7 +194,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           href={studioHref}
           style={{ marginTop: 18 }}
         >
-          {t.getStartedFree}
+          {UI[locale].common.tryStudio}
         </a>
         <LanguageSwitcher className="nav-lang nav-lang--mobile" />
       </div>

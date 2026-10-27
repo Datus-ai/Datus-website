@@ -1,8 +1,9 @@
+import { UI } from "../../i18n/ui";
 // AUTO-PORTED from datus-design interfaces.chatbot (Supabase seed). Content is the
 // SEO source of truth; do not paraphrase. Rendered by <InterfaceView>.
 import type { InterfaceData } from "../../components/InterfaceView";
 import type { Locale } from "../../i18n/config";
-import { STUDIO_URL } from "../../config/nav";
+import { STUDIO_START_URL } from "../../config/nav";
 import { studioCtaUrl } from "../../lib/studio-cta";
 
 const EN: InterfaceData = {
@@ -186,9 +187,9 @@ const EN: InterfaceData = {
     "title": "Give Your Team a <span class=\"marker-amber\">Browser Data Chatbot</span>",
     "buttons": [
       {
-        "href": studioCtaUrl(STUDIO_URL, "chatbot_closing", "en"),
+        "href": studioCtaUrl(STUDIO_START_URL, "chatbot_closing", "en"),
         "icon": "arrow-right",
-        "label": "Try the web chatbot",
+        "label": UI.en.common.tryStudio,
         "variant": "ink",
         "external": true,
         "iconPosition": "right"
@@ -354,9 +355,9 @@ const ZH: InterfaceData = {
     "title": "给你的团队一个<span class=\"marker-amber\">浏览器数据聊天助手</span>",
     "buttons": [
       {
-        "href": studioCtaUrl(STUDIO_URL, "chatbot_closing", "zh"),
+        "href": studioCtaUrl(STUDIO_START_URL, "chatbot_closing", "zh"),
         "icon": "arrow-right",
-        "label": "试用 Web Chatbot",
+        "label": UI.zh.common.tryStudio,
         "external": true
       }
     ],

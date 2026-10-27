@@ -7,6 +7,9 @@ export { GITHUB_URL };
 /** Base destinations; callers add only utm_content with studioCtaUrl. */
 export const STUDIO_URL = "https://studio.datus.ai/overview";
 
+/** Global Get started buttons enter Studio directly. */
+export const STUDIO_START_URL = "https://studio.datus.ai/";
+
 /** Direct sign-in for homepage trial CTAs; the overview/demo URL stays separate. */
 export const STUDIO_LOGIN_URL = "https://studio.datus.ai/login";
 

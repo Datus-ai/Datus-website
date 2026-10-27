@@ -35,7 +35,9 @@ https://studio.datus.ai/login?utm_content=home_hero&utm_source=linkedin&utm_medi
 https://studio.datus.ai/login?utm_content=semantic_layer_hero&utm_source=linkedin&utm_medium=social&utm_campaign=product_launch
 ```
 
-参数在 URL 中的排列顺序不影响含义。现有的 Studio 目标路径保持不变：登录按钮仍去 `/login`，演示入口仍去 `/overview`。
+参数在 URL 中的排列顺序不影响含义。页头与手机菜单的 Studio 试用按钮直达 `https://studio.datus.ai/`；正文中的登录按钮仍去 `/login`，演示入口仍去 `/overview`。例如首页页头为 `https://studio.datus.ai/?utm_content=home_header`，中文版为 `https://studio.datus.ai/?utm_content=zh_home_header`。
+
+Studio 开通入口的按钮文案统一为 **Get Started Free**／**免费开始使用**，由 `src/i18n/ui.ts` 中的 `common.tryStudio` 维护。页面、位置和语言仍通过各自的 `utm_content` 区分；统一文案不合并标签。Studio 产品页不再提供演示视频按钮。
 
 ## 自然搜索如何传给 Studio
 
@@ -102,7 +104,7 @@ https://studio.datus.ai/login?utm_content=home_hero&utm_source=google&utm_medium
 |---|---|
 | 官网营销页面 | 读取 UTM 或识别自然搜索，按同意状态暂存，并合并到 Studio CTA |
 | 页面语言与主题 | 保持原有行为；语言切换后来源仍可继续使用 |
-| Blog 文章与 CTA | 历史 UTM 规则保持原样；共享的 Cookie 说明与撤回清理同步生效 |
+| Blog 文章与 CTA | 正文 CTA 的历史 UTM 规则保持原样；页头 Studio 试用按钮改为 Studio 根路径，保留历史 source／medium／campaign 并增加 `utm_content=blog_header`。共享的 Cookie 说明与撤回清理同步生效 |
 | Support 功能链接 | 反馈和部署文档入口保持原样；公共导航 CTA 使用新规则 |
 | Studio 注册流程 | 本次不修改，需要产品端保留登录、SSO 和注册跳转中的传入参数 |
 | GA4 与注册归因 | 本次不配置完整归因链路，也不新增注册成功事件 |

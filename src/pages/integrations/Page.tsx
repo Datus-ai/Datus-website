@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
 import FAQ from "../../components/FAQ";
-import { DOCS_URL, GITHUB_URL, STUDIO_URL } from "../../config/nav";
+import { DOCS_URL, GITHUB_URL, STUDIO_START_URL } from "../../config/nav";
 import { studioCtaUrl } from "../../lib/studio-cta";
 import {
   CatalogSection,
@@ -279,7 +279,7 @@ export default function IntegrationsPage() {
               {t.closing.lead}
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 26 }}>
-              <a className="btn btn-lg btn-primary" href={studioCtaUrl(STUDIO_URL, "integrations_closing", locale)} target="_blank" rel="noopener noreferrer">
+              <a className="btn btn-lg btn-primary" href={studioCtaUrl(STUDIO_START_URL, "integrations_closing", locale)} target="_blank" rel="noopener noreferrer">
                 {t.closing.startCta} <ArrowRight size={17} />
               </a>
               <a className="btn btn-lg btn-ghost" href={DOCS_URL} target="_blank" rel="noopener noreferrer">
