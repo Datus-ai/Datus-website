@@ -390,6 +390,27 @@
 .nordic-terminal-session[data-running=false] .cursor { animation-play-state:paused; }
 .nordic-terminal-evolve { color: #b3a4ff; margin-top: 17px; font-size: 12px; }
 .nordic-terminal-cursor { display: block; width: 6px; height: 12px; background: #b3a4ff; margin-top: 22px; }
+/* The hero console follows the selected theme without changing its live demo. */
+:root:not([data-theme="dark"]) .nordic-install-window {
+  --terminal-bg: var(--panel-solid); --terminal-bar: var(--panel-2); --terminal-line: var(--line-strong);
+  color: var(--ink);
+}
+:root:not([data-theme="dark"]) .nordic-install-window__bar,
+:root:not([data-theme="dark"]) .nordic-terminal-session__label { color: var(--ink-muted); }
+:root:not([data-theme="dark"]) .nordic-terminal-dots i { background: var(--ink-faint); }
+:root:not([data-theme="dark"]) .nordic-home .nordic-install { background: transparent; color: var(--ink); }
+:root:not([data-theme="dark"]) .nordic-home .nordic-install:hover { background: var(--brand-soft); }
+:root:not([data-theme="dark"]) .nordic-install svg,
+:root:not([data-theme="dark"]) .nordic-terminal-output { color: var(--ink-dim); }
+:root:not([data-theme="dark"]) .nordic-terminal-line,
+:root:not([data-theme="dark"]) .nordic-terminal-question .term__cmd { color: var(--ink); }
+:root:not([data-theme="dark"]) .nordic-terminal-success { color: var(--term-green); }
+:root:not([data-theme="dark"]) .nordic-install > span,
+:root:not([data-theme="dark"]) .nordic-terminal-prompt,
+:root:not([data-theme="dark"]) .nordic-terminal-question .term__prompt,
+:root:not([data-theme="dark"]) .nordic-terminal-evolve { color: var(--brand-bright); }
+:root:not([data-theme="dark"]) .nordic-terminal-question .cursor,
+:root:not([data-theme="dark"]) .nordic-terminal-cursor { background: var(--brand-bright); }
 .nordic-watermark-section { position: relative; overflow: hidden; }
 .nordic-watermark-section > :not(.nordic-watermark) { position: relative; z-index: 1; }
 .nordic-watermark { position: absolute; pointer-events: none; user-select: none; }
