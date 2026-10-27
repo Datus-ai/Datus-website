@@ -13,6 +13,7 @@ import MarkdownIt from "markdown-it";
 import anchor from "markdown-it-anchor";
 import { prepareCovers } from "./lib/blog-covers.mjs";
 import { withSiteTheme } from "./lib/site-theme.mjs";
+import { latestDate, sitemapIndex } from "./lib/sitemap-dates.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -771,7 +772,7 @@ function urlset(entries) {
 // standalone reference pages.
 function buildBlogSitemap(posts, refs = []) {
   const entries = [
-    { loc: "/blog/", lastmod: BUILD_DATE },
+    { loc: "/blog/", lastmod: latestDate([BUILD_DATE, ...[...posts.values()].map(p => isoDate(p.lastmod, BUILD_DATE))]) },
     ...[...posts.values()].map((p) => ({ loc: `/blog/${p.slug}/`, lastmod: isoDate(p.lastmod, BUILD_DATE) })),
     ...refs.map((r) => ({ loc: r.urlPath, lastmod: BUILD_DATE })),
   ];
@@ -780,9 +781,9 @@ function buildBlogSitemap(posts, refs = []) {
 
 // Top-level index that points crawlers at the child sitemaps.
 function buildSitemapIndex(children) {
-  const body = children.map((loc) =>
-    `  <sitemap><loc>${SITE}${loc}</loc><lastmod>${BUILD_DATE}</lastmod></sitemap>`).join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</sitemapindex>\n`;
+  return sitemapIndex(SITE, children.map(path => ({
+    path, xml: readFileSync(join(DIST, path), "utf8"),
+  })));
 }
 
 function main() {
