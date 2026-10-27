@@ -34,8 +34,7 @@ export type UiMessages = {
     language: string;
   };
   footer: {
-    apacheDisclaimer: string;
-    apacheNoticeLink: string;
+    apacheDisclaimer: { project: string; afterProject: string; foundation: string; afterFoundation: string };
     semanticConverter: string;
     cookiePolicy: string;
     cookieSettings: string;
@@ -179,8 +178,12 @@ export const UI: Record<Locale, UiMessages> = {
       language: "Language",
     },
     footer: {
-      apacheDisclaimer: "Apache Ossie (incubating) is a project in the Apache Incubator at the Apache Software Foundation (ASF). Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.",
-      apacheNoticeLink: "About Apache Ossie (incubating)",
+      apacheDisclaimer: {
+        project: "Apache Ossie (incubating)",
+        afterProject: " is a project in the Apache Incubator at the ",
+        foundation: "Apache Software Foundation (ASF)",
+        afterFoundation: ". Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.",
+      },
       semanticConverter: "Semantic Model Converter",
       cookiePolicy: "Cookie Policy",
       cookieSettings: "Cookie Settings",
@@ -322,8 +325,12 @@ export const UI: Record<Locale, UiMessages> = {
       language: "语言",
     },
     footer: {
-      apacheDisclaimer: "Apache Ossie（孵化中）是 Apache 软件基金会（ASF）旗下 Apache Incubator 中的项目。孵化过程涉及对社区和治理机制的审核，不代表对代码成熟度或稳定性的评价，也不表示该项目已获得 ASF 的全面认可。Apache 和 Apache Ossie 是 ASF 的商标。Datus 是独立产品，不代表 ASF 的认可或背书。",
-      apacheNoticeLink: "了解 Apache Ossie（孵化中）",
+      apacheDisclaimer: {
+        project: "Apache Ossie（孵化中）",
+        afterProject: "是 ",
+        foundation: "Apache 软件基金会（ASF）",
+        afterFoundation: "旗下 Apache Incubator 中的项目。孵化过程涉及对社区和治理机制的审核，不代表对代码成熟度或稳定性的评价，也不表示该项目已获得 ASF 的全面认可。Apache 和 Apache Ossie 是 ASF 的商标。Datus 是独立产品，不代表 ASF 的认可或背书。",
+      },
       semanticConverter: "语义模型转换器",
       cookiePolicy: "Cookie 政策",
       cookieSettings: "Cookie 设置",

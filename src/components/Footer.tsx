@@ -85,7 +85,7 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
         </nav>
       </div>
 
-      <div className="site-footer__apache"><p>{t.apacheDisclaimer}</p><a href="https://ossie.apache.org/">{t.apacheNoticeLink}</a></div>
+      <div className="site-footer__apache"><p><a href="https://ossie.apache.org/">{t.apacheDisclaimer.project}</a>{t.apacheDisclaimer.afterProject}<a href="https://www.apache.org/">{t.apacheDisclaimer.foundation}</a>{t.apacheDisclaimer.afterFoundation}</p></div>
 
       <div className="site-footer__bar">
         <span>© {year} {t.rights}</span>
