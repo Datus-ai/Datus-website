@@ -1,15 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
-<title id="t">After: agent-built views over governed semantic metrics</title><desc id="d">A business question reaches an agent. The agent selects reviewed metrics from a semantic model and composes a temporary HTML view or a persistent dashboard without duplicating the metric definition.</desc>
-<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1l7 4-7 4" fill="none" stroke="#402df3" stroke-width="2"/></marker></defs>
-<rect width="1200" height="630" fill="#f7f7f2"/><rect x="28" y="28" width="1144" height="574" rx="24" fill="#fdfdfa" stroke="#dfdce9" stroke-width="2"/>
-<g font-family="Inter,system-ui,Arial,sans-serif"><text x="64" y="86" fill="#402df3" font-size="15" font-weight="800" letter-spacing="2">AFTER</text><text x="64" y="137" fill="#252236" font-size="34" font-weight="700">The question shapes the view; the model holds the meaning</text>
-<rect x="64" y="243" width="201" height="118" rx="17" fill="#eeeaff" stroke="#afa7f2"/><text x="89" y="277" fill="#6258a8" font-size="12" font-weight="700">QUESTION</text><text x="89" y="314" fill="#252236" font-size="18" font-weight="650">Why did revenue</text><text x="89" y="341" fill="#252236" font-size="18" font-weight="650">change this week?</text>
-<path d="M270 302h52" stroke="#402df3" stroke-width="3" marker-end="url(#a)"/>
-<rect x="330" y="243" width="207" height="118" rx="17" fill="#402df3"/><text x="357" y="280" fill="#e1ddff" font-size="12" font-weight="700">ANALYTICS AGENT</text><text x="357" y="319" fill="white" font-size="20" font-weight="700">Plan · query · build</text><text x="357" y="344" fill="#e1ddff" font-size="12">Revises the visual layout</text>
-<path d="M543 302h55" stroke="#402df3" stroke-width="3" marker-end="url(#a)"/>
-<rect x="607" y="226" width="225" height="153" rx="17" fill="#eeeaff" stroke="#9f95eb" stroke-width="2"/><text x="632" y="261" fill="#6258a8" font-size="12" font-weight="700">SEMANTIC MODEL</text><text x="632" y="299" fill="#252236" font-size="18" font-weight="650">Reviewed metrics</text><text x="632" y="330" fill="#252236" font-size="18" font-weight="650">Dimensions + rules</text><text x="632" y="356" fill="#6258a8" font-size="12">One reusable contract</text>
-<path d="M838 302h47" stroke="#402df3" stroke-width="3" marker-end="url(#a)"/>
-<g fill="#fff" stroke="#b6b0d5" stroke-width="2"><rect x="894" y="201" width="232" height="119" rx="15"/><rect x="894" y="338" width="232" height="119" rx="15"/></g><text x="916" y="238" fill="#252236" font-size="18" font-weight="700">HTML view</text><text x="916" y="264" fill="#6c6684" font-size="13">For this investigation</text><path d="M918 299h29l17-18 20 8 20-26 34 19 21-14" fill="none" stroke="#402df3" stroke-width="3"/>
-<text x="916" y="375" fill="#252236" font-size="18" font-weight="700">Persistent dashboard</text><text x="916" y="401" fill="#6c6684" font-size="13">For recurring monitoring</text><rect x="918" y="418" width="42" height="18" rx="4" fill="#a99efa"/><rect x="967" y="418" width="42" height="18" rx="4" fill="#8170f1"/><rect x="1016" y="418" width="42" height="18" rx="4" fill="#5947e6"/>
-<path d="M718 384v85H431V365" fill="none" stroke="#887ced" stroke-width="2" stroke-dasharray="6 6"/><text x="64" y="550" fill="#68627b" font-size="14">Illustrative architecture. Real access, query execution, and publishing still need a configured runtime.</text>
-</g></svg>
+  <title id="t">After: an AI agent generates the dashboard view</title>
+  <desc id="d">A business question goes to an AI agent. The agent interprets the request, uses reviewed definitions from a semantic model when available, queries data through a configured runtime, and generates either a temporary HTML view or a reviewed recurring dashboard. The semantic model defines metrics; it does not build the page.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1l7 4-7 4" fill="none" stroke="#402df3" stroke-width="2"/></marker>
+    <marker id="soft-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1l7 4-7 4" fill="none" stroke="#887ced" stroke-width="2"/></marker>
+  </defs>
+  <rect width="1200" height="630" fill="#f7f7f2"/>
+  <rect x="28" y="28" width="1144" height="574" rx="24" fill="#fdfdfa" stroke="#dfdce9" stroke-width="2"/>
+  <g font-family="Inter,system-ui,Arial,sans-serif">
+    <text x="64" y="84" fill="#402df3" font-size="15" font-weight="800" letter-spacing="2">AFTER</text>
+    <text x="64" y="133" fill="#252236" font-size="33" font-weight="700">The AI agent builds the view; the model defines the metrics</text>
+    <text x="64" y="162" fill="#68627b" font-size="15">A question becomes a visual answer without making the metric definition disposable.</text>
+
+    <rect x="64" y="229" width="223" height="158" rx="18" fill="#eeeaff" stroke="#afa7f2" stroke-width="2"/>
+    <text x="88" y="266" fill="#6258a8" font-size="12" font-weight="800" letter-spacing="1">BUSINESS QUESTION</text>
+    <text x="88" y="312" fill="#252236" font-size="19" font-weight="650">Why did revenue</text>
+    <text x="88" y="342" fill="#252236" font-size="19" font-weight="650">change this week?</text>
+    <path d="M294 307h51" fill="none" stroke="#402df3" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <rect x="355" y="204" width="348" height="206" rx="22" fill="#402df3"/>
+    <circle cx="389" cy="242" r="15" fill="#8679ff"/>
+    <path d="M389 228v28M375 242h28M380 233l18 18M398 233l-18 18" stroke="#fff" stroke-width="1.6" opacity=".86"/>
+    <text x="418" y="249" fill="#fff" font-size="17" font-weight="800" letter-spacing=".3">AI / AGENT</text>
+    <path d="M380 271h297" stroke="#9186ff" stroke-width="1.5"/>
+    <text x="380" y="306" fill="#fff" font-size="17" font-weight="650">1  Interpret the question</text>
+    <text x="380" y="339" fill="#fff" font-size="17" font-weight="650">2  Select metrics + run the query</text>
+    <text x="380" y="372" fill="#fff" font-size="17" font-weight="650">3  Generate charts, filters + HTML</text>
+
+    <path d="M709 307h93v-49h39" fill="none" stroke="#402df3" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M802 307v92h39" fill="none" stroke="#402df3" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="850" y="211" width="276" height="108" rx="17" fill="#fff" stroke="#b6b0d5" stroke-width="2"/>
+    <text x="875" y="249" fill="#252236" font-size="19" font-weight="700">Generated HTML view</text>
+    <text x="875" y="275" fill="#6c6684" font-size="14">For this investigation</text>
+    <path d="M875 298h25l15-15 17 8 17-20 25 14 17-13" fill="none" stroke="#402df3" stroke-width="2.5"/>
+    <rect x="850" y="336" width="276" height="108" rx="17" fill="#fff" stroke="#b6b0d5" stroke-width="2"/>
+    <text x="875" y="373" fill="#252236" font-size="19" font-weight="700">Reviewed dashboard</text>
+    <text x="875" y="400" fill="#6c6684" font-size="14">For recurring monitoring</text>
+    <rect x="875" y="416" width="38" height="13" rx="3" fill="#a99efa"/>
+    <rect x="920" y="416" width="38" height="13" rx="3" fill="#8170f1"/>
+    <rect x="965" y="416" width="38" height="13" rx="3" fill="#5947e6"/>
+
+    <rect x="355" y="458" width="246" height="91" rx="15" fill="#eeeaff" stroke="#afa7f2" stroke-width="2"/>
+    <text x="377" y="489" fill="#6258a8" font-size="12" font-weight="800" letter-spacing=".6">SEMANTIC MODEL</text>
+    <text x="377" y="518" fill="#252236" font-size="16" font-weight="650">Reviewed metric definitions</text>
+    <text x="377" y="538" fill="#6258a8" font-size="12">Reusable across views</text>
+    <path d="M478 451v-33" fill="none" stroke="#887ced" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#soft-arrow)"/>
+
+    <rect x="622" y="458" width="228" height="91" rx="15" fill="#f5f3ff" stroke="#b6b0d5" stroke-width="2"/>
+    <text x="644" y="489" fill="#6258a8" font-size="12" font-weight="800" letter-spacing=".6">QUERY RUNTIME</text>
+    <text x="644" y="518" fill="#252236" font-size="16" font-weight="650">Executes against data</text>
+    <text x="644" y="538" fill="#6258a8" font-size="12">Access + refresh configured</text>
+    <path d="M667 417v32" fill="none" stroke="#887ced" stroke-width="2.5" marker-end="url(#soft-arrow)"/>
+
+    <text x="64" y="578" fill="#68627b" font-size="13">Illustrative architecture · The agent generates the page; teams review definitions, access, and publication.</text>
+  </g>
+</svg>

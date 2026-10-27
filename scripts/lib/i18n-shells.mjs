@@ -116,7 +116,7 @@ function write(file, content) {
  * here, so no blog URL can pick up a fabricated Chinese alternate.
  */
 export function buildPagesSitemap(i18n, lastmod) {
-  const { MIRRORED_PATHS, LOCALES, absoluteUrl, alternateLinks } = i18n;
+  const { MIRRORED_PATHS, ENGLISH_ONLY_PATHS, LOCALES, absoluteUrl, alternateLinks } = i18n;
   const entries = [];
   for (const path of MIRRORED_PATHS) {
     const links = Object.entries(alternateLinks(path))
@@ -127,6 +127,11 @@ export function buildPagesSitemap(i18n, lastmod) {
         `  <url>\n    <loc>${absoluteUrl(path, locale)}</loc>\n    <lastmod>${lastmod}</lastmod>\n${links}\n  </url>`,
       );
     }
+  }
+  for (const path of ENGLISH_ONLY_PATHS) {
+    entries.push(
+      `  <url>\n    <loc>${absoluteUrl(path, "en")}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`,
+    );
   }
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">

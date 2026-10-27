@@ -25,6 +25,8 @@ const MPA_ROUTES = [
   'security',
   'support',
   'policies/cookies',
+  'policies/privacy',
+  'policies/terms',
   'osi-field-mapping',
   'tools/osi-playground',
   'tools/semantic-model-converter',

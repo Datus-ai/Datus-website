@@ -37,6 +37,8 @@ export type UiMessages = {
     apacheDisclaimer: { project: string; afterProject: string; foundation: string; afterFoundation: string };
     semanticConverter: string;
     cookiePolicy: string;
+    privacyPolicy: string;
+    termsOfService: string;
     cookieSettings: string;
     tagline: string;
     products: string;
@@ -187,6 +189,8 @@ export const UI: Record<Locale, UiMessages> = {
       },
       semanticConverter: "Semantic Model Converter",
       cookiePolicy: "Cookie Policy",
+      privacyPolicy: "Privacy Statement",
+      termsOfService: "Terms of Service",
       cookieSettings: "Cookie Settings",
       tagline:
         "Trusted enterprise data context for AI agents. Business-aware. Agent-native. Audit-ready.",
@@ -335,6 +339,8 @@ export const UI: Record<Locale, UiMessages> = {
       },
       semanticConverter: "语义模型转换器",
       cookiePolicy: "Cookie 政策",
+      privacyPolicy: "隐私声明",
+      termsOfService: "服务条款",
       cookieSettings: "Cookie 设置",
       tagline:
         "为 AI Agent 提供可信的企业数据上下文。理解业务、面向 Agent、可供审查。",
