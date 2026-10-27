@@ -50,7 +50,10 @@ html, body, .site-root { background: var(--bg); color: var(--ink); }
 .site-root:not(.nordic-home) > main::after { content: ""; position: absolute; z-index: -1; bottom: 40px; left: -100px; width: 480px; height: 420px; pointer-events: none; background: var(--brand-bright); mask: url('/brand/loop-field-transparent.svg') center/contain no-repeat; opacity: .06; }
 .nordic-watermark img { display: block; width: 100%; height: auto; }
 [data-theme="dark"] .nordic-watermark img { filter: brightness(2.5) saturate(.5); }
-.term:not(.osi-win) { background: var(--terminal-bg); color: #eeefe7; --ink-faint: #a4ac9d; --ink-muted: #a4ac9d; --ink-dim: #c0c5b9; --brand-bright: #b3a4ff; --term-green: #9ac69d; --term-cyan: #91cbd3; --term-amber: #d4c198; }
+.term--adaptive { background: var(--panel-solid); color: var(--ink); }
+.term--adaptive > .term__bar { background: var(--panel-2); }
+.term:not(.osi-win):not(.term--adaptive), :root[data-theme="dark"] .term--adaptive { background: var(--terminal-bg); color: #eeefe7; --ink-faint: #a4ac9d; --ink-muted: #a4ac9d; --ink-dim: #c0c5b9; --brand-bright: #b3a4ff; --term-green: #9ac69d; --term-cyan: #91cbd3; --term-amber: #d4c198; }
+:root[data-theme="dark"] .term--adaptive > .term__bar { background: rgba(255,255,255,.02); }
 .osi-win { background: var(--panel-solid); color: var(--ink); }
 .osi-seg { background: var(--bg-2); }
 .site-footer, .site-foot { background: var(--bg-2); color: var(--ink-dim); border-color: var(--line); }

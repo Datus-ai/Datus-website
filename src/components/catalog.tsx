@@ -50,9 +50,9 @@ function WindowBar({ filename, meta }: { filename?: string; meta?: string }) {
   );
 }
 
-export function CodeBlock({ filename, lang, code }: { filename?: string; lang?: string; code: string }) {
+export function CodeBlock({ filename, lang, code, themeAware = false }: { filename?: string; lang?: string; code: string; themeAware?: boolean }) {
   return (
-    <div className="term">
+    <div className={`term${themeAware ? " term--adaptive" : ""}`}>
       <WindowBar filename={filename} meta={lang} />
       <div className="term__body" style={{ paddingBlock: 16 }}>
         <pre
@@ -195,14 +195,16 @@ export function SpecTable({
   lang = "yaml",
   columns,
   rows,
+  themeAware = false,
 }: {
   filename: string;
   lang?: string;
   columns: SpecTableColumn[];
   rows: SpecTableRow[];
+  themeAware?: boolean;
 }) {
   return (
-    <div className="term">
+    <div className={`term${themeAware ? " term--adaptive" : ""}`}>
       <WindowBar filename={filename} meta={lang} />
       <div style={{ overflowX: "auto" }}>
         <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left", minWidth: 640 }}>

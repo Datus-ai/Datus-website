@@ -106,6 +106,7 @@ export default function DatabasesPage() {
       {/* TABLE VIEW */}
       <CatalogSection alt>
         <SpecTable
+          themeAware
           filename="databases.yml"
           columns={t.table.columns.map((label) => ({ label }))}
           rows={databases.map((db) => ({
@@ -153,7 +154,7 @@ export default function DatabasesPage() {
               </div>
             </div>
             <div style={{ flex: "1 1 360px", minWidth: 300, width: "100%" }}>
-              <CodeBlock filename="layout-suggestions.sql" lang="sql" code={migrationExample} />
+              <CodeBlock themeAware filename="layout-suggestions.sql" lang="sql" code={migrationExample} />
             </div>
           </div>
         </div>
@@ -166,7 +167,7 @@ export default function DatabasesPage() {
           title={t.config.title}
           lead={t.config.lead}
         />
-        <CodeBlock filename="agent.yml" lang="yaml" code={datasourceYaml} />
+        <CodeBlock themeAware filename="agent.yml" lang="yaml" code={datasourceYaml} />
       </CatalogSection>
 
       {/* FAQ */}
