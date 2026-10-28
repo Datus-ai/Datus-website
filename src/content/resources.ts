@@ -6,17 +6,16 @@ type Resource = {
 };
 type ResourcesCopy = { eyebrow: string; heading: string; browse: string; items: [Resource, Resource, Resource] };
 
-// Latest publication batch (2026-10-19), verified on the public blog 2026-10-23.
-// Cover paths reuse each post's entry in blog/cover-manifest.json.
+// Spotlight selections. Cover paths reuse each post's entry in blog/cover-manifest.json.
 export const RESOURCES: Record<Locale, ResourcesCopy> = {
  en:{eyebrow:'Related resources',heading:'In the spotlight',browse:'Explore the blog',items:[
-  {category:'From the blog',title:'Composable Analytics: Agent-Built Views, Governed Metrics',description:'How agents assemble visual reports while reusing governed metric definitions.',cta:'Read the article',href:'/blog/composable-analytics-agent-built-dashboards/',image:'/images/composable-analytics-agent-built-dashboards/cover.svg',variant:'article'},
-  {category:'From the blog',title:'Convert Semantic Models to Ossie: Cube, dbt and More',description:'Bring compatible existing models into Apache Ossie with supported conversion paths.',cta:'Read the article',href:'/blog/convert-semantic-models-to-ossie/',image:'/images/convert-semantic-models-to-ossie/editorial-cover.svg',variant:'article'},
-  {category:'From the blog',title:'Is the Dashboard Dead?',description:'Where agent-built views fit, and why shared metric definitions still matter.',cta:'Read the article',href:'/blog/is-the-dashboard-dead/',image:'/images/is-the-dashboard-dead/manual-dashboard-architecture.svg',variant:'article'},
+  {category:'From the blog',title:'Introducing DOSI: Executable Business Context for AI Agents',description:'How Datus Agent, Studio, and DOSI turn reviewed business definitions into calculations teams can inspect.',cta:'Read the article',href:'/blog/datus-dosi-executable-business-context/',image:'/images/datus-dosi-executable-business-context/cover-meet-dosi.png',variant:'article'},
+  {category:'From the blog',title:'Semantic Layer vs Ontology: Why AI Agents Need Both',description:'Why AI agents need shared metric definitions and business relationships to work together.',cta:'Read the article',href:'/blog/semantic-layer-vs-ontology/',image:'/images/semantic-layer-vs-ontology/resource-cover.svg',variant:'article'},
+  {category:'From the blog',title:'Ontology for AI Agents: Five Approaches to Business Context',description:'Five ways to give AI agents business context, from semantic layers to knowledge graphs.',cta:'Read the article',href:'/blog/ontology-for-ai-agents-five-approaches/',image:'/images/ontology-for-ai-agents-five-approaches/cover-business-meaning.svg',variant:'article'},
  ]},
  zh:{eyebrow:'相关资源',heading:'值得关注',browse:'浏览博客',items:[
-  {category:'最新博客',title:'可组合分析：Agent 构建视图，复用受治理的指标',description:'了解 Agent 如何生成可视化报告，并复用团队维护的指标定义。',cta:'阅读文章',href:'/blog/composable-analytics-agent-built-dashboards/',image:'/images/composable-analytics-agent-built-dashboards/cover.svg',variant:'article'},
-  {category:'最新博客',title:'将语义模型转换为 Ossie：从 Cube、dbt 等工具出发',description:'通过受支持的转换路径，将兼容的已有模型迁移到 Apache Ossie。',cta:'阅读文章',href:'/blog/convert-semantic-models-to-ossie/',image:'/images/convert-semantic-models-to-ossie/editorial-cover.svg',variant:'article'},
-  {category:'最新博客',title:'仪表盘会消失吗？',description:'Agent 生成的视图适合哪些场景，为什么共享指标定义仍然重要。',cta:'阅读文章',href:'/blog/is-the-dashboard-dead/',image:'/images/is-the-dashboard-dead/manual-dashboard-architecture.svg',variant:'article'},
+  {category:'最新博客',title:'DOSI 发布：让业务上下文成为 AI Agent 可执行的定义',description:'了解 Datus Agent、Studio 与 DOSI 如何将团队审核的业务定义用于可检查的计算。',cta:'阅读文章',href:'/blog/datus-dosi-executable-business-context/',image:'/images/datus-dosi-executable-business-context/cover-meet-dosi.png',variant:'article'},
+  {category:'博客精选',title:'语义层与本体：为什么 AI Agent 两者都需要',description:'了解共享指标定义与业务关系如何共同为 AI Agent 提供可靠上下文。',cta:'阅读文章',href:'/blog/semantic-layer-vs-ontology/',image:'/images/semantic-layer-vs-ontology/resource-cover.svg',variant:'article'},
+  {category:'博客精选',title:'面向 AI Agent 的本体：构建业务上下文的五种方法',description:'比较语义层、开放标准和知识图谱等五种提供业务上下文的方法。',cta:'阅读文章',href:'/blog/ontology-for-ai-agents-five-approaches/',image:'/images/ontology-for-ai-agents-five-approaches/cover-business-meaning.svg',variant:'article'},
  ]},
 };

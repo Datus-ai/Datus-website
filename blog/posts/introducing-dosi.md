@@ -149,6 +149,7 @@ Start with governed metric definitions and whether your organization wants a por
 
 ## Related articles
 
+- [Introducing DOSI: Executable Business Context for AI Agents](/blog/datus-dosi-executable-business-context/) — how Datus Agent, Studio and DOSI fit together around reviewed definitions.
 - [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the interchange standard Dosi compiles.
 - [First Native Apache Ossie Engine](/blog/first-native-apache-ossie-engine/) — the native-implementation framing behind Dosi.
 - [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) — OSI-native vs dbt-centric runtime.

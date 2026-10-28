@@ -101,7 +101,7 @@ const CATEGORIES = [
       "make-data-agents-truly-usable-ask-explore-and-control-with-confidence",
       "full-stack-data-engineer-harness", "chatbi-to-data-agent-13-months"] },
   { label: "Releases", description: "What's new in Datus.",
-    slugs: ["dosi-datus-agent-level-of-detail", "semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
+    slugs: ["datus-dosi-executable-business-context", "dosi-datus-agent-level-of-detail", "semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
       "datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
 ];
 
@@ -121,7 +121,13 @@ const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
 // headings, which would otherwise emit multiple <h1>s.
 function renderBody(content) {
   const stripped = content.replace(/^\s*#\s+.+\r?\n+/, "");
-  return md.render(stripped).replace(/<(\/?)h1\b/g, "<$1h2");
+  const html = md.render(stripped).replace(/<(\/?)h1\b/g, "<$1h2");
+  const marker = '<div data-blog-home-architecture></div>';
+  if (!html.includes(marker)) return html;
+  // Snapshot of the homepage's HTML diagram. The source article remains readable
+  // Markdown, while the published page gets the same semantic, responsive figure.
+  const diagram = readFileSync(join(ROOT, 'blog', 'partials', 'home-architecture.html'), 'utf8').trim();
+  return html.replace(marker, diagram);
 }
 
 function fmtDate(d) {
@@ -501,7 +507,9 @@ function postPage(post) {
   const head =
     (post.keywords ? `<meta name="keywords" content="${esc(post.keywords)}" />\n` : "") +
     `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` +
-    faqLd;
+    faqLd +
+    (post.slug === 'datus-dosi-executable-business-context'
+      ? '\n<link rel="stylesheet" href="/blog/home-architecture.css" />' : '');
   const updated = post.lastmod && post.lastmod !== post.date ? `Updated ${fmtDate(post.lastmod)}` : "";
   const byline = [fmtDate(post.date), updated, readTime(post.html), post.author ? `By ${post.author}` : ""]
     .filter(Boolean).join("  ·  ");
@@ -535,7 +543,7 @@ function postPage(post) {
 function indexPage(posts) {
   // Published date controls the feed; edits never move older articles to the top.
   const sorted = [...posts.values()].sort((a,b) => (Date.parse(b.date)||0) - (Date.parse(a.date)||0) || a.slug.localeCompare(b.slug));
-  const featured = posts.get("semantic-layer-in-the-agent-loop") || sorted[0];
+  const featured = posts.get("datus-dosi-executable-business-context") || sorted[0];
   const heroPicks = ["semantic-layer-vs-ontology", "what-is-conversational-bi"].map(slug => posts.get(slug)).filter(Boolean);
   const memberships = p => [...CATEGORIES.filter(c=>c.slugs.includes(p.slug)).map(c=>slugify(c.label)), ...(p.tags.includes(INSIGHT_TAG)?[INSIGHT_ID]:[]), ...(!categoryFor(p.slug)?['more-essays']:[])];
   const cats = [{label:INSIGHT_LABEL,id:INSIGHT_ID}, ...CATEGORIES.map(c=>({label:c.label,id:slugify(c.label)})), {label:'More essays',id:'more-essays'}].filter(c=>sorted.some(p=>memberships(p).includes(c.id)));
@@ -606,6 +614,8 @@ function blogCss() {
 .prose pre{margin:22px 0;padding:16px 18px;border-radius:12px;background:#070d22;border:1px solid var(--line-strong);overflow-x:auto}
 .prose pre code{background:none;padding:0;font-size:13.5px;line-height:1.6;color:#dfe3ff}
 .prose img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:24px 0}
+.prose .post-video{aspect-ratio:16/9;width:100%;overflow:hidden;border-radius:12px;border:1px solid var(--line);margin:24px 0;background:#111}
+.prose .post-video iframe{display:block;width:100%;height:100%;border:0}
 .prose table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14.5px}
 .prose th,.prose td{border:1px solid var(--line-strong);padding:10px 12px;text-align:left}
 .prose th{background:var(--panel);color:var(--ink);font-weight:650}
@@ -806,6 +816,17 @@ function main() {
   }
 
   write(join(DIST, "blog", "blog.css"), blogCss());
+  // Use the homepage's architecture styles for the in-article HTML diagram.
+  // The article-specific overrides let it span the two-column blog layout.
+  write(join(DIST, "blog", "home-architecture.css"),
+    readFileSync(join(ROOT, "src", "styles", "home-narrative.css"), "utf8") + `
+.prose .hp-architecture{margin:28px 0 40px;width:100%;max-width:none;line-height:1.5;grid-template-columns:minmax(105px,.8fr) 34px minmax(0,2.8fr) 34px minmax(105px,.8fr)}
+.prose .hp-architecture-module{grid-template-columns:85px minmax(0,1fr);gap:8px}
+.prose .hp-module-art{width:85px}
+.prose .hp-architecture .hp-module-art{border:0;border-radius:0;margin:0;max-width:100%}
+.prose .hp-architecture h3,.prose .hp-architecture p{letter-spacing:normal}
+@media(max-width:720px){.prose .hp-architecture{display:flex}.prose .hp-architecture-module{grid-template-columns:95px minmax(0,1fr)}.prose .hp-module-art{width:95px}}
+`);
 
   for (const post of posts.values()) {
     write(join(DIST, "blog", post.slug, "index.html"), postPage(post));
