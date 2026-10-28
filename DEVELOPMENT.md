@@ -123,15 +123,20 @@ across marketing, Chinese, policy, and blog routes.
 
 ## Studio CTA link tags
 
-Prerendered marketing links to Studio use **only `utm_content`** for the website CTA's
-page and placement (for example `home_hero` or
+All prerendered website links to Studio (including support and generated blog
+links) use `utm_source=datus.ai` as a fallback and `utm_content` for the website
+CTA's page and placement (for example `home_hero` or
 `solutions_semantic_layer_header`). Chinese links prefix the value with
-`zh_`. Reuse `src/lib/studio-cta.ts` so prerendered and hydrated links agree.
-Keep the original Studio destination path.
+`zh_`. Reuse `src/lib/studio-cta.ts` for localized CTA labels and the shared
+`src/lib/studio-url.mjs` builder for URL assembly in React and the blog generator.
+The builder puts `utm_source` first, preserves destination paths and unrelated
+query/hash values, and replaces the whole campaign.
 
-Do not invent `utm_source`, `utm_medium`, or `utm_campaign` for website
-placements. After hydration, `src/lib/studio-campaign.ts` copies only those
-three fields from an external tagged arrival onto tagged Studio CTAs, retaining
+Use `datus.ai` only when no valid campaign is available; never fill missing fields
+in a partial external campaign. Do not invent `utm_medium` or `utm_campaign` for
+website placements. The fallback is not stored as campaign evidence. After
+hydration (or loading the static blog), `src/lib/studio-campaign.ts` copies only
+those three fields from an external tagged arrival onto all HTTPS Studio links, retaining
 the button's own `utm_content`. Without explicit UTM, recognized search hosts
 from `document.referrer` supply a source plus `organic`, never an invented
 campaign. See `src/lib/organic-search.ts` for exact allowed hosts and common
@@ -144,15 +149,17 @@ non-empty, at most 100 characters, and contain no control characters.
 After accepting usage analytics, campaign fields and their capture time are
 stored in `sessionStorage` for 30 minutes from capture, without sliding expiry.
 Before acceptance, after refusal, or with unavailable storage, only the current
-URL's values or recognized current search referrer can be forwarded. No complete
+URL's values or recognized current search referrer can be forwarded; otherwise
+links use the website fallback. No complete
 referrer URL or search terms are stored. Refusal, withdrawal, and expired consent clear
 the cache. Dynamic menus, native new-tab opening, and back/forward restoration
 use the same decorated hrefs. Separate tabs do not share session storage.
 No new event collector, visitor ID, cross-domain consent, or registration event
 is added. Studio must retain incoming parameters through its own sign-up flow.
 See [the handoff specification](docs/studio-utm-handoff.md).
-The generated blog's existing tags and support action links are outside this
-marketing-link change.
+The static blog uses the same campaign handoff; its generated CTAs identify
+placement with `blog_header` / `blog_cta`. Raw article links and support actions
+retain their destinations and use the same source fallback and handoff.
 
 After `npm run build:all`, run `npm run test:studio-campaign` to check URL
 allowlisting, source/medium/campaign handoff, consent, expiration, locale and

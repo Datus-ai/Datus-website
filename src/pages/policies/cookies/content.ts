@@ -51,7 +51,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       {
         title: "Website Campaign Parameters",
         paragraphs: [
-          "Tagged Studio links can carry incoming utm_source, utm_medium, and utm_campaign values along with the website button's own utm_content. Without explicit UTM, a recognized search-engine referrer supplies a source and organic medium, without inventing a campaign. Only these three source fields are forwarded, with at most 100 characters per field. Complete referrer URLs, search terms, sign-in codes, and other query parameters are not copied. No visitor identifier or new collection endpoint is added.",
+          "Tagged Studio links can carry incoming utm_source, utm_medium, and utm_campaign values along with the website button's own utm_content. Without explicit UTM, a recognized search-engine referrer supplies a source and organic medium, without inventing a campaign. When no valid campaign is available, links use utm_source=datus.ai without adding a medium or campaign; this fallback is not stored. Partial external UTM sets remain unchanged. Only these three source fields are forwarded, with at most 100 characters per field. Complete referrer URLs, search terms, sign-in codes, and other query parameters are not copied. No visitor identifier or new collection endpoint is added.",
           "After you accept usage analytics, the website keeps these campaign fields and their capture time in sessionStorage for up to 30 minutes in the current tab. This lets them accompany a Studio link after you browse another marketing page. A new URL containing campaign fields, or a newly recognized search referrer, replaces the previous set rather than combining campaigns. Explicit UTM takes priority; known advertising-click identifiers prevent organic inference. Rejecting, withdrawing, or allowing consent to expire clears this storage. Without acceptance, or if browser storage is blocked, only current URL values or a recognized current search referrer can accompany a Studio link. Separately opened tabs do not share this storage; browsers may copy it when opening a tab from an existing one.",
         ],
       },
@@ -166,7 +166,7 @@ export const cookiePolicy: Record<Locale, ICookiePolicy> = {
       {
         title: "官网推广来源参数",
         paragraphs: [
-          "已标记的 Studio 链接可携带传入的 utm_source、utm_medium 和 utm_campaign，以及官网按钮自己的 utm_content。没有显式 UTM 时，可根据可识别的搜索引擎来源生成 source 与 organic medium，不编造 campaign。只转发这三个来源字段，每个字段最多 100 个字符；完整来源 URL、搜索词、登录验证码和其他查询参数不会被复制。此功能不添加访客标识，也不新增数据采集接口。",
+          "已标记的 Studio 链接可携带传入的 utm_source、utm_medium 和 utm_campaign，以及官网按钮自己的 utm_content。没有显式 UTM 时，可根据可识别的搜索引擎来源生成 source 与 organic medium，不编造 campaign。没有有效推广来源时，链接使用 utm_source=datus.ai，不额外生成 medium 或 campaign，也不保存这个默认值；外部 UTM 只有部分字段时仍保持原样。只转发这三个来源字段，每个字段最多 100 个字符；完整来源 URL、搜索词、登录验证码和其他查询参数不会被复制。此功能不添加访客标识，也不新增数据采集接口。",
           "接受使用分析后，官网会在当前标签页的 sessionStorage 中临时保存这些推广参数和获取时间，最多 30 分钟，以便浏览其他营销页面后仍能随 Studio 链接传递。新的 URL 带来推广参数，或识别到新的自然搜索来源时，整体替换之前的一组，不混合不同活动。显式 UTM 优先；出现已知广告点击标识时，不推断为自然搜索。拒绝、撤回或同意到期后清理保存内容。未接受或浏览器禁止存储时，只传递当前 URL 参数或当前可识别的搜索引擎来源。独立打开的标签页不共享这项存储；从已有标签页打开新页时，浏览器可能复制其内容。",
         ],
       },

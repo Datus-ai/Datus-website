@@ -87,7 +87,7 @@ try {
       scenario.title,
     );
     const deploymentRel = await page.$eval(
-      'a[href="https://studio.datus.ai/deployment"]',
+      'a[href^="https://studio.datus.ai/deployment?"]',
       (el) => [...el.relList],
     );
     assert.ok(deploymentRel.includes("noopener"));
@@ -241,6 +241,7 @@ try {
       {},
       scenario.copied,
     );
+    await page.bringToFront();
     const copied = await page.evaluate(() => navigator.clipboard.readText());
     assert.ok(copied.includes("Trace ID") && copied.includes("\n"));
     // The fallback must give honest failure feedback and leave no hidden field.

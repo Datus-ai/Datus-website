@@ -1,14 +1,14 @@
 # Datus 官网到 Studio 的 UTM 参数传递说明
 
-更新日期：2026 年 10 月 26 日。适用于网站改版 PR #94 中的非 Blog 营销页面，包括中英文页面和移动菜单。
+更新日期：2026 年 10 月 28 日。适用于官网所有 Studio 跳转，包括中英文营销页面、移动菜单、支持页以及 Blog 导航、CTA 和正文链接。
 
-外部推广链接用 `utm_source`、`utm_medium`、`utm_campaign` 说明用户从哪里来；没有这些参数时，官网也会尝试识别搜索引擎来源。官网用 `utm_content` 说明用户点击了哪个按钮，并将来源和按钮标识合并到 Studio 链接中，不把外部来源改写成 `datus.ai`。
+外部推广链接用 `utm_source`、`utm_medium`、`utm_campaign` 说明用户从哪里来；没有这些参数时，官网也会尝试识别搜索引擎来源。官网用 `utm_content` 说明用户点击了哪个按钮，并将来源和按钮标识合并到 Studio 链接中，不把外部来源改写成 `datus.ai`。没有有效推广来源时，使用 `utm_source=datus.ai` 兜底，不额外生成 medium 或 campaign，也不把默认值保存成推广来源。
 
 ## 参数如何分工
 
 | 参数 | 负责填写 | 示例 | 官网处理方式 |
 |---|---|---|---|
-| `utm_source` | 外部推广链接，或搜索引擎识别 | `linkedin`、`youtube`、`google` | 显式传入值优先；否则可识别为搜索引擎名称 |
+| `utm_source` | 外部推广链接，或搜索引擎识别 | `linkedin`、`youtube`、`google` | 显式传入值优先；否则可识别为搜索引擎名称；没有有效推广来源时使用 `datus.ai` |
 | `utm_medium` | 外部推广链接，或搜索引擎识别 | `social`、`video`、`email`、`organic` | 沿用传入值；自然搜索使用 `organic` |
 | `utm_campaign` | 外部推广链接 | `product_launch` | 沿用传入值；自然搜索不编造 campaign |
 | `utm_content` | 官网 CTA | `home_hero` | 使用当前按钮的固定标识 |
@@ -26,16 +26,16 @@ https://datus.ai/?utm_source=linkedin&utm_medium=social&utm_campaign=product_lau
 用户点击首页 Hero 的 Studio 按钮后，目标链接为：
 
 ```text
-https://studio.datus.ai/login?utm_content=home_hero&utm_source=linkedin&utm_medium=social&utm_campaign=product_launch
+https://studio.datus.ai/login?utm_source=linkedin&utm_content=home_hero&utm_medium=social&utm_campaign=product_launch
 ```
 
 接受使用分析后，用户也可以先进入解决方案页，再点击该页的按钮：
 
 ```text
-https://studio.datus.ai/login?utm_content=semantic_layer_hero&utm_source=linkedin&utm_medium=social&utm_campaign=product_launch
+https://studio.datus.ai/login?utm_source=linkedin&utm_content=semantic_layer_hero&utm_medium=social&utm_campaign=product_launch
 ```
 
-参数在 URL 中的排列顺序不影响含义。页头与手机菜单的 Studio 试用按钮直达 `https://studio.datus.ai/`；正文中的登录按钮仍去 `/login`，演示入口仍去 `/overview`。例如首页页头为 `https://studio.datus.ai/?utm_content=home_header`，中文版为 `https://studio.datus.ai/?utm_content=zh_home_header`。
+所有链接统一通过 `src/lib/studio-url.mjs` 组装；存在 `utm_source` 时，固定放在查询参数第一位，例如 `https://studio.datus.ai/login?utm_source=datus.ai&utm_content=home_hero`。不改变目标路径、其他业务参数或片段。页头与手机菜单的 Studio 试用按钮直达 `https://studio.datus.ai/`；正文中的登录按钮仍去 `/login`，演示入口仍去 `/overview`。例如首页页头为 `https://studio.datus.ai/?utm_source=datus.ai&utm_content=home_header`，中文版为 `https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_home_header`。
 
 Studio 开通入口的按钮文案统一为 **Get Started Free**／**免费开始使用**，由 `src/i18n/ui.ts` 中的 `common.tryStudio` 维护。页面、位置和语言仍通过各自的 `utm_content` 区分；统一文案不合并标签。Studio 产品页不再提供演示视频按钮。
 
@@ -44,14 +44,14 @@ Studio 开通入口的按钮文案统一为 **Get Started Free**／**免费开�
 Google 自然搜索的官网链接通常没有 UTM。如果浏览器提供了可识别的 Google 搜索来源，官网会在 Studio CTA 上补充：
 
 ```text
-https://studio.datus.ai/login?utm_content=home_hero&utm_source=google&utm_medium=organic
+https://studio.datus.ai/login?utm_source=google&utm_content=home_hero&utm_medium=organic
 ```
 
 识别范围为代码中明确列出的搜索域名：Google 及常见地区域名、Bing、DuckDuckGo、Yahoo Search、百度、搜狗、360、Yandex、Naver Search、Brave Search、Ecosia、Startpage 和 Qwant。`utm_source` 分别使用 `google`、`bing`、`duckduckgo`、`yahoo`、`baidu`、`sogou`、`360`、`yandex`、`naver`、`brave`、`ecosia`、`startpage`、`qwant`；`utm_medium` 统一为 `organic`。
 
 这是一套基于浏览器来源域名的识别规则，不等于读取 Google Analytics 的归因结果。浏览器未提供来源、来源不在白名单内、来自 Gmail 等非搜索产品时，都不会猜测为自然搜索，也不会从来源 URL 复制搜索词。
 
-优先级为：**显式 UTM → 当前可识别的自然搜索 → 有效暂存 → 不生成来源参数**。显式 UTM 即使只包含部分字段，也不补成另一组来源。自然搜索会整体替换之前暂存的推广来源，清除旧 campaign。
+优先级为：**显式 UTM → 当前可识别的自然搜索 → 有效暂存 → `utm_source=datus.ai` 兜底**。显式 UTM 即使只包含部分有效字段，也不补成另一组来源（例如只带 campaign 时不会补 `datus.ai`）。全部字段无效时使用官网兜底。自然搜索会整体替换之前暂存的推广来源，清除旧 campaign。
 
 带有 `gclid`、`dclid`、`gbraid`、`wbraid`、`msclkid`、`yclid` 或 `NaPm` 等已知广告点击标识时，不推断为自然搜索，也不沿用旧暂存；有显式 UTM 时仍以 UTM 为准。此改动不实现付费广告点击归因。
 
@@ -68,11 +68,11 @@ https://studio.datus.ai/login?utm_content=home_hero&utm_source=google&utm_medium
 | 没有显式 UTM 或新的自然搜索，已接受分析且缓存有效 | 使用之前保存的一组参数 |
 | 新的推广链接进入官网 | 整体替换之前的一组参数，不混用不同活动 |
 | 只传入部分字段 | 只保留这些字段，不从旧活动补齐缺失字段 |
-| 没有参数、可识别的搜索来源或有效缓存 | Studio 链接只有按钮自己的 `utm_content`，不编造 direct 来源 |
-| 已知广告点击标识，但没有显式 UTM | 不推断 organic，清除旧暂存，不生成来源参数 |
-| 未接受、拒绝或浏览器禁止存储 | 只使用当前 URL 参数或当前可识别的搜索来源，不跨页保存 |
+| 没有参数、可识别的搜索来源或有效缓存 | Studio 链接携带按钮自己的 `utm_content` 和 `utm_source=datus.ai`，不生成 medium 或 campaign |
+| 已知广告点击标识，但没有显式 UTM | 不推断 organic，清除旧暂存，使用 `utm_source=datus.ai` 兜底 |
+| 未接受、拒绝或浏览器禁止存储 | 只使用当前 URL 参数或当前可识别的搜索来源，否则使用官网兜底；不跨页保存 |
 | 撤回同意或同意到期 | 清理暂存；当前 URL 参数或当前可识别的搜索来源仍可随链接传递 |
-| 保存超过 30 分钟 | 参数失效，直到新的推广链接或可识别的自然搜索访问进入 |
+| 保存超过 30 分钟 | 参数失效，使用官网兜底，直到新的推广链接或可识别的自然搜索访问进入 |
 
 独立打开的标签页不共享这项存储。浏览器可能把已有页面的会话存储复制到它打开的新标签页，但不应依赖这个行为。直接通过官网 CTA 在新标签页打开 Studio 时，已合并好的参数包含在链接本身，无需 Studio 读取官网的存储。
 
@@ -102,10 +102,10 @@ https://studio.datus.ai/login?utm_content=home_hero&utm_source=google&utm_medium
 
 | 范围 | 本次改动 |
 |---|---|
-| 官网营销页面 | 读取 UTM 或识别自然搜索，按同意状态暂存，并合并到 Studio CTA |
+| 官网所有 Studio 链接 | 读取 UTM 或识别自然搜索，按同意状态暂存，并合并到 Studio CTA |
 | 页面语言与主题 | 保持原有行为；语言切换后来源仍可继续使用 |
-| Blog 文章与 CTA | 正文 CTA 的历史 UTM 规则保持原样；页头 Studio 试用按钮改为 Studio 根路径，保留历史 source／medium／campaign 并增加 `utm_content=blog_header`。共享的 Cookie 说明与撤回清理同步生效 |
-| Support 功能链接 | 反馈和部署文档入口保持原样；公共导航 CTA 使用新规则 |
+| Blog 文章与 CTA | 与营销页面共用默认来源和外部来源透传；导航使用 `utm_content=blog_header`，生成的正文 CTA 使用 `blog_cta`；文章原有 Studio 链接保持路径并补默认来源，不再生成 blog medium 或 campaign |
+| Support 功能链接 | 反馈、Studio 和部署文档入口保持目标路径，补充官网按钮标识，并使用统一来源规则 |
 | Studio 注册流程 | 本次不修改，需要产品端保留登录、SSO 和注册跳转中的传入参数 |
 | GA4 与注册归因 | 本次不配置完整归因链路，也不新增注册成功事件 |
 
@@ -117,17 +117,20 @@ https://studio.datus.ai/login?utm_content=home_hero&utm_source=google&utm_medium
 2. 接受使用分析，浏览解决方案页，确认来源仍是 LinkedIn，按钮标识变成该页的标识。
 3. 打开移动菜单，确认菜单 CTA 有自己的标识，并保留同一组来源。
 4. 用新的 YouTube 推广链接进入，确认不再混入旧 LinkedIn 活动字段。
-5. 拒绝或撤回使用分析，确认暂存清除；没有 URL 参数的其他页面只留下按钮标识。
+5. 拒绝或撤回使用分析，确认暂存清除；没有 URL 参数的其他页面使用官网兜底和按钮标识。
 6. 在中文页面、右键新标签页打开、缓存过期和存储被禁用的情况下重复检查。
 7. 从 Google 或 Bing 搜索来源进入，不携带 UTM，确认 Studio 链接出现搜索引擎名称和 `organic`，没有旧 campaign。
-8. 使用显式推广 UTM、已知广告点击标识、Gmail、未知域名或没有来源进入，确认不会被错误标记为自然搜索。
+8. 使用显式推广 UTM，确认完整保留来源组合，部分字段不混入官网兜底；使用已知广告点击标识、Gmail、未知域名或没有来源进入，确认使用 `datus.ai` 兜底，不被错误标记为自然搜索。
+9. 禁用 JavaScript，确认中英文预渲染 CTA 包含官网兜底和按钮标识。
 
 ## 代码入口
 
+- `src/lib/studio-url.mjs`：公共 URL 组装方法，整组替换来源、设置兜底，并保证 source 在首位。
 - `src/lib/studio-cta.ts`：生成固定的按钮标识和基础链接，兼容预渲染。
 - `src/lib/studio-campaign.ts`：合并来源、管理暂存及到期，更新动态生成的 CTA。
 - `src/lib/organic-search.ts`：搜索域名白名单与广告点击标识排除规则。
 - `src/components/SiteLayout.tsx`：页面完成水合后启用参数传递，避免影响服务端 HTML。
+- `scripts/build-blog.mjs` 与 `src/site-motion.ts`：Blog 生成时处理所有 Studio 链接，加载后使用相同来源传递逻辑。
 - `src/cookie-consent/choice.ts` 与 `src/cookie-consent/main.ts`：读取和同步现有的分析同意状态。
 - `src/i18n/cookie.ts` 与 `src/pages/policies/cookies/content.ts`：中英文存储说明。
 
@@ -139,4 +142,4 @@ https://studio.datus.ai/login?utm_content=home_hero&utm_source=google&utm_medium
 
 相关命令为 `npm run build:all`、`npm run test:studio-campaign` 和 `npm run test:cookie-consent`。测试只访问本地网站，并模拟外部请求，不向真实 Studio 或 GA 发送测试数据。
 
-发布安排：随网站改版 PR #94 审核发布。具体提交、推送及合并状态以 Git 记录和 PR #94 为准。
+发布状态以 Git 记录和对应 PR 为准。

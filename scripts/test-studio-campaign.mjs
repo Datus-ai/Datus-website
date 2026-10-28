@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { studioUrl } from '../src/lib/studio-url.mjs';
 import { preview } from 'vite';
 import puppeteer from 'puppeteer';
 
@@ -53,6 +54,7 @@ async function campaign(page, selector, expected) {
   assert.equal(url.hostname, 'studio.datus.ai');
   if (selector.startsWith('.site-nav')) assert.equal(url.pathname, '/', 'Navigation enters Studio at its root');
   assert.deepEqual(Object.fromEntries(url.searchParams), expected);
+  if (expected.utm_source) assert.equal([...url.searchParams.keys()][0], 'utm_source', 'Source is always the first query parameter');
   return href;
 }
 const hero = '.nordic-actions a[href^="https://studio.datus.ai"]';
@@ -61,6 +63,65 @@ const incoming = '?utm_source=linkedin&utm_medium=social&utm_campaign=product_la
 const linkedin = { utm_source: 'linkedin', utm_medium: 'social', utm_campaign: 'product_launch' };
 
 try {
+  assert.equal(studioUrl('https://studio.datus.ai/login?next=%2Fproject&utm_source=old&utm_medium=old&utm_campaign=old&utm_content=home_hero#section', { utm_source: 'youtube' }),
+    'https://studio.datus.ai/login?utm_source=youtube&next=%2Fproject&utm_content=home_hero#section');
+  // Check every generated marketing and blog anchor, including raw HTML in posts.
+  let studioLinks = 0;
+  for (const file of readdirSync('dist', { recursive: true }).filter(file => file.endsWith('.html'))) {
+    const html = readFileSync(`dist/${file}`, 'utf8');
+    for (const match of html.matchAll(/<a\b[^>]*\bhref=["'](https:\/\/studio\.datus\.ai(?:[/?#][^"']*)?)["']/gi)) {
+      const url = new URL(match[1].replace(/&amp;/g, '&'));
+      assert.equal(url.searchParams.get('utm_source'), 'datus.ai', file);
+      assert.equal([...url.searchParams.keys()][0], 'utm_source', file);
+      studioLinks++;
+    }
+  }
+  assert.ok(studioLinks > 100, 'Checks marketing, support, blog navigation, CTAs and article links');
+  console.log(`Source-first fallback verified in ${studioLinks} prerendered Studio links`);
+  {
+    const { context, page } = await newScenario(true);
+    for (const path of ['/support/', '/zh/support/', '/blog/', '/blog/one-person-data-team/']) {
+      await go(page, path + '?utm_source=youtube');
+      const links = await page.$$eval('a[href^="https://studio.datus.ai"]', links => links.map(link => link.href));
+      assert.ok(links.length >= (path === '/blog/' ? 1 : 2), path);
+      for (const href of links) {
+        const url = new URL(href);
+        assert.equal(url.searchParams.get('utm_source'), 'youtube', `${path}: ${href}`);
+        assert.equal([...url.searchParams.keys()][0], 'utm_source');
+        assert.equal(url.searchParams.has('utm_medium'), false);
+        assert.equal(url.searchParams.has('utm_campaign'), false);
+      }
+    }
+    // Dynamically inserted links without a CTA tag use the same shared handoff.
+    await page.evaluate(() => {
+      const link = document.createElement('a');
+      link.href = 'https://studio.datus.ai/feedback?next=%2Fproject#details';
+      link.id = 'dynamic-studio';
+      document.body.append(link);
+    });
+    await campaign(page, '#dynamic-studio', { utm_source: 'youtube', next: '/project' });
+    await go(page, '/blog/', 'https://www.google.com/');
+    await campaign(page, nav, { utm_source: 'google', utm_medium: 'organic', utm_content: 'blog_header' });
+    await context.close();
+    console.log('All support and blog links preserve external sources; untagged dynamic links and Google search use the shared handoff');
+  }
+  {
+    const { context, page } = await newScenario(true);
+    await go(page, '/');
+    await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'datus.ai' });
+    assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null, 'Fallback is not stored as campaign evidence');
+    await go(page, '/zh/pricing/');
+    await campaign(page, nav, { utm_content: 'zh_pricing_header', utm_source: 'datus.ai' });
+    await page.setViewport({ width: 390, height: 844 });
+    await page.click('.site-nav__burger');
+    await campaign(page, '.site-nav__mobile a[href^="https://studio.datus.ai"]', { utm_content: 'zh_pricing_mobile_menu', utm_source: 'datus.ai' });
+    await go(page, '/?utm_source=youtube');
+    await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'youtube' });
+    await go(page, '/?utm_campaign=external_only');
+    await campaign(page, hero, { utm_content: 'home_hero', utm_campaign: 'external_only' });
+    await context.close();
+    console.log('Website fallback covers direct, localized and mobile links without storage or mixing partial campaigns');
+  }
   {
     const { context, page } = await newScenario();
     await go(page, '/' + incoming);
@@ -94,7 +155,7 @@ try {
     await page.setViewport({ width: 1440, height: 1000 });
     await page.click('[data-cookie-settings]');
     await page.click('dialog [data-reject]');
-    await campaign(page, nav, { utm_content: 'pricing_header' });
+    await campaign(page, nav, { utm_content: 'pricing_header', utm_source: 'datus.ai' });
     assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
     await context.close();
     console.log('URL allowlist, consent, multi-page and locale handoff, dynamic mobile menu, whole-campaign replacement, and withdrawal passed');
@@ -106,7 +167,7 @@ try {
     await campaign(page, hero, { utm_content: 'home_hero', ...linkedin });
     assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
     await go(page, '/pricing/');
-    await campaign(page, nav, { utm_content: 'pricing_header' });
+    await campaign(page, nav, { utm_content: 'pricing_header', utm_source: 'datus.ai' });
     await context.close();
   }
   console.log('Unknown and refused consent forward only current-URL fields without persistence');
@@ -116,7 +177,7 @@ try {
     await go(page, '/' + incoming);
     await campaign(page, hero, { utm_content: 'home_hero', ...linkedin });
     await go(page, '/pricing/');
-    await campaign(page, nav, { utm_content: 'pricing_header' });
+    await campaign(page, nav, { utm_content: 'pricing_header', utm_source: 'datus.ai' });
     await context.close();
     console.log('Unavailable sessionStorage preserves current-URL handoff without breaking navigation');
   }
@@ -130,12 +191,12 @@ try {
       Date.now = () => originalNow() + 31 * 60 * 1000;
       window.dispatchEvent(new Event('focus'));
     });
-    await campaign(page, hero, { utm_content: 'home_hero' });
+    await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'datus.ai' });
     assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
     // Also reject stale cache on a new document, without waiting 30 minutes.
     await page.evaluate(({ key, age }) => sessionStorage.setItem(key, JSON.stringify({ fields: { utm_source: 'stale' }, capturedAt: new Date().getTime() - age - 1 })), { key: KEY, age: MAX_AGE });
     await go(page, '/pricing/');
-    await campaign(page, nav, { utm_content: 'pricing_header' });
+    await campaign(page, nav, { utm_content: 'pricing_header', utm_source: 'datus.ai' });
     assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
     await context.close();
     console.log('Live expiry and stale-cache rejection passed');
@@ -147,20 +208,21 @@ try {
     await go(page, '/?utm_source=' + 'x'.repeat(101) + '&utm_medium=email&utm_campaign=%20%20');
     await campaign(page, hero, { utm_content: 'home_hero', utm_medium: 'email' });
     await go(page, '/?utm_source=&utm_campaign=%0A');
-    await campaign(page, hero, { utm_content: 'home_hero' });
+    await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'datus.ai' });
     await page.evaluate(() => {
-      for (const href of ['https://studio.datus.ai/feedback', 'https://studio.datus.ai.evil.example/?utm_content=external', '/pricing/']) {
+      for (const href of ['https://studio.datus.ai.evil.example/?utm_content=external', 'https://studio.datus.ai:444/feedback', 'http://studio.datus.ai/feedback', '/pricing/']) {
         const link = document.createElement('a'); link.href = href; link.dataset.scopeTest = href; document.querySelector('main').append(link);
       }
     });
     const links = await page.$$eval('a[data-scope-test]', as => as.map(a => [a.dataset.scopeTest, a.getAttribute('href')]));
     for (const [before, after] of links) assert.equal(after, before);
     await context.close();
-    console.log('Blank, overlong, and control-character values rejected; support and unrelated destinations left unchanged');
+    console.log('Blank, overlong, and control-character values rejected; unrelated destinations left unchanged');
   }
 
   for (const path of ['/', '/zh/', '/solutions/semantic-layer/', '/zh/solutions/semantic-layer/']) {
     const html = readFileSync(`dist${path}index.html`, 'utf8');
+    assert.ok(html.includes('utm_source=datus.ai'), 'Website fallback is available without JavaScript');
     assert.ok(html.includes('utm_content='), 'Base tag remains available without JavaScript');
     assert.ok(!html.includes('utm_source=linkedin'), 'Visitor campaign must not leak into static HTML');
   }
@@ -184,7 +246,7 @@ try {
     // Known paid identifiers do not get mislabeled organic or reuse old data.
     for (const key of ['gclid', 'dclid', 'gbraid', 'wbraid', 'msclkid', 'yclid', 'NaPm']) {
       await go(page, '/?' + key + '=not-forwarded', 'https://www.google.com/');
-      await campaign(page, hero, { utm_content: 'home_hero' });
+      await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'datus.ai' });
       assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
     }
     await context.close();
@@ -209,7 +271,7 @@ try {
     }
     for (const referrer of [undefined, 'https://mail.google.com/', 'https://docs.google.com/', 'https://www.yahoo.com/', 'https://www.google.com.evil.example/', 'https://www.notgoogle.com/', 'https://constructor/', 'https://news.example/']) {
       await go(page, '/', referrer);
-      await campaign(page, hero, { utm_content: 'home_hero' });
+      await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'datus.ai' });
     }
     await context.close();
     console.log('Regional Google and 12 other search engines recognized; direct, product, unknown, and lookalike referrers are not guessed');
