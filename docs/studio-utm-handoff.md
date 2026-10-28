@@ -51,11 +51,37 @@ https://studio.datus.ai/login?utm_source=google&utm_content=home_hero&utm_medium
 
 这是一套基于浏览器来源域名的识别规则，不等于读取 Google Analytics 的归因结果。浏览器未提供来源、来源不在白名单内、来自 Gmail 等非搜索产品时，都不会猜测为自然搜索，也不会从来源 URL 复制搜索词。
 
-优先级为：**显式 UTM → 当前可识别的自然搜索 → 有效暂存 → `utm_source=datus.ai` 兜底**。显式 UTM 即使只包含部分有效字段，也不补成另一组来源（例如只带 campaign 时不会补 `datus.ai`）。全部字段无效时使用官网兜底。自然搜索会整体替换之前暂存的推广来源，清除旧 campaign。
+优先级为：**显式 UTM → 当前可识别的搜索或 AI 问答来源 → 有效暂存 → `utm_source=datus.ai` 兜底**。显式 UTM 即使只包含部分有效字段，也不补成另一组来源（例如只带 campaign 时不会补 `datus.ai`）。全部字段无效时使用官网兜底。自然搜索会整体替换之前暂存的推广来源，清除旧 campaign。
 
 带有 `gclid`、`dclid`、`gbraid`、`wbraid`、`msclkid`、`yclid` 或 `NaPm` 等已知广告点击标识时，不推断为自然搜索，也不沿用旧暂存；有显式 UTM 时仍以 UTM 为准。此改动不实现付费广告点击归因。
 
 付费链接如果既没有 UTM，也没有可识别的广告点击标识，仅凭来源域名无法可靠区分付费与自然搜索。来源读取与分类原则可参考 [浏览器 referrer 说明](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer) 和 [Google 流量来源处理说明](https://support.google.com/analytics/answer/11242841?hl=en)。
+
+## AI 问答推荐如何传给 Studio
+
+没有显式 UTM 或已知广告点击标识时，根据 `document.referrer` 的精确域名白名单识别 AI 引荐。AI 使用 `referral`，与传统自然搜索的 `organic` 区分；来源使用产品规范域名，与 ChatGPT 等显式 UTM 保持一致：
+
+| 产品 | Referer 域名白名单 | 推断 utmSource | 推断 utmMedium |
+| --- | --- | --- | --- |
+| ChatGPT | chatgpt.com、www.chatgpt.com、chat.openai.com | chatgpt.com | referral |
+| Claude | claude.ai、www.claude.ai | claude.ai | referral |
+| Perplexity | perplexity.ai、www.perplexity.ai | perplexity.ai | referral |
+| Gemini | gemini.google.com | gemini.google.com | referral |
+| Copilot | copilot.microsoft.com、copilot.com、copilot.cloud.microsoft、m365.cloud.microsoft | copilot.microsoft.com | referral |
+| DeepSeek | chat.deepseek.com | chat.deepseek.com | referral |
+
+
+例如 Claude → 官网 → Studio：
+
+```text
+https://studio.datus.ai/login?utm_source=claude.ai&utm_medium=referral&utm_content=home_hero
+```
+
+显式 UTM 优先、不补缺失字段；已知广告点击标识阻止推断。新识别的 AI 来源整体替换旧来源，不沿用旧 campaign。接受使用分析后按现有规则在当前标签页暂存 30 分钟，跨语言和 Blog 继续透传；拒绝时只使用当前页面来源。SaaS 直接入口使用同一白名单和字段值。
+
+只读取来源域名，不保存对话 ID、问题、完整 URL、查询参数或片段。不把 OpenAI、Anthropic 的营销站或 API 控制台当作 AI 推荐。Referer 仅证明来自该产品，不能证明具体回答推荐了 Datus。若客户端既不提供 Referer 也不带 UTM，无法可靠识别；不根据 User-Agent 或机器人访问猜测来源，官网继续使用 datus.ai 兜底。
+
+域名依据：[ChatGPT 发布者说明](https://help.openai.com/en/articles/12627856-publishers-and-developers-faq)、[Claude 入口](https://support.claude.com/en/articles/8114487-what-interfaces-can-i-use-to-access-claude)、[Perplexity 帮助](https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you)、[Gemini 入口](https://support.google.com/gemini/answer/14886647?hl=en)、[Copilot 新旧入口](https://support.microsoft.com/en-us/microsoft-365-copilot/troubleshoot-content-copilot-app)、[Copilot 企业入口](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-app-overview)、[DeepSeek 入口](https://api-docs.deepseek.com/news/news1210/)。这些资料用于核对产品入口，不代表所有客户端都会发送 Referer。
 
 ## 浏览其他页面时如何保留来源
 
@@ -65,12 +91,12 @@ https://studio.datus.ai/login?utm_source=google&utm_content=home_hero&utm_medium
 |---|---|
 | 当前 URL 有推广参数 | 使用当前 URL 的一组参数 |
 | 没有显式 UTM，但识别到自然搜索 | 使用搜索引擎名称和 `organic`，不生成 campaign |
-| 没有显式 UTM 或新的自然搜索，已接受分析且缓存有效 | 使用之前保存的一组参数 |
+| 没有显式 UTM 或新识别的搜索／AI 问答来源，已接受分析且缓存有效 | 使用之前保存的一组参数 |
 | 新的推广链接进入官网 | 整体替换之前的一组参数，不混用不同活动 |
 | 只传入部分字段 | 只保留这些字段，不从旧活动补齐缺失字段 |
 | 没有参数、可识别的搜索来源或有效缓存 | Studio 链接携带按钮自己的 `utm_content` 和 `utm_source=datus.ai`，不生成 medium 或 campaign |
 | 已知广告点击标识，但没有显式 UTM | 不推断 organic，清除旧暂存，使用 `utm_source=datus.ai` 兜底 |
-| 未接受、拒绝或浏览器禁止存储 | 只使用当前 URL 参数或当前可识别的搜索来源，否则使用官网兜底；不跨页保存 |
+| 未接受、拒绝或浏览器禁止存储 | 只使用当前 URL 参数或当前可识别的搜索／AI 问答来源，否则使用官网兜底；不跨页保存 |
 | 撤回同意或同意到期 | 清理暂存；当前 URL 参数或当前可识别的搜索来源仍可随链接传递 |
 | 保存超过 30 分钟 | 参数失效，使用官网兜底，直到新的推广链接或可识别的自然搜索访问进入 |
 
@@ -102,7 +128,7 @@ https://studio.datus.ai/login?utm_source=google&utm_content=home_hero&utm_medium
 
 | 范围 | 本次改动 |
 |---|---|
-| 官网所有 Studio 链接 | 读取 UTM 或识别自然搜索，按同意状态暂存，并合并到 Studio CTA |
+| 官网所有 Studio 链接 | 读取 UTM 或识别自然搜索／AI 问答来源，按同意状态暂存，并合并到 Studio CTA |
 | 页面语言与主题 | 保持原有行为；语言切换后来源仍可继续使用 |
 | Blog 文章与 CTA | 与营销页面共用默认来源和外部来源透传；导航使用 `utm_content=blog_header`，生成的正文 CTA 使用 `blog_cta`；文章原有 Studio 链接保持路径并补默认来源，不再生成 blog medium 或 campaign |
 | Support 功能链接 | 反馈、Studio 和部署文档入口保持目标路径，补充官网按钮标识，并使用统一来源规则 |
@@ -128,7 +154,7 @@ https://studio.datus.ai/login?utm_source=google&utm_content=home_hero&utm_medium
 - `src/lib/studio-url.mjs`：公共 URL 组装方法，整组替换来源、设置兜底，并保证 source 在首位。
 - `src/lib/studio-cta.ts`：生成固定的按钮标识和基础链接，兼容预渲染。
 - `src/lib/studio-campaign.ts`：合并来源、管理暂存及到期，更新动态生成的 CTA。
-- `src/lib/organic-search.ts`：搜索域名白名单与广告点击标识排除规则。
+- `src/lib/referrer-attribution.ts`：搜索和 AI 问答域名白名单与广告点击标识排除规则。
 - `src/components/SiteLayout.tsx`：页面完成水合后启用参数传递，避免影响服务端 HTML。
 - `scripts/build-blog.mjs` 与 `src/site-motion.ts`：Blog 生成时处理所有 Studio 链接，加载后使用相同来源传递逻辑。
 - `src/cookie-consent/choice.ts` 与 `src/cookie-consent/main.ts`：读取和同步现有的分析同意状态。

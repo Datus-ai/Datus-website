@@ -27,7 +27,7 @@ export const COOKIE_UI: Record<Locale, Record<string, string>> = {
     analytics_description:
       "Enable Google Analytics cookies and keep campaign-source parameters for up to 30 minutes in this tab, so they can accompany links to Studio. Rejecting stops Google Analytics and clears stored campaign parameters without affecting browsing.",
     analytics_details:
-      "Before a choice, GA sends limited measurements to Google without reading or writing analytics cookies. This is not anonymous or zero collection. Accepted analytics cookies use a 180-day expiration. Campaign storage contains only utm_source, utm_medium, and utm_campaign, expires after 30 minutes, and has no visitor ID. Current URL parameters or a recognized search-engine referrer can accompany a Studio link without being stored; full referrer URLs and search terms are not kept.",
+      "Before a choice, GA sends limited measurements to Google without reading or writing analytics cookies. This is not anonymous or zero collection. Accepted analytics cookies use a 180-day expiration. Campaign storage contains only utm_source, utm_medium, and utm_campaign, expires after 30 minutes, and has no visitor ID. Current URL parameters or a recognized search-engine or AI-assistant referrer can accompany a Studio link without being stored; full referrer URLs and search terms are not kept.",
     details: "View Uses and Retention",
     scope:
       "Applies to this browser on datus.ai. You can reopen settings in the footer at any time. Datus Studio manages its choices separately.",
@@ -61,7 +61,7 @@ export const COOKIE_UI: Record<Locale, Record<string, string>> = {
     analytics_description:
       "开启 Google Analytics Cookie，并在当前标签页临时保存推广来源参数，最多 30 分钟，以便点击链接时传给 Studio。拒绝后停止 Google Analytics，并清理已保存的推广来源参数，不影响浏览官网。",
     analytics_details:
-      "作出选择前，GA 会在不读写分析 Cookie 的情况下向 Google 发送有限测量，不代表匿名或零采集。接受后的分析 Cookie 配置为 180 天过期。推广来源只保存 utm_source、utm_medium 和 utm_campaign，30 分钟后失效，不含访客标识。当前 URL 参数或可识别的搜索引擎来源可随 Studio 链接传递，无需保存；不保存完整来源 URL 或搜索词。",
+      "作出选择前，GA 会在不读写分析 Cookie 的情况下向 Google 发送有限测量，不代表匿名或零采集。接受后的分析 Cookie 配置为 180 天过期。推广来源只保存 utm_source、utm_medium 和 utm_campaign，30 分钟后失效，不含访客标识。当前 URL 参数或可识别的搜索或 AI 问答来源可随 Studio 链接传递，无需保存；不保存完整来源 URL 或搜索词。",
     details: "查看用途与保存时间",
     scope:
       "仅对当前浏览器中的 datus.ai 生效，可随时从页脚重新调整。Datus Studio 的选择单独管理。",

@@ -276,6 +276,53 @@ try {
     await context.close();
     console.log('Regional Google and 12 other search engines recognized; direct, product, unknown, and lookalike referrers are not guessed');
   }
+  {
+    const { context, page } = await newScenario(true);
+    await go(page, '/' + incoming);
+    const claude = { utm_source: 'claude.ai', utm_medium: 'referral' };
+    await go(page, '/', 'https://claude.ai/chat/private?prompt=secret');
+    await campaign(page, hero, { utm_content: 'home_hero', ...claude });
+    assert.deepEqual(await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)).fields, KEY), claude);
+    await go(page, '/zh/pricing/', base + '/');
+    await campaign(page, nav, { utm_content: 'zh_pricing_header', ...claude });
+    await go(page, '/blog/', base + '/zh/pricing/');
+    await campaign(page, nav, { utm_content: 'blog_header', ...claude });
+    await go(page, '/?utm_source=chatgpt.com', 'https://claude.ai/');
+    await campaign(page, hero, { utm_source: 'chatgpt.com', utm_content: 'home_hero' });
+    await go(page, '/?utm_campaign=partial', 'https://claude.ai/');
+    await campaign(page, hero, { utm_campaign: 'partial', utm_content: 'home_hero' });
+    await go(page, '/?gclid=advertisement', 'https://chatgpt.com/');
+    await campaign(page, hero, { utm_source: 'datus.ai', utm_content: 'home_hero' });
+    await context.close();
+  }
+  {
+    const { context, page } = await newScenario(false);
+    for (const [referrer, source] of [
+      ['https://chatgpt.com/c/private?prompt=secret', 'chatgpt.com'],
+      ['https://www.chatgpt.com/', 'chatgpt.com'],
+      ['https://chat.openai.com/', 'chatgpt.com'],
+      ['https://claude.ai/chat/private', 'claude.ai'],
+      ['https://www.claude.ai/', 'claude.ai'],
+      ['https://perplexity.ai/search/private', 'perplexity.ai'],
+      ['https://www.perplexity.ai/', 'perplexity.ai'],
+      ['https://gemini.google.com/app/private', 'gemini.google.com'],
+      ['https://copilot.microsoft.com/', 'copilot.microsoft.com'],
+      ['https://copilot.com/', 'copilot.microsoft.com'],
+      ['https://copilot.cloud.microsoft/', 'copilot.microsoft.com'],
+      ['https://m365.cloud.microsoft/', 'copilot.microsoft.com'],
+      ['https://chat.deepseek.com/a/chat/private', 'chat.deepseek.com'],
+    ]) {
+      await go(page, '/', referrer);
+      await campaign(page, hero, { utm_source: source, utm_medium: 'referral', utm_content: 'home_hero' });
+      assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
+    }
+    for (const referrer of ['https://openai.com/', 'https://platform.openai.com/', 'https://anthropic.com/', 'https://claude.com/', 'https://console.anthropic.com/', 'https://chatgpt.com.evil.example/', 'https://claude.ai.evil.example/', 'https://notclaude.ai/', 'https://support.claude.ai/', 'https://ai.google.com/', 'https://microsoft.com/', 'https://deepseek.com/']) {
+      await go(page, '/', referrer);
+      await campaign(page, hero, { utm_source: 'datus.ai', utm_content: 'home_hero' });
+    }
+    await context.close();
+    console.log('AI referrals preserved across pages, locales and blog; explicit UTM wins; vendor sites and lookalikes excluded');
+  }
   assert.deepEqual(errors, []);
   console.log('Prerendering and hydration passed');
 } finally {

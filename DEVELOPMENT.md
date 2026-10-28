@@ -138,10 +138,13 @@ website placements. The fallback is not stored as campaign evidence. After
 hydration (or loading the static blog), `src/lib/studio-campaign.ts` copies only
 those three fields from an external tagged arrival onto all HTTPS Studio links, retaining
 the button's own `utm_content`. Without explicit UTM, recognized search hosts
-from `document.referrer` supply a source plus `organic`, never an invented
-campaign. See `src/lib/organic-search.ts` for exact allowed hosts and common
+from `document.referrer` supply a source plus `organic`; known AI chat products
+supply their canonical product domain plus `referral`. Neither invents a
+campaign. AI hosts cover ChatGPT, Claude, Perplexity, Gemini, Copilot and DeepSeek,
+using exact matches rather than vendor-wide domains. See `src/lib/referrer-attribution.ts` for exact allowed hosts and common
 paid-click identifiers that disable this inference and discard stale attribution.
-Explicit UTM wins over inferred search; a new search replaces cached campaigns.
+Explicit UTM wins over inferred search/AI referrals; a new recognized arrival
+replaces cached campaigns. Missing referrer and UTM cannot identify AI traffic.
 An arrival with UTM replaces the entire campaign; missing fields are not filled
 from an older campaign. Values must be
 non-empty, at most 100 characters, and contain no control characters.
@@ -149,7 +152,7 @@ non-empty, at most 100 characters, and contain no control characters.
 After accepting usage analytics, campaign fields and their capture time are
 stored in `sessionStorage` for 30 minutes from capture, without sliding expiry.
 Before acceptance, after refusal, or with unavailable storage, only the current
-URL's values or recognized current search referrer can be forwarded; otherwise
+URL's values or recognized current search/AI referrer can be forwarded; otherwise
 links use the website fallback. No complete
 referrer URL or search terms are stored. Refusal, withdrawal, and expired consent clear
 the cache. Dynamic menus, native new-tab opening, and back/forward restoration
