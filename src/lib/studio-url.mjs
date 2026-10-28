@@ -1,4 +1,5 @@
 export const WEBSITE_SOURCE = 'datus.ai';
+
 const CAMPAIGN_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign'];
 
 /**
@@ -9,12 +10,32 @@ const CAMPAIGN_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign'];
  */
 export function studioUrl(href, campaign = {}) {
   const url = new URL(href);
-  if (url.origin !== 'https://studio.datus.ai') return href;
-  for (const key of CAMPAIGN_FIELDS) url.searchParams.delete(key);
+
+  if (url.origin !== 'https://studio.datus.ai') {
+    return href;
+  }
+
+  for (const key of CAMPAIGN_FIELDS) {
+    url.searchParams.delete(key);
+  }
+
   const params = new URLSearchParams();
-  if (!CAMPAIGN_FIELDS.some(key => campaign[key])) params.set('utm_source', WEBSITE_SOURCE);
-  for (const key of CAMPAIGN_FIELDS) if (campaign[key]) params.set(key, campaign[key]);
-  for (const [key, value] of url.searchParams) params.append(key, value);
+
+  if (!CAMPAIGN_FIELDS.some(key => campaign[key])) {
+    params.set('utm_source', WEBSITE_SOURCE);
+  }
+
+  for (const key of CAMPAIGN_FIELDS) {
+    if (campaign[key]) {
+      params.set(key, campaign[key]);
+    }
+  }
+
+  for (const [key, value] of url.searchParams) {
+    params.append(key, value);
+  }
+
   url.search = params.toString();
+
   return url.href;
 }
