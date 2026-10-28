@@ -52,7 +52,7 @@ Ask an agent, “Which customers are most valuable to our business?” Access to
 
 That knowledge is scattered across business documents, warehouse schemas, ETL logic and people. Without a shared model, each agent has to reconstruct the meaning for itself. One may equate value with spending; another may consider margin and purchase frequency. Even a perfectly calculated answer can address the wrong interpretation of the question.
 
-Agreement also needs to survive beyond a single conversation. Once a team approves a business definition, other agents and applications should be able to reuse it. Its calculations must stay consistent too: the same cost exclusions, return rules and relationships should apply wherever the definition is used.
+Agreement also needs to survive beyond a single conversation. Once a team approves a business definition, other agents and applications should be able to reuse it. Its calculations must stay consistent too: the same cost exclusions, return rules and relationships should apply wherever the definition is used. That shared baseline makes answers easier to compare across workflows.
 
 Business definitions also change over time. When reviewing an earlier recommendation, teams need to know which definition and data informed it. Keeping that context available is part of making agent-generated answers trustworthy.
 
@@ -146,7 +146,7 @@ Start with one domain, review its definitions and put a trusted calculation to w
 
 ### What is the difference between Datus Agent and DOSI?
 
-Datus Agent helps teams gather business context and develop semantic models from existing knowledge. People review and approve the definitions. DOSI takes compatible Apache Ossie models, validates them, and turns metric requests into SQL for a selected data source. Together, they connect model creation with calculations that teams can inspect.
+Datus Agent helps teams gather business context and develop semantic models from existing knowledge. People review and approve the definitions. DOSI takes compatible Apache Ossie models, validates them, and turns metric requests into native SQL for a selected data source. Together, they connect model creation with calculations that teams can inspect.
 
 ### Can Datus help build a semantic model from existing documents and SQL?
 
