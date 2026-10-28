@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Datus and DOSI turn business context into inspectable calculations</title>
+  <desc id="desc">Documents, SQL, and warehouse knowledge flow through a shared semantic model into DOSI and native SQL for teams and agents.</desc>
+  <rect width="1200" height="750" fill="#f7f7f2"/>
+  <g fill="none" stroke="#402df3" stroke-width="2" opacity=".22">
+    <circle cx="780" cy="376" r="220"/><circle cx="780" cy="376" r="165"/><circle cx="780" cy="376" r="110"/>
+    <path d="M135 270H560M135 376H560M135 482H560M1000 376h90"/>
+  </g>
+  <g fill="#402df3"><circle cx="136" cy="270" r="7"/><circle cx="136" cy="376" r="7"/><circle cx="136" cy="482" r="7"/><circle cx="560" cy="270" r="7"/><circle cx="560" cy="376" r="7"/><circle cx="560" cy="482" r="7"/><circle cx="780" cy="376" r="12"/><circle cx="1000" cy="376" r="7"/></g>
+  <g font-family="Inter, system-ui, Arial, sans-serif" fill="#24232e">
+    <text x="70" y="90" font-size="26" font-weight="700" fill="#402df3">DATUS / DOSI</text>
+    <text x="70" y="190" font-size="52" font-weight="700">Business context</text>
+    <text x="70" y="250" font-size="52" font-weight="700">you can execute.</text>
+    <text x="172" y="280" font-size="21">Documents</text>
+    <text x="172" y="386" font-size="21">SQL &amp; ETL</text>
+    <text x="172" y="492" font-size="21">Warehouses</text>
+    <text x="688" y="360" font-size="23" font-weight="700">Shared</text>
+    <text x="675" y="392" font-size="23" font-weight="700">definitions</text>
+    <text x="1020" y="382" font-size="21">Native SQL</text>
+    <text x="70" y="672" font-size="21" fill="#5c5b65">Reviewed meaning → deterministic calculation → inspectable answer</text>
+  </g>
+  <path d="M70 620h1060" stroke="#402df3" stroke-width="2" opacity=".25"/>
+</svg>
