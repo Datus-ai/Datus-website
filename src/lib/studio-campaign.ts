@@ -1,5 +1,6 @@
 import { ANALYTICS_CONSENT_EVENT, readCookieChoice } from "../cookie-consent/choice";
 import { hasPaidClickId, organicSearchCampaign } from "./organic-search";
+import { studioUrl } from "./studio-url.mjs";
 
 const FIELDS = ["utm_source", "utm_medium", "utm_campaign"] as const;
 type CampaignFields = Partial<Record<(typeof FIELDS)[number], string>>;
@@ -39,7 +40,7 @@ function readSaved(): Campaign | null {
   }
 }
 
-/** Run after hydration. Only tagged Studio CTAs are decorated; no requests or IDs. */
+/** Run after hydration (or on the static blog). Decorate all Studio links. */
 export function setupStudioCampaignHandoff(root: HTMLElement): () => void {
   let mayStore = readCookieChoice()?.analytics === true;
   const params = new URLSearchParams(window.location.search);
@@ -67,12 +68,9 @@ export function setupStudioCampaignHandoff(root: HTMLElement): () => void {
   function decorate(link: HTMLAnchorElement) {
     let url: URL;
     try { url = new URL(link.href); } catch { return; }
-    if (url.protocol !== "https:" || url.hostname !== "studio.datus.ai" || !url.searchParams.has("utm_content")) return;
-    for (const key of FIELDS) {
-      url.searchParams.delete(key);
-      if (valid(campaign) && campaign.fields[key]) url.searchParams.set(key, campaign.fields[key]!);
-    }
-    if (link.href !== url.href) link.href = url.href;
+    if (url.origin !== "https://studio.datus.ai") return;
+    const href = studioUrl(url.href, valid(campaign) ? campaign.fields : {});
+    if (link.href !== href) link.href = href;
   }
 
   function decorateWithin(node: Element) {

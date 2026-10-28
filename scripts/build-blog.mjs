@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, cpSync
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
+import { studioUrl } from "../src/lib/studio-url.mjs";
 import MarkdownIt from "markdown-it";
 import anchor from "markdown-it-anchor";
 import { prepareCovers } from "./lib/blog-covers.mjs";
@@ -25,8 +26,8 @@ const PUBLIC_DIR = join(ROOT, "blog", "public");
 const DIST = join(ROOT, "dist");
 const SITE = "https://datus.ai";
 const GITHUB_URL = "https://github.com/Datus-ai/Datus-agent";
-const STUDIO_URL = "https://studio.datus.ai/overview?utm_source=datus.ai&utm_medium=blog&utm_campaign=get_started";
-const STUDIO_NAV_URL = "https://studio.datus.ai/?utm_source=datus.ai&utm_medium=blog&utm_campaign=get_started&utm_content=blog_header";
+const STUDIO_URL = studioUrl("https://studio.datus.ai/overview?utm_content=blog_cta");
+const STUDIO_NAV_URL = studioUrl("https://studio.datus.ai/?utm_content=blog_header");
 const SLACK_URL = "https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg";
 const DOCS_URL = "https://docs.datus.ai";
 
@@ -268,7 +269,8 @@ function shell({
 <meta name="twitter:image" content="${image}" />
 ${head}
 ${gaHtml()}
-</head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div>${navScript()}<script type="module" src="/assets/site-motion.js"></script></body></html>`;
+</head><body><div class="site-root">${navHtml()}<main>${body}</main>${footerHtml()}</div>${navScript()}<script type="module" src="/assets/site-motion.js"></script></body></html>`.replace(/(<a\b[^>]*\bhref=)(["'])(https:\/\/studio\.datus\.ai(?:[/?#][^"']*)?)\2/gi,
+    (_, prefix, quote, href) => `${prefix}${quote}${esc(studioUrl(href.replace(/&amp;/g, "&")))}${quote}`);
 }
 
 /* ----------------------------- breadcrumbs ----------------------------- */

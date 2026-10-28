@@ -20,9 +20,10 @@ import {
 import SiteLayout from "../../components/SiteLayout";
 import FAQ from "../../components/FAQ";
 import { CONTACT_EMAIL, DOCS_URL, SLACK_URL } from "../../config/nav";
-import { useHref, useT } from "../../i18n/LocaleContext";
+import { useHref, useT, useLocale } from "../../i18n/LocaleContext";
 import { supportPage } from "./content";
 import { searchSupport, type ISupportMatch } from "./search";
+import { studioCtaUrl } from "../../lib/studio-cta";
 import "./support.css";
 
 const STUDIO_HOME = "https://studio.datus.ai";
@@ -60,6 +61,7 @@ async function copyText(text: string): Promise<boolean> {
 export default function SupportPage() {
   const t = useT(supportPage);
   const l = useHref();
+  const locale = useLocale();
   const [query, setQuery] = useState("");
   const [activeGuide, setActiveGuide] = useState<string | null>(null);
   const [notice, setNotice] = useState("");
@@ -192,7 +194,7 @@ export default function SupportPage() {
                   <p>{channel.body}</p>
                   <a
                     className="support-text-link"
-                    href={CHANNEL_LINKS[i]}
+                    href={i === 0 ? studioCtaUrl(FEEDBACK_URL, "support_feedback_channel", locale) : CHANNEL_LINKS[i]}
                     {...(i !== 1 ? external : {})}
                   >
                     {channel.action}
@@ -294,7 +296,7 @@ export default function SupportPage() {
               <span>
                 <strong>{t.dotiTitle}</strong> {t.dotiBody}
               </span>
-              <a className="support-text-link" href={STUDIO_HOME} {...external}>
+              <a className="support-text-link" href={studioCtaUrl(STUDIO_HOME, "support_open_studio", locale)} {...external}>
                 {t.openStudio}
                 <ArrowUpRight size={15} aria-hidden="true" />
               </a>
@@ -331,7 +333,7 @@ export default function SupportPage() {
               <div className="support-request-actions">
                 <a
                   className="support-button support-primary"
-                  href={FEEDBACK_URL}
+                  href={studioCtaUrl(FEEDBACK_URL, "support_feedback", locale)}
                   {...external}
                 >
                   {t.submit}
@@ -360,7 +362,7 @@ export default function SupportPage() {
             <div className="support-links">
               <a
                 className="support-text-link"
-                href={`${STUDIO_HOME}/deployment`}
+                href={studioCtaUrl(`${STUDIO_HOME}/deployment`, "support_deployment", locale)}
                 {...external}
                 rel="noopener"
               >
@@ -423,7 +425,7 @@ export default function SupportPage() {
                 <div className="support-article-foot">
                   <a
                     className="support-button support-primary"
-                    href={FEEDBACK_URL}
+                    href={studioCtaUrl(FEEDBACK_URL, "support_feedback", locale)}
                     {...external}
                   >
                     {t.guideHelp}

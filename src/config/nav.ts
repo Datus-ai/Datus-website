@@ -4,7 +4,7 @@ import { UI } from "../i18n/ui";
 
 export { GITHUB_URL };
 
-/** Base destinations; callers add only utm_content with studioCtaUrl. */
+/** Base destinations; callers add source fallback and utm_content with studioCtaUrl. */
 export const STUDIO_URL = "https://studio.datus.ai/overview";
 
 /** Global Get started buttons enter Studio directly. */
