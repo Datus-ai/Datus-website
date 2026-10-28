@@ -543,7 +543,7 @@ function postPage(post) {
 function indexPage(posts) {
   // Published date controls the feed; edits never move older articles to the top.
   const sorted = [...posts.values()].sort((a,b) => (Date.parse(b.date)||0) - (Date.parse(a.date)||0) || a.slug.localeCompare(b.slug));
-  const featured = posts.get("semantic-layer-in-the-agent-loop") || sorted[0];
+  const featured = posts.get("datus-dosi-executable-business-context") || sorted[0];
   const heroPicks = ["semantic-layer-vs-ontology", "what-is-conversational-bi"].map(slug => posts.get(slug)).filter(Boolean);
   const memberships = p => [...CATEGORIES.filter(c=>c.slugs.includes(p.slug)).map(c=>slugify(c.label)), ...(p.tags.includes(INSIGHT_TAG)?[INSIGHT_ID]:[]), ...(!categoryFor(p.slug)?['more-essays']:[])];
   const cats = [{label:INSIGHT_LABEL,id:INSIGHT_ID}, ...CATEGORIES.map(c=>({label:c.label,id:slugify(c.label)})), {label:'More essays',id:'more-essays'}].filter(c=>sorted.some(p=>memberships(p).includes(c.id)));
