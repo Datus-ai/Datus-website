@@ -5,8 +5,8 @@ author: "Joanna He"
 date: 2026-10-28
 lastmod: 2026-10-28
 tags: insight, release
-heroImage: /images/datus-dosi-executable-business-context/cover-video.jpg
-heroImageAlt: "Introducing Datus video featuring co-founder Shao Xie"
+heroImage: /images/datus-dosi-executable-business-context/cover-meet-dosi.png
+heroImageAlt: "Introducing Datus: Meet DOSI cover featuring co-founder Shao Xie"
 head:
   - - meta
     - name: keywords
@@ -25,7 +25,7 @@ head:
       content: https://datus.ai/blog/datus-dosi-executable-business-context/
   - - meta
     - property: og:image
-      content: https://datus.ai/images/datus-dosi-executable-business-context/cover-video.jpg
+      content: https://datus.ai/images/datus-dosi-executable-business-context/cover-meet-dosi.png
   - - meta
     - name: twitter:card
       content: summary_large_image
