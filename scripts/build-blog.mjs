@@ -121,7 +121,13 @@ const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
 // headings, which would otherwise emit multiple <h1>s.
 function renderBody(content) {
   const stripped = content.replace(/^\s*#\s+.+\r?\n+/, "");
-  return md.render(stripped).replace(/<(\/?)h1\b/g, "<$1h2");
+  const html = md.render(stripped).replace(/<(\/?)h1\b/g, "<$1h2");
+  const marker = '<div data-blog-home-architecture></div>';
+  if (!html.includes(marker)) return html;
+  // Snapshot of the homepage's HTML diagram. The source article remains readable
+  // Markdown, while the published page gets the same semantic, responsive figure.
+  const diagram = readFileSync(join(ROOT, 'blog', 'partials', 'home-architecture.html'), 'utf8').trim();
+  return html.replace(marker, diagram);
 }
 
 function fmtDate(d) {
@@ -501,7 +507,9 @@ function postPage(post) {
   const head =
     (post.keywords ? `<meta name="keywords" content="${esc(post.keywords)}" />\n` : "") +
     `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` +
-    faqLd;
+    faqLd +
+    (post.slug === 'datus-dosi-executable-business-context'
+      ? '\n<link rel="stylesheet" href="/blog/home-architecture.css" />' : '');
   const updated = post.lastmod && post.lastmod !== post.date ? `Updated ${fmtDate(post.lastmod)}` : "";
   const byline = [fmtDate(post.date), updated, readTime(post.html), post.author ? `By ${post.author}` : ""]
     .filter(Boolean).join("  ·  ");
@@ -806,6 +814,17 @@ function main() {
   }
 
   write(join(DIST, "blog", "blog.css"), blogCss());
+  // Use the homepage's architecture styles for the in-article HTML diagram.
+  // The article-specific overrides let it span the two-column blog layout.
+  write(join(DIST, "blog", "home-architecture.css"),
+    readFileSync(join(ROOT, "src", "styles", "home-narrative.css"), "utf8") + `
+.prose .hp-architecture{margin:28px 0 40px;width:100%;max-width:none;line-height:1.5;grid-template-columns:minmax(105px,.8fr) 34px minmax(0,2.8fr) 34px minmax(105px,.8fr)}
+.prose .hp-architecture-module{grid-template-columns:85px minmax(0,1fr);gap:8px}
+.prose .hp-module-art{width:85px}
+.prose .hp-architecture .hp-module-art{border:0;border-radius:0;margin:0;max-width:100%}
+.prose .hp-architecture h3,.prose .hp-architecture p{letter-spacing:normal}
+@media(max-width:720px){.prose .hp-architecture{display:flex}.prose .hp-architecture-module{grid-template-columns:95px minmax(0,1fr)}.prose .hp-module-art{width:95px}}
+`);
 
   for (const post of posts.values()) {
     write(join(DIST, "blog", post.slug, "index.html"), postPage(post));

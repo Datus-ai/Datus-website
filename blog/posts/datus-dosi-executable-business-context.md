@@ -62,7 +62,7 @@ That is the need behind DOSI: shared business knowledge that agents can act on, 
 
 Datus brings these capabilities together through a workspace for teams, a data agent, and semantic execution grounded in an open specification. In Datus Studio, teams work with Datus Agent to build and use business context from documents, SQL, ETL scripts and warehouses. DOSI then turns Apache Ossie models into native SQL, making shared definitions usable by teams, AI agents and applications.
 
-![Datus Studio, Datus Agent, DOSI and Apache Ossie turn documents, SQL and warehouse knowledge into shared business context for teams and AI agents.](/images/datus-dosi-executable-business-context/datus-and-dosi-at-a-glance.png)
+<div data-blog-home-architecture></div>
 
 ## What you can do with Datus and DOSI
 
