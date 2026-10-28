@@ -30,9 +30,9 @@
 .cookie-ui details { margin-top: 12px; }
 .cookie-ui summary { font-size: 11px; color: var(--ink-muted); cursor: pointer; }
 .cookie-ui details p { margin-top: 8px; }
-.cookie-ui input[type=checkbox] { appearance: none; flex-shrink: 0; margin: 0; width: 36px; height: 20px; border: 0; border-radius: 999px; background: var(--ink-faint); cursor: pointer; position: relative; }
-.cookie-ui input[type=checkbox]::before { content: ''; width: 14px; height: 14px; position: absolute; left: 3px; top: 3px; border-radius: 50%; background: var(--ink); }
-.cookie-ui input[type=checkbox]:checked { background: var(--brand-bright); }
+.cookie-ui input[type=checkbox] { appearance: none; flex-shrink: 0; margin: 0; width: 36px; height: 20px; border: 0; border-radius: 999px; background: color-mix(in srgb, var(--brand) 30%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 45%, transparent); cursor: pointer; position: relative; }
+.cookie-ui input[type=checkbox]::before { content: ''; width: 14px; height: 14px; position: absolute; left: 3px; top: 3px; border-radius: 50%; background: #fff; }
+.cookie-ui input[type=checkbox]:checked { background: var(--brand); }
 .cookie-ui input[type=checkbox]:checked::before { transform: translateX(16px); }
 .cookie-ui__scope { padding: 12px; border-radius: var(--r-sm); background: var(--brand-soft); font-size: 11px; }
 .cookie-ui__dialog footer { display: flex; justify-content: space-between; gap: 16px; padding: 16px 24px; border-top: 1px solid var(--line); flex-shrink: 0; }
