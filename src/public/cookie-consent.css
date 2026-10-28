@@ -36,7 +36,7 @@
 .cookie-ui input[type=checkbox]:checked::before { transform: translateX(16px); }
 .cookie-ui__scope { padding: 12px; border-radius: var(--r-sm); background: var(--brand-soft); font-size: 11px; }
 .cookie-ui__dialog footer { display: flex; justify-content: space-between; gap: 16px; padding: 16px 24px; border-top: 1px solid var(--line); flex-shrink: 0; }
-.cookie-ui__dialog [data-save] { background: var(--brand); }
+.cookie-ui__dialog [data-save] { background: var(--brand); color: #fff; }
 .cookie-ui__status { position: fixed; z-index: 1200; left: 24px; bottom: 24px; max-width: calc(100vw - 48px); padding: 16px; background: var(--panel-solid); border: 1px solid var(--line-strong); border-radius: var(--r-sm); }
 .site-footer__bar { display: flex; flex-wrap: wrap; gap: 20px; }
 .site-footer__bar > span { margin-right: auto; }
