@@ -68,7 +68,7 @@ Datus brings these capabilities together through a workspace for teams, a data a
 
 ### Build shared business understanding
 
-For an agent to be business-aware, it needs to understand how business concepts relate to the question being asked. An airport, for example, may serve as a departure point or a destination, while “customer” might mean a billing account or a product user. Datus connects the concepts and relationships to governed metrics and underlying data, helping agents select the relevant definitions and relationship paths.
+For an agent to be business-aware, it needs to understand how business concepts relate to the question being asked. Datus connects the concepts and relationships to governed metrics and underlying data, helping agents select the relevant definitions and relationship paths.
 
 Once that meaning is explicit, teams can reuse compatible definitions and map business concepts across supported sources. Agents then have a shared vocabulary to work from as questions move between teams and tools, while each DOSI query executes against its selected source.
 
@@ -76,7 +76,7 @@ Once that meaning is explicit, teams can reuse compatible definitions and map bu
 
 Building that shared understanding can take substantial manual effort, especially when the relevant knowledge is spread across existing systems. Datus Agent helps bring context from documents, warehouses and ETL scripts into semantic models your team can review and refine. You can start with one business domain and the questions people already ask, then build on existing SQL and modeling work rather than assemble every definition from scratch.
 
-The models follow [Apache Ossie](https://dosi.datus.ai/concepts/what-is-osi/), an open, vendor-neutral specification for datasets, relationships, dimensions and metrics. Teams can reuse the models across compatible tools and agent workflows. Interoperability depends on the features supported by each tool and converter.
+The models follow [Apache Ossie](https://dosi.datus.ai/concepts/what-is-osi/), an open, vendor-neutral specification for datasets, relationships, dimensions and metrics. Teams can reuse the models across compatible tools and agent workflows.
 
 As your team checks the definitions and compares results with trusted queries, Datus Agent assists with modeling and DOSI validates and executes the compatible model. This connects an agent-native authoring workflow to an open semantic foundation that your team can continue to review and reuse.
 
@@ -143,6 +143,18 @@ Start with one domain, review its definitions and put a trusted calculation to w
 - [Apache Ossie explained](https://dosi.datus.ai/concepts/what-is-osi/) — Understand the semantic specification behind DOSI.
 
 ## Frequently asked questions
+
+### What is the difference between Datus Agent and DOSI?
+
+Datus Agent helps teams gather business context and develop semantic models from existing knowledge. People review and approve the definitions. DOSI takes compatible Apache Ossie models, validates them, and turns metric requests into SQL for a selected data source. Together, they connect model creation with calculations that teams can inspect.
+
+### Can Datus help build a semantic model from existing documents and SQL?
+
+Yes. Datus Agent can help gather candidate definitions from business documents, warehouse schemas, ETL scripts, and existing SQL. Start with one business domain, then review the proposed model and compare its results with queries your team already trusts. The team still decides what each business term and metric should mean.
+
+### How can a team check an answer produced with Datus and DOSI?
+
+The team can inspect the approved metric definition, generated SQL, and lineage behind a DOSI result, then compare it with a trusted query. DOSI reports an issue when a requested relationship is ambiguous or a safe calculation cannot be established within the model. Reviewers remain responsible for validating the definition and source data.
 
 ### Can I use DOSI without Datus Studio?
 
