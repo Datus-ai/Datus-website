@@ -614,6 +614,8 @@ function blogCss() {
 .prose pre{margin:22px 0;padding:16px 18px;border-radius:12px;background:#070d22;border:1px solid var(--line-strong);overflow-x:auto}
 .prose pre code{background:none;padding:0;font-size:13.5px;line-height:1.6;color:#dfe3ff}
 .prose img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:24px 0}
+.prose .post-video{aspect-ratio:16/9;width:100%;overflow:hidden;border-radius:12px;border:1px solid var(--line);margin:24px 0;background:#111}
+.prose .post-video iframe{display:block;width:100%;height:100%;border:0}
 .prose table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14.5px}
 .prose th,.prose td{border:1px solid var(--line-strong);padding:10px 12px;text-align:left}
 .prose th{background:var(--panel);color:var(--ink);font-weight:650}

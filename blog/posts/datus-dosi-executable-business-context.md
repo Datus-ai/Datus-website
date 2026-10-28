@@ -5,8 +5,8 @@ author: "Joanna He"
 date: 2026-10-28
 lastmod: 2026-10-28
 tags: insight, release
-heroImage: /images/datus-dosi-executable-business-context/cover.svg
-heroImageAlt: "Documents, SQL, and warehouse knowledge converge into shared business definitions and native SQL"
+heroImage: /images/datus-dosi-executable-business-context/cover-video.jpg
+heroImageAlt: "Introducing Datus video featuring co-founder Shao Xie"
 head:
   - - meta
     - name: keywords
@@ -25,7 +25,7 @@ head:
       content: https://datus.ai/blog/datus-dosi-executable-business-context/
   - - meta
     - property: og:image
-      content: https://datus.ai/images/datus-dosi-executable-business-context/cover.svg
+      content: https://datus.ai/images/datus-dosi-executable-business-context/cover-video.jpg
   - - meta
     - name: twitter:card
       content: summary_large_image
@@ -45,6 +45,16 @@ Today, we’re introducing DOSI, Datus’s semantic execution engine. DOSI turns
 Datus’s vision is to provide The Trusted Enterprise Data Context for AI agents. Datus brings together business ontology, governed metric definitions and data provenance so agents can understand enterprise data in its business context. Datus Agent helps build that context from existing documents, warehouses and ETL scripts; DOSI makes compatible semantic models executable.
 
 Use DOSI in Datus Studio, or run it locally as a standalone developer tool.
+
+## Watch: Introducing Datus
+
+Hear Datus co-founder Shao Xie explain the role of trusted semantic layers and business context for AI agents.
+
+<div class="post-video">
+  <iframe src="https://www.youtube.com/embed/5chnuwRGDT4" title="Introducing Datus: Trusted Semantic Layers and Business Context for AI Agents" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<a href="https://www.youtube.com/watch?v=5chnuwRGDT4" rel="nofollow noopener" target="_blank">Watch the introduction on YouTube</a>.
 
 ## Why we built DOSI
 
