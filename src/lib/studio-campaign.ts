@@ -1,5 +1,5 @@
 import { ANALYTICS_CONSENT_EVENT, readCookieChoice } from "../cookie-consent/choice";
-import { hasPaidClickId, organicSearchCampaign } from "./organic-search";
+import { hasPaidClickId, referrerCampaign } from "./referrer-attribution";
 import { studioUrl } from "./studio-url.mjs";
 
 const FIELDS = ["utm_source", "utm_medium", "utm_campaign"] as const;
@@ -46,12 +46,12 @@ export function setupStudioCampaignHandoff(root: HTMLElement): () => void {
   const params = new URLSearchParams(window.location.search);
   const hasLandingFields = FIELDS.some(key => params.has(key));
   const landingFields = fieldsFrom(params);
-  const organic = hasLandingFields ? null : organicSearchCampaign(document.referrer, params);
-  const hasFreshArrival = hasLandingFields || !!organic || hasPaidClickId(params);
+  const inferred = hasLandingFields ? null : referrerCampaign(document.referrer, params);
+  const hasFreshArrival = hasLandingFields || !!inferred || hasPaidClickId(params);
   // Replace the whole campaign on a new tagged arrival; never mix two campaigns.
   let campaign: Campaign | null = hasLandingFields
     ? Object.keys(landingFields).length ? { fields: landingFields, capturedAt: Date.now() } : null
-    : organic ? { fields: organic, capturedAt: Date.now() }
+    : inferred ? { fields: inferred, capturedAt: Date.now() }
       : hasPaidClickId(params) ? null
         : mayStore ? readSaved() : null;
   let expiryTimer: ReturnType<typeof setTimeout>;
