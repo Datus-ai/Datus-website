@@ -1,5 +1,7 @@
 # Datus 官网到 Studio 的 UTM 参数传递说明
 
+新增链接与开发评审先遵循 [UTM 使用规范](utm-conventions.md)。本文补充当前官网到 Studio 的实现边界与验收方法。
+
 更新日期：2026 年 10 月 28 日。适用于官网所有 Studio 跳转，包括中英文营销页面、移动菜单、支持页以及 Blog 导航、CTA 和正文链接。
 
 外部推广链接用 `utm_source`、`utm_medium`、`utm_campaign` 说明用户从哪里来；没有这些参数时，官网也会尝试识别搜索引擎来源。官网用 `utm_content` 说明用户点击了哪个按钮，并将来源和按钮标识合并到 Studio 链接中，不把外部来源改写成 `datus.ai`。没有有效推广来源时，使用 `utm_source=datus.ai` 兜底，不额外生成 medium 或 campaign，也不把默认值保存成推广来源。

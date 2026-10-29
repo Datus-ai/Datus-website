@@ -123,6 +123,8 @@ across marketing, Chinese, policy, and blog routes.
 
 ## Studio CTA link tags
 
+Start with [Datus UTM conventions](docs/utm-conventions.md) for parameter ownership, external channel defaults, naming, examples and Studio source fallback. Keep this policy and the [CTA inventory](docs/studio-cta-tags.csv) current when adding links.
+
 All prerendered website links to Studio (including support and generated blog
 links) use `utm_source=datus.ai` as a fallback and `utm_content` for the website
 CTA's page and placement (for example `home_hero` or
