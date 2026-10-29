@@ -1,6 +1,6 @@
 # Datus 官网到 Studio 的 UTM 参数传递说明
 
-新增链接与开发评审先遵循 [UTM 使用规范](utm-conventions.md)。本文补充当前官网到 Studio 的实现边界与验收方法。
+For new links and code reviews, follow the [UTM conventions](utm-conventions.md). This document supplements them with implementation boundaries and acceptance checks.
 
 更新日期：2026 年 10 月 28 日。适用于官网所有 Studio 跳转，包括中英文营销页面、移动菜单、支持页以及 Blog 导航、CTA 和正文链接。
 
