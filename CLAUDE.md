@@ -306,3 +306,7 @@ The three pillars remain **Business-aware. Agent-native. Audit-ready.**
 The broader visual identity and its current assets live in the separate
 `Datus-visual-identity` repository; do not bring that project's complete source
 or asset collection into this website repository.
+
+# 10. UTM and CTA attribution
+
+Follow [the UTM conventions](./docs/utm-conventions.md) for website code and external marketing links. New marketing Studio CTAs use `studioCtaUrl()` and a stable placement `utm_content` plus the `utm_source=datus.ai` fallback in base HTML; source, medium and campaign come from arrival evidence through the shared handoff. External evidence replaces the fallback as a whole campaign; never fill missing fields in a partial campaign or add acquisition UTM to ordinary internal navigation. Preserve locale prefixes, consent-controlled storage and destination paths. Keep the CTA inventory current; marketing, Support and the static blog use the same source fallback and handoff.
