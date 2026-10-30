@@ -1,3 +1,13 @@
+/* Status accents supplement the shared Nordic palette, including portal content. */
+:root {
+  --sc-danger: #a33b35;
+  --sc-warning: #80601f;
+}
+:root[data-theme='dark'] {
+  --sc-danger: #eda49b;
+  --sc-warning: #d4c198;
+}
+
 /* An independent website copy of the Studio workbench, scoped to this tool. */
 .semantic-converter {
   --sc-primary: var(--brand-bright);
@@ -7,25 +17,33 @@
   --sc-text: var(--ink);
   --sc-secondary: var(--ink-muted);
   --sc-border: var(--line-strong);
-  --sc-danger: #ff8194;
-  --sc-warning: var(--term-amber);
   --sc-success: var(--term-green);
   --sc-header-height: 32px;
-  color-scheme: dark;
+  --separator-border: var(--line);
+  --focus-border: var(--brand-bright);
+  color-scheme: inherit;
   container-type: inline-size;
   container-name: semantic-converter;
   width: 100%;
   color: var(--sc-text);
   background: var(--sc-background);
   border: 1px solid var(--sc-border);
-  border-radius: 8px;
+  border-radius: var(--r);
   overflow: hidden;
   font:
     12px/1.5 Inter,
     system-ui,
     sans-serif;
-  box-shadow: 0 12px 48px #0002;
+  box-shadow: var(--shadow);
   text-align: left;
+}
+/* SSR selects must honor the early theme attribute before React hydrates. */
+:root .semantic-converter .ant-select {
+  --ant-color-text: var(--ink);
+  --ant-color-text-placeholder: var(--ink-faint);
+  --ant-color-border: var(--line-strong);
+  --ant-select-selector-bg: var(--panel-solid);
+  --ant-select-placeholder-color: var(--ink-faint);
 }
 .semantic-converter button {
   cursor: pointer;
@@ -166,13 +184,13 @@
 }
 .sc-button.sc-primary {
   color: #fff;
-  background: var(--sc-primary);
-  border-color: var(--sc-primary);
+  background: var(--brand);
+  border-color: var(--brand);
 }
 .sc-button.sc-primary:is(:hover, :active, :focus-visible):not(:disabled) {
   color: #fff;
-  background: var(--brand);
-  border-color: var(--brand);
+  background: #3020c8;
+  border-color: #3020c8;
 }
 .sc-button.sc-danger {
   color: var(--sc-danger);
@@ -232,7 +250,7 @@
 }
 .sc-blocked {
   color: var(--sc-danger);
-  background: color-mix(in oklab, #ff8194 12%, transparent);
+  background: color-mix(in oklab, var(--sc-danger) 12%, transparent);
 }
 .sc-save-state {
   display: flex;
@@ -275,7 +293,7 @@
   gap: 8px;
   padding: 8px 12px;
   border-radius: 4px;
-  color: var(--ink-muted);
+  color: var(--ink-dim);
   font:
     12px/18px Inter,
     system-ui,
@@ -293,16 +311,16 @@
   overflow-wrap: anywhere;
 }
 .sc-tips-warning {
-  background: color-mix(in oklab, var(--term-amber) 12%, transparent);
+  background: color-mix(in oklab, var(--sc-warning) 12%, transparent);
 }
 .sc-tips-warning > svg {
-  color: var(--term-amber);
+  color: var(--sc-warning);
 }
 .sc-tips-error {
-  background: color-mix(in oklab, #ff8194 12%, transparent);
+  background: color-mix(in oklab, var(--sc-danger) 12%, transparent);
 }
 .sc-tips-error > svg {
-  color: #ff8194;
+  color: var(--sc-danger);
 }
 .sc-error {
   padding: 8px 12px;
@@ -366,8 +384,8 @@
   color: var(--term-amber);
 }
 .sc-file-tree .ant-tree-node-selected {
-  color: #fff !important;
-  background: var(--brand) !important;
+  color: var(--ink) !important;
+  background: var(--brand-soft) !important;
 }
 .sc-file-editor {
   display: flex;
@@ -406,7 +424,7 @@
   height: 100%;
   min-width: 0;
   padding-left: 12px;
-  background: #0b1230;
+  background: var(--panel-solid);
 }
 .sc-editor textarea {
   display: block;
@@ -417,7 +435,7 @@
   padding: 8px;
   font: 12px/18px monospace;
   color: var(--sc-text);
-  background: #0b1230;
+  background: var(--panel-solid);
   outline-offset: -2px;
 }
 .sc-editor-fallback {
@@ -527,7 +545,7 @@
 
 .sc-source-editor .monaco-editor,
 .sc-output-editor .monaco-editor {
-  --vscode-editor-background: #0b1230;
+  --vscode-editor-background: var(--panel-solid);
 }
 .sc-details {
   color: var(--ink);

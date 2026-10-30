@@ -25,8 +25,12 @@ the Studio flow; project saving is omitted because this tool is anonymous.
   relative paths in ZIP. Downloads include current edits. Blocked outputs and
   unsafe paths cannot be exported.
 - Monaco and its workers are bundled on the website origin and loaded only by
-  this tool. The UI follows the website's dark theme. Ant Design styles are
-  extracted per prerendered route to keep first paint and hydration consistent.
+  this tool. Forms, dialogs, dropdowns, file trees and both editors follow the
+  website's light/dark selection and Nordic CSS tokens. A root theme observer
+  updates Ant Design and Monaco in place, retaining session buffers and results.
+  The default and prerendered UI are light; no converter-specific preference
+  is stored. SSR sample selectors also follow the early theme attribute before
+  hydration. Ant Design styles are extracted per prerendered route to keep first paint and hydration consistent.
 
 Validation:
 
@@ -35,8 +39,14 @@ npm run test:semantic-converter
 npm run typecheck:semantic-converter
 npm run build:all
 npm run test:semantic-converter-links
+npm run test:semantic-converter-theme
 npm run preview
 ```
+
+The browser theme checks cover both locales and directions, default/saved/live
+selection, preserved source and result editors, dropdowns, portaled popovers and
+confirmation dialogs, mobile layout, unavailable storage, and the no-JS fallback.
+Screenshots are written to `/tmp/datus-converter-themes/`.
 
 The browser link checks use mocked public catalogs and cover both locales,
 refresh, fallback, delayed catalogs, retries, cancellation, mobile links,
