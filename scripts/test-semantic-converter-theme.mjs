@@ -125,11 +125,11 @@ try {
         await page.keyboard.press('Escape');
         await page.click('.sc-configuration .sc-primary');
         await page.waitForSelector('.sc-output-editor .monaco-editor .view-lines');
-        await page.click('.sc-output-editor .view-lines');
+        await page.locator('.sc-output-editor .view-line').click();
         await page.keyboard.press('Home');
         await page.keyboard.type('# output-buffer-preserved\n');
         await page.waitForFunction(() => document.querySelector('.sc-output-editor .view-lines').textContent.includes('output-buffer-preserved'));
-        await page.click('.sc-source .monaco-editor .view-lines');
+        await page.locator('.sc-source .view-line').click();
         await page.keyboard.press('Home');
         await page.keyboard.type('# theme-buffer-preserved\n');
         await page.waitForFunction(() => document.querySelector('.sc-source .view-lines').textContent.includes('theme-buffer-preserved'));

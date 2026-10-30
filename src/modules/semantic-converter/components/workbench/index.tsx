@@ -155,6 +155,7 @@ export function SemanticConverterWorkbench({initialDirection = 'export'}: {initi
         algorithm: appearance.dark ? theme.darkAlgorithm : theme.defaultAlgorithm,
         components: {
           Button: { dangerColor: appearance.dark ? appearance.background : '#fff' },
+          Tree: { titleHeight: 22, indentSize: 14, paddingXS: 0 },
         },
         token: {
           colorPrimary: appearance.brand,

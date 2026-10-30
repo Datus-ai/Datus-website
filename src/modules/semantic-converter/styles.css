@@ -1,11 +1,15 @@
-/* Status accents supplement the shared Nordic palette, including portal content. */
+/* Shared Nordic surfaces and status accents, including portal content. */
 :root {
   --sc-danger: #a33b35;
   --sc-warning: #80601f;
+  --sc-panel: var(--bg);
+  --sc-border: var(--line);
 }
 :root[data-theme='dark'] {
   --sc-danger: #eda49b;
   --sc-warning: #d4c198;
+  --sc-panel: var(--bg-2);
+  --sc-border: var(--line-strong);
 }
 
 /* An independent website copy of the Studio workbench, scoped to this tool. */
@@ -13,10 +17,8 @@
   --sc-primary: var(--brand-bright);
   --sc-tint: var(--brand-soft);
   --sc-background: var(--panel-solid);
-  --sc-panel: var(--bg-2);
   --sc-text: var(--ink);
   --sc-secondary: var(--ink-muted);
-  --sc-border: var(--line-strong);
   --sc-success: var(--term-green);
   --sc-header-height: 32px;
   --separator-border: var(--line);
@@ -362,25 +364,29 @@
 .sc-file-tree .ant-tree {
   background: transparent;
   font-size: 11px;
-  padding: 8px;
+  padding: 6px;
 }
-.sc-file-tree .ant-tree-treenode {
+.sc-file-tree .ant-tree .ant-tree-treenode {
   width: 100%;
 }
-.sc-file-tree .ant-tree-node-content-wrapper {
+.sc-file-tree .ant-tree .ant-tree-node-content-wrapper {
   display: flex;
   min-width: 0;
   align-items: center;
   gap: 4px;
+  padding-inline: 4px;
 }
 .sc-file-tree .ant-tree-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.sc-file-tree .ant-tree-iconEle {
+.sc-file-tree .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle {
   display: inline-flex !important;
   align-items: center;
+  justify-content: center;
+  flex: 0 0 14px;
+  width: 14px;
   color: var(--term-amber);
 }
 .sc-file-tree .ant-tree-node-selected {
