@@ -41,7 +41,7 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
               {/* The blog is English-only — no /zh mirror, so the href is left bare. */}
               <li><a href="/blog/">{t.blog}</a></li>
               <li><a href={l("/glossary/")}>{t.glossary}</a></li>
-              <li><a href={l("/tools/semantic-model-converter/")}>{t.semanticConverter}</a></li>
+              <li><a href={l("/apache-ossie-converter/")}>{t.semanticConverter}</a></li>
               <li><a href={l("/faq/")}>{t.faq}</a></li>
               <li><a href={l("/support/")}>{t.support}</a></li>
               <li>

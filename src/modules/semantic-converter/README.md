@@ -5,7 +5,9 @@ Workbench. It does not import a SaaS workspace package. Configuration, editable
 output files, diagnostics, discard confirmations, snapshots and downloads follow
 the Studio flow; project saving is omitted because this tool is anonymous.
 
-- Route: `/tools/semantic-model-converter/`, with a `/zh/` mirror.
+- Canonical hub: `/apache-ossie-converter/`, with a `/zh/` mirror.
+  Direction pages and their public names live in `routes.ts`. The former
+  `/tools/semantic-model-converter/` route is a redirect-only compatibility alias.
 - All hosts, including the live website and localhost previews, temporarily use
   `https://studio-dev.datus.ai`. After the production converter API is deployed,
   restore hostname-based routing in `api.ts` when requested: deployed hosts use
@@ -72,35 +74,48 @@ BIM test definitions copied from the Studio examples, with no customer data.
 These are distinct from the original pinned Apache export fixtures in `samples/`.
 
 Both directions start with a prefilled example and retain separate temporary
-sessions. Share a selection with `direction=import|export` and `platform=<catalog ID>`:
+sessions. Public landing URLs describe the source and target:
 
-- `https://datus.ai/tools/semantic-model-converter/?direction=import&platform=cube`
-- `https://datus.ai/tools/semantic-model-converter/?direction=import&platform=dbt`
-- `https://datus.ai/tools/semantic-model-converter/?direction=import&platform=microsoft`
-- `https://datus.ai/tools/semantic-model-converter/?direction=export&platform=snowflake&example=retail`
-- `https://datus.ai/zh/tools/semantic-model-converter/?direction=export&platform=dbt&example=nvidia`
+- `https://datus.ai/apache-ossie-converter/cube-to-ossie/`
+- `https://datus.ai/apache-ossie-converter/ossie-to-cube/`
+- `https://datus.ai/apache-ossie-converter/dbt-to-ossie/`
+- `https://datus.ai/apache-ossie-converter/ossie-to-dbt/`
+- `https://datus.ai/apache-ossie-converter/omni-to-ossie/`
+- `https://datus.ai/apache-ossie-converter/ossie-to-omni/`
+- `https://datus.ai/apache-ossie-converter/power-bi-to-ossie/`
+- `https://datus.ai/apache-ossie-converter/ossie-to-power-bi/`
+- `https://datus.ai/apache-ossie-converter/ossie-to-snowflake/`
 
-These parameters preselect editable controls; they do not lock the UI or start a
-conversion. No direction means the existing default, export. `example` selects a
-public fixture: import uses `cube`, `omni`, `dbt`, `microsoft`; export uses `omni`,
-`nvidia`, `retail`. Existing `?direction=import&example=cube` links still work.
-An explicit platform takes priority over an example's suggested platform. Import
-loads that platform's matching fixture and ignores a conflicting example; a
-future supported import platform without a fixture starts with an empty input.
-Export examples supply input without overriding an explicit target.
+Each has an independently prerendered English/Chinese body, title, description,
+FAQ, breadcrumb and self-canonical URL. There is no Snowflake-to-Ossie page:
+that importer is not supported. Product-facing `power-bi` maps to API ID
+`microsoft`. New pairs require dedicated content and a route-registry entry;
+other catalog formats remain usable on the general hub through query parameters.
 
-Platforms are validated against the deployed catalog (import requires
-`available: true`). Unsupported selections fall back to the usual platform, or
-the first available platform if needed, with a localized notice. Catalog failures
+The route sets the initial direction, platform and public fixture before
+hydration. Explicit `direction`, `platform` and `example` query values remain
+compatible and are validated against the deployed catalog. Once resolved, or
+after an accepted control change, supported pairs replace the URL with their
+clean path. Only non-default fixtures remain in `?example=...`. The directory
+hub stays at its base URL until the visitor selects a configuration. Page copy,
+canonical metadata, structured data, language links and CTA placements track
+the current path without remounting the workbench or clearing either session.
+
+Legacy EN/ZH URLs redirect to the corresponding hub, preserving query,
+campaign parameters and fragments in JavaScript. Their static no-JS fallback
+links to the hub; old URLs are noindex and absent from the sitemap. GitHub Pages
+has no configurable HTTP 301, so these are immediate client/meta redirects.
+
+Parameters preselect editable controls and never start a conversion. Platforms
+are validated against the deployed catalog (import requires `available: true`).
+Unsupported selections fall back with a localized notice. Catalog failures
 retain pending selections for retry; initialization never replaces user edits.
 
-Accepted direction/platform/example changes replace the current history entry
-without navigation. Unrelated query parameters, UTM values, fragments, and
-history state are preserved. Both locale switchers track the latest URL.
-Only validated platform and public fixture IDs are serialized; model contents,
-options, filenames, results, and edits are never put in URLs or restored by a
-shared link. Editing input removes the example parameter. Conversion uses a
-click-time snapshot of all files and options. The website does not save files to a Studio project.
+Only validated platform and public fixture IDs enter share URLs. Model contents,
+options, filenames, results and edits stay out of URLs and are not restored by
+shared links. Changes replace the current history entry, preserving unrelated
+query values, UTM, fragments and history state. Conversion still uses a click-time
+snapshot; the website does not save files to a Studio project.
 
 On desktop, Allotment resizes source/result panes and the 230px output file tree.
 On narrow screens, input and output stack vertically. Native expression warnings

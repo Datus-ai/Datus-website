@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { existsSync, statSync, readFileSync } from 'node:fs';
 import { withSiteTheme } from './scripts/lib/site-theme.mjs';
+import { CONVERTER_PATHS } from './src/modules/semantic-converter/routes';
 
 // Every MPA entry served from a directory. Used both for the rollup inputs and
 // the clean-URL redirect plugin below, so the two never drift apart.
@@ -31,6 +32,7 @@ const MPA_ROUTES = [
   'osi-field-mapping',
   'tools/osi-playground',
   'tools/semantic-model-converter',
+  ...CONVERTER_PATHS.map((route) => route.replace(/^\/|\/$/g, '')),
 ];
 
 // Locally mirror GitHub Pages behavior: redirect a clean URL like `/products/cli`
@@ -49,7 +51,7 @@ const cleanUrls = () => {
         const target = (zh ? pathname.slice(4) : pathname.slice(1));
         if (MPA_ROUTES.includes(target)) {
           res.statusCode = 301;
-          res.setHeader('Location', `${zh ? '/zh' : ''}/${target}/`);
+          res.setHeader('Location', `${zh ? '/zh' : ''}/${target}/${(req.url || '').includes('?') ? '?' + req.url.split('?').slice(1).join('?') : ''}`);
           res.end();
           return;
         }

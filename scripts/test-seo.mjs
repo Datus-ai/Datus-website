@@ -18,6 +18,8 @@ const canonical = html => [...html.matchAll(/<link\b[^>]*>/g)].map(([tag])=>tag)
 const sitemap = read('sitemap-pages.xml');
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
 const titles = new Set();
+const converterHeadings = new Set();
+const converterIntros = new Set();
 for (const url of urls) {
  const path = url.replace('https://datus.ai/', '');
  const html = read(`${path}index.html`), meta = metas(html);
@@ -26,6 +28,14 @@ for (const url of urls) {
  assert(meta.description, `Description: ${url}`);
  assert.equal(attr(canonical(html)||'', 'href'), url, `Canonical: ${url}`);
  assert.equal((html.match(/<h1\b/g)||[]).length, 1, `SSR heading: ${url}`);
+ if (/apache-ossie-converter\/[^/]+\/$/.test(path)) {
+  const heading = html.match(/<h1[^>]*>(.*?)<\/h1>/s)?.[1];
+  const intro = html.match(/class="container converter-prose"><h2>[^<]*<\/h2><p>(.*?)<\/p>/s)?.[1];
+  assert(heading && !converterHeadings.has(heading), `Unique converter H1: ${url}`);
+  assert(intro && !converterIntros.has(intro), `Unique converter body: ${url}`);
+  converterHeadings.add(heading); converterIntros.add(intro);
+ }
+
  if (!path.startsWith('policies/privacy/') && !path.startsWith('policies/terms/')) {
   for (const lang of ['en','zh-Hans','x-default']) assert(html.includes(`hreflang="${lang}"`),`hreflang ${url}`);
  }

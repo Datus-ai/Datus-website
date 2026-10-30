@@ -211,3 +211,18 @@ languages, JSON-LD identities/licensing, image existence, llms links and sitemap
 dates. For updated share images, run `npm run og:build -- products-cli
 products-studio solutions-semantic-layer` before rebuilding. Exports are 1200 ×
 630 with the bundled Inter font; inspect the images after editing their copy.
+
+## Apache Ossie converter routes
+
+The hub is `/apache-ossie-converter/`. Dedicated source-to-target pages
+(e.g. `cube-to-ossie/` and `ossie-to-cube/`) are listed in
+`src/modules/semantic-converter/routes.ts` and mirrored into `/zh/`. Keep each
+English HTML head, Chinese metadata, directional body/FAQ and CTA inventory
+aligned. Vite and prerendering consume the same route list. Legacy semantic
+converter URLs are redirect-only and preserve query/hash in the browser; the
+sitemap includes only the new canonical pages.
+
+After `npm run build:all`, run `npm run test:semantic-converter-links` for direct
+routes, clean configuration URLs, metadata/locale updates, state preservation
+and legacy redirects. Run `npm run test:semantic-converter-theme` for editor and
+control theme behavior, and `npm run test:seo` for canonical/hreflang/SSR output.

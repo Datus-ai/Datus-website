@@ -2,6 +2,7 @@ import type { ICatalog, IImportCatalog } from '../contracts';
 import { IMPORT_EXAMPLES, importExample } from '../examples';
 import { SAMPLES } from '../samples';
 import { createSession, type IDirection, type ISession } from './session';
+import { CONVERTER_PATH, CONVERTER_FLOWS, type ConverterFlow } from '../routes';
 
 export interface IWorkbenchLink {
   direction: IDirection;
@@ -13,14 +14,15 @@ export interface IWorkbenchLink {
 export function readWorkbenchLink(
   search: string,
   fallback: IDirection = 'export',
+  preset?: ConverterFlow,
 ): IWorkbenchLink {
   const params = new URLSearchParams(search);
   const direction = params.get('direction');
+  const side = direction === 'import' || direction === 'export' ? direction : fallback;
   return {
-    direction:
-      direction === 'import' || direction === 'export' ? direction : fallback,
-    platform: params.get('platform') ?? undefined,
-    example: params.get('example') ?? undefined,
+    direction: side,
+    platform: params.get('platform') ?? preset?.platform,
+    example: params.get('example') ?? (!params.has('platform') && side === preset?.direction ? preset.example : undefined),
     invalidDirection:
       direction !== null && direction !== 'import' && direction !== 'export',
   };
@@ -79,13 +81,23 @@ export function workbenchUrl(
   href: string,
   direction: IDirection,
   session: ISession,
+  pretty = true,
 ): string {
   const url = new URL(href);
-  url.searchParams.set('direction', direction);
-  url.searchParams.set('platform', session.formatId);
+  const prefix = url.pathname.startsWith('/zh/') ? '/zh' : '';
+  const onConverter = url.pathname.replace(/^\/zh(?=\/)/, '').startsWith(CONVERTER_PATH);
+  if (onConverter && !pretty) return `${url.pathname}${url.search}${url.hash}`;
+  const preset = onConverter
+    ? CONVERTER_FLOWS.find((item) => item.platform === session.formatId && item.direction === direction)
+    : undefined;
+  if (onConverter) url.pathname = `${prefix}${CONVERTER_PATH}${preset ? preset.slug + '/' : ''}`;
+  if (direction === preset?.direction) url.searchParams.delete('direction');
+  else url.searchParams.set('direction', direction);
+  if (session.formatId === preset?.platform) url.searchParams.delete('platform');
+  else url.searchParams.set('platform', session.formatId);
   const examples = direction === 'import' ? IMPORT_EXAMPLES : SAMPLES;
   const example = examples.find((item) => item.id === session.sampleId);
-  if (!session.inputDirty && example) {
+  if (!session.inputDirty && example && (example.id !== preset?.example || direction !== preset?.direction)) {
     url.searchParams.set('example', example.id);
   } else {
     url.searchParams.delete('example');

@@ -23,6 +23,7 @@ import SupportPage from "./pages/support/Page";
 import OsiFieldMappingPage from "./pages/osi-field-mapping/Page";
 import OsiPlaygroundPage from "./pages/tools/osi-playground/Page";
 import SemanticConverterPage from "./pages/tools/semantic-model-converter/Page";
+import { CONVERTER_PATHS } from "./modules/semantic-converter/routes";
 import GlossaryPage from "./components/GlossaryPage";
 import { LocaleProvider } from "./i18n/LocaleContext";
 import { LOCALES, isMirrored, localizePath, type Locale } from "./i18n/config";
@@ -61,7 +62,7 @@ const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/support/", page: () => <SupportPage /> },
   { path: "/osi-field-mapping/", page: () => <OsiFieldMappingPage /> },
   { path: "/tools/osi-playground/", page: () => <OsiPlaygroundPage /> },
-  { path: "/tools/semantic-model-converter/", page: () => <SemanticConverterPage /> },
+  ...CONVERTER_PATHS.map((path) => ({ path, page: () => <SemanticConverterPage /> })),
   { path: "/glossary/", page: () => <GlossaryPage /> },
 ];
 
