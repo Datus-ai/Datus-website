@@ -30,7 +30,10 @@ Ontology expresses business concepts and relationships connected to the semantic
 - [Databases](https://datus.ai/databases/): Supported native database adapters and configuration.
 - [Models](https://datus.ai/models/): Model-provider configuration.
 - [Integrations](https://datus.ai/integrations/): Supported integrations and workflows.
-- [Semantic Model Converter](https://datus.ai/tools/semantic-model-converter/): Supported import and export paths, editable examples, and conversion diagnostics. Review compatibility before execution.
+- [Apache Ossie Converter](https://datus.ai/apache-ossie-converter/): Supported import and export paths, editable examples, and conversion diagnostics. Review compatibility before execution.
+- [Cube to Apache Ossie](https://datus.ai/apache-ossie-converter/cube-to-ossie/): Import supported Cube YAML bundles with an editable three-file example.
+- [Apache Ossie to dbt](https://datus.ai/apache-ossie-converter/ossie-to-dbt/): Export a MetricFlow semantic_manifest.json; this does not generate a runnable dbt project.
+- [Apache Ossie to Snowflake](https://datus.ai/apache-ossie-converter/ossie-to-snowflake/): Generate Cortex Analyst YAML and review target diagnostics; reverse import is unavailable.
 - [Apache Ossie Playground](https://datus.ai/tools/osi-playground/): Explore and validate supported semantic-model examples.
 - [OSI Field Mapping](https://datus.ai/osi-field-mapping/): Compare semantic-model field mappings.
 - [MCP](https://datus.ai/mcp/): Agent access through MCP.

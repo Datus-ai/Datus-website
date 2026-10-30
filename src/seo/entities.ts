@@ -23,6 +23,7 @@ export const ENTITY_COPY: Record<Locale, {
    '/products/studio/': 'Datus Studio — Workspace for Agent-Driven Data Work',
    '/solutions/semantic-layer/': 'Semantic Layer for AI Agents and Analytics | Datus',
    '/apache-ossie/': 'Apache Ossie: Open Semantic Models for AI & BI | Datus',
+   '/databases/snowflake/': 'Semantic Layer for Snowflake & AI Agents | Datus',
   },
  },
  zh: {
@@ -36,6 +37,7 @@ export const ENTITY_COPY: Record<Locale, {
    '/products/studio/': 'Datus Studio — Agent 驱动的数据工作空间',
    '/solutions/semantic-layer/': '面向团队与 AI Agent 的语义层解决方案 — Datus',
    '/apache-ossie/': 'Apache Ossie：面向 AI 与 BI 的开放语义模型 | Datus',
+   '/databases/snowflake/': '面向 Snowflake 与 AI Agent 的语义层 — Datus',
   },
  },
 };

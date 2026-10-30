@@ -1,55 +1,106 @@
+import { useEffect, useRef, useState } from 'react';
 import SiteLayout from '../../../components/SiteLayout';
 import Breadcrumb from '../../../components/Breadcrumb';
 import FAQ from '../../../components/FAQ';
-import { useHref, useLocale, useT } from '../../../i18n/LocaleContext';
+import { LocaleProvider, useCurrentPath, useHref, useLocale, useT } from '../../../i18n/LocaleContext';
 import { UI } from '../../../i18n/ui';
-import { absoluteUrl } from '../../../i18n/config';
+import { absoluteUrl, alternateLinks, stripLocale } from '../../../i18n/config';
 import { studioCtaUrl } from '../../../lib/studio-cta';
 import { SemanticConverterWorkbench } from '../../../modules/semantic-converter/components/workbench';
 import { converterPage, TARGET_FORMATS, IMPORT_FORMATS } from './content';
 import { converterFaq } from './faq';
+import { CONVERTER_PATH, CONVERTER_PATHS, converterFlow } from '../../../modules/semantic-converter/routes';
+import { platformUi } from './platforms';
+import { flowCopy } from './flows';
+import { ConverterDirectory, FlowGuide } from './FlowGuide';
+import { LOCATION_CHANGE_EVENT } from '../../../lib/location-change';
 import './page.css';
 
-const ROUTE = '/tools/semantic-model-converter/';
+const ROUTE = CONVERTER_PATH;
 
 export default function SemanticConverterPage() {
+  const initialPath = useCurrentPath();
+  const locale = useLocale();
+  const [path, setPath] = useState(initialPath);
+  useEffect(() => {
+    const sync = () => {
+      const next = stripLocale(window.location.pathname);
+      if (CONVERTER_PATHS.includes(next)) setPath(next);
+    };
+    sync();
+    window.addEventListener(LOCATION_CHANGE_EVENT, sync);
+    return () => window.removeEventListener(LOCATION_CHANGE_EVENT, sync);
+  }, []);
+  return <LocaleProvider locale={locale} path={path}><ConverterPageContent /></LocaleProvider>;
+}
+
+function ConverterPageContent() {
   const t = useT(converterPage);
   const locale = useLocale();
   const l = useHref();
-  const faq = useT(converterFaq);
+  const flow = converterFlow(useCurrentPath());
+  const specific = useT(flowCopy);
+  const directory = useT(platformUi);
+  const copy = flow ? specific[flow.slug] : undefined;
+  const title = copy?.title ?? t.title;
+  const lead = copy?.description ?? t.lead;
+  const route = flow ? `${ROUTE}${flow.slug}/` : ROUTE;
+  const genericFaq = useT(converterFaq);
+  const faq = copy?.faq ?? genericFaq;
+  const previousRoute = useRef(route);
+  useEffect(() => {
+    if (previousRoute.current === route) return;
+    previousRoute.current = route;
+    document.title = `${title} — Datus`;
+    const url = absoluteUrl(route, locale);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
+    for (const [key, value] of Object.entries({
+      description: lead, 'og:title': `${title} — Datus`, 'og:description': lead,
+      'twitter:title': `${title} — Datus`, 'twitter:description': lead, 'og:url': url,
+    })) {
+      document.querySelector(`meta[${key.startsWith('og:') ? 'property' : 'name'}="${key}"]`)?.setAttribute('content', value);
+    }
+    for (const [code, href] of Object.entries(alternateLinks(route) ?? {})) {
+      document.querySelector(`link[rel="alternate"][hreflang="${code}"]`)?.setAttribute('href', href);
+    }
+  }, [route, title, lead, locale]);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: t.title,
+    name: title,
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Web',
-    url: absoluteUrl(ROUTE, locale),
-    description: t.lead,
+    url: absoluteUrl(route, locale),
+    description: lead,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   };
 
   return (
     <SiteLayout>
       <Breadcrumb
-        currentUrl={ROUTE}
-        items={[{ label: UI[locale].nav.home, href: '/' }, { label: t.title }]}
+        currentUrl={route}
+        items={[{ label: UI[locale].nav.home, href: '/' }, ...(flow ? [{ label: t.title, href: ROUTE }, { label: flow.name }] : [{ label: t.title }])]}
       />
       <section className="section converter-hero">
         <div className="container">
           <span className="eyebrow">{t.eyebrow}</span>
-          <h1>{t.title}</h1>
-          <p className="lead">{t.lead}</p>
+          <h1>{title}</h1>
+          <p className="lead">{lead}</p>
           <p className="converter-free">{t.free}</p>
           <a href={l("/apache-ossie/")} style={{ color: "var(--brand-bright)", fontSize: 14 }}>{t.guideLink}</a>
+          <ConverterDirectory active={flow?.slug} />
         </div>
       </section>
-      <section className="converter-tool-section">
+      <section className="converter-tool-section" id="converter">
         <div className="converter-tool-container">
           <SemanticConverterWorkbench />
         </div>
       </section>
+      {flow ? <FlowGuide flow={flow} /> : <>
       <section className="section">
         <div className="container converter-prose">
+          <h2>{directory.directory}</h2>
+          <p>{directory.intro}</p>
           <h2>{t.overviewTitle}</h2>
           <p>{t.overview}</p>
           <h2>{t.stepsTitle}</h2>
@@ -130,7 +181,8 @@ export default function SemanticConverterPage() {
           </ul>
         </div>
       </section>
-      <FAQ items={faq} currentUrl={ROUTE} />
+      </>}
+      <FAQ items={faq} currentUrl={route} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

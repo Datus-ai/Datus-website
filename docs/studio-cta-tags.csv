@@ -55,9 +55,9 @@
 /tools/osi-playground/,en,body,Get Started Free,osi_playground_closing,https://studio.datus.ai/?utm_source=datus.ai&utm_content=osi_playground_closing
 /tools/osi-playground/,en,header,Get Started Free,tools_osi_playground_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=tools_osi_playground_header
 /tools/osi-playground/,en,mobile_menu,Get Started Free,tools_osi_playground_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=tools_osi_playground_mobile_menu
-/tools/semantic-model-converter/,en,body,Get Started Free,semantic_converter_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=semantic_converter_resources
-/tools/semantic-model-converter/,en,header,Get Started Free,tools_semantic_model_converter_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=tools_semantic_model_converter_header
-/tools/semantic-model-converter/,en,mobile_menu,Get Started Free,tools_semantic_model_converter_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=tools_semantic_model_converter_mobile_menu
+/apache-ossie-converter/,en,body,Get Started Free,semantic_converter_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=semantic_converter_resources
+/apache-ossie-converter/,en,header,Get Started Free,apache_ossie_converter_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_header
+/apache-ossie-converter/,en,mobile_menu,Get Started Free,apache_ossie_converter_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_mobile_menu
 /wechat/,en,header,Get Started Free,wechat_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=wechat_header
 /wechat/,en,mobile_menu,Get Started Free,wechat_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=wechat_mobile_menu
 /zh/,zh,body,免费开始使用,zh_home_closing,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=zh_home_closing
@@ -114,9 +114,9 @@
 /zh/tools/osi-playground/,zh,body,免费开始使用,zh_osi_playground_closing,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_osi_playground_closing
 /zh/tools/osi-playground/,zh,header,免费开始使用,zh_tools_osi_playground_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_tools_osi_playground_header
 /zh/tools/osi-playground/,zh,mobile_menu,免费开始使用,zh_tools_osi_playground_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_tools_osi_playground_mobile_menu
-/zh/tools/semantic-model-converter/,zh,body,免费开始使用,zh_semantic_converter_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_semantic_converter_resources
-/zh/tools/semantic-model-converter/,zh,header,免费开始使用,zh_tools_semantic_model_converter_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_tools_semantic_model_converter_header
-/zh/tools/semantic-model-converter/,zh,mobile_menu,免费开始使用,zh_tools_semantic_model_converter_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_tools_semantic_model_converter_mobile_menu
+/zh/apache-ossie-converter/,zh,body,免费开始使用,zh_semantic_converter_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_semantic_converter_resources
+/zh/apache-ossie-converter/,zh,header,免费开始使用,zh_apache_ossie_converter_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_header
+/zh/apache-ossie-converter/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_mobile_menu
 /support/,en,body,Submit feedback,support_feedback_channel,https://studio.datus.ai/feedback?utm_source=datus.ai&utm_content=support_feedback_channel
 /support/,en,body,Submit feedback,support_feedback,https://studio.datus.ai/feedback?utm_source=datus.ai&utm_content=support_feedback
 /support/,en,body,Open Studio,support_open_studio,https://studio.datus.ai/?utm_source=datus.ai&utm_content=support_open_studio
@@ -131,3 +131,57 @@
 /zh/apache-ossie/,zh,body,免费开始使用,zh_apache_ossie_closing,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_closing
 /zh/apache-ossie/,zh,header,免费开始使用,zh_apache_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_header
 /zh/apache-ossie/,zh,mobile_menu,免费开始使用,zh_apache_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_mobile_menu
+/apache-ossie-converter/cube-to-ossie/,en,body,Get Started Free,apache_ossie_converter_cube_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_cube_to_ossie_resources
+/apache-ossie-converter/cube-to-ossie/,en,header,Get Started Free,apache_ossie_converter_cube_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_cube_to_ossie_header
+/apache-ossie-converter/cube-to-ossie/,en,mobile_menu,Get Started Free,apache_ossie_converter_cube_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_cube_to_ossie_mobile_menu
+/apache-ossie-converter/ossie-to-cube/,en,body,Get Started Free,apache_ossie_converter_ossie_to_cube_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_cube_resources
+/apache-ossie-converter/ossie-to-cube/,en,header,Get Started Free,apache_ossie_converter_ossie_to_cube_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_cube_header
+/apache-ossie-converter/ossie-to-cube/,en,mobile_menu,Get Started Free,apache_ossie_converter_ossie_to_cube_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_cube_mobile_menu
+/apache-ossie-converter/dbt-to-ossie/,en,body,Get Started Free,apache_ossie_converter_dbt_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_dbt_to_ossie_resources
+/apache-ossie-converter/dbt-to-ossie/,en,header,Get Started Free,apache_ossie_converter_dbt_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_dbt_to_ossie_header
+/apache-ossie-converter/dbt-to-ossie/,en,mobile_menu,Get Started Free,apache_ossie_converter_dbt_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_dbt_to_ossie_mobile_menu
+/apache-ossie-converter/ossie-to-dbt/,en,body,Get Started Free,apache_ossie_converter_ossie_to_dbt_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_dbt_resources
+/apache-ossie-converter/ossie-to-dbt/,en,header,Get Started Free,apache_ossie_converter_ossie_to_dbt_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_dbt_header
+/apache-ossie-converter/ossie-to-dbt/,en,mobile_menu,Get Started Free,apache_ossie_converter_ossie_to_dbt_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_dbt_mobile_menu
+/apache-ossie-converter/omni-to-ossie/,en,body,Get Started Free,apache_ossie_converter_omni_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_omni_to_ossie_resources
+/apache-ossie-converter/omni-to-ossie/,en,header,Get Started Free,apache_ossie_converter_omni_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_omni_to_ossie_header
+/apache-ossie-converter/omni-to-ossie/,en,mobile_menu,Get Started Free,apache_ossie_converter_omni_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_omni_to_ossie_mobile_menu
+/apache-ossie-converter/ossie-to-omni/,en,body,Get Started Free,apache_ossie_converter_ossie_to_omni_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_omni_resources
+/apache-ossie-converter/ossie-to-omni/,en,header,Get Started Free,apache_ossie_converter_ossie_to_omni_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_omni_header
+/apache-ossie-converter/ossie-to-omni/,en,mobile_menu,Get Started Free,apache_ossie_converter_ossie_to_omni_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_omni_mobile_menu
+/apache-ossie-converter/power-bi-to-ossie/,en,body,Get Started Free,apache_ossie_converter_power_bi_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_power_bi_to_ossie_resources
+/apache-ossie-converter/power-bi-to-ossie/,en,header,Get Started Free,apache_ossie_converter_power_bi_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_power_bi_to_ossie_header
+/apache-ossie-converter/power-bi-to-ossie/,en,mobile_menu,Get Started Free,apache_ossie_converter_power_bi_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_power_bi_to_ossie_mobile_menu
+/apache-ossie-converter/ossie-to-power-bi/,en,body,Get Started Free,apache_ossie_converter_ossie_to_power_bi_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_power_bi_resources
+/apache-ossie-converter/ossie-to-power-bi/,en,header,Get Started Free,apache_ossie_converter_ossie_to_power_bi_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_power_bi_header
+/apache-ossie-converter/ossie-to-power-bi/,en,mobile_menu,Get Started Free,apache_ossie_converter_ossie_to_power_bi_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_power_bi_mobile_menu
+/apache-ossie-converter/ossie-to-snowflake/,en,body,Get Started Free,apache_ossie_converter_ossie_to_snowflake_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_snowflake_resources
+/apache-ossie-converter/ossie-to-snowflake/,en,header,Get Started Free,apache_ossie_converter_ossie_to_snowflake_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_snowflake_header
+/apache-ossie-converter/ossie-to-snowflake/,en,mobile_menu,Get Started Free,apache_ossie_converter_ossie_to_snowflake_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_converter_ossie_to_snowflake_mobile_menu
+/zh/apache-ossie-converter/cube-to-ossie/,zh,body,免费开始使用,zh_apache_ossie_converter_cube_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_cube_to_ossie_resources
+/zh/apache-ossie-converter/cube-to-ossie/,zh,header,免费开始使用,zh_apache_ossie_converter_cube_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_cube_to_ossie_header
+/zh/apache-ossie-converter/cube-to-ossie/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_cube_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_cube_to_ossie_mobile_menu
+/zh/apache-ossie-converter/ossie-to-cube/,zh,body,免费开始使用,zh_apache_ossie_converter_ossie_to_cube_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_cube_resources
+/zh/apache-ossie-converter/ossie-to-cube/,zh,header,免费开始使用,zh_apache_ossie_converter_ossie_to_cube_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_cube_header
+/zh/apache-ossie-converter/ossie-to-cube/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_ossie_to_cube_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_cube_mobile_menu
+/zh/apache-ossie-converter/dbt-to-ossie/,zh,body,免费开始使用,zh_apache_ossie_converter_dbt_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_dbt_to_ossie_resources
+/zh/apache-ossie-converter/dbt-to-ossie/,zh,header,免费开始使用,zh_apache_ossie_converter_dbt_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_dbt_to_ossie_header
+/zh/apache-ossie-converter/dbt-to-ossie/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_dbt_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_dbt_to_ossie_mobile_menu
+/zh/apache-ossie-converter/ossie-to-dbt/,zh,body,免费开始使用,zh_apache_ossie_converter_ossie_to_dbt_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_dbt_resources
+/zh/apache-ossie-converter/ossie-to-dbt/,zh,header,免费开始使用,zh_apache_ossie_converter_ossie_to_dbt_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_dbt_header
+/zh/apache-ossie-converter/ossie-to-dbt/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_ossie_to_dbt_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_dbt_mobile_menu
+/zh/apache-ossie-converter/omni-to-ossie/,zh,body,免费开始使用,zh_apache_ossie_converter_omni_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_omni_to_ossie_resources
+/zh/apache-ossie-converter/omni-to-ossie/,zh,header,免费开始使用,zh_apache_ossie_converter_omni_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_omni_to_ossie_header
+/zh/apache-ossie-converter/omni-to-ossie/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_omni_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_omni_to_ossie_mobile_menu
+/zh/apache-ossie-converter/ossie-to-omni/,zh,body,免费开始使用,zh_apache_ossie_converter_ossie_to_omni_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_omni_resources
+/zh/apache-ossie-converter/ossie-to-omni/,zh,header,免费开始使用,zh_apache_ossie_converter_ossie_to_omni_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_omni_header
+/zh/apache-ossie-converter/ossie-to-omni/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_ossie_to_omni_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_omni_mobile_menu
+/zh/apache-ossie-converter/power-bi-to-ossie/,zh,body,免费开始使用,zh_apache_ossie_converter_power_bi_to_ossie_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_power_bi_to_ossie_resources
+/zh/apache-ossie-converter/power-bi-to-ossie/,zh,header,免费开始使用,zh_apache_ossie_converter_power_bi_to_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_power_bi_to_ossie_header
+/zh/apache-ossie-converter/power-bi-to-ossie/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_power_bi_to_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_power_bi_to_ossie_mobile_menu
+/zh/apache-ossie-converter/ossie-to-power-bi/,zh,body,免费开始使用,zh_apache_ossie_converter_ossie_to_power_bi_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_power_bi_resources
+/zh/apache-ossie-converter/ossie-to-power-bi/,zh,header,免费开始使用,zh_apache_ossie_converter_ossie_to_power_bi_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_power_bi_header
+/zh/apache-ossie-converter/ossie-to-power-bi/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_ossie_to_power_bi_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_power_bi_mobile_menu
+/zh/apache-ossie-converter/ossie-to-snowflake/,zh,body,免费开始使用,zh_apache_ossie_converter_ossie_to_snowflake_resources,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_snowflake_resources
+/zh/apache-ossie-converter/ossie-to-snowflake/,zh,header,免费开始使用,zh_apache_ossie_converter_ossie_to_snowflake_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_snowflake_header
+/zh/apache-ossie-converter/ossie-to-snowflake/,zh,mobile_menu,免费开始使用,zh_apache_ossie_converter_ossie_to_snowflake_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_converter_ossie_to_snowflake_mobile_menu

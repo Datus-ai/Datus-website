@@ -85,7 +85,10 @@
     "test:support": "node scripts/test-support.mjs",
     "test:site-theme": "node scripts/test-site-theme.mjs",
     "test:semantic-converter": "node scripts/test-semantic-converter.mjs",
+    "test:semantic-converter-theme": "node scripts/test-semantic-converter-theme.mjs",
+    "test:semantic-converter-links": "node scripts/test-semantic-converter-links.mjs",
     "typecheck:semantic-converter": "tsc --noEmit --jsx react-jsx --module esnext --target es2022 --moduleResolution bundler --lib dom,dom.iterable,es2022 --allowSyntheticDefaultImports --skipLibCheck --types vite/client,node src/pages/tools/semantic-model-converter/main.tsx",
+    "test:page-shells": "node scripts/test-page-shells.mjs",
     "test:seo": "node scripts/test-seo.mjs"
   }
 }

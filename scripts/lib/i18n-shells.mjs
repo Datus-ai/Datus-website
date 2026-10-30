@@ -11,6 +11,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { converterRedirectStub } from "./converter-redirects.mjs";
 
 // `<lastmod>` for the marketing pages — the date this copy last changed, which
 // is deliberately independent of the blog's own BUILD_DATE in build-blog.mjs.
@@ -148,7 +149,7 @@ ${entries.join("\n")}
 export function buildLocaleShells(dist, i18n) {
   const {
     MIRRORED_PATHS, ZH_PAGE_META, missingZhMeta,
-    HTML_LANG, OG_LOCALE, SITE,
+    HTML_LANG, OG_LOCALE, SITE, LOCALES,
     absoluteUrl, alternateLinks, localizePath,
   } = i18n;
 
@@ -198,6 +199,12 @@ export function buildLocaleShells(dist, i18n) {
     // `/en/*` was never a public URL; the stubs exist so that if anything ever
     // links there it lands on the canonical unprefixed page instead of a 404.
     write(join(dist, shellFile(`/en${path === "/" ? "/" : path}`)), redirectStub(`${SITE}${path}`));
+  }
+
+  for (const locale of LOCALES) {
+    const prefix = locale === 'zh' ? '/zh' : '';
+    write(join(dist, shellFile(`${prefix}${i18n.LEGACY_CONVERTER_PATH}`)),
+      converterRedirectStub(`${SITE}${prefix}${i18n.CONVERTER_PATH}`, locale));
   }
 
   write(join(dist, "sitemap-pages.xml"), buildPagesSitemap(i18n, BUILD_DATE));

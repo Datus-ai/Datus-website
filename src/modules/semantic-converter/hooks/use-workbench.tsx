@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal } from 'antd';
+import { useCurrentPath } from '../../../i18n/LocaleContext';
+import { converterFlow } from '../routes';
 import type { ICatalog, IImportCatalog, IImportFile } from '../contracts';
 import {
   convertModel,
@@ -19,21 +21,35 @@ import {
 import type { IDirection, ISession } from '../utils/session';
 import { MAX_SOURCE_BYTES, inspectSource } from '../utils/source';
 import { downloadArtifacts, workingArtifacts } from '../utils/artifacts';
+import {
+  readWorkbenchLink,
+  resolveWorkbenchLink,
+  workbenchUrl,
+  type IWorkbenchLink,
+} from '../utils/url-state';
+import { replaceLocation } from '../../../lib/location-change';
 
 export function useWorkbench(initialDirection: IDirection = 'export') {
   const t = useConverterCopy();
+  const currentPath = useCurrentPath();
+  const preset = useRef(converterFlow(currentPath)).current;
+  const defaultDirection = preset?.direction ?? initialDirection;
   const [modal, contextHolder] = Modal.useModal();
-  const [direction, setDirection] = useState<IDirection>(initialDirection);
-  const [sessions, setSessions] = useState<Record<IDirection, ISession>>(
-    () => ({
+  const [direction, setDirection] = useState<IDirection>(defaultDirection);
+  const [sessions, setSessions] = useState<Record<IDirection, ISession>>(() => {
+    const sample = SAMPLES.find((item) => item.id === preset?.example)
+      ?? SAMPLES.find((item) => item.target === preset?.platform)
+      ?? SAMPLES[0];
+    const sourceId = preset && importExample(preset.platform).length ? preset.platform : 'cube';
+    return {
       export: createSession(
-        SAMPLES[0].target,
-        [{ path: SAMPLES[0].filename, content: SAMPLES[0].source }],
-        SAMPLES[0].id,
+        preset?.platform ?? sample.target,
+        [{ path: sample.filename, content: sample.source }],
+        sample.id,
       ),
-      import: createSession('cube', importExample('cube'), 'cube'),
-    }),
-  );
+      import: createSession(sourceId, importExample(sourceId), sourceId),
+    };
+  });
   const [catalog, setCatalog] = useState<ICatalog | null>(null);
   const [importCatalog, setImportCatalog] = useState<IImportCatalog | null>(
     null,
@@ -43,6 +59,12 @@ export function useWorkbench(initialDirection: IDirection = 'export') {
     export: 0,
   });
   const [attempt, setAttempt] = useState(0);
+  const [link, setLink] = useState<IWorkbenchLink | null>(null);
+  const [linkReady, setLinkReady] = useState(false);
+  const [linkNotice, setLinkNotice] = useState(false);
+  const appliedLink = useRef(false);
+  const linkedSelection = useRef(false);
+  const touched = useRef(new Set<IDirection>());
   const [converting, setConverting] = useState(false);
   const [reading, setReading] = useState(false);
   const [downloading, setDownloading] = useState(false);
@@ -59,6 +81,9 @@ export function useWorkbench(initialDirection: IDirection = 'export') {
       change: Partial<ISession> | ((old: ISession) => Partial<ISession>),
       side: IDirection = directionRef.current,
     ) => {
+      touched.current.add(side);
+      setLinkReady(true);
+      setLinkNotice(false);
       setSessions((old) => ({
         ...old,
         [side]: {
@@ -106,24 +131,18 @@ export function useWorkbench(initialDirection: IDirection = 'export') {
     ) || converting;
 
   useEffect(() => {
-    // Only non-sensitive, allowlisted local sample IDs enter the URL. Keep SSR deterministic.
+    // Read only after hydration so prerendered markup stays deterministic.
     const params = new URLSearchParams(window.location.search);
-    if (params.get('direction') === 'export') {
-      setDirection('export');
-    } else if (params.get('direction') === 'import') {
-      const example = params.get('example') ?? 'cube';
-      const files = importExample(example);
-      setDirection('import');
-      if (files.length) {
-        update(createSession(example, files, example), 'import');
-      }
-    }
+    linkedSelection.current = ['direction', 'platform', 'example'].some((key) => params.has(key));
+    const requested = readWorkbenchLink(window.location.search, defaultDirection, preset);
+    setLink(requested);
+    setDirection(requested.direction);
     mounted.current = true;
     return () => {
       mounted.current = false;
       controller.current?.abort();
     };
-  }, [update]);
+  }, [defaultDirection, preset]);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -158,6 +177,31 @@ export function useWorkbench(initialDirection: IDirection = 'export') {
       });
     return () => abort.abort();
   }, [attempt]);
+
+  useEffect(() => {
+    if (!link || appliedLink.current) return;
+    const available = link.direction === 'import' ? importCatalog : catalog;
+    if (!available) return; // A failed request can be retried without losing the link.
+    const resolved = resolveWorkbenchLink(link, available);
+    appliedLink.current = true;
+    if (resolved && !touched.current.has(link.direction)) {
+      setSessions((old) => ({ ...old, [link.direction]: resolved.session }));
+      setLinkNotice(resolved.invalid);
+    }
+    setLinkReady(true);
+  }, [link, catalog, importCatalog]);
+
+  useEffect(() => {
+    if (linkReady && selected) {
+      replaceLocation(workbenchUrl(
+        window.location.href, direction, session,
+        Boolean(preset || linkedSelection.current || touched.current.size),
+      ));
+    }
+  }, [
+    linkReady, direction, session.formatId, session.sampleId,
+    session.inputDirty, selected,
+  ]);
 
   useEffect(() => {
     const handler = (event: BeforeUnloadEvent) => {
@@ -387,6 +431,7 @@ export function useWorkbench(initialDirection: IDirection = 'export') {
     session,
     catalog,
     importCatalog,
+    linkNotice,
     catalogError: Boolean(catalogErrors[direction]),
     catalogErrorStatus: catalogErrors[direction],
     busy,
@@ -416,6 +461,8 @@ export function useWorkbench(initialDirection: IDirection = 'export') {
     },
     setDirection: (value: IDirection) => {
       if (!locked.current && !readingRef.current && !downloading) {
+        setLinkReady(true);
+        setLinkNotice(false);
         setDirection(value);
       }
     },

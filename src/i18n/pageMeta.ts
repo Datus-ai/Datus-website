@@ -1,11 +1,13 @@
 import { MIRRORED_PATHS } from "./config";
+import { CONVERTER_PATH, CONVERTER_FLOWS } from "../modules/semantic-converter/routes";
+import { flowCopy } from "../pages/tools/semantic-model-converter/flows";
 
 /**
  * Chinese `<head>` metadata for every mirrored marketing page.
  *
- * The English metadata already lives in each route's hand-written
- * `<route>/index.html`; this file supplies only the Chinese overrides. The
- * `/zh` shell generator (scripts/lib/i18n-shells.mjs) reads it at build time
+ * The English metadata lives in `src/seo/pages.json` / `src/seo/pages.ts`;
+ * this file supplies only the Chinese overrides. The `/zh` shell generator
+ * (scripts/lib/i18n-shells.mjs) reads it at build time
  * and rewrites the copied English shell, so there is exactly one place to edit
  * a Chinese title or description.
  *
@@ -28,18 +30,31 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogTitle: "Apache Ossie：语义模型的开放标准",
     ogDescription: "理解 Apache Ossie 的历史、社区、YAML 与 JSON 模型，以及兼容工具如何交换业务定义。",
   },
+  "/databases/snowflake/": {
+    title: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
+    description: "为 Snowflake 数据增加共享业务上下文。创建可审核的 Apache Ossie 模型，通过 DOSI 生成原生 SQL，为团队与 AI Agent 提供可复用的业务定义。",
+    ogTitle: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
+    ogDescription: "开放的定义，Snowflake 原生 SQL，团队与 Agent 共享的业务上下文。",
+  },
   "/solutions/semantic-layer/": {
     title: "面向团队与 AI Agent 的语义层解决方案 — Datus",
     description: "将业务关系、指标与源数据映射连接为可审核的语义层。Apache Ossie 提供开放规范，DOSI 将兼容的定义转为原生 SQL 执行。",
     ogTitle: "语义层解决方案 — Datus",
     ogDescription: "团队与 AI Agent 共享业务定义，通过 DOSI 执行兼容的 Apache Ossie 模型，并核查 SQL 与结果来源。",
   },
-  "/tools/semantic-model-converter/": {
-    title: "语义模型转换器：导入与导出 Apache Ossie — Datus",
+  [CONVERTER_PATH]: {
+    title: "Apache Ossie 语义模型转换器 — Datus",
     description: "免费将 Cube、dbt、Omni 等平台模型导入 Apache Ossie，或将 Ossie / Dosi YAML 导出为其他格式。内置样例，支持多文件编辑、诊断与下载。",
     ogTitle: "免费语义模型转换器 — Datus",
     ogDescription: "选择导入或导出 Ossie，加载样例或上传源文件，检查诊断并下载转换结果。",
   },
+  ...Object.fromEntries(CONVERTER_FLOWS.map((item) => {
+    const copy = flowCopy.zh[item.slug];
+    return [`${CONVERTER_PATH}${item.slug}/`, {
+      title: `${copy.title} — Datus`, description: copy.description,
+      ogTitle: `${copy.title} — Datus`, ogDescription: copy.description,
+    }];
+  })),
   "/policies/cookies/": {
     title: "Cookie 与本地存储政策 — Datus",
     description: "了解 Datus 官网与 Datus Studio 使用 Cookie 和本地存储的用途、保存时间，以及如何管理使用分析。",

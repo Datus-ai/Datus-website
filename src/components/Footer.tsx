@@ -42,7 +42,7 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
               <li><a href="/blog/">{t.blog}</a></li>
               <li><a href={l("/glossary/")}>{t.glossary}</a></li>
               <li><a href={l("/apache-ossie/")}>{t.apacheOssieGuide}</a></li>
-              <li><a href={l("/tools/semantic-model-converter/")}>{t.semanticConverter}</a></li>
+              <li><a href={l("/apache-ossie-converter/")}>{t.semanticConverter}</a></li>
               <li><a href={l("/faq/")}>{t.faq}</a></li>
               <li><a href={l("/support/")}>{t.support}</a></li>
               <li>

@@ -148,7 +148,7 @@ The official converters repository includes a Cube YAML ↔ Ossie converter as c
 
 ### Can I export a Cube data model in OSI format today?
 
-You can use the [official offline Cube converter](https://github.com/apache/ossie-converters/tree/main/cube) for supported YAML model files, or inspect the Cube example in the [website conversion workbench](/tools/semantic-model-converter/). Review diagnostics and validate the intended destination. This does not establish a native export button in a running Cube deployment.
+You can use the [official offline Cube converter](https://github.com/apache/ossie-converters/tree/main/cube) for supported YAML model files, or inspect the Cube example in the [website conversion workbench](/apache-ossie-converter/). Review diagnostics and validate the intended destination. This does not establish a native export button in a running Cube deployment.
 
 ### Should I adopt Cube, OSI, or both?
 

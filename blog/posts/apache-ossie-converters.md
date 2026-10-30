@@ -76,7 +76,7 @@ Before uploading your own YAML, establish which model you intend to export and w
 
 ## 2. Choose the target by its output contract
 
-Choose a converter by the file format your next step accepts. A vendor's name is too broad to establish that contract: a platform can expose several modeling surfaces, and one converter may cover a specific surface. As of October 2026, the [Datus Semantic Model Converter](/tools/semantic-model-converter/) exposes the following 14 export targets through its deployed catalog. This is the web tool's scope, rather than a claim that it contains every upstream converter or every upstream option.
+Choose a converter by the file format your next step accepts. A vendor's name is too broad to establish that contract: a platform can expose several modeling surfaces, and one converter may cover a specific surface. As of October 2026, the [Datus Semantic Model Converter](/apache-ossie-converter/) exposes the following 14 export targets through its deployed catalog. This is the web tool's scope, rather than a claim that it contains every upstream converter or every upstream option.
 
 | Target | Export artifact | What to establish before import |
 |---|---|---|
@@ -200,7 +200,7 @@ Treat an upstream move as a compatibility review: identify the maintained implem
 
 ## Conclusion
 
-Choose an Apache Ossie converter by its output contract, then accept the result against your destination's import and metric behavior. Keep the source, target settings, generated files, and review decisions together so the next conversion remains explainable. Start with the three bundled cases in the [Semantic Model Converter](/tools/semantic-model-converter/), then replace them with a small model that exercises your own critical definitions.
+Choose an Apache Ossie converter by its output contract, then accept the result against your destination's import and metric behavior. Keep the source, target settings, generated files, and review decisions together so the next conversion remains explainable. Start with the three bundled cases in the [Semantic Model Converter](/apache-ossie-converter/), then replace them with a small model that exercises your own critical definitions.
 
 ## Frequently asked questions
 
