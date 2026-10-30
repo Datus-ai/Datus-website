@@ -7,6 +7,7 @@ import { ArrowRightLeft } from 'lucide-react';
 import { useLocale } from '../../../../i18n/LocaleContext';
 import { useConverterCopy } from '../../copy';
 import { useWorkbench } from '../../hooks/use-workbench';
+import { ConverterAppearanceContext, useWebsiteAppearance } from '../../theme';
 import type { IDirection } from '../../utils/session';
 import { Configuration } from '../configuration';
 import { ImportConfiguration } from '../import-configuration';
@@ -21,6 +22,7 @@ export function SemanticConverterWorkbench({initialDirection = 'export'}: {initi
   const t = useConverterCopy();
   const locale = useLocale();
   const instanceId = useId();
+  const appearance = useWebsiteAppearance();
   const state = useWorkbench(initialDirection);
   const { session, direction, busy } = state;
   const importing = direction === 'import';
@@ -146,17 +148,31 @@ export function SemanticConverterWorkbench({initialDirection = 'export'}: {initi
   );
 
   return (
+    <ConverterAppearanceContext.Provider value={appearance}>
     <ConfigProvider
       locale={locale === 'zh' ? zhCN : enUS}
       theme={{
-        algorithm: theme.darkAlgorithm,
+        algorithm: appearance.dark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        components: {
+          Button: { dangerColor: appearance.dark ? appearance.background : '#fff' },
+          Tree: { titleHeight: 22, indentSize: 14, paddingXS: 0 },
+        },
         token: {
-          colorPrimary: '#6b5cff',
-          colorBgContainer: '#0b1230',
-          colorBgElevated: '#0e1638',
-          colorText: '#eef1ff',
-          colorTextSecondary: '#8a93c4',
-          colorBorder: 'rgba(124, 137, 196, 0.28)',
+          colorPrimary: appearance.brand,
+          colorPrimaryBg: appearance.tint,
+          colorPrimaryText: appearance.accent,
+          colorLink: appearance.accent,
+          colorBgBase: appearance.background,
+          colorBgContainer: appearance.surface,
+          colorBgElevated: appearance.surface,
+          colorText: appearance.text,
+          colorTextSecondary: appearance.secondary,
+          colorTextPlaceholder: appearance.faint,
+          colorBorder: appearance.border,
+          colorBorderSecondary: appearance.line,
+          colorSuccess: appearance.green,
+          colorWarning: appearance.warning,
+          colorError: appearance.danger,
           fontSize: 12,
           borderRadius: 6,
           controlHeight: 30,
@@ -253,5 +269,6 @@ export function SemanticConverterWorkbench({initialDirection = 'export'}: {initi
       </section>
       {state.contextHolder}
     </ConfigProvider>
+    </ConverterAppearanceContext.Provider>
   );
 }
