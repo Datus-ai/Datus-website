@@ -36,6 +36,7 @@ export type UiMessages = {
   footer: {
     apacheDisclaimer: { project: string; afterProject: string; foundation: string; afterFoundation: string };
     semanticConverter: string;
+    apacheOssieGuide: string;
     cookiePolicy: string;
     privacyPolicy: string;
     termsOfService: string;
@@ -188,6 +189,7 @@ export const UI: Record<Locale, UiMessages> = {
         afterFoundation: ". Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.",
       },
       semanticConverter: "Semantic Model Converter",
+      apacheOssieGuide: "Apache Ossie Guide",
       cookiePolicy: "Cookie Policy",
       privacyPolicy: "Privacy Statement",
       termsOfService: "Terms of Service",
@@ -338,6 +340,7 @@ export const UI: Record<Locale, UiMessages> = {
         afterFoundation: "旗下 Apache Incubator 中的项目。孵化过程涉及对社区和治理机制的审核，不代表对代码成熟度或稳定性的评价，也不表示该项目已获得 ASF 的全面认可。Apache 和 Apache Ossie 是 ASF 的商标。Datus 是独立产品，不代表 ASF 的认可或背书。",
       },
       semanticConverter: "语义模型转换器",
+      apacheOssieGuide: "Apache Ossie 指南",
       cookiePolicy: "Cookie 政策",
       privacyPolicy: "隐私声明",
       termsOfService: "服务条款",

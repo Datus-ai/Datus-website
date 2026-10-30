@@ -15,6 +15,7 @@ const MPA_ROUTES = [
   'products/studio',
   'products/enterprise',
   'solutions/semantic-layer',
+  'apache-ossie',
   'integrations',
   'databases',
   'models',

@@ -1,6 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
 import App from "./App";
+import ApacheOssiePage from "./pages/apache-ossie/Page";
 import SemanticLayerSolution from "./pages/solutions/semantic-layer/Page";
 import DatafunPage from "./pages/datafun/Page";
 import CliPage from "./pages/products/cli/Page";
@@ -39,6 +40,7 @@ import { LOCALES, isMirrored, localizePath, type Locale } from "./i18n/config";
  */
 const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/", page: () => <App /> },
+  { path: "/apache-ossie/", page: () => <ApacheOssiePage /> },
   { path: "/solutions/semantic-layer/", page: () => <SemanticLayerSolution /> },
   { path: "/datafun/", page: () => <DatafunPage /> },
   { path: "/products/cli/", page: () => <CliPage /> },

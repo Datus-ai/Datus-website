@@ -22,6 +22,7 @@ export const ENTITY_COPY: Record<Locale, {
    '/products/cli/': 'Datus Agent — Open-Source Data Engineering and Analysis',
    '/products/studio/': 'Datus Studio — Workspace for Agent-Driven Data Work',
    '/solutions/semantic-layer/': 'Semantic Layer for AI Agents and Analytics | Datus',
+   '/apache-ossie/': 'Apache Ossie: Open Semantic Models for AI & BI | Datus',
   },
  },
  zh: {
@@ -34,6 +35,7 @@ export const ENTITY_COPY: Record<Locale, {
    '/products/cli/': 'Datus Agent — 开源的数据工程与分析 Agent',
    '/products/studio/': 'Datus Studio — Agent 驱动的数据工作空间',
    '/solutions/semantic-layer/': '面向团队与 AI Agent 的语义层解决方案 — Datus',
+   '/apache-ossie/': 'Apache Ossie：面向 AI 与 BI 的开放语义模型 | Datus',
   },
  },
 };

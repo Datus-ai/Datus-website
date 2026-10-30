@@ -40,6 +40,7 @@ export default function SemanticConverterPage() {
           <h1>{t.title}</h1>
           <p className="lead">{t.lead}</p>
           <p className="converter-free">{t.free}</p>
+          <a href={l("/apache-ossie/")} style={{ color: "var(--brand-bright)", fontSize: 14 }}>{t.guideLink}</a>
         </div>
       </section>
       <section className="converter-tool-section">

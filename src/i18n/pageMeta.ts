@@ -22,6 +22,12 @@ export type PageMeta = {
 };
 
 export const ZH_PAGE_META: Record<string, PageMeta> = {
+  "/apache-ossie/": {
+    title: "Apache Ossie：面向 AI 与 BI 的开放语义模型 | Datus",
+    description: "了解 Apache Ossie（原名 OSI）的项目历史、社区治理、YAML 与 JSON 模型、跨工具转换路径，以及 DOSI 原生执行。",
+    ogTitle: "Apache Ossie：语义模型的开放标准",
+    ogDescription: "理解 Apache Ossie 的历史、社区、YAML 与 JSON 模型，以及兼容工具如何交换业务定义。",
+  },
   "/solutions/semantic-layer/": {
     title: "面向团队与 AI Agent 的语义层解决方案 — Datus",
     description: "将业务关系、指标与源数据映射连接为可审核的语义层。Apache Ossie 提供开放规范，DOSI 将兼容的定义转为原生 SQL 执行。",

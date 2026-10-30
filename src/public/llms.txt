@@ -25,6 +25,8 @@ Ontology expresses business concepts and relationships connected to the semantic
 
 ## Integration and modeling resources
 
+- [Apache Ossie guide](https://datus.ai/apache-ossie/): Open Semantic Interchange (OSI), model concepts, DOSI native execution, compatibility boundaries, tutorials and tools.
+
 - [Databases](https://datus.ai/databases/): Supported native database adapters and configuration.
 - [Models](https://datus.ai/models/): Model-provider configuration.
 - [Integrations](https://datus.ai/integrations/): Supported integrations and workflows.

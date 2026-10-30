@@ -5,6 +5,7 @@ interface IConverterPageCopy {
   title: string;
   eyebrow: string;
   lead: string;
+  guideLink: string;
   free: string;
   overviewTitle: string;
   overview: string;
@@ -32,6 +33,7 @@ export const converterPage: Record<Locale, IConverterPageCopy> = {
   en: {
     title: 'Semantic Model Converter',
     eyebrow: 'Free Developer Tool · Apache Ossie / Dosi',
+    guideLink: 'Read the Apache Ossie standard guide',
     lead: 'Convert Cube, dbt, Omni and other supported platform models to Apache Ossie, or export Ossie / Dosi YAML to another format. Try prefilled examples, inspect diagnostics, edit files and download results.',
     free: 'No signup · Sample models included · Offline conversion checks',
     overviewTitle: 'Import to Ossie or Export to Your Platform',
@@ -113,6 +115,7 @@ export const converterPage: Record<Locale, IConverterPageCopy> = {
   zh: {
     title: '语义模型转换器',
     eyebrow: '免费开发工具 · Apache Ossie / Dosi',
+    guideLink: '阅读 Apache Ossie 规范指南',
     lead: '将 Cube、dbt、Omni 等支持的平台模型导入 Apache Ossie，或将 Ossie / Dosi YAML 导出为其他格式。直接试用预填充样例，查看诊断、编辑文件并下载结果。',
     free: '无需注册 · 内置测试样例 · 离线转换检查',
     overviewTitle: '导入 Ossie，或导出为其他平台格式',

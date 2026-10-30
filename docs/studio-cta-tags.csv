@@ -125,3 +125,9 @@
 /zh/support/,zh,body,提交反馈,zh_support_feedback,https://studio.datus.ai/feedback?utm_source=datus.ai&utm_content=zh_support_feedback
 /zh/support/,zh,body,打开 Studio,zh_support_open_studio,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_support_open_studio
 /zh/support/,zh,body,部署文档,zh_support_deployment,https://studio.datus.ai/deployment?utm_source=datus.ai&utm_content=zh_support_deployment
+/apache-ossie/,en,body,Get Started Free,apache_ossie_closing,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_closing
+/apache-ossie/,en,header,Get Started Free,apache_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_header
+/apache-ossie/,en,mobile_menu,Get Started Free,apache_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=apache_ossie_mobile_menu
+/zh/apache-ossie/,zh,body,免费开始使用,zh_apache_ossie_closing,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_closing
+/zh/apache-ossie/,zh,header,免费开始使用,zh_apache_ossie_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_header
+/zh/apache-ossie/,zh,mobile_menu,免费开始使用,zh_apache_ossie_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_apache_ossie_mobile_menu
