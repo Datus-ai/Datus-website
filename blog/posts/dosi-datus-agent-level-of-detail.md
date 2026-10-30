@@ -3,7 +3,7 @@ title: "DOSI 0.1.13 + Datus Agent 0.4.3: Getting the Level of Detail Right"
 description: "DOSI 0.1.13 adds level of detail calculations for governed metrics, while Datus Agent 0.4.3 brings DOSI into its workflow and adds SQL lineage analysis."
 author: "Evan Paul"
 date: 2026-10-16
-lastmod: 2026-10-16
+lastmod: 2026-10-30
 tags: release
 head:
   - - meta
@@ -99,7 +99,7 @@ Query either metric by channel:
 
 ## Where Apache Ossie ends and DOSI begins
 
-[Apache Ossie](/blog/open-semantic-interchange-osi/) gives semantic models a shared structure for datasets, fields, metrics, relationships, and vendor extensions. Its core field definition describes a value on an individual row. It does not currently give an aggregate such as “active days per user” a standard LOD meaning when that aggregate is used as a field.
+[Apache Ossie](/apache-ossie/) gives semantic models a shared structure for datasets, fields, metrics, relationships, and vendor extensions. Its core field definition describes a value on an individual row. It does not currently give an aggregate such as “active days per user” a standard LOD meaning when that aggregate is used as a field.
 
 DOSI adds that meaning in a DATUS entry under Ossie’s `custom_extensions`. The model can still carry its Ossie definitions, while DOSI reads the extension and builds the extra aggregation step. The extension is understood by DOSI; another Ossie consumer does not necessarily produce the same LOD result. That distinction matters when sharing a model between tools.
 

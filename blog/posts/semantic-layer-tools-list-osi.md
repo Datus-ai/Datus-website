@@ -3,7 +3,7 @@ title: "Semantic Layer Tools Compared: Stack Fit & Apache Ossie"
 description: "Compare 16 semantic layer tools for dbt metrics, embedded BI, warehouse-native views and portable AI agents. See Dosi's Apache Ossie path and each tool's fit."
 author: "Evan Paul"
 date: 2026-07-21
-lastmod: 2026-10-19
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -31,9 +31,11 @@ head:
       href: https://datus.ai/blog/semantic-layer-tools-list-osi/
 ---
 
+For an introduction to the specification behind these compatibility choices, see the [Apache Ossie guide](/apache-ossie/).
+
 # Semantic Layer Tools Compared: Stack Fit & Apache Ossie
 
-> **Apache Ossie (aka OSI).** This page covers **Open Semantic Interchange (OSI)**, renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This article uses **Apache Ossie / OSI** interchangeably.
+> **Apache Ossie (aka OSI).** This page covers **Open Semantic Interchange (OSI)**, renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the spec, community, and mission are unchanged. Read the [OSI project history](/blog/open-semantic-interchange-osi/) for the naming and governance transition. This article uses **Apache Ossie / OSI** interchangeably.
 
 A comparison of 16 [semantic layer](/blog/what-is-semantic-layer/) tools across three architecture categories. Start with the way your team defines metrics and serves them; then check whether the definitions can move through Apache Ossie and reach AI agents. The interoperability notes were reviewed in October 2026.
 
@@ -46,7 +48,7 @@ A comparison of 16 [semantic layer](/blog/what-is-semantic-layer/) tools across 
 
 ## 1. The three architecture categories
 
-Semantic layer tools in 2026 fall into three architectural buckets. The category you pick shapes portability, performance, and lock-in — and it also shapes how quickly a vendor can adopt [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/). Before scanning the full grid in the next section, it helps to know which trade-off each bucket is making.
+Semantic layer tools in 2026 fall into three architectural buckets. The category you pick shapes portability, performance, and lock-in — and it also shapes how quickly a vendor can adopt [Apache Ossie guide](/apache-ossie/). Before scanning the full grid in the next section, it helps to know which trade-off each bucket is making.
 
 **Standalone / pure-play semantic layers** treat the semantic layer as the product. They sit between your warehouse and consumption tools — BI, notebooks, APIs, and AI agents — without bundling a full BI suite or requiring a single cloud. **dbt Semantic Layer (MetricFlow)** is code-first: metrics live as YAML versioned next to transformations, with JDBC/GraphQL and an MCP server for agents, while MetricFlow itself is open source and the Semantic Layer API still requires dbt Cloud (see the [dbt Semantic Layer / MetricFlow guide](/blog/dbt-semantic-layer-metricflow/)). **Cube** is API-first and headless, with pre-aggregation caching and a broad SQL, REST, GraphQL, and MCP surface — covered in [Cube for agentic analytics](/blog/cube-agentic-analytics/). **AtScale** emphasizes OLAP access for Excel, Power BI, and Tableau. **Dosi** compiles vendor-neutral Apache Ossie models into warehouse SQL and serves them over CLI, REST, Python, and MCP; it has no Cube-style pre-aggregation store. The choice depends on whether your priority is dbt workflow, embedded performance, legacy BI, or portable definitions for agents.
 
@@ -145,7 +147,7 @@ It helps with deployment control but does not automatically make definitions por
 ## Related articles
 
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the definition, and why static models break under AI agents.
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard behind the interoperability paths in this comparison.
+- [Apache Ossie guide](/apache-ossie/) — the standard behind the interoperability paths in this comparison.
 - [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — the interchange standard vs the execution engine, and why you need both.
 - [dbt Semantic Layer / MetricFlow](/blog/dbt-semantic-layer-metricflow/) — dbt-centered metrics and their trade-offs, in depth.
 - [What Is a Data Engineering Agent?](/blog/what-is-data-engineering-agent-2026/) — the layer that keeps portable semantics from going stale.

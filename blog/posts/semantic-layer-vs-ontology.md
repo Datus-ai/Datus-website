@@ -3,7 +3,7 @@ title: "Semantic Layer vs Ontology: Why AI Agents Need Both"
 description: "Semantic layer vs ontology is the wrong final question. See why AI data agents need both — governed metrics first, then ontology and agent context on top."
 author: "Evan Paul"
 date: 2026-09-12
-lastmod: 2026-09-12
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -212,6 +212,6 @@ Palantir Ontology is an operational object layer: object types, properties, link
 - [Ontology vs semantic layer: definitions and when you need each](/blog/semantic-layer-vs-ontology-difference/) — the conceptual comparison, and where a lightweight Subject Tree fits
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the governed computation plane this architecture starts from
 - [What is an ontology?](/blog/what-is-ontology/) — entities, relationships and rules, defined
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the portable specification behind Apache Ossie
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the portable specification behind Apache Ossie
 - [The first native Apache Ossie engine](/blog/first-native-apache-ossie-engine/) — the runtime that validates, compiles and plans these semantics
 - [Dosi MCP: a semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — how the query surfaces reach an agent

@@ -3,7 +3,7 @@ title: "First Native Apache Ossie Engine"
 description: "What a native Apache Ossie (incubating) implementation is, how a native Apache Ossie engine differs from OSI converters, and why execution engines like Dosi matter for portable semantics."
 author: "Evan Paul"
 date: 2026-08-22
-lastmod: 2026-09-13
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -31,13 +31,15 @@ head:
       href: https://datus.ai/blog/first-native-apache-ossie-engine/
 ---
 
+For the standard itself and the wider adoption paths, start with the [Apache Ossie guide](/apache-ossie/). This article focuses on native execution.
+
 # First Native Apache Ossie Engine
 
 Search for **apache ossie implementation** and you will find the specification, the working group, and a growing folder of reference converters. What you will not find — until very recently — is a runtime that reads Ossie YAML and executes semantic queries without first translating into another vendor's format. That gap is what **native implementation** means, and it is why execution engines are the next chapter in the Ossie story.
 
 ## TL;DR
 
-- **Apache Ossie** (incubating) — the standard formerly published as **Open Semantic Interchange (OSI)**, accepted into the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) on July 10, 2026 — is a vendor-neutral YAML/JSON specification for metrics, dimensions, datasets, and relationships, not a query engine. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi) for the full standard context. The rename (OSI clashed with the Open Source Initiative) left the spec, community, and mission unchanged.
+- **Apache Ossie** (incubating) — the standard formerly published as **Open Semantic Interchange (OSI)**, whose new name and Apache Incubator home were announced on July 10, 2026 — is a vendor-neutral YAML/JSON specification for metrics, dimensions, datasets, and relationships, not a query engine. See the [Apache Ossie guide](/apache-ossie/) for the current standard and examples, and the [OSI history](/apache-ossie/) for the project’s background. The rename (OSI clashed with the Open Source Initiative) left the spec, community, and mission unchanged.
 - Today, most **apache ossie implementation** work in the community repository is **converter-level**: translate MetricFlow YAML, LookML, or platform-native definitions *into* or *out of* Ossie format. Converters prove the spec is mappable; they do not execute queries.
 - A **native Ossie engine** consumes Ossie YAML directly, plans joins and aggregations from the semantic graph, and lowers the result to warehouse SQL — without requiring an intermediate authoring format like MetricFlow or a platform-specific semantic view.
 - The Apache Ossie **roadmap** names a reference compiler and semantic query language as future deliverables; as of August 2026 those pieces are planned, not shipped in the incubating project.
@@ -51,7 +53,7 @@ At the **interchange layer**, implementation means reading and writing Ossie doc
 
 At the **execution layer**, implementation means something different: take an Ossie model as the *source of truth*, accept a semantic query (metrics, dimensions, filters, time grain), compile a correct join plan, and emit SQL that a warehouse can run. No round-trip through a second authoring format. No "export to Ossie, import into LookML, then query LookML."
 
-That distinction matters because Ossie was designed as **USB-C for semantics**, not as a replacement [semantic layer](/blog/what-is-semantic-layer). The specification separates *what a metric means* from *where it runs*. Converters honor the first half; engines honor the second.
+That distinction matters because Ossie was designed as **USB-C for semantics**, not as a replacement [semantic layer](/blog/what-is-semantic-layer/). The specification separates *what a metric means* from *where it runs*. Converters honor the first half; engines honor the second.
 
 Confusing the two leads to predictable disappointment. A team exports definitions through a converter, loads the YAML into git, and assumes they can query it. They cannot — not until something in the stack treats Ossie as an executable contract, not a serialization target.
 
@@ -59,7 +61,7 @@ Consider a concrete failure mode. Finance certifies `gross_margin` in a MetricFl
 
 ## 2. What Apache Ossie standardizes — and what it leaves to engines
 
-Apache Ossie (the project formerly known as Open Semantic Interchange) defines a portable document model for semantic metadata. The canonical explainer lives in [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi); this section summarizes only what execution engines must consume.
+Apache Ossie (the project formerly known as Open Semantic Interchange) defines a portable document model for semantic metadata. The [Apache Ossie guide](/apache-ossie/) explains the current standard; this section summarizes only what execution engines must consume.
 
 An Ossie model typically encodes:
 
@@ -103,7 +105,7 @@ Calling something a native **apache ossie implementation** at the execution laye
 
 **Dialect lowering.** The same Ossie model produces correct SQL for more than one warehouse dialect — at minimum through a stable internal intermediate representation. Annotations in the spec may carry dialect-specific expressions; the engine merges portable semantics with those hints.
 
-**Query surface.** Consumers need a stable interface: CLI flags, an HTTP API, MCP tools for agents, or embedded library calls. The [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow) split is instructive here: MetricFlow ships all of the above against its own YAML; a native Ossie engine ships them against Ossie YAML.
+**Query surface.** Consumers need a stable interface: CLI flags, an HTTP API, MCP tools for agents, or embedded library calls. The [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow/) split is instructive here: MetricFlow ships all of the above against its own YAML; a native Ossie engine ships them against Ossie YAML.
 
 **Conformance signal.** Eventually, shared test fixtures — the Apache roadmap mentions a conformance suite tied to a reference compiler — let implementations prove equivalent results. Until that suite lands, engines should document their fixture coverage and edge-case limits honestly.
 
@@ -149,26 +151,26 @@ Teams can maintain one Ossie file per metric domain. At query time, `dosi query 
 
 **Surfaces.** The same engine backs a CLI for engineers, an MCP server so agents query through governed metrics instead of inventing SQL, a REST API with optional Arrow IPC streaming for columnar clients, and Python bindings. That multi-surface pattern mirrors what mature semantic layers provide — except the authored artifact remains Ossie YAML throughout.
 
-**Metric safety.** Dosi tracks metric kinds (additive aggregates, ratios, expressions spanning datasets) and applies fan-out protection so joins do not silently duplicate rows — the correctness property enterprise teams expect from a [semantic layer](/blog/what-is-semantic-layer) runtime, expressed against Ossie rather than a vendor-specific model file.
+**Metric safety.** Dosi tracks metric kinds (additive aggregates, ratios, expressions spanning datasets) and applies fan-out protection so joins do not silently duplicate rows — the correctness property enterprise teams expect from a [semantic layer](/blog/what-is-semantic-layer/) runtime, expressed against Ossie rather than a vendor-specific model file.
 
 **Relationship to Datus Studio.** Dosi is a component of Datus Studio, the commercial platform layer above the open-source Datus data engineering agent. The agent path can author and validate Ossie through adapters documented for Datus 0.3; Dosi is where those definitions compile and serve at scale. Dosi is **not open source** as of August 2026 — teams evaluating it should treat licensing and access as product questions separate from the Apache-licensed spec.
 
 **Benchmarks, with caveats.** Dosi publishes an apples-to-apples benchmark against MetricFlow using the MetricFlow `simple_model` fixture converted one-to-one to Ossie — a small model (~25 datasets/metrics), not a production-sized graph. On that fixture, <a href="https://dosi.datus.ai/benchmarks/" rel="nofollow noopener">documented runs</a> report roughly 10–22× faster warm compilation and materially lower peak RSS versus MetricFlow in-process, with end-to-end cold CLI comparisons showing larger gaps because MetricFlow pays substantial Python import and parse overhead per invocation. Treat those ratios as **scenario-specific**, not universal speedup claims; large models may narrow or widen the gap. Reproduction scripts and raw JSON live on the benchmarks page.
 
-For a product-oriented introduction to Dosi as Studio infrastructure, see [Introducing Dosi](/blog/introducing-dosi). For where Ossie ends and MetricFlow begins in the stack, keep [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow) as the companion read.
+For a product-oriented introduction to Dosi as Studio infrastructure, see [Introducing Dosi](/blog/introducing-dosi/). For where Ossie ends and MetricFlow begins in the stack, keep [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) as the companion read.
 
 ## 7. Where native execution fits in the semantic stack
 
 Pull the layers together and a stable architecture emerges — one the working group has implied since the first OSI announcements:
 
 1. **Author** semantic definitions in whatever tool your team already trusts, *or* maintain Ossie YAML directly when portability is the goal from day one.
-2. **Interchange** through Ossie when definitions must move between tools, agents, or warehouses — the hub the [OSI explainer](/blog/open-semantic-interchange-osi) describes.
+2. **Interchange** through Ossie when definitions must move between tools, agents, or warehouses — the hub the [Apache Ossie guide](/apache-ossie/) describes.
 3. **Execute** through a native or platform-bound engine that compiles metrics to SQL and serves consumers.
 4. **Govern** with validation gates, certification, and agent retrieval so stale YAML does not become stale numbers.
 
 Native Ossie engines change step 3. Instead of "export to Ossie, import into engine X, query engine X," teams can query the same file they version in git — the same promise dbt brought to warehouse SQL, applied to vendor-neutral semantics.
 
-That does not collapse the [semantic layer vs MetricFlow distinction](/blog/osi-vs-dbt-metricflow). MetricFlow remains a mature execution and authoring stack for dbt-centric teams. Ossie remains the interchange contract. Dosi occupies the execution slot **for Ossie-native shops** — multi-warehouse environments, agent-heavy consumption, or teams standardizing on YAML that must outlive any single BI vendor.
+That does not collapse the [semantic layer vs MetricFlow distinction](/blog/osi-vs-dbt-metricflow/). MetricFlow remains a mature execution and authoring stack for dbt-centric teams. Ossie remains the interchange contract. Dosi occupies the execution slot **for Ossie-native shops** — multi-warehouse environments, agent-heavy consumption, or teams standardizing on YAML that must outlive any single BI vendor.
 
 Agents amplify the case. Text-to-SQL without a semantic layer invents joins; text-to-SQL against a governed metric catalog resolves `revenue` to a certified definition. When that catalog is stored as Ossie YAML and queried through MCP, the agent inherits portability and governance in one path — provided a native engine exists to answer the call.
 
@@ -182,7 +184,7 @@ None of this argues for rip-and-replace. Teams with deep MetricFlow investment s
 
 Dosi is the first native Ossie execution engine: Rust-based compilation from OSI YAML to 15+ SQL dialects, with CLI, MCP, REST, and Python surfaces, operating as a Datus Studio component outside the open-source spec repo. That is a milestone for teams who want definitions and runtime aligned on the same open document — not a signal to skip converters, validators, or the working group's conformance work when it lands.
 
-If you are building an Ossie strategy, start from the [Open Semantic Interchange overview](/blog/open-semantic-interchange-osi), clarify whether you need interchange-only or execution-native paths, and map your current [semantic layer](/blog/what-is-semantic-layer) investments before rewriting anything. Align on the hub first; choose engines second.
+If you are building an Ossie strategy, start from the [Apache Ossie guide](/apache-ossie/), clarify whether you need interchange-only or execution-native paths, and map your current [semantic layer](/blog/what-is-semantic-layer/) investments before rewriting anything. Align on the hub first; choose engines second.
 
 ## Frequently asked questions
 
@@ -208,7 +210,7 @@ Ask which semantic fixture and query matrix were used, whether comparisons inclu
 
 ### Where does Dosi fit if we already use dbt MetricFlow?
 
-MetricFlow excels when dbt is your authoring and governance system. Ossie enters when you need definitions to outlive that stack or feed non-dbt consumers — agents, second warehouses, embedded analytics. Dosi executes Ossie YAML directly; dbt teams can keep MetricFlow as the authoring path and treat Ossie as interchange when portability matters. The two layers are complementary; see [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow) for the full split.
+MetricFlow excels when dbt is your authoring and governance system. Ossie enters when you need definitions to outlive that stack or feed non-dbt consumers — agents, second warehouses, embedded analytics. Dosi executes Ossie YAML directly; dbt teams can keep MetricFlow as the authoring path and treat Ossie as interchange when portability matters. The two layers are complementary; see [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) for the full split.
 
 ## Apache Ossie / OSI: official resources
 
@@ -220,7 +222,7 @@ MetricFlow excels when dbt is your authoring and governance system. Ossie enters
 
 ## Related articles
 
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard this engine implements.
+- [Apache Ossie guide](/apache-ossie/) — the standard this engine implements.
 - [Why OSI needs an execution engine](/blog/why-osi-needs-execution-engine/) — the interchange-vs-runtime gap.
 - [Introducing Dosi](/blog/introducing-dosi/) — the product overview of the engine.
 - [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — where Ossie ends and MetricFlow begins.

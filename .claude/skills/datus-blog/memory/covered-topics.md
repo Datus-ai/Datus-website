@@ -30,6 +30,7 @@ this agent)".
 - `what-is-apache-iceberg` — Iceberg; Iceberg vs Delta
 - `what-is-apache-hudi` — Hudi; upserts/CDC; Hudi vs Iceberg vs Delta
 - `open-semantic-interchange-osi` — OSI standard for portable semantics
+  - Refreshed 2026-10-30 (local, codex/apache-ossie-pillar): refocused as OSI history/governance/adoption, keeping the published slug and original date; current-standard intent belongs to /apache-ossie/. Related definition links in seven Ossie spokes now point to that pillar; Cube/dbt support caveats refreshed against upstream converter docs. No PR or publication yet.
 - `what-is-data-engineering-agent-2026` — DE agent definition + 2026 comparison (**canonical** DE-agent definition post)
 - `what-is-data-engineering-agent` — older DE agent practical guide (near-dup of the 2026 one)
 

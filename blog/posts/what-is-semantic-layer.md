@@ -3,7 +3,7 @@ title: "What Is a Semantic Layer? Definition, Examples & How It Differs From a M
 description: "Semantic layer defined: the business translation layer between raw tables and analysts, what it includes (metrics, dimensions, entities), how it differs from metric layers and catalogs, and why static models break under AI agents."
 author: "Evan Paul"
 date: 2026-05-31
-lastmod: 2026-05-31
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -116,7 +116,7 @@ LookML defines dimensions, measures, and join relationships in a Looker project.
 
 ### Warehouse-native semantic models
 
-Snowflake Semantic Views, BigQuery semantic layers, and similar platform features embed semantics closer to storage. Strength: IAM and performance co-location; weakness: **platform lock-in** — semantics do not travel when you add a second warehouse. This portability gap is exactly what the emerging [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) standard — a vendor-neutral interchange format backed by Snowflake, dbt Labs, Databricks, and 60+ others — is designed to close.
+Snowflake Semantic Views, BigQuery semantic layers, and similar platform features embed semantics closer to storage. Strength: IAM and performance co-location; weakness: **platform lock-in** — semantics do not travel when you add a second warehouse. This portability gap is exactly what the emerging [Open Semantic Interchange (OSI)](/apache-ossie/) standard — a vendor-neutral interchange format backed by Snowflake, dbt Labs, Databricks, and 60+ others — is designed to close.
 
 ### Roll-your-own: views + docs + metric repo
 
@@ -234,7 +234,7 @@ Incrementally is the only way that sticks. Start with one team, one domain, and 
 
 - [Business glossary vs semantic layer](/blog/business-glossary-vs-semantic-layer/) — from an approved term to a tested metric.
 - [What is headless BI?](/blog/what-is-headless-bi/) — how shared metrics reach dashboards, apps, and agents
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the emerging open standard that makes the semantic layer portable across tools
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the emerging open standard that makes the semantic layer portable across tools
 - [What is a metric layer?](/blog/what-is-metric-layer/) — the metrics-focused subset of a semantic layer
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — how agents differ from copilots and where context fits
 - [Datus glossary](/glossary#semantic-layer) — short definitions for semantic layer and 40+ related data engineering terms
