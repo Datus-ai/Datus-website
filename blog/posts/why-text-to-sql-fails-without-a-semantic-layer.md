@@ -3,7 +3,7 @@ title: "Why Text-to-SQL Fails Without a Semantic Layer"
 description: "Text-to-SQL breaks on real warehouses because the model guesses what your data means. See why NL2SQL fails and how a semantic layer fixes accuracy."
 author: "Evan Paul"
 date: 2026-09-25
-lastmod: 2026-09-25
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -172,7 +172,7 @@ Dosi is a semantic layer engine for metrics. You define your metrics and model o
 
 For AI and agent workflows, Dosi ships a [native MCP server](/blog/dosi-mcp-semantic-layer-for-agents/), so an LLM agent can discover defined metrics, preview the SQL, and execute it — rather than reverse-engineering your schema and hoping. The result is text-to-SQL that stays inside the guardrails your team already agreed on. See [Introducing Dosi](/blog/introducing-dosi/) for the full product overview.
 
-A note on precision: Dosi is built on the open [Apache Ossie](/blog/open-semantic-interchange-osi/) standard and is vendor-neutral with no lock-in, but it is **not open-source software** — it is licensed under the Elastic License 2.0 as part of Datus Studio. The open-source component is **datus-agent**, the CLI data agent. We keep those distinct because it matters when you evaluate the stack.
+A note on precision: Dosi is built on the open [Apache Ossie](/apache-ossie/) standard and is vendor-neutral with no lock-in, but it is **not open-source software** — it is licensed under the Elastic License 2.0 as part of Datus Studio. The open-source component is **datus-agent**, the CLI data agent. We keep those distinct because it matters when you evaluate the stack.
 
 ## When raw text-to-SQL is fine
 

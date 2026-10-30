@@ -3,7 +3,7 @@ title: "Semantic-Layer-Based Ontology: Agent Context on Apache Ossie"
 description: "A semantic-layer-based ontology starts from governed metrics and relationships, then builds entity context and concept paths for AI agents on Apache Ossie."
 author: "Evan Paul"
 date: 2026-09-16
-lastmod: 2026-09-16
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -295,7 +295,7 @@ Apache Ossie provides the portable specification. Dosi provides the runtime need
 
 - [From semantic layer to ontology: architecture for AI agents](/blog/from-semantic-layer-to-ontology/) — the five layers, end to end
 - [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology/) — the comparison this architecture answers
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the portable spec behind Apache Ossie
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the portable spec behind Apache Ossie
 - [The first native Apache Ossie engine](/blog/first-native-apache-ossie-engine/) — validate, compile and plan in practice
 - [Dosi MCP: a semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — how these surfaces reach an agent
 - [What makes a semantic layer AI-native?](/blog/ai-native-semantic-layer/) — the requirements this architecture is built against

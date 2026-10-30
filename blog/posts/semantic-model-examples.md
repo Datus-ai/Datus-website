@@ -3,7 +3,7 @@ title: "Semantic Model Examples: A Working Apache Ossie Model"
 description: "See semantic model examples for revenue, customer regions, and average order value. Download a tested Apache Ossie YAML model and check its answers yourself."
 author: "Evan Paul"
 date: 2026-10-15
-lastmod: 2026-10-15
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -43,7 +43,7 @@ head:
 
 **A semantic model example is most useful when you can follow one business question from source rows to a metric definition and then verify the result.** Here we use a small retail model to do that three times. The goal is to show what each part of the model contributes, not just present a YAML file that looks plausible.
 
-If you need the definition first, read [what a semantic model is](/blog/what-is-semantic-model/). This guide starts where that definition ends: with data, executable examples, and the decisions a model author has to make. You can download the complete [Apache Ossie model](/examples/semantic-model-examples/model.yaml) and [sample SQL](/examples/semantic-model-examples/seed.sql) to follow along.
+For the standard, model structure, and compatibility boundaries, start with the [Apache Ossie guide](/apache-ossie/). If you need the modeling concept first, read [what a semantic model is](/blog/what-is-semantic-model/). This guide starts where that definition ends: with data, executable examples, and the decisions a model author has to make. You can download the complete [Apache Ossie model](/examples/semantic-model-examples/model.yaml) and [sample SQL](/examples/semantic-model-examples/seed.sql) to follow along.
 
 ![Orders and customers feed a shared Apache Ossie model, which returns checked completed-revenue, regional-revenue, and average-order-value answers.](/images/semantic-model-examples/resource-cover.svg)
 

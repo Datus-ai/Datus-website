@@ -3,7 +3,7 @@ title: "dbt MetricFlow Explained: Best Fit, Limits & OSI Options"
 description: "MetricFlow fits dbt teams that govern metrics in Git. See where it works, when an Apache Ossie runtime such as Dosi helps, and how to choose for AI agents."
 author: "Evan Paul"
 date: 2026-06-09
-lastmod: 2026-10-19
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -36,7 +36,7 @@ head:
 ## TL;DR
 
 - **MetricFlow is the query engine behind [dbt's Semantic Layer](https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl)** — define metrics, dimensions, and semantic models in YAML, and it generates correct SQL at query time across Snowflake, BigQuery, Databricks, Postgres, and DuckDB.
-- **The license path matters:** MetricFlow shipped under AGPL, moved to the restrictive BSL after dbt Labs acquired Transform in 2023 (production serving required dbt Cloud), then [relicensed to permissive Apache 2.0 in October 2025](https://www.getdbt.com/blog/open-source-metricflow-governed-metrics), aligning it with [Open Semantic Interchange (OSI, now Apache Ossie)](/blog/open-semantic-interchange-osi/).
+- **The license path matters:** MetricFlow shipped under AGPL, moved to the restrictive BSL after dbt Labs acquired Transform in 2023 (production serving required dbt Cloud), then [relicensed to permissive Apache 2.0 in October 2025](https://www.getdbt.com/blog/open-source-metricflow-governed-metrics), aligning it with [Open Semantic Interchange (OSI, now Apache Ossie)](/apache-ossie/).
 - **Strengths:** Git-managed governance, CI/CD-validated definitions, grain enforcement, multi-engine SQL, and composable derived metrics.
 - **Limits:** it is engineer-maintained and batch-updated — ad-hoc queries and corrections have no path into the YAML until someone opens a PR.
 - **Alternatives & complements:** OSI-native runtimes like [Dosi](/blog/introducing-dosi/) compile the same definitions across 15+ dialects, and AI data agents keep provisional context current between PRs.

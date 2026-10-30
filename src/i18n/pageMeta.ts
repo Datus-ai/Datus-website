@@ -24,6 +24,12 @@ export type PageMeta = {
 };
 
 export const ZH_PAGE_META: Record<string, PageMeta> = {
+  "/apache-ossie/": {
+    title: "Apache Ossie：面向 AI 与 BI 的开放语义模型 | Datus",
+    description: "了解 Apache Ossie（原名 OSI）的项目历史、社区治理、YAML 与 JSON 模型、跨工具转换路径，以及 DOSI 原生执行。",
+    ogTitle: "Apache Ossie：语义模型的开放标准",
+    ogDescription: "理解 Apache Ossie 的历史、社区、YAML 与 JSON 模型，以及兼容工具如何交换业务定义。",
+  },
   "/databases/snowflake/": {
     title: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
     description: "为 Snowflake 数据增加共享业务上下文。创建可审核的 Apache Ossie 模型，通过 DOSI 生成原生 SQL，为团队与 AI Agent 提供可复用的业务定义。",

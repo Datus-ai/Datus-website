@@ -180,7 +180,7 @@ Not everything. Core datasets, fields, equi-joins, model-level metrics, and `ai_
 
 ## Related articles
 
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard itself, now Apache Ossie: what it encodes and who's behind it.
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the standard itself, now Apache Ossie: what it encodes and who's behind it.
 - [What Is a Semantic Model?](/blog/what-is-semantic-model/) — semantic models vs warehouse-native semantic views.
 - [What Is a Semantic Layer?](/blog/what-is-semantic-layer/) — the general concept Snowflake's Semantic Views implement in-warehouse.
 - [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — interchange standard vs execution engine, and why you need both.
