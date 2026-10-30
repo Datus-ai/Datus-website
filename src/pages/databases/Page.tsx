@@ -71,7 +71,8 @@ export default function DatabasesPage() {
             return (
               <SpecCard
                 key={db.type}
-                name={db.name}
+                name={db.type === "snowflake" ? <>{db.name}<ArrowRight size={14} style={{ display: "inline", marginLeft: 7 }} aria-hidden="true"/></> : db.name}
+                href={db.type === "snowflake" ? l("/databases/snowflake/") : undefined}
                 tone={tone}
                 badge={
                   db.builtIn ? (
@@ -114,7 +115,9 @@ export default function DatabasesPage() {
           rows={databases.map((db) => ({
             key: db.type,
             cells: [
-              <span style={{ fontSize: 14, fontWeight: 650, color: "var(--ink)" }}>{db.name}</span>,
+              db.type === "snowflake"
+                ? <a className="database-table-link" href={l("/databases/snowflake/")}>{db.name}<ArrowRight size={14} aria-hidden="true"/></a>
+                : <span style={{ fontSize: 14, fontWeight: 650, color: "var(--ink)" }}>{db.name}</span>,
               <InlineCode>{db.type}</InlineCode>,
               db.builtIn ? (
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--ink-dim)" }}>

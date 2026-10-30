@@ -17,6 +17,7 @@ const MPA_ROUTES = [
   'solutions/semantic-layer',
   'integrations',
   'databases',
+  'databases/snowflake',
   'models',
   'mcp',
   'chatbot',

@@ -3,7 +3,7 @@ title: "What Is Snowflake OSI? Semantic Views, Cortex Analyst & Ossie"
 description: "Snowflake OSI is search shorthand for Snowflake's role in Open Semantic Interchange — now Apache Ossie — plus Semantic View import/export via Ossie YAML."
 author: "Evan Paul"
 date: 2026-08-04
-lastmod: 2026-08-04
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -82,6 +82,8 @@ Searchers often use "Snowflake OSI," "Snowflake open semantic," and "Snowflake s
 Read that grid as a dependency chain, not a bake-off. Semantic Views are the Snowflake authoring and governance object. Cortex Analyst is one high-value consumer of those views. Ossie is the format that lets definitions leave (or enter) that object without a full rewrite — subject to fidelity limits discussed in §5.
 
 If your question is "what is a [semantic layer](/blog/what-is-semantic-layer/) in general?", start with that glossary entry. If your question is "how does Snowflake wire open interchange into its own modeling object?", stay here.
+
+For a separate, product-level execution path, see how [Datus uses an Apache Ossie model with Snowflake](/databases/snowflake/). That workflow compiles supported metric requests with DOSI and does not automatically import or query Snowflake Semantic Views.
 
 ## 3. Why "Snowflake OSI" searches spike — and what they usually want
 

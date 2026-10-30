@@ -22,6 +22,12 @@ export type PageMeta = {
 };
 
 export const ZH_PAGE_META: Record<string, PageMeta> = {
+  "/databases/snowflake/": {
+    title: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
+    description: "为 Snowflake 数据增加共享业务上下文。创建可审核的 Apache Ossie 模型，通过 DOSI 生成原生 SQL，为团队与 AI Agent 提供可复用的业务定义。",
+    ogTitle: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
+    ogDescription: "开放的定义，Snowflake 原生 SQL，团队与 Agent 共享的业务上下文。",
+  },
   "/solutions/semantic-layer/": {
     title: "面向团队与 AI Agent 的语义层解决方案 — Datus",
     description: "将业务关系、指标与源数据映射连接为可审核的语义层。Apache Ossie 提供开放规范，DOSI 将兼容的定义转为原生 SQL 执行。",
