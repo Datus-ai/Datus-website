@@ -60,6 +60,7 @@ const en = {
   { title: 'What is a semantic layer?', href: '/blog/what-is-semantic-layer/' },
   { title: 'Semantic model examples', href: '/blog/semantic-model-examples/' },
   { title: 'Apache Ossie and DOSI quickstart', href: '/blog/apache-ossie-dosi-quickstart/' },
+  { title: 'Use the semantic layer with Snowflake', href: '/databases/snowflake/' },
  ],
 };
 export const SOLUTION_EXPERIENCE: Record<Locale, typeof en> = { en, zh: {
@@ -123,5 +124,6 @@ export const SOLUTION_EXPERIENCE: Record<Locale, typeof en> = { en, zh: {
   { title: '什么是语义层？', href: '/blog/what-is-semantic-layer/' },
   { title: '语义模型示例', href: '/blog/semantic-model-examples/' },
   { title: 'Apache Ossie 与 DOSI 快速开始', href: '/blog/apache-ossie-dosi-quickstart/' },
+  { title: '在 Snowflake 中使用语义层', href: '/databases/snowflake/' },
  ],
 } };

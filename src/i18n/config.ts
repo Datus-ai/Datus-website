@@ -49,6 +49,7 @@ export const MIRRORED_PATHS = [
   "/solutions/semantic-layer/",
   "/integrations/",
   "/databases/",
+  "/databases/snowflake/",
   "/models/",
   "/mcp/",
   "/chatbot/",

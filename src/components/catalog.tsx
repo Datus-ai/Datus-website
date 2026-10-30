@@ -80,14 +80,15 @@ export function SpecCard({
   tone,
   badge,
   rows,
+  href,
 }: {
   name: ReactNode;
   tone: string;
   badge?: ReactNode;
   rows: SpecRow[];
+  href?: string;
 }) {
-  return (
-    <div className="card" style={{ display: "flex", flexDirection: "column", padding: 22 }}>
+  const content = <>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 16 }}>
         <div style={{ height: 6, width: 40, borderRadius: 3, background: tone }} />
         {badge && (
@@ -135,8 +136,11 @@ export function SpecCard({
           </div>
         ))}
       </div>
-    </div>
-  );
+  </>;
+  const style = { display: "flex", flexDirection: "column" as const, padding: 22 };
+  return href
+    ? <a className="card spec-card-link" href={href} style={style}>{content}</a>
+    : <div className="card" style={style}>{content}</div>;
 }
 
 export function FeatureCard({ tone, title, body }: { tone: string; title: string; body: ReactNode }) {
