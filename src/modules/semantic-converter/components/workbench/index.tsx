@@ -187,6 +187,11 @@ export function SemanticConverterWorkbench({initialDirection = 'export'}: {initi
             </button>
           ))}
         </div>
+        {state.linkNotice && (
+          <div className="sc-error" role="status">
+            <ConverterTips type="warning">{t.invalid_link}</ConverterTips>
+          </div>
+        )}
         {(session.error ||
           (!state.validInput &&
             session.files.some((file) => file.content.trim()))) && (
