@@ -1,6 +1,6 @@
 # Datus UTM Conventions
 
-Updated: 2026-10-29. Applies to website development, external marketing assets, and links prepared for colleagues to publish.
+Updated: 2026-10-30. Applies to website development, external marketing assets, and links prepared for colleagues to publish.
 
 Use this document when creating links or reviewing attribution changes. The rules were checked against `main` at `20de465`, including #115 (shared source fallback) and #116 (AI referral recognition). See the [Studio handoff specification](studio-utm-handoff.md) for implementation details and the [CTA inventory](studio-cta-tags.csv) for recorded website placements. The inventory is a maintained snapshot, not an automatically generated live list; update it when adding pages or buttons.
 
@@ -27,6 +27,16 @@ Do not add UTM parameters to ordinary navigation between website pages. For exam
 - External content identifiers can follow `{account_or_post}_{destination}`, such as `shao_announcement_studio` or `launch_flash_dosi_connectors`. Distinguish destinations when one asset links to several places.
 - The website trims incoming source, medium, and campaign values and accepts at most 100 characters per field. Empty, overlong, or control-character values are ignored. Keep all new tags short. Never include names, email addresses, tokens, API keys, or other personal or confidential information.
 - Preserve the destination domain, path, unrelated query parameters, and fragment. Use the URL API to merge parameters without adding duplicate question marks, breaking encoding, or overwriting login redirect parameters.
+
+### Apache Ossie converter routes
+
+The canonical hub is `/apache-ossie-converter/`. Direction pages use
+`{source}-to-{target}/` and identify their resource CTA with
+`apache_ossie_converter_{flow}_resources` (hyphens become underscores).
+The hub retains `semantic_converter_resources`. Header and mobile CTAs use
+`studioNavTag()` for the current canonical route. All use the shared campaign
+handoff and source fallback. Legacy converter URLs are redirect-only and have
+no CTA placements. See the inventory for both locale variants.
 
 ## 3. Defaults for external channels
 

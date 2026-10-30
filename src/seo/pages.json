@@ -1,0 +1,243 @@
+[
+  {
+    "path": "/chatbot/",
+    "entry": "/src/pages/chatbot/main.tsx",
+    "title": "Datus Web Chatbot — AI Data Analyst in Your Browser",
+    "description": "Datus Web Chatbot is a browser-based AI data analyst — chat with your warehouse, share subagents with your team, no install. Powered by an evolvable context engine.",
+    "image": "/og/chatbot-1200x630.png",
+    "ogDescription": "A browser data chatbot for analysts and PMs. Chat with your warehouse, share threads, ship answers — all backed by the Datus context engine."
+  },
+  {
+    "path": "/databases/",
+    "entry": "/src/pages/databases/main.tsx",
+    "title": "Supported Databases — Datus",
+    "description": "Datus supports 16+ databases, including SQLite, DuckDB, PostgreSQL, MySQL, Oracle, TiDB, Snowflake, Amazon Redshift, Google BigQuery, StarRocks, Apache Doris, ClickHouse, ClickZetta, Hive, Spark, and Trino.",
+    "image": "/og/databases-1200x630.png",
+    "ogDescription": "Connect Datus to your data stack — from embedded SQLite to cloud warehouses like Snowflake and StarRocks."
+  },
+  {
+    "path": "/databases/snowflake/",
+    "entry": "/src/pages/databases/snowflake/main.tsx",
+    "title": "Semantic Layer for Snowflake & AI Agents | Datus",
+    "description": "Give Snowflake data shared business context. Build reviewable Apache Ossie models and use DOSI to generate native SQL for teams and AI agents.",
+    "image": "/og/solutions-semantic-layer-1200x630.png",
+    "ogDescription": "Open definitions. Native Snowflake SQL. Shared business context for teams and agents.",
+    "imageAlt": "Datus semantic layer: Apache Ossie definitions and DOSI native SQL execution",
+    "author": false
+  },
+  {
+    "path": "/datafun/",
+    "entry": "/src/pages/datafun/main.tsx",
+    "title": "Datus Studio · 预约 1 周快速 POC（DataFun 专场）",
+    "description": "DataFun 专场 · 扫码体验 Datus Studio，把完整数据工程流程压缩进一个 Agent 工作流。留下联系方式，预约 1 周快速 POC，我们会尽快与你联系。",
+    "image": "/og/datafun-1200x630.png",
+    "ogDescription": "扫码体验 Datus Studio，预约 1 周快速 POC。把完整数据工程流程压缩进一个 Agent 工作流。",
+    "twitterDescription": "扫码体验 Datus Studio，预约 1 周快速 POC。",
+    "robots": "noindex, follow",
+    "lang": "zh-CN",
+    "headLinks": [
+      {
+        "rel": "preconnect",
+        "href": "https://fonts.googleapis.com"
+      },
+      {
+        "rel": "preconnect",
+        "href": "https://fonts.gstatic.com",
+        "crossorigin": null
+      },
+      {
+        "rel": "stylesheet",
+        "href": "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+      }
+    ]
+  },
+  {
+    "path": "/faq/",
+    "entry": "/src/pages/faq/main.tsx",
+    "title": "Datus FAQ — the open-source data engineering agent",
+    "description": "Frequently asked questions about Datus: what the CLI, VS Code extension, Studio, and Enterprise products do, which warehouses and LLMs they support, and how Datus differs from a SQL copilot.",
+    "image": "/og/faq-1200x630.png",
+    "ogDescription": "What Datus is, what each product does, which warehouses and models it supports, and how it differs from a SQL copilot."
+  },
+  {
+    "path": "/glossary/",
+    "entry": "/src/glossary-main.tsx",
+    "title": "Data Engineering Glossary | Datus",
+    "description": "Plain-language definitions of 47 data engineering concepts — semantic layer, lakehouse, schema linking, MCP, RAG, and more — that Datus agents work with day to day.",
+    "image": "/og/glossary-1200x630.png",
+    "ogDescription": "Plain-language definitions of 47 data engineering concepts — semantic layer, lakehouse, schema linking, MCP, RAG, and more.",
+    "twitterDescription": "Plain-language definitions of 47 data engineering concepts Datus agents work with day to day."
+  },
+  {
+    "path": "/",
+    "entry": "/src/main.tsx",
+    "title": "Datus — Trusted Enterprise Data Context for AI Agents",
+    "description": "Open data context for AI agents. Connect business ontology, governed metrics and data provenance, with reviewable definitions and inspectable DOSI execution.",
+    "image": "/og/home-1200x630.png",
+    "ogDescription": "Open data context for AI agents: connected business meaning, reusable semantic definitions and inspectable execution with DOSI.",
+    "imageAlt": "Datus — trusted enterprise data context for AI agents"
+  },
+  {
+    "path": "/integrations/",
+    "entry": "/src/pages/integrations/main.tsx",
+    "title": "Integrations — Datus works with your data stack",
+    "description": "Datus integrates with storage backends, embedding models, semantic layers, BI platforms, MCP servers, skill marketplaces and LLM tracing tools. Every layer is a plugin.",
+    "image": "/og/integrations-1200x630.png",
+    "ogDescription": "Storage, embeddings, semantic layers, BI copilots, MCP, skills and observability — everything Datus plugs into beyond databases and models."
+  },
+  {
+    "path": "/mcp/",
+    "entry": "/src/pages/mcp/main.tsx",
+    "title": "Datus MCP Server — Bring Your Data Stack into Claude, Cursor & More",
+    "description": "Datus MCP Server exposes the Datus data engineering agent over the Model Context Protocol — connect Claude Desktop, Cursor, Cline and any MCP client to your warehouse with shared evolvable context.",
+    "image": "/og/mcp-1200x630.png",
+    "ogTitle": "Datus MCP Server — Data Agent for Claude, Cursor & MCP Clients",
+    "ogDescription": "Plug your warehouse into Claude Desktop, Cursor and any MCP-compatible client. Tools, resources and prompts powered by the Datus context engine."
+  },
+  {
+    "path": "/models/",
+    "entry": "/src/pages/models/main.tsx",
+    "title": "Supported LLM Providers — Datus",
+    "description": "Datus supports 11+ LLM providers including OpenAI, Anthropic Claude, Google Gemini, DeepSeek, Qwen, Kimi, MiniMax, GLM, Azure OpenAI, OpenAI Codex, and OpenRouter.",
+    "image": "/og/models-1200x630.png",
+    "ogDescription": "Use any major LLM provider with Datus. Per-node model assignment lets you mix providers for different workflow steps, swap models per command, and keep one canonical agent.yml.",
+    "twitterDescription": "Use any major LLM provider with Datus. Mix providers per workflow step, all from one canonical agent.yml."
+  },
+  {
+    "path": "/osi-field-mapping/",
+    "entry": "/src/pages/osi-field-mapping/main.tsx",
+    "title": "OSI Field Mapping — 8 Semantic Layers Mapped to Open Semantic Interchange",
+    "description": "See how MetricFlow, Cube, LookML, AtScale, Snowflake Semantic Views, GoodData, Power BI and Databricks Metric Views map onto the OSI spec — field by field across datasets, dimensions, metrics, relationships, time and AI context.",
+    "image": "/og/osi-field-mapping-1200x630.png",
+    "twitterDescription": "Field-by-field mapping of MetricFlow, Cube, LookML, AtScale, Snowflake, GoodData, Power BI and Databricks onto the Open Semantic Interchange schema.",
+    "ogType": "article"
+  },
+  {
+    "path": "/policies/cookies/",
+    "entry": "/src/pages/policies/cookies/main.tsx",
+    "title": "Cookie & Local Storage Policy — Datus",
+    "description": "Learn about cookies and browser storage on the Datus website and Datus Studio, their uses, retention, and your choices.",
+    "image": "/og/security-1200x630.png",
+    "ogDescription": "Necessary uses and optional usage analytics: understand browser storage at Datus and manage your choice."
+  },
+  {
+    "path": "/policies/privacy/",
+    "entry": "/src/pages/policies/privacy/main.tsx",
+    "title": "Privacy Statement — Datus",
+    "description": "Read how DatusAI, Inc. handles personal information for its website, accounts, marketing, support, and service operations.",
+    "image": "/og/security-1200x630.png",
+    "ogDescription": "How DatusAI, Inc. handles personal information for its website, accounts, marketing, support, and service operations.",
+    "robots": "index, follow",
+    "imageDimensions": false
+  },
+  {
+    "path": "/policies/terms/",
+    "entry": "/src/pages/policies/terms/main.tsx",
+    "title": "Terms of Service — Datus",
+    "description": "Read the Terms of Service governing access to and use of Datus websites, online interfaces, and services.",
+    "image": "/og/security-1200x630.png",
+    "ogDescription": "Terms governing access to and use of Datus websites, online interfaces, and services.",
+    "robots": "index, follow",
+    "imageDimensions": false
+  },
+  {
+    "path": "/pricing/",
+    "entry": "/src/pages/pricing/main.tsx",
+    "title": "Pricing — Datus is free for individuals, custom for enterprises",
+    "description": "Datus pricing: the open-source CLI and VS Code extension are free under Apache-2.0, Datus Studio is free during early access, and Enterprise is custom with SSO, governance, and support.",
+    "image": "/og/pricing-1200x630.png",
+    "ogTitle": "Pricing — Free for individuals, custom for enterprises",
+    "ogDescription": "Open source free, Studio free during early access, Enterprise custom."
+  },
+  {
+    "path": "/products/cli/",
+    "entry": "/src/pages/products/cli/main.tsx",
+    "title": "Datus Agent — Open-Source Data Engineering and Analysis",
+    "description": "An open-source data Agent for engineering and analysis. Work with SQL, data pipelines, and reusable business context on your own warehouse and models.",
+    "image": "/og/products-cli-1200x630.png",
+    "ogDescription": "Open-source data engineering and analysis with reusable business context. Bring your own warehouse and models.",
+    "imageAlt": "Datus Agent — open-source data engineering and analysis"
+  },
+  {
+    "path": "/products/enterprise/",
+    "entry": "/src/pages/products/enterprise/main.tsx",
+    "title": "Datus Enterprise — Governed data agent teams",
+    "description": "Datus Enterprise gives data orgs a shared context engine, governance, SSO, and long-running agents — deployed in your environment. Scale data output without scaling headcount.",
+    "image": "/og/products-enterprise-1200x630.png",
+    "ogDescription": "Shared context, governance, SSO, and long-running agents for data teams — deployed in your environment.",
+    "twitterDescription": "Shared context, governance, SSO, and long-running agents for data teams."
+  },
+  {
+    "path": "/products/studio/",
+    "entry": "/src/pages/products/studio/main.tsx",
+    "title": "Datus Studio — Workspace for Agent-Driven Data Work",
+    "description": "Bring files, SQL, results, and Agent conversations together. Datus Studio is a shared workspace for agent-driven data engineering and analysis.",
+    "image": "/og/products-studio-1200x630.png",
+    "ogDescription": "A shared workspace for agent-driven data engineering and analysis. Bring files, SQL, results, and Agent conversations together.",
+    "twitterDescription": "Bring files, SQL, results, and Agent conversations together for collaborative data engineering and analysis.",
+    "imageAlt": "Datus Studio — a shared workspace for agent-driven data work"
+  },
+  {
+    "path": "/products/vscode/",
+    "entry": "/src/pages/products/vscode/main.tsx",
+    "title": "Datus for VS Code — Data agent and context in your editor",
+    "description": "The Datus VS Code extension brings a data engineering agent and its evolving context engine into your editor — inline validated SQL generation, schema awareness, and an agent chat panel.",
+    "image": "/og/products-vscode-1200x630.png",
+    "ogTitle": "Datus for VS Code — Data agent in your editor",
+    "ogDescription": "Inline validated SQL, schema awareness, and an agent chat panel inside VS Code."
+  },
+  {
+    "path": "/security/",
+    "entry": "/src/pages/security/main.tsx",
+    "title": "Security & Privacy — Datus",
+    "description": "Learn how Datus Studio handles model connections, conversation history, credential encryption, access controls, sharing, deployment boundaries, and security reviews.",
+    "image": "/og/security-1200x630.png",
+    "ogDescription": "Your choice of models. Encrypted credentials. Deletable conversation history. Learn about security at Datus Studio."
+  },
+  {
+    "path": "/solutions/semantic-layer/",
+    "entry": "/src/pages/solutions/semantic-layer/main.tsx",
+    "title": "Semantic Layer for AI Agents and Analytics | Datus",
+    "description": "Connect business relationships, metrics, and source mappings in a reviewable semantic layer. DOSI executes compatible Apache Ossie definitions as native SQL.",
+    "image": "/og/solutions-semantic-layer-1200x630.png",
+    "ogDescription": "Shared business definitions, native SQL execution, and source lineage for teams and AI agents.",
+    "imageAlt": "Semantic layer — Apache Ossie definitions, DOSI native SQL execution",
+    "author": false,
+    "favicon": "/brand-mark.svg"
+  },
+  {
+    "path": "/support/",
+    "entry": "/src/pages/support/main.tsx",
+    "title": "Support & Help — Datus",
+    "description": "Find Datus Studio guides for accounts, database connections, models, permissions, reports, dashboards, and deployment. Contact the team through feedback, email, or Slack.",
+    "image": "/og/support-1200x630.png",
+    "ogDescription": "Find answers. Keep moving. Datus Studio guides, common questions, and ways to reach the team."
+  },
+  {
+    "path": "/tools/osi-playground/",
+    "entry": "/src/pages/tools/osi-playground/main.tsx",
+    "title": "MetricFlow to OSI Converter, Validator & Diff — Datus Playground",
+    "description": "Free browser-based OSI Playground: validate MetricFlow YAML, convert it to Open Semantic Interchange, and diff both formats side-by-side. No signup, no upload.",
+    "image": "/og/tools-osi-playground-1200x630.png",
+    "twitterDescription": "Validate MetricFlow YAML, convert it to Open Semantic Interchange, and diff both side-by-side — in your browser."
+  },
+  {
+    "path": "/wechat/",
+    "entry": "/src/pages/wechat/main.tsx",
+    "title": "Datus Studio · 预约 1 周快速 POC",
+    "description": "把完整数据工程流程压缩进一个 Agent 工作流。留下联系方式，预约 1 周快速 POC，我们会在一个工作日内与你联系。",
+    "image": "/og/datafun-1200x630.png",
+    "ogDescription": "把完整数据工程流程压缩进一个 Agent 工作流。留下联系方式，预约 1 周快速 POC。",
+    "robots": "noindex, follow",
+    "lang": "zh-CN",
+    "viewport": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+    "twitter": false,
+    "consent": false,
+    "extraMeta": [
+      {
+        "name": "format-detection",
+        "content": "telephone=no"
+      }
+    ]
+  }
+]

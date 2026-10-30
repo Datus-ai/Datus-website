@@ -1,3 +1,5 @@
+import { CONVERTER_PATHS } from '../modules/semantic-converter/routes';
+
 // Locale model for the marketing site.
 //
 // URL contract (see datus-i18n-spec.md §2):
@@ -61,7 +63,7 @@ export const MIRRORED_PATHS = [
   "/glossary/",
   "/osi-field-mapping/",
   "/tools/osi-playground/",
-  "/tools/semantic-model-converter/",
+  ...CONVERTER_PATHS,
 ] as const;
 
 // The supplied legal English is the approved publication body; the Chinese

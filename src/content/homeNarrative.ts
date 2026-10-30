@@ -74,7 +74,7 @@ const en = {
   lead:'Apache Ossie is an open, vendor-neutral specification for semantic models. DOSI makes compatible Ossie definitions executable as native SQL.',
   definition:'Keep business meaning in reviewable Ossie files. Convert supported existing models, then validate and execute them with DOSI on the data source you choose.',
   flow:[{name:'Apache Ossie',role:'Open specification',detail:'Define datasets, relationships, dimensions, and metrics in reviewable files.'},{name:'DOSI',role:'Compatible execution runtime',detail:'Validate supported definitions, plan the request, and generate native SQL.'},{name:'Your data source',role:'Native SQL execution',detail:'Run on the selected supported source; inspect the SQL and returned results.'}],
-  links:[{href:'/tools/osi-playground/',label:'Explore the Ossie specification'},{href:'/tools/semantic-model-converter/',label:'Convert existing models'},{href:'/databases/',label:'View supported data sources'}],
+  links:[{href:'/tools/osi-playground/',label:'Explore the Ossie specification'},{href:'/apache-ossie-converter/',label:'Convert existing models'},{href:'/databases/',label:'View supported data sources'}],
   license:'Apache Ossie (incubating) is an open specification. DOSI is a compatible runtime distributed under Elastic License 2.0.',
  },
  journey: {
@@ -177,7 +177,7 @@ export const HOME_NARRATIVE:Record<Locale,typeof en>={en,zh:{
   lead:'Apache Ossie 是开放、中立的语义模型规范。DOSI 让兼容的 Ossie 定义转为可执行的原生 SQL。',
   definition:'用可审核的 Ossie 文件维护业务含义，转换受支持的已有模型，再用 DOSI 验证并在所选数据源中执行。',
   flow:[{name:'Apache Ossie',role:'开放规范',detail:'用可审核的文件，定义数据集、关系、维度与指标。'},{name:'DOSI',role:'兼容的执行运行时',detail:'验证受支持的定义，规划请求并生成原生 SQL。'},{name:'你选择的数据源',role:'执行原生 SQL',detail:'在所选的受支持数据源中运行，检查 SQL 与返回结果。'}],
-  links:[{href:'/tools/osi-playground/',label:'了解 Ossie 规范'},{href:'/tools/semantic-model-converter/',label:'转换已有模型'},{href:'/databases/',label:'查看支持的数据源'}],
+  links:[{href:'/tools/osi-playground/',label:'了解 Ossie 规范'},{href:'/apache-ossie-converter/',label:'转换已有模型'},{href:'/databases/',label:'查看支持的数据源'}],
   license:'Apache Ossie（孵化中）是开放规范。DOSI 是兼容的运行时，采用 Elastic License 2.0。',
  },
  journey:{

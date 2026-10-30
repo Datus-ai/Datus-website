@@ -101,6 +101,45 @@ try {
     session.sampleId = 'private-filename.yml';
     assert.equal(new URL(workbenchUrl(url.href, 'import', session), url).searchParams.has('example'), false);
   });
+  const { converterFlow, CONVERTER_PATHS } = await vite.ssrLoadModule('/src/modules/semantic-converter/routes.ts');
+  for (const [path, side, format, example] of [
+    ['/apache-ossie-converter/cube-to-ossie/', 'import', 'cube', 'cube'],
+    ['/zh/apache-ossie-converter/ossie-to-dbt/', 'export', 'dbt', 'nvidia'],
+    ['/apache-ossie-converter/power-bi-to-ossie/', 'import', 'microsoft', 'microsoft'],
+    ['/apache-ossie-converter/ossie-to-snowflake/', 'export', 'snowflake', 'retail'],
+  ]) check(() => {
+    const preset = converterFlow(path);
+    const link = readWorkbenchLink('', preset.direction, preset);
+    assert.equal(link.direction, side);
+    assert.equal(link.platform, format);
+    assert.equal(link.example, example);
+    const session = createSession(format, [], example);
+    assert.equal(workbenchUrl(`https://datus.ai${path}`, side, session), path);
+  });
+  check(() => {
+    const session = createSession('microsoft', [], 'microsoft');
+    assert.equal(workbenchUrl('https://datus.ai/zh/apache-ossie-converter/cube-to-ossie/?utm_source=partner#converter', 'import', session), '/zh/apache-ossie-converter/power-bi-to-ossie/?utm_source=partner#converter');
+    session.formatId = 'unlisted';
+    session.sampleId = undefined;
+    assert.equal(workbenchUrl('https://datus.ai/apache-ossie-converter/cube-to-ossie/', 'export', session), '/apache-ossie-converter/?direction=export&platform=unlisted');
+    assert.equal(workbenchUrl('https://datus.ai/apache-ossie-converter/?utm_source=partner', 'export', session, false), '/apache-ossie-converter/?utm_source=partner');
+    assert.ok(!CONVERTER_PATHS.some((path) => path.includes('snowflake-to-ossie')));
+    assert.equal(converterFlow('/apache-ossie-converter/not-a-converter/'), undefined);
+  });
+  const { CONVERTER_FLOWS } = await vite.ssrLoadModule('/src/modules/semantic-converter/routes.ts');
+  const { flowCopy } = await vite.ssrLoadModule('/src/pages/tools/semantic-model-converter/flows.ts');
+  const { flowGuides } = await vite.ssrLoadModule('/src/pages/tools/semantic-model-converter/guides.ts');
+  check(() => {
+    assert.deepEqual(Object.keys(flowGuides.en).sort(), Object.keys(flowCopy.en).sort());
+    assert.deepEqual(Object.keys(flowGuides.zh).sort(), Object.keys(flowCopy.zh).sort());
+    assert.deepEqual(Object.keys(flowCopy.en).sort(), Object.keys(flowCopy.zh).sort());
+    assert.equal(CONVERTER_FLOWS.length, 9);
+    for (const { slug } of CONVERTER_FLOWS) for (const locale of ['en', 'zh']) {
+      assert.ok(flowCopy[locale][slug].title);
+      assert.ok(flowCopy[locale][slug].description);
+      assert.equal(flowCopy[locale][slug].faq.length, 3);
+    }
+  });
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;
 

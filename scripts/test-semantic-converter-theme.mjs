@@ -66,7 +66,7 @@ async function open(locale, direction, { saved = null, mobile = false, storageBl
   });
   await page.setJavaScriptEnabled(javascript);
   const platform = direction === 'import' ? 'cube' : 'dbt';
-  await page.goto(`${base}${locale}/tools/semantic-model-converter/?direction=${direction}&platform=${platform}&example=${direction === 'import' ? 'cube' : 'nvidia'}`, { waitUntil: 'networkidle0' });
+  await page.goto(`${base}${locale}/apache-ossie-converter/?direction=${direction}&platform=${platform}&example=${direction === 'import' ? 'cube' : 'nvidia'}`, { waitUntil: 'networkidle0' });
   if (javascript && !holdHydration) await page.waitForSelector('.sc-source .monaco-editor .view-lines');
   return page;
 }
