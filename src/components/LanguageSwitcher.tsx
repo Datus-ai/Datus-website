@@ -3,6 +3,7 @@ import { Check, Globe } from "lucide-react";
 import { useCurrentPath, useLocale } from "../i18n/LocaleContext";
 import { LOCALES, LOCALE_LABEL, HREFLANG, isMirrored, localizePath } from "../i18n/config";
 import { UI } from "../i18n/ui";
+import { LOCATION_CHANGE_EVENT } from "../lib/location-change";
 
 /**
  * Language switcher for the current page.
@@ -48,15 +49,25 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
     };
   }, [open, isMobile]);
 
-  // The prerendered hrefs can't know the query string. Re-append it once we're
-  // in the browser so `/pricing/?utm_source=x` survives the language switch.
+  // Keep native links current after a tool updates its query without navigating.
   useEffect(() => {
-    const search = window.location.search;
-    if (!search || !menuRef.current) return;
-    for (const a of menuRef.current.querySelectorAll<HTMLAnchorElement>("a[data-lang-href]")) {
-      a.href = `${a.dataset.langHref}${search}`;
-    }
-  }, [base]);
+    const sync = () => {
+      if (!menuRef.current) return;
+      const suffix = `${window.location.search}${window.location.hash}`;
+      for (const a of menuRef.current.querySelectorAll<HTMLAnchorElement>("a[data-lang-href]")) {
+        a.href = `${a.dataset.langHref}${suffix}`;
+      }
+    };
+    sync();
+    window.addEventListener(LOCATION_CHANGE_EVENT, sync);
+    window.addEventListener("popstate", sync);
+    window.addEventListener("hashchange", sync);
+    return () => {
+      window.removeEventListener(LOCATION_CHANGE_EVENT, sync);
+      window.removeEventListener("popstate", sync);
+      window.removeEventListener("hashchange", sync);
+    };
+  }, [base, open]);
 
   const options = (
     <div ref={menuRef} className={isMobile ? "nav-lang__row" : "nav-dd__menu nav-lang__menu"} role="menu">

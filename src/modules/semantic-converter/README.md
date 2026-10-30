@@ -34,8 +34,13 @@ Validation:
 npm run test:semantic-converter
 npm run typecheck:semantic-converter
 npm run build:all
+npm run test:semantic-converter-links
 npm run preview
 ```
+
+The browser link checks use mocked public catalogs and cover both locales,
+refresh, fallback, delayed catalogs, retries, cancellation, mobile links,
+URL/history preservation, and hydration.
 
 The unit checks cover API routing on production/preview/localhost hosts, UTF-8
 limits, model selection, unsafe/duplicate output paths, edited buffers, sample
@@ -57,10 +62,35 @@ BIM test definitions copied from the Studio examples, with no customer data.
 These are distinct from the original pinned Apache export fixtures in `samples/`.
 
 Both directions start with a prefilled example and retain separate temporary
-sessions. For an import-focused link, use `?direction=import&example=cube`
-(or `omni`, `dbt`, `microsoft`). URL values are allowlisted example IDs;
-model contents are never put in URLs. Conversion uses a click-time snapshot of
-all files and options. The website does not save files to a Studio project.
+sessions. Share a selection with `direction=import|export` and `platform=<catalog ID>`:
+
+- `https://datus.ai/tools/semantic-model-converter/?direction=import&platform=cube`
+- `https://datus.ai/tools/semantic-model-converter/?direction=import&platform=dbt`
+- `https://datus.ai/tools/semantic-model-converter/?direction=import&platform=microsoft`
+- `https://datus.ai/tools/semantic-model-converter/?direction=export&platform=snowflake&example=retail`
+- `https://datus.ai/zh/tools/semantic-model-converter/?direction=export&platform=dbt&example=nvidia`
+
+These parameters preselect editable controls; they do not lock the UI or start a
+conversion. No direction means the existing default, export. `example` selects a
+public fixture: import uses `cube`, `omni`, `dbt`, `microsoft`; export uses `omni`,
+`nvidia`, `retail`. Existing `?direction=import&example=cube` links still work.
+An explicit platform takes priority over an example's suggested platform. Import
+loads that platform's matching fixture and ignores a conflicting example; a
+future supported import platform without a fixture starts with an empty input.
+Export examples supply input without overriding an explicit target.
+
+Platforms are validated against the deployed catalog (import requires
+`available: true`). Unsupported selections fall back to the usual platform, or
+the first available platform if needed, with a localized notice. Catalog failures
+retain pending selections for retry; initialization never replaces user edits.
+
+Accepted direction/platform/example changes replace the current history entry
+without navigation. Unrelated query parameters, UTM values, fragments, and
+history state are preserved. Both locale switchers track the latest URL.
+Only validated platform and public fixture IDs are serialized; model contents,
+options, filenames, results, and edits are never put in URLs or restored by a
+shared link. Editing input removes the example parameter. Conversion uses a
+click-time snapshot of all files and options. The website does not save files to a Studio project.
 
 On desktop, Allotment resizes source/result panes and the 230px output file tree.
 On narrow screens, input and output stack vertically. Native expression warnings

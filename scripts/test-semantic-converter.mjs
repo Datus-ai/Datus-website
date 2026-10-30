@@ -36,6 +36,71 @@ try {
   const { importExample } = await vite.ssrLoadModule(
     '/src/modules/semantic-converter/examples/index.ts',
   );
+  const { readWorkbenchLink, resolveWorkbenchLink, workbenchUrl } =
+    await vite.ssrLoadModule('/src/modules/semantic-converter/utils/url-state.ts');
+  const targets = { targets: ['omni', 'dbt', 'snowflake'].map((id) => ({ id })) };
+  const sources = { sources: [
+    ...['cube', 'omni', 'dbt', 'microsoft', 'future'].map((id) => ({ id, available: true })),
+    { id: 'snowflake', available: false },
+  ] };
+  const cases = [
+    ['', 'export', 'omni', 'omni', false],
+    ['?direction=import&platform=dbt', 'import', 'dbt', 'dbt', false],
+    ['?direction=import&example=microsoft', 'import', 'microsoft', 'microsoft', false],
+    ['?direction=import&platform=dbt&example=cube', 'import', 'dbt', 'dbt', true],
+    ['?direction=export&platform=snowflake&example=nvidia', 'export', 'snowflake', 'nvidia', false],
+    ['?direction=export&example=retail', 'export', 'snowflake', 'retail', false],
+    ['?platform=dbt', 'export', 'dbt', 'omni', false],
+    ['?direction=invalid&platform=dbt', 'export', 'dbt', 'omni', true],
+    ['?direction=import&platform=snowflake', 'import', 'cube', 'cube', true],
+    ['?direction=export&platform=unknown', 'export', 'omni', 'omni', true],
+    ['?direction=import&example=unknown', 'import', 'cube', 'cube', true],
+    ['?direction=export&platform=', 'export', 'omni', 'omni', true],
+    ['?direction=import&platform=future', 'import', 'future', undefined, false],
+  ];
+  for (const [search, direction, format, sample, invalid] of cases) {
+    check(() => {
+      const link = readWorkbenchLink(search);
+      const resolved = resolveWorkbenchLink(link, direction === 'import' ? sources : targets);
+      assert.equal(link.direction, direction, search);
+      assert.equal(resolved.session.formatId, format, search);
+      assert.equal(resolved.session.sampleId, sample, search);
+      assert.equal(resolved.invalid, invalid, search);
+      if (format === 'future') assert.deepEqual(resolved.session.files, []);
+      if (direction === 'import' && sample) {
+        assert.deepEqual(resolved.session.files, importExample(format), search);
+      }
+    });
+  }
+  check(() => {
+    const link = readWorkbenchLink('?direction=import&platform=missing');
+    const resolved = resolveWorkbenchLink(link, { sources: [{ id: 'dbt', available: true }] });
+    assert.equal(resolved.session.formatId, 'dbt');
+    assert.equal(resolved.invalid, true);
+    assert.equal(resolveWorkbenchLink(link, { sources: [{ id: 'cube', available: false }] }), null);
+    assert.equal(readWorkbenchLink('', 'import').direction, 'import');
+  });
+  check(() => {
+    const session = createSession('dbt', importExample('dbt'), 'dbt');
+    session.options.model_name = 'private-model';
+    const url = new URL(workbenchUrl(
+      'https://datus.ai/zh/tools/semantic-model-converter/?utm_source=partner&utm_campaign=launch&review=1&example=cube#converter',
+      'import', session,
+    ), 'https://datus.ai');
+    assert.equal(url.pathname, '/zh/tools/semantic-model-converter/');
+    assert.equal(url.hash, '#converter');
+    assert.equal(url.searchParams.get('utm_source'), 'partner');
+    assert.equal(url.searchParams.get('utm_campaign'), 'launch');
+    assert.equal(url.searchParams.get('review'), '1');
+    assert.equal(url.searchParams.get('platform'), 'dbt');
+    assert.equal(url.searchParams.get('example'), 'dbt');
+    assert.ok(!url.href.includes('private-model'));
+    session.inputDirty = true;
+    assert.equal(new URL(workbenchUrl(url.href, 'import', session), url).searchParams.has('example'), false);
+    session.inputDirty = false;
+    session.sampleId = 'private-filename.yml';
+    assert.equal(new URL(workbenchUrl(url.href, 'import', session), url).searchParams.has('example'), false);
+  });
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;
 
