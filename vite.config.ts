@@ -3,37 +3,15 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { existsSync, statSync, readFileSync } from 'node:fs';
 import { withSiteTheme } from './scripts/lib/site-theme.mjs';
-import { CONVERTER_PATHS } from './src/modules/semantic-converter/routes';
+import { pageShells } from './scripts/lib/page-shells.mjs';
+import { PAGE_ENTRIES, PAGE_REDIRECTS } from './src/seo/pages';
+import { SITE } from './src/i18n/config';
 
 // Every MPA entry served from a directory. Used both for the rollup inputs and
 // the clean-URL redirect plugin below, so the two never drift apart.
-const MPA_ROUTES = [
-  'datafun',
-  'wechat',
-  'glossary',
-  'products/cli',
-  'products/vscode',
-  'products/studio',
-  'products/enterprise',
-  'solutions/semantic-layer',
-  'integrations',
-  'databases',
-  'databases/snowflake',
-  'models',
-  'mcp',
-  'chatbot',
-  'pricing',
-  'faq',
-  'security',
-  'support',
-  'policies/cookies',
-  'policies/privacy',
-  'policies/terms',
-  'osi-field-mapping',
-  'tools/osi-playground',
-  'tools/semantic-model-converter',
-  ...CONVERTER_PATHS.map((route) => route.replace(/^\/|\/$/g, '')),
-];
+const MPA_ROUTES = [...PAGE_ENTRIES, ...PAGE_REDIRECTS]
+  .filter(page => page.path !== '/')
+  .map(page => page.path.replace(/^\/|\/$/g, ''));
 
 // Locally mirror GitHub Pages behavior: redirect a clean URL like `/products/cli`
 // to `/products/cli/` so the MPA entry (products/cli/index.html) is served in
@@ -156,7 +134,12 @@ const serveBlogPublic = () => {
 };
 
 export default defineConfig(() => ({
-  plugins: [react(), { name:'site-theme', transformIndexHtml:withSiteTheme }, cleanUrls(), zhDevRoutes(), serveBuiltBlog(), serveBlogPublic()],
+  plugins: [
+    pageShells({ root: __dirname, pages: PAGE_ENTRIES, redirects: PAGE_REDIRECTS, site: SITE }),
+    react(),
+    { name: 'site-theme', transformIndexHtml: withSiteTheme },
+    cleanUrls(), zhDevRoutes(), serveBuiltBlog(), serveBlogPublic(),
+  ],
   base: '/',
   publicDir: 'src/public', 
   resolve: {

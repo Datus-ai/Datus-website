@@ -5,9 +5,9 @@ import { flowCopy } from "../pages/tools/semantic-model-converter/flows";
 /**
  * Chinese `<head>` metadata for every mirrored marketing page.
  *
- * The English metadata already lives in each route's hand-written
- * `<route>/index.html`; this file supplies only the Chinese overrides. The
- * `/zh` shell generator (scripts/lib/i18n-shells.mjs) reads it at build time
+ * The English metadata lives in `src/seo/pages.json` / `src/seo/pages.ts`;
+ * this file supplies only the Chinese overrides. The `/zh` shell generator
+ * (scripts/lib/i18n-shells.mjs) reads it at build time
  * and rewrites the copied English shell, so there is exactly one place to edit
  * a Chinese title or description.
  *

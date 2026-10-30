@@ -89,7 +89,9 @@ sessions. Public landing URLs describe the source and target:
 Each has an independently prerendered English/Chinese body, title, description,
 FAQ, breadcrumb and self-canonical URL. There is no Snowflake-to-Ossie page:
 that importer is not supported. Product-facing `power-bi` maps to API ID
-`microsoft`. New pairs require dedicated content and a route-registry entry;
+`microsoft`. HTML entries are generated from the shared site template by `src/seo/pages.ts`,
+using the same titles/descriptions as the page body. New pairs require
+dedicated content and a route-registry entry;
 other catalog formats remain usable on the general hub through query parameters.
 
 The route sets the initial direction, platform and public fixture before
