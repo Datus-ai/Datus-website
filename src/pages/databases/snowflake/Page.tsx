@@ -41,19 +41,19 @@ function ArchitectureComparison() {
  return <figure className="sf-compare" aria-label={d.label}>
   <div className="sf-compare__lanes">
    <div className="sf-compare__lane">
-    <div className="sf-compare__head"><span>{d.native.tag}</span><h3>{d.native.title}</h3></div>
+    <div className="sf-compare__head"><span>{d.native.tag}</span><h3><img className="sf-compare__heading-logo" src="/integrations/logos/snowflake.svg" alt="" aria-hidden="true" width="24" height="24"/>{d.native.title}</h3></div>
     <div className="sf-compare__consumer">{d.native.consumers}</div>
     <ArrowDown className="sf-compare__down" size={19} aria-hidden="true"/>
     <div className="sf-compare__boundary">
      <span className="sf-compare__boundary-label">{d.native.boundary}</span>
      <div className="sf-compare__box"><Layers3 size={20} aria-hidden="true"/><strong>{d.native.model}</strong><small>{d.native.modelDetail}</small></div>
      <ArrowDown className="sf-compare__down" size={19} aria-hidden="true"/>
-     <div className="sf-compare__box"><Database size={20} aria-hidden="true"/><strong>{d.native.warehouse}</strong></div>
+     <div className="sf-compare__box"><img className="sf-compare__logo" src="/integrations/logos/snowflake.svg" alt="" aria-hidden="true" width="22" height="22"/><strong>{d.native.warehouse}</strong></div>
     </div>
     <p className="sf-compare__summary">{d.native.summary}</p>
    </div>
    <div className="sf-compare__lane sf-compare__lane--datus">
-    <div className="sf-compare__head"><span>{d.datus.tag}</span><h3>{d.datus.title}</h3></div>
+    <div className="sf-compare__head"><span>{d.datus.tag}</span><h3><img className="sf-compare__heading-logo" src="/brand-mark.svg" alt="" aria-hidden="true" width="24" height="24"/>{d.datus.title}</h3></div>
     <div className="sf-compare__consumer">{d.datus.consumers}</div>
     <ArrowDown className="sf-compare__down" size={19} aria-hidden="true"/>
     <div className="sf-compare__external">
@@ -61,13 +61,13 @@ function ArchitectureComparison() {
      <div className="sf-compare__pair">
       <div className="sf-compare__box"><Layers3 size={20} aria-hidden="true"/><strong>{d.datus.model}</strong><small>{d.datus.modelDetail}</small></div>
       <ArrowRight size={19} aria-hidden="true"/>
-      <div className="sf-compare__box sf-compare__box--dosi"><strong>{d.datus.engine}</strong><small>{d.datus.engineDetail}</small></div>
+      <div className="sf-compare__box sf-compare__box--dosi"><img className="sf-compare__logo" src="/brand-mark.svg" alt="" aria-hidden="true" width="22" height="22"/><strong>{d.datus.engine}</strong><small>{d.datus.engineDetail}</small></div>
      </div>
     </div>
     <ArrowDown className="sf-compare__down" size={19} aria-hidden="true"/>
     <div className="sf-compare__boundary sf-compare__boundary--warehouse">
      <span className="sf-compare__boundary-label">{d.datus.boundary}</span>
-     <div className="sf-compare__box"><Database size={20} aria-hidden="true"/><strong>{d.datus.warehouse}</strong></div>
+     <div className="sf-compare__box"><img className="sf-compare__logo" src="/integrations/logos/snowflake.svg" alt="" aria-hidden="true" width="22" height="22"/><strong>{d.datus.warehouse}</strong></div>
     </div>
     <p className="sf-compare__summary">{d.datus.summary}</p>
    </div>
@@ -90,9 +90,9 @@ export default function SnowflakePage(){
      <div className="sf-architecture__node sf-architecture__node--model"><span className="sf-architecture__small">{t.architecture.inputs}</span><ArrowDown size={13} aria-hidden="true"/><span className="sf-architecture__small">{t.architecture.authoring}</span><span className="sf-architecture__model"><Layers3 size={17} aria-hidden="true"/>{t.architecture.model}</span></div>
      <ArrowRight className="sf-architecture__arrow" size={19} aria-hidden="true"/>
      <div className="sf-architecture__entry"><strong>{t.architecture.consumer}</strong><span>{t.architecture.interface}</span><ArrowDown size={15} aria-hidden="true"/></div>
-     <div className="sf-architecture__node sf-architecture__node--engine"><strong>{t.architecture.engine}</strong><span>{t.architecture.planning}</span></div>
+     <div className="sf-architecture__node sf-architecture__node--engine"><div className="sf-architecture__brand"><img src="/brand-mark.svg" alt="" aria-hidden="true" width="22" height="22"/><strong>{t.architecture.engine}</strong></div><span>{t.architecture.planning}</span></div>
      <ArrowRight className="sf-architecture__arrow" size={19} aria-hidden="true"/>
-     <div className="sf-architecture__node sf-architecture__node--warehouse"><Database size={24} aria-hidden="true"/><strong>{t.architecture.warehouse}</strong><span>{t.architecture.sql}</span></div>
+     <div className="sf-architecture__node sf-architecture__node--warehouse"><img className="sf-architecture__logo" src="/integrations/logos/snowflake.svg" alt="" aria-hidden="true" width="26" height="26"/><strong>{t.architecture.warehouse}</strong><span>{t.architecture.sql}</span></div>
     </div>
     <div className="sf-architecture__return"><ArrowLeft size={15} aria-hidden="true"/>{t.architecture.returnPath}</div>
     <p className="sf-architecture__caption">{t.architecture.caption}</p>

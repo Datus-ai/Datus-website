@@ -25,6 +25,8 @@
 .sf-architecture__model svg{flex:none;color:var(--brand-bright)}
 .sf-architecture__node--engine{border-color:var(--brand-bright)}
 .sf-architecture__node--engine strong{font-size:24px;font-weight:650;letter-spacing:-.04em;color:var(--brand-bright)}
+.sf-architecture__brand{display:flex;align-items:center;justify-content:center;gap:7px;max-width:100%}
+.sf-architecture__brand img,.sf-architecture__logo{display:block;flex:none;object-fit:contain}
 .sf-architecture__node--warehouse svg{color:var(--brand-bright)}
 .sf-architecture__node--warehouse strong{font-size:12px;line-height:1.25}
 .sf-architecture__node--warehouse span{font:10px var(--font-mono);color:var(--ink-muted)}
@@ -43,6 +45,8 @@
 .sf-compare__head{min-height:76px}
 .sf-compare__head>span{font:11px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--brand-bright)}
 .snowflake-page .sf-compare__head h3{font-size:20px;margin:9px 0 18px}
+.sf-compare__head h3{display:flex;align-items:center;gap:9px}
+.sf-compare__heading-logo,.sf-compare__logo{display:block;flex:none;object-fit:contain}
 .sf-compare__consumer{min-height:49px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px 12px;border:1px solid var(--line-strong);border-radius:5px;color:var(--ink);font-size:13px;font-weight:600}
 .sf-compare__down{display:block;flex:none;align-self:center;margin:11px auto;color:var(--brand-bright)}
 .sf-compare__boundary,.sf-compare__external{border:1px dashed var(--line-strong);border-radius:6px;padding:13px;background:var(--bg)}
