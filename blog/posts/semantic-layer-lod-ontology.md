@@ -86,6 +86,10 @@ It sounds like a spec-level change, but I think it matters a lot. A data enginee
 
 To be clear, this doesn't mean every cross-source query now runs automatically. But we finally have an open way to describe and manage these relationships — without cramming the entire company's business model into one giant YAML file.
 
+![Datus Studio's Ontology Concepts view: Customer, Order, OrderLine, Product, Delivery, Return, Refund, Membership and Benefit connected by relationships such as placed_by, part_of and returns_item, next to an agent conversation recording a business-approved Premier eligibility rule](/images/semantic-layer-lod-ontology/studio-ontology-concepts-premier-rule.jpg)
+
+*Business objects and their relationships in Datus Studio, with the agent working on a Premier eligibility rule over them.*
+
 ## 3. Derived Subtype: Business Rules as Executable Semantics
 
 Another feature in Dosi 0.2.0 that I find especially interesting is **Derived Subtype**. It lets you define a new type of business object from an existing one, using a rule.
