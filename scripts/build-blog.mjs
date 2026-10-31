@@ -1,7 +1,7 @@
 // Static blog generator — replaces VitePress.
 // Renders blog/posts/*.md into styled static HTML at /blog/<slug>/ (short URLs),
 // builds a lovable-style category index at /blog/, and emits meta-refresh
-// redirect stubs at the old /blog/posts/<slug>/ paths for SEO continuity.
+// redirect stubs for historical VitePress paths for SEO continuity.
 //
 // Output is written into dist/ (run after `vite build`).
 
@@ -569,12 +569,12 @@ const parseTags = (raw) => {
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-function redirectStub(oldPath, target) {
+function redirectStub(target) {
   return `<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8" />
 <title>Redirecting…</title><link rel="canonical" href="${SITE}${target}" />
 <meta name="robots" content="noindex, follow" />
 <meta http-equiv="refresh" content="0; url=${target}" />
-<script>location.replace(${JSON.stringify(target)});</script>
+<script>location.replace(${JSON.stringify(target)} + location.search + location.hash);</script>
 </head><body>Redirecting to <a href="${target}">${target}</a>…</body></html>`;
 }
 
@@ -830,12 +830,20 @@ function main() {
 
   for (const post of posts.values()) {
     write(join(DIST, "blog", post.slug, "index.html"), postPage(post));
-    // legacy /blog/posts/<slug> -> /blog/<slug>
-    write(join(DIST, "blog", "posts", post.slug, "index.html"),
-      redirectStub(`/blog/posts/${post.slug}`, `/blog/${post.slug}/`));
+    // Derive every legacy entry from the actual post inventory, including new
+    // posts. VitePress historically exposed both clean and .html URLs.
+    const target = `/blog/${post.slug}/`;
+    for (const prefix of ["blog/posts", "posts"]) {
+      write(join(DIST, prefix, post.slug, "index.html"), redirectStub(target));
+      write(join(DIST, prefix, `${post.slug}.html`), redirectStub(target));
+    }
   }
+  // Historical title/slug spelling for the existing MCP article.
+  if (!posts.has("mcp-data-engineering")) throw new Error("MCP legacy redirect lost its destination");
+  write(join(DIST, "blog", "what-is-mcp-data-engineering", "index.html"),
+    redirectStub("/blog/mcp-data-engineering/"));
   // legacy /blog/posts/ index -> /blog/
-  write(join(DIST, "blog", "posts", "index.html"), redirectStub("/blog/posts/", "/blog/"));
+  write(join(DIST, "blog", "posts", "index.html"), redirectStub("/blog/"));
   write(join(DIST, "blog", "index.html"), indexPage(posts));
 
   const refs = buildReferencePages();
