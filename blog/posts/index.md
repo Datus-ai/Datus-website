@@ -36,7 +36,6 @@ The category, the comparisons, and how to build with one — our core cluster.
 - [MCP and Data Engineering: The Protocol That Connects Your Entire Stack](/blog/mcp-data-engineering/) — Jun 2, 2026
 - [What an Enterprise Data Engineering Agent Actually Needs](/blog/enterprise-data-engineering-agent/) — Jun 3, 2026
 - [Subagents: How to Ship Domain-Specific Data Agents Without Training a Model](/blog/subagents-domain-specific-data-agents/) — Jun 4, 2026
-- [Best Data Engineering Agents in 2026: An Honest Comparison](/blog/best-data-engineering-agents/) — Jun 10, 2026
 - [AI-Native Data Platforms: Why the Next Generation Needs Agents, Not Just Copilots](/blog/ai-native-data-platforms/) — Jun 10, 2026
 - [Platform-Native Data Engineering Agents Compared: Cortex Code, Genie Code, and BigQuery DE Agent](/blog/platform-native-data-agents-compared/) — Jun 10, 2026
 

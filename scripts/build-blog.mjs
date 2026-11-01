@@ -60,7 +60,7 @@ const CATEGORIES = [
       "build-your-first-data-engineering-agent", "data-engineering-agent-vs-claude-code",
       "data-engineering-agent-vs-sql-copilot", "one-person-data-team", "context-engine-data-engineering-agent-accuracy",
       "mcp-data-engineering", "enterprise-data-engineering-agent", "subagents-domain-specific-data-agents",
-      "best-data-engineering-agents", "ai-native-data-platforms", "platform-native-data-agents-compared",
+      "ai-native-data-platforms", "platform-native-data-agents-compared",
       "what-is-databricks-genie", "what-is-cortex-analyst", "what-is-claude-data-plugin",
       "from-chatbi-to-data-agent-what-changes"] },
   { label: "Semantic Layer", description: "What a semantic layer is, and how it differs from a metric layer, model, ontology, or catalog.",
@@ -142,10 +142,19 @@ function readPosts() {
   // index and already covered by the /blog/posts/ redirect.
   const files = readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md") && f !== "index.md");
   const posts = new Map();
+  const aliases = new Map();
   for (const file of files) {
     const slug = file.replace(/\.md$/, "");
     const raw = readFileSync(join(POSTS_DIR, file), "utf8");
     const { data, content } = matter(raw);
+    // Keep old source and its URL, but do not publish a second copy of an
+    // article when the post declares its canonical successor.
+    if (data.redirectTo) {
+      const destination = String(data.redirectTo);
+      if (!/^[a-z0-9-]+$/.test(destination)) throw new Error(`Invalid redirectTo for ${slug}: ${destination}`);
+      aliases.set(slug, destination);
+      continue;
+    }
     posts.set(slug, {
       slug,
       title: data.title || slug,
@@ -164,7 +173,7 @@ function readPosts() {
       html: renderBody(content),
     });
   }
-  return posts;
+  return { posts, aliases };
 }
 
 // frontmatter `head` array may carry a keywords meta — pull it through for SEO.
@@ -803,7 +812,7 @@ function main() {
     console.error("[build-blog] dist/ not found — run `vite build` first.");
     process.exit(1);
   }
-  const posts = readPosts();
+  const { posts, aliases } = readPosts();
   const covers = prepareCovers(posts, PUBLIC_DIR, categoryFor);
   write(join(ROOT, "blog", "cover-manifest.json"), JSON.stringify(covers, null, 2) + "\n");
 
@@ -836,6 +845,15 @@ function main() {
     for (const prefix of ["blog/posts", "posts"]) {
       write(join(DIST, prefix, post.slug, "index.html"), redirectStub(target));
       write(join(DIST, prefix, `${post.slug}.html`), redirectStub(target));
+    }
+  }
+  for (const [oldSlug, destinationSlug] of aliases) {
+    if (!posts.has(destinationSlug)) throw new Error(`Missing redirectTo destination for ${oldSlug}: ${destinationSlug}`);
+    const target = `/blog/${destinationSlug}/`;
+    write(join(DIST, "blog", oldSlug, "index.html"), redirectStub(target));
+    for (const prefix of ["blog/posts", "posts"]) {
+      write(join(DIST, prefix, oldSlug, "index.html"), redirectStub(target));
+      write(join(DIST, prefix, `${oldSlug}.html`), redirectStub(target));
     }
   }
   // Historical title/slug spelling for the existing MCP article.

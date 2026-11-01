@@ -4,6 +4,7 @@ description: "Best data engineering agents in 2026 compared by stack fit, contex
 author: "John Smith"
 date: 2026-06-10
 lastmod: 2026-10-19
+redirectTo: best-data-engineering-agents-2026
 head:
   - - meta
     - name: keywords
