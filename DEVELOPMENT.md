@@ -171,8 +171,8 @@ from `document.referrer` supply a source plus `organic`; known AI chat products
 supply their canonical product domain plus `referral`. Neither invents a
 campaign. AI hosts cover ChatGPT, Claude, Perplexity, Gemini, Copilot and DeepSeek,
 using exact matches rather than vendor-wide domains. See `src/lib/referrer-attribution.ts` for exact allowed hosts and common
-paid-click identifiers that disable this inference and discard stale attribution.
-Explicit UTM wins over inferred search/AI referrals; a new recognized arrival
+paid-click identifiers that disable organic/AI classification and discard stale attribution. When a valid explicit `utm_source` is missing, any current external HTTP(S) Referrer hostname can supply it; preserve explicit medium/campaign from that arrival. Partial tags and paid IDs fill source only without inferring a medium. Ignore same-host navigation and `datus.ai` / `www.datus.ai` aliases.
+A valid explicit source wins over the Referrer; a new external arrival
 replaces cached campaigns. Missing referrer and UTM cannot identify AI traffic.
 An arrival with UTM replaces the entire campaign; missing fields are not filled
 from an older campaign. Values must be
@@ -181,7 +181,7 @@ non-empty, at most 100 characters, and contain no control characters.
 After accepting usage analytics, campaign fields and their capture time are
 stored in `sessionStorage` for 30 minutes from capture, without sliding expiry.
 Before acceptance, after refusal, or with unavailable storage, only the current
-URL's values or recognized current search/AI referrer can be forwarded; otherwise
+URL's values or current external Referrer can be forwarded; otherwise
 links use the website fallback. No complete
 referrer URL or search terms are stored. Refusal, withdrawal, and expired consent clear
 the cache. Dynamic menus, native new-tab opening, and back/forward restoration
