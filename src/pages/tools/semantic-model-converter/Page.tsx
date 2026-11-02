@@ -87,6 +87,7 @@ function ConverterPageContent() {
           <h1>{title}</h1>
           <p className="lead">{lead}</p>
           <p className="converter-free">{t.free}</p>
+          <a href={l("/apache-ossie/")} style={{ color: "var(--brand-bright)", fontSize: 14 }}>{t.guideLink}</a>
           <ConverterDirectory active={flow?.slug} />
         </div>
       </section>

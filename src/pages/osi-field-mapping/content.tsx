@@ -44,7 +44,7 @@ export type Layer = {
 };
 
 export interface OsiMappingCopy {
-  hero: { eyebrow: string; heading: string; lead: string; stats: string[] };
+  hero: { eyebrow: string; heading: string; lead: string; guideLink: string; stats: string[] };
   layerLabel: (i: number) => string;
   layers: Layer[];
   useCasesSection: { eyebrow: string; title: string; lead: string };
@@ -55,6 +55,7 @@ export interface OsiMappingCopy {
 
 const EN: OsiMappingCopy = {
   hero: {
+    guideLink: "Read the Apache Ossie standard guide",
     eyebrow: "OSI Field Mapping",
     heading: "OSI Field Mapping: every semantic layer, one spec",
     lead: "A field-by-field reference of how MetricFlow, Cube, LookML, AtScale, Snowflake Semantic Views, GoodData, Power BI and Databricks Metric Views translate onto the Open Semantic Interchange schema — the vendor-neutral wire format for the modern semantic layer.",
@@ -236,6 +237,7 @@ const EN: OsiMappingCopy = {
 
 const ZH: OsiMappingCopy = {
   hero: {
+    guideLink: "阅读 Apache Ossie 规范指南",
     eyebrow: "OSI 字段映射",
     heading: "OSI 字段映射：所有语义层，同一份规范",
     lead: "一份逐字段的对照参考：MetricFlow、Cube、LookML、AtScale、Snowflake Semantic Views、GoodData、Power BI 与 Databricks Metric Views 如何翻译到 Open Semantic Interchange schema——现代语义层的厂商中立传输格式。",
