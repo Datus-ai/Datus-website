@@ -24,7 +24,7 @@ export const TRUST_CENTER_URL =
 
 export interface NavLink {
   label: string;
-  href: string;
+  href?: string;
   external?: boolean;
   description?: string;
 }
@@ -67,7 +67,10 @@ export function siteNav(locale: Locale): NavItem[] {
   const t = UI[locale].nav;
   return [
     { label: t.products, children: productsNav(locale) },
-    { label: t.solutions, children: [{ label: t.semanticLayer, href: "/solutions/semantic-layer/", description: t.semanticLayerDesc }] },
+    { label: t.solutions, children: [
+      { label: t.semanticLayer, href: "/solutions/semantic-layer/", description: t.semanticLayerDesc },
+      { label: t.aiBi, description: t.comingSoon },
+    ] },
     { label: t.integrations, children: integrationsNav(locale) },
     { label: t.pricing, href: "/pricing/" },
     { label: t.blog, href: "/blog/", external: true },

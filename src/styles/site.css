@@ -331,6 +331,8 @@ body {
   transition: background 0.14s ease;
 }
 .nav-dd__item:hover { background: var(--brand-soft); }
+.nav-dd__item--pending { cursor: default; }
+.nav-dd__item--pending:hover { background: transparent; }
 .nav-dd__item-title {
   font-size: 14px;
   font-weight: 600;
