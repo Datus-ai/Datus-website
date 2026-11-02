@@ -247,6 +247,8 @@ function footerHtml() {
     <a href="/policies/cookies/">Cookie Policy</a>
     <button type="button" data-cookie-settings>Cookie Settings</button>
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/company/datusai/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://www.youtube.com/@Datus-AI" target="_blank" rel="noopener noreferrer">YouTube</a>
   </nav>
   <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
 </div><div class="container" style="padding-top:24px;font-size:11px;line-height:1.8;color:var(--ink-muted)"><p><a href="https://ossie.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Ossie (incubating)</a> is a project in the Apache Incubator at the <a href="https://www.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Software Foundation (ASF)</a>. Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.</p></div></footer>`;

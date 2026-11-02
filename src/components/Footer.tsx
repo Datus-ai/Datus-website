@@ -63,6 +63,16 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
                 </a>
               </li>
               <li>
+                <a href="https://www.linkedin.com/company/datusai/" target="_blank" rel="noopener noreferrer">
+                  {t.linkedin}
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@Datus-AI" target="_blank" rel="noopener noreferrer">
+                  {t.youtube}
+                </a>
+              </li>
+              <li>
                 <a
                   href="https://join.slack.com/t/datus-ai/shared_invite/zt-3g6h4fsdg-iOl5uNoz6A4GOc4xKKWUYg"
                   target="_blank"
