@@ -196,6 +196,7 @@ const SVG = {
   burger: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>',
   x: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
   linkedin: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S.02 4.881.02 3.5C.02 2.12 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.982 0H8.014v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0V24H24V13.869c0-7.88-8.922-7.593-11.018-3.714V8z"/></svg>',
+  youtube: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.58 6.21a2.75 2.75 0 0 0-1.94-1.94C17.92 3.8 12 3.8 12 3.8s-5.92 0-7.64.47A2.75 2.75 0 0 0 2.42 6.2C1.96 7.93 1.96 12 1.96 12s0 4.07.46 5.79a2.75 2.75 0 0 0 1.94 1.94c1.72.47 7.64.47 7.64.47s5.92 0 7.64-.47a2.75 2.75 0 0 0 1.94-1.94c.46-1.72.46-5.79.46-5.79s0-4.07-.46-5.79ZM10 15.4V8.6l5.9 3.4-5.9 3.4Z"/></svg>',
   link: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
   check: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
 };
@@ -236,9 +237,17 @@ fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){retu
 
 function footerHtml() {
   const year = new Date().getFullYear();
-  return `<footer class="site-foot"><div class="container" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center">
-  <a href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" style="height:24px"/></a>
-  <nav style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted)">
+  return `<footer class="site-foot"><div class="container site-foot__inner">
+  <div class="site-foot__brand">
+    <a href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" style="height:24px"/></a>
+    <p class="site-foot__tagline">Trusted enterprise data context for AI agents. Business-aware. Agent-native. Audit-ready.</p>
+    <div class="site-foot__social">
+      <a href="https://www.linkedin.com/company/datusai/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">${SVG.linkedin}</a>
+      <a href="https://x.com/Datus_AI" target="_blank" rel="noopener noreferrer" aria-label="X" title="X">${SVG.x}</a>
+      <a href="https://www.youtube.com/@Datus-AI" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">${SVG.youtube}</a>
+    </div>
+  </div>
+  <nav class="site-foot__nav" aria-label="Footer">
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
     <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
@@ -247,10 +256,8 @@ function footerHtml() {
     <a href="/policies/cookies/">Cookie Policy</a>
     <button type="button" data-cookie-settings>Cookie Settings</button>
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/company/datusai/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="https://www.youtube.com/@Datus-AI" target="_blank" rel="noopener noreferrer">YouTube</a>
   </nav>
-  <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
+  <span class="site-foot__copyright">© ${year} DatusAI, Inc.</span>
 </div><div class="container" style="padding-top:24px;font-size:11px;line-height:1.8;color:var(--ink-muted)"><p><a href="https://ossie.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Ossie (incubating)</a> is a project in the Apache Incubator at the <a href="https://www.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Software Foundation (ASF)</a>. Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.</p></div></footer>`;
 }
 
