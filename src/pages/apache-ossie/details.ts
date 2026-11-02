@@ -1,6 +1,24 @@
 import type { Locale } from '../../i18n/config';
 
 const en = {
+ value: {
+  eyebrow: 'Why use Apache Ossie?', title: 'Keep business definitions reusable.',
+  body: 'Keep using your BI and analytics tools. Ossie provides a shared format for the compatible definitions you want to review, maintain, and reuse across them.',
+  headers: ['How teams work today', 'What Ossie adds'],
+  tabs: ['Reuse definitions', 'Connect tools', 'Make meaning explicit'],
+  diagrams: [
+   { nodes: ['BI tool', 'Analytics', 'AI app'], before: ['Metric copy A', 'Metric copy B', 'Metric copy C'], center: 'Shared definitions', after: 'Compatible consumers' },
+   { nodes: ['BI models', 'Catalogs', 'Analytics', 'Modeling tools'], before: [], center: 'Apache Ossie', after: 'Supported conversion paths' },
+   { nodes: ['SQL', 'Documents', 'Agent prompts'], before: ['Calculations', 'Business terms', 'Instructions'], center: 'Explicit model', after: 'Metrics · relationships · context' }
+  ],
+  rows: [
+   { current: 'Maintain definitions separately in each BI or analytics tool.', benefit: 'Represent compatible datasets, metrics, and relationships in a shared model, reducing repeated modeling work.' },
+   { current: 'Maintain a separate translation for each pair of tools.', benefit: 'Build supported conversion paths around one common format, reducing the number of translations to maintain as the stack grows.' },
+   { current: 'Describe business logic across SQL, documents, and agent prompts.', benefit: 'Use those sources to build an explicit model of supported calculations, relationships, and context that people and compatible software can inspect.' }
+  ],
+  note: 'Ossie defines the exchange format; DOSI provides execution for compatible models. Neither replaces your BI tools or warehouse. Conversion coverage and calculation behavior still need validation in the target runtime.',
+  link: 'Explore supported conversion paths'
+ },
  format: 'Ossie models can be written in YAML or JSON. Each document declares its specification version; check that version against your validator and intended consumer.',
  ontology: {
   eyebrow: 'Semantic models + ontology', title: 'Connect calculations to business concepts.',
@@ -22,7 +40,7 @@ const en = {
   note: 'The hub is a document format, not a central data service. Arrows represent potential import/export paths, not a promise of bidirectional support for every tool. Review diagnostics and test the target behavior.'
  },
  agents: {
-  eyebrow: 'Apache Ossie for AI agents', title: 'From open definitions to agent action.',
+  eyebrow: 'How Datus uses Apache Ossie', title: 'From open definitions to agent action.',
   body: 'DOSI turns compatible Apache Ossie definitions into native SQL. Within Datus, that runtime sits alongside Datus Agent and Studio: agents work with shared business meaning, while teams build, review, and inspect the context behind their work.',
   steps: [
    { title: 'Discover', body: 'Find model names, available fields, metrics, and declared relationships.' },
@@ -32,6 +50,7 @@ const en = {
   ],
   note: 'Ossie defines the metadata. MCP, API, and CLI access are supplied by implementations, not automatically by an Ossie file. Shared context helps ground analysis; it does not guarantee an error-free answer.',
   link: 'Inspect DOSI execution',
+  architectureNote: 'Apache Ossie (incubating) is an Apache Software Foundation project maintained by its community, not a Datus-owned product. This diagram shows how Datus uses the specification: DOSI executes compatible definitions. Datus and DOSI are independent of the ASF and are not ASF-endorsed products.',
   roles: [{name:'Apache Ossie',body:'The open specification describes semantic models and ontology. It does not execute a query by itself.'},{name:'DOSI',body:'The semantic runtime validates compatible definitions and compiles supported requests into native SQL. It can also be used independently.'},{name:'Datus',body:'Studio provides a shared workspace; Datus Agent carries out data engineering and analysis. Modeling is one part of that workflow.'}]
  },
  project: {
@@ -53,6 +72,24 @@ const en = {
  ]
 };
 export const OSSIE_DETAILS: Record<Locale, typeof en> = { en, zh: {
+ value: {
+  eyebrow: '为什么采用 Apache Ossie', title: '让业务定义持续复用。',
+  body: '继续使用现有 BI 和分析工具。Ossie 为兼容的业务定义提供共同格式，方便团队审核、维护，并在不同工具间复用。',
+  headers: ['现有做法', '采用 Ossie 的价值'],
+  tabs: ['复用业务定义', '连接不同工具', '明确业务含义'],
+  diagrams: [
+   { nodes: ['BI 工具', '分析工具', 'AI 应用'], before: ['指标副本 A', '指标副本 B', '指标副本 C'], center: '共享定义', after: '兼容的使用方' },
+   { nodes: ['BI 模型', '数据目录', '分析平台', '建模工具'], before: [], center: 'Apache Ossie', after: '受支持的转换路径' },
+   { nodes: ['SQL', '文档', 'Agent 提示词'], before: ['计算逻辑', '业务术语', '指引'], center: '显式模型', after: '指标 · 关系 · 上下文' }
+  ],
+  rows: [
+   { current: '在各 BI 或分析工具里分别维护定义。', benefit: '用共同模型承载兼容的数据集、指标与关系，减少重复建模。' },
+   { current: '为每两个工具单独维护转换逻辑。', benefit: '围绕共同格式建立受支持的转换路径，减少技术栈扩展时需要维护的转换逻辑。' },
+   { current: '在 SQL、文档和 Agent 提示词中分散描述业务逻辑。', benefit: '以这些内容为起点，将支持的计算、关系与上下文整理为显式模型，供团队和兼容工具检查。' }
+  ],
+  note: 'Ossie 定义交换格式，DOSI 为兼容模型提供执行能力。它们不替代现有 BI 工具或数仓；转换覆盖范围与计算行为仍需在目标运行时中验证。',
+  link: '了解受支持的转换路径'
+ },
  format: 'Ossie 模型可以使用 YAML 或 JSON。每个文档声明所用的规范版本；请确认校验器和目标使用方支持该版本。',
  ontology: {
   eyebrow: '语义模型与 Ontology', title: '把计算定义连接到业务概念。',
@@ -73,7 +110,7 @@ export const OSSIE_DETAILS: Record<Locale, typeof en> = { en, zh: {
   note: '图中的中心是文档格式，不是集中式数据服务。连线表示可能的导入或导出路径，不代表每个工具都支持双向转换。请检查诊断，并验证目标环境的行为。'
  },
  agents: {
-  eyebrow: '面向 AI Agent 的 Apache Ossie', title: '从开放定义到 Agent 行动。',
+  eyebrow: 'Datus 如何使用 Apache Ossie', title: '从开放定义到 Agent 行动。',
   body: 'DOSI 将兼容的 Apache Ossie 定义编译为原生 SQL。在 Datus 中，这个运行时与 Datus Agent、Studio 共同工作：Agent 使用共享业务含义，团队构建、审核并检查工作背后的上下文。',
   steps: [
    { title: '发现定义', body: '读取模型名称、可用字段、指标和已声明的关系。' },
@@ -83,6 +120,7 @@ export const OSSIE_DETAILS: Record<Locale, typeof en> = { en, zh: {
   ],
   note: 'Ossie 定义元数据；MCP、API 和 CLI 接入能力由具体实现提供，不是模型文件自带的功能。共享上下文帮助分析建立依据，但不保证答案始终正确。',
   link: '检查 DOSI 执行过程',
+  architectureNote: 'Apache Ossie（孵化中）是 Apache 软件基金会（ASF）旗下、由社区维护的项目，不属于 Datus。图中展示的是 Datus 对规范的使用关系：DOSI 执行兼容的定义。Datus 和 DOSI 独立于 ASF，并非 ASF 背书的产品。',
   roles: [{name:'Apache Ossie',body:'开放规范描述语义模型与 Ontology；规范文件本身不执行查询。'},{name:'DOSI',body:'语义运行时校验兼容定义，将受支持的请求编译为原生 SQL，也可以独立使用。'},{name:'Datus',body:'Studio 提供团队工作空间；Datus Agent 开展数据工程与分析，建模是其工作流的一部分。'}]
  },
  project: {
