@@ -41,7 +41,7 @@ generator and the sitemap.
 |---|---|
 | Shared UI copy (nav, footer, buttons, form labels, shared components) | `src/i18n/ui.ts` |
 | Page body copy | that page's `content.ts` / `faq.ts`, exported as `Record<Locale, …>` |
-| `<head>` metadata | English in the hand-written `<route>/index.html`; Chinese in `src/i18n/pageMeta.ts` |
+| `<head>` metadata | English in `src/seo/pages.json` (converter copy via `src/seo/pages.ts`); Chinese in `src/i18n/pageMeta.ts` |
 | Glossary entries | English in `src/glossary/glossaryData.ts`; Chinese overlay keyed by slug in `src/glossary/glossaryData.zh.ts` |
 
 Components read the active branch with `useT(dict)`. **Never** hard-code an
@@ -71,6 +71,12 @@ const l = useHref();
 copy included. Never ship a JS-only SPA shell that mounts the copy client-side**
 — it has to be crawlable as-is.
 
+`scripts/templates/page.html` is the shared source HTML template. Vite generates
+ignored English `<route>/index.html` inputs from `src/seo/pages.ts` before dev or
+build; never hand-edit these generated files. Page-specific fonts, structured
+data and mobile settings live in the registry. The blog keeps its existing
+independent generator.
+
 `vite build` emits only the English shells. `npm run prerender` then:
 
 1. derives each `/zh` shell from its freshly built English sibling (same asset
@@ -93,7 +99,7 @@ output and the hydrated tree must match.
    (`missingZhMeta()`);
 3. add the component to `PAGES` in `src/prerender.tsx`;
 4. write the page copy as `Record<Locale, …>`;
-5. write the English `<head>` in `<route>/index.html`, following an existing page;
+5. register the page entry and English metadata in `src/seo/pages.json` (or derive a page family in `src/seo/pages.ts`), and ignore its generated `<route>/index.html`;
 6. run `npm run build:all && npm run preview` and walk the checklist in §4.
 
 ---

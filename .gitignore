@@ -21,3 +21,31 @@ yarn-debug.log*
 .gstack/
 
 # Local Netlify folder
+
+# Generated Vite HTML entries (scripts/templates/page.html + src/seo/pages.ts).
+/chatbot/index.html
+/databases/index.html
+/databases/snowflake/index.html
+/datafun/index.html
+/faq/index.html
+/glossary/index.html
+/index.html
+/integrations/index.html
+/mcp/index.html
+/models/index.html
+/osi-field-mapping/index.html
+/policies/cookies/index.html
+/policies/privacy/index.html
+/policies/terms/index.html
+/pricing/index.html
+/products/cli/index.html
+/products/enterprise/index.html
+/products/studio/index.html
+/products/vscode/index.html
+/security/index.html
+/solutions/semantic-layer/index.html
+/support/index.html
+/tools/osi-playground/index.html
+/tools/semantic-model-converter/index.html
+/wechat/index.html
+/apache-ossie-converter/**/index.html

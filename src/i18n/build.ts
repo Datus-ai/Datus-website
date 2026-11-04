@@ -22,3 +22,5 @@ export {
 } from "./config";
 
 export { ZH_PAGE_META, missingZhMeta } from "./pageMeta";
+
+export { CONVERTER_PATH, LEGACY_CONVERTER_PATH } from "../modules/semantic-converter/routes";

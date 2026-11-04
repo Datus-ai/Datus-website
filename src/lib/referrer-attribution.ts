@@ -76,7 +76,7 @@ const SEARCH_HOSTS = new Map<string, string>(
 );
 
 // Canonical product hosts keep inferred and explicitly tagged ChatGPT traffic together.
-// Vendor homepages, API consoles and arbitrary subdomains are intentionally excluded.
+// Other hosts retain their own domain through the generic referral fallback.
 const AI_REFERRAL_HOSTS = new Map<string, string>([
   ['chatgpt.com', 'chatgpt.com'],
   ['www.chatgpt.com', 'chatgpt.com'],
@@ -98,17 +98,21 @@ export function hasPaidClickId(params: URLSearchParams): boolean {
   return ['gclid', 'dclid', 'gbraid', 'wbraid', 'msclkid', 'yclid', 'NaPm'].some(key => params.has(key));
 }
 
-/** Infer a known search or AI referral only when the landing URL has no UTM or paid click ID. */
+/** Use an external referrer domain when a valid explicit source is unavailable. */
 export function referrerCampaign(
   referrer: string,
   params: URLSearchParams,
-): { utm_source: string; utm_medium: 'organic' | 'referral' } | null {
+  currentHostname: string,
+): { utm_source: string; utm_medium?: 'organic' | 'referral' } | null {
   const hasExplicitUtm = [
     'utm_source', 'utm_medium', 'utm_campaign', 'utm_content',
     'utm_term', 'utm_id', 'utm_source_platform',
   ].some(key => params.has(key));
 
-  if (!referrer || hasExplicitUtm || hasPaidClickId(params)) {
+  const explicitSource = params.get('utm_source')?.trim();
+  const hasValidSource = explicitSource && explicitSource.length <= 100 && !/[\u0000-\u001f\u007f]/.test(explicitSource);
+
+  if (!referrer || hasValidSource) {
     return null;
   }
 
@@ -120,6 +124,16 @@ export function referrerCampaign(
     }
 
     const host = url.hostname.toLowerCase().replace(/\.$/, '');
+    // Ignore website navigation, including transitions between canonical aliases.
+    if (!host || host.length > 100 || host === currentHostname.toLowerCase().replace(/\.$/, '') || host === 'datus.ai' || host === 'www.datus.ai') {
+      return null;
+    }
+
+    // Partial tags and paid IDs supply no evidence for an inferred medium.
+    if (hasExplicitUtm || hasPaidClickId(params)) {
+      return { utm_source: host };
+    }
+
     const aiSource = AI_REFERRAL_HOSTS.get(host);
 
     if (aiSource) {
@@ -134,6 +148,8 @@ export function referrerCampaign(
     if (source) {
       return { utm_source: source, utm_medium: 'organic' };
     }
+
+    return { utm_source: host, utm_medium: 'referral' };
   } catch {
     // Invalid or unavailable referrers do not interrupt registration.
   }

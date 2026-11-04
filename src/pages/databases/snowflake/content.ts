@@ -36,7 +36,7 @@ export const SNOWFLAKE_COMMAND = `dosi query --model orders-model.yaml \\
   --dialect snowflake`;
 
 type Copy = {
- eyebrow:string; heading:string; lead:string; setupLink:string; comparisonLink:string;
+ eyebrow:string; heading:string; lead:string; setupLink:string; back:string; comparisonLink:string;
  architecture:{label:string;inputs:string;authoring:string;model:string;consumer:string;interface:string;engine:string;planning:string;warehouse:string;sql:string;returnPath:string;caption:string};
  facts:string[]; why:{eyebrow:string;heading:string;lead:string;diagram:{label:string;native:{tag:string;title:string;consumers:string;boundary:string;model:string;modelDetail:string;warehouse:string;summary:string};datus:{tag:string;title:string;consumers:string;outside:string;boundary:string;model:string;modelDetail:string;engine:string;engineDetail:string;warehouse:string;summary:string};note:string;source:string;explainer:string};items:{title:string;body:string}[]};
  proof:{eyebrow:string;heading:string;lead:string;tabs:string[];titles:string[];descriptions:string[];files:string[];caption:string;download:string;command:string;docs:string};
@@ -51,7 +51,7 @@ export const SNOWFLAKE_PAGE:Record<Locale,Copy> = {
  en:{
   eyebrow:'Datus + Snowflake',heading:'A semantic layer for Snowflake, built for AI agents.',
   lead:'Keep Snowflake as your data warehouse and query engine. Give agents reviewed business definitions they can reuse, then let DOSI compile supported metric requests into native Snowflake SQL.',
-  setupLink:'See setup steps',comparisonLink:'Already use Snowflake Semantic Views? See how this fits.',
+  setupLink:'See setup steps',back:'All databases',comparisonLink:'Already use Snowflake Semantic Views? See how this fits.',
   architecture:{label:'How the pieces connect',inputs:'Existing SQL + docs',authoring:'Datus Agent + team review',model:'Apache Ossie model',consumer:'AI agents + apps',interface:'MCP · API · CLI',engine:'DOSI',planning:'Metric planning',warehouse:'Snowflake warehouse',sql:'Native SQL',returnPath:'Results return through DOSI to agents + apps',caption:'DOSI plans the query; your configured Snowflake warehouse executes it.'},
   facts:['Apache Ossie definitions','Native SQL pushdown','MCP · API · CLI'],
   why:{eyebrow:'Where Datus fits',heading:'Already using Snowflake Semantic Views?',lead:'Semantic Views define business meaning as native Snowflake objects. Datus uses a separate, team-reviewed Apache Ossie model that DOSI makes available to agents and applications. The two approaches can coexist; this workflow does not automatically import or replace Snowflake Semantic Views.',diagram:{
@@ -96,7 +96,7 @@ export const SNOWFLAKE_PAGE:Record<Locale,Copy> = {
  zh:{
   eyebrow:'Datus + Snowflake',heading:'为 Snowflake 构建语义层，让 AI Agent 理解业务。',
   lead:'Snowflake 继续承担数据存储和查询执行。让 Agent 使用经过团队审核的业务定义，再由 DOSI 将受支持的指标请求编译为 Snowflake 原生 SQL。',
-  setupLink:'查看接入步骤',comparisonLink:'已在使用 Snowflake Semantic Views？了解两种方式如何配合。',
+  setupLink:'查看接入步骤',back:'全部数据库',comparisonLink:'已在使用 Snowflake Semantic Views？了解两种方式如何配合。',
   architecture:{label:'各部分如何连接',inputs:'已有 SQL 与文档',authoring:'Datus Agent + 团队审核',model:'Apache Ossie 模型',consumer:'AI Agent 与应用',interface:'MCP · API · CLI',engine:'DOSI',planning:'指标查询规划',warehouse:'Snowflake 数仓',sql:'原生 SQL',returnPath:'结果经 DOSI 返回 Agent 与应用',caption:'DOSI 规划查询，由配置好的 Snowflake 数仓执行。'},
   facts:['Apache Ossie 定义','原生 SQL 下推','MCP · API · CLI'],
   why:{eyebrow:'Datus 如何配合 Snowflake',heading:'已经在使用 Snowflake Semantic Views？',lead:'Semantic Views 是 Snowflake 内的原生业务定义。Datus 使用独立的 Apache Ossie 模型，经过团队审核后，由 DOSI 提供给 Agent 和应用使用。两种方式可以并行；当前流程不会自动导入或替代 Snowflake Semantic Views。',diagram:{

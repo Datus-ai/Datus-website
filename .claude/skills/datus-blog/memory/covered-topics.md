@@ -34,7 +34,7 @@ this agent)".
 - `what-is-data-engineering-agent` — older DE agent practical guide (near-dup of the 2026 one)
 
 ### Comparison / landscape
-- `best-data-engineering-agents` and `best-data-engineering-agents-2026` — best DE agents 2026 (⚠ near-duplicate pair; treat 2026 as canonical)
+- `best-data-engineering-agents-2026` — best DE agents 2026 (**canonical** comparison post); `best-data-engineering-agents` is a noindex redirect to it, not a second article.
 - `platform-native-data-agents-compared` — Cortex/Genie/BigQuery vs open cross-stack
 - `open-source-data-engineering-agents` — Datus/Wren/Altimate; when to self-host
 - `data-engineering-agent-vs-claude-code` — DE agent vs Claude Code

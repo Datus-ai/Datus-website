@@ -182,5 +182,6 @@ try {
   console.log('Three-state policy prerendering and locale metadata passed');
 } finally {
   await browser.close();
+  server.httpServer.closeAllConnections();
   await new Promise(resolve => server.httpServer.close(resolve));
 }

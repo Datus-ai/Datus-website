@@ -49,7 +49,7 @@ The practical question is which files express the model you intend to exchange. 
 
 An importer needs the semantic definition and its dependencies. It does not infer your business model from a dataset extract or a screenshot of a dashboard. Start by recording where dimensions and metrics are defined, which files reference other definitions, and whether the source product compiles its authoring language into a separate artifact. That inventory determines what you upload and what you must generate beforehand.
 
-The following boundaries describe the October 2026 workflow in the [semantic model conversion workbench](/tools/semantic-model-converter/?direction=import). Its deployed source catalog is authoritative; if that service has not yet enabled import, the workbench shows an unavailable message and a retry action. The examples below describe the reviewed import implementation, not a promise that every deployed backend has already been upgraded.
+The following boundaries describe the October 2026 workflow in the [semantic model conversion workbench](/apache-ossie-converter/?direction=import). Its deployed source catalog is authoritative; if that service has not yet enabled import, the workbench shows an unavailable message and a retry action. The examples below describe the reviewed import implementation, not a promise that every deployed backend has already been upgraded.
 
 | Source | Input for this import path | Preparation that matters |
 |---|---|---|

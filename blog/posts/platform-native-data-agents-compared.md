@@ -185,6 +185,6 @@ Single-platform team (all Snowflake, all Databricks, all BigQuery) → platform-
 
 ## Related articles
 
-- [Best Data Engineering Agents](/blog/best-data-engineering-agents/) — full category comparison
+- [Best Data Engineering Agents](/blog/best-data-engineering-agents-2026/) — full category comparison
 - [Open Source Data Engineering Agents](/blog/open-source-data-engineering-agents/) — the open alternative
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — the category definition

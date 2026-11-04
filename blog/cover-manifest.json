@@ -1,4 +1,8 @@
 {
+  "semantic-layer-lod-ontology": {
+    "image": "/images/semantic-layer-lod-ontology/semantic-ladder-metric-lod-ontology-rules.png",
+    "source": "reused"
+  },
   "datus-dosi-executable-business-context": {
     "image": "/images/datus-dosi-executable-business-context/cover-meet-dosi.png",
     "source": "reused"
@@ -237,10 +241,6 @@
   },
   "ai-native-data-platforms": {
     "image": "/images/ai-native-data-platforms/editorial-cover.svg",
-    "source": "generated-flat-svg"
-  },
-  "best-data-engineering-agents": {
-    "image": "/images/best-data-engineering-agents/editorial-cover.svg",
     "source": "generated-flat-svg"
   },
   "platform-native-data-agents-compared": {
