@@ -48,6 +48,12 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogTitle: "基于业务上下文的 AI/BI — Datus",
     ogDescription: "从业务问题到可核查的答案：共享指标、Agent 辅助分析与可检查的 SQL。",
   },
+  "/solutions/composable-analytics/": {
+    title: "Composable Analytics：共享指标与可调整的分析视图 — Datus",
+    description: "让 Datus Agent 根据具体问题生成和修改 HTML 大盘，用 DOSI 中可审核的语义定义复用指标口径。了解实时筛选、静态报告和现有 BI 的配合方式。",
+    ogTitle: "Composable Analytics 解决方案 — Datus",
+    ogDescription: "指标定义保持一致，分析视图随问题调整。了解 Datus Agent 与 DOSI 的工作方式。",
+  },
   "/databases/snowflake/": {
     title: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
     description: "为 Snowflake 数据增加共享业务上下文。创建可审核的 Apache Ossie 模型，通过 DOSI 生成原生 SQL，为团队与 AI Agent 提供可复用的业务定义。",

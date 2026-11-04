@@ -100,6 +100,7 @@ const en = {
   ],
   reading: 'Go deeper',
   resources: [
+    { title: 'Composable Analytics solution', href: '/solutions/composable-analytics/' },
     { title: 'What is agentic analytics?', href: '/blog/what-is-agentic-analytics/' },
     { title: 'What is conversational BI?', href: '/blog/what-is-conversational-bi/' },
     { title: 'Composable analytics and agent-built dashboards', href: '/blog/composable-analytics-agent-built-dashboards/' },
@@ -207,6 +208,7 @@ export const AI_BI_CONTENT: Record<Locale, typeof en> = { en, zh: {
   ],
   reading: '继续阅读',
   resources: [
+    { title: 'Composable Analytics 解决方案', href: '/solutions/composable-analytics/' },
     { title: '什么是 Agentic Analytics？', href: '/blog/what-is-agentic-analytics/' },
     { title: '什么是 Conversational BI？', href: '/blog/what-is-conversational-bi/' },
     { title: 'Composable Analytics 与 Agent 生成看板', href: '/blog/composable-analytics-agent-built-dashboards/' },

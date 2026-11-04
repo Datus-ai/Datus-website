@@ -218,6 +218,18 @@
     "favicon": "/brand-mark.svg"
   },
   {
+    "path": "/solutions/composable-analytics/",
+    "entry": "/src/pages/solutions/composable-analytics/main.tsx",
+    "title": "Composable Analytics: Shared Metrics, Adaptable Views | Datus",
+    "description": "Create and revise HTML dashboards from shared business definitions. See how Datus Agent builds adaptable analytical views while DOSI keeps reviewed metrics reusable.",
+    "image": "/og/solutions-composable-analytics-1200x630.png",
+    "ogTitle": "Composable Analytics: Change the View, Keep the Definition | Datus",
+    "ogDescription": "Shared metrics, adaptable HTML dashboards, and reviewable business context.",
+    "imageAlt": "Composable analytics with shared metric definitions and adaptable dashboards",
+    "author": false,
+    "favicon": "/brand-mark.svg"
+  },
+  {
     "path": "/support/",
     "entry": "/src/pages/support/main.tsx",
     "title": "Support & Help — Datus",
