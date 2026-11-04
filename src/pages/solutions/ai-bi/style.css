@@ -17,7 +17,6 @@
 .ai-bi-demo__video-wrap { position: relative; aspect-ratio: 16 / 9; background: #171c17; }
 .ai-bi-demo video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ai-bi-demo__badge { position: absolute; top: 13px; left: 13px; padding: 7px 9px; background: #171c17e8; color: #fff; border-radius: 4px; font-size: 10px; letter-spacing: .01em; }
-.ai-bi-demo figcaption { color: var(--ink-muted); font-size: 11px; line-height: 1.5; padding: 12px 15px 13px; }
 .ai-bi-band { background: var(--bg-2); }
 .ai-bi-section { max-width: 1320px; padding-block: 88px; scroll-margin-top: 96px; }
 .ai-bi-section-head { max-width: 780px; margin-bottom: 35px; }

@@ -29,6 +29,5 @@ export default function HeroVideo({ copy }: { copy: DemoCopy }) {
       </video>
       <span className="ai-bi-demo__badge">{copy.label}</span>
     </div>
-    <figcaption>{copy.note}</figcaption>
   </figure>;
 }
