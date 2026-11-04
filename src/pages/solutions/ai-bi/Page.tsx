@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight, Bot, Braces, Database, FileText, Layers3 } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import Breadcrumb from '../../../components/Breadcrumb';
 import FAQ from '../../../components/FAQ';
 import { HomeArchitectureDiagram } from '../../../components/HomeNarrative';
@@ -8,6 +8,7 @@ import { useHref, useLocale, useT } from '../../../i18n/LocaleContext';
 import { UI } from '../../../i18n/ui';
 import { studioCtaUrl } from '../../../lib/studio-cta';
 import { AI_BI_CONTENT } from './content';
+import HeroMontage from './HeroMontage';
 import ContextProductExperience from './ContextProductExperience';
 import NorthstarReportGallery from './NorthstarReportGallery';
 import './style.css';
@@ -32,19 +33,7 @@ export default function AiBiSolution() {
           <a className="ai-bi-text-link" href="#how-it-works">{t.secondary}<ArrowDown size={16}/></a>
         </div>
       </div>
-      <figure className="ai-bi-demo" aria-label={t.demo.label}>
-        <div className="ai-bi-demo__top"><span className="ai-bi-demo__mark"><Layers3 size={18}/>{t.demo.workspace}</span><span className="ai-bi-demo__project">{t.demo.project}</span><span className="ai-bi-demo__badge">{t.demo.label}</span></div>
-        <div className="ai-bi-demo__body">
-          <div className="ai-bi-demo__side"><span>{t.demo.context}</span><div><Database size={14}/>{t.demo.sourceName}</div><div><Braces size={14}/>{t.demo.metricName}</div><div><FileText size={14}/>Reference SQL</div></div>
-          <div className="ai-bi-demo__main">
-            <div className="ai-bi-demo__question"><span>YOU</span><strong>{t.demo.prompt}</strong></div>
-            <div className="ai-bi-demo__response"><span className="ai-bi-demo__agent"><Bot size={16}/>Datus Agent</span><p>{t.demo.answer}</p></div>
-            <div className="ai-bi-demo__chart"><div className="ai-bi-demo__chart-head"><strong>{t.demo.chart}</strong><span>{t.demo.result}</span></div>{t.demo.rows.map(row=><div className="ai-bi-demo__bar-row" key={row.name}><span>{row.name}</span><div className="ai-bi-demo__bar-track"><i style={{ width: row.width }}/></div><strong>{row.value}</strong></div>)}</div>
-            <div className="ai-bi-demo__evidence"><span>{t.demo.evidence}</span><span><Braces size={13}/>{t.demo.metric}: {t.demo.metricName}</span><span><FileText size={13}/>{t.demo.sql}</span><span><Database size={13}/>{t.demo.source}</span></div>
-          </div>
-        </div>
-        <figcaption>{t.demo.note}</figcaption>
-      </figure>
+      <HeroMontage copy={t.demo}/>
     </section>
 
     <NorthstarReportGallery/>
