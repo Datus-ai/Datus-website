@@ -8,7 +8,7 @@ import { useHref, useLocale, useT } from '../../../i18n/LocaleContext';
 import { UI } from '../../../i18n/ui';
 import { studioCtaUrl } from '../../../lib/studio-cta';
 import { AI_BI_CONTENT } from './content';
-import HeroMontage from './HeroMontage';
+import HeroVideo from './HeroVideo';
 import ContextProductExperience from './ContextProductExperience';
 import NorthstarReportGallery from './NorthstarReportGallery';
 import './style.css';
@@ -33,7 +33,7 @@ export default function AiBiSolution() {
           <a className="ai-bi-text-link" href="#how-it-works">{t.secondary}<ArrowDown size={16}/></a>
         </div>
       </div>
-      <HeroMontage copy={t.demo}/>
+      <HeroVideo copy={t.demo}/>
     </section>
 
     <NorthstarReportGallery/>

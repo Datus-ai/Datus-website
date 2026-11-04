@@ -1,5 +1,5 @@
 # AI/BI hero montage
 
-Edited from the final Datus announcement film provided by the team: `datus-announcement-Final-4k.mp4` (3840 × 2160, 180.27 seconds). Northstar Living is a fictional retailer. The video uses a separate demonstration scenario from the interactive Northstar walkthrough lower on the page.
+This is the complete `datus-dosi-flash-20261028-4k.mp4` supplied by the team (3840 × 2160, 60.011 seconds), compressed for web playback. Northstar Living is a fictional retailer; its UI scenes use demonstration data.
 
-The 15-second silent loop uses five three-second clips starting at 33, 71, 123, 150, and 159 seconds: a business question in Datus, the Agent's answer, Datus Agent alongside ChatGPT, a reviewable result, and a visualized result. The web version is 1280 × 720, 15 fps, H.264 MP4, with a JPEG poster. It has no audio track. Rebuild from the final film if the source footage changes.
+The web version preserves the full 60 seconds and original soundtrack. It is a 1280 × 720, 30 fps H.264 MP4 with AAC audio (96 kbps), `faststart`, and a JPEG poster from the opening half-second. Playback starts on user action; the page does not preload or autoplay the film. Rebuild from the supplied source if the original changes.

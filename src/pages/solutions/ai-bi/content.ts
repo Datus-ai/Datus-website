@@ -7,11 +7,10 @@ const en = {
   primary: 'Try Datus Studio',
   secondary: 'See how it works',
   demo: {
-    label: 'Datus announcement · Northstar demo',
-    stages: ['Ask', 'Answer', 'Across agents', 'Review', 'Visualize'],
-    play: 'Play animation', pause: 'Pause animation',
-    fallback: 'Datus AI/BI interface montage',
-    note: 'Edited from the Datus announcement film. Northstar Living is a fictional retailer; this video uses a separate demonstration scenario from the walkthrough below.',
+    label: 'Datus + DOSI · 1-minute film',
+    play: 'Play full video',
+    fallback: 'Your browser cannot play the Datus + DOSI video.',
+    note: 'The complete Datus + DOSI film. Northstar scenes use simulated UI and fictional sample data.',
   },
   flow: {
     eyebrow: 'How it works', title: 'The Datus workflow, from sources to answers.',
@@ -117,11 +116,10 @@ export const AI_BI_CONTENT: Record<Locale, typeof en> = { en, zh: {
   lead: '从业务问题出发，追查变化，并核查答案的依据。Datus Agent 利用团队维护的上下文，包括已配置场景下经审核的 DOSI 指标，辅助分析受支持数据源中的数据。',
   primary: '试用 Datus Studio', secondary: '了解工作方式',
   demo: {
-    label: 'Datus 发布视频 · Northstar 演示',
-    stages: ['提问', '回答', '跨 Agent', '审阅', '可视化'],
-    play: '播放动画', pause: '暂停动画',
-    fallback: 'Datus AI/BI 界面动画',
-    note: '片段剪辑自 Datus 发布视频。Northstar Living 是虚构零售商；视频展示的演示场景与下方交互示例不同。',
+    label: 'Datus + DOSI · 1 分钟短片',
+    play: '播放完整视频',
+    fallback: '浏览器无法播放 Datus + DOSI 视频。',
+    note: '完整的 Datus + DOSI 视频。Northstar 片段使用模拟界面与虚构样本数据。',
   },
   flow: {
     eyebrow: '工作方式', title: '从数据源到答案，了解 Datus 如何工作。',
