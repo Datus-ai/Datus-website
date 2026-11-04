@@ -99,7 +99,8 @@
 .ca-workflow-notes p { display: flex; align-items: flex-start; gap: 7px; max-width: 50%; color: var(--ink-muted); font-size: 12px; line-height: 1.6; }
 .ca-workflow-notes svg { flex: none; color: var(--brand-bright); }
 .ca-output-grid article { display: flex; flex-direction: column; min-height: 280px; }
-.ca-output-grid h3 { margin-top: 25px; }
+.ca-output-grid h3 { margin-top: 25px; min-height: 54px; }
+.ca-output-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; margin: 0 0 17px; border: 1px solid var(--line-strong); background: var(--brand-soft); color: var(--brand-bright); }
 .ca-output-grid small { display: block; color: var(--brand-bright); margin-top: auto; padding-top: 24px; font-size: 12px; line-height: 1.5; }
 .ca-existing { display: flex; align-items: center; gap: 16px; border: 1px solid var(--line-strong); background: var(--panel-solid); padding: 21px 25px; margin-top: 18px; }
 .ca-existing > svg { flex: none; color: var(--brand-bright); }
@@ -123,6 +124,8 @@
 .ca-criteria p { color: var(--ink-dim); font-size: 13px; line-height: 1.65; }
 .ca-studio { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); align-items: center; gap: 58px; }
 .ca-studio h2 { margin: 12px 0 18px; }
+.ca-studio-lead a { color: var(--brand-bright); text-decoration: underline; text-underline-offset: 3px; }
+.ca-studio-lead a:hover { color: var(--ink); }
 .ca-studio-steps { list-style: none; padding: 0; margin: 30px 0 0; }
 .ca-studio-steps li { display: grid; grid-template-columns: 110px 1fr; gap: 13px; border-top: 1px solid var(--line); padding: 13px 0; }
 .ca-studio-steps li > span { color: var(--brand-bright); font-size: 12px; font-weight: 650; }

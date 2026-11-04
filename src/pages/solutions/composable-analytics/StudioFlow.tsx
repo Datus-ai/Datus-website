@@ -10,9 +10,9 @@ export default function StudioFlow() {
   const l = useHref();
 
   return <section className="ca-section" aria-labelledby="ca-proof-title"><div className="container ca-section-inner ca-studio">
-    <div className="ca-studio-copy"><span className="eyebrow">{t.eyebrow}</span><h2 id="ca-proof-title">{t.title}</h2><p className="ca-studio-lead">{t.lead}</p>
+    <div className="ca-studio-copy"><span className="eyebrow">{t.eyebrow}</span><h2 id="ca-proof-title">{t.title}</h2><p className="ca-studio-lead">{t.leadBefore}<a href={REPORT_DOCS} target="_blank" rel="noopener noreferrer" aria-label={t.reportDocs}>{t.reportWord}</a>{t.leadBetween}<a href={DASHBOARD_DOCS} target="_blank" rel="noopener noreferrer" aria-label={t.docs}>{t.dashboardWord}</a>{t.leadAfter}</p>
       <ol className="ca-studio-steps">{t.steps.map(step=><li key={step.label}><span>{step.label}</span><p>{step.body}</p></li>)}</ol>
-      <div className="ca-proof-links"><a href={DASHBOARD_DOCS} target="_blank" rel="noopener noreferrer">{t.docs}<ArrowUpRight size={15}/></a><a href={REPORT_DOCS} target="_blank" rel="noopener noreferrer">{t.reportDocs}<ArrowUpRight size={15}/></a><a href={l('/solutions/semantic-layer/')}>{t.semanticLink}<ArrowUpRight size={15}/></a></div>
+      <div className="ca-proof-links"><a href={l('/solutions/semantic-layer/')}>{t.semanticLink}<ArrowUpRight size={15}/></a></div>
     </div>
     <div className="ca-studio-wrap"><div className="ca-studio-preview" role="img" aria-label={`${t.previewLabel}: ${t.previewWorkspace}; ${t.previewContext} ${t.previewMetric}; ${t.previewArtifact}`}>
       <div className="ca-studio-top"><img src="/brand-mark.svg" alt="" aria-hidden="true" width="22" height="22"/><strong>Datus Studio</strong><span>{t.previewLabel}</span></div>

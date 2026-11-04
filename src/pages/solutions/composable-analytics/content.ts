@@ -122,7 +122,11 @@ const en = {
   proof: {
     eyebrow: 'Start in Datus Studio',
     title: 'From connected data to a published view.',
-    lead: 'Use a Studio workspace to connect a data source, bring reviewed metrics into the project when available, and ask the Agent for a report or dashboard. Review the artifact, then publish it for the people who need it.',
+    leadBefore: 'Use a Studio workspace to connect a data source, bring reviewed metrics into the project when available, and ask the Agent for a ',
+    reportWord: 'report',
+    leadBetween: ' or ',
+    dashboardWord: 'dashboard',
+    leadAfter: '. Review the artifact, then publish it for the people who need it.',
     steps: [
       { label: '01 / Connect', body: 'Attach a supported data source to a project.' },
       { label: '02 / Ground', body: 'Pull verified or certified metrics from Semantic Hub, or review the SQL used for an ad-hoc view.' },
@@ -286,7 +290,11 @@ export const COMPOSABLE_CONTENT: Record<Locale, typeof en> = { en, zh: {
   proof: {
     eyebrow: '从 Datus Studio 开始',
     title: '从连接数据到发布分析视图。',
-    lead: '在 Studio 工作区中连接数据源。若已有经审核的指标，可将其引入项目，再让 Agent 创建报告或大盘。检查生成的内容后，发布给需要使用的人。',
+    leadBefore: '在 Studio 工作区中连接数据源。若已有经审核的指标，可将其引入项目，再让 Agent 创建',
+    reportWord: '报告',
+    leadBetween: '或',
+    dashboardWord: '大盘',
+    leadAfter: '。检查生成的内容后，发布给需要使用的人。',
     steps: [
       { label: '01 / 连接', body: '将受支持的数据源关联到项目。' },
       { label: '02 / 定义', body: '从 Semantic Hub 引入已验证或已认证的指标；临时视图则需审核所用 SQL。' },
