@@ -100,7 +100,10 @@
 .ca-workflow-notes svg { flex: none; color: var(--brand-bright); }
 .ca-output-grid article { display: flex; flex-direction: column; min-height: 280px; }
 .ca-output-grid h3 { margin-top: 25px; min-height: 54px; }
-.ca-output-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; margin: 0 0 17px; border: 1px solid var(--line-strong); background: var(--brand-soft); color: var(--brand-bright); }
+.ca-output-visual { display: block; width: 160px; height: 96px; max-width: 100%; margin: 0 0 17px; color: var(--brand-bright); }
+.ca-output-visual-muted { stroke: var(--ink-muted); }
+.ca-output-grid p a { color: var(--brand-bright); text-decoration: underline; text-underline-offset: 3px; }
+.ca-output-grid p a:hover { color: var(--ink); }
 .ca-output-grid small { display: block; color: var(--brand-bright); margin-top: auto; padding-top: 24px; font-size: 12px; line-height: 1.5; }
 .ca-existing { display: flex; align-items: center; gap: 16px; border: 1px solid var(--line-strong); background: var(--panel-solid); padding: 21px 25px; margin-top: 18px; }
 .ca-existing > svg { flex: none; color: var(--brand-bright); }

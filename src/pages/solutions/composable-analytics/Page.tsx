@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, ChartNoAxesCombined, Check, Code2, FileChartColumnIncreasing, LayoutDashboard, PanelTop, RefreshCw, ScanSearch, ShieldCheck } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, Code2, LayoutDashboard, PanelTop, RefreshCw, ShieldCheck } from 'lucide-react';
 import Breadcrumb from '../../../components/Breadcrumb';
 import FAQ from '../../../components/FAQ';
 import SiteLayout from '../../../components/SiteLayout';
@@ -9,6 +9,7 @@ import { UI } from '../../../i18n/ui';
 import { studioCtaUrl } from '../../../lib/studio-cta';
 import { COMPOSABLE_CONTENT } from './content';
 import BuyerFit from './BuyerFit';
+import OutputIllustration from './OutputIllustration';
 import StudioFlow from './StudioFlow';
 import './style.css';
 
@@ -52,7 +53,7 @@ export default function ComposableAnalyticsPage() {
 
     <section className="ca-section" aria-labelledby="ca-workflow-title"><div className="container ca-section-inner"><div className="ca-section-head"><span className="eyebrow">{t.workflow.eyebrow}</span><h2 id="ca-workflow-title">{t.workflow.title}</h2><p>{t.workflow.lead}</p></div><div className="ca-workflow-strip"><span>{t.workflow.source}</span><ArrowRight size={20}/><span>{t.workflow.agent}</span><ArrowRight size={20}/><span>{t.workflow.output}</span></div><div className="ca-steps">{t.workflow.steps.map(step=><article key={step.number}><span>{step.number}</span><h3>{step.title}</h3><p>{step.body}</p></article>)}</div><div className="ca-workflow-notes"><p><Check size={17}/>{t.workflow.runtime}</p><p><ShieldCheck size={17}/>{t.workflow.boundary}</p></div></div></section>
 
-    <section className="ca-section ca-section--tinted" aria-labelledby="ca-outputs-title"><div className="container ca-section-inner"><div className="ca-section-head"><span className="eyebrow">{t.outputs.eyebrow}</span><h2 id="ca-outputs-title">{t.outputs.title}</h2><p>{t.outputs.lead}</p></div><div className="ca-output-grid">{t.outputs.cards.map((card,i)=><article key={card.label}><span className="ca-output-number">0{i+1} / {card.label}</span><h3>{card.title}</h3><span className="ca-output-icon" aria-hidden="true">{[<ScanSearch size={21}/>,<ChartNoAxesCombined size={21}/>,<FileChartColumnIncreasing size={21}/>][i]}</span><p>{card.body}</p><small>{card.detail}</small></article>)}</div><div className="ca-existing"><LayoutDashboard size={22}/><p>{t.outputs.existing}</p><a href={l('/solutions/ai-bi/')} aria-label={ui.nav.aiBi}><ArrowUpRight size={20}/></a></div></div></section>
+    <section className="ca-section ca-section--tinted" aria-labelledby="ca-outputs-title"><div className="container ca-section-inner"><div className="ca-section-head"><span className="eyebrow">{t.outputs.eyebrow}</span><h2 id="ca-outputs-title">{t.outputs.title}</h2><p>{t.outputs.lead}</p></div><div className="ca-output-grid">{t.outputs.cards.map((card,i)=><article key={card.label}><span className="ca-output-number">0{i+1} / {card.label}</span><h3>{card.title}</h3><OutputIllustration variant={i}/><p>{card.body}{card.relatedBefore}<a href={l(card.relatedHref)}>{card.relatedText}</a>{card.relatedAfter}</p><small>{card.detail}</small></article>)}</div><div className="ca-existing"><LayoutDashboard size={22}/><p>{t.outputs.existing}</p><a href={l('/solutions/ai-bi/')} aria-label={ui.nav.aiBi}><ArrowUpRight size={20}/></a></div></div></section>
 
     <BuyerFit/>
     <StudioFlow/>
