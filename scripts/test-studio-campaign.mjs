@@ -242,15 +242,15 @@ try {
     await go(page, '/' + incoming, 'https://www.google.com/');
     await campaign(page, hero, { utm_content: 'home_hero', ...linkedin });
     await go(page, '/?utm_campaign=explicit_only', 'https://www.google.com/');
-    await campaign(page, hero, { utm_content: 'home_hero', utm_campaign: 'explicit_only' });
-    // Known paid identifiers do not get mislabeled organic or reuse old data.
+    await campaign(page, hero, { utm_content: 'home_hero', utm_campaign: 'explicit_only', utm_source: 'www.google.com' });
+    // Paid arrivals retain their referrer domain without claiming organic traffic.
     for (const key of ['gclid', 'dclid', 'gbraid', 'wbraid', 'msclkid', 'yclid', 'NaPm']) {
       await go(page, '/?' + key + '=not-forwarded', 'https://www.google.com/');
-      await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'datus.ai' });
-      assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
+      await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'www.google.com' });
+      assert.deepEqual(await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)).fields, KEY), { utm_source: 'www.google.com' });
     }
     await context.close();
-    console.log('Organic search replaces old campaigns, persists across pages/locales, respects explicit UTM, and excludes paid-click arrivals');
+    console.log('Organic search replaces old campaigns, persists across pages/locales, respects explicit UTM, and records paid-click referrer domains without an organic medium');
   }
   {
     const { context, page } = await newScenario(false);
@@ -271,10 +271,12 @@ try {
     }
     for (const referrer of [undefined, 'https://mail.google.com/', 'https://docs.google.com/', 'https://www.yahoo.com/', 'https://www.google.com.evil.example/', 'https://www.notgoogle.com/', 'https://constructor/', 'https://news.example/']) {
       await go(page, '/', referrer);
-      await campaign(page, hero, { utm_content: 'home_hero', utm_source: 'datus.ai' });
+      await campaign(page, hero, referrer
+        ? { utm_content: 'home_hero', utm_source: new URL(referrer).hostname, utm_medium: 'referral' }
+        : { utm_content: 'home_hero', utm_source: 'datus.ai' });
     }
     await context.close();
-    console.log('Regional Google and 12 other search engines recognized; direct, product, unknown, and lookalike referrers are not guessed');
+    console.log('Regional Google and 12 other search engines recognized; direct visits use the fallback; other hosts retain their own referral domain');
   }
   {
     const { context, page } = await newScenario(true);
@@ -290,9 +292,9 @@ try {
     await go(page, '/?utm_source=chatgpt.com', 'https://claude.ai/');
     await campaign(page, hero, { utm_source: 'chatgpt.com', utm_content: 'home_hero' });
     await go(page, '/?utm_campaign=partial', 'https://claude.ai/');
-    await campaign(page, hero, { utm_campaign: 'partial', utm_content: 'home_hero' });
+    await campaign(page, hero, { utm_campaign: 'partial', utm_content: 'home_hero', utm_source: 'claude.ai' });
     await go(page, '/?gclid=advertisement', 'https://chatgpt.com/');
-    await campaign(page, hero, { utm_source: 'datus.ai', utm_content: 'home_hero' });
+    await campaign(page, hero, { utm_source: 'chatgpt.com', utm_content: 'home_hero' });
     await context.close();
   }
   {
@@ -318,11 +320,51 @@ try {
     }
     for (const referrer of ['https://openai.com/', 'https://platform.openai.com/', 'https://anthropic.com/', 'https://claude.com/', 'https://console.anthropic.com/', 'https://chatgpt.com.evil.example/', 'https://claude.ai.evil.example/', 'https://notclaude.ai/', 'https://support.claude.ai/', 'https://ai.google.com/', 'https://microsoft.com/', 'https://deepseek.com/']) {
       await go(page, '/', referrer);
-      await campaign(page, hero, { utm_source: 'datus.ai', utm_content: 'home_hero' });
+      await campaign(page, hero, { utm_source: new URL(referrer).hostname, utm_medium: 'referral', utm_content: 'home_hero' });
     }
     await context.close();
-    console.log('AI referrals preserved across pages, locales and blog; explicit UTM wins; vendor sites and lookalikes excluded');
+    console.log('AI referrals preserved across pages, locales and blog; explicit UTM wins; vendor sites and lookalikes retain their own domains');
   }
+  {
+    const { context, page } = await newScenario(true);
+    await go(page, '/' + incoming);
+    await go(page, '/', 'https://www.linkedin.com/feed/?token=private#post');
+    const capturedReferral = await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)), KEY);
+    assert.deepEqual(capturedReferral.fields, { utm_source: 'www.linkedin.com', utm_medium: 'referral' }, 'Referrer compensation is saved at capture time, before a Studio click');
+    await go(page, '/?utm_campaign=launch&utm_medium=social', 'https://www.linkedin.com/feed/?token=private#post');
+    const referral = { utm_source: 'www.linkedin.com', utm_medium: 'social', utm_campaign: 'launch' };
+    await campaign(page, hero, { ...referral, utm_content: 'home_hero' });
+    const saved = await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)), KEY);
+    assert.deepEqual(saved.fields, referral);
+    assert.ok(!JSON.stringify(saved).includes('private'));
+    for (const [path, content] of [['/zh/pricing/', 'zh_pricing_header'], ['/support/', 'support_header'], ['/blog/', 'blog_header']]) {
+      await go(page, path, base + '/');
+      await campaign(page, nav, { ...referral, utm_content: content });
+      assert.equal(await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)).capturedAt, KEY), saved.capturedAt);
+    }
+    await context.close();
+  }
+  for (const [analytics, blocked] of [[undefined, false], [false, false], [true, true]]) {
+    const { context, page } = await newScenario(analytics, blocked);
+    for (const [path, content] of [['/', 'home_header'], ['/zh/support/', 'zh_support_header'], ['/blog/', 'blog_header']]) {
+      await go(page, path, 'https://news.example/article?secret=private');
+      await campaign(page, nav, { utm_source: 'news.example', utm_medium: 'referral', utm_content: content });
+    }
+    if (!blocked) assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
+    await context.close();
+  }
+  {
+    const { context, page } = await newScenario(true);
+    for (const referrer of ['https://datus.ai/pricing/', 'https://www.datus.ai/blog/']) {
+      await go(page, '/', referrer);
+      await campaign(page, hero, { utm_source: 'datus.ai', utm_content: 'home_hero' });
+      assert.equal(await page.evaluate(key => sessionStorage.getItem(key), KEY), null);
+    }
+    await go(page, '/?utm_source=%20%20&utm_campaign=launch', 'https://github.com/Datus-ai');
+    await campaign(page, hero, { utm_source: 'github.com', utm_campaign: 'launch', utm_content: 'home_hero' });
+    await context.close();
+  }
+  console.log('Generic referrals fill missing sources, preserve current campaign fields, survive consented internal navigation, and work without storage');
   assert.deepEqual(errors, []);
   console.log('Prerendering and hydration passed');
 } finally {

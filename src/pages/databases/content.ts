@@ -21,6 +21,7 @@ export type DbEntry = {
 export interface DatabasesCopy {
   hero: { eyebrow: string; heading: string; lead: string };
   builtIn: string;
+  databricksCard: { badge: string; connectionLabel: string; connection: string; highlight: string };
   databases: DbEntry[];
   categoriesSection: { eyebrow: string; title: string; lead: string };
   categories: { title: string; body: string }[];
@@ -122,6 +123,12 @@ const EN: DatabasesCopy = {
     lead: "Sixteen native database adapters, from embedded SQLite and DuckDB to relational engines (PostgreSQL, MySQL, Oracle, TiDB), cloud warehouses (Snowflake, Redshift, BigQuery, StarRocks, Apache Doris, ClickZetta) and lake engines (Hive, Spark, Trino, ClickHouse). All plug in via Python entry points — no adapter code required on your side.",
   },
   builtIn: "Built-in",
+  databricksCard: {
+    badge: "DOSI connector",
+    connectionLabel: "Connection",
+    connection: "Databricks SQL Warehouse",
+    highlight: "DOSI semantic execution; not a Datus Agent adapter.",
+  },
   databases: databaseList("Built-in", [
     "Zero-config file store — perfect for demos and tests.",
     "Embedded OLAP for local analytics on Parquet / CSV.",
@@ -184,6 +191,12 @@ const ZH: DatabasesCopy = {
     lead: "十六个原生数据库适配器：从嵌入式的 SQLite、DuckDB，到关系型引擎（PostgreSQL、MySQL、Oracle、TiDB）、云数仓（Snowflake、Redshift、BigQuery、StarRocks、Apache Doris、ClickZetta），再到湖上引擎（Hive、Spark、Trino、ClickHouse）。全部通过 Python entry points 接入，你这边不用写任何适配器代码。",
   },
   builtIn: "内置",
+  databricksCard: {
+    badge: "DOSI 连接器",
+    connectionLabel: "连接方式",
+    connection: "Databricks SQL Warehouse",
+    highlight: "通过 DOSI 执行语义查询；不是 Datus Agent 原生适配器。",
+  },
   databases: databaseList("内置", [
     "零配置的文件型存储，做演示和测试再合适不过。",
     "嵌入式 OLAP，在本地直接分析 Parquet / CSV。",

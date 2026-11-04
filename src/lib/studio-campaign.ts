@@ -46,14 +46,14 @@ export function setupStudioCampaignHandoff(root: HTMLElement): () => void {
   const params = new URLSearchParams(window.location.search);
   const hasLandingFields = FIELDS.some(key => params.has(key));
   const landingFields = fieldsFrom(params);
-  const inferred = hasLandingFields ? null : referrerCampaign(document.referrer, params);
+  const inferred = landingFields.utm_source ? null : referrerCampaign(document.referrer, params, window.location.hostname);
+  // Complete the source at capture time, before consent-gated persistence.
+  const arrivalFields: CampaignFields = { ...inferred, ...landingFields };
   const hasFreshArrival = hasLandingFields || !!inferred || hasPaidClickId(params);
-  // Replace the whole campaign on a new tagged arrival; never mix two campaigns.
-  let campaign: Campaign | null = hasLandingFields
-    ? Object.keys(landingFields).length ? { fields: landingFields, capturedAt: Date.now() } : null
-    : inferred ? { fields: inferred, capturedAt: Date.now() }
-      : hasPaidClickId(params) ? null
-        : mayStore ? readSaved() : null;
+  // Combine evidence from this arrival only; never mix in a cached campaign.
+  let campaign: Campaign | null = hasFreshArrival
+    ? Object.keys(arrivalFields).length ? { fields: arrivalFields, capturedAt: Date.now() } : null
+    : mayStore ? readSaved() : null;
   let expiryTimer: ReturnType<typeof setTimeout>;
 
   function persist() {

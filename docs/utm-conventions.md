@@ -1,8 +1,8 @@
 # Datus UTM Conventions
 
-Updated: 2026-10-30. Applies to website development, external marketing assets, and links prepared for colleagues to publish.
+Updated: 2026-11-02. Applies to website development, external marketing assets, and links prepared for colleagues to publish.
 
-Use this document when creating links or reviewing attribution changes. The rules were checked against `main` at `20de465`, including #115 (shared source fallback) and #116 (AI referral recognition). See the [Studio handoff specification](studio-utm-handoff.md) for implementation details and the [CTA inventory](studio-cta-tags.csv) for recorded website placements. The inventory is a maintained snapshot, not an automatically generated live list; update it when adding pages or buttons.
+Use this document when creating links or reviewing attribution changes. This extends #115 (shared source fallback) and #116 (AI referral recognition) with missing-source completion at campaign capture time. See the [Studio handoff specification](studio-utm-handoff.md) for implementation details and the [CTA inventory](studio-cta-tags.csv) for recorded website placements. The inventory is a maintained snapshot of static base URLs, not an automatically generated live list; update it when adding pages or buttons. Runtime Referrer completion does not change its placement identifiers or fallback URLs.
 
 ## 1. Parameter ownership
 
@@ -126,17 +126,17 @@ After marketing-page hydration or static Blog loading, `setupStudioCampaignHando
 Source precedence:
 
 1. Explicit `utm_source`, `utm_medium`, and `utm_campaign` in the current URL.
-2. With no explicit UTM, a recognized current referrer: search engine plus `organic`, or known AI product domain plus `referral`. Neither invents a campaign.
+2. When a valid explicit `utm_source` is missing, use the current external HTTP(S) Referrer hostname. Untagged search and AI visits retain their existing normalization; other untagged hosts use their domain plus `referral`. Partial UTM or known paid-click arrivals fill only the source domain, preserving current URL medium/campaign without inferring a medium. No referrer creates a campaign name. Same-host navigation and `datus.ai` / `www.datus.ai` aliases are ignored.
 3. Valid campaign data cached in the current tab after usage-analytics consent.
 4. With no usable evidence, `utm_source=datus.ai` plus the button's existing `utm_content`, without a medium or campaign. The fallback identifies the website handoff, not the visitor's original acquisition source, and is not stored as campaign evidence.
 
-The presence of any of the three campaign fields counts as a fresh explicit arrival, even if its value is empty or invalid. Replace the old campaign as a whole. Never fill missing fields from a previous campaign or mix a partial external campaign with the website fallback. If all supplied campaign values are rejected, the resulting link uses the fallback.
+The presence of any of the three campaign fields counts as a fresh explicit arrival, even if its value is empty or invalid. Replace the old campaign as a whole. A missing source may be filled from the same arrival's external Referrer; never fill fields from a previous campaign or mix a partial external campaign with the website fallback. If all supplied campaign values are rejected and no valid external Referrer is available, the resulting link uses the fallback.
 
 Exact search and AI host allowlists live in `src/lib/referrer-attribution.ts`. Recognized AI products include ChatGPT, Claude, Perplexity, Gemini, Copilot, and DeepSeek. Examples are `utm_source=claude.ai&utm_medium=referral` and `utm_source=chatgpt.com&utm_medium=referral`. Match confirmed product hosts; do not classify all OpenAI or Anthropic sites as AI referrals.
 
-Known paid-click identifiers block inference and clear stale cached attribution. Without an explicit campaign, use the website fallback. Any recognized UTM field, including content, term, id, or source_platform, also blocks referrer inference, but only source, medium, and campaign are forwarded. Content-only or similar arrivals do not constitute a fresh three-field campaign and do not by themselves clear valid cached data. Referrer availability depends on the browser and is not equivalent to GA4 attribution; never guess AI traffic when the referrer is missing.
+Known paid-click identifiers suppress organic/AI classification and stale-cache reuse, but an available external Referrer hostname can still supply the source. Other UTM fields do not prevent filling a missing source. Only source, medium, and campaign are forwarded; website CTA content remains authoritative. Content-only arrivals without an external Referrer do not themselves clear valid cached data. Referrer availability depends on the browser; absent both source and Referrer, the original acquisition source cannot be identified. Inferred hostnames follow the existing 100-character field limit; overlong hosts are ignored.
 
-Use `sessionStorage` only after website usage-analytics consent. The `datus_website_campaign` key contains only the three campaign fields and capture time. It expires 30 minutes after capture; ordinary navigation does not extend the expiry. Refusal, withdrawal, or expired consent clears the cache. Without consent or available storage, use only current URL or recognized current search/AI evidence, otherwise the website fallback. Cross-page retention is not guaranteed in that case.
+Complete the source from arrival evidence before saving the campaign, not only when a Studio CTA is clicked. The same captured campaign feeds both persistence and link decoration. Use `sessionStorage` only after website usage-analytics consent. The `datus_website_campaign` key contains only the three campaign fields and capture time. It expires 30 minutes after capture; ordinary navigation does not extend the expiry. Refusal, withdrawal, or expired consent clears the cache. Without consent or available storage, use only current URL or current external Referrer evidence, otherwise the website fallback. Cross-page retention is not guaranteed in that case.
 
 Do not forward complete referrer URLs, search terms, `utm_term`, external `utm_content`, login codes, unrelated incoming query parameters, or incoming fragments. Dynamic menus and new-tab navigation use the same decorated hrefs. Do not depend on separate tabs sharing session storage.
 
@@ -155,7 +155,7 @@ The website can ensure eligible links carry parameters. The Studio team must ver
 - Use `studioCtaUrl()`, existing destination constants, and shared CTA copy for new Studio sign-up buttons. Assign stable placement identifiers and add the Chinese prefix only once.
 - Maintain the [CTA inventory](studio-cta-tags.csv). When parameter meanings or behavior change, update this convention, the [handoff specification](studio-utm-handoff.md), and relevant development guidance.
 - Deliver complete URLs per publishing platform. Match source, medium, campaign, and content to the placement, remove placeholders, and preserve destination paths and fragments.
-- Verify all three campaign fields, campaign replacement, cross-page retention, organic search, AI referrals, no-source fallback, refusal, withdrawal, expiry, and unavailable storage.
+- Verify all three campaign fields, missing-source Referrer completion, same-host navigation, campaign replacement, cross-page retention, organic search, AI referrals, no-source fallback, refusal, withdrawal, expiry, and unavailable storage.
 - Verify Chinese pages, mobile menus, new-tab navigation, and prerendering. Never embed a visitor's external campaign into static HTML.
 - For implementation changes, run `npm run build:all`, then `npm run test:studio-campaign`. For consent or storage changes, also run `npm run test:cookie-consent`. Documentation-only changes require checking consistency with code, examples, and local links.
 

@@ -30,6 +30,24 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogTitle: "Apache Ossie：语义模型的开放标准",
     ogDescription: "理解 Apache Ossie 的历史、社区、YAML 与 JSON 模型，以及兼容工具如何交换业务定义。",
   },
+  "/databases/databricks/": {
+    title: "Databricks 语义层：通过 DOSI 复用指标定义 — Datus",
+    description: "将可审核的 Apache Ossie 语义模型用于 Databricks SQL Warehouse。DOSI 生成并执行原生 SQL，供团队、应用与 AI Agent 复用指标定义。",
+    ogTitle: "Databricks 语义层 — Datus",
+    ogDescription: "在 Databricks SQL Warehouse 上执行团队审核的语义模型。",
+  },
+  "/databases/bigquery/": {
+    title: "BigQuery 语义层：共享指标与原生 SQL — Datus",
+    description: "在 Google BigQuery 上使用 Apache Ossie 语义模型。DOSI 通过实验性连接器执行指标查询；Datus Agent 另有 BigQuery 原生适配器。",
+    ogTitle: "BigQuery 语义层 — Datus",
+    ogDescription: "为 BigQuery 数据建立可审核的业务定义，并检查原生 SQL。",
+  },
+  "/databases/duckdb/": {
+    title: "DuckDB 语义层：本地指标建模与分析 — Datus",
+    description: "在本地 DuckDB 文件上创建和验证 Apache Ossie 语义模型。DOSI 默认执行构建支持进程内查询，Datus Agent 内置 DuckDB 适配器。",
+    ogTitle: "DuckDB 语义层 — Datus",
+    ogDescription: "用本地 DuckDB 数据审核指标定义，再复用到团队与 Agent 工作流。",
+  },
   "/databases/snowflake/": {
     title: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
     description: "为 Snowflake 数据增加共享业务上下文。创建可审核的 Apache Ossie 模型，通过 DOSI 生成原生 SQL，为团队与 AI Agent 提供可复用的业务定义。",

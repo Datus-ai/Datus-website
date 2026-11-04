@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { runInNewContext } from 'node:vm';
 import { latestDate, sitemapLastmod, sitemapIndex } from './lib/sitemap-dates.mjs';
 
 assert.equal(latestDate(['2026-02-30', 'bad', '2026-10-27', '2026-06-11']), '2026-10-27');
@@ -79,3 +80,54 @@ for(const [,url] of llms.matchAll(/\]\((https:\/\/datus.ai\/[^)]*)\)/g)){
 }
 assert(read('robots.txt').includes('Allow: /'));
 console.log('PASS sitemap dates, English-only blog, llms links/positioning and crawler access');
+
+// Historical post URLs must terminate at an indexable, self-canonical article.
+// Read the generated sitemap so future posts join this contract automatically.
+const postUrls = [...blog.matchAll(/<loc>(https:\/\/datus\.ai\/blog\/([^/<]+)\/)<\/loc>/g)]
+  .filter(([, , slug]) => existsSync(join('blog', 'posts', `${slug}.md`)));
+const postTitles = new Set(), postDescriptions = new Set();
+for (const [, url, slug] of postUrls) {
+ const destination = read(`blog/${slug}/index.html`);
+ const title = destination.match(/<title>(.*?)<\/title>/s)?.[1];
+ const description = metas(destination).description;
+ assert(title && !postTitles.has(title), `Unique blog title: ${url}`); postTitles.add(title);
+ assert(description && !postDescriptions.has(description), `Unique blog description: ${url}`); postDescriptions.add(description);
+ assert.equal(attr(canonical(destination), 'href'), url);
+ assert(!metas(destination).robots?.includes('noindex'), `Indexable article: ${url}`);
+ for (const prefix of ['posts', 'blog/posts']) {
+  for (const path of [`${prefix}/${slug}/index.html`, `${prefix}/${slug}.html`]) {
+   const stub = read(path);
+   assert.equal(attr(canonical(stub), 'href'), url, `Legacy destination: ${path}`);
+   assert(stub.includes(`content="0; url=/blog/${slug}/"`), `Immediate redirect: ${path}`);
+   let navigated;
+   const script = stub.match(/<script>([\s\S]*?)<\/script>/)[1];
+   runInNewContext(script, { location: { search: '?utm_source=test', hash: '#details', replace: value => { navigated = value; } } });
+   assert.equal(navigated, `/blog/${slug}/?utm_source=test#details`);
+  }
+ }
+}
+const retiredSlug = 'best-data-engineering-agents';
+const primarySlug = 'best-data-engineering-agents-2026';
+const primaryUrl = `https://datus.ai/blog/${primarySlug}/`;
+assert(!blog.includes(`/blog/${retiredSlug}/`), 'Retired duplicate omitted from blog sitemap');
+assert(!read('blog/index.html').includes(`href="/blog/${retiredSlug}/"`), 'Retired duplicate omitted from blog index');
+for (const path of [`blog/${retiredSlug}/index.html`, `blog/posts/${retiredSlug}/index.html`,
+  `blog/posts/${retiredSlug}.html`, `posts/${retiredSlug}/index.html`, `posts/${retiredSlug}.html`]) {
+ const stub = read(path);
+ assert.equal(attr(canonical(stub), 'href'), primaryUrl, `Retired article canonical: ${path}`);
+ assert.equal(metas(stub).robots, 'noindex, follow', `Retired article noindex: ${path}`);
+ assert(!metas(stub).description, `Retired article has no duplicate description: ${path}`);
+ assert(stub.includes(`content="0; url=/blog/${primarySlug}/"`), `Retired article redirect: ${path}`);
+ let navigated;
+ const script = stub.match(/<script>([\s\S]*?)<\/script>/)[1];
+ runInNewContext(script, { location: { search: '?utm_source=test', hash: '#details', replace: value => { navigated = value; } } });
+ assert.equal(navigated, `/blog/${primarySlug}/?utm_source=test#details`);
+}
+for (const [, , slug] of postUrls) {
+ assert(!read(`blog/${slug}/index.html`).includes(`href="/blog/${retiredSlug}/"`), `No internal link to retired duplicate: ${slug}`);
+}
+assert.equal(attr(canonical(read('blog/what-is-mcp-data-engineering/index.html')), 'href'),
+ 'https://datus.ai/blog/mcp-data-engineering/');
+assert(!blog.includes('https://datus.ai/posts/'));
+assert(!blog.includes('https://datus.ai/blog/posts/'));
+console.log(`PASS ${postUrls.length} articles: indexable destinations, legacy routes, query and fragment preservation`);

@@ -1,7 +1,7 @@
 // Static blog generator — replaces VitePress.
 // Renders blog/posts/*.md into styled static HTML at /blog/<slug>/ (short URLs),
 // builds a lovable-style category index at /blog/, and emits meta-refresh
-// redirect stubs at the old /blog/posts/<slug>/ paths for SEO continuity.
+// redirect stubs for historical VitePress paths for SEO continuity.
 //
 // Output is written into dist/ (run after `vite build`).
 
@@ -60,7 +60,7 @@ const CATEGORIES = [
       "build-your-first-data-engineering-agent", "data-engineering-agent-vs-claude-code",
       "data-engineering-agent-vs-sql-copilot", "one-person-data-team", "context-engine-data-engineering-agent-accuracy",
       "mcp-data-engineering", "enterprise-data-engineering-agent", "subagents-domain-specific-data-agents",
-      "best-data-engineering-agents", "ai-native-data-platforms", "platform-native-data-agents-compared",
+      "ai-native-data-platforms", "platform-native-data-agents-compared",
       "what-is-databricks-genie", "what-is-cortex-analyst", "what-is-claude-data-plugin",
       "from-chatbi-to-data-agent-what-changes"] },
   { label: "Semantic Layer", description: "What a semantic layer is, and how it differs from a metric layer, model, ontology, or catalog.",
@@ -101,7 +101,7 @@ const CATEGORIES = [
       "make-data-agents-truly-usable-ask-explore-and-control-with-confidence",
       "full-stack-data-engineer-harness", "chatbi-to-data-agent-13-months"] },
   { label: "Releases", description: "What's new in Datus.",
-    slugs: ["datus-dosi-executable-business-context", "dosi-datus-agent-level-of-detail", "semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
+    slugs: ["semantic-layer-lod-ontology", "datus-dosi-executable-business-context", "dosi-datus-agent-level-of-detail", "semantic-layer-in-the-agent-loop", "introducing-dosi", "introducing-datus-subagents", "introducing-datus-knowledge", "datus-osi-semantic-adapter",
       "datus-0-2-6-release-equipping-the-agent-with-a-brain"] },
 ];
 
@@ -142,10 +142,19 @@ function readPosts() {
   // index and already covered by the /blog/posts/ redirect.
   const files = readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md") && f !== "index.md");
   const posts = new Map();
+  const aliases = new Map();
   for (const file of files) {
     const slug = file.replace(/\.md$/, "");
     const raw = readFileSync(join(POSTS_DIR, file), "utf8");
     const { data, content } = matter(raw);
+    // Keep old source and its URL, but do not publish a second copy of an
+    // article when the post declares its canonical successor.
+    if (data.redirectTo) {
+      const destination = String(data.redirectTo);
+      if (!/^[a-z0-9-]+$/.test(destination)) throw new Error(`Invalid redirectTo for ${slug}: ${destination}`);
+      aliases.set(slug, destination);
+      continue;
+    }
     posts.set(slug, {
       slug,
       title: data.title || slug,
@@ -164,7 +173,7 @@ function readPosts() {
       html: renderBody(content),
     });
   }
-  return posts;
+  return { posts, aliases };
 }
 
 // frontmatter `head` array may carry a keywords meta — pull it through for SEO.
@@ -187,6 +196,7 @@ const SVG = {
   burger: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>',
   x: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
   linkedin: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S.02 4.881.02 3.5C.02 2.12 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.982 0H8.014v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0V24H24V13.869c0-7.88-8.922-7.593-11.018-3.714V8z"/></svg>',
+  youtube: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.58 6.21a2.75 2.75 0 0 0-1.94-1.94C17.92 3.8 12 3.8 12 3.8s-5.92 0-7.64.47A2.75 2.75 0 0 0 2.42 6.2C1.96 7.93 1.96 12 1.96 12s0 4.07.46 5.79a2.75 2.75 0 0 0 1.94 1.94c1.72.47 7.64.47 7.64.47s5.92 0 7.64-.47a2.75 2.75 0 0 0 1.94-1.94c.46-1.72.46-5.79.46-5.79s0-4.07-.46-5.79ZM10 15.4V8.6l5.9 3.4-5.9 3.4Z"/></svg>',
   link: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
   check: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
 };
@@ -227,9 +237,17 @@ fetch("https://api.github.com/repos/Datus-ai/Datus-agent").then(function(x){retu
 
 function footerHtml() {
   const year = new Date().getFullYear();
-  return `<footer class="site-foot"><div class="container" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center">
-  <a href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" style="height:24px"/></a>
-  <nav style="display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted)">
+  return `<footer class="site-foot"><div class="container site-foot__inner">
+  <div class="site-foot__brand">
+    <a href="/" aria-label="Datus home"><img src="/logo_light.svg" alt="Datus" style="height:24px"/></a>
+    <p class="site-foot__tagline">Trusted enterprise data context for AI agents. Business-aware. Agent-native. Audit-ready.</p>
+    <div class="site-foot__social">
+      <a href="https://www.linkedin.com/company/datusai/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">${SVG.linkedin}</a>
+      <a href="https://x.com/Datus_AI" target="_blank" rel="noopener noreferrer" aria-label="X" title="X">${SVG.x}</a>
+      <a href="https://www.youtube.com/@Datus-AI" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">${SVG.youtube}</a>
+    </div>
+  </div>
+  <nav class="site-foot__nav" aria-label="Footer">
     <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
     <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
     <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
@@ -239,7 +257,7 @@ function footerHtml() {
     <button type="button" data-cookie-settings>Cookie Settings</button>
     <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
-  <span style="font-size:13px;color:var(--ink-faint)">© ${year} DatusAI, Inc.</span>
+  <span class="site-foot__copyright">© ${year} DatusAI, Inc.</span>
 </div><div class="container" style="padding-top:24px;font-size:11px;line-height:1.8;color:var(--ink-muted)"><p><a href="https://ossie.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Ossie (incubating)</a> is a project in the Apache Incubator at the <a href="https://www.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Software Foundation (ASF)</a>. Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.</p></div></footer>`;
 }
 
@@ -569,12 +587,12 @@ const parseTags = (raw) => {
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-function redirectStub(oldPath, target) {
+function redirectStub(target) {
   return `<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8" />
 <title>Redirecting…</title><link rel="canonical" href="${SITE}${target}" />
 <meta name="robots" content="noindex, follow" />
 <meta http-equiv="refresh" content="0; url=${target}" />
-<script>location.replace(${JSON.stringify(target)});</script>
+<script>location.replace(${JSON.stringify(target)} + location.search + location.hash);</script>
 </head><body>Redirecting to <a href="${target}">${target}</a>…</body></html>`;
 }
 
@@ -803,7 +821,7 @@ function main() {
     console.error("[build-blog] dist/ not found — run `vite build` first.");
     process.exit(1);
   }
-  const posts = readPosts();
+  const { posts, aliases } = readPosts();
   const covers = prepareCovers(posts, PUBLIC_DIR, categoryFor);
   write(join(ROOT, "blog", "cover-manifest.json"), JSON.stringify(covers, null, 2) + "\n");
 
@@ -830,12 +848,29 @@ function main() {
 
   for (const post of posts.values()) {
     write(join(DIST, "blog", post.slug, "index.html"), postPage(post));
-    // legacy /blog/posts/<slug> -> /blog/<slug>
-    write(join(DIST, "blog", "posts", post.slug, "index.html"),
-      redirectStub(`/blog/posts/${post.slug}`, `/blog/${post.slug}/`));
+    // Derive every legacy entry from the actual post inventory, including new
+    // posts. VitePress historically exposed both clean and .html URLs.
+    const target = `/blog/${post.slug}/`;
+    for (const prefix of ["blog/posts", "posts"]) {
+      write(join(DIST, prefix, post.slug, "index.html"), redirectStub(target));
+      write(join(DIST, prefix, `${post.slug}.html`), redirectStub(target));
+    }
   }
+  for (const [oldSlug, destinationSlug] of aliases) {
+    if (!posts.has(destinationSlug)) throw new Error(`Missing redirectTo destination for ${oldSlug}: ${destinationSlug}`);
+    const target = `/blog/${destinationSlug}/`;
+    write(join(DIST, "blog", oldSlug, "index.html"), redirectStub(target));
+    for (const prefix of ["blog/posts", "posts"]) {
+      write(join(DIST, prefix, oldSlug, "index.html"), redirectStub(target));
+      write(join(DIST, prefix, `${oldSlug}.html`), redirectStub(target));
+    }
+  }
+  // Historical title/slug spelling for the existing MCP article.
+  if (!posts.has("mcp-data-engineering")) throw new Error("MCP legacy redirect lost its destination");
+  write(join(DIST, "blog", "what-is-mcp-data-engineering", "index.html"),
+    redirectStub("/blog/mcp-data-engineering/"));
   // legacy /blog/posts/ index -> /blog/
-  write(join(DIST, "blog", "posts", "index.html"), redirectStub("/blog/posts/", "/blog/"));
+  write(join(DIST, "blog", "posts", "index.html"), redirectStub("/blog/"));
   write(join(DIST, "blog", "index.html"), indexPage(posts));
 
   const refs = buildReferencePages();

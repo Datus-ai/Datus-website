@@ -316,3 +316,7 @@ or asset collection into this website repository.
 # 10. UTM and CTA attribution
 
 Follow [the UTM conventions](./docs/utm-conventions.md) for website code and external marketing links. New marketing Studio CTAs use `studioCtaUrl()` and a stable placement `utm_content` plus the `utm_source=datus.ai` fallback in base HTML; source, medium and campaign come from arrival evidence through the shared handoff. External evidence replaces the fallback as a whole campaign; never fill missing fields in a partial campaign or add acquisition UTM to ordinary internal navigation. Preserve locale prefixes, consent-controlled storage and destination paths. Keep the CTA inventory current; marketing, Support and the static blog use the same source fallback and handoff.
+
+# 11. Database page architecture comparisons
+
+Every database detail page includes a responsive, labeled comparison diagram: the platform's relevant native or same-vendor modeling path alongside that database with Datus / DOSI. Show where definitions live, which tools consume them, and which engine executes queries. Use the actual platform and Datus logos in the hero and comparison diagrams. Explain the difference in nearby copy and FAQ, in both English and Chinese, and link to primary product documentation. Compare like capabilities fairly: do not describe SQL views, a separate BI product, or DOSI as an ontology product, and preserve the documented maturity and integration boundaries of each connector.

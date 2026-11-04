@@ -11,6 +11,7 @@ import EnterprisePage from "./pages/products/enterprise/Page";
 import IntegrationsPage from "./pages/integrations/Page";
 import DatabasesPage from "./pages/databases/Page";
 import SnowflakePage from "./pages/databases/snowflake/Page";
+import { DatabricksPage, BigQueryPage, DuckDBPage } from "./pages/databases/engine-pages/Page";
 import ModelsPage from "./pages/models/Page";
 import McpPage from "./pages/mcp/Page";
 import ChatbotPage from "./pages/chatbot/Page";
@@ -52,6 +53,9 @@ const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/integrations/", page: () => <IntegrationsPage /> },
   { path: "/databases/", page: () => <DatabasesPage /> },
   { path: "/databases/snowflake/", page: () => <SnowflakePage /> },
+  { path: "/databases/databricks/", page: () => <DatabricksPage /> },
+  { path: "/databases/bigquery/", page: () => <BigQueryPage /> },
+  { path: "/databases/duckdb/", page: () => <DuckDBPage /> },
   { path: "/models/", page: () => <ModelsPage /> },
   { path: "/mcp/", page: () => <McpPage /> },
   { path: "/chatbot/", page: () => <ChatbotPage /> },
