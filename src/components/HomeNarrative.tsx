@@ -46,7 +46,20 @@ function ArchitectureFlow({output=false}:{output?:boolean}){
 
 /** Source and application branches connect to one shared Datus boundary. */
 export function LaunchOverview(){
- const t=useT(HOME_NARRATIVE).overview,locale=useLocale(),diagram=useRef<HTMLElement>(null);
+ const t=useT(HOME_NARRATIVE).overview,locale=useLocale();
+ return <section id="overview" className="nordic-section nordic-wrap hp-section hp-overview">
+  <NarrativeHeading t={t}/>
+  {HOME_LAUNCH_MEDIA.src?<div className="hp-launch-video"><video controls playsInline preload="metadata" poster={HOME_LAUNCH_MEDIA.poster||undefined} aria-label={t.videoTitle}>
+   <source src={HOME_LAUNCH_MEDIA.src}/>
+   {HOME_LAUNCH_MEDIA.captions[locale]&&<track kind="captions" src={HOME_LAUNCH_MEDIA.captions[locale]} srcLang={locale} default/>}
+  </video></div>:<HomeArchitectureDiagram/>}
+  <PillarOverview/>
+ </section>;
+}
+
+/** Shared homepage architecture, reused on solution pages without duplicating the diagram. */
+export function HomeArchitectureDiagram(){
+ const t=useT(HOME_NARRATIVE).overview,diagram=useRef<HTMLElement>(null);
  const [flowing,setFlowing]=useState(false);
  useEffect(()=>{
   const media=matchMedia('(prefers-reduced-motion: reduce)');let visible=false;
@@ -58,20 +71,13 @@ export function LaunchOverview(){
  },[]);
  const sourceIcons=[FileCode2,Braces,Database],outputIcons=[LayoutDashboard,Bot,Layers3];
  const module=(index:number)=>{const item=t.modules[index];return <div className={`hp-architecture-module hp-architecture-module--${index}`} key={item.name}><img className="hp-module-art" src={`/brand/product-modules/${['studio','agent','dosi','ossie'][index]}.svg`} alt="" aria-hidden="true" width="180" height="80"/><div><h3>{item.name}</h3><p>{item.body}</p></div></div>};
- return <section id="overview" className="nordic-section nordic-wrap hp-section hp-overview">
-  <NarrativeHeading t={t}/>
-  {HOME_LAUNCH_MEDIA.src?<div className="hp-launch-video"><video controls playsInline preload="metadata" poster={HOME_LAUNCH_MEDIA.poster||undefined} aria-label={t.videoTitle}>
-   <source src={HOME_LAUNCH_MEDIA.src}/>
-   {HOME_LAUNCH_MEDIA.captions[locale]&&<track kind="captions" src={HOME_LAUNCH_MEDIA.captions[locale]} srcLang={locale} default/>}
-  </video></div>:<figure ref={diagram} className="hp-architecture" data-flowing={flowing} aria-label={t.heading}>
+ return <figure ref={diagram} className="hp-architecture" data-flowing={flowing} aria-label={t.heading}>
    <div className="hp-architecture-end hp-architecture-end--sources"><h3>{t.sources}</h3>{t.inputs.map((label,i)=>{const Icon=sourceIcons[i];return <div key={label}><Icon size={19} strokeWidth={1.5}/><span>{label}</span></div>})}</div>
    <ArchitectureFlow/>
    <div className="hp-architecture-core"><div className="hp-architecture-brand">Datus</div>{module(0)}{module(1)}<div className="hp-architecture-foundation"><span>{t.foundation}</span>{module(2)}{module(3)}</div></div>
    <ArchitectureFlow output/>
    <div className="hp-architecture-end hp-architecture-end--outputs"><h3>{t.destinations}</h3>{t.outputs.map((label,i)=>{const Icon=outputIcons[i];return <div key={label}><Icon size={19} strokeWidth={1.5}/><span>{label}</span></div>})}</div>
-  </figure>}
-  <PillarOverview/>
- </section>;
+  </figure>;
 }
 export function PillarOverview(){
  const t=useT(HOME_NARRATIVE).pillars,l=useHref(),icons=[Network,Bot,ShieldCheck];

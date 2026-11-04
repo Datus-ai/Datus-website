@@ -45,6 +45,10 @@
 /products/vscode/,en,mobile_menu,Get Started Free,products_vscode_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=products_vscode_mobile_menu
 /security/,en,header,Get Started Free,security_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=security_header
 /security/,en,mobile_menu,Get Started Free,security_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=security_mobile_menu
+/solutions/ai-bi/,en,body,Try Datus Studio,ai_bi_closing,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=ai_bi_closing
+/solutions/ai-bi/,en,body,Try Datus Studio,ai_bi_hero,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=ai_bi_hero
+/solutions/ai-bi/,en,header,Get Started Free,solutions_ai_bi_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=solutions_ai_bi_header
+/solutions/ai-bi/,en,mobile_menu,Get Started Free,solutions_ai_bi_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=solutions_ai_bi_mobile_menu
 /solutions/semantic-layer/,en,body,Get Started Free,semantic_layer_closing,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=semantic_layer_closing
 /solutions/semantic-layer/,en,body,Get Started Free,semantic_layer_hero,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=semantic_layer_hero
 /solutions/semantic-layer/,en,body,Get Started Free,semantic_layer_workflow,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=semantic_layer_workflow
@@ -104,6 +108,10 @@
 /zh/products/vscode/,zh,mobile_menu,免费开始使用,zh_products_vscode_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_products_vscode_mobile_menu
 /zh/security/,zh,header,免费开始使用,zh_security_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_security_header
 /zh/security/,zh,mobile_menu,免费开始使用,zh_security_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_security_mobile_menu
+/zh/solutions/ai-bi/,zh,body,试用 Datus Studio,zh_ai_bi_closing,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=zh_ai_bi_closing
+/zh/solutions/ai-bi/,zh,body,试用 Datus Studio,zh_ai_bi_hero,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=zh_ai_bi_hero
+/zh/solutions/ai-bi/,zh,header,免费开始使用,zh_solutions_ai_bi_header,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_solutions_ai_bi_header
+/zh/solutions/ai-bi/,zh,mobile_menu,免费开始使用,zh_solutions_ai_bi_mobile_menu,https://studio.datus.ai/?utm_source=datus.ai&utm_content=zh_solutions_ai_bi_mobile_menu
 /zh/solutions/semantic-layer/,zh,body,免费开始使用,zh_semantic_layer_closing,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=zh_semantic_layer_closing
 /zh/solutions/semantic-layer/,zh,body,免费开始使用,zh_semantic_layer_hero,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=zh_semantic_layer_hero
 /zh/solutions/semantic-layer/,zh,body,免费开始使用,zh_semantic_layer_workflow,https://studio.datus.ai/login?utm_source=datus.ai&utm_content=zh_semantic_layer_workflow

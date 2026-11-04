@@ -43,20 +43,19 @@ function NavEntry({ item }: { item: NavItem }) {
         <ChevronDown size={15} />
       </button>
       <div className="nav-dd__menu" role="menu">
-        {item.children.map((child) => (
-          <a
-            key={child.label}
-            className="nav-dd__item"
-            href={child.external ? child.href : l(child.href!)}
-            {...extAttrs(child.external)}
-            role="menuitem"
-          >
+        {item.children.map((child) => {
+          const content = <>
             <span className="nav-dd__item-title">{child.label}</span>
-            {child.description && (
-              <span className="nav-dd__item-desc">{child.description}</span>
-            )}
-          </a>
-        ))}
+            {child.description && <span className="nav-dd__item-desc">{child.description}</span>}
+          </>;
+          return child.href ? (
+            <a key={child.label} className="nav-dd__item" href={child.external ? child.href : l(child.href)} {...extAttrs(child.external)} role="menuitem">
+              {content}
+            </a>
+          ) : (
+            <span key={child.label} className="nav-dd__item nav-dd__item--pending" aria-disabled="true">{content}</span>
+          );
+        })}
       </div>
     </div>
   );
@@ -157,20 +156,14 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
               >
                 {item.label}
               </div>
-              {item.children.map((c) => (
-                <a
-                  key={c.label}
-                  href={c.external ? c.href : l(c.href!)}
-                  {...extAttrs(c.external)}
-                  style={{
-                    display: "block",
-                    padding: "10px 0",
-                    fontSize: 16,
-                    color: "var(--ink-dim)",
-                  }}
-                >
+              {item.children.map((c) => c.href ? (
+                <a key={c.label} href={c.external ? c.href : l(c.href)} {...extAttrs(c.external)} style={{ display: "block", padding: "10px 0", fontSize: 16, color: "var(--ink-dim)" }}>
                   {c.label}
                 </a>
+              ) : (
+                <span key={c.label} aria-disabled="true" style={{ display: "block", padding: "10px 0", fontSize: 16, color: "var(--ink-muted)" }}>
+                  {c.label} · {c.description}
+                </span>
               ))}
             </div>
           ) : (
