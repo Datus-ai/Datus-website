@@ -19,6 +19,8 @@ export type UiMessages = {
     solutions: string;
     semanticLayer: string;
     semanticLayerDesc: string;
+    aiBi: string;
+    aiBiDesc: string;
     integrations: string;
     pricing: string;
     blog: string;
@@ -53,6 +55,9 @@ export type UiMessages = {
     docs: string;
     contact: string;
     github: string;
+    linkedin: string;
+    x: string;
+    youtube: string;
     community: string;
     trustCenter: string;
     support: string;
@@ -167,6 +172,8 @@ export const UI: Record<Locale, UiMessages> = {
       solutions: "Solutions",
       semanticLayer: "Semantic Layer",
       semanticLayerDesc: "Shared business definitions for teams and AI agents.",
+      aiBi: "AI/BI",
+      aiBiDesc: "AI business intelligence with reviewable answers.",
       integrations: "Integrations",
       pricing: "Pricing",
       blog: "Blog",
@@ -321,6 +328,8 @@ export const UI: Record<Locale, UiMessages> = {
       solutions: "解决方案",
       semanticLayer: "语义层",
       semanticLayerDesc: "让团队与 AI Agent 共享业务定义。",
+      aiBi: "AI/BI",
+      aiBiDesc: "基于业务上下文、答案可核查的 AI 商业智能。",
       integrations: "集成",
       pricing: "定价",
       blog: "博客",

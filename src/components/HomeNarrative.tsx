@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, useId, type KeyboardEvent } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, Bot, Braces, ChevronDown, Code2, Database, FileCode2, GitBranch, Layers3, LayoutDashboard, Network, Pause, Play, ShieldCheck } from 'lucide-react';
 import DatusArchitecture from './DatusArchitecture';
+// Shared by homepage, Ossie pillar and AI BI solution.
+export { default as HomeArchitectureDiagram } from './DatusArchitecture';
 import { HOME_NARRATIVE } from '../content/homeNarrative';
 import { HOME_AUDIENCES } from '../content/homeAudiences';
 import { AnalystPreview, BusinessAssistantPreview } from './AgentConsumptionPreviews';

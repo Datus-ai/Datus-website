@@ -207,6 +207,18 @@
     "ogDescription": "Your choice of models. Encrypted credentials. Deletable conversation history. Learn about security at Datus Studio."
   },
   {
+    "path": "/solutions/ai-bi/",
+    "entry": "/src/pages/solutions/ai-bi/main.tsx",
+    "title": "AI Business Intelligence & Data Analysis | Datus",
+    "description": "Ask business questions and inspect the evidence behind each answer. Datus combines AI data analysis with shared metrics, reviewable SQL, and your configured data sources.",
+    "image": "/og/solutions-ai-bi-1200x630.png",
+    "ogTitle": "AI Business Intelligence Grounded in Business Context | Datus",
+    "ogDescription": "Questions, analysis, and reviewable evidence in one Datus workflow.",
+    "imageAlt": "AI business intelligence workflow with Datus Agent and reviewed business definitions",
+    "author": false,
+    "favicon": "/brand-mark.svg"
+  },
+  {
     "path": "/solutions/semantic-layer/",
     "entry": "/src/pages/solutions/semantic-layer/main.tsx",
     "title": "Semantic Layer for AI Agents and Analytics | Datus",

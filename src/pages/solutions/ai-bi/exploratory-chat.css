@@ -1,0 +1,116 @@
+.ai-bi-scenario__chat-scene{border:1px solid #3c453d;border-radius:8px;background:#232923;padding:clamp(16px,2.5vw,30px)}
+.ai-bi-scenario__chat-intro{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px}
+.ai-bi-scenario__chat-intro h3{font-size:clamp(22px,2.2vw,30px);color:#fff;margin:10px 0 7px}
+.ai-bi-scenario__chat-intro p{font-size:13px;color:#b8c1b5;margin:0;max-width:610px;line-height:1.5}
+.ai-bi-scenario__chat-intro .ai-bi-scenario__channel{margin:8px 0 0;white-space:nowrap}
+.ai-bi-chat{--chat-bg:#f8f8fa;--chat-ink:#292b31;--chat-dim:#777985;--chat-line:#e7e6eb;--chat-panel:#fff;--chat-accent:#6046ee;--chat-user:#eeeaff;max-width:100%;color:var(--chat-ink)}
+.ai-bi-chat--chatgpt{--chat-bg:#fff;--chat-ink:#20211f;--chat-dim:#72746f;--chat-line:#e8e8e5;--chat-panel:#f8f8f6;--chat-accent:#198663;--chat-user:#f3f3f0}
+.ai-bi-chat--claude{--chat-bg:#f9f7f3;--chat-ink:#332e29;--chat-dim:#857d73;--chat-line:#e7dfd6;--chat-panel:#fffdfa;--chat-accent:#b45c3d;--chat-user:#f1eae0}
+.ai-bi-chat__shell{display:grid;grid-template-columns:195px minmax(0,1fr);min-height:570px;border:1px solid var(--chat-line);border-radius:11px;overflow:hidden;background:var(--chat-bg);box-shadow:0 20px 50px #0004}
+.ai-bi-chat__sidebar{display:flex;flex-direction:column;gap:15px;background:var(--chat-panel);border-right:1px solid var(--chat-line);padding:18px 12px;font-size:12px}
+.ai-bi-chat--chatgpt .ai-bi-chat__sidebar{background:#f7f7f5}
+.ai-bi-chat--claude .ai-bi-chat__sidebar{background:#f2eee8}
+.ai-bi-chat__identity{display:flex;align-items:center;gap:7px;font-size:15px;padding:0 4px 7px}
+.ai-bi-chat__identity img{width:23px;height:23px;object-fit:contain}
+.ai-bi-chat__identity .ai-bi-chat__datus-logo{width:96px;height:auto;max-height:29px;object-fit:contain;object-position:left center}
+.ai-bi-chat__datus-mark{display:grid;place-items:center;width:23px;height:23px;border-radius:5px;color:white;background:var(--chat-accent);font-size:21px;font-weight:700}
+.ai-bi-chat__new{display:flex;justify-content:center;align-items:center;gap:8px;border-radius:5px;background:var(--chat-accent);color:white;padding:10px 5px;font-weight:600}
+.ai-bi-chat--chatgpt .ai-bi-chat__new,.ai-bi-chat--claude .ai-bi-chat__new{justify-content:flex-start;background:transparent;color:var(--chat-ink);padding:9px 6px}
+.ai-bi-chat__sidebar small{margin-top:22px;color:var(--chat-dim)}
+.ai-bi-chat__recent{background:var(--chat-bg);border-radius:4px;padding:9px 7px;font-size:11px}
+.ai-bi-chat__sidebar-bottom{margin-top:auto;border-top:1px solid var(--chat-line);padding:13px 5px;color:var(--chat-dim)}
+.ai-bi-chat__main{display:flex;flex-direction:column;min-width:0;background:var(--chat-bg)}
+.ai-bi-chat__topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:49px;padding:0 20px;border-bottom:1px solid var(--chat-line);background:var(--chat-panel);font-size:12px}
+.ai-bi-chat__topbar>span{display:flex;align-items:center;gap:9px}.ai-bi-chat__topbar small{color:var(--chat-dim)}
+.ai-bi-chat--chatgpt .ai-bi-chat__topbar,.ai-bi-chat--claude .ai-bi-chat__topbar{border-bottom:0;background:var(--chat-bg)}
+.ai-bi-chat__conversation{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:345px;padding:24px clamp(20px,4vw,60px);overflow:hidden}
+.ai-bi-chat__welcome{text-align:center;max-width:600px;margin:auto;width:100%}
+.ai-bi-chat__orb{display:grid;place-items:center;width:94px;height:94px;margin:0 auto 19px;border-radius:36% 64% 55% 45%;background:radial-gradient(circle at 35% 30%,#fff 1%,#cdd2ff 23%,#6554e8 45%,#b8eaff 65%,#eeeaff 90%);box-shadow:0 18px 50px #6d59e75a;color:#fff;font-size:31px}
+.ai-bi-chat--chatgpt .ai-bi-chat__orb,.ai-bi-chat--claude .ai-bi-chat__orb{width:47px;height:47px;border-radius:50%;box-shadow:none;color:var(--chat-accent);background:none;font-size:42px}
+.ai-bi-chat__welcome h4{font-size:clamp(20px,2.4vw,30px);letter-spacing:-.04em;margin:0 0 32px;font-weight:500;color:var(--chat-ink)}
+.ai-bi-chat__suggestions{text-align:left;max-width:465px;margin:0 auto;font-size:11px;color:var(--chat-dim)}
+.ai-bi-chat__suggestions>div{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.ai-bi-chat__suggestions>div>span{display:flex;align-items:center;gap:6px;border:1px solid var(--chat-line);background:var(--chat-panel);padding:7px 10px;border-radius:30px;color:var(--chat-ink)}
+.ai-bi-chat__suggestions svg{color:var(--chat-accent)}
+.ai-bi-chat__thread{display:flex;flex-direction:column;gap:25px;width:min(100%,720px);margin:auto}
+.ai-bi-chat__message{font-size:14px;line-height:1.6}
+.ai-bi-chat__message,.ai-bi-chat__work{animation:ai-bi-chat-enter .38s ease-out both}
+.ai-bi-chat__message--user{align-self:flex-end;max-width:75%;border-radius:17px;background:var(--chat-user);padding:13px 17px}
+.ai-bi-chat__message--user>span{display:none}.ai-bi-chat__message p{margin:0}
+.ai-bi-chat__work{display:flex;align-items:center;gap:7px;color:var(--chat-dim);font-size:12px;line-height:1.5}
+.ai-bi-chat__work strong{color:var(--chat-ink);font-weight:600}
+.ai-bi-chat__pulse{width:9px;height:9px;border-radius:50%;background:var(--chat-accent);animation:ai-bi-pulse 1s ease-in-out infinite alternate}
+.ai-bi-chat__message--answer{max-width:94%}
+.ai-bi-chat__assistant{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.ai-bi-chat__assistant>span{display:grid;place-items:center;width:24px;height:24px;background:var(--chat-accent);color:white;border-radius:6px;font-size:15px}
+.ai-bi-chat--chatgpt .ai-bi-chat__assistant>span,.ai-bi-chat--claude .ai-bi-chat__assistant>span{border-radius:50%}
+.ai-bi-chat__evidence{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 10px}
+.ai-bi-chat__evidence span{display:flex;align-items:center;gap:5px;border:1px solid var(--chat-line);border-radius:5px;padding:6px 8px;color:var(--chat-accent);font-size:10px;background:var(--chat-panel)}
+.ai-bi-chat__message--answer>small{color:var(--chat-dim);font-size:10px}
+.ai-bi-chat__bottom{padding:8px clamp(20px,4vw,60px) 15px}
+.ai-bi-chat__composer{max-width:720px;min-height:77px;margin:auto;border:1px solid var(--chat-line);border-radius:15px;background:var(--chat-panel);padding:11px 13px;box-shadow:0 3px 16px #0000000a}
+.ai-bi-chat--claude .ai-bi-chat__composer{border-radius:11px}
+.ai-bi-chat__composer-text{height:25px;font-size:12px;color:var(--chat-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ai-bi-chat__caret{display:inline-block;width:1px;height:1em;margin-left:2px;background:var(--chat-accent);vertical-align:middle;animation:ai-bi-caret .6s step-end infinite}
+.ai-bi-chat__composer-tools{display:flex;align-items:center;justify-content:space-between;gap:5px;color:var(--chat-dim);font-size:10px}
+.ai-bi-chat__composer-tools>span{display:flex;align-items:center;gap:4px}
+.ai-bi-chat__send{display:grid!important;place-items:center;background:var(--chat-accent);color:white;border-radius:50%;width:22px;height:22px}
+.ai-bi-chat__replay{display:flex;align-items:center;gap:5px;margin:7px auto 0;background:none;border:0;color:var(--chat-dim);font-size:10px;cursor:pointer}
+.ai-bi-chat__replay:disabled{opacity:.4;cursor:default}
+.ai-bi-chat__disclosure{font-size:11px;line-height:1.5;color:#b6bfb3;margin:12px 0 0}
+@keyframes ai-bi-pulse{to{opacity:.25;transform:scale(.65)}}
+@keyframes ai-bi-caret{50%{opacity:0}}
+@keyframes ai-bi-chat-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:800px){.ai-bi-scenario__chat-intro{align-items:start;flex-direction:column}.ai-bi-chat__shell{grid-template-columns:150px minmax(0,1fr)}.ai-bi-chat__conversation{padding-inline:22px}}
+@media(max-width:580px){.ai-bi-chat__shell{grid-template-columns:1fr;min-height:575px}.ai-bi-chat__sidebar{display:none}.ai-bi-chat__conversation{min-height:360px;padding:18px 17px}.ai-bi-chat__topbar{padding-inline:15px}.ai-bi-chat__bottom{padding-inline:15px}.ai-bi-chat__message--user{max-width:92%}.ai-bi-chat__message--answer{max-width:100%}.ai-bi-chat__evidence span{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.ai-bi-chat__pulse,.ai-bi-chat__caret,.ai-bi-chat__message,.ai-bi-chat__work{animation:none}}
+
+/* Published Subagent chat anatomy, based on the Datus SaaS Chatbot, Sidebar and ChatInput components. */
+.ai-bi-chat--datus .ai-bi-chat__shell{grid-template-rows:43px minmax(0,1fr);min-height:610px}
+.ai-bi-chat__appbar{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:5px 13px;background:var(--chat-panel);border-bottom:1px solid var(--chat-line)}
+.ai-bi-chat__appbar-logo img{display:block;width:92px;height:28px;object-fit:contain;object-position:left center}
+.ai-bi-chat__logo-dark{display:none!important}
+.ai-bi-chat__appbar-actions{display:flex;align-items:center;gap:12px;color:var(--chat-dim);font-size:10px}
+.ai-bi-chat__appbar-actions>span:not(.ai-bi-chat__avatar){display:flex;align-items:center;gap:5px}
+.ai-bi-chat__appbar-actions>span:first-child{border:1px solid var(--chat-line);border-radius:4px;padding:5px 7px}
+.ai-bi-chat__appbar-theme{padding:4px;border-radius:15px;background:var(--chat-bg)}
+.ai-bi-chat__avatar{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#c44119;color:#fff;font-weight:700}
+.ai-bi-chat--datus .ai-bi-chat__sidebar{grid-row:2;padding:11px 8px}
+.ai-bi-chat--datus .ai-bi-chat__main{grid-row:2;background-image:url('/product/ai-bi-chat/chat-bkg.png');background-size:cover;background-position:center bottom}
+.ai-bi-chat--datus[data-stage="0"] .ai-bi-chat__main{background-image:url('/product/ai-bi-chat/welcome-bkg.png')}
+.ai-bi-chat--datus .ai-bi-chat__topbar{display:none}
+.ai-bi-chat--datus .ai-bi-chat__empty-sessions{flex:1;display:grid;place-items:center;color:var(--chat-dim);font-size:11px}
+.ai-bi-chat--datus .ai-bi-chat__sidebar small{margin-top:18px}
+.ai-bi-chat--datus .ai-bi-chat__sidebar-bottom{display:flex;justify-content:space-between;align-items:center;gap:7px;font-size:10px}
+.ai-bi-chat--datus .ai-bi-chat__sidebar-bottom>span:first-child{display:flex;align-items:center;gap:5px}
+.ai-bi-chat--datus .ai-bi-chat__sidebar-bottom>span:nth-child(2){border:1px solid var(--chat-line);border-radius:15px;padding:3px 6px;font-weight:600}
+.ai-bi-chat--datus .ai-bi-chat__welcome{transform:translateY(18px)}
+.ai-bi-chat--datus .ai-bi-chat__orb{width:114px;height:114px;background:none;border-radius:0;box-shadow:none;margin-bottom:17px;animation:ai-bi-orb-float 5s ease-in-out infinite}
+.ai-bi-chat--datus .ai-bi-chat__orb img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 18px #7896ff5c)}
+.ai-bi-chat--datus .ai-bi-chat__welcome h4{font-size:clamp(19px,2.2vw,28px);margin-bottom:26px}
+.ai-bi-chat--datus .ai-bi-chat__suggestions{max-width:440px}
+.ai-bi-chat--datus .ai-bi-chat__suggestions>div{flex-direction:column;align-items:flex-start}
+.ai-bi-chat--datus .ai-bi-chat__suggestions>div>span{background:var(--chat-panel)}
+.ai-bi-chat--datus .ai-bi-chat__composer{border-radius:12px;min-height:101px}
+.ai-bi-chat__composer-top{display:flex;gap:5px;margin-bottom:5px}
+.ai-bi-chat__composer-top>span{display:grid;place-items:center;width:20px;height:20px;border-radius:4px;background:var(--chat-line);color:var(--chat-dim)}
+.ai-bi-chat--datus .ai-bi-chat__composer-tools{margin-top:9px}
+.ai-bi-chat--datus .ai-bi-chat__context{border:1px solid var(--chat-line);border-radius:4px;background:var(--chat-bg);padding:3px 6px;color:var(--chat-ink)}
+.ai-bi-chat--datus .ai-bi-chat__send{background:#6046ee}
+@keyframes ai-bi-orb-float{50%{transform:translateY(-6px)}}
+
+:root[data-theme=dark] .ai-bi-chat--datus{--chat-bg:#202124;--chat-ink:#f0f0f5;--chat-dim:#b3b3c0;--chat-line:#41434c;--chat-panel:#25262b;--chat-user:#393250}
+:root[data-theme=dark] .ai-bi-chat--chatgpt{--chat-bg:#212121;--chat-ink:#f4f4f4;--chat-dim:#b5b5b5;--chat-line:#424242;--chat-panel:#2b2b2b;--chat-user:#363636}
+:root[data-theme=dark] .ai-bi-chat--claude{--chat-bg:#272522;--chat-ink:#f1ede7;--chat-dim:#bbb1a6;--chat-line:#4d4841;--chat-panel:#302d29;--chat-user:#40362f}
+:root[data-theme=dark] .ai-bi-chat--chatgpt .ai-bi-chat__sidebar{background:#171717}
+:root[data-theme=dark] .ai-bi-chat--claude .ai-bi-chat__sidebar{background:#24211e}
+:root[data-theme=dark] .ai-bi-chat--chatgpt .ai-bi-chat__identity img,:root[data-theme=dark] .ai-bi-chat--claude .ai-bi-chat__identity img{filter:brightness(0) invert(1)}
+:root[data-theme=dark] .ai-bi-chat__logo-light{display:none!important}
+:root[data-theme=dark] .ai-bi-chat__logo-dark{display:block!important}
+:root[data-theme=dark] .ai-bi-chat--datus .ai-bi-chat__main{background-blend-mode:multiply;background-color:#202124}
+:root[data-theme=dark] .ai-bi-chat--datus[data-stage="0"] .ai-bi-chat__main{background-blend-mode:normal;background-color:#202124}
+:root[data-theme=dark] .ai-bi-chat--datus .ai-bi-chat__suggestions>div>span{background:var(--chat-panel)}
+:root[data-theme=dark] .ai-bi-chat__disclosure{color:#b7bfaf}
+@media(max-width:800px){.ai-bi-chat__appbar-actions{gap:7px}.ai-bi-chat__appbar-actions>span:nth-child(2){display:none}}
+@media(max-width:580px){.ai-bi-chat--datus .ai-bi-chat__shell{grid-template-rows:42px minmax(0,1fr)}.ai-bi-chat--datus .ai-bi-chat__main{grid-row:2}.ai-bi-chat__appbar-actions>span:first-child{display:none}.ai-bi-chat--datus .ai-bi-chat__welcome{transform:none}.ai-bi-chat--datus .ai-bi-chat__orb{width:84px;height:84px}}
+@media(prefers-reduced-motion:reduce){.ai-bi-chat--datus .ai-bi-chat__orb{animation:none}}

@@ -211,7 +211,7 @@ function navHtml() {
   <nav class="site-nav__links" aria-label="Primary">
     <div class="nav-dd"><button class="nav-link" type="button">Products ${SVG.chevron}</button>
       <div class="nav-dd__menu">${products}</div></div>
-    <div class="nav-dd"><button class="nav-link" type="button">Solutions ${SVG.chevron}</button><div class="nav-dd__menu"><a class="nav-dd__item" href="/solutions/semantic-layer/"><span class="nav-dd__item-title">Semantic Layer</span><span class="nav-dd__item-desc">Shared business definitions for teams and AI agents.</span></a></div></div>
+    <div class="nav-dd"><button class="nav-link" type="button">Solutions ${SVG.chevron}</button><div class="nav-dd__menu"><a class="nav-dd__item" href="/solutions/semantic-layer/"><span class="nav-dd__item-title">Semantic Layer</span><span class="nav-dd__item-desc">Shared business definitions for teams and AI agents.</span></a><a class="nav-dd__item" href="/solutions/ai-bi/"><span class="nav-dd__item-title">AI/BI</span><span class="nav-dd__item-desc">AI business intelligence with reviewable answers.</span></a></div></div>
     <a class="nav-link" href="/integrations/">Integrations</a>
     <a class="nav-link" href="/pricing/">Pricing</a>
     <a class="nav-link" href="/blog/">Blog</a>
