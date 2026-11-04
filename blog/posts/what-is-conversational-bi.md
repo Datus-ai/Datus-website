@@ -1,9 +1,9 @@
 ---
 title: "What Is Conversational BI? From Questions to Trusted Metrics"
-description: "Conversational BI lets people explore data through follow-up questions. Learn how semantic models preserve metrics, filters, and trust across every turn."
+description: "Learn how conversational BI answers business questions, check a multi-turn example, and evaluate how metrics, filters, and context stay consistent across turns."
 author: "Evan Paul"
 date: 2026-10-12
-lastmod: 2026-10-12
+lastmod: 2026-11-04
 head:
   - - meta
     - name: keywords
@@ -13,7 +13,7 @@ head:
       content: "What Is Conversational BI? From Questions to Trusted Metrics"
   - - meta
     - property: og:description
-      content: "Conversational BI lets people explore data through follow-up questions. Learn how semantic models preserve metrics, filters, and trust across every turn."
+      content: "Learn how conversational BI answers business questions, check a multi-turn example, and evaluate how metrics, filters, and context stay consistent across turns."
   - - meta
     - property: og:type
       content: article
@@ -37,9 +37,12 @@ head:
 
 - Conversational BI lets you explore business data through questions and follow-ups.
 - Reliable answers need shared definitions, clear context, and appropriate access.
-- Dosi keeps business definitions reusable across interfaces and supported data sources.
+- Test a complete conversation: refine a filter, compare periods, and explicitly reset the scope. Check the result at every turn.
+- Shared definitions support consistency; the application still manages the conversation and user access.
 
 **Conversational BI is a way to explore business data through natural-language questions and follow-ups.** Instead of building a new report for each question, you ask, review the answer, and keep exploring. A useful system remembers the relevant context and shows enough detail for you to understand what the numbers mean.
+
+Here, **conversational analytics means dialogue with business data**, not analysis of customer calls or support transcripts. The same phrase can describe both markets, so check which task a tool actually serves.
 
 “What was revenue last quarter?” is a starting point. “Only Europe” and “Which channels changed most?” turn that answer into a conversation. The value is being able to follow a question where it leads, without losing the meaning of the original analysis.
 
@@ -53,7 +56,7 @@ Natural language makes asking easier. It does not automatically make the answer 
 
 This connection between conversation and business definitions is not new. An <a href="https://research.ibm.com/publications/conversational-bi-an-ontology-driven-conversation-system-for-business-intelligence-applications" rel="nofollow noopener">IBM research paper on conversational BI</a> describes building dialogue around an underlying business model. Today's language models make the interaction more flexible, but the need for shared meaning remains.
 
-Here, conversational BI means asking questions about business data. It is different from analyzing customer calls or support transcripts, which is also sometimes called conversational analytics.
+As of November 2026, <a href="https://docs.cloud.google.com/looker/docs/conversational-analytics-looker-data" rel="nofollow noopener">Looker’s documentation</a> describes follow-up questions that refine earlier results within the active conversation, including clarification when a field is ambiguous. This is a useful capability to evaluate if your business definitions already live in Looker. It does not imply that context persists across separate conversations or that other products behave identically.
 
 ## How it differs from dashboards and agentic analytics
 
@@ -72,23 +75,33 @@ These approaches can work together. A dashboard gives you the starting view; con
 
 ## What a useful conversation looks like
 
-Consider an illustrative retail example. A team has agreed that net revenue excludes refunds and uses a particular reporting calendar. The conversation should build on those choices rather than reinvent them at every turn.
+A useful conversation changes the requested scope while preserving the business rules that still apply. Use this small illustrative reference case to check that behavior. These are invented, already-aggregated net-revenue values in USD, not customer results or a product benchmark. Net revenue excludes refunds, periods are complete calendar quarters in 2026, and region means customer region.
 
-You begin with **“What was net revenue last quarter?”** The answer should identify the quarter and use the agreed revenue definition. A total without that context leaves too much room for misunderstanding.
+| Quarter | Customer region | Organic channel | Paid channel |
+| --- | --- | ---: | ---: |
+| Q2 | Europe | 300 | 200 |
+| Q2 | North America | 250 | 250 |
+| Q3 | Europe | 360 | 240 |
+| Q3 | North America | 280 | 320 |
 
-Next, you ask **“Only Europe.”** The system should keep the same metric and dates while narrowing the region. If “Europe” could mean the customer's location or the delivery address, it should clarify which one you intend.
+For this reference case, Europe and North America are the entire dataset; “global” means both regions. An analyst can calculate each expected answer directly from the table before trying a conversational tool. That independent reference helps reveal a filter or definition change even when the response sounds convincing.
 
-Then comes **“Break that down by acquisition channel.”** The region and quarter should stay in place. The result now answers a more specific question, rather than silently starting a different analysis.
+You begin with **“What was net revenue in Q3 2026?”** The expected answer is 1,200 USD across both regions and channels. If you had asked for “last quarter,” the response would first need to resolve that phrase to dates. Here, Q3 means July 1 through September 30, rather than a rolling three-month window.
 
-Finally, **“Compare it with the previous quarter”** adds a comparison. Both periods should use the same definition and regional scope. If one period is incomplete, the answer should explain how the comparison handles that difference.
+Next, ask **“Only Europe.”** The total becomes 600 USD, while the metric, currency, and quarter stay the same. The system should use customer region, as agreed above. If its model also contains shipping region, a clarification is appropriate when it cannot determine which one you mean.
 
-| Follow-up | What changes | What stays the same |
+Then ask **“Break that down by acquisition channel.”** Europe and Q3 should remain selected. Organic returns 360 USD and paid returns 240 USD; the two values reconcile to the 600 USD total. This is a simple check of whether the follow-up changed the breakdown without silently clearing the region filter.
+
+Finally, **“Compare it with Q2 2026”** adds a period. Europe rises from 500 to 600 USD: organic changes from 300 to 360, and paid from 200 to 240. Those movements describe the difference; they do not explain what caused it. Keep the same metric and regional definition in both periods.
+
+| Follow-up | Expected scope | Expected result |
 | --- | --- | --- |
-| “Only Europe” | Region | Revenue definition and quarter |
-| “By acquisition channel” | Breakdown | Metric, region, and quarter |
-| “Previous quarter too” | Comparison period | Definition and regional scope |
+| “Only Europe” | Net revenue, Q3, customer region Europe | 600 USD |
+| “By acquisition channel” | Same scope, split by channel | Organic 360; paid 240 USD |
+| “Compare it with Q2 2026” | Europe, both quarters, same channels | Q2 500 → Q3 600 USD |
+| “Now show the global Q3 total, all channels” | Q3 only, both regions, no channel breakdown | 1,200 USD |
 
-Remembering context also means knowing when to let it go. If you now ask for the global total, the Europe filter should disappear. A system that keeps every earlier choice can be just as misleading as one that forgets everything.
+The last request deliberately resets the region, comparison period, and breakdown. Keeping Europe selected would return 600 USD and fail the test, even though earlier turns were correct. If a shorter request such as “global total” leaves the intended period unclear, the application should clarify or state its interpretation. Remembering context includes knowing which parts the user has replaced.
 
 ## Why convincing answers can still be wrong
 
@@ -116,13 +129,13 @@ A useful answer separates what the data shows from what still needs investigatio
 
 You should not need to read SQL to understand a business answer. A response should name the metric, dates, and important filters, then explain any limits that affect interpretation.
 
-For the retail example, “Net revenue in Europe last quarter, grouped by acquisition channel” is much more useful than an unexplained total. A link to the agreed metric definition and a note about data freshness make the answer easier to check and share.
+For the retail example, “Q3 2026 net revenue in USD, grouped by acquisition channel, filtered to customer region Europe” is much more useful than an unexplained total. Include the resolved dates, a link to the agreed metric, and when the data was last refreshed. A full quarter on the calendar does not prove that every source has finished loading.
 
 This matters when someone copies a chart into a presentation. The context should travel with the result, so another person can see what was measured. If a correction changes the number, the system should explain whether the change came from a new filter, updated data, or a different interpretation.
 
 ## Dosi's approach: shared definitions across tools
 
-Dosi provides the semantic engine underneath a conversational application. Teams define metrics and business relationships in Apache Ossie models, and Dosi turns supported requests into queries for the selected data source. Its <a href="https://dosi.datus.ai/">official documentation</a> describes access through CLI, MCP, REST, and Python, with support for 16 SQL dialects as of October 2026.
+As of November 2026, DOSI provides semantic execution that a conversational application can use underneath its interface. Teams define metrics and relationships in compatible Apache Ossie models, and DOSI validates those models and compiles supported metric requests into native SQL for the selected source. Its <a href="https://dosi.datus.ai/">official documentation</a> describes the available interfaces and supported connections; check the target engine and feature rather than relying on a headline database count.
 
 For a business team, the important consequence is reuse: the revenue definition can belong to a shared model rather than being buried inside one dashboard or chat interface. Different applications can work from that model. The conversational application remains responsible for understanding follow-ups, asking clarifying questions, and handling the user's access.
 
@@ -130,7 +143,7 @@ For a business team, the important consequence is reuse: the revenue definition 
 
 *One shared model can serve different interfaces and supported sources. Each request targets a selected source; the applications manage conversation and user access.*
 
-Dosi's <a href="https://dosi.datus.ai/agents/">agent tools</a> support finding metrics, checking a proposed query, and running it. This gives an application a defined route from a question to a result, rather than requiring it to reconstruct business logic from raw tables each time. The [semantic layer in the agent loop](/blog/semantic-layer-in-the-agent-loop/) explains how those steps support deeper exploration.
+DOSI’s <a href="https://dosi.datus.ai/agents/">agent tools</a> support discovering metrics, previewing compiled SQL, and executing supported metric queries. They do not establish that a business definition is correct or keep the Europe filter for the application. The [semantic layer in the agent loop](/blog/semantic-layer-in-the-agent-loop/) explains how those tools fit into deeper exploration.
 
 Dosi's distinction is its vendor-neutral approach, built on the open Apache Ossie standard and compatible with open-source agent workflows. It supports multiple data sources without requiring teams to keep their definitions inside one vendor's existing stack. That does not promise automatic joins across separate warehouses; the data mappings and definitions still need to be checked.
 
@@ -140,15 +153,27 @@ Dosi itself is source-available under Elastic License 2.0, while the Datus agent
 
 Start with questions your team already asks and answers an analyst can verify. Test a whole conversation, including follow-ups and corrections, rather than judging a single impressive demo.
 
-Check whether filters carry forward when intended, whether a reset removes them, and whether the system asks when a question is ambiguous. Include a request for information the user should not access. A useful clarification or refusal can be a better outcome than an immediate answer.
+Use the reference conversation above as a small acceptance test, then replace its fixture with questions and definitions from your own business. Check each turn rather than scoring only the final answer.
 
-Also check what someone else would understand from the result. Are the dates and definitions clear? Is the data fresh enough for the decision? Can the team reproduce the number?
+| Test | What should happen |
+| --- | --- |
+| Add “Only Europe” | Apply customer region; preserve the metric and dates |
+| Ask for a channel breakdown | Preserve Europe; channel values reconcile to the total |
+| Add Q2 for comparison | Apply the same definition in both periods |
+| Explicitly request the global Q3 total | Remove the region filter and Q2 comparison |
+| Use an ambiguous region name | Clarify the field or show the interpretation |
+| Ask with a restricted identity | Enforce access; explain any limited scope |
+| Share or export the answer | Retain metric, dates, filters, units, and freshness information |
+
+Permission checks should come from the configured data platform and tools, not from a promise in the chat. If a user can see only Europe, the application must not reveal North America when asked for a global total. It should make that limitation clear instead of presenting a partial result as company-wide performance.
+
+Also test a question the selected sources cannot answer. A helpful response identifies the missing definition or data and suggests a next step; it does not fill the gap with an unsupported number. If your team mainly needs a stable recurring report, a maintained dashboard may already be the simpler choice.
 
 Begin with one business area and an owner for its metric definitions. Expand when the conversations are reliable, rather than assuming that connecting more tables will automatically produce better answers.
 
 ## Conclusion
 
-Conversational BI makes it easier to follow a business question beyond a prepared report. Its value depends on keeping definitions consistent, carrying the right context forward, and making answers easy to check. Dosi supports that foundation with shared models that can serve different interfaces and supported data sources.
+Conversational BI makes it easier to follow a business question beyond a prepared report. Its value depends on keeping definitions consistent, carrying the right context forward, and making answers easy to check. DOSI supports that foundation with shared definitions; the conversation still needs its own context handling and access controls. For a concrete next step, inspect the [working semantic-model example](/blog/semantic-model-examples/) and compare its expected answers with the definitions your team uses.
 
 ## Frequently asked questions
 
@@ -164,13 +189,17 @@ No. Text-to-SQL turns a question into a database query. Conversational BI also m
 
 Usually they serve different needs. Dashboards work well for recurring reports, while conversation helps with questions beyond the prepared view. Both should use the same metric definitions so the numbers remain comparable.
 
-### Why does conversational BI need a semantic layer?
+### Does conversational BI require a semantic layer?
 
-A semantic layer records agreed definitions such as how revenue is calculated or what counts as an active customer. This reduces the need to guess business meaning for every question. The application still needs to interpret your request correctly, and the definitions themselves need review.
+Not every implementation requires a separate semantic layer, but repeated business reporting needs maintained definitions somewhere. A semantic layer is one way to share those rules across tools. Curated queries or existing BI models can also supply definitions. The application still has to interpret follow-ups correctly, preserve the right filters, and use the configured access controls.
 
 ### Can conversational BI work across multiple data sources?
 
 Yes, if the application supports those sources and their definitions are aligned. Supporting several sources does not necessarily mean joining them in one query. Check that dates, calculations, and data freshness are comparable before combining results.
+
+### Is conversational BI the same as conversation analytics?
+
+Check the intended task. Conversational BI explores business data through dialogue. Conversation analytics can mean analyzing recorded calls, chats, or support transcripts. Some vendors also use conversational analytics for BI, so the phrase alone is insufficient: compare the data being analyzed and the result the product is designed to produce.
 
 ## Related articles
 
@@ -178,4 +207,5 @@ Yes, if the application supports those sources and their definitions are aligned
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — shared business definitions
 - [Why text-to-SQL fails without a semantic layer](/blog/why-text-to-sql-fails-without-a-semantic-layer/) — why valid queries can give misleading answers
 - [The semantic layer in the agent loop](/blog/semantic-layer-in-the-agent-loop/) — how Dosi supports deeper exploration
+- [Semantic model examples](/blog/semantic-model-examples/) — inspect definitions alongside checked results
 - [Datus glossary](/glossary/#conversational-bi) — the short definition and related concepts
