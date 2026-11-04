@@ -166,4 +166,6 @@ More than column names. A useful data engineering agent needs four layers of con
 
 ## Related articles
 
+- [What is a data agent?](/blog/what-is-data-agent/) — the broader category, a checked revenue example, and evaluation criteria
+
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — definitions, implementations, and how semantics relate to agents
