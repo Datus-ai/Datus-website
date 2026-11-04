@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
 import SiteLayout from "../../components/SiteLayout";
 import Breadcrumb from "../../components/Breadcrumb";
@@ -19,6 +20,12 @@ import { useHref, useLocale, useT } from "../../i18n/LocaleContext";
 import { UI } from "../../i18n/ui";
 import { databasesFaq } from "./faq";
 import { DB_ADAPTERS_DOCS, databasesPage, datasourceYaml, migrationExample } from "./content";
+
+const DETAIL_PATHS: Record<string, string> = {
+  snowflake: "/databases/snowflake/",
+  bigquery: "/databases/bigquery/",
+  duckdb: "/databases/duckdb/",
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Page                                                                       */
@@ -69,24 +76,36 @@ export default function DatabasesPage() {
           {databases.map((db, i) => {
             const tone = db.tone ?? toneAt(i);
             return (
-              <SpecCard
-                key={db.type}
-                name={db.type === "snowflake" ? <>{db.name}<ArrowRight size={14} style={{ display: "inline", marginLeft: 7 }} aria-hidden="true"/></> : db.name}
-                href={db.type === "snowflake" ? l("/databases/snowflake/") : undefined}
-                tone={tone}
-                badge={
-                  db.builtIn ? (
-                    <><CheckCircle2 size={12} /> {t.builtIn}</>
-                  ) : db.since ? (
-                    <span style={{ color: "var(--ink-muted)" }}>{db.since}</span>
-                  ) : undefined
-                }
-                rows={[
-                  { label: t.table.columns[1], value: db.type },
-                  { label: t.table.columns[2], value: db.pkg },
-                  { label: t.table.columns[3], value: db.highlight, mono: false },
-                ]}
-              />
+              <Fragment key={db.type}>
+                <SpecCard
+                  name={DETAIL_PATHS[db.type] ? <>{db.name}<ArrowRight size={14} style={{ display: "inline", marginLeft: 7 }} aria-hidden="true"/></> : db.name}
+                  href={DETAIL_PATHS[db.type] ? l(DETAIL_PATHS[db.type]) : undefined}
+                  tone={tone}
+                  badge={
+                    db.builtIn ? (
+                      <><CheckCircle2 size={12} /> {t.builtIn}</>
+                    ) : db.since ? (
+                      <span style={{ color: "var(--ink-muted)" }}>{db.since}</span>
+                    ) : undefined
+                  }
+                  rows={[
+                    { label: t.table.columns[1], value: db.type },
+                    { label: t.table.columns[2], value: db.pkg },
+                    { label: t.table.columns[3], value: db.highlight, mono: false },
+                  ]}
+                />
+                {db.type === "bigquery" && <SpecCard
+                  name={<>Databricks<ArrowRight size={14} style={{ display: "inline", marginLeft: 7 }} aria-hidden="true"/></>}
+                  href={l("/databases/databricks/")}
+                  tone="var(--brand-bright)"
+                  badge={t.databricksCard.badge}
+                  rows={[
+                    { label: t.table.columns[1], value: "databricks" },
+                    { label: t.databricksCard.connectionLabel, value: t.databricksCard.connection, mono: false },
+                    { label: t.table.columns[3], value: t.databricksCard.highlight, mono: false },
+                  ]}
+                />}
+              </Fragment>
             );
           })}
         </div>
@@ -115,8 +134,8 @@ export default function DatabasesPage() {
           rows={databases.map((db) => ({
             key: db.type,
             cells: [
-              db.type === "snowflake"
-                ? <a className="database-table-link" href={l("/databases/snowflake/")}>{db.name}<ArrowRight size={14} aria-hidden="true"/></a>
+              DETAIL_PATHS[db.type]
+                ? <a className="database-table-link" href={l(DETAIL_PATHS[db.type])}>{db.name}<ArrowRight size={14} aria-hidden="true"/></a>
                 : <span style={{ fontSize: 14, fontWeight: 650, color: "var(--ink)" }}>{db.name}</span>,
               <InlineCode>{db.type}</InlineCode>,
               db.builtIn ? (

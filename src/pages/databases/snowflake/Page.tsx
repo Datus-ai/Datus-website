@@ -83,7 +83,7 @@ export default function SnowflakePage(){
  return <SiteLayout className="snowflake-page" staggerSections>
   <Breadcrumb currentUrl={PATH} items={[{label:ui.nav.home,href:'/'},{label:ui.products.databases,href:'/databases/'},{label:'Snowflake'}]}/>
   <section className="sf-hero container" aria-labelledby="sf-title">
-   <div className="sf-hero-copy"><a className="sf-back" href={l('/databases/')}><ArrowRight size={14}/>{t.back}</a><span className="eyebrow">{t.eyebrow}</span><h1 id="sf-title">{t.heading}</h1><p className="lead">{t.lead}</p><div className="sf-actions"><a className="btn btn-primary btn-lg" href={signup('hero')}>{ui.common.tryStudio}<ArrowUpRight size={17}/></a><a className="sf-text-link" href="#connect">{t.setupLink}<ArrowDown size={16}/></a></div><a className="sf-hero-comparison" href="#semantic-views">{t.comparisonLink}<ArrowRight size={14}/></a></div>
+   <div className="sf-hero-copy"><span className="eyebrow">{t.eyebrow}</span><h1 id="sf-title">{t.heading}</h1><p className="lead">{t.lead}</p><div className="sf-actions"><a className="btn btn-primary btn-lg" href={signup('hero')}>{ui.common.tryStudio}<ArrowUpRight size={17}/></a><a className="sf-text-link" href="#connect">{t.setupLink}<ArrowDown size={16}/></a></div><a className="sf-hero-comparison" href="#semantic-views">{t.comparisonLink}<ArrowRight size={14}/></a></div>
    <figure className="sf-architecture">
     <figcaption className="sf-architecture__label">{t.architecture.label}</figcaption>
     <div className="sf-architecture__main">

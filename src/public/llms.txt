@@ -26,6 +26,9 @@ Ontology expresses business concepts and relationships connected to the semantic
 ## Integration and modeling resources
 
 - [Databases](https://datus.ai/databases/): Supported native database adapters and configuration.
+- [Databricks semantic layer](https://datus.ai/databases/databricks/): DOSI's separate Databricks SQL connector and reviewed metric execution; not a native Datus Agent adapter.
+- [BigQuery semantic layer](https://datus.ai/databases/bigquery/): Reviewed metrics on BigQuery, with the DOSI execution connector currently experimental.
+- [DuckDB semantic layer](https://datus.ai/databases/duckdb/): Local semantic-model validation and execution with DuckDB.
 - [Models](https://datus.ai/models/): Model-provider configuration.
 - [Integrations](https://datus.ai/integrations/): Supported integrations and workflows.
 - [Semantic Model Converter](https://datus.ai/tools/semantic-model-converter/): Supported import and export paths, editable examples, and conversion diagnostics. Review compatibility before execution.
