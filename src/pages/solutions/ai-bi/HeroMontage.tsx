@@ -3,7 +3,7 @@ import { Pause, Play } from 'lucide-react';
 import { AI_BI_CONTENT } from './content';
 
 type DemoCopy = (typeof AI_BI_CONTENT)['en']['demo'];
-const SEGMENT_SECONDS = 2.5;
+const SEGMENT_SECONDS = 3;
 
 export default function HeroMontage({ copy }: { copy: DemoCopy }) {
   const video = useRef<HTMLVideoElement>(null);
@@ -40,10 +40,10 @@ export default function HeroMontage({ copy }: { copy: DemoCopy }) {
   return <figure className="ai-bi-demo" aria-label={copy.label}>
     <div className="ai-bi-demo__video-wrap">
       <video ref={video} muted loop playsInline preload="metadata"
-        poster="/product/ai-bi-hero/ai-bi-ui-poster.jpg" width="960" height="540"
+        poster="/product/ai-bi-hero/ai-bi-announcement-poster.jpg" width="1280" height="720"
         aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}
         onTimeUpdate={event => setActive(Math.min(copy.stages.length - 1, Math.floor(event.currentTarget.currentTime / SEGMENT_SECONDS)))}>
-        <source src="/product/ai-bi-hero/ai-bi-ui-montage.mp4" type="video/mp4"/>
+        <source src="/product/ai-bi-hero/ai-bi-announcement-montage.mp4" type="video/mp4"/>
         {copy.fallback}
       </video>
       <span className="ai-bi-demo__badge">{copy.label}</span>
