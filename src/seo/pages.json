@@ -239,5 +239,26 @@
         "content": "telephone=no"
       }
     ]
+  },
+  {
+    "path": "/databases/databricks/",
+    "entry": "/src/pages/databases/databricks/main.tsx",
+    "title": "Databricks Semantic Layer for AI Agents | Datus",
+    "description": "Use an Apache Ossie semantic model with Databricks SQL. DOSI compiles reviewed metric definitions to native SQL for teams, apps and AI agents.",
+    "image": "https://datus.ai/og/solutions-semantic-layer-1200x630.png"
+  },
+  {
+    "path": "/databases/bigquery/",
+    "entry": "/src/pages/databases/bigquery/main.tsx",
+    "title": "BigQuery Semantic Layer for AI Agents | Datus",
+    "description": "Share reviewed Apache Ossie metrics for BigQuery. DOSI compiles metric requests into native GoogleSQL; see setup, project boundaries and experimental status.",
+    "image": "https://datus.ai/og/solutions-semantic-layer-1200x630.png"
+  },
+  {
+    "path": "/databases/duckdb/",
+    "entry": "/src/pages/databases/duckdb/main.tsx",
+    "title": "DuckDB Semantic Layer for Local Analytics | Datus",
+    "description": "Review Apache Ossie metrics against a local DuckDB file. DOSI runs metric queries in process; Datus Agent also includes a native DuckDB adapter.",
+    "image": "https://datus.ai/og/solutions-semantic-layer-1200x630.png"
   }
 ]

@@ -13,6 +13,7 @@ Iconify’s Logos and Simple Icons collections distribute icon artwork under CC0
 | qwen.svg | [qwen-icon](https://github.com/iconify/icon-sets/blob/master/json/logos.json) |
 | ollama.svg | [ollama](https://github.com/iconify/icon-sets/blob/master/json/logos.json) |
 | snowflake.svg | [snowflake-icon](https://github.com/iconify/icon-sets/blob/master/json/logos.json) |
+| databricks.png | [Datus-saas integration icon](https://github.com/Datus-ai/Datus-saas/blob/main/packages/web-client/src/assets/images/icon/databricks.png) |
 | bigquery.svg | [googlebigquery](https://github.com/iconify/icon-sets/blob/master/json/simple-icons.json) |
 | redshift.svg | [aws-redshift](https://github.com/iconify/icon-sets/blob/master/json/logos.json) |
 | postgresql.svg | [postgresql](https://github.com/iconify/icon-sets/blob/master/json/logos.json) |
