@@ -69,7 +69,7 @@ export function siteNav(locale: Locale): NavItem[] {
     { label: t.products, children: productsNav(locale) },
     { label: t.solutions, children: [
       { label: t.semanticLayer, href: "/solutions/semantic-layer/", description: t.semanticLayerDesc },
-      { label: t.aiBi, description: t.comingSoon },
+      { label: t.aiBi, href: "/solutions/ai-bi/", description: t.aiBiDesc },
     ] },
     { label: t.integrations, children: integrationsNav(locale) },
     { label: t.pricing, href: "/pricing/" },

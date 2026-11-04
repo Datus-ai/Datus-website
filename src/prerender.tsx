@@ -2,6 +2,7 @@ import { renderToString } from "react-dom/server";
 import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
 import App from "./App";
 import SemanticLayerSolution from "./pages/solutions/semantic-layer/Page";
+import AiBiSolution from "./pages/solutions/ai-bi/Page";
 import DatafunPage from "./pages/datafun/Page";
 import CliPage from "./pages/products/cli/Page";
 import VscodePage from "./pages/products/vscode/Page";
@@ -43,6 +44,7 @@ import { LOCALES, isMirrored, localizePath, type Locale } from "./i18n/config";
 const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/", page: () => <App /> },
   { path: "/solutions/semantic-layer/", page: () => <SemanticLayerSolution /> },
+  { path: "/solutions/ai-bi/", page: () => <AiBiSolution /> },
   { path: "/datafun/", page: () => <DatafunPage /> },
   { path: "/products/cli/", page: () => <CliPage /> },
   { path: "/products/vscode/", page: () => <VscodePage /> },

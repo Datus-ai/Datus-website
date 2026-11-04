@@ -42,6 +42,12 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogTitle: "DuckDB 语义层 — Datus",
     ogDescription: "用本地 DuckDB 数据审核指标定义，再复用到团队与 Agent 工作流。",
   },
+  "/solutions/ai-bi/": {
+    title: "AI 商业智能与数据分析解决方案 — Datus",
+    description: "使用 Datus Agent 和可审核的 DOSI 语义定义开展 AI 数据分析。提问、追查变化，并核查 SQL、指标定义与结果依据。",
+    ogTitle: "基于业务上下文的 AI/BI — Datus",
+    ogDescription: "从业务问题到可核查的答案：共享指标、Agent 辅助分析与可检查的 SQL。",
+  },
   "/databases/snowflake/": {
     title: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
     description: "为 Snowflake 数据增加共享业务上下文。创建可审核的 Apache Ossie 模型，通过 DOSI 生成原生 SQL，为团队与 AI Agent 提供可复用的业务定义。",
