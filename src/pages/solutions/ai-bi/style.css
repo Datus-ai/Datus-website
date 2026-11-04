@@ -17,9 +17,6 @@
 .ai-bi-demo__video-wrap { position: relative; aspect-ratio: 16 / 9; background: #171c17; }
 .ai-bi-demo video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ai-bi-demo__badge { position: absolute; top: 13px; left: 13px; padding: 7px 9px; background: #171c17e8; color: #fff; border-radius: 4px; font-size: 10px; letter-spacing: .01em; }
-.ai-bi-demo__control { position: absolute; bottom: 20px; left: 20px; display: inline-flex; align-items: center; gap: 10px; padding: 11px 15px; border: 1px solid #fff8; border-radius: 5px; background: #171c17e8; color: #fff; font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1.2; cursor: pointer; }
-.ai-bi-demo__control:hover { background: #402df3; }
-.ai-bi-demo__control:focus-visible { outline: 2px solid #402df3; outline-offset: 3px; }
 .ai-bi-demo figcaption { color: var(--ink-muted); font-size: 11px; line-height: 1.5; padding: 12px 15px 13px; }
 .ai-bi-band { background: var(--bg-2); }
 .ai-bi-section { max-width: 1320px; padding-block: 88px; scroll-margin-top: 96px; }
@@ -50,4 +47,4 @@
 .ai-bi-closing .btn { margin-top: 26px; }
 @media(max-width:1100px) { .ai-bi-hero { grid-template-columns: 1fr; gap: 40px; padding-top: 45px; } .ai-bi-hero__copy { max-width: 850px; } .ai-bi-demo { max-width: 850px; } .ai-bi-flow__steps { grid-template-columns: repeat(2,minmax(0,1fr)); } .ai-bi-flow__arrow { display: none; } }
 @media(max-width:760px) { .ai-bi-section { padding-block: 65px; } }
-@media(max-width:600px) { .ai-bi-hero { padding-block: 35px 65px; } .ai-bi-hero h1 { font-size: clamp(38px,10vw,52px); } .ai-bi-demo__badge { font-size: 9px; } .ai-bi-demo__control { bottom: 12px; left: 12px; padding: 9px 11px; font-size: 11px; } .ai-bi-flow__steps { grid-template-columns: 1fr; } .ai-bi-flow__steps article { min-height: 0; } .ai-bi-dashboards__pair { grid-template-columns: 1fr; } .ai-bi-reading > div { flex-direction: column; } }
+@media(max-width:600px) { .ai-bi-hero { padding-block: 35px 65px; } .ai-bi-hero h1 { font-size: clamp(38px,10vw,52px); } .ai-bi-demo__badge { font-size: 9px; } .ai-bi-flow__steps { grid-template-columns: 1fr; } .ai-bi-flow__steps article { min-height: 0; } .ai-bi-dashboards__pair { grid-template-columns: 1fr; } .ai-bi-reading > div { flex-direction: column; } }

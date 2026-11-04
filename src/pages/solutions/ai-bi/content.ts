@@ -8,9 +8,8 @@ const en = {
   secondary: 'See how it works',
   demo: {
     label: 'Datus + DOSI · 1-minute film',
-    play: 'Play full video',
     fallback: 'Your browser cannot play the Datus + DOSI video.',
-    note: 'The complete Datus + DOSI film. Northstar scenes use simulated UI and fictional sample data.',
+    note: 'The complete Datus + DOSI film plays muted when visible. Use the player controls to turn on sound. Northstar scenes use simulated UI and fictional sample data.',
   },
   flow: {
     eyebrow: 'How it works', title: 'The Datus workflow, from sources to answers.',
@@ -117,9 +116,8 @@ export const AI_BI_CONTENT: Record<Locale, typeof en> = { en, zh: {
   primary: '试用 Datus Studio', secondary: '了解工作方式',
   demo: {
     label: 'Datus + DOSI · 1 分钟短片',
-    play: '播放完整视频',
     fallback: '浏览器无法播放 Datus + DOSI 视频。',
-    note: '完整的 Datus + DOSI 视频。Northstar 片段使用模拟界面与虚构样本数据。',
+    note: '完整的 Datus + DOSI 视频进入视野后静音自动播放。可通过播放器控件打开声音。Northstar 片段使用模拟界面与虚构样本数据。',
   },
   flow: {
     eyebrow: '工作方式', title: '从数据源到答案，了解 Datus 如何工作。',
