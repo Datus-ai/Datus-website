@@ -178,12 +178,10 @@ const bigquery: EnginePageData = {
         { title: 'Consistent metrics for AI analysis', body: 'Give agents a named metric to call, with a definition your team can inspect, rather than leaving them to infer a calculation from table names.' },
         { title: 'Explicit project boundaries', body: 'Keep data-project, dataset, job location and billing-project choices visible in configuration so a query runs in the intended context.' },
       ] },
-      faq: { heading: 'BigQuery semantic layer FAQ', lead: 'What the BigQuery integration does today.', items: [
-        { q: 'How is DOSI different from Looker on BigQuery?', a: 'Looker uses a LookML model to serve BI dashboards and applications over BigQuery. DOSI reads a separately managed Apache Ossie model and exposes named metrics through MCP, API and CLI interfaces. Both send queries to BigQuery; the DOSI BigQuery connector is currently experimental.' },
+      faq: { heading: 'BigQuery semantic layer FAQ', lead: 'How shared semantic definitions fit your BigQuery stack.', items: [
+        { q: 'How is DOSI different from Looker on BigQuery?', a: 'Looker uses a LookML model to serve BI dashboards and applications over BigQuery. DOSI reads a separately managed Apache Ossie model and exposes named metrics through MCP, API and CLI interfaces. Both use BigQuery for query execution.' },
         { q: 'Does DOSI store a copy of my BigQuery tables?', a: 'No. DOSI compiles a metric request and sends SQL to the BigQuery project configured in its connection profile. BigQuery executes the job.' },
-        { q: 'Can I use gcloud Application Default Credentials with DOSI?', a: 'Not with the currently documented DOSI BigQuery connector. It requires exactly one supported service-account credential source. The separate Datus Agent BigQuery adapter has different authentication options.' },
-        { q: 'Is the BigQuery execution connector production-ready?', a: 'DOSI currently labels it experimental. Review the connector documentation, validate it with your own workload and account for BigQuery query costs.' },
-        { q: 'Where do I specify a BigQuery schema?', a: 'BigQuery has a project → dataset structure. Put the dataset in dataset: (or database:); DOSI rejects a separate schema: field for this connector.' },
+        { q: 'How does an Apache Ossie model connect business metrics to BigQuery?', a: 'The model maps business datasets to BigQuery tables or views and defines metric expressions, dimensions and relationships. DOSI uses those definitions to compile a metric request into GoogleSQL, then sends it to the configured BigQuery project. Teams can inspect the shared definition alongside the generated SQL and results.' },
       ] },
       resources: { heading: 'Explore the workflow', items: [
         { title: 'Semantic layer solution', body: 'See how reviewed definitions become queries for teams and agents.', href: '/solutions/semantic-layer/' },
@@ -223,12 +221,10 @@ const bigquery: EnginePageData = {
         { title: '让 AI 分析使用一致指标', body: '让 Agent 调用团队可核查的已命名指标，而不是仅靠表名猜测计算方式。' },
         { title: '明确项目边界', body: '在配置中写清数据项目、数据集、作业地区和计费项目，确保查询运行在预期环境。' },
       ] },
-      faq: { heading: 'BigQuery 语义层常见问题', lead: '当前 BigQuery 集成的范围。', items: [
-        { q: '在 BigQuery 上，DOSI 与 Looker 有什么区别？', a: 'Looker 使用 LookML 模型，为 BigQuery 上的 BI 仪表板和应用提供定义。DOSI 读取独立管理的 Apache Ossie 模型，通过 MCP、API 和 CLI 提供已命名指标。两者都将查询交给 BigQuery；DOSI 的 BigQuery 连接器目前仍为实验性。' },
+      faq: { heading: 'BigQuery 语义层常见问题', lead: '共享语义定义如何融入 BigQuery 技术栈。', items: [
+        { q: '在 BigQuery 上，DOSI 与 Looker 有什么区别？', a: 'Looker 使用 LookML 模型，为 BigQuery 上的 BI 仪表板和应用提供定义。DOSI 读取独立管理的 Apache Ossie 模型，通过 MCP、API 和 CLI 提供已命名指标。两者都将查询交给 BigQuery 执行。' },
         { q: 'DOSI 会复制 BigQuery 表吗？', a: '不会。DOSI 编译指标请求，并向连接配置指定的 BigQuery 项目发送 SQL；作业由 BigQuery 执行。' },
-        { q: 'DOSI 能使用 gcloud 的 Application Default Credentials 吗？', a: '当前文档中的 DOSI BigQuery 连接器不能。它要求使用一种受支持的服务账号凭据来源。独立的 Datus Agent BigQuery 适配器有不同的认证选项。' },
-        { q: 'BigQuery 执行连接器已经达到生产稳定版了吗？', a: 'DOSI 当前将其标为实验性。请阅读连接器文档，使用自己的工作负载验证，并注意 BigQuery 查询费用。' },
-        { q: 'BigQuery 的 schema 应该填在哪里？', a: 'BigQuery 使用“项目 → 数据集”结构。请将数据集填在 dataset:（或 database:）；该 DOSI 连接器会拒绝单独的 schema: 字段。' },
+        { q: 'Apache Ossie 模型如何将业务指标关联到 BigQuery？', a: '模型将业务数据集映射到 BigQuery 表或 View，并定义指标表达式、维度和关系。DOSI 根据这些定义将指标请求编译为 GoogleSQL，再发送到配置的 BigQuery 项目。团队可以结合共享定义、生成的 SQL 与结果检查计算依据。' },
       ] },
       resources: { heading: '继续了解', items: [
         { title: '语义层解决方案', body: '了解如何把审核过的定义变成团队和 Agent 可用的查询。', href: '/solutions/semantic-layer/' },

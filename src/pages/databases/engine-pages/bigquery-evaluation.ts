@@ -8,8 +8,8 @@ const en = {
   {title:'Which tools will consume the metrics?',body:'Separate a warehouse connection from a semantic-model integration. An application must call the supported DOSI interface to use its definitions. A BI tool querying BigQuery directly does not automatically use the Ossie model. Prove one complete consumer-to-query path first.',label:'Using DOSI in agents',href:'https://dosi.datus.ai/agents/'},
  ],
  faq:[
-  {q:'Do I need Looker to use a semantic layer on BigQuery?',a:'No. Looker is one modeling and consumption path. Datus/DOSI uses compatible Apache Ossie definitions and queries BigQuery separately. You can retain existing BI workflows while evaluating shared definitions for agents or applications; this does not automatically make existing Looker dashboards consume DOSI metrics.'},
-  {q:'Can I reuse dbt models and BigQuery views?',a:'They can provide the data foundation for a semantic model. Start with curated outputs and document their grain, metric expressions and relationships. Keeping dbt transformations does not require moving the data. Automatic conversion of every existing definition or LookML feature is not promised.'},
+  {q:'Do I need Looker to use a semantic layer on BigQuery?',a:'No. Looker is one modeling and consumption path. Datus/DOSI uses compatible Apache Ossie definitions and queries BigQuery separately. Keep Looker for existing dashboards and use DOSI interfaces to serve shared metrics to agents and applications.'},
+  {q:'Can I reuse dbt models and BigQuery views?',a:'They can provide the data foundation for a semantic model. Start with curated outputs and document their grain, metric expressions and relationships. Keeping dbt transformations does not require moving the data. Review the selected definitions against existing reports before sharing them.'},
  ]
 };
 export const BIGQUERY_EVALUATION: Record<Locale,typeof en>={en,zh:{
@@ -20,7 +20,7 @@ export const BIGQUERY_EVALUATION: Record<Locale,typeof en>={en,zh:{
   {title:'哪些工具真正使用这些指标？',body:'数仓连接与语义模型集成是两回事。应用需要调用受支持的 DOSI 接口，才能使用其中的定义。直接查询 BigQuery 的 BI 工具不会自动使用 Ossie 模型。先验证一条从使用方到查询结果的完整路径。',label:'在 Agent 中使用 DOSI',href:'https://dosi.datus.ai/agents/'},
  ],
  faq:[
-  {q:'在 BigQuery 上使用语义层，必须使用 Looker 吗？',a:'不必。Looker 是一种建模和使用路径。Datus／DOSI 使用兼容的 Apache Ossie 定义，通过独立路径查询 BigQuery。可以保留现有 BI 流程，同时为 Agent 或应用评估共享定义；这不意味着已有 Looker 仪表板会自动使用 DOSI 指标。'},
-  {q:'已有的 dbt 模型和 BigQuery View 能继续使用吗？',a:'它们可以作为语义模型的数据基础。从整理好的输出开始，明确粒度、指标表达式和关系。保留 dbt 转换不需要迁移数据，但不承诺自动转换所有已有定义或 LookML 功能。'},
+  {q:'在 BigQuery 上使用语义层，必须使用 Looker 吗？',a:'不必。Looker 是一种建模和使用路径。Datus／DOSI 使用兼容的 Apache Ossie 定义，通过独立路径查询 BigQuery。可以继续用 Looker 运行现有仪表板，通过 DOSI 接口为 Agent 和应用提供共享指标。'},
+  {q:'已有的 dbt 模型和 BigQuery View 能继续使用吗？',a:'它们可以作为语义模型的数据基础。从整理好的输出开始，明确粒度、指标表达式和关系。保留 dbt 转换不需要迁移数据，发布共享指标前，先与已有报表核对选定的业务定义。'},
  ]
 }};
