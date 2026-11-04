@@ -21,6 +21,7 @@ const TEMPLATE = pathToFileURL(resolve(__dirname, "og-template.html")).href;
 const OUT_DIR = resolve(ROOT, "src/public/og");
 
 const CARDS = [
+  { slug: "apache-ossie", style: "home", eyebrow: "Apache Ossie (incubating)", title: "Apache Ossie. An open standard for semantic models.", subtitle: "Open semantic models for AI agents, applications and BI." },
   { slug: "tools-semantic-model-converter", eyebrow: "Free Developer Tool", title: "One semantic model, multiple export formats",
     subtitle: "Convert Ossie / Dosi YAML to Snowflake, dbt, Cube, Omni and more. Inspect, edit and download." },
   { slug: "home", style: "home", title: "The trusted enterprise data context for AI agents",

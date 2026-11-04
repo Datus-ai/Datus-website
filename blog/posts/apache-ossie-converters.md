@@ -3,7 +3,7 @@ title: "Apache Ossie Converters: YAML to dbt, Cube and More"
 description: "Use Apache Ossie converters to export semantic model YAML to dbt, Cube, Snowflake and more. Try examples, inspect output files, and check conversion limits."
 author: "Evan Paul"
 date: 2026-10-15
-lastmod: 2026-10-19
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -31,6 +31,8 @@ head:
       href: https://datus.ai/blog/apache-ossie-converters/
 ---
 
+For the standard, compatible execution, and other adoption paths, see the [Apache Ossie guide](/apache-ossie/).
+
 # Apache Ossie Converters: YAML to dbt, Cube and More
 
 ## TL;DR
@@ -40,7 +42,7 @@ head:
 - Start with the included Apache examples. They demonstrate a single-file export, a multi-file export, and a result that needs review.
 - A successful conversion passes the available offline checks. Target import, warehouse execution, and business-definition checks remain separate acceptance steps.
 
-**Apache Ossie** is the open specification formerly known as Open Semantic Interchange, or OSI, for exchanging semantic metadata across analytics, AI, and BI systems. Our [Apache Ossie / OSI overview](/blog/open-semantic-interchange-osi/) explains the standard; this guide follows the practical export path from YAML to the files another platform consumes.
+**Apache Ossie** is the open specification formerly known as Open Semantic Interchange, or OSI, for exchanging semantic metadata across analytics, AI, and BI systems. Our [Apache Ossie guide](/apache-ossie/) explains the standard; this guide follows the practical export path from YAML to the files another platform consumes.
 
 The useful starting question is what you want to hand to the destination: a manifest, a model document, or a directory of related definitions. That choice determines the converter, its options, and the checks you should run afterward. The walkthrough below uses real Apache fixtures and the browser workbench, with the expected artifacts recorded as of October 15, 2026.
 
@@ -226,7 +228,7 @@ The October 2026 public workbench is anonymous and free, with input-size and ser
 
 - [Convert semantic models to Ossie](/blog/convert-semantic-models-to-ossie/) — the companion vendor-to-Ossie import workflow
 
-- [Apache Ossie / Open Semantic Interchange overview](/blog/open-semantic-interchange-osi/) — the standard and its place in the semantic stack
+- [Apache Ossie guide](/apache-ossie/) — the standard and its place in the semantic stack
 - [Semantic model examples](/blog/semantic-model-examples/) — fields, relationships, and reviewed business definitions
 - [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-metricflow/) — portable metadata and execution interfaces
 - [Apache Ossie and Dosi quickstart](/blog/apache-ossie-dosi-quickstart/) — execute a model through an Ossie-native engine

@@ -23,6 +23,7 @@ yarn-debug.log*
 # Local Netlify folder
 
 # Generated Vite HTML entries (scripts/templates/page.html + src/seo/pages.ts).
+/apache-ossie/index.html
 /chatbot/index.html
 /databases/index.html
 /databases/snowflake/index.html

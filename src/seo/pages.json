@@ -1,5 +1,17 @@
 [
   {
+    "path": "/apache-ossie/",
+    "entry": "/src/pages/apache-ossie/main.tsx",
+    "title": "Apache Ossie: Open Semantic Models for AI & BI | Datus",
+    "description": "Learn Apache Ossie, formerly OSI: project history, governance, YAML and JSON models, tool conversion paths, AI context, and native execution with DOSI.",
+    "image": "/og/apache-ossie-1200x630.png",
+    "favicon": "/brand-mark.svg",
+    "author": false,
+    "ogTitle": "Apache Ossie: Open Semantic Models for AI & BI | Datus",
+    "ogDescription": "Understand Apache Ossie: its history, community, YAML and JSON models, and how compatible tools exchange business definitions.",
+    "imageAlt": "Apache Ossie — an open standard for semantic models"
+  },
+  {
     "path": "/chatbot/",
     "entry": "/src/pages/chatbot/main.tsx",
     "title": "Datus Web Chatbot — AI Data Analyst in Your Browser",

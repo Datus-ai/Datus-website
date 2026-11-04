@@ -3,7 +3,7 @@ title: "Cube.dev Alternatives: Stay for Speed or Choose Portability?"
 description: "Compare Cube.dev alternatives by use case: keep Cube for embedded analytics, use dbt for governed metrics, or use Ossie and Dosi for portable agent queries."
 author: "Evan Paul"
 date: 2026-09-25
-lastmod: 2026-10-19
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -235,4 +235,4 @@ It depends on how many measures consumers actually use, not on the size of the m
 - [Dosi with Cube](/blog/dosi-with-cube/) — running Ossie-native execution beside Cube instead of replacing it
 - [dbt Semantic Layer and MetricFlow: architecture and limits](/blog/dbt-semantic-layer-metricflow/) — the closest code-first alternative in depth
 - [Semantic layer tools in 2026](/blog/semantic-layer-tools-list-osi/) — the full category, with each tool's Apache Ossie status
-- [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) — what the standard defines and what it leaves to engines
+- [Open Semantic Interchange, now Apache Ossie](/apache-ossie/) — what the standard defines and what it leaves to engines

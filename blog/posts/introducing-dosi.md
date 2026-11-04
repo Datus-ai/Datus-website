@@ -3,7 +3,7 @@ title: "Introducing Dosi: OSI-Native Semantic Layer for Metrics"
 description: "Dosi compiles Apache Ossie (OSI) YAML into SQL across 15+ warehouse dialects — CLI, REST, MCP, and Python — so metrics are defined once and used everywhere."
 author: "Evan Paul"
 date: 2026-08-21
-lastmod: 2026-08-21
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -33,24 +33,24 @@ head:
 
 # Introducing Dosi: OSI-Native Semantic Layer for Metrics
 
-> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/apache-ossie/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
 
 Dosi is an OSI-native semantic layer engine for metrics: take Apache Ossie (OSI) YAML in, get warehouse SQL out — in fifteen or more dialects, through a CLI, REST with Arrow, MCP, or Python. Tagline: **Define once. Use everywhere.**
 
 ## TL;DR
 
-- **Dosi** is a Datus Studio component that natively compiles [Apache Ossie (OSI)](/blog/open-semantic-interchange-osi) YAML into executable SQL for metrics, dimensions, and filters — without rewriting the model per warehouse.
+- **Dosi** is a Datus Studio component that natively compiles [Apache Ossie (OSI)](/apache-ossie/) YAML into executable SQL for metrics, dimensions, and filters — without rewriting the model per warehouse.
 - It is the **first** engine built to compile OSI YAML to multi-dialect SQL natively (as of August 2026); it is not open source yet and is not a pricing or packaging announcement.
 - Outputs cover **15+ warehouse dialects**; surfaces include CLI, REST + Apache Arrow, native MCP, and a Python SDK — with structured error codes agents can use to self-correct.
 - In Datus Agent, the **`datus-semantic-dosi`** adapter runs OSI metrics without a MetricFlow dependency; docs live at <a href="https://dosi.datus.ai/" rel="nofollow noopener">dosi.datus.ai</a> and the <a href="https://docs.datus.ai/dev/adapters/semantic_adapters/" rel="nofollow noopener">semantic adapters guide</a>.
 
 ## 1. The semantic layer stops at the warehouse door
 
-A [semantic layer](/blog/what-is-semantic-layer) is supposed to end the argument about what "active users" or "net revenue" means. In practice, the argument moves downstream. The YAML lives in a repo tuned for one stack. The Snowflake deployment uses `DATE_TRUNC` and `QUALIFY`; the BigQuery copy hand-rewrites window functions; the Spark job invents a third filter because nobody ported the `WHERE` clause. Each dialect is a fork of the same metric, and each fork drifts.
+A [semantic layer](/blog/what-is-semantic-layer/) is supposed to end the argument about what "active users" or "net revenue" means. In practice, the argument moves downstream. The YAML lives in a repo tuned for one stack. The Snowflake deployment uses `DATE_TRUNC` and `QUALIFY`; the BigQuery copy hand-rewrites window functions; the Spark job invents a third filter because nobody ported the `WHERE` clause. Each dialect is a fork of the same metric, and each fork drifts.
 
-The drift shows up in places executives do not inspect. Finance certifies `net_revenue` with an exclusion list in the semantic model; the Trino path still sums gross lines because the filter never compiled. Product reads "weekly active users" from a dashboard whose Spark SQL counts sessions at a different grain than the OSI file specifies. A [data engineering agent](/blog/what-is-data-engineering-agent) asked the same question on two warehouses returns two numbers — not because the model is wrong, but because only one path ever received the governed compile output.
+The drift shows up in places executives do not inspect. Finance certifies `net_revenue` with an exclusion list in the semantic model; the Trino path still sums gross lines because the filter never compiled. Product reads "weekly active users" from a dashboard whose Spark SQL counts sessions at a different grain than the OSI file specifies. A [data engineering agent](/blog/what-is-data-engineering-agent/) asked the same question on two warehouses returns two numbers — not because the model is wrong, but because only one path ever received the governed compile output.
 
-That failure mode is familiar to analytics engineers who already model in dbt MetricFlow, Cube, or a warehouse semantic view. The modeling work is real. The portability work is also real — and it is mostly mechanical translation, not new business logic. Teams that adopt [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi) want a single interchange file to describe metrics, entities, and relationships. What they still need is an engine that treats that file as the source of truth and emits SQL the warehouse will actually run.
+That failure mode is familiar to analytics engineers who already model in dbt MetricFlow, Cube, or a warehouse semantic view. The modeling work is real. The portability work is also real — and it is mostly mechanical translation, not new business logic. Teams that adopt [Open Semantic Interchange (OSI)](/apache-ossie/) want a single interchange file to describe metrics, entities, and relationships. What they still need is an engine that treats that file as the source of truth and emits SQL the warehouse will actually run.
 
 Dosi exists for that gap. It is not another authoring UI and not a catalog. It is a compile step: OSI YAML in, dialect-correct SQL out, with interfaces humans and agents can call the same way. The accuracy argument for agent-driven analytics depends on that compile step being deterministic and inspectable; this article is the product introduction — what Dosi compiles, how you call it, and what it does not replace.
 
@@ -83,7 +83,7 @@ Compilation alone does not help if every consumer reimplements the call pattern.
 
 The MCP surface is worth separating from "yet another REST wrapper." Agents fail semantic tasks in repeatable ways: wrong grain, illegal filter combination, ambiguous dimension. Dosi returns **structured error codes** alongside human-readable messages so an agent can adjust the request — swap the time grain, drop an incompatible dimension, fix a missing entity join — instead of hallucinating a new formula. That pairs naturally with a data engineering agent that should execute governed metrics, not reinvent them from column names.
 
-Consider a failure that looks like intelligence but is not: the model requests `churn_rate` sliced by `region` at `week` grain, but the OSI metric declares `region` incompatible with that measure's entity path. A generic text-to-SQL path invents a join through a table whose name contains "region" and returns a plausible percentage. Dosi returns a compile error with a machine-readable reason; the agent retries with an allowed dimension or asks the user to pick a valid breakdown. The loop is correction, not confabulation — the same design principle behind governed retrieval in [Datus Knowledge](/blog/introducing-datus-knowledge), applied at compile time.
+Consider a failure that looks like intelligence but is not: the model requests `churn_rate` sliced by `region` at `week` grain, but the OSI metric declares `region` incompatible with that measure's entity path. A generic text-to-SQL path invents a join through a table whose name contains "region" and returns a plausible percentage. Dosi returns a compile error with a machine-readable reason; the agent retries with an allowed dimension or asks the user to pick a valid breakdown. The loop is correction, not confabulation — the same design principle behind governed retrieval in [Datus Knowledge](/blog/introducing-datus-knowledge/), applied at compile time.
 
 REST responses use **Apache Arrow** where tabular compile metadata or small result previews apply, which keeps service-to-service calls efficient when Studio or an internal gateway fans out compile requests. The CLI remains the honest path for "does this OSI file compile cleanly before I merge?" — the same question teams already ask of dbt parse or SQLFluff, but anchored on the interchange file rather than a single warehouse dialect. Platform teams often wire that CLI into CI on the OSI repository: every pull request compiles against the dialects production actually runs, so portability regressions fail the build instead of the board meeting.
 
@@ -93,7 +93,7 @@ The Python SDK covers the middle ground — programmatic compile in orchestratio
 
 Dosi is a **Datus Studio component**. This article introduces the engine and how it connects to the agent stack; it does not describe Studio packaging, tiers, or pricing. If you are evaluating Datus as a platform, treat Dosi as the compile/runtime layer for OSI metrics inside that environment — not as a standalone SKU narrative on this page.
 
-On the agent side, Datus ships a **`datus-semantic-dosi`** semantic adapter documented in the <a href="https://docs.datus.ai/dev/adapters/semantic_adapters/" rel="nofollow noopener">semantic adapters guide</a>. The adapter lets Datus Agent execute OSI-defined metrics **without requiring MetricFlow** in the path — important for teams that export OSI from generators, converters, or future authoring tools but do not run the full dbt semantic stack on every warehouse. [Datus Knowledge](/blog/introducing-datus-knowledge) still holds schema, reference SQL, and retrieval context; Dosi is the compile-and-execute face when the governed object is an OSI metric rather than ad-hoc SQL.
+On the agent side, Datus ships a **`datus-semantic-dosi`** semantic adapter documented in the <a href="https://docs.datus.ai/dev/adapters/semantic_adapters/" rel="nofollow noopener">semantic adapters guide</a>. The adapter lets Datus Agent execute OSI-defined metrics **without requiring MetricFlow** in the path — important for teams that export OSI from generators, converters, or future authoring tools but do not run the full dbt semantic stack on every warehouse. [Datus Knowledge](/blog/introducing-datus-knowledge/) still holds schema, reference SQL, and retrieval context; Dosi is the compile-and-execute face when the governed object is an OSI metric rather than ad-hoc SQL.
 
 The division of labor looks like this in one question: an analyst asks for "churn rate by segment for the last closed month." Knowledge retrieval finds the certified OSI metric and entity graph. The semantic adapter calls Dosi to compile SQL for the connected warehouse dialect. The agent runs or explains the query — and if compilation fails, structured errors flow back into the correction loop instead of a one-off rewrite. MetricFlow, Cube, and warehouse semantic views can still own authoring in many estates; Dosi is the OSI execution engine when interchange — not a single vendor runtime — is the handoff format.
 
@@ -109,7 +109,7 @@ Dosi is **not open source** as of August 2026. Follow <a href="https://dosi.datu
 
 It is **not a replacement** for your entire semantic stack. OSI describes metrics; catalogs inventory tables; MetricFlow or Cube may still be where formulas are authored and tested. Dosi compiles and serves OSI — it does not magically migrate legacy LookML or proprietary YAML without an OSI export path.
 
-It is **not a catalog or a memory layer**. If the agent needs schema search, proven SQL, and metrics-first retrieval, that remains [Datus Knowledge](/blog/introducing-datus-knowledge). Dosi answers "given this OSI file, what SQL runs here?" — not "which table did finance use last quarter?"
+It is **not a catalog or a memory layer**. If the agent needs schema search, proven SQL, and metrics-first retrieval, that remains [Datus Knowledge](/blog/introducing-datus-knowledge/). Dosi answers "given this OSI file, what SQL runs here?" — not "which table did finance use last quarter?"
 
 It does **not** subsume every interchange experiment. OSI interoperability work spans converters and test suites across vendors; this introduction stays on Dosi's compile path and agent adapter — not on vendor-specific converter test matrices or interoperability harness details.
 
@@ -119,7 +119,7 @@ For teams without OSI yet, the honest starting point is still a governed semanti
 
 Dosi closes the loop between portable metric definitions and warehouse-specific SQL. OSI YAML in; fifteen-plus dialects out; CLI, REST with Arrow, MCP, and Python on the side; structured errors for agents that need to fix grain and filter mistakes instead of guessing. Inside Datus, the `datus-semantic-dosi` adapter runs those metrics without MetricFlow in the path, alongside the retrieval layer Datus Knowledge already provides.
 
-Read the <a href="https://dosi.datus.ai/" rel="nofollow noopener">Dosi documentation</a> when you are ready to compile your first OSI file; read [Dosi vs MetricFlow](/blog/dosi-vs-metricflow) or [Dosi with Cube](/blog/dosi-with-cube) when you are choosing runtime or stack shape; read [what OSI is](/blog/open-semantic-interchange-osi) when you need the interchange story. This page is the product introduction — not a migration guide, not a pricing sheet, and not a promise that every legacy semantic model converts itself overnight.
+Read the <a href="https://dosi.datus.ai/" rel="nofollow noopener">Dosi documentation</a> when you are ready to compile your first OSI file; read [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) or [Dosi with Cube](/blog/dosi-with-cube/) when you are choosing runtime or stack shape; read [what OSI is](/apache-ossie/) when you need the interchange story. This page is the product introduction — not a migration guide, not a pricing sheet, and not a promise that every legacy semantic model converts itself overnight.
 
 ## Frequently asked questions
 
@@ -129,7 +129,7 @@ No — not as of August 2026. Dosi is a Datus Studio component with documentatio
 
 ### How is Dosi different from MetricFlow or Cube?
 
-MetricFlow compiles dbt semantic models into SQL against the dbt graph; Cube serves metrics through its own semantic layer API and pre-aggregation engine. Dosi takes **Apache Ossie (OSI) YAML** as input and targets **multiple warehouse dialects** from that interchange file. Teams can keep authoring in their existing tool if it exports OSI; Dosi is the OSI-native compiler and runtime, not a drop-in replacement for every MetricFlow or Cube deployment. For execution-path depth, see [Dosi vs MetricFlow](/blog/dosi-vs-metricflow) and [Dosi with Cube](/blog/dosi-with-cube).
+MetricFlow compiles dbt semantic models into SQL against the dbt graph; Cube serves metrics through its own semantic layer API and pre-aggregation engine. Dosi takes **Apache Ossie (OSI) YAML** as input and targets **multiple warehouse dialects** from that interchange file. Teams can keep authoring in their existing tool if it exports OSI; Dosi is the OSI-native compiler and runtime, not a drop-in replacement for every MetricFlow or Cube deployment. For execution-path depth, see [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) and [Dosi with Cube](/blog/dosi-with-cube/).
 
 ### What warehouses and dialects are supported?
 
@@ -150,7 +150,7 @@ Start with governed metric definitions and whether your organization wants a por
 ## Related articles
 
 - [Introducing DOSI: Executable Business Context for AI Agents](/blog/datus-dosi-executable-business-context/) — how Datus Agent, Studio and DOSI fit together around reviewed definitions.
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the interchange standard Dosi compiles.
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the interchange standard Dosi compiles.
 - [First Native Apache Ossie Engine](/blog/first-native-apache-ossie-engine/) — the native-implementation framing behind Dosi.
 - [Dosi vs MetricFlow](/blog/dosi-vs-metricflow/) — OSI-native vs dbt-centric runtime.
 - [Dosi with Cube](/blog/dosi-with-cube/) — where Dosi and Cube fit in one stack.

@@ -3,7 +3,7 @@ title: "Apache Ossie (OSI) vs MetricFlow: Semantic Standard vs Execution Engine"
 description: "Apache Ossie (formerly Open Semantic Interchange, OSI) vs MetricFlow: portable semantic standard vs dbt's execution engine, and when to use each."
 author: "Harrison Zhao"
 date: 2026-06-25
-lastmod: 2026-09-13
+lastmod: 2026-10-30
 heroImage: /images/osi-vs-metricflow.svg
 heroImageAlt: "OSI vs MetricFlow — OSI is the portable specification, MetricFlow is the execution engine, shown side by side and as one pipeline."
 head:
@@ -39,7 +39,7 @@ head:
 
 ## TL;DR
 
-- **Apache Ossie** (formerly [**Open Semantic Interchange**](/blog/open-semantic-interchange-osi/), OSI) is an Apache 2.0, vendor-neutral **standard** for representing and exchanging semantic metadata — metrics, dimensions, datasets, relationships — across tools.
+- **Apache Ossie** (formerly [**Open Semantic Interchange**](/apache-ossie/), OSI) is an Apache 2.0, vendor-neutral **standard** for representing and exchanging semantic metadata — metrics, dimensions, datasets, relationships — across tools.
 - **MetricFlow** is dbt Labs' open-source **semantic metrics engine**: it consumes semantic definitions, builds a query plan, and generates warehouse-specific SQL.
 - They operate at **different layers**. OSI = portable definition; MetricFlow = execution of that definition. dbt has stated MetricFlow is maintained as part of the OSI initiative, and recent dbt Core versions can parse OSI semantic documents alongside native dbt semantics.
 - "OSI" is genuinely ambiguous: it can also mean the **networking OSI model** (ISO/IEC 7498-1) or **Amazon OpenSearch Ingestion** (a telemetry service). Neither competes with MetricFlow — they belong to different decision categories.
@@ -178,7 +178,7 @@ Indirectly, yes. The top failure mode of [text-to-SQL](/blog/what-is-text-to-sql
 
 ## Related articles
 
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard, in depth: who's behind it and why portable semantics matter
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the standard, in depth: who's behind it and why portable semantics matter
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the business translation layer OSI makes portable and MetricFlow executes
 - [dbt Semantic Layer & MetricFlow](/blog/dbt-semantic-layer-metricflow/) — a complete guide to defining metrics with MetricFlow
 - [Apache Ossie / OSI vs dbt MetricFlow: key differences for AI agents](/blog/osi-vs-dbt-metricflow/) — the deeper six-dimension comparison, the converter flow, and the agent angle

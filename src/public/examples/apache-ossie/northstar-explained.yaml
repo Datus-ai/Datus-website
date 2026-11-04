@@ -1,0 +1,118 @@
+# Educational subset adapted from the Northstar Premier demo.
+# Source queries, field expressions and booked_revenue are preserved.
+# Root layout updated; ai_context is an added explanatory annotation.
+version: 0.2.0.dev0
+name: northstar_premier_excerpt
+description: Northstar retail orders and booked revenue — educational subset
+datasets:
+  - name: customers
+    source: northstar_living.dim_customer
+    primary_key:
+      - customer_id
+    fields:
+      - name: customer_id
+        datatype: Integer
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: customer_id
+        dimension: {}
+      - name: city
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: city
+        dimension: {}
+  - name: orders
+    source: SELECT o.* FROM northstar_living.fct_orders o JOIN northstar_living.dim_customer c
+      USING(customer_id) WHERE o.status='delivered' AND NOT o.is_test AND
+      o.delivered_at>=DATE '2025-09-20' AND o.delivered_at<DATE '2026-09-20' AND NOT
+      c.is_employee AND c.identity_status='resolved' AND EXISTS (SELECT 1 FROM
+      northstar_living.fct_order_lines l WHERE l.order_id=o.order_id AND
+      l.delivered_qty>0)
+    primary_key:
+      - order_id
+    fields:
+      - name: order_id
+        datatype: Integer
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: order_id
+        dimension: {}
+      - name: customer_id
+        datatype: Integer
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: customer_id
+      - name: ordered_at
+        datatype: Date
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: ordered_at
+        dimension: {}
+  - name: lines
+    source: SELECT l.* FROM northstar_living.fct_order_lines l JOIN
+      northstar_living.fct_orders o ON l.order_id=o.order_id JOIN
+      northstar_living.dim_customer c ON o.customer_id=c.customer_id WHERE
+      o.status='delivered' AND NOT o.is_test AND o.delivered_at>=DATE '2025-09-20' AND
+      o.delivered_at<DATE '2026-09-20' AND NOT c.is_employee AND
+      c.identity_status='resolved' AND l.delivered_qty>0
+    primary_key:
+      - order_line_id
+    fields:
+      - name: order_line_id
+        datatype: Integer
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: order_line_id
+        dimension: {}
+      - name: order_id
+        datatype: Integer
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: order_id
+      - name: gross_sales_cents
+        datatype: Integer
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: gross_sales_cents
+      - name: discount_cents
+        datatype: Integer
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: discount_cents
+relationships:
+  - name: lines_to_orders
+    from: lines
+    to: orders
+    from_columns:
+      - order_id
+    to_columns:
+      - order_id
+  - name: orders_to_customers
+    from: orders
+    to: customers
+    from_columns:
+      - customer_id
+    to_columns:
+      - customer_id
+metrics:
+  - name: booked_revenue
+    expression:
+      dialects:
+        - dialect: ANSI_SQL
+          expression: SUM((lines.gross_sales_cents-lines.discount_cents)*0.01)
+ai_context:
+  instructions: Booked revenue uses gross sales less discounts, in currency units. Inspect
+    source filters and do not treat booked revenue as customer margin.
+  synonyms:
+    - booked sales
+    - sales before refunds

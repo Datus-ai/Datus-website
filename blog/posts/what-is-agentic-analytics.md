@@ -3,7 +3,7 @@ title: "What Is Agentic Analytics? Why It Needs a Semantic Layer"
 description: "Agentic analytics uses AI agents to plan and act on data, not just answer questions. See how it differs from conversational BI and needs governed metrics."
 author: "Evan Paul"
 date: 2026-09-29
-lastmod: 2026-09-29
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -119,7 +119,7 @@ Concretely, this shows up as four query paths over one shared model — internal
 
 That's the practical difference between a semantic layer that gets one question right and one built for the kind of multi-step, goal-driven investigation agentic analytics is supposed to run: the check happens at every step of the plan, not just the first one.
 
-Underneath that, Dosi is a semantic layer engine built on the open [Apache Ossie](/blog/open-semantic-interchange-osi/) standard: you define metrics and relationships once in an open, portable format, and Dosi compiles them into governed SQL across 16 warehouse dialects. It ships a [native MCP server](/blog/dosi-mcp-semantic-layer-for-agents/), so a planning/orchestration agent (built with [datus-agent](/blog/what-is-data-engineering-agent-2026/), Claude, or another framework) can discover defined metrics, preview generated SQL, and execute against them mid-plan. Dosi is vendor-neutral and has no warehouse lock-in, but it is **not open-source software** — it is licensed under the Elastic License 2.0 as part of Datus Studio; the open-source component is **datus-agent**, the CLI data agent.
+Underneath that, Dosi is a semantic layer engine built on the open [Apache Ossie](/apache-ossie/) standard: you define metrics and relationships once in an open, portable format, and Dosi compiles them into governed SQL across 16 warehouse dialects. It ships a [native MCP server](/blog/dosi-mcp-semantic-layer-for-agents/), so a planning/orchestration agent (built with [datus-agent](/blog/what-is-data-engineering-agent-2026/), Claude, or another framework) can discover defined metrics, preview generated SQL, and execute against them mid-plan. Dosi is vendor-neutral and has no warehouse lock-in, but it is **not open-source software** — it is licensed under the Elastic License 2.0 as part of Datus Studio; the open-source component is **datus-agent**, the CLI data agent.
 
 ## Practical checklist before adopting agentic analytics
 

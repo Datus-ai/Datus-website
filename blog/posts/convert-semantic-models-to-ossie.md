@@ -3,7 +3,7 @@ title: "Convert Semantic Models to Ossie: Cube, dbt and More"
 description: "Convert semantic models to Ossie from Cube, dbt, Omni and Power BI. Try ready-made examples, prepare complete source files, and validate the resulting YAML."
 author: "Evan Paul"
 date: 2026-10-19
-lastmod: 2026-10-19
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -31,6 +31,8 @@ head:
       href: https://datus.ai/blog/convert-semantic-models-to-ossie/
 ---
 
+For the standard and what happens after conversion, see the [Apache Ossie guide](/apache-ossie/).
+
 # Convert Semantic Models to Ossie: Cube, dbt and More
 
 ## TL;DR
@@ -41,7 +43,7 @@ head:
 - Import support and export support are separate capabilities. A platform appearing in an export menu does not establish a reverse conversion path.
 - Keep the source snapshot, configuration, generated YAML and diagnostics together. Conversion prepares an interchange document; it does not move warehouse data or reproduce every platform's runtime behavior.
 
-**Apache Ossie**, formerly Open Semantic Interchange (OSI), is an open specification for exchanging semantic metadata. It is the destination format in this tutorial, rather than a hosted platform you must migrate your warehouse into. The [Apache Ossie / OSI overview](/blog/open-semantic-interchange-osi/) covers the standard itself; here the starting point is a model that already lives in another system.
+**Apache Ossie**, formerly Open Semantic Interchange (OSI), is an open specification for exchanging semantic metadata. It is the destination format in this tutorial, rather than a hosted platform you must migrate your warehouse into. The [Apache Ossie guide](/apache-ossie/) covers the standard itself; here the starting point is a model that already lives in another system.
 
 The practical question is which files express the model you intend to exchange. An export button can produce a report, a workbook, a logical model or a compiled semantic artifact, and those objects are not interchangeable. This tutorial follows the import workflow, then shows how to decide whether the resulting definition is ready for a second consumer. If you already have Ossie YAML and need another platform's representation, use the companion [Ossie export conversion guide](/blog/apache-ossie-converters/).
 
@@ -192,7 +194,7 @@ Editing takes place in browser memory, while conversion sends the current files 
 ## Related articles
 
 - [Apache Ossie converters: YAML to dbt, Cube and more](/blog/apache-ossie-converters/) — the companion export workflow
-- [Apache Ossie / Open Semantic Interchange](/blog/open-semantic-interchange-osi/) — the interchange standard
+- [Apache Ossie guide](/apache-ossie/) — the interchange standard
 - [dbt Semantic Layer and MetricFlow](/blog/dbt-semantic-layer-metricflow/) — authoring and executing dbt semantics
 - [Apache Ossie and Dosi quickstart](/blog/apache-ossie-dosi-quickstart/) — an execution walkthrough after conversion
 - [Semantic model examples](/blog/semantic-model-examples/) — inspect model definitions and expected query results
