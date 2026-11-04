@@ -8,10 +8,11 @@ import { useHref, useLocale, useT } from '../../../i18n/LocaleContext';
 import { UI } from '../../../i18n/ui';
 import { studioCtaUrl } from '../../../lib/studio-cta';
 import { COMPOSABLE_CONTENT } from './content';
+import BuyerFit from './BuyerFit';
+import StudioFlow from './StudioFlow';
 import './style.css';
 
 const DASHBOARD_DOCS = 'https://docs.datus.ai/dev/subagent/gen_visual_dashboard/';
-const REPORT_DOCS = 'https://docs.datus.ai/dev/subagent/gen_visual_report/';
 
 function HeroPreview({ t }: { t: typeof COMPOSABLE_CONTENT.en.hero }) {
   return <div className="ca-hero-visual" role="img" aria-label={`${t.metric}: ${t.total}, ${t.customers}`}>
@@ -53,7 +54,8 @@ export default function ComposableAnalyticsPage() {
 
     <section className="ca-section ca-section--tinted" aria-labelledby="ca-outputs-title"><div className="container ca-section-inner"><div className="ca-section-head"><span className="eyebrow">{t.outputs.eyebrow}</span><h2 id="ca-outputs-title">{t.outputs.title}</h2><p>{t.outputs.lead}</p></div><div className="ca-output-grid">{t.outputs.cards.map((card,i)=><article key={card.label}><span className="ca-output-number">0{i+1} / {card.label}</span><h3>{card.title}</h3><p>{card.body}</p><small>{card.detail}</small></article>)}</div><div className="ca-existing"><LayoutDashboard size={22}/><p>{t.outputs.existing}</p><a href={l('/solutions/ai-bi/')} aria-label={ui.nav.aiBi}><ArrowUpRight size={20}/></a></div></div></section>
 
-    <section className="ca-section" aria-labelledby="ca-proof-title"><div className="container ca-section-inner ca-proof"><div><span className="eyebrow">{t.proof.eyebrow}</span><h2 id="ca-proof-title">{t.proof.title}</h2><p>{t.proof.lead}</p><div className="ca-proof-links"><a href={DASHBOARD_DOCS} target="_blank" rel="noopener noreferrer">{t.proof.docs}<ArrowUpRight size={15}/></a><a href={REPORT_DOCS} target="_blank" rel="noopener noreferrer">{t.proof.reportDocs}<ArrowUpRight size={15}/></a><a href={l('/solutions/semantic-layer/')}>{t.proof.semanticLink}<ArrowUpRight size={15}/></a></div></div><div className="ca-terminal"><div className="ca-terminal-top"><span className="ca-window-dots"><i/><i/><i/></span><span>{t.proof.commandLabel}</span></div><pre><code><span>$</span> {t.proof.commandOne}{'\n'}<span>&gt;</span> {t.proof.commandTwo}</code></pre><p>{t.proof.note}</p></div></div></section>
+    <BuyerFit/>
+    <StudioFlow/>
 
     <FAQ items={t.faqs} heading={t.faqTitle} currentUrl="/solutions/composable-analytics/"/>
     <section className="container ca-related" aria-labelledby="ca-related-title"><h2 id="ca-related-title">{t.relatedTitle}</h2><div>{t.related.map(item=><a key={item.href} href={l(item.href)}>{item.title}<ArrowUpRight size={15}/></a>)}</div></section>

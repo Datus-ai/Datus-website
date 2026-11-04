@@ -49,10 +49,10 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogDescription: "从业务问题到可核查的答案：共享指标、Agent 辅助分析与可检查的 SQL。",
   },
   "/solutions/composable-analytics/": {
-    title: "Composable Analytics：共享指标与可调整的分析视图 — Datus",
-    description: "让 Datus Agent 根据具体问题生成和修改 HTML 大盘，用 DOSI 中可审核的语义定义复用指标口径。了解实时筛选、静态报告和现有 BI 的配合方式。",
+    title: "Composable Analytics：共享指标与灵活大盘 — Datus",
+    description: "在 Datus Studio 连接数仓、复用经审核的指标，用 Agent 生成、修改并发布大盘。了解与现有 BI 工具的配合方式。",
     ogTitle: "Composable Analytics 解决方案 — Datus",
-    ogDescription: "指标定义保持一致，分析视图随问题调整。了解 Datus Agent 与 DOSI 的工作方式。",
+    ogDescription: "在 Datus Studio 中复用经审核的指标，生成灵活大盘，再按权限分享给团队。",
   },
   "/databases/snowflake/": {
     title: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
