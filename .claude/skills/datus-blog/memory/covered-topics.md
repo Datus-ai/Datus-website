@@ -19,6 +19,7 @@ this agent)".
 - `semantic-layer-vs-ontology` — semantic layer vs ontology for agents
 - `what-is-data-catalog` — catalog vs agent context
 - `what-is-data-agent` — data agent vs data engineering agent
+  - Refreshed 2026-11-04: definition-first title and opening; overlapping workflow roles; executed illustrative SQLite revenue example, limits and evaluation checklist; corrected Datus Agent/DOSI boundaries; reciprocal engineering-guide link. Original URL/date retained. GlossaryTerm, Gate A MERGE, investment 4.4/5, editorial self-review 85/100 (A), 14 checks pass. Sources: Microsoft Fabric concepts, Snowflake agent guide, arXiv:2510.23587, Datus Agent and DOSI docs. PR https://github.com/Datus-ai/Datus-website/pull/133 (open).
 - `what-is-text-to-sql` — text-to-SQL/NL2SQL; context matters
 - `what-is-schema-linking` — schema linking; dual-dimension context (GOLD-STANDARD exemplar)
 - `rag-data-engineering` — RAG for data engineering; retrieval grounds agents
