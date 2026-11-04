@@ -707,6 +707,7 @@ land on the new article by design.
 
 
 ### what-is-conversational-bi
+- Refreshed 2026-11-04: front-loaded BI/call-analytics distinction; added checked illustrative quarter/region/channel totals and explicit filter-reset case; acceptance checklist; updated DOSI execution boundaries and removed stale dialect count; linked semantic-model-examples. Original URL/date, diagram and approved shorter style retained. Validation: build:all and SEO checks pass; desktop/mobile checked; article check 14 PASS / 1 inherited short-form WARN / 0 FAIL. Sources: IBM Research, current Looker query documentation and DOSI agent guide. Approved in preview before submission. PR https://github.com/Datus-ai/Datus-website/pull/134 (open).
 - Title: What Is Conversational BI? From Questions to Trusted Metrics
 - Target keyword: conversational BI (conversational business intelligence, conversational analytics)
 - Angle: user-directed follow-ups preserve reviewed business meaning; Dosi shares Apache Ossie definitions across interfaces and supported sources. Retail walkthrough and native SVG diagram; distinct from autonomous agentic analytics.
