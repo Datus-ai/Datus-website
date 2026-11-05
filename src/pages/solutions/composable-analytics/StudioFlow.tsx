@@ -22,6 +22,6 @@ export default function StudioFlow() {
           <div className="ca-studio-artifact"><div className="ca-studio-artifact-head"><strong>{t.previewArtifact}</strong><span>{t.previewStatus}</span></div><div className="ca-studio-chart"><div><small>{t.previewMetric}</small><b>{t.previewTotal}</b></div><div className="ca-studio-bars"><i/><i/><i/><i/><i/></div></div><div className="ca-studio-artifact-lines"><i/><i/><i/></div></div>
           <div className="ca-studio-actions"><span>{t.previewShare}</span><span>{t.previewPublish}<ArrowRight size={13}/></span></div>
         </div></div>
-    </div><p className="ca-caption">{t.note}</p></div>
+    </div></div>
   </div></section>;
 }

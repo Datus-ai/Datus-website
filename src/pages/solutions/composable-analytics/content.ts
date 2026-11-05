@@ -19,7 +19,6 @@ const en = {
     total: '$13,821.89',
     customers: '3 Premier customers',
     chartLabel: 'Margin by customer',
-    sourceNote: 'Northstar fictional demo · recorded sample values',
   },
   definition: {
     eyebrow: 'The idea',
@@ -33,7 +32,6 @@ const en = {
     variableBody: 'Cards, charts, tables, filters, and visual emphasis can change as the investigation moves.',
     modelLabel: 'Reviewed metric',
     destinations: ['Live dashboard', 'Focused investigation', 'HTML report'],
-    caption: 'Conceptual separation. Whether a query uses DOSI depends on the configured semantic adapter and the metric selected.',
   },
   demo: {
     eyebrow: 'See it in practice',
@@ -61,7 +59,6 @@ const en = {
       { name: 'Daniel Brooks', margin: '$3,308.16', orders: '7', rate: '0%', width: '45%' },
       { name: 'Sofia Rivera', margin: '$3,188.49', orders: '6', rate: '16.7%', width: '44%' },
     ],
-    note: 'Illustrative HTML dashboard using recorded Northstar fixture values. It does not run a live query on this page.',
   },
   workflow: {
     eyebrow: 'How Datus works',
@@ -75,17 +72,15 @@ const en = {
     source: 'Existing metric or SQL',
     agent: 'Datus Agent',
     output: 'Published view',
-    runtime: 'Published Studio dashboards run authorized live queries through the Datus backend. Local Agent dashboards use a separate datus --web runtime.',
-    boundary: 'Datus Studio provides the project and publishing flow. Datus Agent composes the view. Where a compatible Apache Ossie model is configured, DOSI executes the semantic query.',
   },
   outputs: {
     eyebrow: 'Choose the right output',
     title: 'Different audiences need different artifacts.',
     lead: 'A generated page can be a working view or a maintained asset. Decide how it will get data and who must review it before you share it.',
     cards: [
-      { label: 'Explore', title: 'A view for a changing question', body: 'Build a focused HTML dashboard, follow a new breakdown, and keep revising the page while you investigate.', relatedBefore: ' See how this supports ', relatedText: 'AI/BI analysis', relatedHref: '/solutions/ai-bi/', relatedAfter: '.', detail: 'Useful for one-off analysis and fast iteration.' },
-      { label: 'Monitor', title: 'A live view for repeated checks', body: 'Publish a dashboard with filters and a configured data source. The Studio viewer queries through the Datus backend when an authorized reader changes a filter.', relatedBefore: ' Explore ', relatedText: 'agent-built dashboards', relatedHref: '/blog/is-the-dashboard-dead/', relatedAfter: '.', detail: 'Check data access and row policies before publishing.' },
-      { label: 'Share', title: 'A report with fixed results', body: 'Publish a reviewed HTML report as a stable, read-only viewer experience for a briefing or follow-up conversation.', relatedBefore: ' See how ', relatedText: 'shared semantic definitions', relatedHref: '/solutions/semantic-layer/', relatedAfter: ' support reporting.', detail: 'A report snapshot does not rerun its queries when opened.' },
+      { label: 'Explore', title: 'A view for a changing question', body: 'Build a focused HTML dashboard, follow a new breakdown, and keep revising the page while you investigate.', relatedBefore: ' See how this supports ', relatedText: 'AI/BI analysis', relatedHref: '/solutions/ai-bi/', relatedAfter: '.' },
+      { label: 'Monitor', title: 'A live view for repeated checks', body: 'Publish a dashboard with filters and a configured data source. The Studio viewer queries through the Datus backend when an authorized reader changes a filter. Check data access and row policies before publishing.', relatedBefore: ' Explore ', relatedText: 'agent-built dashboards', relatedHref: '/blog/is-the-dashboard-dead/', relatedAfter: '.' },
+      { label: 'Share', title: 'A report with fixed results', body: 'Publish a reviewed HTML report as a stable, read-only viewer experience for a briefing or follow-up conversation. A report snapshot does not rerun its queries when opened.', relatedBefore: ' See how ', relatedText: 'shared semantic definitions', relatedHref: '/solutions/semantic-layer/', relatedAfter: ' support reporting.' },
     ],
     existing: 'Already have BI dashboards? Keep them where they are and use a shared semantic model through supported interfaces, or move selected workflows to Datus-generated HTML after review.',
   },
@@ -145,7 +140,6 @@ const en = {
     docs: 'Read the dashboard guide',
     reportDocs: 'Read the report guide',
     semanticLink: 'Explore the semantic layer',
-    note: 'This is a product-flow illustration using fictional Northstar data. Studio provides the project, publishing, viewer, and access workflow; DOSI supplies semantic execution where configured. Published dashboards use the Datus backend, while the local Agent CLI is a separate build path.',
   },
   faqTitle: 'Questions about composable analytics',
   faqs: [
@@ -187,7 +181,6 @@ export const COMPOSABLE_CONTENT: Record<Locale, typeof en> = { en, zh: {
     total: '$13,821.89',
     customers: '3 位 Premier 客户',
     chartLabel: '按客户查看贡献利润',
-    sourceNote: 'Northstar 虚构演示 · 已记录的样本数值',
   },
   definition: {
     eyebrow: '核心思路',
@@ -201,7 +194,6 @@ export const COMPOSABLE_CONTENT: Record<Locale, typeof en> = { en, zh: {
     variableBody: '卡片、图表、表格、筛选项和视觉重点可以随着分析过程变化。',
     modelLabel: '经审核的指标',
     destinations: ['实时大盘', '专题分析', 'HTML 报告'],
-    caption: '概念结构。查询是否使用 DOSI，取决于已配置的语义适配器和所选指标。',
   },
   demo: {
     eyebrow: '看看实际效果',
@@ -229,7 +221,6 @@ export const COMPOSABLE_CONTENT: Record<Locale, typeof en> = { en, zh: {
       { name: 'Daniel Brooks', margin: '$3,308.16', orders: '7', rate: '0%', width: '45%' },
       { name: 'Sofia Rivera', margin: '$3,188.49', orders: '6', rate: '16.7%', width: '44%' },
     ],
-    note: '使用已记录的 Northstar 样本数值制作的 HTML 大盘示意。本页面不会执行实时查询。',
   },
   workflow: {
     eyebrow: 'Datus 的工作方式',
@@ -243,17 +234,15 @@ export const COMPOSABLE_CONTENT: Record<Locale, typeof en> = { en, zh: {
     source: '现有指标或 SQL',
     agent: 'Datus Agent',
     output: '已发布的视图',
-    runtime: '已发布的 Studio 大盘通过 Datus 后端执行有权限的实时查询；本地 Agent 大盘使用独立的 datus --web 运行环境。',
-    boundary: 'Datus Studio 提供项目与发布流程，Datus Agent 负责生成视图。配置兼容的 Apache Ossie 模型后，DOSI 负责执行语义查询。',
   },
   outputs: {
     eyebrow: '选择合适的产物',
     title: '不同受众，需要不同形式的分析结果。',
     lead: '生成的页面可以是临时工作视图，也可以成为长期维护的产物。分享前，要确认它如何获取数据，以及由谁审核。',
     cards: [
-      { label: '探索', title: '为当前问题生成视图', body: '创建聚焦问题的 HTML 大盘，按新的维度追查，并随着调查继续调整页面。', relatedBefore: '了解', relatedText: 'AI/BI 分析方案', relatedHref: '/solutions/ai-bi/', relatedAfter: '。', detail: '适合一次性分析与快速迭代。' },
-      { label: '监控', title: '为重复检查保留实时视图', body: '发布带筛选项并连接数据源的大盘。有权限的读者更改筛选条件时，Studio Viewer 会通过 Datus 后端重新查询。', relatedBefore: '了解', relatedText: 'Agent 生成大盘', relatedHref: '/blog/is-the-dashboard-dead/', relatedAfter: '的实践。', detail: '发布前应检查数据访问权限和行级策略。' },
-      { label: '分享', title: '用固定结果制作报告', body: '将经审核的 HTML 报告发布为稳定、只读的 Viewer 页面，供汇报或后续追问。', relatedBefore: '了解', relatedText: '共享语义定义', relatedHref: '/solutions/semantic-layer/', relatedAfter: '如何服务于报告。', detail: '打开报告快照不会重新执行查询。' },
+      { label: '探索', title: '为当前问题生成视图', body: '创建聚焦问题的 HTML 大盘，按新的维度追查，并随着调查继续调整页面。', relatedBefore: '了解', relatedText: 'AI/BI 分析方案', relatedHref: '/solutions/ai-bi/', relatedAfter: '。' },
+      { label: '监控', title: '为重复检查保留实时视图', body: '发布带筛选项并连接数据源的大盘。有权限的读者更改筛选条件时，Studio Viewer 会通过 Datus 后端重新查询。发布前应检查数据访问权限和行级策略。', relatedBefore: '了解', relatedText: 'Agent 生成大盘', relatedHref: '/blog/is-the-dashboard-dead/', relatedAfter: '的实践。' },
+      { label: '分享', title: '用固定结果制作报告', body: '将经审核的 HTML 报告发布为稳定、只读的 Viewer 页面，供汇报或后续追问。打开报告快照不会重新执行查询。', relatedBefore: '了解', relatedText: '共享语义定义', relatedHref: '/solutions/semantic-layer/', relatedAfter: '如何服务于报告。' },
     ],
     existing: '已经有 BI 大盘？可以继续使用，并通过受支持的接口复用共享语义模型；也可以在审核后，将部分工作流迁移到 Datus 生成的 HTML。',
   },
@@ -313,7 +302,6 @@ export const COMPOSABLE_CONTENT: Record<Locale, typeof en> = { en, zh: {
     docs: '阅读大盘生成指南',
     reportDocs: '阅读报告生成指南',
     semanticLink: '了解语义层',
-    note: '此处使用虚构的 Northstar 数据示意产品流程。Studio 提供项目、发布、查看与权限流程；配置后，DOSI 负责语义查询。已发布的大盘使用 Datus 后端，本地 Agent CLI 则是另一条生成路径。',
   },
   faqTitle: '关于 Composable Analytics 的常见问题',
   faqs: [
