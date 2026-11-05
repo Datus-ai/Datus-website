@@ -218,6 +218,18 @@
     "favicon": "/brand-mark.svg"
   },
   {
+    "path": "/solutions/composable-analytics/",
+    "entry": "/src/pages/solutions/composable-analytics/main.tsx",
+    "title": "Composable Analytics: Shared Metrics, Adaptable Dashboards | Datus",
+    "description": "Connect your warehouse in Datus Studio, reuse reviewed metrics, and create, revise, and publish agent-built dashboards. See how it fits your BI stack.",
+    "image": "/og/solutions-composable-analytics-1200x630.png",
+    "ogTitle": "Composable Analytics: Change the View, Keep the Definition | Datus",
+    "ogDescription": "Use Datus Studio to turn reviewed metrics into adaptable dashboards, then publish the views your team needs.",
+    "imageAlt": "Composable analytics with shared metric definitions and adaptable dashboards",
+    "author": false,
+    "favicon": "/brand-mark.svg"
+  },
+  {
     "path": "/support/",
     "entry": "/src/pages/support/main.tsx",
     "title": "Support & Help — Datus",
