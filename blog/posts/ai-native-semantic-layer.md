@@ -4,7 +4,7 @@ description: "Why we built Dosi: an AI-native semantic layer is an open spec plu
 author: "Harrison Zhao"
 date: 2026-09-07
 tags: insight
-lastmod: 2026-09-13
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -36,7 +36,7 @@ head:
 
 *— Why we built Dosi*
 
-> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
+> **Apache Ossie (aka OSI).** **Open Semantic Interchange (OSI)** was renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the open standard, community, and mission are unchanged. Dosi is one native execution engine that implements it; see [Open Semantic Interchange, now Apache Ossie](/apache-ossie/) for the standard itself. This article uses **Apache Ossie / OSI** interchangeably.
 
 ## TL;DR
 

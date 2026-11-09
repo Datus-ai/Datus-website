@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "../../../i18n/config";
 
 export interface OsiPlaygroundCopy {
-  hero: { eyebrow: string; heading: string; lead: string; stats: string[] };
+  hero: { eyebrow: string; heading: string; lead: string; guideLink: string; stats: string[] };
   breadcrumbTools: string;
   overview: { eyebrow: string; title: string; lead: string; prose: ReactNode[] };
   mapping: {
@@ -31,6 +31,7 @@ export interface OsiPlaygroundCopy {
 
 const EN: OsiPlaygroundCopy = {
   hero: {
+    guideLink: "Read the Apache Ossie standard guide",
     eyebrow: "OSI Playground",
     heading: "The Open-Source OSI Playground for MetricFlow",
     lead: "Validate MetricFlow YAML against the Open Semantic Interchange spec, convert it to OSI in one click, and diff the two formats side-by-side. Runs entirely in your browser — no upload, no signup.",
@@ -135,6 +136,7 @@ const EN: OsiPlaygroundCopy = {
 
 const ZH: OsiPlaygroundCopy = {
   hero: {
+    guideLink: "阅读 Apache Ossie 规范指南",
     eyebrow: "OSI Playground",
     heading: "面向 MetricFlow 的开源 OSI Playground",
     lead: "按 Open Semantic Interchange 规范校验 MetricFlow YAML，一键转换成 OSI，并左右对比两种格式的差异。全程在浏览器里运行——不上传，也不用注册。",

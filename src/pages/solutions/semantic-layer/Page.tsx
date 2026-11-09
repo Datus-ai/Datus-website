@@ -48,6 +48,7 @@ export default function SemanticLayerSolution() {
    <h2 id="solution-consumers-title">{x.consumerTitle}</h2><p className="lead">{x.consumerLead}</p>
    <SemanticReuse/>
   </section>
+  <div className="container" style={{paddingBlock:24}}><a className="solution-link" href={l("/apache-ossie/")}>{t.ossieGuide}</a></div>
   <SelectionGuide/>
   <FAQ items={x.faqs} heading={x.faqTitle} currentUrl="/solutions/semantic-layer/"/>
   <section className="container solution-reading" aria-labelledby="solution-reading-title"><h2 id="solution-reading-title">{x.reading}</h2><div>{x.resources.map(item => <a key={item.href} className="solution-link" href={l(item.href)}>{item.title}<ArrowUpRight size={15}/></a>)}</div></section>

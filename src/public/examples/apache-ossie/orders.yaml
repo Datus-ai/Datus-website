@@ -1,0 +1,30 @@
+version: "0.2.0.dev0"
+name: orders_model
+description: A small model for inspecting generated SQL
+datasets:
+  - name: orders
+    source: main.orders
+    primary_key: [order_id]
+    fields:
+      - name: order_id
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: order_id
+      - name: status
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: status
+      - name: amount
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: amount
+metrics:
+  - name: revenue
+    description: Total order amount
+    expression:
+      dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(orders.amount)

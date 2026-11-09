@@ -82,6 +82,7 @@ export default function OsiPlaygroundPage() {
           <p className="lead" style={{ maxWidth: 720 }}>
             {t.hero.lead}
           </p>
+          <a href={l("/apache-ossie/")} style={{ display: "inline-flex", marginTop: 14, color: "var(--brand-bright)", fontSize: 14 }}>{t.hero.guideLink}</a>
           <div
             style={{
               display: "flex",

@@ -3,7 +3,7 @@ title: "From Semantic Layer to Ontology: Architecture for AI Agents"
 description: "AI data agents need more than metrics and more than a glossary. Learn how to build an ontology, an entity plane and typed query functions on a semantic layer."
 author: "Evan Paul"
 date: 2026-09-14
-lastmod: 2026-09-14
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -283,6 +283,6 @@ No. The first version is virtual: Apache Ossie semantic metadata feeds a semanti
 - [Semantic layer vs ontology: why AI agents need both](/blog/semantic-layer-vs-ontology/) — the comparison this architecture answers
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — the governed computation plane at the base
 - [What is an ontology?](/blog/what-is-ontology/) — entities, relationships and rules, defined
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the portable spec behind Apache Ossie
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the portable spec behind Apache Ossie
 - [The first native Apache Ossie engine](/blog/first-native-apache-ossie-engine/) — validate, compile and plan in practice
 - [Dosi MCP: a semantic layer for agents](/blog/dosi-mcp-semantic-layer-for-agents/) — how these surfaces reach an agent

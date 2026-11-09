@@ -3,7 +3,7 @@ title: "The Datus OSI Semantic Adapter: OSI In, MetricFlow Out"
 description: "The Datus OSI (Apache Ossie) semantic adapter authors vendor-neutral YAML, validates it, and queries metrics via MetricFlow without leaking backend fields into source models."
 author: "Evan Paul"
 date: 2026-08-17
-lastmod: 2026-08-17
+lastmod: 2026-10-30
 head:
   - - meta
     - name: keywords
@@ -36,7 +36,7 @@ head:
 
 > **Apache Ossie (aka OSI).** This page covers **Open Semantic Interchange (OSI)**, renamed **Apache Ossie** when it entered the [Apache Incubator](https://incubator.apache.org/clutch/ossie.html) in July 2026 — the spec, community, and mission are unchanged. See [Open Semantic Interchange, now Apache Ossie](/blog/open-semantic-interchange-osi/) for the full story. This article uses **Apache Ossie / OSI** interchangeably. The Datus OSI Semantic Adapter is a Datus converter that consumes the open Apache Ossie / OSI spec — not the standard itself.
 
-The Datus OSI semantic adapter lets the agent author metrics in vendor-neutral [Open Semantic Interchange](/blog/open-semantic-interchange-osi/) YAML, validate them, and query the certified ones through MetricFlow — without writing MetricFlow fields into the source model.
+The Datus OSI semantic adapter lets the agent author metrics in vendor-neutral [Open Semantic Interchange](/apache-ossie/) YAML, validate them, and query the certified ones through MetricFlow — without writing MetricFlow fields into the source model.
 
 ## TL;DR
 
@@ -56,7 +56,7 @@ The Datus OSI adapter exists so generation stays on the portable side of that li
 
 ## 2. OSI in, MetricFlow out: the adapter's two jobs
 
-The adapter is a one-way boundary between the document and the compiler: [OSI in](/blog/open-semantic-interchange-osi/), MetricFlow out.
+The adapter is a one-way boundary between the document and the compiler: [OSI in](/apache-ossie/), MetricFlow out.
 
 > `datus-semantic-osi` loads strict OSI core YAML, validates the schema, compiles it to Datus Semantic IR, and lowers that IR to an execution backend. In 0.3 the backend is MetricFlow. OSI is what users and generation agents write. MetricFlow YAML is a disposable plan, not the file you maintain.
 
@@ -108,7 +108,7 @@ That "not yet" is the honest part of the pitch. The adapter is not a replacement
 
 The Datus OSI semantic adapter is the product connection between a vendor-neutral authoring format and a governed query path: OSI in the repo, validation before Knowledge, MetricFlow at execution time, `ask_metrics` at the question. The work it saves is not typing YAML. It is the second copy of the same KPI that appears the first time someone treats an execution field as a definition — and the draft that would have reached Knowledge if the gate had not stopped it.
 
-The standard itself is [Open Semantic Interchange](/blog/open-semantic-interchange-osi/). The layer split is [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow/). The store that receives a published metric is [Datus Knowledge](/blog/introducing-datus-knowledge/). When the question is a named KPI, the worker that should answer it is a [Datus subagent](/blog/introducing-datus-subagents/) — not a general chat inventing SQL.
+The standard itself is [Open Semantic Interchange](/apache-ossie/). The layer split is [Apache Ossie / OSI vs MetricFlow](/blog/osi-vs-dbt-metricflow/). The store that receives a published metric is [Datus Knowledge](/blog/introducing-datus-knowledge/). When the question is a named KPI, the worker that should answer it is a [Datus subagent](/blog/introducing-datus-subagents/) — not a general chat inventing SQL.
 
 ## Frequently asked questions
 
@@ -134,7 +134,7 @@ No. MetricFlow and OSI are peer adapters. Switch the global semantic layer when 
 
 ## Related articles
 
-- [Open Semantic Interchange (OSI)](/blog/open-semantic-interchange-osi/) — the standard the adapter authors.
+- [Open Semantic Interchange (OSI)](/apache-ossie/) — the standard the adapter authors.
 - [Apache Ossie / OSI vs dbt MetricFlow](/blog/osi-vs-dbt-metricflow/) — the two layers the adapter bridges.
 - [Introducing Datus Knowledge](/blog/introducing-datus-knowledge/) — where the authored models live.
 - [Introducing Datus Subagents](/blog/introducing-datus-subagents/) — the workers that query these metrics.
