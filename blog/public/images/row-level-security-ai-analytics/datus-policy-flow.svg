@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 950" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative Datus row-level access flow for a regional manager</title>
+  <desc id="desc">A project admin configures a store scope attribute and SQL policy in Datus Studio. An East regional manager asks a question. Studio resolves store IDs from the authenticated account and sends a request-specific policy context to Datus Agent. Direct SQL and DOSI metric reads have separate row-filter policy paths that must each be tested. The scoped result appears in live chat or dashboards; a published report is a snapshot.</desc>
+  <defs>
+    <linearGradient id="page" x2="1" y2="1"><stop stop-color="#faf9ff"/><stop offset="1" stop-color="#f0ebff"/></linearGradient>
+    <linearGradient id="violet" x2="1" y2="1"><stop stop-color="#7864ee"/><stop offset="1" stop-color="#5944ca"/></linearGradient>
+    <style>
+      text{font-family:Inter,system-ui,Arial,sans-serif;fill:#29253a}
+      .title{font-size:33px;font-weight:760;letter-spacing:-.8px}
+      .subtitle{font-size:18px;fill:#675f78}
+      .eyebrow{font-size:15px;font-weight:760;letter-spacing:1.5px;fill:#735fc2}
+      .heading{font-size:24px;font-weight:740}
+      .body{font-size:18px;fill:#575267}
+      .small{font-size:16px;fill:#675f78}
+      .code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:17px;fill:#5743b3}
+      .card{fill:#fff;stroke:#d9d1ef;stroke-width:2}
+      .step{fill:url(#violet)}
+      .stepnum{font-size:19px;font-weight:760;fill:#fff;text-anchor:middle}
+      .flow{fill:none;stroke:#9b87e2;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+      .pill{fill:#eee9ff;stroke:#d9cdfd}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 8 5 1 9" fill="none" stroke="#9b87e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+
+  <rect width="1200" height="950" rx="30" fill="url(#page)"/>
+  <circle cx="1118" cy="76" r="120" fill="#ddd4ff" opacity=".26"/>
+  <path d="M0 925c160-36 282-15 420-2s276-32 438-13 246 5 342-30" fill="none" stroke="#d8cdf7" stroke-width="2"/>
+
+  <text x="54" y="62" class="eyebrow">DATUS IMPLEMENTATION · ILLUSTRATIVE RETAIL EXAMPLE</text>
+  <text x="54" y="108" class="title">Configured once. Enforced for every caller.</text>
+
+  <!-- Project configuration -->
+  <rect class="card" x="54" y="139" width="1092" height="119" rx="20"/>
+  <circle class="step" cx="86" cy="174" r="19"/><text class="stepnum" x="86" y="181">1</text>
+  <text x="119" y="180" class="heading">Set up the policy in Datus Studio</text>
+  <text x="119" y="215" class="body">DOSI project · <tspan class="code">store_ids</tspan> attribute · SQL <tspan class="code">row_filter</tspan></text>
+  <rect class="pill" x="768" y="158" width="346" height="48" rx="13"/>
+  <text x="785" y="189" class="code">store_id IN (:store_ids)</text>
+
+  <!-- Request and trusted identity resolution -->
+  <path class="flow" d="M322 258v32" marker-end="url(#arrow)"/>
+  <rect class="card" x="54" y="301" width="510" height="137" rx="20"/>
+  <circle class="step" cx="86" cy="338" r="19"/><text class="stepnum" x="86" y="345">2</text>
+  <text x="119" y="344" class="heading">East regional manager asks</text>
+  <text x="119" y="378" class="body">“What was repeat purchase rate?”</text>
+  <text x="119" y="408" class="small">Signed in to the project; prompt has no access rule.</text>
+
+  <path class="flow" d="M566 369h45" marker-end="url(#arrow)"/>
+  <rect class="card" x="636" y="301" width="510" height="137" rx="20"/>
+  <circle class="step" cx="668" cy="338" r="19"/><text class="stepnum" x="668" y="345">3</text>
+  <text x="701" y="344" class="heading">Studio resolves the caller</text>
+  <text x="701" y="377" class="code">store_ids = [S101, S102, S103]</text>
+  <text x="701" y="408" class="small">Server-side attribute lookup; missing scope is denied.</text>
+
+  <!-- Agent boundary -->
+  <path class="flow" d="M892 439v31" marker-end="url(#arrow)"/>
+  <rect class="card" x="54" y="481" width="1092" height="113" rx="20"/>
+  <rect x="54" y="481" width="14" height="113" rx="7" fill="#725ce5"/>
+  <circle class="step" cx="86" cy="519" r="19"/><text class="stepnum" x="86" y="526">4</text>
+  <text x="119" y="525" class="heading">Datus Agent receives request-specific <tspan class="code">policy_context</tspan></text>
+  <text x="119" y="557" class="body">Agent validates the server-set context, then uses the configured policy for each read path.</text>
+  <text x="119" y="583" class="small">Neither the prompt nor the browser supplies <tspan class="code">store_ids</tspan>.</text>
+
+  <!-- Separate read paths -->
+  <path class="flow" d="M600 594v21H308v19" marker-end="url(#arrow)"/>
+  <path class="flow" d="M600 615h292v19" marker-end="url(#arrow)"/>
+  <rect class="card" x="54" y="646" width="510" height="161" rx="20"/>
+  <circle class="step" cx="86" cy="684" r="19"/><text class="stepnum" x="86" y="691">5A</text>
+  <text x="119" y="690" class="heading">Direct SQL read</text>
+  <text x="119" y="722" class="body">SQL <tspan class="code">row_filter</tspan> matches physical tables.</text>
+  <text x="119" y="751" class="body">Rewrite SQL, validate again, then query</text>
+  <text x="119" y="780" class="body">only the permitted store rows.</text>
+
+  <rect class="card" x="636" y="646" width="510" height="161" rx="20"/>
+  <circle class="step" cx="668" cy="684" r="19"/><text class="stepnum" x="668" y="691">5B</text>
+  <text x="701" y="690" class="heading">DOSI metric read</text>
+  <text x="701" y="722" class="body">A separate <tspan class="code">metric_row_filter</tspan> applies</text>
+  <text x="701" y="751" class="body">before aggregation when configured.</text>
+  <text x="701" y="780" class="small">Test this path separately from the SQL rule.</text>
+
+  <!-- Output -->
+  <path class="flow" d="M308 807v18h292"/>
+  <path class="flow" d="M892 807v18H600v14" marker-end="url(#arrow)"/>
+  <rect x="54" y="849" width="1092" height="74" rx="19" fill="#e5dcff" stroke="#bba9f5" stroke-width="2"/>
+  <circle class="step" cx="86" cy="883" r="19"/><text class="stepnum" x="86" y="890">6</text>
+  <text x="119" y="878" class="heading">Return an authorized answer to live chat or dashboard</text>
+  <text x="119" y="907" class="small">A published static report is a snapshot; later readers are not filtered again.</text>
+</svg>
