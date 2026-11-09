@@ -57,6 +57,7 @@ const en = {
  ],
  reading: 'Explore the ideas. Put them into practice.',
  resources: [
+  { title: 'Ontology for AI agents', href: '/solutions/ontology/' },
   { title: 'What is a semantic layer?', href: '/blog/what-is-semantic-layer/' },
   { title: 'Semantic model examples', href: '/blog/semantic-model-examples/' },
   { title: 'Apache Ossie and DOSI quickstart', href: '/blog/apache-ossie-dosi-quickstart/' },
@@ -121,6 +122,7 @@ export const SOLUTION_EXPERIENCE: Record<Locale, typeof en> = { en, zh: {
  ],
  reading: '深入了解概念，开始实际使用。',
  resources: [
+  { title: '面向 AI Agent 的业务本体', href: '/solutions/ontology/' },
   { title: '什么是语义层？', href: '/blog/what-is-semantic-layer/' },
   { title: '语义模型示例', href: '/blog/semantic-model-examples/' },
   { title: 'Apache Ossie 与 DOSI 快速开始', href: '/blog/apache-ossie-dosi-quickstart/' },

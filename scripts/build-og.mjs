@@ -48,6 +48,8 @@ const CARDS = [
     subtitle: "SQL, data workflows, and reusable business context. Your warehouse. Your models." },
   { slug: "products-studio", style: "home", eyebrow: "Datus Studio", title: "A shared workspace for agent-driven data work",
     subtitle: "Bring files, SQL, results, and Agent conversations together." },
+  { slug: "solutions-ontology", style: "home", eyebrow: "Ontology for AI Agents", title: "Give agents a model of your business.",
+    subtitle: "Business concepts. Named relationships. Connected data." },
   { slug: "solutions-semantic-layer", style: "home", eyebrow: "Semantic Layer", title: "Business meaning, ready for teams and agents",
     subtitle: "Apache Ossie defines the model. DOSI turns compatible definitions into native SQL." },
   { slug: "solutions-composable-analytics", style: "home", eyebrow: "Composable Analytics", title: "Change the view. Keep the definition.",

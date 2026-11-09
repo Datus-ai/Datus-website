@@ -68,3 +68,6 @@ Ontology expresses business concepts and relationships connected to the semantic
 - [Blog sitemap](https://datus.ai/blog/sitemap.xml): Canonical article URLs and article modification dates.
 
 This file is a navigation and product-summary aid. Product pages and documentation provide the current scope and limitations of each capability.
+
+## Ontology for AI agents
+- https://datus.ai/solutions/ontology/: Business concepts, named relationships, source mappings, and experimental DOSI ontology execution.

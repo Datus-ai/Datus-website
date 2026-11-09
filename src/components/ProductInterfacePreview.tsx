@@ -100,8 +100,8 @@ function ScaledScreen({kind,t,onInteract}:{kind:InterfaceKind;t:PreviewCopy;onIn
  useEffect(()=>{const el=ref.current;if(!el)return;const observer=new ResizeObserver(([entry])=>{if(entry.contentRect.width>0)setWidth(entry.contentRect.width)});observer.observe(el);return()=>observer.disconnect()},[]);
  return <div ref={ref} className="pi-viewport" onPointerDownCapture={onInteract} onKeyDownCapture={onInteract}><div className="pi-screen" style={{transform:`scale(${width/1080})`}}><Screen kind={kind} t={t}/></div></div>
 }
-export default function ProductInterfacePreview({kind,studioStep,onStudioStepChange}:{kind:InterfaceKind;studioStep?:number;onStudioStepChange?:(step:number)=>void}) {
- const [state,setState]=useState<PreviewState>({view:'lineage',selected:'Customer',file:'business-rules.md',active:'explore',mode:'mcp',language:'curl',version:'latest',studioStep:studioStep??0,studioPaused:studioStep!==undefined,dosiPaused:false});
+export default function ProductInterfacePreview({kind,studioStep,onStudioStepChange,initialView="lineage"}:{kind:InterfaceKind;studioStep?:number;onStudioStepChange?:(step:number)=>void;initialView?:"lineage"|"ontology"|"execution"}) {
+ const [state,setState]=useState<PreviewState>({view:initialView,selected:'Customer',file:'business-rules.md',active:'explore',mode:'mcp',language:'curl',version:'latest',studioStep:studioStep??0,studioPaused:studioStep!==undefined,dosiPaused:false});
  useEffect(()=>{if(studioStep===undefined)return;setState(previous=>previous.studioStep===studioStep?previous:{...previous,studioStep,studioPaused:true,file:studioStep===0?'business-rules.md':studioStep===2?'revenue.sql':previous.file})},[studioStep]);
  const t=useT(INTERFACE_PREVIEWS);const dialog=useRef<HTMLDialogElement>(null);
  const figure=useRef<HTMLElement>(null);const [visible,setVisible]=useState(false);

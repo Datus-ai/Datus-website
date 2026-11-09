@@ -66,6 +66,12 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogTitle: "面向 Snowflake 与 AI Agent 的语义层 — Datus",
     ogDescription: "开放的定义，Snowflake 原生 SQL，团队与 Agent 共享的业务上下文。",
   },
+  "/solutions/ontology/": {
+    title: "面向 AI Agent 的本体：连接业务含义与数据 — Datus",
+    description: "用 Datus 与 DOSI 将业务概念、关系角色连接到语义模型和源数据映射。了解本体与语义层、知识图谱和 RAG 的区别，以及审核与验证方法。",
+    ogTitle: "让 AI Agent 理解业务 — Datus",
+    ogDescription: "从业务概念与具名关系，到可检查的数据查询。",
+  },
   "/solutions/semantic-layer/": {
     title: "面向团队与 AI Agent 的语义层解决方案 — Datus",
     description: "将业务关系、指标与源数据映射连接为可审核的语义层。Apache Ossie 提供开放规范，DOSI 将兼容的定义转为原生 SQL 执行。",

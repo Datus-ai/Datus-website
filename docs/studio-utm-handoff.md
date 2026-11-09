@@ -128,6 +128,8 @@ Each incoming campaign field is trimmed and limited to 100 characters. Empty, ov
 | Semantic Layer hero | `semantic_layer_hero` |
 | Semantic Layer after workflow | `semantic_layer_workflow` |
 | Semantic Layer closing | `semantic_layer_closing` |
+| Ontology solution hero | `ontology_hero` |
+| Ontology solution closing | `ontology_closing` |
 | Studio demo identifier retained in the inventory | `studio_hero_demo` |
 | Studio sign-up | `studio_closing_signup` |
 | Pricing free sign-up | `pricing_cloud_signup` |
