@@ -18,6 +18,7 @@ Ontology expresses business concepts and relationships connected to the semantic
 - [Datus](https://datus.ai/): Company positioning, product relationships, and capabilities.
 - [Semantic Layer Solution](https://datus.ai/solutions/semantic-layer/): Shared business definitions, review workflows, and semantic execution for teams and agents.
 - [AI/BI Solution](https://datus.ai/solutions/ai-bi/): AI business intelligence and data analysis grounded in maintained business context, with reviewable SQL and results.
+- [Composable Analytics Solution](https://datus.ai/solutions/composable-analytics/): Build and revise HTML dashboards from reusable metric definitions, with reviewable query and runtime boundaries.
 - [Datus Studio](https://datus.ai/products/studio/): Team workspace for agent-driven data work.
 - [Datus Agent](https://datus.ai/products/cli/): Open-source data engineering and analysis Agent.
 - [DOSI](https://dosi.datus.ai/): Semantic execution runtime and supported interfaces.

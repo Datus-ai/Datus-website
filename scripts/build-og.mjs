@@ -50,6 +50,8 @@ const CARDS = [
     subtitle: "Bring files, SQL, results, and Agent conversations together." },
   { slug: "solutions-semantic-layer", style: "home", eyebrow: "Semantic Layer", title: "Business meaning, ready for teams and agents",
     subtitle: "Apache Ossie defines the model. DOSI turns compatible definitions into native SQL." },
+  { slug: "solutions-composable-analytics", style: "home", eyebrow: "Composable Analytics", title: "Change the view. Keep the definition.",
+    subtitle: "Shared metrics, adaptable HTML dashboards, and reviewable context." },
   { slug: "products-enterprise", eyebrow: "Enterprise", title: "Governed context for enterprise agent teams",
     subtitle: "SSO, RBAC, SQL policy and private / VPC deployment on the warehouse you own." },
   { slug: "products-vscode", eyebrow: "VS Code", title: "A data agent and context in your editor" },

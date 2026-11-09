@@ -1,25 +1,25 @@
 ---
-title: "What Is a Data Agent? How It Differs From a Data Engineering Agent"
-description: "Data agent definition, types, capabilities, and how a data engineering agent fits as the specialized subclass that builds and evolves data context."
+title: "What Is a Data Agent? Types, How It Works, and Examples"
+description: "Learn what a data agent does, follow a checked revenue example, and evaluate business context, query evidence, permissions, and limits before choosing a tool."
 author: "Evan Paul"
 date: 2026-06-08
-lastmod: 2026-06-10
+lastmod: 2026-11-04
 head:
   - - meta
     - name: keywords
-      content: "data agent, what is a data agent, data agent definition, data agent vs data engineering agent, AI data agent, types of data agents, data agent architecture"
+      content: "data agent, AI data agent, what is a data agent, types of data agents, how data agents work, data agent vs data engineering agent"
   - - meta
     - property: og:title
-      content: "What Is a Data Agent? How It Differs From a Data Engineering Agent"
+      content: "What Is a Data Agent? Types, How It Works, and Examples"
   - - meta
     - property: og:description
-      content: "Data agent definition, types, capabilities, and how a data engineering agent fits as the specialized subclass that builds and evolves data context."
+      content: "Learn what a data agent does, follow a checked revenue example, and evaluate business context, query evidence, permissions, and limits before choosing a tool."
   - - meta
     - property: og:type
       content: article
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/posts/what-is-data-agent
+      content: https://datus.ai/blog/what-is-data-agent/
   - - meta
     - property: og:image
       content: https://datus.ai/logo_dark.svg
@@ -28,201 +28,224 @@ head:
       content: summary_large_image
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/posts/what-is-data-agent
+      href: https://datus.ai/blog/what-is-data-agent/
 ---
 
-# What Is a Data Agent? How It Differs From a Data Engineering Agent
+# What Is a Data Agent? Types, How It Works, and Examples
 
 ## TL;DR
 
-- A **data agent** is any AI system that interacts with data — querying, analyzing, monitoring, or discovering — using natural language and data context.
-- The category spans a wide range: text-to-SQL chatbots, AI data analysts, pipeline agents, catalog agents, BI agents, and data engineering agents.
-- A **data engineering agent** is the **builder subclass** — it does not just answer questions from data; it builds and evolves the context ([semantic models](/blog/what-is-semantic-model/), metrics, reference SQL, validation rules) that makes all other data agents more accurate.
-- Most data agents are **consumers** of data context. Data engineering agents are **producers and maintainers** of data context. This is the fundamental architectural distinction.
-- Datus is a data engineering agent: it builds evolvable context for data systems, and exposes that context to other data agents (chatbots, BI tools, external agents) through Subagents, APIs, and [MCP](/blog/mcp-data-engineering/).
+- A **data agent** is an AI system that carries out data tasks by choosing steps, using tools, and checking results against a user's goal. It combines access to data with metadata and business definitions, and can query, analyze, discover, or maintain data within the permissions and review process its operators configure.
+- Querying, analysis, pipeline maintenance, discovery, reporting, and data engineering are useful ways to group its work. A single product can cover several roles.
+- A useful answer exposes the metric definition, query, source, and checks behind the result. Fluent explanations alone do not establish correctness.
+- A data engineering agent specializes in building and maintaining data systems and their context. Querying and context authoring can coexist in the same system.
 
-If you attended three data conferences in 2026, you heard at least a dozen tools described as "AI agents for data." One generates SQL from natural language. One monitors pipeline health and suggests fixes. One auto-generates dashboards. One discovers metadata across catalogs. One builds and evolves the context that all the others depend on. They share a label and almost nothing else — not architecture, not user, not failure mode, not the problem they actually solve. This article proposes a six-type taxonomy that separates them by what they actually do, maps the consumer/producer tier architecture that connects them, and explains why one type — the [data engineering agent](/blog/what-is-data-engineering-agent/) — matters more for long-term accuracy than the other five combined.
+## 1. What does a data agent do?
 
-## 1. Data agent: a working definition
+**A data agent uses AI and connected tools to complete work involving data.** A person might ask it to investigate falling revenue, locate a customer table, or inspect a failed pipeline. The system selects relevant information, takes permitted steps, examines what those steps return, and either continues or asks for help. This article uses the term for AI-driven data work, rather than a particular vendor's product or a background data-transfer service.
 
-The term "data agent" has become broad enough to cause confusion. A useful definition that captures the common thread:
+The word *agent* describes how the system works toward the goal. For an analytical question, that might involve finding an approved metric, querying a warehouse, noticing an empty result, and checking whether the date filter was wrong. A fixed report can provide an equally useful answer when the question and calculation are already known. An agent becomes useful when the route to the answer needs to adapt to the request or intermediate results.
 
-A **data agent** is a software system that uses AI to perform data tasks — querying, analysis, monitoring, discovery, or pipeline management — by combining natural language understanding with structured access to data sources, metadata, and business context. It operates with some degree of autonomy (generating its own SQL, choosing which tables to query, deciding what follow-up questions to ask) and improves over time through feedback, usage patterns, or explicit training.
+There is no single agreed taxonomy of data agents. The research survey <a href="https://arxiv.org/abs/2510.23587" rel="nofollow noopener">A Survey of Data Agents: Emerging Paradigm or Overstated Hype?</a> highlights inconsistent use of the term and distinguishes systems by autonomy. For a buyer, that makes the workflow a better starting point than the label: what can the system read, decide, execute, and change?
 
-What separates a data agent from a general AI chatbot:
+### Data agent, chatbot, and SQL assistant
 
-| General AI chatbot | Data agent |
-| --- | --- |
-| Answers questions from training data | Answers questions from **your data** |
-| Cannot execute queries | Generates and **executes SQL** against live databases |
-| Has no knowledge of your schema | Is **grounded in your tables, metrics, and business rules** |
-| Produces generic answers | Produces answers backed by **specific, auditable data** |
-| Stateless — forgets between sessions | Maintains **context** — learned preferences, validated queries, domain knowledge |
+A chat interface can front any of these systems. A chatbot connected to tools may perform data-agent work, while a tool marketed as an agent may only draft a query for a person to run. Compare the actual workflow rather than assuming that one name implies memory, execution, or greater autonomy.
 
-The key phrase is "grounded in your data." A data agent without grounding is just a chatbot with opinions about databases. A data agent with rich grounding — schema, metric definitions, reference SQL, business rules, feedback history — can produce answers that analysts trust.
-
-## 2. The data agent taxonomy: six major types
-
-The category is diverse. Grouping by primary function:
-
-### Type 1: Query agents (text-to-SQL chatbots)
-
-**What they do:** Convert natural language questions into SQL, execute against a database, and return results — often with explanations, visualizations, and follow-up capabilities.
-
-**Examples:** Datus Chat, Wren AI, AskYourDatabase, Julius AI.
-
-**Primary user:** Analysts and business users who need answers from data without writing SQL.
-
-**Key capability:** Schema-grounded NL-to-SQL generation with multi-turn conversation.
-
-**Limitation:** Accuracy depends entirely on context quality. A query agent connected to raw schema produces confident wrong answers. The same agent connected to rich semantic context becomes reliable.
-
-### Type 2: Analysis agents (AI data analysts)
-
-**What they do:** Go beyond single queries to perform multi-step analysis — exploring data, generating hypotheses, creating visualizations, and producing narrative reports.
-
-**Examples:** TextQL Ana, Hex Magic, Mode AI.
-
-**Primary user:** Data analysts and data scientists accelerating exploratory work.
-
-**Key capability:** Multi-step reasoning across datasets with analytical narrative generation.
-
-**Limitation:** Deeply dependent on semantic context quality. Without governed metric definitions, an analysis agent will discover patterns in the wrong numbers.
-
-### Type 3: Pipeline agents (data workflow agents)
-
-**What they do:** Monitor, debug, and sometimes autonomously operate data pipelines — detecting failures, suggesting fixes, backfilling data, managing dependencies.
-
-**Examples:** Databricks Genie Code (pipeline mode), Snowflake Cortex Code (dbt/Airflow integration), Prefect AI workflows.
-
-**Primary user:** Data engineers managing production pipelines.
-
-**Key capability:** Pipeline-aware reasoning — understanding DAGs, dependencies, retry logic, and data quality checks.
-
-**Limitation:** Platform-specific. A pipeline agent for Databricks cannot operate an Airflow DAG. Cross-stack pipeline management remains an unsolved problem.
-
-### Type 4: Catalog agents (metadata discovery agents)
-
-**What they do:** Help users find and understand data assets — "which table has customer acquisition data?", "what does this column mean?", "who owns this dataset?"
-
-**Examples:** Atlan AI copilot, DataHub AI search, Select Star AI.
-
-**Primary user:** Anyone trying to navigate a large data estate.
-
-**Key capability:** Semantic search over metadata, lineage-aware recommendations.
-
-**Limitation:** Discovery-oriented. A catalog agent tells you where data lives; it does not query it or build context on top of it.
-
-### Type 5: BI agents (dashboard and reporting agents)
-
-**What they do:** Generate dashboards, reports, and visualizations from natural language — "show me monthly revenue by region for the last year as a bar chart."
-
-**Examples:** ThoughtSpot Sage, Sigma AI, Tableau Pulse, Power BI Copilot.
-
-**Primary user:** Business users who consume data through visual interfaces.
-
-**Key capability:** NL-to-visualization with chart selection and layout.
-
-**Limitation:** Presentation-focused. A BI agent renders data; it does not build the semantic infrastructure that makes the data trustworthy.
-
-### Type 6: Data engineering agents (context-building agents)
-
-**What they do:** Build and evolve the data context that all other data agents consume — semantic models, metric definitions, reference SQL, validation rules, domain-scoped Subagents.
-
-**Examples:** Datus, Altimate.ai (agentic dbt harness).
-
-**Primary user:** Data engineers and data team leads building agent infrastructure.
-
-**Key capability:** Context generation, validation, and continuous evolution — the "producer" tier in the data agent stack.
-
-**Distinction:** This is the only type whose primary output is **better context for other agents**, not direct answers to data questions. A query agent answers "what was revenue last month?" A data engineering agent builds the context so the query agent answers correctly.
-
-## 3. The data agent stack: consumers vs producers
-
-The six types form two tiers:
-
-```
-┌─────────────────────────────────────────────────────┐
-│                  CONSUMER TIER                       │
-│  Query agents · Analysis agents · BI agents          │
-│  Pipeline agents · Catalog agents                    │
-│  "Answer questions from data"                        │
-├─────────────────────────────────────────────────────┤
-│                  CONTEXT TIER                        │
-│  Semantic layer · Metric layer · Data catalog        │
-│  "Define what the data means"                        │
-├─────────────────────────────────────────────────────┤
-│                  PRODUCER TIER                       │
-│  Data engineering agents                             │
-│  "Build and evolve the context"                      │
-└─────────────────────────────────────────────────────┘
-```
-
-Most organizations invest heavily in the consumer tier — deploying chatbots, AI analysts, and BI agents — while under-investing in the producer tier. The result is a predictable failure mode: consumer agents deployed against raw schema produce wrong answers; trust erodes; adoption stalls. The fix is not a better consumer agent; it is richer context, maintained by something that can keep up with the pace of data change.
-
-This is the core architectural argument for a data engineering agent: you cannot deploy reliable consumer agents without a system that builds and maintains the context they consume. The semantic layer provides the definitions; the data engineering agent provides the continuous creation, validation, and evolution cycle that keeps those definitions current, comprehensive, and grounded in production usage.
-
-## 4. Data agent vs data engineering agent: the distinction that matters
-
-The market conflates these, but the distinction has real architectural consequences:
-
-| Dimension | Data agent (general) | Data engineering agent |
+| Workflow | Typical starting task | What to check |
 | --- | --- | --- |
-| **Primary output** | Answers, reports, visualizations, alerts | Context: semantic models, metrics, reference SQL, Subagents |
-| **Relationship to context** | **Consumes** context to ground answers | **Produces and evolves** context from schema, SQL, and feedback |
-| **User feedback loop** | "Was this answer correct?" | "Does this context produce correct answers consistently?" |
-| **State** | Stateless or session-scoped | Persistent — context accumulates and improves across sessions |
-| **Multi-agent role** | A consumer in the agent stack | A producer and orchestrator for other agents |
-| **Examples** | ChatBI tools, AI analysts, pipeline monitors | Datus, Altimate.ai (dbt harness) |
+| Chat without connected data tools | Explain a concept or discuss an uploaded extract | Which information is available, and whether it is current |
+| SQL drafting assistant | Suggest or explain a query | Who executes it and checks the business logic |
+| Data agent | Work toward a data goal using connected tools | Tool access, intermediate checks, and stopping conditions |
+| Scheduled report | Repeat a known calculation | Definition ownership, refresh status, and exception handling |
 
-A practical test: if you remove the agent, what breaks?
+None of these labels guarantees a correct answer. An agent does not necessarily learn from every conversation, retain memory between sessions, or have permission to modify data. Those are implementation choices to verify separately. A well-maintained report may be preferable when a team needs the same approved metric every morning.
 
-- Remove a query agent → analysts go back to writing SQL manually. Productivity drops but answers remain consistent (assuming the semantic layer is intact).
-- Remove a data engineering agent → context stops evolving. New tables are not modeled. Validated queries are not captured. Metrics drift. Within months, every consumer agent in the stack produces answers that are increasingly disconnected from reality.
+## 2. Common types of data-agent work
 
-Neither is "better." They are **different tiers** of the same architecture. Teams that deploy consumer agents without a producer tier get unreliable answers. Teams that invest in the producer tier get consumer agents that improve over time.
+Data agents can be grouped by the work they perform. The six roles below are this article's practical grouping, not an industry standard or a list of mutually exclusive product categories. They help you describe the job you need done before comparing implementations.
 
-## 5. Why the distinction matters for tool evaluation
+| Role | Example request | Useful output | Important boundary |
+| --- | --- | --- | --- |
+| Querying | "Show net revenue by region" | Query and result with a definition | Read access does not settle what revenue means |
+| Analysis | "Investigate the regional decline" | A sequence of comparisons and findings | A contribution to a change does not prove its cause |
+| Pipeline maintenance | "Inspect this failed daily load" | Diagnosis, proposed fix, or approved repair | Investigation and production writes need different permissions |
+| Data discovery | "Which table contains approved customer regions?" | Relevant assets, owners, and metadata | Finding a table does not establish that it is suitable |
+| BI and reporting | "Turn this result into a recurring report" | Chart, report, or dashboard | Presentation must preserve the calculation and filters |
+| Data engineering | "Build a reviewed model for revenue" | Models, transformations, tests, or reusable context | Generated artifacts still need validation and ownership |
 
-When evaluating a data agent, the first question should be: **which tier does this tool operate at?**
+A revenue investigation may cross several of these roles. The agent first discovers the relevant dataset, then queries it, analyzes the change, and presents a chart. If it discovers that the metric is missing, authoring that metric becomes a separate task with a different review requirement. You should be able to tell where each handoff happens and which parts the same tool actually supports.
 
-- If it is a consumer agent: how does it get its context? Can it consume governed metric definitions? Can it incorporate feedback? What happens to accuracy when the schema changes?
-- If it is a producer agent: what context does it generate? How does that context evolve? Can consumer agents consume it? Does it integrate with existing semantic layers?
+## 3. How a data agent works: a checked revenue example
 
-Teams that skip this question end up with a query agent that generates confident wrong answers — not because the model is bad, but because it was deployed against raw schema with no producer tier maintaining the context it needs. The accuracy ceiling for consumer agents is set not by model quality but by context quality — and context quality is the data engineering agent's responsibility.
+A data agent connects a question to context, tool use, result checks, and an explanation. To see why each step matters, use a small illustrative dataset rather than an impressive-looking dashboard. The example below is invented for inspection; it is not customer data, a product benchmark, or a claim that every agent follows this exact process.
 
-This maps to practical workflows: a data engineering agent bootstraps semantic models from schema, generates metrics from historical SQL, captures validated queries as reference context, and packages domain-specific context into Subagents. Consumer agents — chatbots, BI agents, analysis agents — consume that context and produce answers users can trust. When a consumer agent produces a wrong answer, the correction flows back to the producer tier, context is refined, and the next answer is more accurate. That feedback loop — consumer surfaces errors, producer fixes context, all agents benefit — is the architecture that separates "demo-ready" from "production-trustworthy."
+> Which region had the largest decline in net revenue in September 2026 compared with August 2026?
+
+### Step 1: Settle the question and business definition
+
+Before querying, the agent needs a definition of net revenue and a comparison period. In this example, the agreed rule is completed-order revenue minus refunds attributed to those orders, grouped by order month and customer region. Amounts are all in USD, and cancelled orders are excluded. In a real deployment, the metric owner must decide whether refunds belong to the original order month or the refund month; the column names cannot make that decision.
+
+The period also needs to be explicit. "Last month" depends on when the question is asked and the reporting calendar in use. Naming August and September avoids that ambiguity in the fixture, but a production answer should expose the resolved dates and timezone. If two approved revenue definitions fit the request, asking which one to use is a useful result of the first step.
+
+### Step 2: Inspect the sources and their grain
+
+The fixture has one row per order and one row per refund event. Order 3 has two refund events, so joining the raw refund rows to orders would repeat its gross amount. The query must aggregate refunds to one row per order before combining them with order amounts. This is a correctness check an evaluator can inspect without trusting the final narrative.
+
+| Order | Month | Region | Status | Gross amount | Refund events |
+| --- | --- | --- | --- | ---: | --- |
+| 1 | August | East | Completed | 1,000 | None |
+| 2 | August | West | Completed | 800 | None |
+| 3 | September | East | Completed | 1,000 | 100 and 200 |
+| 4 | September | West | Completed | 900 | None |
+| 5 | September | East | Cancelled | 500 | None |
+
+The permitted source matters as much as the join. A catalog may expose a convenient table that contains only a subset of the business or has not finished loading. The agent should inspect available metadata and freshness evidence before treating it as the source for a company-wide comparison. If its credentials reveal only East-region data, it cannot conclude which region declined most across the whole company.
+
+### Step 3: Generate or compile a query you can inspect
+
+The calculation can come from generated SQL or a semantic engine that compiles a reviewed metric. [Text-to-SQL](/blog/what-is-text-to-sql/) describes the former path; either path still needs to match the approved business definition. Here is a standalone SQLite example with the fixture embedded, so you can reproduce the calculation without connecting to a warehouse.
+
+```sql
+WITH
+orders(order_id, order_date, region, status, gross_usd) AS (
+  VALUES
+    (1, '2026-08-15', 'East', 'completed', 1000),
+    (2, '2026-08-15', 'West', 'completed', 800),
+    (3, '2026-09-15', 'East', 'completed', 1000),
+    (4, '2026-09-15', 'West', 'completed', 900),
+    (5, '2026-09-15', 'East', 'cancelled', 500)
+),
+refunds(order_id, refund_usd) AS (
+  VALUES (3, 100), (3, 200)
+),
+refunds_by_order AS (
+  SELECT order_id, SUM(refund_usd) AS refund_usd
+  FROM refunds
+  GROUP BY order_id
+),
+monthly AS (
+  SELECT o.region, SUBSTR(o.order_date, 1, 7) AS month,
+         SUM(o.gross_usd - COALESCE(r.refund_usd, 0)) AS net_usd
+  FROM orders AS o
+  LEFT JOIN refunds_by_order AS r ON o.order_id = r.order_id
+  WHERE o.status = 'completed'
+    AND o.order_date >= '2026-08-01'
+    AND o.order_date < '2026-10-01'
+  GROUP BY o.region, SUBSTR(o.order_date, 1, 7)
+)
+SELECT current.region, previous.net_usd AS august_net_usd,
+       current.net_usd AS september_net_usd,
+       current.net_usd - previous.net_usd AS change_usd
+FROM monthly AS current
+JOIN monthly AS previous ON current.region = previous.region
+WHERE current.month = '2026-09' AND previous.month = '2026-08'
+ORDER BY change_usd;
+```
+
+This query has deliberate limits. Its inner join compares regions present in both months, so it would omit a newly opened region or one missing from a period. A real reporting design may need a complete region list and a calendar to distinguish missing data from zero revenue. The fixture is small enough that those assumptions are visible instead of hidden in a complex query.
+
+### Step 4: Check the result against independent expectations
+
+The expected result follows directly from the input rows. East changes from 1,000 to 700 USD because its September order has 300 USD of refunds. West changes from 800 to 900 USD. The cancelled 500 USD order does not contribute, and the two refund rows do not duplicate gross revenue.
+
+| Region | August net revenue | September net revenue | Change |
+| --- | ---: | ---: | ---: |
+| East | 1,000 USD | 700 USD | −300 USD |
+| West | 800 USD | 900 USD | +100 USD |
+
+Use these expectations to check the query rather than accepting its output as the reference answer. Then deliberately change a relevant input: remove a refund, change an order's status, or give a region no rows in one month. The point is to see whether the result changes for the right reason and whether the answer acknowledges cases the query does not cover. A successful query execution establishes syntax and access, not business correctness.
+
+### Step 5: Explain the finding and its limits
+
+A supported answer is: "In this fixture, East had the largest decline: net revenue fell by 300 USD, from 1,000 in August to 700 in September. The calculation excludes cancelled orders and attributes refunds to the original order month." It should accompany that answer with the query and definition. Saying that East declined because customers became less satisfied would exceed the available data; the fixture records refunds, not their causes.
+
+This sequence is consistent with documented product workflows without being tied to one product. As of November 2026, <a href="https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent" rel="nofollow noopener">Microsoft's Fabric data-agent documentation</a> describes selecting data sources, generating and validating queries, and returning results under the requesting user's permissions. Its platform-specific approach is useful to evaluate when your governed data already lives in Fabric. It does not establish that an unrelated agent inherits the same controls.
+
+## 4. Where data-agent answers go wrong
+
+Data-agent errors can come from the definition, the query, the available data, or the explanation. In the example, all four can produce a plausible-looking answer. Recording which part failed gives the team a concrete correction to make instead of repeatedly changing the prompt.
+
+### The definition changes between steps
+
+An agent might calculate net revenue in one turn and gross revenue in the next, or switch from order date to refund date. Each query can be valid while the comparison becomes meaningless. Save the selected metric, dates, and filters with the task, then inspect whether follow-up requests preserve or deliberately change them. A [semantic model](/blog/what-is-semantic-model/) can make those definitions reusable, but the application still has to select the appropriate one.
+
+### Valid SQL uses the wrong population
+
+A query may double-count orders, omit missing regions, or use an incomplete table. These errors survive a syntax check and may survive a quick visual inspection. Test representative edge cases against expected answers, including duplicate keys, absent periods, refunds, and records excluded by policy. The revenue fixture demonstrates why the table grain belongs in that review.
+
+### An explanation outruns the evidence
+
+Finding a regional decline is descriptive analysis. Explaining why customers requested refunds requires additional evidence, and a proposed operational action may need approval. An agent should identify that gap rather than turn correlation into a causal story. <a href="https://www.snowflake.com/en/artificial-intelligence/agents/" rel="nofollow noopener">Snowflake's agent guide</a> also emphasizes controlled tool access, evaluation, and inspectable traces; those are useful design questions beyond any one platform.
+
+## 5. Data agent vs data engineering agent
+
+A **data engineering agent** specializes in building and maintaining data systems and the reusable context around them. A data agent is the broader category. The distinction is about the primary task and deliverable, rather than an absolute split between systems that consume context and systems that produce it. The [data engineering agent guide](/blog/what-is-data-engineering-agent-2026/) covers that specialized work in more detail.
+
+| Question | Analytical data-agent task | Data engineering-agent task |
+| --- | --- | --- |
+| Goal | Answer which region declined | Make the approved calculation reusable |
+| Main artifact | Query, checked result, explanation | Model, transformation, test, or reference query |
+| Review | Does this answer match the question and data? | Will this artifact behave correctly when reused? |
+| Failure to watch | Wrong dates, grain, scope, or explanation | Incorrect definitions or changes propagated downstream |
+
+The same system may perform both tasks. It might answer the revenue question, propose a missing metric, and help prepare the model that future questions use. That does not mean the proposed definition should immediately become authoritative. Keep the one-off investigation and the shared model change separately reviewable, with an owner for the business rule and tests for the calculation.
+
+Human maintenance is also a valid choice. A team with a small, stable model and established review practices may not need another agent to keep definitions current. An agent is useful when its supported workflow reduces repeated work enough to justify the operational cost of permissions, evaluation, and maintenance. Compare that benefit with the tools and processes you already have.
+
+## 6. How to evaluate a data agent
+
+Evaluate a data agent with a question whose answer your team can check. Use the same business definition and permitted data for each candidate, then inspect the path to the result. A polished demo of an unfamiliar dataset makes it difficult to distinguish genuine correctness from a convincing narrative.
+
+| Ask the evaluator | Evidence to request |
+| --- | --- |
+| Where did the metric definition come from? | Named definition, owner, formula, and relevant exclusions |
+| Can I inspect how the answer was computed? | SQL or tool calls, source mappings, and result rows |
+| Whose data can the agent access? | Actual credential scope and a test with a restricted identity |
+| What happens when a definition is ambiguous? | A clarification or an explicit, reviewable assumption |
+| How does it handle a wrong or empty result? | Checks, retries, stopping conditions, and a visible error |
+| Which operations require approval? | A boundary between reading, drafting, and production changes |
+| Can we retest after a change? | Saved questions, expected answers, and regression results |
+
+Run the revenue case with an identity restricted to East, then ask for a company-wide comparison. A responsible response should acknowledge the limited scope; a correct East total alone is insufficient. Repeat the test after altering a definition or source mapping. This reveals whether the workflow can detect a relevant change and explain its consequences.
+
+Also ask what happens when the agent cannot finish. A missing permission, unsupported calculation, or unavailable source should produce an actionable explanation with a clear stopping point. Letting the system continue guessing can turn a recoverable failure into an incorrect report. Tool-call limits and human escalation are practical parts of the workflow, not evidence that the system has failed to be an agent.
+
+## 7. How Datus and DOSI fit this workflow
+
+As of November 2026, [Datus Agent](/products/cli/) supports data engineering and analysis, including working with schemas, SQL, and semantic models. The broader Datus platform provides shared enterprise data context for AI agents. In the example, the relevant distinction is between helping a team draft a revenue definition and treating that definition as approved. Review of business meaning and source data remains the team's responsibility.
+
+For execution through reviewed definitions, the [DOSI agent guide](https://dosi.datus.ai/agents/) documents tools to discover metrics, preview compiled SQL, and execute supported metric queries. DOSI validates compatible Apache Ossie models and compiles supported requests into warehouse SQL; a structurally valid model can still encode the wrong business rule. Datus Agent is open source, while DOSI is licensed under Elastic License 2.0. These are distinct components and should be evaluated for the work each performs.
 
 ## Conclusion
 
-The data agent category is young enough that taxonomy still matters — within two years, some of the six types described here will have merged into platforms and others will have become standalone subcategories. Query agents and BI agents are already converging: ThoughtSpot Sage and Tableau Pulse blur the line between "answer a question" and "generate a dashboard that answers a recurring question." Pipeline agents and catalog agents are likely next to merge — understanding what data exists and monitoring whether it is flowing correctly are two sides of the same operational coin. The type least likely to be absorbed into a broader platform is the data engineering agent — not because it is more important, but because its output (evolvable context) is architecturally upstream of every consumer agent. A platform that owns the consumer tier has no incentive to invest in a producer tier that makes its consumers portable to other platforms. That tension — between the platform's desire to own the consumption surface and the organization's need for portable, trusted context — is where the data agent market will be decided.
+A useful data agent makes the path from question to result inspectable: what definition it used, which data it reached, what it executed, and what it checked. Start with a narrow task and a known answer before expanding its scope. For a next step, use the existing [working semantic-model example](/blog/semantic-model-examples/) to inspect how data, definitions, and expected results fit together.
 
 ## Frequently asked questions
 
-### What is a data agent in one sentence?
+### What is a data agent in simple terms?
 
-A **data agent** is an AI-powered system that interacts with data — querying, analyzing, monitoring, or discovering — on behalf of a user, grounded in the organization's specific data, schema, and business context.
+A data agent is AI software that uses tools to carry out data work toward a goal. It might find a dataset, query it, inspect results, and explain an answer. The important questions are what data and tools it can use, how it checks its work, and when a person must review or approve the next step.
 
-### How many types of data agents exist?
+### How is a data agent different from a chatbot?
 
-At least six major types: query agents (text-to-SQL), analysis agents (AI data analysts), pipeline agents (workflow operators), catalog agents (metadata discovery), BI agents (dashboard generators), and data engineering agents (context builders). See §2 for the full breakdown.
+A chatbot describes an interface; a data agent describes a workflow that can use tools and act on data. The same product can be both. A chat system with connected data tools may perform agentic work, while a chat-only explanation may involve no query execution. Check the actual capabilities instead of inferring them from the product name.
 
-### What is the difference between a data agent and a data engineering agent?
+### Does a data agent learn automatically from every question?
 
-A **data agent** is the umbrella category — any AI system that interacts with data. A **data engineering agent** is the specialized subclass that **builds and evolves data context** rather than just answering questions from it. Think of it as the difference between a consumer (uses context) and a producer (creates and maintains context). See §4 for the detailed comparison.
+Not necessarily. Session context, persistent memory, reviewed changes to a knowledge base, and model training are different mechanisms. Ask what is saved, who can change it, and how corrections are tested before reuse. A system can complete useful data tasks without changing its model or remembering conversations between sessions.
 
-### Do I need a data engineering agent if I already have a semantic layer?
+### Does a data agent need a semantic layer?
 
-A semantic layer provides the **definitions**; a data engineering agent provides the **continuous evolution** of those definitions. If your semantic layer is small, stable, and manually maintained — and your data estate changes slowly — you might not need one. If you have hundreds of tables, user feedback surfacing new metrics weekly, and consumer agents that rely on current context, a data engineering agent is the mechanism that keeps the semantic layer from going stale.
+A semantic layer is one way to provide reusable business definitions, not a requirement for every data task. An agent can inspect a file or investigate a schema using other tools. Repeated business reporting benefits from approved definitions that stay consistent across questions, whether those definitions come from a semantic layer, curated queries, or another maintained source.
 
-### Can one data agent do everything?
+### Can a data agent change production data?
 
-No — and teams that try to find a single agent that covers all six types will be disappointed. The architectural insight is that data agents form a **stack**: producer agents build context; consumer agents consume it. The right question is not "which one agent?" but "which agents at which tiers, and how do they share context?"
+Only if the implementation and its permissions allow that operation. Some agents have read-only access; others can propose or execute changes. Verify the configured credential scope, enforcement mechanism, approval process, and audit trail. A natural-language instruction to avoid writes is not a substitute for a permission boundary enforced by the tools and data platform.
 
 ## Related articles
 
-- [What is a data engineering agent?](/blog/what-is-data-engineering-agent/) — the producer-tier subclass in detail
-- [What is text-to-SQL?](/blog/what-is-text-to-sql/) — the core capability behind query agents
-- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the context tier that agents consume
-- [From ChatBI to data agent: what changes and what doesn't](/blog/from-chatbi-to-data-agent-what-changes/) — how the category shifted, and what stayed the same
-- [13 months from ChatBI to DataAgent](/blog/chatbi-to-data-agent-13-months/) — one enterprise deployment, start to finish
+- [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — specialized work on data systems and reusable context
+- [What is text-to-SQL?](/blog/what-is-text-to-sql/) — turning questions into database queries
+- [What is a semantic model?](/blog/what-is-semantic-model/) — the business definitions behind a calculation
+- [Semantic model examples](/blog/semantic-model-examples/) — downloadable data, definitions, and checked answers

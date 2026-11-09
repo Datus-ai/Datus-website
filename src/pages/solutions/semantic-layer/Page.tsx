@@ -16,6 +16,7 @@ import SemanticModelPreview from './SemanticModelPreview';
 import ModelOrigins from './ModelOrigins';
 import { MODEL_ORIGINS_COPY } from './modelOriginsCopy';
 import { SOLUTION_EXPERIENCE } from './experience';
+import SelectionGuide from './SelectionGuide';
 import './style.css';
 
 export default function SemanticLayerSolution() {
@@ -48,6 +49,7 @@ export default function SemanticLayerSolution() {
    <SemanticReuse/>
   </section>
   <div className="container" style={{paddingBlock:24}}><a className="solution-link" href={l("/apache-ossie/")}>{t.ossieGuide}</a></div>
+  <SelectionGuide/>
   <FAQ items={x.faqs} heading={x.faqTitle} currentUrl="/solutions/semantic-layer/"/>
   <section className="container solution-reading" aria-labelledby="solution-reading-title"><h2 id="solution-reading-title">{x.reading}</h2><div>{x.resources.map(item => <a key={item.href} className="solution-link" href={l(item.href)}>{item.title}<ArrowUpRight size={15}/></a>)}</div></section>
   <section className="solution-band"><div className="container solution-section solution-closing"><h2>{t.closing}</h2><p className="lead">{t.closingLead}</p><a className="btn btn-primary btn-lg" href={studioCtaUrl(STUDIO_LOGIN_URL, 'semantic_layer_closing', locale)}>{t.primary}<ArrowUpRight size={17}/></a></div></section>

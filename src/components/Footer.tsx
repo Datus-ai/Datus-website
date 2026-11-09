@@ -44,9 +44,17 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
           </div>
 
           <div className="site-footer__col">
-            <h3 className="site-footer__heading">{t.resources}</h3>
+            <h3 className="site-footer__heading">{UI[locale].nav.solutions}</h3>
             <ul>
               <li><a href={l("/solutions/semantic-layer/")}>{UI[locale].nav.semanticLayer}</a></li>
+              <li><a href={l("/solutions/ai-bi/")}>{UI[locale].nav.aiBi}</a></li>
+              <li><a href={l("/solutions/composable-analytics/")}>{UI[locale].nav.composableAnalytics}</a></li>
+            </ul>
+          </div>
+
+          <div className="site-footer__col">
+            <h3 className="site-footer__heading">{t.resources}</h3>
+            <ul>
               <li><a href={l("/integrations/")}>{t.integrations}</a></li>
               <li><a href={l("/pricing/")}>{t.pricing}</a></li>
               {/* The blog is English-only — no /zh mirror, so the href is left bare. */}

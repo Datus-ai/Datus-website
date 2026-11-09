@@ -19,6 +19,7 @@ this agent)".
 - `semantic-layer-vs-ontology` — semantic layer vs ontology for agents
 - `what-is-data-catalog` — catalog vs agent context
 - `what-is-data-agent` — data agent vs data engineering agent
+  - Refreshed 2026-11-04: definition-first title and opening; overlapping workflow roles; executed illustrative SQLite revenue example, limits and evaluation checklist; corrected Datus Agent/DOSI boundaries; reciprocal engineering-guide link. Original URL/date retained. GlossaryTerm, Gate A MERGE, investment 4.4/5, editorial self-review 85/100 (A), 14 checks pass. Sources: Microsoft Fabric concepts, Snowflake agent guide, arXiv:2510.23587, Datus Agent and DOSI docs. PR https://github.com/Datus-ai/Datus-website/pull/133 (open).
 - `what-is-text-to-sql` — text-to-SQL/NL2SQL; context matters
 - `what-is-schema-linking` — schema linking; dual-dimension context (GOLD-STANDARD exemplar)
 - `rag-data-engineering` — RAG for data engineering; retrieval grounds agents
@@ -707,6 +708,7 @@ land on the new article by design.
 
 
 ### what-is-conversational-bi
+- Refreshed 2026-11-04: front-loaded BI/call-analytics distinction; added checked illustrative quarter/region/channel totals and explicit filter-reset case; acceptance checklist; updated DOSI execution boundaries and removed stale dialect count; linked semantic-model-examples. Original URL/date, diagram and approved shorter style retained. Validation: build:all and SEO checks pass; desktop/mobile checked; article check 14 PASS / 1 inherited short-form WARN / 0 FAIL. Sources: IBM Research, current Looker query documentation and DOSI agent guide. Approved in preview before submission. PR https://github.com/Datus-ai/Datus-website/pull/134 (open).
 - Title: What Is Conversational BI? From Questions to Trusted Metrics
 - Target keyword: conversational BI (conversational business intelligence, conversational analytics)
 - Angle: user-directed follow-ups preserve reviewed business meaning; Dosi shares Apache Ossie definitions across interfaces and supported sources. Retail walkthrough and native SVG diagram; distinct from autonomous agentic analytics.
