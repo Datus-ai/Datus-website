@@ -44,15 +44,23 @@
 .onto-review-bridge h3{margin:0}.onto-review-bridge strong{font-size:14px;line-height:1.7;color:var(--brand-bright);font-weight:500}
 @media(max-width:700px){.onto-before-after{grid-template-columns:1fr}.onto-before-after article{padding:20px}.onto-comparison-step{min-height:0}.onto-review-bridge{padding:18px;gap:14px}}
 
-/* Sparse, distinct VI accents; product demonstrations stay undecorated. */
+/* Section watermarks use approved VI motifs behind the content surface. */
 .site-root.ontology-page>main::before,.site-root.ontology-page>main::after{content:none}
 .ontology-page #build-context::before,.ontology-page #ontology-execution::before{content:none}
-.ontology-page>main>section:is(#ontology-context,#use-context){position:relative;isolation:isolate;overflow:hidden}
-.ontology-page #ontology-context{--onto-motif:url('/brand/relationship-map-transparent.svg')}
-.ontology-page #use-context{--onto-motif:url('/brand/agent-responsive-field-transparent.svg')}
-.ontology-page>main>section:is(#ontology-context,#use-context)::after{content:'';position:absolute;right:-35px;top:35px;width:300px;height:260px;background:var(--brand-bright);mask:var(--onto-motif) center/contain no-repeat;opacity:.09;z-index:-1;pointer-events:none}
-.ontology-page>main>section#use-context::after{top:12px;right:-65px;width:370px;height:300px}
-@media(max-width:700px){.ontology-page>main>section:is(#ontology-context,#use-context)::after{width:180px;height:180px;right:-70px;opacity:.06}}
+.ontology-page>main>section:not(.onto-hero){position:relative;isolation:isolate;overflow:hidden;--onto-motif:url('/brand/shared-definition-transparent.svg')}
+.ontology-page>main>section:not(.onto-hero)::after{content:'';position:absolute;right:-65px;top:25px;width:clamp(300px,35vw,480px);height:360px;background:var(--brand-bright);mask:var(--onto-motif) center/contain no-repeat;opacity:.055;z-index:-1;pointer-events:none}
+.ontology-page>main>section:nth-of-type(2){--onto-motif:url('/brand/loop-field-transparent.svg')}
+.ontology-page>main>section:nth-of-type(3){--onto-motif:url('/brand/relationship-map-transparent.svg')}
+.ontology-page>main>section:nth-of-type(4){--onto-motif:url('/brand/shared-definition-transparent.svg')}
+.ontology-page>main>section:nth-of-type(5){--onto-motif:url('/brand/semantic-lens-transparent.svg')}
+.ontology-page>main>section:nth-of-type(6){--onto-motif:url('/brand/evolving-context-transparent.svg')}
+.ontology-page>main>section:nth-of-type(7){--onto-motif:url('/brand/agent-responsive-field-transparent.svg')}
+.ontology-page>main>section:nth-of-type(8){--onto-motif:url('/brand/context-layers-transparent.svg')}
+.ontology-page>main>section:nth-of-type(9){--onto-motif:url('/brand/loop-field-transparent.svg')}
+.ontology-page>main>section.faq{--onto-motif:url('/brand/audit-trace-paths-transparent.svg')}
+.ontology-page>main>section:nth-of-type(even):not(.onto-hero)::after{right:auto;left:-95px;top:auto;bottom:-30px;transform:rotate(-12deg)}
+[data-theme=dark] .ontology-page>main>section:not(.onto-hero)::after{opacity:.075}
+@media(max-width:700px){.ontology-page>main>section:not(.onto-hero)::after{width:230px;height:240px;right:-100px;opacity:.04}[data-theme=dark] .ontology-page>main>section:not(.onto-hero)::after{opacity:.05}}
 /* Expertise contrast is carried by diagrams, with short labels only. */
 .onto-expertise-visuals{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:28px}
 .onto-expertise-visuals figure{margin:0;min-width:0;background:var(--onto-panel);border:1px solid var(--line-strong);border-radius:16px;padding:24px 14px;box-shadow:0 16px 40px #00000009}
