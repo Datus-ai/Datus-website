@@ -852,3 +852,18 @@ land on the new article by design.
 - PR: https://github.com/Datus-ai/Datus-website/pull/108   Status: merged
 - Date: 2026-10-19
 - Refreshed: 2026-10-20 — retargeted the existing URL to "AI dashboard" with a definition, search-intent FAQ, and an after diagram that locates the AI agent, semantic model, and query runtime; audit 14 pass / 0 warn / 0 fail. PR: https://github.com/Datus-ai/Datus-website/pull/110 (open).
+
+### row-level-security-ai-analytics
+- Title: Row-Level Security for AI Analytics: A Practical Guide
+- Target keyword: row-level security for AI analytics
+- Angle: a reviewed metric can serve several roles, but each read must use the authenticated caller's row scope before aggregation; Studio SQL and DOSI metric paths require separate checks.
+- Source direction: operator-specified security topic and retailer example.
+- Article type: Tutorial
+- Investment Score: n/a (operator-directed)   Gate A: KEEP — distinct implementation and evaluation intent within the AI analytics cluster.
+- Audit: automated 14 pass / 0 warn / 0 fail; manual claim and diagram review completed, no numerical score assigned.
+- Key sources: https://datus.ai/security/; https://docs.datus.ai/latest/configuration/sql_policy/; https://docs.snowflake.com/en/user-guide/security-row-intro; https://docs.cloud.google.com/bigquery/docs/row-level-security-intro; https://aws.amazon.com/blogs/machine-learning/multi-tenant-llm-analytics-with-row-level-security-how-we-built-a-secure-agent-on-aws/.
+- Internal links added: what-is-semantic-layer, what-is-conversational-bi, what-is-headless-bi, enterprise-data-engineering-agent, security.
+- Glossary updated: no — no dedicated glossary term.
+- Category: Agentic Analytics
+- PR: https://github.com/Datus-ai/Datus-website/pull/136   Status: open
+- Date: 2026-11-09
