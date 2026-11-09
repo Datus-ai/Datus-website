@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">One AI question, different levels of data access</title>
+  <desc id="desc">A store manager, regional manager, and company executive ask the same AI analytics agent. A policy gate returns only the rows each role is authorized to see.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#16161f"/><stop offset="1" stop-color="#242139"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#6a53cf" stop-opacity=".25"/><stop offset="1" stop-color="#6a53cf" stop-opacity="0"/></radialGradient>
+    <pattern id="dots" width="27" height="27" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#c8bbff" opacity=".12"/></pattern>
+    <symbol id="data-row" viewBox="0 0 120 16"><rect width="120" height="16" rx="6" fill="#9b86fb"/><rect x="10" y="6" width="23" height="4" rx="2" fill="#f2eeff"/><rect x="42" y="6" width="45" height="4" rx="2" fill="#e7dfff"/><circle cx="106" cy="8" r="3" fill="#f2eeff"/></symbol>
+    <symbol id="agent" viewBox="0 0 44 44"><rect x="2" y="2" width="40" height="40" rx="12" fill="#7560ee"/><path d="M11 24c3-9 12-13 20-6M32 20c-3 9-12 13-20 6" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/><circle cx="11" cy="24" r="2.6" fill="#fff"/><circle cx="32" cy="20" r="2.6" fill="#fff"/></symbol>
+    <symbol id="lock" viewBox="0 0 40 50"><path d="M9 20v-7a11 11 0 0 1 22 0v7" fill="none" stroke="#e9e2ff" stroke-width="3"/><rect x="3" y="19" width="34" height="29" rx="7" fill="#ae9bff"/><circle cx="20" cy="31" r="3" fill="#473286"/><path d="M20 34v6" stroke="#473286" stroke-width="3" stroke-linecap="round"/></symbol>
+    <style>text{font-family:Inter,system-ui,Arial,sans-serif}.over{font-size:13px;font-weight:700;letter-spacing:1.5px;fill:#bdb3d9}.role{font-size:18px;font-weight:700;fill:#f5f3ff}.scope{font-size:13px;fill:#c8c0d9}.card{fill:#29273a;stroke:#5b527a;stroke-width:1.5}.flow{fill:none;stroke:#a593ee;stroke-width:2.5;stroke-linecap:round}</style>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <circle cx="620" cy="360" r="310" fill="url(#halo)"/>
+  <path d="M0 580c198-71 292 20 457-13s281-70 451-25 252-9 292-29" fill="none" stroke="#7d70ae" stroke-width="2" opacity=".24"/>
+  <g transform="translate(50 37)"><rect width="42" height="42" rx="11" fill="#7560ee"/><path d="M10 25c4-11 15-15 22-7M32 18c-4 11-15 15-22 7" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g>
+  <text x="104" y="67" font-size="24" font-weight="750" fill="#fff">Datus</text>
+  <text x="50" y="113" class="over">ONE QUESTION · THREE AUTHORIZED VIEWS</text>
+  <path d="M50 132H1150" stroke="#7b719a" opacity=".65"/>
+  <text x="64" y="164" class="over">PERSON ASKING</text>
+  <text x="403" y="164" class="over">AI AGENT</text>
+  <text x="582" y="164" class="over">POLICY GATE</text>
+  <text x="846" y="164" class="over">VISIBLE DATA</text>
+
+  <g transform="translate(50 188)"><rect class="card" width="270" height="104" rx="19"/><circle cx="58" cy="52" r="38" fill="#c6b9ff"/><circle cx="58" cy="40" r="13" fill="#4a3d78"/><path d="M33 78c3-19 12-26 25-26s22 7 25 26" fill="#6653ac"/><path d="M48 60h20v22H48z" fill="#e8e0ff"/><path d="M52 64h12v18H52z" fill="#7b66e6"/><text x="110" y="49" class="role">Store manager</text><text x="110" y="74" class="scope">One store</text></g>
+  <g transform="translate(50 315)"><rect class="card" width="270" height="104" rx="19"/><circle cx="58" cy="52" r="38" fill="#afdade"/><circle cx="58" cy="40" r="13" fill="#345e68"/><path d="M33 80c3-21 12-28 25-28s22 7 25 28" fill="#427985"/><path d="m52 55 6 20 6-20" fill="#e8fcfb"/><text x="110" y="49" class="role">Regional manager</text><text x="110" y="74" class="scope">Several stores</text></g>
+  <g transform="translate(50 442)"><rect class="card" width="270" height="104" rx="19"/><circle cx="58" cy="52" r="38" fill="#eac7ba"/><circle cx="58" cy="40" r="13" fill="#674956"/><path d="M33 80c3-21 12-28 25-28s22 7 25 28" fill="#795366"/><path d="m51 56 7 20 7-20-7 6z" fill="#f5eae6"/><text x="110" y="49" class="role">Executive</text><text x="110" y="74" class="scope">Company scope</text></g>
+
+  <g class="flow"><path d="M320 240h63m99 0h99m145 0h89M320 367h63m99 0h99m145 0h89M320 494h63m99 0h99m145 0h89"/></g>
+  <g fill="#b7a5ff"><path d="m373 233 10 7-10 7m198-14 10 7-10 7m224-14 10 7-10 7m-442 120 10 7-10 7m198-14 10 7-10 7m224-14 10 7-10 7m-442 120 10 7-10 7m198-14 10 7-10 7m224-14 10 7-10 7"/></g>
+  <g fill="#41366e" stroke="#8772eb" stroke-width="2"><circle cx="433" cy="240" r="49"/><circle cx="433" cy="367" r="49"/><circle cx="433" cy="494" r="49"/></g>
+  <use href="#agent" x="411" y="218" width="44" height="44"/><use href="#agent" x="411" y="345" width="44" height="44"/><use href="#agent" x="411" y="472" width="44" height="44"/>
+  <g fill="#49397b" stroke="#a18af7" stroke-width="2"><rect x="581" y="191" width="145" height="98" rx="21"/><rect x="581" y="318" width="145" height="98" rx="21"/><rect x="581" y="445" width="145" height="98" rx="21"/></g>
+  <use href="#lock" x="634" y="214" width="40" height="50"/><use href="#lock" x="634" y="341" width="40" height="50"/><use href="#lock" x="634" y="468" width="40" height="50"/>
+
+  <g transform="translate(815 190)"><rect class="card" width="335" height="100" rx="18"/><use href="#data-row" x="18" y="15" width="299" height="20"/><rect x="18" y="45" width="299" height="17" rx="6" fill="#454158"/><rect x="18" y="71" width="299" height="17" rx="6" fill="#454158"/></g>
+  <g transform="translate(815 317)"><rect class="card" width="335" height="100" rx="18"/><use href="#data-row" x="18" y="10" width="299" height="20"/><use href="#data-row" x="18" y="40" width="299" height="20"/><use href="#data-row" x="18" y="70" width="299" height="20"/></g>
+  <g transform="translate(815 444)"><rect class="card" width="335" height="100" rx="18"/><use href="#data-row" x="18" y="10" width="143" height="20"/><use href="#data-row" x="173" y="10" width="143" height="20"/><use href="#data-row" x="18" y="40" width="143" height="20"/><use href="#data-row" x="173" y="40" width="143" height="20"/><use href="#data-row" x="18" y="70" width="143" height="20"/><use href="#data-row" x="173" y="70" width="143" height="20"/></g>
+  <text x="50" y="596" font-size="15" fill="#bdb4d5">One shared metric</text>
+  <path d="M215 590h706" stroke="#aa99ed" stroke-width="2" opacity=".45"/>
+  <text x="932" y="596" font-size="15" fill="#bdb4d5">Different scopes</text>
+</svg>

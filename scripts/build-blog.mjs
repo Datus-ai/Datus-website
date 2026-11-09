@@ -76,7 +76,7 @@ const CATEGORIES = [
       "semantic-layer-vs-ontology", "from-semantic-layer-to-ontology",
       "semantic-layer-based-ontology", "ontology-for-ai-agents-five-approaches", "why-text-to-sql-fails-without-a-semantic-layer"] },
   { label: "Agentic Analytics", description: "AI agents that plan and run multi-step analytical work — and what has to be true underneath for it to be reliable.",
-    slugs: ["what-is-agentic-analytics", "what-is-conversational-bi", "cube-agentic-analytics", "composable-analytics-agent-built-dashboards", "is-the-dashboard-dead"] },
+    slugs: ["what-is-agentic-analytics", "what-is-conversational-bi", "row-level-security-ai-analytics", "cube-agentic-analytics", "composable-analytics-agent-built-dashboards", "is-the-dashboard-dead"] },
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
     slugs: ["what-is-text-to-sql", "what-is-schema-linking", "rag-data-engineering", "what-is-data-catalog",
       "what-is-data-mesh", "what-is-data-agent", "what-is-lakehouse", "what-is-lakehouse-catalog",
@@ -562,7 +562,7 @@ function indexPage(posts) {
   // Published date controls the feed; edits never move older articles to the top.
   const sorted = [...posts.values()].sort((a,b) => (Date.parse(b.date)||0) - (Date.parse(a.date)||0) || a.slug.localeCompare(b.slug));
   const featured = posts.get("datus-dosi-executable-business-context") || sorted[0];
-  const heroPicks = ["semantic-layer-vs-ontology", "what-is-conversational-bi"].map(slug => posts.get(slug)).filter(Boolean);
+  const heroPicks = ["semantic-layer-vs-ontology", "semantic-layer-lod-ontology"].map(slug => posts.get(slug)).filter(Boolean);
   const memberships = p => [...CATEGORIES.filter(c=>c.slugs.includes(p.slug)).map(c=>slugify(c.label)), ...(p.tags.includes(INSIGHT_TAG)?[INSIGHT_ID]:[]), ...(!categoryFor(p.slug)?['more-essays']:[])];
   const cats = [{label:INSIGHT_LABEL,id:INSIGHT_ID}, ...CATEGORIES.map(c=>({label:c.label,id:slugify(c.label)})), {label:'More essays',id:'more-essays'}].filter(c=>sorted.some(p=>memberships(p).includes(c.id)));
   const date = p => `<time datetime="${esc(safeIso(p.date)?.slice(0,10)||'')}">${fmtDate(p.date)}</time>`;

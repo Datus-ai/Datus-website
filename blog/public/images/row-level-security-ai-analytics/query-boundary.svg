@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">The same repeat purchase metric, scoped to three enterprise roles</title>
+  <desc id="desc">Illustrative example. The store manager may read store S101, the East regional manager stores S101 to S103, and the executive six approved stores. A trusted row policy filters orders and eligible customers before the shared repeat purchase rate is calculated.</desc>
+  <defs>
+    <linearGradient id="panel" x2="1" y2="1"><stop stop-color="#f8f6ff"/><stop offset="1" stop-color="#f1edff"/></linearGradient>
+    <symbol id="row" viewBox="0 0 43 22"><rect width="43" height="22" rx="6" fill="#8b73f0"/><rect x="7" y="8" width="17" height="5" rx="2.5" fill="#eee9ff"/><circle cx="34" cy="11" r="3" fill="#eee9ff"/></symbol>
+    <symbol id="person" viewBox="0 0 68 68"><circle cx="34" cy="34" r="33" fill="#d7ccff"/><circle cx="34" cy="26" r="12" fill="#50417d"/><path d="M10 57c3-16 11-22 24-22s21 6 24 22" fill="#7963b5"/></symbol>
+    <symbol id="shield" viewBox="0 0 50 60"><path d="M25 2 46 10v18c0 16-10 24-21 29C14 52 4 44 4 28V10Z" fill="#745be4"/><path d="m15 29 7 7 14-16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <style>text{font-family:Inter,system-ui,Arial,sans-serif;fill:#2a243d}.title{font-size:30px;font-weight:750}.sub{font-size:17px;fill:#615b73}.over{font-size:15px;font-weight:750;letter-spacing:1.4px;fill:#76678b}.role{font-size:22px;font-weight:720}.body{font-size:18px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:16px;fill:#5e45b4}.rate{font-size:26px;font-weight:760;fill:#5c45bf}.line{fill:none;stroke:#947fe9;stroke-width:2.5;stroke-linecap:round}.card{fill:#fff;stroke:#dcd5ef;stroke-width:1.7}</style>
+  </defs>
+  <rect width="1200" height="800" rx="25" fill="url(#panel)"/>
+  <path d="M0 742c200-45 371 38 580 9s360-72 620-15" fill="none" stroke="#c5b9ef" opacity=".6" stroke-width="2"/>
+  <text x="44" y="57" class="title">One question. Three authorized views.</text>
+  <text x="44" y="88" class="sub">“What was repeat purchase rate last month?”</text>
+  <rect x="43" y="115" width="1114" height="102" rx="20" fill="#e5dcff" stroke="#bcaaf8" stroke-width="2"/>
+  <rect x="63" y="135" width="92" height="62" rx="15" fill="#725ce5"/>
+  <circle cx="107" cy="166" r="20" fill="none" stroke="#fff" stroke-width="3"/>
+  <path d="M107 146v20l13 8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <text x="175" y="151" class="over">SAME REVIEWED METRIC FOR EVERY ROLE</text>
+  <text x="175" y="184" font-size="24" font-weight="730">repeat purchase rate = repeat customers ÷ eligible customers</text>
+  <text x="804" y="204" font-size="15" fill="#6e618e">Filter source rows before aggregation</text>
+
+  <text x="59" y="253" class="over">AUTHENTICATED CALLER</text>
+  <text x="365" y="253" class="over">ROW POLICY AT EXECUTION</text>
+  <text x="741" y="253" class="over">AUTHORIZED INPUT → RESULT</text>
+  <path d="M45 266H1155" stroke="#d5cbee"/>
+
+  <g transform="translate(44 282)">
+    <rect class="card" width="1112" height="135" rx="19"/>
+    <rect x="8" y="8" width="278" height="119" rx="15" fill="#f6f2ff"/>
+    <use href="#person" x="22" y="26" width="68" height="68"/>
+    <text x="103" y="57" class="role">Store manager</text>
+    <text x="103" y="84" class="body">Allowed: S101</text>
+    <text x="103" y="108" class="sub">From signed-in identity</text>
+    <path class="line" d="M295 67h35m335 0h32"/><path d="m321 61 9 6-9 6m367-12 9 6-9 6" fill="none" stroke="#947fe9" stroke-width="2"/>
+    <use href="#shield" x="346" y="41" width="45" height="54"/>
+    <text x="399" y="56" class="over">FILTER SOURCE ROWS</text>
+    <text x="399" y="84" class="code">store_id IN (:store_ids)</text>
+    <text x="399" y="110" class="sub">orders + eligible customers</text>
+    <use href="#row" x="710" y="27" width="43" height="22"/>
+    <rect x="762" y="29" width="43" height="18" rx="6" fill="#e5e0ed"/><rect x="814" y="29" width="43" height="18" rx="6" fill="#e5e0ed"/>
+    <text x="870" y="45" class="sub">S101 only</text>
+    <text x="710" y="96" class="rate">2 / 10 = 20%</text>
+    <text x="907" y="95" class="sub">sample rate</text>
+  </g>
+
+  <g transform="translate(44 431)">
+    <rect class="card" width="1112" height="135" rx="19"/>
+    <rect x="8" y="8" width="278" height="119" rx="15" fill="#f1f9fa"/>
+    <use href="#person" x="22" y="26" width="68" height="68"/>
+    <text x="103" y="57" class="role" style="font-size:20px">Regional manager</text>
+    <text x="103" y="84" class="body">East: S101–S103</text>
+    <text x="103" y="108" class="sub">From signed-in identity</text>
+    <path class="line" d="M295 67h35m335 0h32"/><path d="m321 61 9 6-9 6m367-12 9 6-9 6" fill="none" stroke="#947fe9" stroke-width="2"/>
+    <use href="#shield" x="346" y="41" width="45" height="54"/>
+    <text x="399" y="56" class="over">FILTER SOURCE ROWS</text>
+    <text x="399" y="84" class="code">store_id IN (:store_ids)</text>
+    <text x="399" y="110" class="sub">orders + eligible customers</text>
+    <use href="#row" x="710" y="27" width="43" height="22"/><use href="#row" x="762" y="27" width="43" height="22"/><use href="#row" x="814" y="27" width="43" height="22"/>
+    <text x="870" y="45" class="sub">3 stores</text>
+    <text x="710" y="96" class="rate">8 / 40 = 20%</text>
+    <text x="907" y="95" class="sub">sample rate</text>
+  </g>
+
+  <g transform="translate(44 580)">
+    <rect class="card" width="1112" height="135" rx="19"/>
+    <rect x="8" y="8" width="278" height="119" rx="15" fill="#fff5f1"/>
+    <use href="#person" x="22" y="26" width="68" height="68"/>
+    <text x="103" y="57" class="role">Executive</text>
+    <text x="103" y="84" class="body">Allowed: S101–S106</text>
+    <text x="103" y="108" class="sub">From signed-in identity</text>
+    <path class="line" d="M295 67h35m335 0h32"/><path d="m321 61 9 6-9 6m367-12 9 6-9 6" fill="none" stroke="#947fe9" stroke-width="2"/>
+    <use href="#shield" x="346" y="41" width="45" height="54"/>
+    <text x="399" y="56" class="over">FILTER SOURCE ROWS</text>
+    <text x="399" y="84" class="code">store_id IN (:store_ids)</text>
+    <text x="399" y="110" class="sub">orders + eligible customers</text>
+    <use href="#row" x="710" y="18" width="43" height="22"/><use href="#row" x="762" y="18" width="43" height="22"/><use href="#row" x="814" y="18" width="43" height="22"/>
+    <use href="#row" x="710" y="44" width="43" height="22"/><use href="#row" x="762" y="44" width="43" height="22"/><use href="#row" x="814" y="44" width="43" height="22"/>
+    <text x="870" y="45" class="sub">6 stores</text>
+    <text x="710" y="104" class="rate">25 / 100 = 25%</text>
+    <text x="940" y="103" class="sub">sample rate</text>
+  </g>
+  <text x="44" y="757" class="sub">Illustrative IDs, counts, and SQL pseudocode · store_ids comes from trusted identity, not the AI prompt</text>
+</svg>
