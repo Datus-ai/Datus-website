@@ -51,3 +51,5 @@ yarn-debug.log*
 /tools/semantic-model-converter/index.html
 /wechat/index.html
 /apache-ossie-converter/**/index.html
+
+/solutions/ontology/index.html

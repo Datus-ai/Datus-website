@@ -296,5 +296,15 @@
     "title": "DuckDB Semantic Layer for Local Analytics | Datus",
     "description": "Review Apache Ossie metrics against a local DuckDB file. DOSI runs metric queries in process; Datus Agent also includes a native DuckDB adapter.",
     "image": "https://datus.ai/og/solutions-semantic-layer-1200x630.png"
+  },
+  {
+    "path": "/solutions/ontology/",
+    "entry": "/src/pages/solutions/ontology/main.tsx",
+    "title": "Ontology for AI Agents: Business Context with Datus & DOSI",
+    "description": "Connect business concepts and relationship roles to semantic models and data with Datus and DOSI. Explore ontology, RAG, mappings, and reviewable execution.",
+    "image": "/og/solutions-ontology-1200x630.png",
+    "imageAlt": "Ontology for AI agents — business concepts connected to semantic models and data",
+    "author": false,
+    "favicon": "/brand-mark.svg"
   }
 ]

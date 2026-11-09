@@ -49,6 +49,7 @@ export const MIRRORED_PATHS = [
   "/products/studio/",
   "/products/enterprise/",
   "/solutions/semantic-layer/",
+  "/solutions/ontology/",
   "/apache-ossie/",
   "/solutions/ai-bi/",
   "/solutions/composable-analytics/",

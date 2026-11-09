@@ -69,6 +69,7 @@ export function siteNav(locale: Locale): NavItem[] {
     { label: t.products, children: productsNav(locale) },
     { label: t.solutions, children: [
       { label: t.semanticLayer, href: "/solutions/semantic-layer/", description: t.semanticLayerDesc },
+      { label: t.ontology, href: "/solutions/ontology/", description: t.ontologyDesc },
       { label: t.aiBi, href: "/solutions/ai-bi/", description: t.aiBiDesc },
       { label: t.composableAnalytics, href: "/solutions/composable-analytics/", description: t.composableAnalyticsDesc },
     ] },

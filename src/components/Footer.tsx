@@ -47,6 +47,7 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
             <h3 className="site-footer__heading">{UI[locale].nav.solutions}</h3>
             <ul>
               <li><a href={l("/solutions/semantic-layer/")}>{UI[locale].nav.semanticLayer}</a></li>
+              <li><a href={l("/solutions/ontology/")}>{UI[locale].nav.ontology}</a></li>
               <li><a href={l("/solutions/ai-bi/")}>{UI[locale].nav.aiBi}</a></li>
               <li><a href={l("/solutions/composable-analytics/")}>{UI[locale].nav.composableAnalytics}</a></li>
             </ul>

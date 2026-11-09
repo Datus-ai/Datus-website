@@ -21,6 +21,8 @@ export type UiMessages = {
     semanticLayerDesc: string;
     aiBi: string;
     aiBiDesc: string;
+    ontology: string;
+    ontologyDesc: string;
     composableAnalytics: string;
     composableAnalyticsDesc: string;
     integrations: string;
@@ -176,6 +178,8 @@ export const UI: Record<Locale, UiMessages> = {
       semanticLayerDesc: "Shared business definitions for teams and AI agents.",
       aiBi: "AI/BI",
       aiBiDesc: "AI business intelligence with reviewable answers.",
+      ontology: "Ontology for AI Agents",
+      ontologyDesc: "Connect business concepts and relationships to data.",
       composableAnalytics: "Composable Analytics",
       composableAnalyticsDesc: "Build adaptable views from shared metric definitions.",
       integrations: "Integrations",
@@ -334,6 +338,8 @@ export const UI: Record<Locale, UiMessages> = {
       semanticLayerDesc: "让团队与 AI Agent 共享业务定义。",
       aiBi: "AI/BI",
       aiBiDesc: "基于业务上下文、答案可核查的 AI 商业智能。",
+      ontology: "面向 AI Agent 的本体",
+      ontologyDesc: "将业务概念与关系连接到数据。",
       composableAnalytics: "Composable Analytics",
       composableAnalyticsDesc: "基于共享指标定义，快速组合不同分析视图。",
       integrations: "集成",
