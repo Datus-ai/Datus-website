@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">From discovered pattern to approved business rule</title>
+  <desc id="desc">A branching set of candidate patterns reaches a validation gate; one verified path enters a shared context ring for AI agents.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#15161a"/><stop offset="1" stop-color="#242033"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#8169f0" stop-opacity=".28"/><stop offset="1" stop-color="#8169f0" stop-opacity="0"/></radialGradient>
+    <style>text{font-family:Inter,system-ui,Arial,sans-serif}.eyebrow{font-size:15px;font-weight:700;letter-spacing:2px;fill:#cbbfff}.label{font-size:18px;font-weight:700;fill:#f7f5ff}.small{font-size:14px;fill:#c8c2da}.line{fill:none;stroke:#a995ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}</style>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="695" cy="335" r="385" fill="url(#glow)"/>
+  <path d="M0 560c150-50 274-58 410-7s256 62 397-9 262-49 393-11" fill="none" stroke="#725fc5" stroke-width="2" opacity=".25"/>
+  <g fill="none" stroke="#5d5375" stroke-width="2"><circle cx="100" cy="180" r="29"/><circle cx="105" cy="315" r="29"/><circle cx="100" cy="450" r="29"/><circle cx="155" cy="505" r="13"/><circle cx="170" cy="125" r="13"/></g>
+  <g fill="#ab98ff"><circle cx="100" cy="180" r="8"/><circle cx="105" cy="315" r="8"/><circle cx="100" cy="450" r="8"/><circle cx="155" cy="505" r="4"/><circle cx="170" cy="125" r="4"/></g>
+  <path d="M129 180c97 0 145 68 231 118M134 315h226M129 450c97 0 145-68 231-118" fill="none" stroke="#6b6182" stroke-width="2.5"/>
+  <path d="M183 125c74 31 95 74 165 142M168 505c76-33 110-78 180-146" fill="none" stroke="#494357" stroke-width="2" stroke-dasharray="6 8"/>
+  <rect x="360" y="235" width="206" height="162" rx="25" fill="#362f53" stroke="#9b89e8" stroke-width="2"/>
+  <path class="line" d="m405 315 34 34 72-76" stroke-width="9"/>
+  <text x="463" y="425" class="small" text-anchor="middle">EVIDENCE GATE</text>
+  <path class="line" d="M566 316h100m-14-12 14 12-14 12"/>
+  <circle cx="865" cy="316" r="166" fill="#2a2540" stroke="#745fc9" stroke-width="2"/>
+  <circle cx="865" cy="316" r="124" fill="none" stroke="#ad9cf2" stroke-width="2" stroke-dasharray="10 8"/>
+  <path d="M811 300c13-38 58-58 94-35M921 284c-8 45-54 71-96 53" fill="none" stroke="#cbbcff" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="810" cy="301" r="9" fill="#cbbcff"/><circle cx="921" cy="284" r="9" fill="#cbbcff"/>
+  <circle cx="865" cy="316" r="37" fill="#8d77ed"/><path d="m846 316 14 14 27-30" fill="none" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="865" y="510" class="label" text-anchor="middle">SHARED CONTEXT</text>
+  <text x="49" y="63" class="eyebrow">DATUS / AGENTIC ANALYTICS</text>
+  <text x="49" y="591" class="small">Discover</text><text x="401" y="591" class="small">Verify</text><text x="806" y="591" class="small">Reuse</text>
+</svg>

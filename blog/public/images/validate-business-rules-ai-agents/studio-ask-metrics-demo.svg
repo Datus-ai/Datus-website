@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+<title id="title">Illustrative Datus Studio AskMetrics conversation</title>
+<desc id="desc">A simulated Studio chat shows a Northstar analyst asking Datus Agent for repeat purchase rate by first-delivery delay. The agent uses a saved metric, shows fictional sample counts and rates, and marks the difference as a candidate for a separate period check.</desc>
+<defs><style>text{font-family:Inter,system-ui,Arial,sans-serif}.small{font-size:13px;fill:#706c79}.label{font-size:15px;fill:#514b5e}.bold{font-weight:700}</style></defs>
+<rect width="1200" height="700" rx="23" fill="#faf9fc"/><rect x="1" y="1" width="1198" height="698" rx="22" fill="none" stroke="#ddd7e9" stroke-width="2"/>
+<rect x="1" y="1" width="1198" height="58" rx="22" fill="white"/><path d="M1 59h1198" stroke="#e8e5ef"/>
+<rect x="22" y="15" width="28" height="28" rx="7" fill="#5d49e9"/><path d="M30 24c12-7 19 12 6 12-9 0-7-13 3-11" fill="none" stroke="white" stroke-width="3"/>
+<text x="60" y="38" font-size="22" font-weight="760" fill="#211d2a">Datus</text><text x="170" y="37" class="small">Northstar · Customer analytics</text>
+<rect x="1030" y="16" width="148" height="27" rx="13" fill="#eee9fb"/><text x="1104" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#684bc7">SIMULATED UI</text>
+<rect x="1" y="60" width="226" height="639" fill="white"/><path d="M227 60v639" stroke="#e8e5ef"/>
+<rect x="17" y="77" width="193" height="40" rx="8" fill="#5b49ee"/><text x="113" y="103" text-anchor="middle" font-size="15" font-weight="680" fill="white">＋ New Conversation</text>
+<text x="20" y="151" class="small bold">RECENT CONVERSATIONS</text><rect x="13" y="165" width="202" height="56" rx="8" fill="#f4f0ff"/><text x="24" y="189" font-size="13" font-weight="700" fill="#352751">Repeat purchase by delay</text><text x="24" y="210" class="small">Today · Ask metrics</text><text x="20" y="662" class="small">Northstar review project</text>
+<text x="262" y="100" font-size="20" font-weight="740" fill="#25202f">Datus Agent</text><text x="262" y="124" class="small">Ask metrics · Northstar orders</text><path d="M227 144h972" stroke="#ece9f2"/>
+<circle cx="1153" cy="182" r="17" fill="#ded4ff"/><text x="1153" y="187" text-anchor="middle" font-size="14" font-weight="750" fill="#4a368e">A</text>
+<rect x="585" y="160" width="538" height="86" rx="16" fill="#f1edff"/><text x="607" y="192" font-size="15" fill="#262033">Show repeat purchase rate by first-delivery delay</text><text x="607" y="217" font-size="15" fill="#262033">group for the last completed quarter. Include counts.</text>
+<circle cx="282" cy="285" r="19" fill="#5d49e9"/><path d="M273 284c11-7 18 11 7 11-9 0-7-13 3-12" fill="none" stroke="white" stroke-width="3"/>
+<text x="313" y="283" font-size="15" font-weight="740" fill="#302743">Datus Agent</text><text x="313" y="304" class="small">Saved rate and count metrics · reviewed delay dimension</text>
+<rect x="313" y="322" width="840" height="215" rx="14" fill="white" stroke="#ddd7e9" stroke-width="2"/>
+<text x="336" y="352" font-size="17" font-weight="730" fill="#302a3b">Repeat purchase by first-delivery delay</text><text x="336" y="377" class="small">Illustrative Northstar data · 90-day follow-up · completed cohort</text>
+<rect x="334" y="395" width="798" height="35" rx="6" fill="#f5f2fb"/><text x="350" y="418" class="label bold">Delivery group</text><text x="699" y="418" class="label bold">Eligible</text><text x="854" y="418" class="label bold">Repeat</text><text x="1038" y="418" class="label bold">Rate</text>
+<text x="350" y="461" class="label">On time</text><text x="700" y="461" class="label">1,000</text><text x="855" y="461" class="label">320</text><text x="1038" y="461" class="label">32%</text><path d="M334 475h798" stroke="#eeeaf4"/>
+<text x="350" y="509" class="label">Late</text><text x="700" y="509" class="label">500</text><text x="855" y="509" class="label">110</text><text x="1038" y="509" class="label">22%</text>
+<text x="313" y="571" font-size="15" fill="#302a3b">The late group has a lower rate in this sample. This is a candidate</text><text x="313" y="595" font-size="15" fill="#302a3b">finding; check the same definition on a separate period before reuse.</text>
+<rect x="263" y="634" width="890" height="49" rx="14" fill="white" stroke="#ded8ea" stroke-width="2"/><text x="284" y="665" font-size="14" fill="#a6a1ad">Ask about a KPI, trend, or breakdown from your metrics…</text><circle cx="1120" cy="658" r="15" fill="#5d49e9"/><path d="M1114 659l10-5-3 10-2-4z" fill="white"/>
+</svg>

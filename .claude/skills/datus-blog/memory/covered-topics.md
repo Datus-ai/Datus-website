@@ -867,3 +867,18 @@ land on the new article by design.
 - Category: Agentic Analytics
 - PR: https://github.com/Datus-ai/Datus-website/pull/136   Status: open
 - Date: 2026-11-09
+
+### validate-business-rules-ai-agents
+- Title: How Should AI Agents Validate Business Rules Before Reusing Them?
+- Target keyword: AI agent business rule validation
+- Angle: distinguish metric definitions, observed patterns, and action rules; use a fictional Northstar example to explain Datus-assisted modeling, reference comparisons, investigation, and human approval.
+- Source direction: operator-specified topic and LinkedIn discussion; operator-approved concise overview without detailed UI or CLI instructions.
+- Article type: Product (educational overview)
+- Investment Score: n/a (operator-directed)   Gate A: KEEP — distinct validation and governed-reuse question, complementary to row-level security.
+- Audit: manual 85/100, grade A; automated 10 pass / 1 warn / 0 fail; title length warning retained. Concise length and product-share exceptions approved by the operator. Production build and SEO checks pass.
+- Key sources: https://www.linkedin.com/feed/update/urn:li:activity:7523175743628075008/; https://www.microsoft.com/en-us/research/publication/a-dirty-dozen-twelve-common-metric-interpretation-pitfalls-in-online-controlled-experiments/; https://docs.datus.ai/0.4/subagent/semantic_modeling/; https://docs.datus.ai/0.4/subagent/ask_metrics/. Studio behavior and simulated UI checked against Datus SaaS source.
+- Internal links added: semantic-layer-vs-ontology, semantic-model-examples, row-level-security-ai-analytics, what-is-agentic-analytics; reciprocal from row-level-security-ai-analytics.
+- Glossary updated: no — specific validation question rather than a standalone glossary term.
+- Category: Agentic Analytics
+- PR: https://github.com/Datus-ai/Datus-website/pull/138   Status: open
+- Date: 2026-11-10
