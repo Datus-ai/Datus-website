@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Follow an analytical answer back to its source</title>
+  <desc id="desc">Four completed orders follow a violet path through a reviewed metric rule to an answer of 330. Two cancelled orders branch away, contributing zero to completed revenue.</desc>
+  <defs>
+    <style>text{font-family:Inter,system-ui,Arial,sans-serif}.eyebrow{font-size:19px;font-weight:700;letter-spacing:3px;fill:#6e647d}.head{font-size:29px;font-weight:700;fill:#242128}.label{font-size:24px;fill:#595461}.value{font-size:28px;font-weight:650;fill:#2f283b}.tiny{font-size:19px;fill:#77717f}.line{fill:none;stroke-linecap:round;stroke-linejoin:round}</style>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#d8d2df"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#f5f4ef"/>
+  <rect x="60" y="170" width="1480" height="640" fill="url(#dots)" opacity=".7"/>
+  <path d="M590 95c220-90 470-35 590 110s110 390-50 525" class="line" stroke="#ded6ec" stroke-width="2"/>
+  <path d="M645 65c300-80 570 85 620 335s-100 420-270 470" class="line" stroke="#ded6ec" stroke-width="2"/>
+  <text x="90" y="88" class="eyebrow">DATUS / AI ANALYTICS</text>
+  <text x="90" y="151" font-size="48" font-weight="760" fill="#232029">Trace the answer.</text>
+  <text x="102" y="245" class="eyebrow">SOURCE RECORDS</text>
+  <rect x="90" y="280" width="430" height="440" rx="21" fill="white" stroke="#d9d3df" stroke-width="2"/>
+  <path d="M90 350h430" stroke="#e7e2ec" stroke-width="2"/>
+  <text x="120" y="326" class="head">orders</text><text x="468" y="326" text-anchor="end" class="tiny">6 rows</text>
+  <g fill="#ece7f8"><rect x="108" y="365" width="394" height="45" rx="7"/><rect x="108" y="420" width="394" height="45" rx="7"/><rect x="108" y="475" width="394" height="45" rx="7"/><rect x="108" y="585" width="394" height="45" rx="7"/></g>
+  <g class="value"><text x="129" y="396">120</text><text x="129" y="451">30</text><text x="129" y="506">80</text><text x="129" y="561" fill="#a7a0ae">60</text><text x="129" y="616">100</text><text x="129" y="671" fill="#a7a0ae">40</text></g>
+  <g class="label"><text x="286" y="396">completed</text><text x="286" y="451">completed</text><text x="286" y="506">completed</text><text x="286" y="561" fill="#a7a0ae">cancelled</text><text x="286" y="616">completed</text><text x="286" y="671" fill="#a7a0ae">cancelled</text></g>
+  <g class="line" stroke="#8d72d4" stroke-width="5"><path d="M520 387C670 387 640 390 745 430"/><path d="M520 442C650 442 650 440 745 450"/><path d="M520 497C650 497 655 470 745 470"/><path d="M520 607C690 607 655 520 745 490"/></g>
+  <g class="line" stroke="#c1b8ca" stroke-width="3" stroke-dasharray="8 10"><path d="M520 552c120 0 140 175 263 175"/><path d="M520 662c120 0 140 65 263 65"/></g>
+  <circle cx="865" cy="460" r="160" fill="#eee8fa"/><circle cx="865" cy="460" r="127" fill="#fdfcff" stroke="#7960bf" stroke-width="5"/>
+  <circle cx="865" cy="460" r="175" fill="none" stroke="#bfb0de" stroke-width="2" stroke-dasharray="110 40 25 40"/>
+  <path d="M954 550l64 64" class="line" stroke="#7960bf" stroke-width="20"/>
+  <path d="M818 420h94l-34 43v40l-26-13v-27z" fill="#7960bf"/>
+  <text x="865" y="548" text-anchor="middle" class="tiny">completed only</text>
+  <text x="865" y="245" text-anchor="middle" class="eyebrow">METRIC RULE</text>
+  <path d="M1040 460h70" class="line" stroke="#7960bf" stroke-width="7"/><path d="M1092 445l20 15-20 15" class="line" stroke="#7960bf" stroke-width="5"/>
+  <rect x="1135" y="317" width="375" height="303" rx="24" fill="#30273e"/>
+  <text x="1169" y="371" font-size="24" font-weight="600" fill="#d8ccee">Completed revenue</text>
+  <text x="1161" y="521" font-size="148" font-weight="760" letter-spacing="-6" fill="#f9f7ff">330</text>
+  <circle cx="1456" cy="570" r="18" fill="#bba5ee"/><path d="M1447 570l6 6 12-13" class="line" stroke="#30273e" stroke-width="3"/>
+  <text x="1169" y="579" font-size="20" fill="#d8ccee">A calculation you can inspect</text>
+  <text x="1322" y="245" text-anchor="middle" class="eyebrow">ANALYTICAL ANSWER</text>
+  <circle cx="816" cy="727" r="29" fill="#f5f4ef" stroke="#c1b8ca" stroke-width="2"/><path d="M805 727h22" class="line" stroke="#a79cad" stroke-width="3"/>
+  <text x="864" y="734" class="tiny">Cancelled orders contribute 0</text>
+  <text x="90" y="837" class="tiny">Illustrative retail sample · definitions and source records make the number reviewable</text>
+</svg>

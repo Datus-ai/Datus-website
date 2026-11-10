@@ -99,6 +99,8 @@ Keep candidate definitions in a review context until they are accepted. Datus ma
 
 The related [row-level security guide](/blog/row-level-security-ai-analytics/) covers a separate boundary: which records an agent may read. A validated rule does not override a user's data permissions.
 
+[Data lineage for AI analytics](/blog/data-lineage-ai-analytics/) explains how to follow an answer back to its metric definition and source dependencies, alongside the context of the query that produced it.
+
 ## Conclusion
 
 An agent can discover a candidate rule, but reuse has to be earned. Northstar first agrees on the repeat-purchase calculation, checks the delivery pattern on separate data, and asks an owner to approve a limited use. Datus makes the calculation and investigation more repeatable through semantic models, reference comparisons, and inspectable queries. The team remains responsible for the decision that turns a finding into shared business context.

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">A metric's source dependencies in Datus Studio</title>
+  <desc id="desc">Simulated Datus Semantic Explorer layout based on the product source. The main.orders physical table feeds the orders dataset, which feeds completed_revenue and other metrics. Selected metric details show the completed-status expression and amount and status source columns. This view is model lineage, not a record of a query run.</desc>
+  <defs>
+    <style>text{font-family:Inter,system-ui,Arial,sans-serif}.small{font-size:14px;fill:#77727f}.label{font-size:16px;fill:#514a5d}.node{font-size:18px;font-weight:670;fill:#27232d}.tag{font-size:12px;font-weight:700;letter-spacing:.6px}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;fill:#5e4a88}.edge{fill:none;stroke:#846ac9;stroke-width:3}.muted-edge{fill:none;stroke:#cbc4d5;stroke-width:2}</style>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="#ddd7e5"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1l8 4-8 4" fill="none" stroke="#846ac9" stroke-width="1.5"/></marker>
+  </defs>
+  <rect x="1" y="1" width="1198" height="718" rx="20" fill="#fff" stroke="#dcd6e5" stroke-width="2"/>
+  <path d="M1 64h1198M1 112h1198" stroke="#e6e1ed"/>
+  <text x="26" y="40" font-size="23" font-weight="760" fill="#2a2337">Datus Studio</text>
+  <text x="211" y="40" class="small">retail_orders.yml</text>
+  <rect x="983" y="20" width="190" height="27" rx="13" fill="#f0ebf9"/><text x="1078" y="38" text-anchor="middle" class="tag" fill="#7152aa">SIMULATED INTERFACE</text>
+  <text x="26" y="94" font-size="17" font-weight="700" fill="#3d344c">Semantic Explorer</text>
+  <rect x="255" y="75" width="123" height="28" rx="6" fill="#eee7fb"/><text x="316" y="94" text-anchor="middle" font-size="14" font-weight="700" fill="#6a4da7">Lineage Flow</text>
+  <text x="401" y="94" class="small">Semantic Graph</text><text x="556" y="94" class="small">Ontology Concepts</text>
+  <rect x="1" y="113" width="790" height="557" fill="url(#grid)"/>
+  <text x="36" y="164" class="tag" fill="#4e907c">PHYSICAL TABLE</text><text x="293" y="164" class="tag" fill="#5588af">DATASET</text><text x="546" y="164" class="tag" fill="#9670b3">METRIC</text>
+  <path class="edge" d="M231 290h52" marker-end="url(#arrow)"/><path class="edge" d="M488 290h52" marker-end="url(#arrow)"/>
+  <path class="muted-edge" d="M488 300c27 0 24 145 52 145M488 310c40 0 13 245 52 245"/>
+  <g transform="translate(31 228)"><rect width="200" height="124" rx="11" fill="white" stroke="#86b8a7" stroke-width="2"/><rect x="0" y="0" width="6" height="124" rx="3" fill="#50a48a"/><text x="19" y="36" class="node">main.orders</text><text x="19" y="66" class="small">order_id · amount</text><text x="19" y="91" class="small">status · order_date</text></g>
+  <g transform="translate(285 228)"><rect width="203" height="124" rx="11" fill="white" stroke="#9dbbd2" stroke-width="2"/><rect width="6" height="124" rx="3" fill="#6e9fc5"/><text x="19" y="36" class="node">orders</text><text x="19" y="66" class="small">Source: main.orders</text><text x="19" y="91" class="small">5 mapped fields</text></g>
+  <g transform="translate(542 228)"><rect x="-5" y="-5" width="225" height="134" rx="15" fill="#efe9fb"/><rect width="215" height="124" rx="11" fill="#fff" stroke="#8b69c4" stroke-width="2"/><rect width="6" height="124" rx="3" fill="#a77fc5"/><text x="16" y="35" font-size="16" font-weight="700" fill="#30213f">completed_revenue</text><text x="16" y="66" class="small">Completed orders only</text><text x="16" y="96" class="tag" fill="#8561b1">SELECTED METRIC</text></g>
+  <g transform="translate(542 403)" opacity=".6"><rect width="215" height="84" rx="11" fill="#fff" stroke="#d2c8df"/><text x="16" y="32" font-size="16" font-weight="650" fill="#55475f">completed_orders</text><text x="16" y="59" class="small">Count completed orders</text></g>
+  <g transform="translate(542 516)" opacity=".6"><rect width="215" height="84" rx="11" fill="#fff" stroke="#d2c8df"/><text x="16" y="32" font-size="16" font-weight="650" fill="#55475f">average_order_value</text><text x="16" y="59" class="small">Separate expression</text></g>
+  <text x="31" y="647" class="small">Selected path: main.orders → orders → completed_revenue</text>
+  <rect x="791" y="113" width="408" height="557" fill="#fff"/><path d="M791 113v557" stroke="#e1dbe9"/>
+  <text x="818" y="153" class="tag" fill="#9471b6">ATOMIC METRIC</text><text x="818" y="188" font-size="23" font-weight="730" fill="#2e2438">completed_revenue</text>
+  <text x="818" y="220" class="label">Order amount from completed orders only</text>
+  <path d="M818 242h350" stroke="#ebe6f1"/>
+  <text x="818" y="273" class="small">EXPRESSION</text>
+  <rect x="815" y="290" width="355" height="130" rx="8" fill="#f7f5fa"/>
+  <text x="831" y="320" class="mono">SUM(CASE</text><text x="831" y="345" class="mono"> WHEN orders.status = 'completed'</text><text x="831" y="370" class="mono"> THEN orders.amount ELSE 0</text><text x="831" y="395" class="mono">END)</text>
+  <text x="818" y="454" class="small">DATASET</text><rect x="818" y="468" width="81" height="29" rx="6" fill="#eaf2f9"/><text x="858" y="488" text-anchor="middle" font-size="14" fill="#527f9f">orders</text>
+  <text x="818" y="531" class="small">PHYSICAL COLUMNS</text>
+  <rect x="818" y="547" width="155" height="30" rx="6" fill="#edf3fa"/><text x="831" y="567" font-size="14" fill="#527f9f">orders.amount</text>
+  <rect x="982" y="547" width="179" height="30" rx="6" fill="#edf3fa"/><text x="995" y="567" font-size="14" fill="#527f9f">orders.status</text>
+  <text x="818" y="623" class="small">A definition dependency, not a query log</text>
+  <path d="M1 670h1198" stroke="#e6e1ed"/>
+  <text x="25" y="699" class="small">Illustrative retail model · based on Datus Semantic Explorer · sample data from Semantic Model Examples</text>
+</svg>
