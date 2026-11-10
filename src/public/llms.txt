@@ -71,3 +71,6 @@ This file is a navigation and product-summary aid. Product pages and documentati
 
 ## Ontology for AI agents
 - https://datus.ai/solutions/ontology/: Business concepts, named relationships, source mappings, and experimental DOSI ontology execution.
+
+## Apache Superset integration
+- [Superset AI Agent integration](https://datus.ai/integrations/superset/): Selected dashboard SQL becomes Reference SQL and semantic metrics; distinguishes Superset authoring, Datus snapshot reports, and Datus live-query dashboards.

@@ -12,6 +12,7 @@ import VscodePage from "./pages/products/vscode/Page";
 import StudioPage from "./pages/products/studio/Page";
 import EnterprisePage from "./pages/products/enterprise/Page";
 import IntegrationsPage from "./pages/integrations/Page";
+import SupersetPage from "./pages/integrations/superset/Page";
 import DatabasesPage from "./pages/databases/Page";
 import SnowflakePage from "./pages/databases/snowflake/Page";
 import { DatabricksPage, BigQueryPage, DuckDBPage } from "./pages/databases/engine-pages/Page";
@@ -57,6 +58,7 @@ const PAGES: { path: string; page: () => JSX.Element }[] = [
   { path: "/products/studio/", page: () => <StudioPage /> },
   { path: "/products/enterprise/", page: () => <EnterprisePage /> },
   { path: "/integrations/", page: () => <IntegrationsPage /> },
+  { path: "/integrations/superset/", page: () => <SupersetPage /> },
   { path: "/databases/", page: () => <DatabasesPage /> },
   { path: "/databases/snowflake/", page: () => <SnowflakePage /> },
   { path: "/databases/databricks/", page: () => <DatabricksPage /> },

@@ -53,3 +53,5 @@ yarn-debug.log*
 /apache-ossie-converter/**/index.html
 
 /solutions/ontology/index.html
+
+/integrations/superset/index.html
