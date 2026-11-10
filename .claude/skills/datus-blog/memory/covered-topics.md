@@ -895,5 +895,5 @@ land on the new article by design.
 - Internal links added: semantic-model-examples, validate-business-rules-ai-agents, row-level-security-ai-analytics, what-is-data-catalog, solutions/semantic-layer; reciprocal from validate-business-rules-ai-agents.
 - Glossary updated: yes — existing Data Lineage entry links to this post; English-only blog URL inherited by Chinese glossary.
 - Category: Agentic Analytics
-- PR: pending creation   Status: approved for merge on codex/blog-data-lineage-ai-analytics
+- PR: https://github.com/Datus-ai/Datus-website/pull/139   Status: merged (operator-authorized squash merge)
 - Date: 2026-11-10
