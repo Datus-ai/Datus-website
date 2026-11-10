@@ -40,6 +40,8 @@ export type UiMessages = {
     language: string;
   };
   footer: {
+    navigation: string;
+    allDatabases: string;
     apacheDisclaimer: { project: string; afterProject: string; foundation: string; afterFoundation: string };
     semanticConverter: string;
     apacheOssieGuide: string;
@@ -198,6 +200,8 @@ export const UI: Record<Locale, UiMessages> = {
       language: "Language",
     },
     footer: {
+      navigation: "Footer navigation",
+      allDatabases: "All Databases",
       apacheDisclaimer: {
         project: "Apache Ossie (incubating)",
         afterProject: " is a project in the Apache Incubator at the ",
@@ -359,6 +363,8 @@ export const UI: Record<Locale, UiMessages> = {
       language: "语言",
     },
     footer: {
+      navigation: "页脚导航",
+      allDatabases: "全部数据库",
       apacheDisclaimer: {
         project: "Apache Ossie（孵化中）",
         afterProject: "是 ",
