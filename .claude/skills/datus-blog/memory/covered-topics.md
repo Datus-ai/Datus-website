@@ -882,3 +882,18 @@ land on the new article by design.
 - Category: Agentic Analytics
 - PR: https://github.com/Datus-ai/Datus-website/pull/138   Status: open
 - Date: 2026-11-10
+
+### data-lineage-ai-analytics
+- Title: Data Lineage for AI Analytics: From Answers to Sources
+- Target keyword: data lineage for AI analytics (data lineage, AI data lineage, metric lineage)
+- Angle: distinguish a model's source dependencies from pipeline history and the record of a particular query; show how to review a completed-revenue answer against its definition and six source orders.
+- Source direction: operator-selected from Nov 10 OpenSEO shortlist; applied overview for readers evaluating Datus, without detailed UI or CLI instructions.
+- Article type: Product (educational overview)
+- Investment Score: n/a (operator-selected)   Gate A: KEEP — no existing blog owns the answer-to-metric-to-source topic; complements rule validation and row-level security.
+- Audit: manual P0 PASS, 85/100 grade A; blog checker 12 pass / 1 warn / 0 fail. Warning is the downloadable seed SQL URL, verified as a built asset and HTTP 200. Full production build and SEO checks pass; 330 completed revenue, 430 all-order total and four completed orders recalculated from the existing sample. Concise overview approved by the operator for merge on 2026-11-10.
+- Key sources: https://openlineage.io/docs/spec/facets/; https://openlineage.io/docs/spec/facets/dataset-facets/column_lineage_facet/; https://dosi.datus.ai/lineage/. Studio claims checked against Datus-saas origin/main bf8b79f, docs/studio/semantic-explorer.md.
+- Internal links added: semantic-model-examples, validate-business-rules-ai-agents, row-level-security-ai-analytics, what-is-data-catalog, solutions/semantic-layer; reciprocal from validate-business-rules-ai-agents.
+- Glossary updated: yes — existing Data Lineage entry links to this post; English-only blog URL inherited by Chinese glossary.
+- Category: Agentic Analytics
+- PR: https://github.com/Datus-ai/Datus-website/pull/139   Status: merged (operator-authorized squash merge)
+- Date: 2026-11-10

@@ -260,6 +260,7 @@ export const glossary: GlossaryCategory[] = [
         slug: "data-lineage",
         definition:
           "The graph of how data flows from source systems through transformations to final tables and dashboards. Used for impact analysis and debugging.",
+        article: "/blog/data-lineage-ai-analytics/",
       },
       {
         term: "PII & Data Masking",

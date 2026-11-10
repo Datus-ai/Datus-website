@@ -76,7 +76,7 @@ const CATEGORIES = [
       "semantic-layer-vs-ontology", "from-semantic-layer-to-ontology",
       "semantic-layer-based-ontology", "ontology-for-ai-agents-five-approaches", "why-text-to-sql-fails-without-a-semantic-layer"] },
   { label: "Agentic Analytics", description: "AI agents that plan and run multi-step analytical work — and what has to be true underneath for it to be reliable.",
-    slugs: ["what-is-agentic-analytics", "what-is-conversational-bi", "row-level-security-ai-analytics", "validate-business-rules-ai-agents", "cube-agentic-analytics", "composable-analytics-agent-built-dashboards", "is-the-dashboard-dead"] },
+    slugs: ["what-is-agentic-analytics", "what-is-conversational-bi", "row-level-security-ai-analytics", "validate-business-rules-ai-agents", "data-lineage-ai-analytics", "cube-agentic-analytics", "composable-analytics-agent-built-dashboards", "is-the-dashboard-dead"] },
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
     slugs: ["what-is-text-to-sql", "what-is-schema-linking", "rag-data-engineering", "what-is-data-catalog",
       "what-is-data-mesh", "what-is-data-agent", "what-is-lakehouse", "what-is-lakehouse-catalog",
@@ -169,6 +169,7 @@ function readPosts() {
       breadcrumbLabel: data.breadcrumbLabel || "",
       heroImage: data.heroImage || data.cover || "",
       heroImageAlt: data.heroImageAlt || "",
+      heroLayout: data.heroLayout === "stacked" ? "stacked" : "",
       keywords: extractKeywords(data),
       html: renderBody(content),
     });
@@ -473,13 +474,13 @@ function extractLeadImage(html) {
 // Full-width hero at the top of an article: eyebrow + byline, title, lead, and
 // an optional cover image. With an image it's a two-column layout (text +
 // media); without, title-only. Mirrors the reference.
-function heroHtml({ eyebrow, byline, title, lead, image, imageAlt }) {
+function heroHtml({ eyebrow, byline, title, lead, image, imageAlt, layout }) {
   const meta = (eyebrow || byline)
     ? `<div class="post-hero__meta">${eyebrow ? `<span class="eyebrow">${esc(eyebrow)}</span>` : ""}${byline ? `<span class="post-hero__byline">${esc(byline)}</span>` : ""}</div>`
     : "";
   const text = `<div class="post-hero__text">${meta}<h1 class="post-title">${esc(title)}</h1>${lead ? `<p class="post-hero__lead">${esc(lead)}</p>` : ""}</div>`;
   if (image) {
-    return `<header class="post-hero post-hero--media">${text}<div class="post-hero__media"><img class="post-hero__img" src="${esc(image)}" alt="${esc(imageAlt || title)}" /></div></header>`;
+    return `<header class="post-hero post-hero--media${layout === "stacked" ? " post-hero--stacked" : ""}">${text}<div class="post-hero__media"><img class="post-hero__img" src="${esc(image)}" alt="${esc(imageAlt || title)}" /></div></header>`;
   }
   return `<header class="post-hero">${text}</header>`;
 }
@@ -542,7 +543,7 @@ function postPage(post) {
     : extractLeadImage(post.html);
   const hero = heroHtml({
     eyebrow: categoryFor(post.slug), byline, title: post.title, lead: post.description,
-    image: cover.image, imageAlt: cover.alt,
+    image: cover.image, imageAlt: cover.alt, layout: post.heroLayout,
   });
   const inner = `<div class="prose">${wrapTldr(cover.html)}</div>
     <div class="post-cta">
@@ -657,6 +658,9 @@ html{scroll-behavior:smooth}
 /* hero — full-width title region above the TOC/content grid */
 .post-hero{margin:10px 0 44px}
 .post-hero--media{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
+.post-hero--stacked{grid-template-columns:1fr;gap:30px}
+.post-hero--stacked .post-hero__text{max-width:880px}
+.post-hero--stacked .post-hero__media{width:100%;max-width:1100px;margin-inline:auto}
 .post-hero__text{max-width:780px;min-width:0}
 .post-hero__meta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:18px}
 .post-hero__byline{font-family:var(--font-mono);font-size:13px;color:var(--ink-faint)}
@@ -690,7 +694,7 @@ html{scroll-behavior:smooth}
 }
 @media (max-width:900px){
   .post-hero--media{grid-template-columns:1fr;gap:24px}
-  .post-hero--media .post-hero__media{order:-1}
+  .post-hero--media:not(.post-hero--stacked) .post-hero__media{order:-1}
 }
 @media (max-width:640px){.post-row{flex-direction:column;gap:6px}.post-row__date{order:-1}}
 @media (max-width:640px){
