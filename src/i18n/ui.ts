@@ -40,6 +40,8 @@ export type UiMessages = {
     language: string;
   };
   footer: {
+    navigation: string;
+    allDatabases: string;
     apacheDisclaimer: { project: string; afterProject: string; foundation: string; afterFoundation: string };
     semanticConverter: string;
     apacheOssieGuide: string;
@@ -79,6 +81,7 @@ export type UiMessages = {
     studioDesc: string;
     enterprise: string;
     enterpriseDesc: string;
+    superset: string;
     allIntegrations: string;
     allIntegrationsDesc: string;
     databases: string;
@@ -197,6 +200,8 @@ export const UI: Record<Locale, UiMessages> = {
       language: "Language",
     },
     footer: {
+      navigation: "Footer navigation",
+      allDatabases: "All Databases",
       apacheDisclaimer: {
         project: "Apache Ossie (incubating)",
         afterProject: " is a project in the Apache Incubator at the ",
@@ -242,6 +247,7 @@ export const UI: Record<Locale, UiMessages> = {
       studioDesc: "Explore shared business context with your team.",
       enterprise: "Enterprise",
       enterpriseDesc: "Shared context, governance, long-running agents.",
+      superset: "Apache Superset",
       allIntegrations: "All Integrations",
       allIntegrationsDesc: "Storage, semantic, BI, MCP, skills, tracing.",
       databases: "Databases",
@@ -357,6 +363,8 @@ export const UI: Record<Locale, UiMessages> = {
       language: "语言",
     },
     footer: {
+      navigation: "页脚导航",
+      allDatabases: "全部数据库",
       apacheDisclaimer: {
         project: "Apache Ossie（孵化中）",
         afterProject: "是 ",
@@ -402,6 +410,7 @@ export const UI: Record<Locale, UiMessages> = {
       studioDesc: "与团队一起探索共享的业务上下文。",
       enterprise: "企业版",
       enterpriseDesc: "共享上下文、治理能力、长时运行 Agent。",
+      superset: "Apache Superset",
       allIntegrations: "全部集成",
       allIntegrationsDesc: "存储、语义层、BI、MCP、Skills、链路追踪。",
       databases: "数据库",

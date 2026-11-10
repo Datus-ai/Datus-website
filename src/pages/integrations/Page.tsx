@@ -167,6 +167,7 @@ export default function IntegrationsPage() {
               <p className="muted" style={{ marginTop: 16, fontSize: 13 }}>
                 {t.bi.roadmap}
               </p>
+              <a href={l("/integrations/superset/")} style={{display:"inline-flex",alignItems:"center",gap:8,color:"var(--brand-bright)",fontSize:14}}>{t.bi.detailLink} <ArrowRight size={15}/></a>
             </div>
             <div style={{ flex: "1 1 360px", minWidth: 300, width: "100%" }}>
               <CodeBlock filename="terminal" lang="bash" code={biCode} />

@@ -306,5 +306,15 @@
     "imageAlt": "Ontology for AI agents — business concepts connected to semantic models and data",
     "author": false,
     "favicon": "/brand-mark.svg"
+  },
+  {
+    "path": "/integrations/superset/",
+    "entry": "/src/pages/integrations/superset/main.tsx",
+    "title": "Apache Superset AI Agent Integration | Datus",
+    "description": "Turn Apache Superset dashboard SQL into reusable metrics and Agent context. Explore Datus reports, live HTML dashboards, and Superset dashboard authoring.",
+    "image": "https://datus.ai/og/integrations-superset-1200x630.png",
+    "imageAlt": "Apache Superset integration with Datus — metrics, reports and dashboards",
+    "author": false,
+    "favicon": "/brand-mark.svg"
   }
 ]

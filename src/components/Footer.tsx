@@ -31,7 +31,7 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
           </div>
         </div>
 
-        <nav className="site-footer__cols" aria-label="Footer">
+        <nav className="site-footer__cols" aria-label={t.navigation}>
           <div className="site-footer__col">
             <h3 className="site-footer__heading">{t.products}</h3>
             <ul>
@@ -53,10 +53,22 @@ const Footer = ({ logoSrc = "/logo_dark.svg" }: { logoSrc?: string }) => {
             </ul>
           </div>
 
-          <div className="site-footer__col">
+          <div className="site-footer__col site-footer__col--integrations">
+            <h3 className="site-footer__heading">{t.integrations}</h3>
+            <ul>
+              <li><a href={l("/databases/snowflake/")}>Snowflake</a></li>
+              <li><a href={l("/databases/databricks/")}>Databricks</a></li>
+              <li><a href={l("/databases/bigquery/")}>BigQuery</a></li>
+              <li><a href={l("/databases/duckdb/")}>DuckDB</a></li>
+              <li><a href={l("/integrations/superset/")}>{p.superset}</a></li>
+              <li><a href={l("/databases/")}>{t.allDatabases}</a></li>
+              <li><a href={l("/integrations/")}>{p.allIntegrations}</a></li>
+            </ul>
+          </div>
+
+          <div className="site-footer__col site-footer__col--resources">
             <h3 className="site-footer__heading">{t.resources}</h3>
             <ul>
-              <li><a href={l("/integrations/")}>{t.integrations}</a></li>
               <li><a href={l("/pricing/")}>{t.pricing}</a></li>
               {/* The blog is English-only — no /zh mirror, so the href is left bare. */}
               <li><a href="/blog/">{t.blog}</a></li>

@@ -30,7 +30,7 @@ export interface IntegrationsCopy {
     registerBefore: string;
     registerAfter: string;
   };
-  bi: { eyebrow: string; heading: string; lead: string; tags: string[]; roadmap: string };
+  bi: { eyebrow: string; heading: string; lead: string; tags: string[]; roadmap: string; detailLink: string };
   mcp: {
     eyebrow: string;
     title: string;
@@ -75,12 +75,11 @@ export const embeddingYaml = `storage:
     model_name: all-MiniLM-L6-v2
     dim_size: 384`;
 
-export const biCode = `# Deploy Superset + Postgres
-helm upgrade --install superset superset/superset \\
-  -f examples-values.yaml
+export const biCode = `# Enable the installed Superset plugin
+datus plugin enable superset --profile local
 
-# One-shot: dashboard -> subagents
-datus-agent bootstrap-bi --database superset`;
+# In Datus chat
+/bootstrap-bi use Superset profile local and my dashboard`;
 
 export const skillsCode = `# Authenticate to the marketplace
 datus skill login --marketplace http://datus-marketplace:9000
@@ -167,9 +166,10 @@ const EN: IntegrationsCopy = {
   bi: {
     eyebrow: "BI copilot",
     heading: "BI Platform Copilot",
-    lead: "Point Datus at an Apache Superset dashboard and it extracts every chart's SQL, builds a semantic model and emits two ready-to-use subagents — one for query, one for attribution analysis.",
-    tags: ["Superset only (today)", "GenSQL subagent", "GenReport + root-cause"],
-    roadmap: "Tableau, PowerBI and Looker adapters are on the roadmap.",
+    lead: "Use the Superset plugin to export selected dashboard queries, build reference SQL and metrics, and prepare analysis agents. Choose Superset authoring or Datus HTML outputs for different visual workflows.",
+    detailLink: "Explore the Superset integration",
+    tags: ["Superset plugin", "Metrics + Reference SQL", "Datus reports + dashboards"],
+    roadmap: "Capabilities depend on the selected plugin and installed version. Follow the Superset guide for a verified workflow.",
   },
   mcp: {
     eyebrow: "MCP protocol",
@@ -297,9 +297,10 @@ const ZH: IntegrationsCopy = {
   bi: {
     eyebrow: "BI Copilot",
     heading: "BI 平台 Copilot",
-    lead: "把 Datus 指向一个 Apache Superset 看板，它会抽取每张图表的 SQL，构建语义模型，并产出两个开箱可用的子代理——一个负责查询，一个负责归因分析。",
-    tags: ["目前仅支持 Superset", "GenSQL 子代理", "GenReport + 根因分析"],
-    roadmap: "Tableau、PowerBI 与 Looker 的适配器已在规划中。",
+    lead: "通过 Superset 插件导出选定看板查询，构建 Reference SQL 和指标，并准备分析 Agent。按任务选择 Superset 看板创作或 Datus HTML 输出。",
+    detailLink: "了解 Superset 集成",
+    tags: ["Superset 插件", "指标 + Reference SQL", "Datus 报告与看板"],
+    roadmap: "具体能力取决于插件与安装版本。Superset 的完整工作流程见接入指南。",
   },
   mcp: {
     eyebrow: "MCP 协议",

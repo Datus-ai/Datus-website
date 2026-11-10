@@ -145,6 +145,12 @@ export const ZH_PAGE_META: Record<string, PageMeta> = {
     ogDescription: "面向数据团队的共享上下文、治理、SSO 与长时运行 Agent——部署在你自己的环境中。",
     twitterDescription: "面向数据团队的共享上下文、治理、SSO 与长时运行 Agent。",
   },
+  "/integrations/superset/": {
+    title: "Apache Superset AI Agent 集成：指标、报告与看板 | Datus",
+    description: "将 Superset 看板中的 SQL 和业务逻辑转为 Datus 指标与 Agent 上下文，了解看板重建、HTML 报告及交互看板的不同工作流程。",
+    ogTitle: "Apache Superset AI Agent 集成 | Datus",
+    ogDescription: "从已有 BI 知识到可复用指标、分析 Agent 与 Datus 报告和看板。",
+  },
   "/integrations/": {
     title: "集成 — Datus 接入你现有的数据栈",
     description:

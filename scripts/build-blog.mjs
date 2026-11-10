@@ -248,15 +248,12 @@ function footerHtml() {
       <a href="https://www.youtube.com/@Datus-AI" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">${SVG.youtube}</a>
     </div>
   </div>
-  <nav class="site-foot__nav" aria-label="Footer">
-    <a href="/products/cli/">CLI</a><a href="/products/studio/">Studio</a>
-    <a href="/integrations/">Integrations</a><a href="/pricing/">Pricing</a>
-    <a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/faq/">FAQ</a>
-    <a href="/support/">Support</a>
-    <a href="/security/">Security &amp; Privacy</a>
-    <a href="/policies/cookies/">Cookie Policy</a>
-    <button type="button" data-cookie-settings>Cookie Settings</button>
-    <a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <nav class="site-foot__nav site-foot__nav--grouped" aria-label="Footer navigation">
+    <div class="site-foot__group"><h3>Products</h3><a href="/products/studio/">Datus Studio</a><a href="/products/cli/">Datus Agent</a><a href="https://dosi.datus.ai/" target="_blank" rel="noopener noreferrer">DOSI</a><a href="/products/vscode/">VS Code Extension</a><a href="/products/enterprise/">Enterprise</a></div>
+    <div class="site-foot__group"><h3>Solutions</h3><a href="/solutions/semantic-layer/">Semantic Layer</a><a href="/solutions/ontology/">Ontology for AI Agents</a><a href="/solutions/ai-bi/">AI/BI</a><a href="/solutions/composable-analytics/">Composable Analytics</a></div>
+    <div class="site-foot__group site-foot__group--integrations"><h3>Integrations</h3><a href="/databases/snowflake/">Snowflake</a><a href="/databases/databricks/">Databricks</a><a href="/databases/bigquery/">BigQuery</a><a href="/databases/duckdb/">DuckDB</a><a href="/integrations/superset/">Apache Superset</a><a href="/databases/">All Databases</a><a href="/integrations/">All Integrations</a></div>
+    <div class="site-foot__group"><h3>Resources</h3><a href="/pricing/">Pricing</a><a href="/blog/">Blog</a><a href="/glossary/">Glossary</a><a href="/apache-ossie/">Apache Ossie Guide</a><a href="/apache-ossie-converter/">Semantic Model Converter</a><a href="/faq/">FAQ</a><a href="/support/">Support</a><a href="https://docs.datus.ai/" target="_blank" rel="noopener noreferrer">Docs</a></div>
+    <div class="site-foot__group"><h3>Company</h3><a href="mailto:contact@datus.ai">Contact</a><a href="/security/">Security &amp; Privacy</a><a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/policies/cookies/">Cookie Policy</a><button type="button" data-cookie-settings>Cookie Settings</button></div>
   </nav>
   <span class="site-foot__copyright">© ${year} DatusAI, Inc.</span>
 </div><div class="container" style="padding-top:24px;font-size:11px;line-height:1.8;color:var(--ink-muted)"><p><a href="https://ossie.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Ossie (incubating)</a> is a project in the Apache Incubator at the <a href="https://www.apache.org/" style="text-decoration:underline;text-underline-offset:3px">Apache Software Foundation (ASF)</a>. Incubation involves reviewing community and governance practices; it is not an assessment of code maturity or stability, and the project has not yet received full ASF endorsement. Apache and Apache Ossie are trademarks of the ASF. Datus is an independent product and is not endorsed by the ASF.</p></div></footer>`;

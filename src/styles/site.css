@@ -529,6 +529,18 @@ body {
   .site-foot__copyright { grid-column: 1; }
 }
 
+/* Grouped integration discovery in the static blog footer. */
+.site-foot__inner:has(.site-foot__nav--grouped){grid-template-columns:210px minmax(0,1fr);gap:28px 36px}
+.site-foot__nav--grouped{display:grid;grid-template-columns:1fr 1.15fr 1fr 1.2fr .9fr;gap:18px}
+.site-foot__group{display:flex;flex-direction:column;gap:6px;min-width:0}
+.site-foot__group h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin:0 0 4px;line-height:1.4}
+.site-foot__group a,.site-foot__group button{font:14px/1.5 Inter,system-ui,Arial,sans-serif;color:var(--ink-dim)}
+.site-foot__group button{border:0;background:none;padding:0;text-align:left;cursor:pointer}
+.site-foot__group :is(a,button):hover{color:var(--brand-bright)}
+@media(max-width:1100px){.site-foot__inner:has(.site-foot__nav--grouped){grid-template-columns:1fr}}
+@media(min-width:761px) and (max-width:1000px){.site-foot__nav--grouped{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}}
+@media(max-width:760px){.site-foot__nav--grouped{grid-template-columns:1fr 1fr;gap:22px}.site-foot__group--integrations{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}.site-foot__group--integrations h3{grid-column:1/-1}}
+
 /* ----------------------------- card ----------------------------- */
 .card {
   background: var(--panel);
