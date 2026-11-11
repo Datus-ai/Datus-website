@@ -3,6 +3,10 @@
     "image": "/images/data-lineage-ai-analytics/cover.svg",
     "source": "reused"
   },
+  "sql-to-business-metrics": {
+    "image": "/images/sql-to-business-metrics/cover.svg",
+    "source": "reused"
+  },
   "row-level-security-ai-analytics": {
     "image": "/images/row-level-security-ai-analytics/cover.svg",
     "source": "reused"
