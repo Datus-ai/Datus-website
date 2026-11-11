@@ -897,3 +897,15 @@ land on the new article by design.
 - Category: Agentic Analytics
 - PR: https://github.com/Datus-ai/Datus-website/pull/139   Status: merged (operator-authorized squash merge)
 - Date: 2026-11-10
+
+### sql-to-business-metrics
+- Title: From Existing SQL to Reusable Business Metrics
+- Target keyword: SQL to semantic model; reusable business metrics. Exact-query demand unconfirmed; product education, no volume claim.
+- Angle: preserve a chosen SQL calculation, distinguish metric meaning from report scope, compare full reference results, reuse saved metrics.
+- Article type: Product educational overview; operator-selected; Gate A KEEP, distinct from semantic-model syntax examples and business-policy validation.
+- Implementation sources: Datus-agent 46ca6abef989e667368e6b9a4146c0e9f39d23f5 semantic modeling prompt/node, semantic_verification_tools, Ask Metrics docs; SaaS semantic modeling input and Semantic Explorer docs.
+- Verification: illustrative model validates on DOSI 0.1.11. PostgreSQL-target compiled SQL executed unchanged in SQLite, reference and model match for October (North210/South90) and November (North60/South35). Not a live Studio test or Agent-generation transcript.
+- Internal links: solutions/semantic-layer, semantic-model-examples, validate-business-rules-ai-agents, data-lineage-ai-analytics; reciprocal from semantic-model-examples.
+- Category: Semantic Layer
+- PR: pending creation. Status: reviewed by operator; authorized for PR on 2026-11-11.
+- Date: 2026-11-10

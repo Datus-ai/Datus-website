@@ -1,0 +1,53 @@
+version: "0.2.0.dev0"
+semantic_model:
+  - name: retail_orders
+    datasets:
+      - name: orders
+        source: main.orders
+        primary_key: [order_id]
+        fields:
+          - name: order_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: order_id
+          - name: region
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: region
+            dimension: {}
+          - name: order_date
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: order_date
+            dimension:
+              is_time: true
+          - name: status
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: status
+          - name: is_test
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: is_test
+          - name: amount
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: amount
+          - name: refund_amount
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: refund_amount
+    metrics:
+      - name: net_order_revenue
+        description: Completed non-test order amounts less recorded refunds, in USD
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: "SUM(CASE WHEN orders.status = 'completed' AND orders.is_test = 0 THEN orders.amount - COALESCE(orders.refund_amount, 0) ELSE 0 END)"

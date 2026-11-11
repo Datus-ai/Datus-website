@@ -236,6 +236,8 @@ Check the version and document shape first. The downloadable file was validated 
 
 No. Validation catches structural and expression errors. It cannot decide whether “revenue” should exclude refunds, which date Finance uses, or whether customer keys are unique in the data. Compare results with known examples, have an owner approve definitions, and repeat the checks when either the data or the rules change.
 
+For a calculation already captured in a report, see [how to turn existing SQL into reusable business metrics](/blog/sql-to-business-metrics/).
+
 ## Related articles
 
 - [Apache Ossie converters: YAML to dbt, Cube and more](/blog/apache-ossie-converters/) — export formats, worked conversion cases, and target-side checks
