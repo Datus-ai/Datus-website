@@ -907,5 +907,5 @@ land on the new article by design.
 - Verification: illustrative model validates on DOSI 0.1.11. PostgreSQL-target compiled SQL executed unchanged in SQLite, reference and model match for October (North210/South90) and November (North60/South35). Not a live Studio test or Agent-generation transcript.
 - Internal links: solutions/semantic-layer, semantic-model-examples, validate-business-rules-ai-agents, data-lineage-ai-analytics; reciprocal from semantic-model-examples.
 - Category: Semantic Layer
-- PR: pending creation. Status: reviewed by operator; authorized for PR on 2026-11-11.
+- PR: https://github.com/Datus-ai/Datus-website/pull/141. Status: open; operator-authorized submission on 2026-11-11.
 - Date: 2026-11-10
