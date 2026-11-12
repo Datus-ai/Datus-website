@@ -918,5 +918,5 @@ land on the new article by design.
 - Sources: official announcements/docs/engineering material checked Nov12; Datus-agent bb23cdc0210f8b688d9e5cf9b72462633dbbb6d2; DOSI agents/extensions docs. Availability: Snowflake private preview/public preview soon; Genie GA with component exceptions.
 - Checks: full production build/SEO suite PASS (117 articles); desktop and 390px mobile checked, images loaded and no mobile page overflow. Post checker 10 pass/2 justified warnings/0 fail. Descriptive closing heading and ten primary-source links after the operator-requested warehouse-specific revision. Not a hands-on platform benchmark. No universal approval or semantic portability claim.
 - Category: Semantic Layer. Reciprocal link from ontology-for-ai-agents-five-approaches; no glossary reassignment. Three original SVGs include the operator-requested Datus-fit architecture and warehouse-specific scenario revision.
-- PR: pending creation. Status: operator approved submission on 2026-11-12.
+- PR: https://github.com/Datus-ai/Datus-website/pull/142. Status: open; operator-approved submission on 2026-11-12.
 - Date: 2026-11-12
