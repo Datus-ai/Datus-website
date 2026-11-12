@@ -212,6 +212,8 @@ An interchange standard lets systems exchange definitions, but an implementation
 
 Test a small set of questions with known answers. Include a metric with filters, an ambiguous entity name, a relationship that can multiply rows, and a permission boundary. Record which definitions the agent used and who maintains them. If the agent will take actions, add a test for authorization and an audit trail. These tests show which layer needs work before broad rollout.
 
+For a current platform decision, see our [Snowflake Business Ontology and Databricks Genie Ontology evaluation](/blog/snowflake-business-ontology-vs-databricks-genie-ontology/), including November release status and the distinction between approved meaning and executable metrics.
+
 ## Related articles
 
 - [What is an ontology?](/blog/what-is-ontology/) — the definition and its relationship to taxonomies and graphs.
