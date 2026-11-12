@@ -909,3 +909,14 @@ land on the new article by design.
 - Category: Semantic Layer
 - PR: https://github.com/Datus-ai/Datus-website/pull/141. Status: open; operator-authorized submission on 2026-11-11.
 - Date: 2026-11-10
+
+### snowflake-business-ontology-vs-databricks-genie-ontology
+- Title: Snowflake Business Ontology vs. Databricks Genie Ontology
+- Target: Snowflake Business Ontology; Databricks Genie Ontology. Exact query demand unconfirmed; timely product evaluation.
+- Angle: Nov3/Nov11 announcements through authority, calculation, permissions, external access and portable artifacts; compare handoffs rather than generic ontology definitions.
+- Type: Comparison, concise buyer overview (operator readability preference); Gate A KEEP, different from five-approach landscape and warehouse integration pages.
+- Sources: official announcements/docs/engineering material checked Nov12; Datus-agent bb23cdc0210f8b688d9e5cf9b72462633dbbb6d2; DOSI agents/extensions docs. Availability: Snowflake private preview/public preview soon; Genie GA with component exceptions.
+- Checks: full production build/SEO suite PASS (117 articles); desktop and 390px mobile checked, images loaded and no mobile page overflow. Post checker 10 pass/2 justified warnings/0 fail. Descriptive closing heading and ten primary-source links after the operator-requested warehouse-specific revision. Not a hands-on platform benchmark. No universal approval or semantic portability claim.
+- Category: Semantic Layer. Reciprocal link from ontology-for-ai-agents-five-approaches; no glossary reassignment. Three original SVGs include the operator-requested Datus-fit architecture and warehouse-specific scenario revision.
+- PR: https://github.com/Datus-ai/Datus-website/pull/142. Status: open; operator-approved submission on 2026-11-12.
+- Date: 2026-11-12

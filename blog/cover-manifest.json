@@ -1,4 +1,8 @@
 {
+  "snowflake-business-ontology-vs-databricks-genie-ontology": {
+    "image": "/images/snowflake-business-ontology-vs-databricks-genie-ontology/cover.svg",
+    "source": "reused"
+  },
   "data-lineage-ai-analytics": {
     "image": "/images/data-lineage-ai-analytics/cover.svg",
     "source": "reused"
