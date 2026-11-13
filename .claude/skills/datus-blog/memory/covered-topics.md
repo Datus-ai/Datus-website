@@ -920,3 +920,19 @@ land on the new article by design.
 - Category: Semantic Layer. Reciprocal link from ontology-for-ai-agents-five-approaches; no glossary reassignment. Three original SVGs include the operator-requested Datus-fit architecture and warehouse-specific scenario revision.
 - PR: https://github.com/Datus-ai/Datus-website/pull/142. Status: open; operator-approved submission on 2026-11-12.
 - Date: 2026-11-12
+
+### dosi-semantic-layer-northstar-example
+- Title: DOSI Semantic Layer Example: Who Qualifies for Premier?
+- Target keyword: DOSI semantic layer example; exact-query search volume not established.
+- Angle: Shao announcement business story with a downloadable synthetic retail fixture, independently reconciled customer eligibility and controlled A/B thresholds.
+- Source direction: operator-specified implementation proof following AI visibility audit.
+- Article type: Tutorial adapted to story-led product education at operator request; concise prose and unnumbered headings intentional.
+- Gate A: KEEP — original executable fixture and distinct intent from the existing orders/MCP quickstart. No formal investment or numerical editorial score assigned.
+- Audit: full production build and final SEO suite PASS; 1440/390px rendered one H1, no overflow or page errors. Source-only H1 checker false positive; download warnings checked as 200. Narrative length below tutorial floor accepted by operator's story/readability instruction.
+- Verification: DOSI 0.1.13, DuckDB 1.5.6, PyYAML 6.0.3, Python 3.12.14 on macOS ARM64. Nine verification groups pass; fresh ZIP extraction, checksum check, seed and verification pass with existing pinned environment. No fresh dependency installation, cloud or MCP-client test. Cohort summary explicitly DuckDB around DOSI-selected customer SQL.
+- Key sources: https://dosi.datus.ai/python/ ; https://dosi.datus.ai/semantics/ ; https://dosi.datus.ai/reference/ontology/ ; Shao announcement R56 English subtitles and synthetic Northstar source project.
+- Internal links added: semantic-model-examples, apache-ossie-dosi-quickstart, why-osi-needs-execution-engine, Apache Ossie pillar, ontology and semantic-layer solutions; reciprocal from quickstart and both localized semantic-layer evidence blocks.
+- Glossary updated: no — implementation spoke, no canonical definition reassignment.
+- Category: Semantic Layer.
+- PR: https://github.com/Datus-ai/Datus-website/pull/144. Status: open.
+- Date: 2026-11-13.
