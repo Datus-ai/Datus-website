@@ -936,3 +936,18 @@ land on the new article by design.
 - Category: Semantic Layer.
 - PR: https://github.com/Datus-ai/Datus-website/pull/144. Status: open.
 - Date: 2026-11-13.
+
+### html-dashboard-data-permissions
+- Title: HTML Dashboards: Who Owns the Data and Permissions?
+- Target keyword: HTML dashboard; AI dashboard security; dashboard permissions. Exact keyword demand not newly measured.
+- Angle: IT centrally governs supported live SQL/metric reads while business users generate HTML interfaces; separate authenticated iframe/viewer policy from static snapshot distribution.
+- Source direction: operator-provided Reddit discussions and explicit request to inspect built-in Datus row/column policies.
+- Article type: Product educational overview.
+- Investment Score: n/a (operator-selected). Gate A: KEEP — operational/permission handoff, distinct from dashboard authoring and composable analytics.
+- Audit: manual P0 PASS,85/100 grade A; automated14 PASS/0 WARN/0 FAIL; full build and SEO checks PASS; desktop/mobile preview and both SVGs checked. Operator approved PR submission; no live multi-user security assessment.
+- Key sources: r/PowerBI 1xs97e4 and implementation comment19sekobyss8w2; official gen_visual_dashboard/gen_visual_report docs; SaaS1b916d5 SQL Policy docs/context service/viewer/embedded login; Agent bb23cdc PolicyMetricExecutor/runtime. Research notes kept outside tracked post source.
+- Internal links added: is-the-dashboard-dead, sql-to-business-metrics, validate-business-rules-ai-agents, row-level-security-ai-analytics, data-lineage-ai-analytics, solutions/ai-bi; reciprocal from is-the-dashboard-dead.
+- Glossary updated: no — specific implementation and evaluation question, not a new glossary definition.
+- Category: Agentic Analytics.
+- PR: https://github.com/Datus-ai/Datus-website/pull/143. Status: open, branch codex/blog-html-dashboard-data-permissions.
+- Date: 2026-11-13

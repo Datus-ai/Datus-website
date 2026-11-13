@@ -470,5 +470,9 @@
   "welcome": {
     "image": "/images/welcome/editorial-cover.svg",
     "source": "generated-flat-svg"
+  },
+  "html-dashboard-data-permissions": {
+    "image": "/images/html-dashboard-data-permissions/cover.svg",
+    "source": "reused"
   }
 }

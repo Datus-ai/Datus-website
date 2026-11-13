@@ -157,6 +157,8 @@ Keep one when a team repeatedly watches the same signals, needs a common meeting
 
 You can send a file, but whether it works as a live dashboard depends on its data connection. In Datus's documented CLI workflow, interactive filter changes call a local backend. A recipient needs the matching service and datasource to use those live filters. For email, a static report or screenshot may be more appropriate if the audience only needs a snapshot.
 
+For deployment review, see [who owns the data and permissions behind an HTML dashboard](/blog/html-dashboard-data-permissions/), including snapshot sharing, live queries, and restricted-user checks.
+
 ## Related articles
 
 - [Composable analytics: agent-built views, governed metrics](/blog/composable-analytics-agent-built-dashboards/) — the reusable architecture behind generated views.
