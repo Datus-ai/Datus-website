@@ -1,0 +1,9 @@
+refund_event_id,order_line_id,return_event_id,posted_at,status,merchandise_refund_cents
+1,10008,1,2026-01-01,posted,89900
+2,10024,,2025-10-19,posted,1800
+3,10059,2,2026-01-04,posted,80910
+4,10066,3,2026-03-20,posted,49800
+5,10075,4,2026-06-25,posted,89900
+6,10077,,2025-10-26,posted,2250
+7,10085,5,2026-02-14,posted,76415
+8,10093,6,2025-12-09,posted,12900

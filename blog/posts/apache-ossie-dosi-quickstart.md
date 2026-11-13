@@ -439,3 +439,5 @@ No. One Apache Ossie YAML model compiles into 16 SQL dialects; you change `--dia
 - [Introducing Dosi: OSI-Native Semantic Layer for Metrics](/blog/introducing-dosi/) — surfaces, dialects, and structured errors
 - [Apache Ossie guide](/apache-ossie/) — the spec Dosi compiles
 - [MCP for Data Engineering](/blog/mcp-data-engineering/) — how MCP fits the wider data stack
+
+For a smaller synthetic retail fixture with independent result checks, try the [verified Northstar customer-eligibility example](/blog/dosi-semantic-layer-northstar-example/).

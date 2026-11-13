@@ -72,7 +72,7 @@ const CATEGORIES = [
       "semantic-layer-tools-list-osi", "what-is-ontology", "what-is-timbr", "what-is-atscale",
       "first-native-apache-ossie-engine", "why-osi-needs-execution-engine", "dosi-mcp-semantic-layer-for-agents",
       "dosi-vs-metricflow", "dosi-with-cube", "cube-semantic-layer-alternatives",
-      "ai-native-semantic-layer", "apache-ossie-dosi-quickstart",
+      "ai-native-semantic-layer", "dosi-semantic-layer-northstar-example", "apache-ossie-dosi-quickstart",
       "semantic-layer-vs-ontology", "from-semantic-layer-to-ontology",
       "semantic-layer-based-ontology", "ontology-for-ai-agents-five-approaches", "why-text-to-sql-fails-without-a-semantic-layer"] },
   { label: "Agentic Analytics", description: "AI agents that plan and run multi-step analytical work — and what has to be true underneath for it to be reliable.",

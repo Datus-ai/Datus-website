@@ -1,4 +1,8 @@
 {
+  "dosi-semantic-layer-northstar-example": {
+    "image": "/images/dosi-semantic-layer-northstar-example/editorial-cover.svg",
+    "source": "generated-flat-svg"
+  },
   "snowflake-business-ontology-vs-databricks-genie-ontology": {
     "image": "/images/snowflake-business-ontology-vs-databricks-genie-ontology/cover.svg",
     "source": "reused"
