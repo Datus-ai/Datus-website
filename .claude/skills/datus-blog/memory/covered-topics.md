@@ -933,5 +933,5 @@ land on the new article by design.
 - Internal links added: is-the-dashboard-dead, sql-to-business-metrics, validate-business-rules-ai-agents, row-level-security-ai-analytics, data-lineage-ai-analytics, solutions/ai-bi; reciprocal from is-the-dashboard-dead.
 - Glossary updated: no — specific implementation and evaluation question, not a new glossary definition.
 - Category: Agentic Analytics.
-- PR: pending creation. Status: operator-approved PR submission, branch codex/blog-html-dashboard-data-permissions.
+- PR: https://github.com/Datus-ai/Datus-website/pull/143. Status: open, branch codex/blog-html-dashboard-data-permissions.
 - Date: 2026-11-13
