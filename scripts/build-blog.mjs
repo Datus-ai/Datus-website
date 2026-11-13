@@ -76,7 +76,7 @@ const CATEGORIES = [
       "semantic-layer-vs-ontology", "from-semantic-layer-to-ontology",
       "semantic-layer-based-ontology", "ontology-for-ai-agents-five-approaches", "why-text-to-sql-fails-without-a-semantic-layer"] },
   { label: "Agentic Analytics", description: "AI agents that plan and run multi-step analytical work — and what has to be true underneath for it to be reliable.",
-    slugs: ["what-is-agentic-analytics", "what-is-conversational-bi", "row-level-security-ai-analytics", "validate-business-rules-ai-agents", "data-lineage-ai-analytics", "cube-agentic-analytics", "composable-analytics-agent-built-dashboards", "is-the-dashboard-dead"] },
+    slugs: ["html-dashboard-data-permissions", "what-is-agentic-analytics", "what-is-conversational-bi", "row-level-security-ai-analytics", "validate-business-rules-ai-agents", "data-lineage-ai-analytics", "cube-agentic-analytics", "composable-analytics-agent-built-dashboards", "is-the-dashboard-dead"] },
   { label: "Glossary", description: "Core data engineering terms — defined, with how they connect to agents and context.",
     slugs: ["what-is-text-to-sql", "what-is-schema-linking", "rag-data-engineering", "what-is-data-catalog",
       "what-is-data-mesh", "what-is-data-agent", "what-is-lakehouse", "what-is-lakehouse-catalog",
