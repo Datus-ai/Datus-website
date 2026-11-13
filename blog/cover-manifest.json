@@ -1,4 +1,8 @@
 {
+  "html-dashboard-data-permissions": {
+    "image": "/images/html-dashboard-data-permissions/cover.svg",
+    "source": "reused"
+  },
   "snowflake-business-ontology-vs-databricks-genie-ontology": {
     "image": "/images/snowflake-business-ontology-vs-databricks-genie-ontology/cover.svg",
     "source": "reused"
