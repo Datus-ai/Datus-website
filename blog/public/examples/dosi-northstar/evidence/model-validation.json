@@ -1,0 +1,627 @@
+{
+  "valid": true,
+  "issues": [],
+  "compile_errors": [],
+  "warnings": [],
+  "compiled_metrics": [
+    {
+      "name": "booked_revenue",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": false,
+      "kind": "aggregate",
+      "datasets": [
+        "lines"
+      ],
+      "measures": [
+        "lines_gross_sales_cents_discount_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "refund_amount",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": true,
+      "kind": "aggregate",
+      "datasets": [
+        "refunds"
+      ],
+      "measures": [
+        "refunds_merchandise_refund_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "product_cost",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": false,
+      "kind": "aggregate",
+      "datasets": [
+        "line_costs"
+      ],
+      "measures": [
+        "line_costs_cogs_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "recovered_product_cost",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": true,
+      "kind": "aggregate",
+      "datasets": [
+        "returns"
+      ],
+      "measures": [
+        "returns_recoverable_cogs_credit_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "outbound_shipping",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": false,
+      "kind": "aggregate",
+      "datasets": [
+        "deliveries"
+      ],
+      "measures": [
+        "deliveries_shipping_cost_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "payment_fees",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": false,
+      "kind": "aggregate",
+      "datasets": [
+        "line_costs"
+      ],
+      "measures": [
+        "line_costs_payment_fee_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "return_handling",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": true,
+      "kind": "aggregate",
+      "datasets": [
+        "returns"
+      ],
+      "measures": [
+        "returns_processing_cost_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "order_count",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "unsupported",
+      "attributable": false,
+      "kind": "aggregate",
+      "datasets": [
+        "orders"
+      ],
+      "measures": [
+        "orders_order_id_count_distinct"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "returned_order_count",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "unsupported",
+      "attributable": false,
+      "kind": "aggregate",
+      "datasets": [
+        "orders"
+      ],
+      "measures": [
+        "orders_case_when_is_returned_then_order_id_end_count_distinct"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    },
+    {
+      "name": "contribution_margin",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "term_wise",
+      "attributable": false,
+      "kind": "expression",
+      "datasets": [
+        "deliveries",
+        "line_costs",
+        "lines",
+        "refunds",
+        "returns"
+      ],
+      "measures": [
+        "lines_gross_sales_cents_discount_cents_0_01_sum",
+        "refunds_merchandise_refund_cents_0_01_sum",
+        "line_costs_cogs_cents_0_01_sum",
+        "returns_recoverable_cogs_credit_cents_0_01_sum",
+        "deliveries_shipping_cost_cents_0_01_sum",
+        "line_costs_payment_fee_cents_0_01_sum",
+        "returns_processing_cost_cents_0_01_sum"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": {
+        "family": "compose",
+        "expr": "COALESCE(booked_revenue,0)-COALESCE(refund_amount,0)-COALESCE(product_cost,0)+COALESCE(recovered_product_cost,0)-COALESCE(outbound_shipping,0)-COALESCE(payment_fees,0)-COALESCE(return_handling,0)",
+        "members": [
+          {
+            "metric": "booked_revenue",
+            "coefficient": 1.0
+          },
+          {
+            "metric": "refund_amount",
+            "coefficient": -1.0
+          },
+          {
+            "metric": "product_cost",
+            "coefficient": -1.0
+          },
+          {
+            "metric": "recovered_product_cost",
+            "coefficient": 1.0
+          },
+          {
+            "metric": "outbound_shipping",
+            "coefficient": -1.0
+          },
+          {
+            "metric": "payment_fees",
+            "coefficient": -1.0
+          },
+          {
+            "metric": "return_handling",
+            "coefficient": -1.0
+          }
+        ],
+        "linear": true,
+        "leaf_measures": [
+          {
+            "measure": "lines_gross_sales_cents_discount_cents_0_01_sum",
+            "dataset": "lines",
+            "coefficient": 1.0
+          },
+          {
+            "measure": "refunds_merchandise_refund_cents_0_01_sum",
+            "dataset": "refunds",
+            "coefficient": -1.0
+          },
+          {
+            "measure": "line_costs_cogs_cents_0_01_sum",
+            "dataset": "line_costs",
+            "coefficient": -1.0
+          },
+          {
+            "measure": "returns_recoverable_cogs_credit_cents_0_01_sum",
+            "dataset": "returns",
+            "coefficient": 1.0
+          },
+          {
+            "measure": "deliveries_shipping_cost_cents_0_01_sum",
+            "dataset": "deliveries",
+            "coefficient": -1.0
+          },
+          {
+            "measure": "line_costs_payment_fee_cents_0_01_sum",
+            "dataset": "line_costs",
+            "coefficient": -1.0
+          },
+          {
+            "measure": "returns_processing_cost_cents_0_01_sum",
+            "dataset": "returns",
+            "coefficient": -1.0
+          }
+        ],
+        "conformed_dimensions": [
+          "customers.customer_id",
+          "refunds.customer_id"
+        ],
+        "attribution": "exact"
+      },
+      "derive_family": "compose",
+      "derive_base": null,
+      "derive_expr": "COALESCE(booked_revenue,0)-COALESCE(refund_amount,0)-COALESCE(product_cost,0)+COALESCE(recovered_product_cost,0)-COALESCE(outbound_shipping,0)-COALESCE(payment_fees,0)-COALESCE(return_handling,0)",
+      "subset_of": null,
+      "derive_members": [
+        {
+          "metric": "booked_revenue",
+          "coefficient": 1.0
+        },
+        {
+          "metric": "refund_amount",
+          "coefficient": -1.0
+        },
+        {
+          "metric": "product_cost",
+          "coefficient": -1.0
+        },
+        {
+          "metric": "recovered_product_cost",
+          "coefficient": 1.0
+        },
+        {
+          "metric": "outbound_shipping",
+          "coefficient": -1.0
+        },
+        {
+          "metric": "payment_fees",
+          "coefficient": -1.0
+        },
+        {
+          "metric": "return_handling",
+          "coefficient": -1.0
+        }
+      ],
+      "leaf_measures": [
+        {
+          "measure": "lines_gross_sales_cents_discount_cents_0_01_sum",
+          "dataset": "lines",
+          "coefficient": 1.0
+        },
+        {
+          "measure": "refunds_merchandise_refund_cents_0_01_sum",
+          "dataset": "refunds",
+          "coefficient": -1.0
+        },
+        {
+          "measure": "line_costs_cogs_cents_0_01_sum",
+          "dataset": "line_costs",
+          "coefficient": -1.0
+        },
+        {
+          "measure": "returns_recoverable_cogs_credit_cents_0_01_sum",
+          "dataset": "returns",
+          "coefficient": 1.0
+        },
+        {
+          "measure": "deliveries_shipping_cost_cents_0_01_sum",
+          "dataset": "deliveries",
+          "coefficient": -1.0
+        },
+        {
+          "measure": "line_costs_payment_fee_cents_0_01_sum",
+          "dataset": "line_costs",
+          "coefficient": -1.0
+        },
+        {
+          "measure": "returns_processing_cost_cents_0_01_sum",
+          "dataset": "returns",
+          "coefficient": -1.0
+        }
+      ],
+      "attribution": "exact",
+      "conformed_dimensions": [
+        "customers.customer_id",
+        "refunds.customer_id"
+      ],
+      "required_dimensions": []
+    },
+    {
+      "name": "order_return_rate",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "unsupported",
+      "attributable": false,
+      "kind": "expression",
+      "datasets": [
+        "orders"
+      ],
+      "measures": [
+        "orders_case_when_is_returned_then_order_id_end_count_distinct",
+        "orders_order_id_count_distinct"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": {
+        "family": "compose",
+        "expr": "returned_order_count*1.0/NULLIF(order_count,0)",
+        "members": [
+          {
+            "metric": "returned_order_count"
+          },
+          {
+            "metric": "order_count"
+          }
+        ],
+        "linear": false,
+        "conformed_dimensions": [
+          "customers.city",
+          "customers.customer_id",
+          "customers.customer_margin",
+          "customers.customer_orders",
+          "customers.customer_return_rate",
+          "customers.customer_returned_orders",
+          "customers.email",
+          "customers.fixed_booked_revenue",
+          "customers.fixed_order_count",
+          "customers.fixed_outbound_shipping",
+          "customers.fixed_payment_fees",
+          "customers.fixed_product_cost",
+          "customers.fixed_recovered_product_cost",
+          "customers.fixed_refund_amount",
+          "customers.fixed_return_handling",
+          "customers.fixed_returned_order_count",
+          "customers.full_name",
+          "customers.identity_status",
+          "customers.is_employee",
+          "customers.joined_at",
+          "customers.premier_a",
+          "customers.premier_b",
+          "customers.state",
+          "orders.currency",
+          "orders.customer_id",
+          "orders.delivered_at",
+          "orders.is_returned",
+          "orders.is_test",
+          "orders.order_amount_cents",
+          "orders.order_id",
+          "orders.ordered_at",
+          "orders.status",
+          "refunds.customer_id"
+        ],
+        "attribution": "approximate"
+      },
+      "derive_family": "compose",
+      "derive_base": null,
+      "derive_expr": "returned_order_count*1.0/NULLIF(order_count,0)",
+      "subset_of": null,
+      "derive_members": [
+        {
+          "metric": "returned_order_count"
+        },
+        {
+          "metric": "order_count"
+        }
+      ],
+      "leaf_measures": [],
+      "attribution": "approximate",
+      "conformed_dimensions": [
+        "customers.city",
+        "customers.customer_id",
+        "customers.customer_margin",
+        "customers.customer_orders",
+        "customers.customer_return_rate",
+        "customers.customer_returned_orders",
+        "customers.email",
+        "customers.fixed_booked_revenue",
+        "customers.fixed_order_count",
+        "customers.fixed_outbound_shipping",
+        "customers.fixed_payment_fees",
+        "customers.fixed_product_cost",
+        "customers.fixed_recovered_product_cost",
+        "customers.fixed_refund_amount",
+        "customers.fixed_return_handling",
+        "customers.fixed_returned_order_count",
+        "customers.full_name",
+        "customers.identity_status",
+        "customers.is_employee",
+        "customers.joined_at",
+        "customers.premier_a",
+        "customers.premier_b",
+        "customers.state",
+        "orders.currency",
+        "orders.customer_id",
+        "orders.delivered_at",
+        "orders.is_returned",
+        "orders.is_test",
+        "orders.order_amount_cents",
+        "orders.order_id",
+        "orders.ordered_at",
+        "orders.status",
+        "refunds.customer_id"
+      ],
+      "required_dimensions": []
+    },
+    {
+      "name": "qualified_customer_count",
+      "params": null,
+      "param_schema": null,
+      "attribution_strategy": "unsupported",
+      "attributable": false,
+      "kind": "aggregate",
+      "datasets": [
+        "customers"
+      ],
+      "measures": [
+        "customers_customer_id_count_distinct"
+      ],
+      "explicit_measure": null,
+      "time_dimension": null,
+      "description": null,
+      "window": null,
+      "window_family": null,
+      "window_function": null,
+      "derive": null,
+      "derive_family": null,
+      "derive_base": null,
+      "derive_expr": null,
+      "subset_of": null,
+      "derive_members": null,
+      "leaf_measures": null,
+      "attribution": null,
+      "conformed_dimensions": null,
+      "required_dimensions": []
+    }
+  ],
+  "compiled_metric_digests": {
+    "booked_revenue": "sha256:551df34c513c727f4de1c3ee5cf65aebfa9b0554d9ee269db78a9363d1e5b6bb",
+    "refund_amount": "sha256:5dc5ae2518f3a7b86f5deddd2009e91530b4fe357865fae16e47ca35d52f1900",
+    "product_cost": "sha256:89b1545e723835ef1a19cf9e3666d2a3f9c48baef45414dd0d6d0a9a0e0c96f2",
+    "recovered_product_cost": "sha256:71a618a23e9d2141230c7cd0aff9e534fdaee4a4c960bb8a44ce11b5c8ce83f3",
+    "outbound_shipping": "sha256:0e168205058a0603503300f51f5528673c6417186ff061f0d3a6cc673c28efce",
+    "payment_fees": "sha256:672a5e3a3ec0e2d27cbe870c09bd483b198695e0815f21bb923080a21742d565",
+    "return_handling": "sha256:35943d77156ee4e732ec256e698323b657596b4e3b7a29e7246acf225976337a",
+    "order_count": "sha256:78467d63a7d28644e42e2cdf2d88dce519ee718dc50b5d9ba3ce8720460aa27a",
+    "returned_order_count": "sha256:0ec5c3800221b8027a94455b24582f7ccaf5d578b179f89a9203c00c8e6318c1",
+    "contribution_margin": "sha256:83b1356aba379ced82b0c232b66f7d2d6fb6aa6a8df3cb7d45cda05f31bfbf6a",
+    "order_return_rate": "sha256:a8ff6b3517dd31e26db26136d243cf97f30f4b6974f86592bc565b0f8c641183",
+    "qualified_customer_count": "sha256:4cdf2839da4d173b7d67b5e124648698f6a5d7b4658a1b10eb59a649ca18e7d8"
+  },
+  "contract_digest": "sha256:e0690bd972ec1780af4b950ccce91b70ef0f488b3855883968c282a10d965be6"
+}

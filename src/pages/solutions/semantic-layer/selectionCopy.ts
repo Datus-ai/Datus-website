@@ -26,7 +26,7 @@ const en = {
  evidence:[
  {title:'Review the model',body:'Check grain, joins, metric expressions, and extension behavior against the semantics contract.',label:'Read the semantics contract',href:'https://dosi.datus.ai/semantics/'},
  {title:'Inspect native SQL',body:'The compile endpoint returns SQL without executing it. Successful compilation alone is not an execution test.',label:'Inspect the compile and execute APIs',href:'https://dosi.datus.ai/rest-api/'},
- {title:'Verify on your source',body:'Use a supported connection and known test data. Record the DOSI and database versions, inputs, SQL, and checked results.',label:'Find your connection guide',href:'https://dosi.datus.ai/connectors/'},
+ {title:'Verify on your source',body:'Use a supported connection and known test data. Record the DOSI and database versions, inputs, SQL, and checked results.',label:'Run the verified Northstar example',href:'/blog/dosi-semantic-layer-northstar-example/'},
  ],
  boundary:'Warehouse portability means reusing compatible definitions with the appropriate source mappings and dialect. It does not mean that one query automatically joins data across warehouses. BI consumption also depends on the chosen API or adapter; model compatibility is not a native BI connector.',
  sourceLabel:'Primary documentation',sources,
@@ -46,7 +46,7 @@ export const SELECTION_COPY:Record<Locale,typeof en>={en,zh:{
  evidence:[
  {title:'审核模型',body:'依据语义契约检查粒度、关联、指标表达式与扩展行为。',label:'查看语义契约',href:'https://dosi.datus.ai/semantics/'},
  {title:'检查原生 SQL',body:'编译接口返回 SQL，不执行查询。编译成功本身不能证明执行已通过验证。',label:'查看编译与执行 API',href:'https://dosi.datus.ai/rest-api/'},
- {title:'在数据源上验证',body:'使用受支持的连接与已知测试数据，记录 DOSI 和数据库版本、输入、SQL 及核对后的结果。',label:'查看数据源连接指南',href:'https://dosi.datus.ai/connectors/'},
+ {title:'在数据源上验证',body:'使用受支持的连接与已知测试数据，记录 DOSI 和数据库版本、输入、SQL 及核对后的结果。',label:'运行已验证的 Northstar 示例',href:'/blog/dosi-semantic-layer-northstar-example/'},
  ],
  boundary:'跨数仓复用指通过适当的源数据映射与 SQL 方言复用兼容定义，不代表单次查询会自动跨数仓关联数据。BI 消费还取决于所选 API 或适配器；模型兼容不等于拥有原生 BI 连接器。',
  sourceLabel:'官方参考资料',sources:sources.map((s,i)=>({...s,label:['DOSI：语义契约','DOSI：REST API','DOSI：数据源连接','DOSI：许可证说明','Cube Core：架构与许可证','dbt：语义层架构','dbt：语义层 API'][i]})),

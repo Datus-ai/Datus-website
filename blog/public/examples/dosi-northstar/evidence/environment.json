@@ -1,0 +1,12 @@
+{
+  "verified_on": "2026-11-13",
+  "platform": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "python": "3.12.14",
+  "packages": {
+    "dosi-engine": "0.1.13",
+    "duckdb": "1.5.6",
+    "PyYAML": "6.0.3"
+  },
+  "data": "Synthetic Northstar demonstration; not customer production data",
+  "execution": "Local DuckDB only"
+}

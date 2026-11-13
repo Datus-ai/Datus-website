@@ -1,0 +1,11 @@
+product_id,sku,product_name,category,list_price_cents,unit_cost_cents,cost_version
+1,SF-101,Linden two-seat sofa,Furniture,149900,78235,2025-09-cost-v1
+2,DK-204,Nord oak desk,Furniture,49900,23780,2025-09-cost-v1
+3,CH-310,Arc dining chair,Furniture,24900,11145,2025-09-cost-v1
+4,LP-410,Halo table lamp,Lighting,12900,4835,2025-09-cost-v1
+5,RG-502,Fjord wool rug,Textiles,34900,13640,2025-09-cost-v1
+6,SH-610,Line shelving unit,Furniture,39900,18470,2025-09-cost-v1
+7,DT-720,Gather dining table,Furniture,89900,42890,2025-09-cost-v1
+8,ST-815,Pebble side table,Furniture,19900,8275,2025-09-cost-v1
+9,BD-905,Cloud linen set,Textiles,15900,6520,2025-09-cost-v1
+10,OT-102,Cove outdoor chair,Outdoor,29900,13960,2025-09-cost-v1
