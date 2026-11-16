@@ -1,0 +1,3 @@
+task_id,workflow,question,task_type,acceptance_conditions,data_snapshot,metric_definition_revision,access_scope,reviewer,clarification_minutes,analysis_minutes,verification_minutes,rework_minutes,elapsed_minutes,outcome,rework_reason,query_count,model_call_count,allocated_operating_cost,currency,later_correction_or_decision_outcome
+YOUR-TASK-ID,baseline,,,,,,,,,,,,,,,,,,,
+YOUR-TASK-ID,assisted,,,,,,,,,,,,,,,,,,,

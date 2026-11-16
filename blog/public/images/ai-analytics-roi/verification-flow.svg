@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+<title id="title">A focused review, backed by shared definitions</title><desc id="desc">The team reviews a sales definition. Datus Agent matches the question to a metric; DOSI calculates it against the data source. The reviewer checks interpretation, period, results and evidence, then uses the finding or requests a correction. Model and SQL inspection support deeper checks; data freshness and causal explanations need separate evidence.</desc>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="m0 0 7 4-7 4" fill="none" stroke="#796d94" stroke-width="1.5"/></marker></defs><rect width="1200" height="780" rx="20" fill="#f7f7f2"/>
+<g font-family="Inter,Arial,sans-serif" fill="#191d1a"><text x="55" y="62" font-size="31" font-weight="650">A focused review, backed by shared definitions</text><text x="55" y="100" font-size="20" fill="#71697d">Northstar example · Why did net sales fall last week?</text></g>
+<path d="M305 283h48m241 0h48m241 0h48" fill="none" stroke="#796d94" stroke-width="2.5" marker-end="url(#a)"/>
+<g font-family="Inter,Arial,sans-serif">
+<rect x="55" y="183" width="250" height="203" rx="12" fill="#fff" stroke="#d8d1e8"/>
+<path d="M79 215h33m-33 9h24m-24 9h30" stroke="#402df3" stroke-width="3" stroke-linecap="round"/>
+<text x="79" y="272" font-size="23" font-weight="650" fill="#191d1a">Reviewed definition</text><text x="79" y="312" font-size="19" fill="#71697d">Net sales, refunds,</text><text x="79" y="340" font-size="19" fill="#71697d">period and scope</text>
+<rect x="353" y="183" width="241" height="203" rx="12" fill="#eeebfb" stroke="#b3a4ff"/>
+<path d="m377 214 7 10 11-19m8 12h16" fill="none" stroke="#402df3" stroke-width="3" stroke-linecap="round"/>
+<text x="377" y="272" font-size="24" font-weight="650" fill="#402df3">Datus Agent</text><text x="377" y="312" font-size="19" fill="#594a7a">Match the question</text><text x="377" y="340" font-size="19" fill="#594a7a">to an existing metric</text>
+<rect x="642" y="183" width="241" height="203" rx="12" fill="#eeebfb" stroke="#b3a4ff"/>
+<path d="M667 212h27v24h-27zM675 204h27v24" fill="none" stroke="#402df3" stroke-width="2.5"/>
+<text x="666" y="272" font-size="24" font-weight="650" fill="#402df3">DOSI + data</text><text x="666" y="312" font-size="19" fill="#594a7a">Calculate with the</text><text x="666" y="340" font-size="19" fill="#594a7a">shared definition</text>
+<rect x="931" y="183" width="214" height="203" rx="12" fill="#191d1a"/>
+<circle cx="969" cy="216" r="12" fill="none" stroke="#b3a4ff" stroke-width="2.5"/><path d="m978 226 10 10" stroke="#b3a4ff" stroke-width="3"/>
+<text x="955" y="272" font-size="24" font-weight="650" fill="#fff">Review</text><text x="955" y="312" font-size="19" fill="#d9d1ee">Check scope</text><text x="955" y="340" font-size="19" fill="#d9d1ee">and findings</text>
+<path d="M1038 386v66H473v-56" fill="none" stroke="#796d94" stroke-width="2" marker-end="url(#a)"/><rect x="644" y="436" width="250" height="30" fill="#f7f7f2"/><text x="769" y="458" text-anchor="middle" font-size="18" fill="#71697d">Clarify or correct, then rerun</text>
+<path d="M1038 466v49" fill="none" stroke="#796d94" stroke-width="2" marker-end="url(#a)"/>
+<rect x="931" y="527" width="214" height="88" rx="12" fill="#402df3"/><text x="1038" y="564" text-anchor="middle" font-size="22" fill="#fff" font-weight="650">Use the finding</text><text x="1038" y="593" text-anchor="middle" font-size="17" fill="#e3dbff">or investigate further</text>
+<text x="55" y="544" font-size="21" fill="#191d1a" font-weight="650">Evidence for different reviewers</text><text x="55" y="584" font-size="19" fill="#71697d">Business review: metric, dates, filters and returned values</text><text x="55" y="617" font-size="19" fill="#71697d">Deeper inspection: semantic model, compiled SQL and lineage</text>
+<path d="M55 661h1090" stroke="#d8d1e8"/><text x="55" y="701" font-size="19" fill="#71697d">Still check separately: source completeness and the evidence behind a proposed cause.</text><text x="55" y="738" font-size="17" fill="#71697d">High-level workflow · Review and business approval remain the team's responsibility.</text>
+</g></svg>
