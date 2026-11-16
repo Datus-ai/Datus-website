@@ -129,6 +129,8 @@ When the rule proposes an action, such as sending a discount or changing invento
 
 ## Related articles
 
+- [AI Analytics ROI: How to Measure Value Beyond Speed](/blog/ai-analytics-roi/)
+
 - [Row-Level Security for AI Analytics](/blog/row-level-security-ai-analytics/)
 - [What Is Agentic Analytics?](/blog/what-is-agentic-analytics/)
 - [Semantic Model Examples](/blog/semantic-model-examples/)

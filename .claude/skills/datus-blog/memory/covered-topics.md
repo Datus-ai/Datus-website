@@ -951,3 +951,22 @@ land on the new article by design.
 - Category: Agentic Analytics.
 - PR: https://github.com/Datus-ai/Datus-website/pull/143. Status: open, branch codex/blog-html-dashboard-data-permissions.
 - Date: 2026-11-13
+
+### ai-analytics-roi
+- Title: AI Analytics ROI: How to Measure Value Beyond Speed
+- Target keyword: AI analytics ROI; how to measure AI ROI; AI return on investment; AI productivity metrics. OpenSEO US-English checked 2026-11-16: primary volume unknown (no row); broad AI ROI 590/KD27, not a traffic forecast.
+- Angle: measure the complete path from first answer to usable finding, including verification, rework, unsuccessful attempts and setup; distinguish investigative leads from decisions. Fictional Northstar sales-decline example and explicitly hypothetical ROI calculation, not a timed benchmark. SEO revision moves formula, cost scope, worked example and pilot measures before product details.
+- Source direction: operator-selected, based on the supplied r/analytics discussion.
+- Article type: Research (practical measurement guide).
+- Investment Score: 4.2; Gate A: KEEP — separate intent from business-rule approval, model lineage and HTML dashboard permissions.
+- Audit: 86/100, grade A; P0 PASS. Automated checks: 13 pass, 3 warnings, 0 failures. Warnings: descriptive closing heading; verified downloadable CSV route; extra primary-source links retained for traceability.
+- Key sources: reddit.com/r/analytics/comments/1xwme8q/; arxiv.org/html/2309.10947v2; arxiv.org/abs/2608.08709; docs.datus.ai/0.4/subagent/ask_metrics/; dosi.datus.ai/query/; dosi.datus.ai/lineage/.
+- Implementation evidence: Datus-agent a2a21d5d7a6037502b7c9f0b7fbba9266d3ff217, AskMetrics docs/prompts, semantic modeling docs, semantic_verification_tools.py and attribution query rules. Reviewed source, not a live SaaS test. AskMetrics response does not return raw SQL; engine inspection is a separate surface.
+- Internal links added: /solutions/ai-bi/, sql-to-business-metrics, data-lineage-ai-analytics, validate-business-rules-ai-agents. Reciprocal links from the last two.
+- Assets: authored SVG cover + PNG social cover, desktop/mobile workflow SVGs, blank CSV pilot worksheet; blog-local assets only.
+- Glossary updated: no — no matching term; no existing glossary destination changed.
+- Category: Agentic Analytics.
+- PR: pending. Status: operator-approved for PR submission on 2026-11-16; not merged.
+- Branch: codex/blog-ai-analytics-roi; based on main fc5ca7e9fff4c7e82d40895d1c90cd766edbecf6.
+- Preview: http://127.0.0.1:4215/blog/ai-analytics-roi/
+- Date: 2026-11-16.

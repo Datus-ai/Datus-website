@@ -143,6 +143,8 @@ Datus Studio's Semantic Explorer shows semantic model dependencies across physic
 
 ## Related articles
 
+- [AI Analytics ROI: How to Measure Value Beyond Speed](/blog/ai-analytics-roi/)
+
 - [Semantic Model Examples: A Working Apache Ossie Model](/blog/semantic-model-examples/)
 - [How Should AI Agents Validate Business Rules Before Reusing Them?](/blog/validate-business-rules-ai-agents/)
 - [Row-Level Security for AI Analytics: A Practical Guide](/blog/row-level-security-ai-analytics/)

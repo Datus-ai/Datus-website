@@ -1,4 +1,8 @@
 {
+  "ai-analytics-roi": {
+    "image": "/images/ai-analytics-roi/cover.png",
+    "source": "reused"
+  },
   "dosi-semantic-layer-northstar-example": {
     "image": "/images/dosi-semantic-layer-northstar-example/editorial-cover.svg",
     "source": "generated-flat-svg"
