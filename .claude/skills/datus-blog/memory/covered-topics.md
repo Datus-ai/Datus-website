@@ -966,7 +966,7 @@ land on the new article by design.
 - Assets: authored SVG cover + PNG social cover, desktop/mobile workflow SVGs, blank CSV pilot worksheet; blog-local assets only.
 - Glossary updated: no — no matching term; no existing glossary destination changed.
 - Category: Agentic Analytics.
-- PR: pending. Status: operator-approved for PR submission on 2026-11-16; not merged.
+- PR: https://github.com/Datus-ai/Datus-website/pull/145. Status: open; operator-approved submission on 2026-11-16; not merged.
 - Branch: codex/blog-ai-analytics-roi; based on main fc5ca7e9fff4c7e82d40895d1c90cd766edbecf6.
 - Preview: http://127.0.0.1:4215/blog/ai-analytics-roi/
 - Date: 2026-11-16.
