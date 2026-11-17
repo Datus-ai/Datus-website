@@ -983,5 +983,5 @@ land on the new article by design.
 - Internal links added: validate-business-rules-ai-agents, html-dashboard-data-permissions, row-level-security-ai-analytics, dosi-semantic-layer-northstar-example, solutions/semantic-layer; reciprocal from context-engine-data-engineering-agent-accuracy and ontology-for-ai-agents-five-approaches.
 - Glossary updated: no — evaluation spoke, not a new canonical definition.
 - Category: Why context is everything.
-- PR: none. Status: operator-approved for PR on 2026-11-17; branch codex/blog-data-context-layer-evaluation, rebased on main 49bba57.
+- PR: https://github.com/Datus-ai/Datus-website/pull/146. Status: open; operator-approved submission on 2026-11-17. Branch: codex/blog-data-context-layer-evaluation, rebased on main 49bba57. Full build and desktop/tablet/mobile preview rechecked after rebase.
 - Date: 2026-11-16.
