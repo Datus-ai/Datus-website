@@ -1,0 +1,51 @@
+version: "0.2.0.dev0"
+semantic_model:
+  - name: policy_change_example
+    datasets:
+      - name: orders
+        source: main.orders
+        primary_key: [order_id]
+        fields:
+          - name: order_id
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: order_id
+          - name: order_date
+            dimension:
+              is_time: true
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: order_date
+          - name: is_employee
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: is_employee
+          - name: amount
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: amount
+          - name: refund_amount
+            expression:
+              dialects:
+                - dialect: ANSI_SQL
+                  expression: refund_amount
+    metrics:
+      - name: legacy_net_sales
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: "SUM(orders.amount - COALESCE(orders.refund_amount, 0))"
+      - name: current_net_sales
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: "SUM(CASE WHEN orders.order_date < '2026-11-01' OR orders.is_employee = 0 THEN orders.amount - COALESCE(orders.refund_amount, 0) ELSE 0 END)"
+      - name: restated_net_sales
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: "SUM(CASE WHEN orders.is_employee = 0 THEN orders.amount - COALESCE(orders.refund_amount, 0) ELSE 0 END)"
