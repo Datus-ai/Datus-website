@@ -996,5 +996,5 @@ land on the new article by design.
 - Category: Agentic Analytics; reciprocal body link from validate-business-rules-ai-agents. No glossary reassignment.
 - Assets: Inter-rendered PNG cover plus SVG source; desktop/mobile workflow SVGs; downloadable fixture ZIP with model, seed, reference, verification script and results.
 - Checks: editorial 14 pass / 1 download-route warning / 0 fail; full build/SEO checks pass for 122 articles. Desktop/tablet/mobile/dark preview, image loading and all local links including ZIP verified. Manual audit 86/100, P0 PASS. Browser evidence /tmp/datus-agent-memory-qa/results.json; local research output/agent-memory-approved-metrics-research.md.
-- PR: pending creation. Status: operator approved PR submission on 2026-11-17. Branch: codex/blog-agent-memory-approved-metrics; based on main 356c429, which includes PR146.
+- PR: https://github.com/Datus-ai/Datus-website/pull/147. Status: open; operator-approved submission on 2026-11-17. Branch: codex/blog-agent-memory-approved-metrics; based on main 356c429, which includes PR146.
 - Date: 2026-11-17
