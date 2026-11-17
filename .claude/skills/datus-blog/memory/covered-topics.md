@@ -985,3 +985,16 @@ land on the new article by design.
 - Category: Why context is everything.
 - PR: https://github.com/Datus-ai/Datus-website/pull/146. Status: open; operator-approved submission on 2026-11-17. Branch: codex/blog-data-context-layer-evaluation, rebased on main 49bba57. Full build and desktop/tablet/mobile preview rechecked after rebase.
 - Date: 2026-11-16.
+
+### agent-memory-approved-metrics
+- Title: When Agent Memory Conflicts with Approved Metrics
+- Target: agent memory + approved business metrics. Reused Nov12 OpenSEO broad head term 1600/month, KD38; exact long-tail volume unknown. No new paid queries or cloud report writes.
+- Angle: after a policy changes, distinguish shared approval, project adoption, query execution and old-report review. Complements initial rule validation and SQL-to-metric authoring.
+- Type: Research / practical product education; Gate A KEEP by refreshing existing unpublished draft. User preferences: concise prose TL;DR, unnumbered headings, business problem before Datus, no click-by-click tutorial.
+- Sources checked Nov17: Perplexity Nov6 changelog; AskMetrics, memory-organization and HTML dashboard docs; Datus-agent 43b40d54530499d68e06989dd2b735960fba65d6; Datus-saas 175ade478bd645afc1a04237e9b7819638c9c3f0 Metrics Editor and Semantic Hub docs/services. Hub review/merge/pull is permission/deployment dependent; no automatic global memory invalidation or consumer-copy refresh claim.
+- Proof: fictional Northstar totals legacy570/prospective470/restated270. DOSI0.1.11 validation and compilation; emitted PostgreSQL-target SQL executed unchanged in SQLite; independent reference plus effective-boundary/null-refund/exclusive-quarter checks pass. Not a live Studio/Agent/Hub or PostgreSQL integration test.
+- Category: Agentic Analytics; reciprocal body link from validate-business-rules-ai-agents. No glossary reassignment.
+- Assets: Inter-rendered PNG cover plus SVG source; desktop/mobile workflow SVGs; downloadable fixture ZIP with model, seed, reference, verification script and results.
+- Checks: editorial 14 pass / 1 download-route warning / 0 fail; full build/SEO checks pass for 122 articles. Desktop/tablet/mobile/dark preview, image loading and all local links including ZIP verified. Manual audit 86/100, P0 PASS. Browser evidence /tmp/datus-agent-memory-qa/results.json; local research output/agent-memory-approved-metrics-research.md.
+- PR: pending creation. Status: operator approved PR submission on 2026-11-17. Branch: codex/blog-agent-memory-approved-metrics; based on main 356c429, which includes PR146.
+- Date: 2026-11-17

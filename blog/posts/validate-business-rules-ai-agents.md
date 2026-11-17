@@ -101,6 +101,8 @@ The related [row-level security guide](/blog/row-level-security-ai-analytics/) c
 
 [Data lineage for AI analytics](/blog/data-lineage-ai-analytics/) explains how to follow an answer back to its metric definition and source dependencies, alongside the context of the query that produced it.
 
+When an accepted rule later changes, see [how to handle Agent memory that conflicts with approved metrics](/blog/agent-memory-approved-metrics/), including prospective changes and historical reports.
+
 ## Conclusion
 
 An agent can discover a candidate rule, but reuse has to be earned. Northstar first agrees on the repeat-purchase calculation, checks the delivery pattern on separate data, and asks an owner to approve a limited use. Datus makes the calculation and investigation more repeatable through semantic models, reference comparisons, and inspectable queries. The team remains responsible for the decision that turns a finding into shared business context.

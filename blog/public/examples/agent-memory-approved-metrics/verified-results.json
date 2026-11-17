@@ -1,0 +1,74 @@
+{
+  "dosi_version": "dosi 0.1.11",
+  "execution": "Unmodified PostgreSQL-target SQL, executed locally with SQLite",
+  "validation": {
+    "issues": [],
+    "compile_errors": [],
+    "warnings": []
+  },
+  "metric_order": [
+    "legacy_net_sales",
+    "current_net_sales",
+    "restated_net_sales"
+  ],
+  "compiled_sql": "SELECT SUM(orders.amount - COALESCE(orders.refund_amount, 0)) AS legacy_net_sales, SUM(CASE WHEN orders.order_date < '2026-11-01' OR orders.is_employee = 0 THEN orders.amount - COALESCE(orders.refund_amount, 0) ELSE 0 END) AS current_net_sales, SUM(CASE WHEN orders.is_employee = 0 THEN orders.amount - COALESCE(orders.refund_amount, 0) ELSE 0 END) AS restated_net_sales FROM main.orders AS orders WHERE orders.order_date >= '2026-10-01' AND orders.order_date < '2027-01-01'",
+  "checks": [
+    {
+      "case": "Three published sample orders",
+      "expected": [
+        570,
+        470,
+        270
+      ],
+      "actual": [
+        570.0,
+        470.0,
+        270.0
+      ],
+      "independent_reference": 470.0
+    },
+    {
+      "case": "Employee orders before and on the effective date",
+      "expected": [
+        690,
+        520,
+        270
+      ],
+      "actual": [
+        690.0,
+        520.0,
+        270.0
+      ],
+      "independent_reference": 520.0
+    },
+    {
+      "case": "Missing refund counts as zero for an included order",
+      "expected": [
+        730,
+        560,
+        310
+      ],
+      "actual": [
+        730.0,
+        560.0,
+        310.0
+      ],
+      "independent_reference": 560.0
+    },
+    {
+      "case": "Exclusive quarter end removes the January order",
+      "expected": [
+        730,
+        560,
+        310
+      ],
+      "actual": [
+        730.0,
+        560.0,
+        310.0
+      ],
+      "independent_reference": 560.0
+    }
+  ],
+  "limitations": "No live Studio, Agent, Hub or warehouse integration test."
+}

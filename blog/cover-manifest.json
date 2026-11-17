@@ -1,4 +1,8 @@
 {
+  "agent-memory-approved-metrics": {
+    "image": "/images/agent-memory-approved-metrics/cover.png",
+    "source": "reused"
+  },
   "data-context-layer-evaluation": {
     "image": "/images/data-context-layer-evaluation/cover.png",
     "source": "reused"
