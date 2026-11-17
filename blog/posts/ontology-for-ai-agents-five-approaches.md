@@ -216,6 +216,8 @@ For a current platform decision, see our [Snowflake Business Ontology and Databr
 
 ## Related articles
 
+- [Data Context Layer: Five Checks Before You Buy](/blog/data-context-layer-evaluation/) — a customer example for testing meaning, calculation, access, change and portability.
+
 - [What is an ontology?](/blog/what-is-ontology/) — the definition and its relationship to taxonomies and graphs.
 - [Semantic layer vs ontology](/blog/semantic-layer-vs-ontology/) — a deeper look at how measurement and entity meaning work together.
 - [From semantic layer to ontology](/blog/from-semantic-layer-to-ontology/) — how Datus connects governed models to agent context.

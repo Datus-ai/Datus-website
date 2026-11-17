@@ -1,0 +1,8 @@
+{
+  "purchasing_v1": ["C001", "C004", "C005"],
+  "engaged_v1": ["C001", "C002", "C003", "C006"],
+  "purchasing_candidate_v2": ["C001", "C004"],
+  "purchasing_v1_regions": {"North": 2, "South": 1},
+  "purchasing_candidate_v2_regions": {"North": 1, "South": 1},
+  "removed_by_candidate": ["C005"]
+}

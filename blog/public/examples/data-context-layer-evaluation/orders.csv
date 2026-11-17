@@ -1,0 +1,8 @@
+order_id,customer_id,order_date,status,amount_usd
+O001,C001,2026-10-02,completed,80
+O002,C001,2026-10-18,completed,60
+O003,C002,2026-09-20,completed,90
+O004,C003,2026-10-12,refunded,70
+O005,C004,2026-10-21,completed,120
+O006,C005,2026-10-31,completed,40
+O007,C006,2026-10-11,cancelled,100

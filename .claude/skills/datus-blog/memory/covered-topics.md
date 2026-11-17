@@ -970,3 +970,18 @@ land on the new article by design.
 - Branch: codex/blog-ai-analytics-roi; based on main fc5ca7e9fff4c7e82d40895d1c90cd766edbecf6.
 - Preview: http://127.0.0.1:4215/blog/ai-analytics-roi/
 - Date: 2026-11-16.
+
+### data-context-layer-evaluation
+- Title: Data Context Layer: Five Checks Before You Buy
+- Target keyword: data context layer; evaluation intent. Exact-query demand unknown; broader context layer and context layer for AI estimates are not a buyer-traffic forecast.
+- Angle: An inspectable buyer demo using two legitimate customer definitions, an independently checked synthetic fixture, a controlled rule change and explicit access/export boundaries.
+- Source direction: operator-requested next post from social-listening backlog; Jessica Talisman's inspectability questions.
+- Article type: Research.
+- Investment Score: 4.4/5 (demand 2, fit 5, differentiation 5, evidence 5, durability 5). Gate A: KEEP — buyer evaluation and reproducible evidence package, distinct from concept definitions and Datus implementation guides.
+- Audit: manual P0 and Research gates PASS, 86/100 grade A; editorial checker 14 PASS / 2 WARN / 0 FAIL. Full build and SEO suite PASS; 1440/768/390px and dark-mobile preview, internal links, images, ZIP and six reference checks verified. Warnings: descriptive conclusion heading intentional; example download confirmed 200. No live Datus or authorization assessment.
+- Key sources: https://jessicatalisman.substack.com/p/context-layers-from-first-principles ; https://docs.datus.ai/0.4/subagent/semantic_modeling/ ; https://dosi.datus.ai/agents/ ; https://dosi.datus.ai/datus-extensions/ ; Datus-saas f73fb2f built-in SQL Policy and Metrics Editor source/docs, Datus-agent a2a21d5 source.
+- Internal links added: validate-business-rules-ai-agents, html-dashboard-data-permissions, row-level-security-ai-analytics, dosi-semantic-layer-northstar-example, solutions/semantic-layer; reciprocal from context-engine-data-engineering-agent-accuracy and ontology-for-ai-agents-five-approaches.
+- Glossary updated: no — evaluation spoke, not a new canonical definition.
+- Category: Why context is everything.
+- PR: https://github.com/Datus-ai/Datus-website/pull/146. Status: open; operator-approved submission on 2026-11-17. Branch: codex/blog-data-context-layer-evaluation, rebased on main 49bba57. Full build and desktop/tablet/mobile preview rechecked after rebase.
+- Date: 2026-11-16.
