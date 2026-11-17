@@ -91,7 +91,7 @@ const CATEGORIES = [
       "ai-data-pipeline-automation-use-cases-architecture-and-tradeoffs",
       "agentic-etl-what-changes-beyond-traditional-etl", "data-agent-sandbox"] },
   { label: "Why context is everything", description: "Why durable, structured context is what makes agents reliable.",
-    slugs: ["why-ai-agents-need-semantic-context-to-work-reliably", "how-structured-context-improves-ai-agent-output",
+    slugs: ["data-context-layer-evaluation", "why-ai-agents-need-semantic-context-to-work-reliably", "how-structured-context-improves-ai-agent-output",
       "semantic-modeling-for-agentic-analytics-workflows", "why-reliable-data-agents-need-more-than-good-prompts"] },
   { label: "Tooling and integrations", description: "How Datus connects to the rest of your stack.",
     slugs: ["how-mcp-changes-data-workflow-automation", "using-mcp-extensions-in-data-engineering-workflows",

@@ -1,0 +1,6 @@
+check,requested_demonstration,evidence_to_keep,observation,platform_version,model_revision,data_snapshot,reviewer,status
+Meaning,Resolve purchasing versus engaged customers without silently merging them,Scoped definition and accountable owner,,,,,,Not tested
+Calculation,Reconcile purchasing v1 to C001 C004 C005,"Query, membership and source mapping",,,,,,Not tested
+Access,Use distinct authenticated identities across the intended consumers,Allowed and denied cases for each actual query path,,,,,,Not tested
+Change,Apply candidate USD50-per-order rule on the same snapshot,"Model diff, C005 exclusion and consumer refresh checks",,,,,,Not tested
+Portability,Export artifacts and reproduce a supported calculation outside the authoring UI,"Artifact inventory, runtime requirements and observed result",,,,,,Not tested

@@ -152,6 +152,8 @@ Partially. A well-maintained dbt project or semantic layer provides excellent sc
 
 ## Related articles
 
+- [Data Context Layer: Five Checks Before You Buy](/blog/data-context-layer-evaluation/) — a customer example for testing meaning, calculation, access, change and portability.
+
 - [Contextual data engineering](/blog/contextual-data-engineering/) — the three-layer model behind context engines
 - [What is a data engineering agent?](/blog/what-is-data-engineering-agent-2026/) — the category definition
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — definitions, implementations, and the gap agents fill
