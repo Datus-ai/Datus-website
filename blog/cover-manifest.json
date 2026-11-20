@@ -1,4 +1,8 @@
 {
+  "agentic-analytics-platforms": {
+    "image": "/images/agentic-analytics-platforms/cover.png",
+    "source": "reused"
+  },
   "agent-memory-approved-metrics": {
     "image": "/images/agent-memory-approved-metrics/cover.png",
     "source": "reused"
