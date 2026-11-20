@@ -1,20 +1,20 @@
 ---
 title: "Ontology for AI Agents: Five Approaches to Business Context"
-description: "Explore five approaches to ontology for AI agents, from semantic layers and open standards to knowledge graphs and operational models, with a selection guide."
+description: "Compare five approaches to ontology for AI agents, with a business example, semantic layer distinctions, and guidance on choosing and reusing domain models."
 author: "Joanna He"
 date: 2026-10-15
-lastmod: 2026-10-15
+lastmod: 2026-11-20
 tags: insight
 head:
   - - meta
     - name: keywords
-      content: "ontology for AI agents, AI agent ontology, semantic layer ontology, knowledge graph for AI agents, data context layer"
+      content: "ontology for AI agents, agent ontology, ontology-driven agents, prebuilt industry ontologies for AI, semantic layer ontology, knowledge graph for AI agents"
   - - meta
     - property: og:title
       content: "Ontology for AI Agents: Five Approaches to Business Context"
   - - meta
     - property: og:description
-      content: "Explore five approaches to ontology for AI agents, from semantic layers and open standards to knowledge graphs and operational models, with a selection guide."
+      content: "Compare five approaches to ontology for AI agents, with a business example, semantic layer distinctions, and guidance on choosing and reusing domain models."
   - - meta
     - property: og:type
       content: article
@@ -36,8 +36,7 @@ head:
 
 ## TL;DR
 
-- Ontology gives AI agents explicit business entities and relationships; a semantic layer governs metrics.
-- Five approaches place meaning in different systems. Choose by the question your agent gets wrong.
+An ontology gives AI agents explicit business entities, relationships, and rules; a semantic layer defines calculations. Compare five approaches by the question your agent gets wrong, then connect the model to data your team can verify.
 
 ## The money has arrived. The vocabulary hasn’t.
 
@@ -51,13 +50,15 @@ The money has arrived. The vocabulary hasn’t.
 
 That gap is the tell. Organizations are investing in semantic skills while they are still deciding where business meaning should live. For years, data teams asked whether an agent could *find* the right data. Now they also need to ask whether the agent knows what it found. A table named `suppliers` does not explain whether “Acme Corp” and “Acme Corporation Ltd.” are one supplier. A column named `revenue` does not say whether refunds count. An agent can produce valid SQL and still answer the wrong business question.
 
-This is why **ontology for AI agents** has become a practical architecture question. In data systems, an ontology describes business entities, their properties, and the relationships and rules that connect them. It helps an agent interpret *who or what* a question refers to. A semantic layer gives the agent a governed way to calculate *how much*. Depending on the use case, teams may need both.
+## What is ontology for AI agents?
+
+**An ontology for AI agents is a machine-readable model of business entities, their properties, relationships, and constraints.** It gives an agent a vocabulary for interpreting a request and finding relevant data. A semantic layer complements it by defining calculations, so the agent can connect *who or what* to *how much*.
 
 The interesting disagreement is not whether meaning matters. It is **where that meaning should live**. The five approaches below are a map of that design choice, adapted from my earlier Medium essay. They are categories of architecture, not a ranking of products.
 
 ![A warehouse and an AI agent connect through shared business meaning, represented by a small network of metrics, entities, and relationships.](/images/ontology-for-ai-agents-five-approaches/cover-business-meaning.svg)
 
-## The vocabulary: four related jobs
+## Ontology, semantic layer, and knowledge graph: four related jobs
 
 The words in this space often overlap. I find it helpful to separate the job each one does:
 
@@ -136,6 +137,20 @@ Imagine a procurement agent receives this request: “Show addressable spend for
 
 The agent has at least three separate tasks. It must identify **the supplier** despite several names. It must calculate **addressable spend** using the agreed filters and time window. And it must decide **which contracts this user may inspect** before it makes a recommendation. Good SQL generation solves only part of this problem. The differences between the five approaches become clearer when you ask where each one places these decisions.
 
+### How an ontology-driven agent uses the model
+
+In this illustrative procurement workflow, the agent uses the model to select concepts and relationship paths. The query service executes the calculation and enforces access. Your team supplies the reviewed mappings and checks the result:
+
+| Part of the question | Context the agent needs | What to verify |
+| --- | --- | --- |
+| “Acme” | A maintained mapping from trading names to the intended supplier identity | The selected records belong to the same legal entity; similar names alone are insufficient. |
+| “Addressable spend this quarter” | The spend definition, excluded order statuses, tax treatment, and fiscal dates | The calculation matches an approved reference result at the same grain. |
+| “Contracts that need review” | The supplier-to-contract relationship and the agreed review criteria | The query returns only authorized contracts and shows why each meets the criteria. |
+
+The model makes these choices inspectable. It does not resolve duplicate supplier records or authorize access simply by naming a relationship. Those responsibilities remain with the mappings, data services, and policies behind the agent.
+
+### Where the five approaches put those responsibilities
+
 An **open interchange model** could carry the agreed spend definition, source mapping, and relationships to another tool. An analytics engine still has to interpret that model against the current warehouse. A team should test the model after importing it elsewhere: Does the spend metric keep its filter? Do the joins preserve the grain? Are unsupported annotations identified? The answer depends on the importer and runtime as well as on the standard.
 
 A **platform-native model** could define the metric inside the warehouse's semantic objects and use that platform's permissions. This is a straightforward choice when the required data and agent already operate there. If the contract system sits elsewhere, the team still has to decide how contract identity and access rules reach the agent. The platform can be the natural home for the spend calculation without having to be the only source of context.
@@ -170,14 +185,6 @@ Then repeat the questions after a controlled change: add a new supplier alias, c
 
 Finally, ask the agent to explain its answer in plain terms: which supplier it resolved, which definition of spend it applied, which sources it queried, and whether it excluded any contract because of access rules. A system that can answer but cannot show these choices is difficult to correct when the business changes. The explanation does not need to expose every internal query plan; it should expose the decisions that an owner can verify.
 
-## Where Datus fits: start with governed meaning, then keep it current
-
-Datus takes a semantic-layer-first route to agent context. The [Datus agent](/products/cli/) can use schema and SQL history to help build semantic models; [Dosi](https://dosi.datus.ai/) runs Apache Ossie models and serves governed metrics through SQL-oriented interfaces and MCP. Dosi compiles queries for multiple SQL dialects. **Apache Ossie is the open standard; Dosi is <a href="https://dosi.datus.ai/install/" rel="noopener">source-available under the Elastic License 2.0</a>, and the Datus agent is open source.** These are distinct licenses and roles.
-
-For a question about “addressable spend,” the first job is to make the spend calculation inspectable: source, filters, grain, and allowed joins. The next is to attach the right supplier identity and relationship context. The agent can then use both, with the relevant permissions, to answer the question. That is the idea behind a [semantic-layer-based ontology](/blog/semantic-layer-based-ontology/): build concept context on top of governed definitions rather than making each agent infer everything from raw tables.
-
-This does not make the original model automatically correct. A reviewed definition can still become stale as sources and business rules change. The operating question is who owns that review and how updates reach the agents that rely on it. Datus's broader [context approach](/blog/from-semantic-layer-to-ontology/) addresses this as an evolving asset, while the degree of automated ontology support should be judged against the specific capability you need today.
-
 ## How to choose a starting point
 
 Start with a question your agent currently gets wrong, then trace the source of the error.
@@ -190,11 +197,23 @@ Start with a question your agent currently gets wrong, then trace the source of 
 
 This exercise usually makes the architecture choice clearer than a broad “ontology versus semantic layer” debate. Most organizations already have pieces of the answer in warehouse models, documents, BI definitions, and operational systems. The useful work is connecting those pieces into a contract an agent can actually use and a team can maintain.
 
+## Put ontology to work with Datus
+
+Datus is an open-source data engineering agent that helps teams turn business knowledge into reusable context. Its approach connects **ontology—what business concepts mean and how they relate—with a semantic layer that defines how metrics are calculated**. People review that meaning; agents reuse it to answer business questions.
+
+DOSI provides the semantic foundation, built on the open Apache Ossie standard. Together, Datus and DOSI take a vendor-neutral approach: teams can reuse reviewed definitions across supported data sources and agent interfaces, while keeping business owners involved as those definitions evolve.
+
+[Explore the Datus ontology approach](/solutions/ontology/) or **[try Datus Studio](https://studio.datus.ai/overview?utm_content=blog_ontology_five_approaches_conclusion)**. Start with one business question and build shared meaning your next agent can use.
+
 ## Conclusion
 
 An ontology for AI agents is valuable when the agent needs explicit business identities and relationships. A semantic layer makes measures and query paths inspectable. A knowledge graph can connect specific entities; an operational model can connect them to authorized actions. The five approaches differ mainly in **where they establish that contract**. Choose the one that matches the failure you can demonstrate, then keep the meaning tied to the data and workflows your team actually runs.
 
 ## Frequently asked questions
+
+### What does “agent ontology” mean in business analytics?
+
+Here, it means the business model an agent consults: concepts such as Supplier and Contract, their properties, and the relationships between them. In other contexts, “agent ontology” can describe agents themselves, including their roles and capabilities. When evaluating a system, ask which of these it models and how the model connects to real data and executable queries.
 
 ### Does an AI agent need an ontology or a semantic layer?
 
@@ -207,6 +226,10 @@ No. An ontology defines the types and rules of a domain; a knowledge graph conne
 ### Can an open semantic standard replace a runtime?
 
 An interchange standard lets systems exchange definitions, but an implementation still has to validate a model, enforce access, plan a query, and run it against data. Apache Ossie specifies portable semantic metadata; products decide how to consume and execute it. When evaluating portability, test both import/export of the definition and the behavior of a real query on the target system.
+
+### Can prebuilt industry ontologies help AI agents?
+
+Yes, as a starting vocabulary. For example, the <a href="https://edmcouncil.org/frameworks/industry-models/fibo/" rel="nofollow noopener">Financial Industry Business Ontology (FIBO)</a> defines financial concepts and their relationships. Your team still needs to select the relevant concepts, map them to source data, and resolve organization-specific definitions. A shared definition of Contract will not decide your company's addressable-spend formula or who may see a contract. Check the model's license, maintenance, and supported format before adopting it, then test one real question. A reusable industry model saves some modeling work; it is not a ready-to-run analytics service.
 
 ### What should a team test before giving an agent access to business data?
 

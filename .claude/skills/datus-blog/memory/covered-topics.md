@@ -740,6 +740,7 @@ land on the new article by design.
 - Images: four original SVGs in blog/public/images/ontology-for-ai-agents-five-approaches/.
 - PR: https://github.com/Datus-ai/Datus-website/pull/99   Status: open
 - Date: 2026-10-15
+- Refreshed: 2026-11-20 — local draft on `codex/refresh-ontology-ai-agents`, based on main `6d285a4`. Operator-supplied query data guided the definition-first TL;DR, explicit ontology definition, procurement workflow checks, agent-ontology and prebuilt-industry-model FAQ, revised description, and closing Datus Studio/demo CTA. Preserved title, URL, author, publication date, hiring hook, expert viewpoints, and five-approach framework. Excluded the unrelated Tortus query. Verified new product claims against semantic-modeling, OntologyAnalyst, and DOSI documentation; retained the experimental ontology qualification and licensing distinction. Full build/SEO checks and desktop/mobile light/dark checks passed; automated editorial check: 11 pass / 3 justified warnings / 0 fail (ported byline and existing evidence/internal-link density). Follow-up: shortened the Datus section to a high-level positioning/idea summary with demo and Studio links, and moved it before Conclusion. Refresh PR: https://github.com/Datus-ai/Datus-website/pull/148 — open; pushed for operator review, not merged or published.
 
 ### apache-ossie-converters
 - Title: Apache Ossie Converters: YAML to dbt, Cube and More
