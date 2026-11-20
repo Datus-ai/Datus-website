@@ -1013,7 +1013,7 @@ land on the new article by design.
 - Glossary updated: no — preserve the definition article as the glossary target.
 - Category: Agentic Analytics
 - Images: original cover.svg + 1200x630 cover.png (58 KB) and evaluation-boundaries.svg under blog/public/images/agentic-analytics-platforms/.
-- PR: none   Status: local draft for operator review; not committed or pushed.
+- PR: https://github.com/Datus-ai/Datus-website/pull/149   Status: open; operator review pending; not merged or published.
 - Date: 2026-11-20
 - Review revision: followed operator-requested definition → architecture/components → market platforms → implementation challenges → evaluation structure. Added sourced Reddit user/evaluator accounts for Cube, Hex, Sigma and ThoughtSpot, plus Tim Ngwena’s LinkedIn workflow perspective. Anonymous identities unverified; older comments labeled; no independent Datus testimonial located in the bounded search and none fabricated. Automated check remains 13 pass / 1 justified source-count warning / 0 fail.
 - Architecture visual / SEO review: 2026-11-20 — added responsive core-architecture desktop/mobile SVGs under the architecture section. Blog rebuild and SEO checks pass; 13 editorial checks pass, one source-density warning retained for operator-requested platform/user citations. Three tables (one catalogue), five FAQ items, single H1, canonical, article dates and sitemap verified. Desktop/mobile light/dark diagram selection and no page overflow verified. Manual audit 86/100, grade A; source-count exception documented.
