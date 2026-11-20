@@ -999,3 +999,21 @@ land on the new article by design.
 - Checks: editorial 14 pass / 1 download-route warning / 0 fail; full build/SEO checks pass for 122 articles. Desktop/tablet/mobile/dark preview, image loading and all local links including ZIP verified. Manual audit 86/100, P0 PASS. Browser evidence /tmp/datus-agent-memory-qa/results.json; local research output/agent-memory-approved-metrics-research.md.
 - PR: https://github.com/Datus-ai/Datus-website/pull/147. Status: open; operator-approved submission on 2026-11-17. Branch: codex/blog-agent-memory-approved-metrics; based on main 356c429, which includes PR146.
 - Date: 2026-11-17
+
+### agentic-analytics-platforms
+- Title: Agentic Analytics Platforms Compared: What to Evaluate
+- Target keyword: agentic analytics platforms; agentic analytics tools; agentic analytics software
+- Angle: compare the complete lifecycle of a fictional net-sales investigation across definitions, permissions, evidence and outputs; platform profiles distinguish documented behavior from proposed trial checks. No measured cross-vendor rankings.
+- Source direction: operator-approved Cube SEMrush keyword clustering, 2026-11-20. Platform 140/KD30, tools 110/KD29, software 70/KD29; variants not summed; pasted source market/date unspecified.
+- Article type: ToolsList
+- Investment Score: 4.2 (demand 3, relevance 5, differentiation 4, evidence 5, shelf life 4)   Gate A: KEEP — commercial analytics-platform evaluation distinct from the existing category definition, semantic-layer tools list and data-engineering-agent list.
+- Audit: 85/100, grade A; automated 13 pass / 1 justified warning / 0 fail. Source count exceeds default to substantiate five product profiles. Full build/SEO checks passed for 78 marketing routes and 123 articles; desktop/mobile light/dark checks passed. No broken article images or internal destinations; 5 FAQ entries and tagged Studio CTA verified.
+- Key sources: https://cube.dev/product/ai-context-layer; https://learn.hex.tech/docs/explore-data/threads; https://help.sigmacomputing.com/docs/create-and-manage-data-models; https://www.sigmacomputing.com/product/ai; https://docs.thoughtspot.com/cloud/26.10.0.cl/spotter-enable; https://docs.thoughtspot.com/cloud/26.10.0.cl/spotter-data-handling; https://docs.datus.ai/0.4/subagent/semantic_modeling/; https://dosi.datus.ai/agents/
+- Internal links added: what-is-agentic-analytics, row-level-security-ai-analytics, html-dashboard-data-permissions, data-context-layer-evaluation, solutions/ai-bi; reciprocal from what-is-agentic-analytics.
+- Glossary updated: no — preserve the definition article as the glossary target.
+- Category: Agentic Analytics
+- Images: original cover.svg + 1200x630 cover.png (58 KB) and evaluation-boundaries.svg under blog/public/images/agentic-analytics-platforms/.
+- PR: https://github.com/Datus-ai/Datus-website/pull/149   Status: open; operator review pending; not merged or published.
+- Date: 2026-11-20
+- Review revision: followed operator-requested definition → architecture/components → market platforms → implementation challenges → evaluation structure. Added sourced Reddit user/evaluator accounts for Cube, Hex, Sigma and ThoughtSpot, plus Tim Ngwena’s LinkedIn workflow perspective. Anonymous identities unverified; older comments labeled; no independent Datus testimonial located in the bounded search and none fabricated. Automated check remains 13 pass / 1 justified source-count warning / 0 fail.
+- Architecture visual / SEO review: 2026-11-20 — added responsive core-architecture desktop/mobile SVGs under the architecture section. Blog rebuild and SEO checks pass; 13 editorial checks pass, one source-density warning retained for operator-requested platform/user citations. Three tables (one catalogue), five FAQ items, single H1, canonical, article dates and sitemap verified. Desktop/mobile light/dark diagram selection and no page overflow verified. Manual audit 86/100, grade A; source-count exception documented.
