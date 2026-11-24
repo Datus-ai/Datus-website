@@ -1017,3 +1017,23 @@ land on the new article by design.
 - Date: 2026-11-20
 - Review revision: followed operator-requested definition → architecture/components → market platforms → implementation challenges → evaluation structure. Added sourced Reddit user/evaluator accounts for Cube, Hex, Sigma and ThoughtSpot, plus Tim Ngwena’s LinkedIn workflow perspective. Anonymous identities unverified; older comments labeled; no independent Datus testimonial located in the bounded search and none fabricated. Automated check remains 13 pass / 1 justified source-count warning / 0 fail.
 - Architecture visual / SEO review: 2026-11-20 — added responsive core-architecture desktop/mobile SVGs under the architecture section. Blog rebuild and SEO checks pass; 13 editorial checks pass, one source-density warning retained for operator-requested platform/user citations. Three tables (one catalogue), five FAQ items, single H1, canonical, article dates and sitemap verified. Desktop/mobile light/dark diagram selection and no page overflow verified. Manual audit 86/100, grade A; source-count exception documented.
+
+
+## Semantic Layer Requirements: A Real Running Data Example
+- Slug: semantic-layer-requirements
+- Primary keyword: semantic layer requirements
+- Type: Tutorial; operator-authored real running-data case, Joanna He byline.
+- Scope: metric contracts, source grain, weighted aggregation, independent checks, consumer reuse, and coaching boundaries. Distinct from the retail semantic-model-examples tutorial.
+- Source: operator HTML draft and Hangzhou presentation, slide 15; public joannahe/AI-Runner-Tracker model and ontology; Datus semantic-modeling documentation.
+- Visuals: actual metric inspector and English coach screenshots; ontology graphs generated from the local model; source-to-metric and validation diagrams. Whole-model Studio screenshot removed at operator request. No Chinese reconciliation screenshot.
+- Verification: full build and SEO checks passed (78 marketing pages, 124 articles); one H1, 4 FAQ schema entries, correct canonical, no zh-Hans blog alternate. Article images and internal links load; desktop/mobile have no page overflow or browser errors.
+- Automated editorial audit: 11 pass, 3 warnings, 0 failures. Warnings retained for operator authorship, primary-source link count, and short introductory paragraphs.
+- Branch: blog/semantic-layer-requirements
+- Status: operator approved submission for PR review; not merged or published.
+- Date: 2026-11-24
+
+- Operator review update: non-photo running/model cover; standalone two-sentence TL;DR and separate introduction; portrait article layout for the talk-derived ontology.
+
+- Visual review revision: operator-approved generated runner cover (not a real portrait); source-derived domain graphs replace the PPT adaptation. All 33 concept nodes and 48 named directed relationships/inheritance links verified from fitness_ontology.yaml; four readable views plus a complete graph and extracted JSON.
+
+- Final operator review: removed the whole-model Studio screenshot from the metric-contract section; retained the focused metric inspector and source-to-metric diagram. Operator requested a PR.

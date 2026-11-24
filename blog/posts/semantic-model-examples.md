@@ -247,3 +247,5 @@ For a calculation already captured in a report, see [how to turn existing SQL in
 - [What is a semantic layer?](/blog/what-is-semantic-layer/) — how models serve a larger business vocabulary
 - [What is conversational BI?](/blog/what-is-conversational-bi/) — one interface that can use shared definitions
 - [The semantic layer in the agent loop](/blog/semantic-layer-in-the-agent-loop/) — how agents use governed definitions
+
+For a real personal-data case, see [semantic layer requirements: how to build and validate one](/blog/semantic-layer-requirements/), including a metric contract, source mapping and independent calculation checks.
