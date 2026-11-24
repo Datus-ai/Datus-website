@@ -1,4 +1,8 @@
 {
+  "semantic-layer-requirements": {
+    "image": "/images/semantic-layer-requirements/cover-generated.jpg",
+    "source": "reused"
+  },
   "agentic-analytics-platforms": {
     "image": "/images/agentic-analytics-platforms/cover.png",
     "source": "reused"

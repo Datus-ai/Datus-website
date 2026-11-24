@@ -1,0 +1,416 @@
+{
+  "source": "https://github.com/joannahe/AI-Runner-Tracker/blob/main/fitness_ontology.yaml",
+  "concepts": [
+    "Athlete",
+    "TrainingSession",
+    "RaceEvent",
+    "SourceActivity",
+    "CorosHighFocusRunActivity",
+    "RunningObservation",
+    "SleepObservation",
+    "FitnessAssessment",
+    "GoalReviewWorkflow",
+    "WeeklyRunningDistance",
+    "HighMileageGrowthWeek",
+    "DailyTrainingLoad",
+    "HighLoadDay",
+    "LowLoadDay",
+    "OvernightHRV",
+    "RestingHeartRate",
+    "HeartRateZone",
+    "Goal",
+    "ActionPlan",
+    "PlannedAction",
+    "Capability",
+    "MetricEvidence",
+    "RecoveryState",
+    "RecoveryEvidence",
+    "PaceZone",
+    "InferredState",
+    "Recommendation",
+    "ProviderRecoveryEstimate",
+    "GoalCriterion",
+    "GoalProgressAssessment",
+    "RecoveryRule",
+    "GoalProgressEvidence",
+    "PlannedSegment"
+  ],
+  "relationships": [
+    {
+      "from": "TrainingSession",
+      "to": "Athlete",
+      "name": "performed_by",
+      "multiplicity": "ManyToOne",
+      "description": "An athlete performs a training session.",
+      "type": "relationship"
+    },
+    {
+      "from": "RaceEvent",
+      "to": "TrainingSession",
+      "name": "completed_as",
+      "multiplicity": "ManyToOne",
+      "description": "A verified race is a completed training session.",
+      "type": "relationship"
+    },
+    {
+      "from": "SourceActivity",
+      "to": "TrainingSession",
+      "name": "records",
+      "multiplicity": "ManyToOne",
+      "description": "A source activity records a training session.",
+      "type": "relationship"
+    },
+    {
+      "from": "CorosHighFocusRunActivity",
+      "to": "SourceActivity",
+      "name": "extends",
+      "type": "inheritance"
+    },
+    {
+      "from": "RunningObservation",
+      "to": "TrainingSession",
+      "name": "part_of",
+      "multiplicity": "ManyToOne",
+      "description": "A running observation belongs to a training session.",
+      "type": "relationship"
+    },
+    {
+      "from": "SleepObservation",
+      "to": "Athlete",
+      "name": "observed_for",
+      "multiplicity": "ManyToOne",
+      "description": "A sleep observation belongs to an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "FitnessAssessment",
+      "to": "Athlete",
+      "name": "assesses",
+      "multiplicity": "ManyToOne",
+      "description": "A fitness assessment describes an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "GoalReviewWorkflow",
+      "to": "Goal",
+      "name": "targets",
+      "multiplicity": "ManyToOne",
+      "description": "A goal review workflow targets a goal.",
+      "type": "relationship"
+    },
+    {
+      "from": "GoalReviewWorkflow",
+      "to": "ActionPlan",
+      "name": "uses_plan",
+      "multiplicity": "ManyToOne",
+      "description": "A goal review workflow uses a action plan.",
+      "type": "relationship"
+    },
+    {
+      "from": "HighMileageGrowthWeek",
+      "to": "WeeklyRunningDistance",
+      "name": "extends",
+      "type": "inheritance"
+    },
+    {
+      "from": "HighLoadDay",
+      "to": "DailyTrainingLoad",
+      "name": "extends",
+      "type": "inheritance"
+    },
+    {
+      "from": "LowLoadDay",
+      "to": "DailyTrainingLoad",
+      "name": "extends",
+      "type": "inheritance"
+    },
+    {
+      "from": "OvernightHRV",
+      "to": "Athlete",
+      "name": "observed_for",
+      "multiplicity": "ManyToOne",
+      "description": "An overnight HRV assessment belongs to an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "HeartRateZone",
+      "to": "Athlete",
+      "name": "assigned_to",
+      "multiplicity": "ManyToOne",
+      "description": "A heart-rate zone belongs to an athlete and a versioned zone scheme.",
+      "type": "relationship"
+    },
+    {
+      "from": "Goal",
+      "to": "Athlete",
+      "name": "set_by",
+      "multiplicity": "ManyToOne",
+      "description": "An athlete sets a goal.",
+      "type": "relationship"
+    },
+    {
+      "from": "Goal",
+      "to": "GoalCriterion",
+      "name": "has_criterion",
+      "multiplicity": "ManyToOne",
+      "description": "A goal has one or more measurable or milestone criteria.",
+      "type": "relationship"
+    },
+    {
+      "from": "ActionPlan",
+      "to": "Goal",
+      "name": "for_goal",
+      "multiplicity": "ManyToOne",
+      "description": "A plan version serves exactly one versioned athlete goal.",
+      "type": "relationship"
+    },
+    {
+      "from": "ActionPlan",
+      "to": "Athlete",
+      "name": "owned_by",
+      "multiplicity": "ManyToOne",
+      "description": "A plan version belongs to one athlete, whether draft or approved.",
+      "type": "relationship"
+    },
+    {
+      "from": "PlannedAction",
+      "to": "ActionPlan",
+      "name": "in_plan",
+      "multiplicity": "ManyToOne",
+      "description": "A planned action belongs to one versioned plan.",
+      "type": "relationship"
+    },
+    {
+      "from": "PlannedAction",
+      "to": "TrainingSession",
+      "name": "fulfilled_by",
+      "multiplicity": "ManyToOne",
+      "description": "Only a reviewed, verified workout may fulfill a planned action.",
+      "type": "relationship"
+    },
+    {
+      "from": "Capability",
+      "to": "Athlete",
+      "name": "belongs_to",
+      "multiplicity": "ManyToOne",
+      "description": "A capability assessment concerns an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "MetricEvidence",
+      "to": "Athlete",
+      "name": "concerns",
+      "multiplicity": "ManyToOne",
+      "description": "Metric evidence concerns an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "MetricEvidence",
+      "to": "Capability",
+      "name": "indicates",
+      "multiplicity": "ManyToOne",
+      "description": "Metric evidence may indicate a capability when comparison conditions are satisfied.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "Athlete",
+      "name": "for_athlete",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review concerns an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "SleepObservation",
+      "name": "considers_sleep",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review considers available sleep observations.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "OvernightHRV",
+      "name": "considers_hrv",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review may consider the dated COROS overnight HRV assessment.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "RestingHeartRate",
+      "name": "considers_resting_hr",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review considers resting heart rate.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "DailyTrainingLoad",
+      "name": "considers_load",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review considers daily training load.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "ProviderRecoveryEstimate",
+      "name": "considers_provider_estimate",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review may consider a provider recovery estimate.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "TrainingSession",
+      "name": "considers_workout",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review considers the recent workout and its duration.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryState",
+      "to": "RunningObservation",
+      "name": "considers_running_intensity",
+      "multiplicity": "ManyToOne",
+      "description": "A recovery review considers measured pace and heart rate as workout intensity context.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryEvidence",
+      "to": "RecoveryState",
+      "name": "belongs_to",
+      "multiplicity": "ManyToOne",
+      "description": "Evidence belongs to one saved recovery review.",
+      "type": "relationship"
+    },
+    {
+      "from": "RecoveryEvidence",
+      "to": "RecoveryRule",
+      "name": "evaluated_with",
+      "multiplicity": "ManyToOne",
+      "description": "Evidence is evaluated with one versioned recovery rule.",
+      "type": "relationship"
+    },
+    {
+      "from": "PaceZone",
+      "to": "Athlete",
+      "name": "assigned_to",
+      "multiplicity": "ManyToOne",
+      "description": "A pace zone belongs to an athlete and scheme version.",
+      "type": "relationship"
+    },
+    {
+      "from": "InferredState",
+      "to": "Athlete",
+      "name": "for_athlete",
+      "multiplicity": "ManyToOne",
+      "description": "An inferred state concerns an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "InferredState",
+      "to": "MetricEvidence",
+      "name": "supported_by",
+      "multiplicity": "ManyToOne",
+      "description": "An inferred state cites metric evidence.",
+      "type": "relationship"
+    },
+    {
+      "from": "Recommendation",
+      "to": "InferredState",
+      "name": "triggered_by",
+      "multiplicity": "ManyToOne",
+      "description": "A recommendation is justified by an inferred state.",
+      "type": "relationship"
+    },
+    {
+      "from": "Recommendation",
+      "to": "Goal",
+      "name": "for_goal",
+      "multiplicity": "ManyToOne",
+      "description": "A recommendation may support a goal.",
+      "type": "relationship"
+    },
+    {
+      "from": "Recommendation",
+      "to": "PlannedAction",
+      "name": "adjusts",
+      "multiplicity": "ManyToOne",
+      "description": "A reviewed recommendation may adjust a planned action.",
+      "type": "relationship"
+    },
+    {
+      "from": "ProviderRecoveryEstimate",
+      "to": "Athlete",
+      "name": "observed_for",
+      "multiplicity": "ManyToOne",
+      "description": "A provider recovery estimate is observed for an athlete.",
+      "type": "relationship"
+    },
+    {
+      "from": "ProviderRecoveryEstimate",
+      "to": "DailyTrainingLoad",
+      "name": "influenced_by_load",
+      "multiplicity": "ManyToOne",
+      "description": "COROS recovery estimates are influenced by provider training load and base fitness; the proprietary formula is not reproduced here.",
+      "type": "relationship"
+    },
+    {
+      "from": "ProviderRecoveryEstimate",
+      "to": "TrainingSession",
+      "name": "influenced_by_workout",
+      "multiplicity": "ManyToOne",
+      "description": "Workout duration and intensity influence COROS training load, which in turn influences its recovery estimate.",
+      "type": "relationship"
+    },
+    {
+      "from": "ProviderRecoveryEstimate",
+      "to": "RunningObservation",
+      "name": "uses_run_intensity_context",
+      "multiplicity": "ManyToOne",
+      "description": "Running heart rate and pace help characterize intensity through the provider calculation; this is a conceptual dependency, not a reproduced formula.",
+      "type": "relationship"
+    },
+    {
+      "from": "GoalCriterion",
+      "to": "Goal",
+      "name": "belongs_to",
+      "multiplicity": "ManyToOne",
+      "description": "A criterion belongs to a runner-defined goal.",
+      "type": "relationship"
+    },
+    {
+      "from": "GoalProgressAssessment",
+      "to": "GoalCriterion",
+      "name": "reviews",
+      "multiplicity": "ManyToOne",
+      "description": "A progress assessment reviews one versioned goal criterion.",
+      "type": "relationship"
+    },
+    {
+      "from": "GoalProgressAssessment",
+      "to": "GoalProgressEvidence",
+      "name": "supported_by",
+      "multiplicity": "ManyToOne",
+      "description": "A progress assessment is supported by its cited goal evidence.",
+      "type": "relationship"
+    },
+    {
+      "from": "GoalProgressEvidence",
+      "to": "GoalProgressAssessment",
+      "name": "supports",
+      "multiplicity": "ManyToOne",
+      "description": "Cited evidence supports one saved criterion review.",
+      "type": "relationship"
+    },
+    {
+      "from": "PlannedSegment",
+      "to": "PlannedAction",
+      "name": "in_action",
+      "multiplicity": "ManyToOne",
+      "description": "",
+      "type": "relationship"
+    }
+  ]
+}
