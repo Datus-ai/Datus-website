@@ -1038,4 +1038,4 @@ land on the new article by design.
 
 - Final operator review: removed the whole-model Studio screenshot from the metric-contract section; retained the focused metric inspector and source-to-metric diagram. Operator requested a PR.
 
-- Refreshed 2026-11-26: cube-semantic-layer-alternatives; user-requested DOSI-first ordering. Updated Cube Ossie conversion and free-tier MCP facts, scoped community/benchmark evidence, local coding-agent workflows, meta title/description and article-specific raster share card. Existing slug/publication date preserved. PR pending creation on codex/refresh-cube-alternatives.
+- Refreshed 2026-11-26: cube-semantic-layer-alternatives; user-requested DOSI-first ordering. Updated Cube Ossie conversion and free-tier MCP facts, scoped community/benchmark evidence, local coding-agent workflows, meta title/description and article-specific raster share card. Existing slug/publication date preserved. PR: https://github.com/Datus-ai/Datus-website/pull/151 (open), branch codex/refresh-cube-alternatives.
