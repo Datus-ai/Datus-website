@@ -165,3 +165,5 @@ Ask what happens between questions. If a human has to type every follow-up, it's
 - [Dosi with Cube: OSI Execution and Agentic Analytics in One Stack](/blog/dosi-with-cube/) — a specific agentic-analytics stack architecture
 - [Semantic modeling for agentic analytics workflows](/blog/semantic-modeling-for-agentic-analytics-workflows/) — the modeling side of this same shift
 - [Datus glossary](/glossary#ai-agents) — short definitions for text-to-SQL, agentic analytics, and related terms
+
+- [Agentic Analytics Platforms Compared](/blog/agentic-analytics-platforms/) — evaluate definitions, permissions, evidence, and the reporting lifecycle.
