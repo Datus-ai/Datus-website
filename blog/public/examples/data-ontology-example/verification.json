@@ -1,0 +1,207 @@
+{
+  "status": "PASS",
+  "dosi_cli": "dosi 0.2.2",
+  "data": "Fictional Northstar Living fixture; no real customer data",
+  "checks": [
+    "Model validation",
+    "All 8 customer records match saved independent expectations",
+    "Rule A returns customer IDs 1,2,5; B returns 1",
+    "Executed multi-hop OrderLine request",
+    "Recorded memberships remain rule A and BENEFITS_V1"
+  ],
+  "model_validation": {
+    "issues": [],
+    "compile_errors": [],
+    "warnings": []
+  },
+  "customer_query": {
+    "dialect": "duckdb",
+    "sql": "SELECT customers.customer_id AS customer_id, customers.full_name AS full_name, CASE WHEN COALESCE(f0.fixed_order_count, 0) > 0 THEN COALESCE(f1.fixed_booked_revenue, 0) - COALESCE(f2.fixed_refund_amount, 0) - COALESCE(f3.fixed_product_cost, 0) + COALESCE(f4.fixed_recovered_product_cost, 0) - COALESCE(f5.fixed_outbound_shipping, 0) - COALESCE(f3.fixed_payment_fees, 0) - COALESCE(f4.fixed_return_handling, 0) END AS customer_margin, COALESCE(COALESCE(f0.fixed_order_count, 0), 0) AS customer_orders, COALESCE(COALESCE(f0.fixed_returned_order_count, 0), 0) * 1.0 / NULLIF(COALESCE(f0.fixed_order_count, 0), 0) AS customer_return_rate, (COALESCE((CASE WHEN COALESCE(f0.fixed_order_count, 0) > 0 THEN COALESCE(f1.fixed_booked_revenue, 0) - COALESCE(f2.fixed_refund_amount, 0) - COALESCE(f3.fixed_product_cost, 0) + COALESCE(f4.fixed_recovered_product_cost, 0) - COALESCE(f5.fixed_outbound_shipping, 0) - COALESCE(f3.fixed_payment_fees, 0) - COALESCE(f4.fixed_return_handling, 0) END) >= 3000 AND COALESCE(f0.fixed_order_count, 0) >= 6 AND (COALESCE(COALESCE(f0.fixed_returned_order_count, 0), 0) * 1.0 / NULLIF(COALESCE(f0.fixed_order_count, 0), 0)) <= 0.20, FALSE)) AS customer_premier, (COALESCE((CASE WHEN COALESCE(f0.fixed_order_count, 0) > 0 THEN COALESCE(f1.fixed_booked_revenue, 0) - COALESCE(f2.fixed_refund_amount, 0) - COALESCE(f3.fixed_product_cost, 0) + COALESCE(f4.fixed_recovered_product_cost, 0) - COALESCE(f5.fixed_outbound_shipping, 0) - COALESCE(f3.fixed_payment_fees, 0) - COALESCE(f4.fixed_return_handling, 0) END) >= 4000 AND COALESCE(f0.fixed_order_count, 0) >= 6 AND (COALESCE(COALESCE(f0.fixed_returned_order_count, 0), 0) * 1.0 / NULLIF(COALESCE(f0.fixed_order_count, 0), 0)) <= 0.20, FALSE)) AS customer_premier_b FROM crm.dim_customer AS customers LEFT JOIN (SELECT orders.customer_id AS customer_id, COUNT(DISTINCT orders.order_id) AS fixed_order_count, COUNT(DISTINCT CASE WHEN orders.is_returned THEN orders.order_id END) AS fixed_returned_order_count FROM (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders GROUP BY orders.customer_id) AS f0 ON customers.customer_id = f0.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM((lines.gross_sales_cents - lines.discount_cents) * 0.01) AS fixed_booked_revenue FROM (SELECT l.* FROM commerce.fct_order_lines AS l JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS lines LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON lines.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f1 ON customers.customer_id = f1.customer_id LEFT JOIN (SELECT refunds.customer_id AS customer_id, SUM(refunds.merchandise_refund_cents * 0.01) AS fixed_refund_amount FROM (SELECT a.*, o.customer_id AS customer_id FROM finance.fct_refund_events AS a JOIN commerce.fct_order_lines AS l ON a.order_line_id = l.order_line_id JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0 AND a.status = 'posted' AND a.posted_at < CAST('2026-10-20' AS DATE)) AS refunds GROUP BY refunds.customer_id) AS f2 ON customers.customer_id = f2.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM(line_costs.cogs_cents * 0.01) AS fixed_product_cost, SUM(line_costs.payment_fee_cents * 0.01) AS fixed_payment_fees FROM (SELECT a.* FROM finance.fct_order_line_costs AS a JOIN commerce.fct_order_lines AS l ON a.order_line_id = l.order_line_id JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS line_costs LEFT JOIN (SELECT l.* FROM commerce.fct_order_lines AS l JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS lines ON line_costs.order_line_id = lines.order_line_id LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON lines.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f3 ON customers.customer_id = f3.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM(returns.recoverable_cogs_credit_cents * 0.01) AS fixed_recovered_product_cost, SUM(returns.processing_cost_cents * 0.01) AS fixed_return_handling FROM (SELECT a.* FROM returns.fct_return_events AS a JOIN commerce.fct_order_lines AS l ON a.order_line_id = l.order_line_id JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0 AND a.status = 'received' AND a.received_at < CAST('2026-10-20' AS DATE)) AS returns LEFT JOIN (SELECT l.* FROM commerce.fct_order_lines AS l JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS lines ON returns.order_line_id = lines.order_line_id LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON lines.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f4 ON customers.customer_id = f4.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM(deliveries.shipping_cost_cents * 0.01) AS fixed_outbound_shipping FROM (SELECT d.* FROM logistics.fct_order_logistics AS d JOIN commerce.fct_orders AS o USING (order_id) JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved') AS deliveries LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON deliveries.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f5 ON customers.customer_id = f5.customer_id LIMIT 100",
+    "outputs": [],
+    "bindings": [],
+    "warnings": [],
+    "rows": [
+      {
+        "customer_id": 1,
+        "full_name": "Maya Chen",
+        "customer_margin": 7325.24,
+        "customer_orders": 8,
+        "customer_return_rate": 0.125,
+        "customer_premier": true,
+        "customer_premier_b": true
+      },
+      {
+        "customer_id": 4,
+        "full_name": "Lucas Martin",
+        "customer_margin": 5415.29,
+        "customer_orders": 9,
+        "customer_return_rate": 0.3333333333333333,
+        "customer_premier": false,
+        "customer_premier_b": false
+      },
+      {
+        "customer_id": 5,
+        "full_name": "Sofia Rivera",
+        "customer_margin": 3188.49,
+        "customer_orders": 6,
+        "customer_return_rate": 0.16666666666666666,
+        "customer_premier": true,
+        "customer_premier_b": false
+      },
+      {
+        "customer_id": 6,
+        "full_name": "Ethan Wilson",
+        "customer_margin": 121.79,
+        "customer_orders": 3,
+        "customer_return_rate": 0.3333333333333333,
+        "customer_premier": false,
+        "customer_premier_b": false
+      },
+      {
+        "customer_id": 2,
+        "full_name": "Daniel Brooks",
+        "customer_margin": 3308.16,
+        "customer_orders": 7,
+        "customer_return_rate": 0.0,
+        "customer_premier": true,
+        "customer_premier_b": false
+      },
+      {
+        "customer_id": 3,
+        "full_name": "Priya Shah",
+        "customer_margin": 4359.59,
+        "customer_orders": 5,
+        "customer_return_rate": 0.0,
+        "customer_premier": false,
+        "customer_premier_b": false
+      },
+      {
+        "customer_id": 7,
+        "full_name": "Amara Okafor",
+        "customer_margin": 2236.51,
+        "customer_orders": 4,
+        "customer_return_rate": 0.0,
+        "customer_premier": false,
+        "customer_premier_b": false
+      },
+      {
+        "customer_id": 8,
+        "full_name": "Noah Kim",
+        "customer_margin": null,
+        "customer_orders": 0,
+        "customer_return_rate": null,
+        "customer_premier": false,
+        "customer_premier_b": false
+      }
+    ]
+  },
+  "eligible_query": {
+    "dialect": "duckdb",
+    "sql": "SELECT customers.customer_id AS customer_id, customers.full_name AS full_name, CASE WHEN COALESCE(f0.fixed_order_count, 0) > 0 THEN COALESCE(f1.fixed_booked_revenue, 0) - COALESCE(f2.fixed_refund_amount, 0) - COALESCE(f3.fixed_product_cost, 0) + COALESCE(f4.fixed_recovered_product_cost, 0) - COALESCE(f5.fixed_outbound_shipping, 0) - COALESCE(f3.fixed_payment_fees, 0) - COALESCE(f4.fixed_return_handling, 0) END AS customer_margin, COALESCE(COALESCE(f0.fixed_order_count, 0), 0) AS customer_orders, COALESCE(COALESCE(f0.fixed_returned_order_count, 0), 0) * 1.0 / NULLIF(COALESCE(f0.fixed_order_count, 0), 0) AS customer_return_rate, (COALESCE((CASE WHEN COALESCE(f0.fixed_order_count, 0) > 0 THEN COALESCE(f1.fixed_booked_revenue, 0) - COALESCE(f2.fixed_refund_amount, 0) - COALESCE(f3.fixed_product_cost, 0) + COALESCE(f4.fixed_recovered_product_cost, 0) - COALESCE(f5.fixed_outbound_shipping, 0) - COALESCE(f3.fixed_payment_fees, 0) - COALESCE(f4.fixed_return_handling, 0) END) >= 3000 AND COALESCE(f0.fixed_order_count, 0) >= 6 AND (COALESCE(COALESCE(f0.fixed_returned_order_count, 0), 0) * 1.0 / NULLIF(COALESCE(f0.fixed_order_count, 0), 0)) <= 0.20, FALSE)) AS customer_premier, (COALESCE((CASE WHEN COALESCE(f0.fixed_order_count, 0) > 0 THEN COALESCE(f1.fixed_booked_revenue, 0) - COALESCE(f2.fixed_refund_amount, 0) - COALESCE(f3.fixed_product_cost, 0) + COALESCE(f4.fixed_recovered_product_cost, 0) - COALESCE(f5.fixed_outbound_shipping, 0) - COALESCE(f3.fixed_payment_fees, 0) - COALESCE(f4.fixed_return_handling, 0) END) >= 4000 AND COALESCE(f0.fixed_order_count, 0) >= 6 AND (COALESCE(COALESCE(f0.fixed_returned_order_count, 0), 0) * 1.0 / NULLIF(COALESCE(f0.fixed_order_count, 0), 0)) <= 0.20, FALSE)) AS customer_premier_b FROM crm.dim_customer AS customers LEFT JOIN (SELECT orders.customer_id AS customer_id, COUNT(DISTINCT orders.order_id) AS fixed_order_count, COUNT(DISTINCT CASE WHEN orders.is_returned THEN orders.order_id END) AS fixed_returned_order_count FROM (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders GROUP BY orders.customer_id) AS f0 ON customers.customer_id = f0.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM((lines.gross_sales_cents - lines.discount_cents) * 0.01) AS fixed_booked_revenue FROM (SELECT l.* FROM commerce.fct_order_lines AS l JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS lines LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON lines.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f1 ON customers.customer_id = f1.customer_id LEFT JOIN (SELECT refunds.customer_id AS customer_id, SUM(refunds.merchandise_refund_cents * 0.01) AS fixed_refund_amount FROM (SELECT a.*, o.customer_id AS customer_id FROM finance.fct_refund_events AS a JOIN commerce.fct_order_lines AS l ON a.order_line_id = l.order_line_id JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0 AND a.status = 'posted' AND a.posted_at < CAST('2026-10-20' AS DATE)) AS refunds GROUP BY refunds.customer_id) AS f2 ON customers.customer_id = f2.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM(line_costs.cogs_cents * 0.01) AS fixed_product_cost, SUM(line_costs.payment_fee_cents * 0.01) AS fixed_payment_fees FROM (SELECT a.* FROM finance.fct_order_line_costs AS a JOIN commerce.fct_order_lines AS l ON a.order_line_id = l.order_line_id JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS line_costs LEFT JOIN (SELECT l.* FROM commerce.fct_order_lines AS l JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS lines ON line_costs.order_line_id = lines.order_line_id LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON lines.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f3 ON customers.customer_id = f3.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM(returns.recoverable_cogs_credit_cents * 0.01) AS fixed_recovered_product_cost, SUM(returns.processing_cost_cents * 0.01) AS fixed_return_handling FROM (SELECT a.* FROM returns.fct_return_events AS a JOIN commerce.fct_order_lines AS l ON a.order_line_id = l.order_line_id JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0 AND a.status = 'received' AND a.received_at < CAST('2026-10-20' AS DATE)) AS returns LEFT JOIN (SELECT l.* FROM commerce.fct_order_lines AS l JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS lines ON returns.order_line_id = lines.order_line_id LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON lines.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f4 ON customers.customer_id = f4.customer_id LEFT JOIN (SELECT customers.customer_id AS customer_id, SUM(deliveries.shipping_cost_cents * 0.01) AS fixed_outbound_shipping FROM (SELECT d.* FROM logistics.fct_order_logistics AS d JOIN commerce.fct_orders AS o USING (order_id) JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved') AS deliveries LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON deliveries.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id GROUP BY customers.customer_id) AS f5 ON customers.customer_id = f5.customer_id WHERE (COALESCE((CASE WHEN COALESCE(f0.fixed_order_count, 0) > 0 THEN COALESCE(f1.fixed_booked_revenue, 0) - COALESCE(f2.fixed_refund_amount, 0) - COALESCE(f3.fixed_product_cost, 0) + COALESCE(f4.fixed_recovered_product_cost, 0) - COALESCE(f5.fixed_outbound_shipping, 0) - COALESCE(f3.fixed_payment_fees, 0) - COALESCE(f4.fixed_return_handling, 0) END) >= 3000 AND COALESCE(f0.fixed_order_count, 0) >= 6 AND (COALESCE(COALESCE(f0.fixed_returned_order_count, 0), 0) * 1.0 / NULLIF(COALESCE(f0.fixed_order_count, 0), 0)) <= 0.20, FALSE)) = TRUE LIMIT 100",
+    "outputs": [],
+    "bindings": [],
+    "warnings": [],
+    "rows": [
+      {
+        "customer_id": 1,
+        "full_name": "Maya Chen",
+        "customer_margin": 7325.24,
+        "customer_orders": 8,
+        "customer_return_rate": 0.125,
+        "customer_premier": true,
+        "customer_premier_b": true
+      },
+      {
+        "customer_id": 5,
+        "full_name": "Sofia Rivera",
+        "customer_margin": 3188.49,
+        "customer_orders": 6,
+        "customer_return_rate": 0.16666666666666666,
+        "customer_premier": true,
+        "customer_premier_b": false
+      },
+      {
+        "customer_id": 2,
+        "full_name": "Daniel Brooks",
+        "customer_margin": 3308.16,
+        "customer_orders": 7,
+        "customer_return_rate": 0.0,
+        "customer_premier": true,
+        "customer_premier_b": false
+      }
+    ]
+  },
+  "line_query": {
+    "dialect": "duckdb",
+    "sql": "SELECT lines.order_line_id AS order_line_id, orders.order_id AS lines_to_orders__order_id, customers.full_name AS lines_to_orders__orders_to_customers__full_name, products.product_name AS lines_to_products__product_name FROM (SELECT l.* FROM commerce.fct_order_lines AS l JOIN commerce.fct_orders AS o ON l.order_id = o.order_id JOIN crm.dim_customer AS c ON o.customer_id = c.customer_id WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND l.delivered_qty > 0) AS lines LEFT JOIN (SELECT o.* FROM commerce.fct_orders AS o JOIN crm.dim_customer AS c USING (customer_id) WHERE o.status = 'delivered' AND NOT o.is_test AND o.delivered_at >= CAST('2025-09-20' AS DATE) AND o.delivered_at < CAST('2026-09-20' AS DATE) AND NOT c.is_employee AND c.identity_status = 'resolved' AND EXISTS(SELECT 1 FROM commerce.fct_order_lines AS l WHERE l.order_id = o.order_id AND l.delivered_qty > 0)) AS orders ON lines.order_id = orders.order_id LEFT JOIN crm.dim_customer AS customers ON orders.customer_id = customers.customer_id LEFT JOIN catalog.dim_product AS products ON lines.product_id = products.product_id LIMIT 3",
+    "outputs": [],
+    "bindings": [],
+    "warnings": [],
+    "rows": [
+      {
+        "order_line_id": 10003,
+        "lines_to_orders__order_id": 1001,
+        "lines_to_orders__orders_to_customers__full_name": "Maya Chen",
+        "lines_to_products__product_name": "Linden two-seat sofa"
+      },
+      {
+        "order_line_id": 10037,
+        "lines_to_orders__order_id": 1013,
+        "lines_to_orders__orders_to_customers__full_name": "Daniel Brooks",
+        "lines_to_products__product_name": "Nord oak desk"
+      },
+      {
+        "order_line_id": 10058,
+        "lines_to_orders__order_id": 1021,
+        "lines_to_orders__orders_to_customers__full_name": "Lucas Martin",
+        "lines_to_products__product_name": "Arc dining chair"
+      }
+    ]
+  },
+  "membership_query": {
+    "dialect": "duckdb",
+    "sql": "SELECT memberships.membership_term_id AS membership_term_id, customers.full_name AS memberships_to_customers__full_name, memberships.rule_version AS rule_version, memberships.benefit_version AS benefit_version FROM membership.fct_membership_terms AS memberships LEFT JOIN crm.dim_customer AS customers ON memberships.customer_id = customers.customer_id LIMIT 100",
+    "outputs": [],
+    "bindings": [],
+    "warnings": [],
+    "rows": [
+      {
+        "membership_term_id": "M1",
+        "memberships_to_customers__full_name": "Maya Chen",
+        "rule_version": "A",
+        "benefit_version": "BENEFITS_V1"
+      },
+      {
+        "membership_term_id": "M2",
+        "memberships_to_customers__full_name": "Daniel Brooks",
+        "rule_version": "A",
+        "benefit_version": "BENEFITS_V1"
+      },
+      {
+        "membership_term_id": "M5",
+        "memberships_to_customers__full_name": "Sofia Rivera",
+        "rule_version": "A",
+        "benefit_version": "BENEFITS_V1"
+      }
+    ]
+  },
+  "refund_paths": {
+    "from": "Refund",
+    "to": "Customer",
+    "paths": [
+      {
+        "path": "Refund.credits.part_of.placed_by",
+        "roles": [
+          "credits",
+          "part_of",
+          "placed_by"
+        ],
+        "hops": 3,
+        "multiplicity": "ManyToOne",
+        "description": "A customer places an order.",
+        "no_join": false
+      }
+    ],
+    "unique": true
+  }
+}

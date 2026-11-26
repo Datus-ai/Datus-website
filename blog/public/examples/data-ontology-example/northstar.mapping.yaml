@@ -1,0 +1,314 @@
+version: 0.2.0.dev0
+name: northstar_blog_mapping
+ontology_ref:
+  name: NorthstarBusinessOntology
+  iri: ./northstar.ontology.yaml
+semantic_model_ref:
+  name: northstar_complete
+  iri: ./model.yaml
+concept_mappings:
+- concept: Customer
+  object_mappings:
+  - &id001
+    referent_mappings:
+    - relationship: id
+      expression: customers.customer_id
+  link_mappings:
+  - object_mapping: *id001
+    children:
+    - relationship: name
+      object_mapping:
+        concept: String
+        expression: customers.full_name
+    - relationship: email
+      object_mapping:
+        concept: String
+        expression: customers.email
+    - relationship: city
+      object_mapping:
+        concept: String
+        expression: customers.city
+    - relationship: margin
+      object_mapping:
+        concept: Decimal
+        expression: customers.customer_margin
+    - relationship: order_count
+      object_mapping:
+        concept: Integer
+        expression: customers.customer_orders
+    - relationship: return_rate
+      object_mapping:
+        concept: Decimal
+        expression: customers.customer_return_rate
+  - relationship: premier
+    object_mapping:
+      referent_mappings:
+      - relationship: id
+        expression: customers.customer_id WHERE ( COALESCE((CASE WHEN customers.fixed_order_count>0
+          THEN COALESCE(customers.fixed_booked_revenue,0)-COALESCE(customers.fixed_refund_amount,0)-COALESCE(customers.fixed_product_cost,0)+COALESCE(customers.fixed_recovered_product_cost,0)-COALESCE(customers.fixed_outbound_shipping,0)-COALESCE(customers.fixed_payment_fees,0)-COALESCE(customers.fixed_return_handling,0)
+          END)>=3000 AND customers.fixed_order_count>=6 AND (COALESCE(customers.fixed_returned_order_count,0)*1.0/NULLIF(customers.fixed_order_count,0))<=0.20,FALSE)
+          )
+  - relationship: premier_b
+    object_mapping:
+      referent_mappings:
+      - relationship: id
+        expression: customers.customer_id WHERE ( COALESCE((CASE WHEN customers.fixed_order_count>0
+          THEN COALESCE(customers.fixed_booked_revenue,0)-COALESCE(customers.fixed_refund_amount,0)-COALESCE(customers.fixed_product_cost,0)+COALESCE(customers.fixed_recovered_product_cost,0)-COALESCE(customers.fixed_outbound_shipping,0)-COALESCE(customers.fixed_payment_fees,0)-COALESCE(customers.fixed_return_handling,0)
+          END)>=4000 AND customers.fixed_order_count>=6 AND (COALESCE(customers.fixed_returned_order_count,0)*1.0/NULLIF(customers.fixed_order_count,0))<=0.20,FALSE)
+          )
+- concept: Order
+  object_mappings:
+  - &id002
+    referent_mappings:
+    - relationship: id
+      expression: orders.order_id
+  link_mappings:
+  - object_mapping: *id002
+    children:
+    - relationship: delivered_at
+      object_mapping:
+        concept: Date
+        expression: orders.delivered_at
+    - relationship: amount_cents
+      object_mapping:
+        concept: Integer
+        expression: orders.order_amount_cents
+    - relationship: is_returned
+      object_mapping:
+        concept: Boolean
+        expression: orders.is_returned
+    - relationship: placed_by
+      object_mapping:
+        concept: Customer
+        referent_mappings:
+        - relationship: id
+          expression: orders.customer_id
+- concept: OrderLine
+  object_mappings:
+  - &id003
+    referent_mappings:
+    - relationship: id
+      expression: lines.order_line_id
+  link_mappings:
+  - object_mapping: *id003
+    children:
+    - relationship: quantity
+      object_mapping:
+        concept: Integer
+        expression: lines.delivered_qty
+    - relationship: gross_cents
+      object_mapping:
+        concept: Integer
+        expression: lines.gross_sales_cents
+    - relationship: discount_cents
+      object_mapping:
+        concept: Integer
+        expression: lines.discount_cents
+    - relationship: part_of
+      object_mapping:
+        concept: Order
+        referent_mappings:
+        - relationship: id
+          expression: lines.order_id
+    - relationship: purchases
+      object_mapping:
+        concept: Product
+        referent_mappings:
+        - relationship: id
+          expression: lines.product_id
+- concept: Product
+  object_mappings:
+  - &id004
+    referent_mappings:
+    - relationship: id
+      expression: products.product_id
+  link_mappings:
+  - object_mapping: *id004
+    children:
+    - relationship: name
+      object_mapping:
+        concept: String
+        expression: products.product_name
+    - relationship: category
+      object_mapping:
+        concept: String
+        expression: products.category
+    - relationship: unit_cost_cents
+      object_mapping:
+        concept: Integer
+        expression: products.unit_cost_cents
+    - relationship: cost_version
+      object_mapping:
+        concept: String
+        expression: products.cost_version
+- concept: Delivery
+  object_mappings:
+  - &id005
+    referent_mappings:
+    - relationship: id
+      expression: deliveries.order_id
+  link_mappings:
+  - object_mapping: *id005
+    children:
+    - relationship: shipping_cost_cents
+      object_mapping:
+        concept: Integer
+        expression: deliveries.shipping_cost_cents
+    - relationship: fulfills
+      object_mapping:
+        concept: Order
+        referent_mappings:
+        - relationship: id
+          expression: deliveries.order_id
+- concept: LineCost
+  object_mappings:
+  - &id006
+    referent_mappings:
+    - relationship: id
+      expression: line_costs.order_line_id
+  link_mappings:
+  - object_mapping: *id006
+    children:
+    - relationship: product_cost_cents
+      object_mapping:
+        concept: Integer
+        expression: line_costs.cogs_cents
+    - relationship: allocated_shipping_cents
+      object_mapping:
+        concept: Integer
+        expression: line_costs.allocated_shipping_cents
+    - relationship: payment_fee_cents
+      object_mapping:
+        concept: Integer
+        expression: line_costs.payment_fee_cents
+    - relationship: costs_of
+      object_mapping:
+        concept: OrderLine
+        referent_mappings:
+        - relationship: id
+          expression: line_costs.order_line_id
+- concept: Return
+  object_mappings:
+  - &id007
+    referent_mappings:
+    - relationship: id
+      expression: returns.return_event_id
+  link_mappings:
+  - object_mapping: *id007
+    children:
+    - relationship: quantity
+      object_mapping:
+        concept: Integer
+        expression: returns.returned_qty
+    - relationship: received_at
+      object_mapping:
+        concept: Date
+        expression: returns.received_at
+    - relationship: recovered_cost_cents
+      object_mapping:
+        concept: Integer
+        expression: returns.recoverable_cogs_credit_cents
+    - relationship: handling_cents
+      object_mapping:
+        concept: Integer
+        expression: returns.processing_cost_cents
+    - relationship: returns_item
+      object_mapping:
+        concept: OrderLine
+        referent_mappings:
+        - relationship: id
+          expression: returns.order_line_id
+- concept: Refund
+  object_mappings:
+  - &id008
+    referent_mappings:
+    - relationship: id
+      expression: refunds.refund_event_id
+  link_mappings:
+  - object_mapping: *id008
+    children:
+    - relationship: amount_cents
+      object_mapping:
+        concept: Integer
+        expression: refunds.merchandise_refund_cents
+    - relationship: posted_at
+      object_mapping:
+        concept: Date
+        expression: refunds.posted_at
+    - relationship: credits
+      object_mapping:
+        concept: OrderLine
+        referent_mappings:
+        - relationship: id
+          expression: refunds.order_line_id
+    - relationship: triggered_by
+      object_mapping:
+        concept: Return
+        referent_mappings:
+        - relationship: id
+          expression: refunds.return_event_id
+- concept: Membership
+  object_mappings:
+  - &id009
+    referent_mappings:
+    - relationship: id
+      expression: memberships.membership_term_id
+  link_mappings:
+  - object_mapping: *id009
+    children:
+    - relationship: valid_from
+      object_mapping:
+        concept: Date
+        expression: memberships.valid_from
+    - relationship: valid_to
+      object_mapping:
+        concept: Date
+        expression: memberships.valid_to
+    - relationship: rule_version
+      object_mapping:
+        concept: String
+        expression: memberships.rule_version
+    - relationship: benefit_version
+      object_mapping:
+        concept: String
+        expression: memberships.benefit_version
+    - relationship: held_by
+      object_mapping:
+        concept: Customer
+        referent_mappings:
+        - relationship: id
+          expression: memberships.customer_id
+- concept: Benefit
+  object_mappings:
+  - &id010
+    referent_mappings:
+    - relationship: id
+      expression: benefits.benefit_id
+  link_mappings:
+  - object_mapping: *id010
+    children:
+    - relationship: description
+      object_mapping:
+        concept: String
+        expression: benefits.description
+- concept: BenefitEntitlement
+  object_mappings:
+  - &id011
+    referent_mappings:
+    - relationship: id
+      expression: entitlements.entitlement_id
+  link_mappings:
+  - object_mapping: *id011
+    children:
+    - relationship: granted_by
+      object_mapping:
+        concept: Membership
+        referent_mappings:
+        - relationship: id
+          expression: entitlements.membership_term_id
+    - relationship: provides
+      object_mapping:
+        concept: Benefit
+        referent_mappings:
+        - relationship: id
+          expression: entitlements.benefit_id

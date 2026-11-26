@@ -1,0 +1,312 @@
+version: 0.2.0.dev0
+name: NorthstarBusinessOntology
+description: Executable business concepts over the nine original warehouse sources.
+  Benefit and entitlement datasets are illustrative read-only policy interpretations
+  of the approved scenario.
+ontology:
+- concept: Customer
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: name
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+  - name: email
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+  - name: city
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+  - name: margin
+    roles:
+    - concept: Decimal
+    multiplicity: ManyToOne
+  - name: order_count
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: return_rate
+    roles:
+    - concept: Decimal
+    multiplicity: ManyToOne
+  - name: premier
+    roles: []
+    description: Customer-grain qualification; approval and membership are separate.
+  - name: premier_b
+    roles: []
+    description: Customer-grain qualification; approval and membership are separate.
+- concept: Order
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: delivered_at
+    roles:
+    - concept: Date
+    multiplicity: ManyToOne
+  - name: amount_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: is_returned
+    roles:
+    - concept: Boolean
+    multiplicity: ManyToOne
+  - name: placed_by
+    description: A customer places an order.
+    roles:
+    - concept: Customer
+    multiplicity: ManyToOne
+    verbalizes:
+    - A customer places an order.
+- concept: OrderLine
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: quantity
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: gross_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: discount_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: part_of
+    description: An order contains order lines.
+    roles:
+    - concept: Order
+    multiplicity: ManyToOne
+    verbalizes:
+    - An order contains order lines.
+  - name: purchases
+    description: An order line purchases a product.
+    roles:
+    - concept: Product
+    multiplicity: ManyToOne
+    verbalizes:
+    - An order line purchases a product.
+- concept: Product
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: name
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+  - name: category
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+  - name: unit_cost_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: cost_version
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+- concept: Delivery
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: shipping_cost_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: fulfills
+    description: An order is fulfilled through a delivery.
+    roles:
+    - concept: Order
+    multiplicity: ManyToOne
+    verbalizes:
+    - An order is fulfilled through a delivery.
+- concept: LineCost
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: product_cost_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: allocated_shipping_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: payment_fee_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: costs_of
+    description: A cost record belongs to one order line.
+    roles:
+    - concept: OrderLine
+    multiplicity: ManyToOne
+    verbalizes:
+    - A cost record belongs to one order line.
+- concept: Return
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: quantity
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: received_at
+    roles:
+    - concept: Date
+    multiplicity: ManyToOne
+  - name: recovered_cost_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: handling_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: returns_item
+    description: An order line may have multiple received returns.
+    roles:
+    - concept: OrderLine
+    multiplicity: ManyToOne
+    verbalizes:
+    - An order line may have multiple received returns.
+- concept: Refund
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: Integer
+    multiplicity: OneToOne
+  - name: amount_cents
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+  - name: posted_at
+    roles:
+    - concept: Date
+    multiplicity: ManyToOne
+  - name: credits
+    description: A refund credits an order line.
+    roles:
+    - concept: OrderLine
+    multiplicity: ManyToOne
+    verbalizes:
+    - A refund credits an order line.
+  - name: triggered_by
+    description: A received return may trigger refunds; goodwill refunds have no return.
+    roles:
+    - concept: Return
+    multiplicity: ManyToOne
+    verbalizes:
+    - A received return may trigger refunds; goodwill refunds have no return.
+- concept: Membership
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+  - name: valid_from
+    roles:
+    - concept: Date
+    multiplicity: ManyToOne
+  - name: valid_to
+    roles:
+    - concept: Date
+    multiplicity: ManyToOne
+  - name: rule_version
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+  - name: benefit_version
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+  - name: held_by
+    description: A customer holds an approved membership term.
+    roles:
+    - concept: Customer
+    multiplicity: ManyToOne
+    verbalizes:
+    - A customer holds an approved membership term.
+- concept: Benefit
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+  - name: description
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+- concept: BenefitEntitlement
+  type: EntityType
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+  - name: granted_by
+    description: An approved membership grants benefit entitlements.
+    roles:
+    - concept: Membership
+    multiplicity: ManyToOne
+    verbalizes:
+    - An approved membership grants benefit entitlements.
+  - name: provides
+    description: An entitlement provides a named benefit.
+    roles:
+    - concept: Benefit
+    multiplicity: ManyToOne
+    verbalizes:
+    - An entitlement provides a named benefit.

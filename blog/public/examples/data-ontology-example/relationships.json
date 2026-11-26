@@ -1,0 +1,83 @@
+{
+  "concepts": [
+    "Benefit",
+    "BenefitEntitlement",
+    "Customer",
+    "Delivery",
+    "LineCost",
+    "Membership",
+    "Order",
+    "OrderLine",
+    "Product",
+    "Refund",
+    "Return"
+  ],
+  "relationships": [
+    {
+      "from": "Order",
+      "to": "Customer",
+      "name": "placed_by",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "OrderLine",
+      "to": "Order",
+      "name": "part_of",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "OrderLine",
+      "to": "Product",
+      "name": "purchases",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "Delivery",
+      "to": "Order",
+      "name": "fulfills",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "LineCost",
+      "to": "OrderLine",
+      "name": "costs_of",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "Return",
+      "to": "OrderLine",
+      "name": "returns_item",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "Refund",
+      "to": "OrderLine",
+      "name": "credits",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "Refund",
+      "to": "Return",
+      "name": "triggered_by",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "Membership",
+      "to": "Customer",
+      "name": "held_by",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "BenefitEntitlement",
+      "to": "Membership",
+      "name": "granted_by",
+      "multiplicity": "ManyToOne"
+    },
+    {
+      "from": "BenefitEntitlement",
+      "to": "Benefit",
+      "name": "provides",
+      "multiplicity": "ManyToOne"
+    }
+  ]
+}

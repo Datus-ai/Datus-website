@@ -1,0 +1,4 @@
+membership_term_id,customer_id,rule_version,valid_from,valid_to,benefit_version,status
+M1,1,A,2026-10-20,2027-10-20,BENEFITS_V1,active
+M2,2,A,2026-10-20,2027-10-20,BENEFITS_V1,active
+M5,5,A,2026-10-20,2027-10-20,BENEFITS_V1,active

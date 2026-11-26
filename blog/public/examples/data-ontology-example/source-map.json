@@ -1,0 +1,11 @@
+{
+  "dim_customer": "crm",
+  "dim_product": "catalog",
+  "fct_orders": "commerce",
+  "fct_order_lines": "commerce",
+  "fct_order_logistics": "logistics",
+  "fct_order_line_costs": "finance",
+  "fct_return_events": "returns",
+  "fct_refund_events": "finance",
+  "fct_membership_terms": "membership"
+}

@@ -1,0 +1,9 @@
+customer_id,full_name,email,city,state,joined_at,is_employee,identity_status
+1,Maya Chen,maya.chen@example.com,Seattle,WA,2023-04-18,0,resolved
+2,Daniel Brooks,daniel.brooks@example.com,Austin,TX,2024-02-09,0,resolved
+3,Priya Shah,priya.shah@example.com,Boston,MA,2024-11-21,0,resolved
+4,Lucas Martin,lucas.martin@example.com,Denver,CO,2022-08-15,0,resolved
+5,Sofia Rivera,sofia.rivera@example.com,San Diego,CA,2023-09-02,0,resolved
+6,Ethan Wilson,ethan.wilson@example.com,Portland,OR,2025-01-11,0,resolved
+7,Amara Okafor,amara.okafor@example.com,Chicago,IL,2025-03-27,0,resolved
+8,Noah Kim,noah.kim@example.com,San Jose,CA,2026-09-25,0,resolved
