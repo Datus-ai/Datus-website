@@ -11,21 +11,17 @@
     "image": "/images/agent-memory-approved-metrics/cover.png",
     "source": "reused"
   },
-  "ai-analytics-roi": {
-    "image": "/images/ai-analytics-roi/cover.png",
-    "source": "reused"
-  },
   "data-context-layer-evaluation": {
     "image": "/images/data-context-layer-evaluation/cover.png",
+    "source": "reused"
+  },
+  "ai-analytics-roi": {
+    "image": "/images/ai-analytics-roi/cover.png",
     "source": "reused"
   },
   "dosi-semantic-layer-northstar-example": {
     "image": "/images/dosi-semantic-layer-northstar-example/editorial-cover.svg",
     "source": "generated-flat-svg"
-  },
-  "html-dashboard-data-permissions": {
-    "image": "/images/html-dashboard-data-permissions/cover.svg",
-    "source": "reused"
   },
   "snowflake-business-ontology-vs-databricks-genie-ontology": {
     "image": "/images/snowflake-business-ontology-vs-databricks-genie-ontology/cover.svg",
@@ -494,5 +490,9 @@
   "welcome": {
     "image": "/images/welcome/editorial-cover.svg",
     "source": "generated-flat-svg"
+  },
+  "html-dashboard-data-permissions": {
+    "image": "/images/html-dashboard-data-permissions/cover.svg",
+    "source": "reused"
   }
 }
