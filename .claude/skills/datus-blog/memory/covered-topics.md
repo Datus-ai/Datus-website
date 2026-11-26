@@ -1051,3 +1051,15 @@ land on the new article by design.
 - Branch: blog/refresh-what-is-semantic-layer. Status: operator approved PR submission; not merged or published.
 
 - Final review: added responsive Finance/store-manager/AI-agent revenue scenario visual in the definition section; confirmed desktop/mobile image selection, no broken images, no overflow, 5 FAQ schema entries, correct self-canonical and all article internal links return 200.
+
+
+### Refreshed: what-is-semantic-model — 2026-11-26
+- Preserve slug, author and publication date; lastmod updated. This is an intent-specific definition refresh, not a new tutorial.
+- Correct the one-source-only definition; show orders/customers datasets, completed_revenue metric, region dimension and relationship using exact fragments from the existing downloadable example. Include responsive model-map visuals.
+- Remove invented accuracy percentages, the invalid semantic-view SQL example and inaccurate claims about warehouse semantic views. Explain Power BI/semantic-view terminology briefly without turning this into a vendor tutorial.
+- Sources: existing semantic-model-examples model and expected results; Microsoft Power BI semantic-model overview; Snowflake semantic-view overview; Datus semantic-modeling and DOSI documentation.
+- Evidence boundary: the saved GSC sample contains no rows for this blog URL; the semantic model #16 observation belongs to the documentation URL, not this article. This is foundational content maintenance, not a proven traffic quick win.
+- Validation: full build/SEO checks passed; editorial retro check 13 pass, 2 warnings, 0 failures. Warnings: concise refresh below new-post length target; downloadable YAML requires explicit route verification.
+- Branch: blog/refresh-what-is-semantic-model. Operator approved PR submission; not merged or published.
+
+- Final review verification: desktop and direct mobile loads show the correct responsive model diagram, no broken images or page overflow; five FAQ schema entries and the downloadable model/related links return 200.
