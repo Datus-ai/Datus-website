@@ -1039,3 +1039,15 @@ land on the new article by design.
 - Final operator review: removed the whole-model Studio screenshot from the metric-contract section; retained the focused metric inspector and source-to-metric diagram. Operator requested a PR.
 
 - Refreshed 2026-11-26: cube-semantic-layer-alternatives; user-requested DOSI-first ordering. Updated Cube Ossie conversion and free-tier MCP facts, scoped community/benchmark evidence, local coding-agent workflows, meta title/description and article-specific raster share card. Existing slug/publication date preserved. PR: https://github.com/Datus-ai/Datus-website/pull/151 (open), branch codex/refresh-cube-alternatives.
+
+
+### Refreshed: what-is-semantic-layer — 2026-11-26
+- Preserve existing slug, publication date and author; lastmod updated to 2026-11-26.
+- Refresh scope: definition-first introduction, concise two-sentence TL;DR, fictional net-revenue example (230 total; West 100 and East 130), responsive architecture diagram, source/grain and validation boundaries, high-level Datus/DOSI positioning.
+- Remove unsupported stars/backer counts, speculative platform claims, unqualified agent-feedback assertions and the misleading vendor YAML fragment.
+- Connect to semantic-model-examples, semantic-layer-requirements, semantic-layer-tools-list-osi and solutions/semantic-layer. Correct legacy canonical and og:url frontmatter.
+- Sources checked: docs.datus.ai/dev/subagent/semantic_modeling/, dosi.datus.ai, docs.getdbt.com/docs/build/about-metricflow, cloud.google.com/looker/docs/lookml-terms-and-concepts.
+- Validation: full build and SEO tests passed for 78 marketing routes and 124 articles. Editorial retro checker: 13 pass, 2 warnings, 0 failures; concise narrative below new-article word target and 7 relevant blog links retained intentionally. Synthetic example arithmetic checked independently.
+- Branch: blog/refresh-what-is-semantic-layer. Status: operator approved PR submission; not merged or published.
+
+- Final review: added responsive Finance/store-manager/AI-agent revenue scenario visual in the definition section; confirmed desktop/mobile image selection, no broken images, no overflow, 5 FAQ schema entries, correct self-canonical and all article internal links return 200.
