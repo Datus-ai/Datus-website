@@ -1037,3 +1037,5 @@ land on the new article by design.
 - Visual review revision: operator-approved generated runner cover (not a real portrait); source-derived domain graphs replace the PPT adaptation. All 33 concept nodes and 48 named directed relationships/inheritance links verified from fitness_ontology.yaml; four readable views plus a complete graph and extracted JSON.
 
 - Final operator review: removed the whole-model Studio screenshot from the metric-contract section; retained the focused metric inspector and source-to-metric diagram. Operator requested a PR.
+
+- Refreshed 2026-11-26: cube-semantic-layer-alternatives; user-requested DOSI-first ordering. Updated Cube Ossie conversion and free-tier MCP facts, scoped community/benchmark evidence, local coding-agent workflows, meta title/description and article-specific raster share card. Existing slug/publication date preserved. PR: https://github.com/Datus-ai/Datus-website/pull/151 (open), branch codex/refresh-cube-alternatives.

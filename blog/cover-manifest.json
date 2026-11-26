@@ -104,8 +104,8 @@
     "source": "generated-flat-svg"
   },
   "cube-semantic-layer-alternatives": {
-    "image": "/images/cube-semantic-layer-alternatives/editorial-cover.svg",
-    "source": "generated-flat-svg"
+    "image": "/images/cube-semantic-layer-alternatives/alternatives-cover.png",
+    "source": "reused"
   },
   "why-text-to-sql-fails-without-a-semantic-layer": {
     "image": "/images/why-text-to-sql-fails-without-a-semantic-layer/editorial-cover.svg",

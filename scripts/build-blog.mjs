@@ -551,6 +551,8 @@ function postPage(post) {
   return shell({
     title: `${post.title} | Datus Blog`, description: post.description, canonical, head, body,
     type: "article",
+    ...(/\.(?:png|jpe?g|webp)(?:\?.*)?$/i.test(cover.image || "")
+      ? { image: new URL(cover.image, SITE).href } : {}),
     published: safeIso(post.date),
     modified: safeIso(post.lastmod),
   });
