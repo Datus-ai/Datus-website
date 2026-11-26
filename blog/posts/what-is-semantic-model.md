@@ -1,25 +1,25 @@
 ---
-title: "What Is a Semantic Model? Definition, Examples & How It Differs From a Semantic View"
-description: "Semantic model definition, key components, how it fits into a semantic layer, and how it differs from warehouse-native semantic views."
+title: "What Is a Semantic Model? Definition, Components & Example"
+description: "See what a semantic model defines in an orders-and-customers example: metrics, dimensions, relationships, and its role in a semantic layer for BI and AI agents."
 author: "Evan Paul"
 date: 2026-06-08
-lastmod: 2026-10-30
+lastmod: 2026-11-26
 head:
   - - meta
     - name: keywords
       content: "semantic model, what is a semantic model, semantic model definition, semantic model vs semantic layer, semantic view, semantic model data engineering, semantic model example"
   - - meta
     - property: og:title
-      content: "What Is a Semantic Model? Definition, Examples & How It Differs From a Semantic View"
+      content: "What Is a Semantic Model? Definition, Components & Example"
   - - meta
     - property: og:description
-      content: "Semantic model definition, key components, how it fits into a semantic layer, and how it differs from warehouse-native semantic views."
+      content: "See what a semantic model defines in an orders-and-customers example: metrics, dimensions, relationships, and its role in a semantic layer for BI and AI agents."
   - - meta
     - property: og:type
       content: article
   - - meta
     - property: og:url
-      content: https://datus.ai/blog/posts/what-is-semantic-model
+      content: https://datus.ai/blog/what-is-semantic-model/
   - - meta
     - property: og:image
       content: https://datus.ai/logo_dark.svg
@@ -28,184 +28,160 @@ head:
       content: summary_large_image
   - - link
     - rel: canonical
-      href: https://datus.ai/blog/posts/what-is-semantic-model
+      href: https://datus.ai/blog/what-is-semantic-model/
 ---
 
-# What Is a Semantic Model? Definition, Examples & How It Differs From a Semantic View
+# What Is a Semantic Model? Definition, Components & Example
 
 ## TL;DR
 
-- A **semantic model** describes one data source in business language: measures, dimensions, joins, metadata, and business rules — turning `fact_orders.amount_usd` into "Net Revenue, filtered to completed orders."
-- It is the **building block** of a semantic layer. A semantic layer is composed of multiple semantic models connected by relationships. A [metric layer](/blog/what-is-metric-layer/) is the subset that standardizes KPIs across those models.
-- Common formats: MetricFlow `semantic_model` YAML (dbt), Cube data model JavaScript/YAML, LookML `view` files, GoodData LDM.
-- A **semantic view** (Snowflake, BigQuery) is a warehouse-native alternative — semantics defined in SQL inside the database rather than in an external modeling layer. See §5 for the tradeoffs.
-- Datus auto-generates semantic models from live schema (`/gen_semantic_model`), stores them in MetricFlow-compatible YAML, and refines them through agent feedback — turning model creation from a manual, sprint-gated process into a continuous one.
+A semantic model describes what data means and how to use it: business entities, metrics, dimensions, relationships and rules. It can span several related datasets; the surrounding semantic layer makes those definitions available to supported reports, applications and agents.
 
-A data engineer inherits a 500-table Snowflake instance. Somewhere in `analytics_prod` is the data the marketing team needs for their Q3 campaign attribution analysis — but the schema is a landscape of cryptic column names (`attrib_windows_30d_v2`, `conv_type_id_fk`), undocumented join paths, and tribal knowledge that left with the previous engineer. A [semantic layer](/blog/what-is-semantic-layer/) would give her the full business dictionary. But before you can build a dictionary, you need to write the entries. A **semantic model** is a single entry — one dataset, described in business terms: which columns are measures you can quantify, which are dimensions you can group by, how this dataset connects to others, and what business rules apply. This article defines what goes into a semantic model, walks through a MetricFlow example, and distinguishes it from the newer concept of warehouse-native semantic views — including when you would use one over the other.
+## What is a semantic model?
 
-## 1. Semantic model: a working definition
+**A semantic model is a structured representation of business meaning over data. It connects source fields to named entities, metrics, dimensions and relationships, so people and software can identify the intended calculation and grouping without reconstructing the logic from column names.**
 
-A semantic model answers four questions about a dataset that raw schema cannot:
+Imagine a business user asking, “How much revenue came from customers in each region?” The database has order amounts and customer addresses. It does not necessarily tell the user which order statuses count as revenue, how an order connects to a customer, or which region definition the business uses. The semantic model records those choices.
 
-1. **What can I measure here?** — e.g. `orders` lets you measure `net_revenue`, `order_count`, `avg_order_value`, and `gross_margin`.
-2. **How do I slice those measures?** — by `region`, `product_line`, `customer_segment`, `order_date`, `acquisition_channel`.
-3. **How does this dataset connect to others?** — `orders.customer_id` joins to `customers.id` (many-to-one); `orders.product_id` joins to `products.id` (many-to-one); do NOT join `orders` directly to `subscriptions` — use `customers` as the bridge table.
-4. **What business rules apply?** — "Net revenue" always excludes refunds, chargebacks, and test accounts. `order_status` must be `'completed'`. Revenue is recognized at `order_completed_at`, not `order_created_at`.
+A model is not inherently limited to one table or source. A revenue model may include orders, customers, refunds and a calendar, while a platform may split those concepts into smaller model files. File boundaries and product terminology vary. What matters is whether the definitions form a coherent, inspectable representation of the question the team wants to answer.
 
-A useful working definition: a **semantic model** is a machine-readable description of a data source that translates physical schema into business-meaningful objects — measures, dimensions, relationships, and rules — so downstream tools (BI, APIs, agents) can generate correct queries without re-deriving business logic.
+The model also cannot settle a business disagreement just by providing an expression. Finance might recognize revenue when payment clears, while an operations report tracks completed orders. Those are different definitions. Naming and describing them clearly lets a person choose the right one before a runtime executes the request.
 
-## 2. What a semantic model contains
+## A concrete example: orders, customers and completed revenue
 
-The components are similar across tools, though naming varies. Here is the breakdown using MetricFlow's `semantic_model` format as the reference (since it is open-source and increasingly the standard):
+Use two datasets: `orders`, with one row per order, and `customers`, with one row per customer. Orders contain an amount, status, date and customer identifier. Customers contain the identifier and a region. The semantic model adds the meaning that turns those fields into an answerable business question.
+
+For this teaching example, `completed_revenue` means the sum of order amounts where status is `completed`. It does not mean accounting revenue or net revenue after refunds. Giving the metric a specific name helps users understand that boundary instead of treating every column called revenue as interchangeable.
+
+The model makes `customers.region` available as a grouping dimension and declares the relationship from `orders.customer_id` to `customers.customer_id`. A query can then request `completed_revenue` by region. The engine has both the calculation and the path needed to reach the grouping field; neither a formula catalogue nor a list of joins supplies both on its own.
+
+<figure><picture><source media="(max-width: 600px)" srcset="/images/what-is-semantic-model/model-map-mobile.svg"><img src="/images/what-is-semantic-model/model-map.svg" alt="An orders-and-customers semantic model connects orders to customers by customer_id, defines completed_revenue, and exposes customer region as a grouping dimension" loading="lazy" decoding="async"></picture><figcaption>One model can connect several datasets. The metric rule and relationship together make “completed revenue by customer region” an explicit request.</figcaption></figure>
+
+Here is the metric fragment from our downloadable Apache Ossie example:
 
 ```yaml
-semantic_model:
-  name: orders
-  description: "Completed customer orders with revenue, cost, and channel attribution"
-  
-  # Which table or view this model maps to
-  node_relation:
-    schema_name: prod
-    alias: fact_orders
-  
-  # Things you measure — numeric, aggregatable
-  measures:
-    - name: net_revenue
-      description: "Revenue after refunds and chargebacks"
-      agg: sum
-      expr: revenue_usd - refund_usd - chargeback_usd
-    - name: order_count
-      agg: count
-      expr: order_id
-  
-  # Things you group or filter by
-  dimensions:
-    - name: region
-      type: categorical
-      expr: dim_geo.region_name
-    - name: order_date
-      type: time
-      type_params:
-        time_granularity: day
-  
-  # How this model connects to others
-  entities:
-    - name: order
-      type: primary
-      expr: order_id
-    - name: customer
-      type: foreign
-      expr: customer_id
+metrics:
+  - name: completed_revenue
+    description: Order amount from completed orders only
+    expression:
+      dialects:
+        - dialect: ANSI_SQL
+          expression: "SUM(CASE WHEN orders.status = 'completed' THEN orders.amount ELSE 0 END)"
 ```
 
-Each component serves a different consumer:
+This is an excerpt from the [complete model](/examples/semantic-model-examples/model.yaml), not a standalone model file. The `orders` dataset and the fields it references are declared elsewhere in that file. The fragment shows where the status rule lives; it does not establish that the underlying records are complete, unique or appropriate for a particular business report.
 
-| Component | What it does | Who needs it |
-| --- | --- | --- |
-| **Measures** | Defines what you can quantify and how | Analysts building queries, agents generating SQL, BI tools rendering charts |
-| **Dimensions** | Defines valid grouping and filtering axes | Self-serve BI users, agents slicing metrics by "region" or "plan_tier" |
-| **Entities / keys** | Defines how this dataset connects to others — primary keys, foreign keys, join paths | Agents generating multi-table queries, BI tools building explores |
-| **Description & metadata** | Human-readable context — what this dataset represents, what edge cases to watch for | Anyone encountering this data for the first time, including AI agents that benefit from natural-language context |
+The model's relationship declaration supplies a separate piece:
 
-## 3. Semantic model vs semantic layer vs metric layer
-
-The three terms form a hierarchy of scope:
-
-| Artifact | Scope | Example |
-| --- | --- | --- |
-| **Semantic model** | One data source | "The `orders` model: measures (net_revenue, order_count), dimensions (region, date), joins (to customers, products)" |
-| **Semantic layer** | The full business dictionary — all semantic models + their relationships + governance rules | "Our semantic layer: 30 models across finance, product, and marketing domains, connected through shared entities" |
-| **Metric layer** | The standardized KPI catalog — metrics that span models and are consumable through APIs | "`net_revenue` metric: defined across orders and refunds models, certified by Finance, queryable through the metric API" |
-
-Think of it as a book: a semantic model is a chapter describing one subject. The semantic layer is the entire book — all chapters plus the index of relationships between them. The metric layer is the appendix of standardized formulas that readers across the organization agree to use.
-
-Common confusion: people say "we need a semantic layer" when they mean "we need to build semantic models for our 10 most important tables." The semantic layer is the container; semantic models are the content. You build semantic models first, then connect them, then govern the whole thing as a layer.
-
-## 4. How semantic models are created — traditional vs agent-driven
-
-**Traditional approach (dbt / Looker / Cube):**
-
-An analytics engineer examines a table, interviews domain experts, writes a semantic model YAML or LookML file, opens a PR, gets review, merges, and deploys. This produces high-quality, well-governed models — but at the pace of a development sprint. For a team with 500 tables and 3 analytics engineers, modeling everything is impossible; they model the 20% that serves 80% of queries and leave the rest as raw schema.
-
-**Agent-driven approach (Datus `/gen_semantic_model`):**
-
-A data engineering agent connects to the database, inspects the schema, reads column statistics, analyzes historical SQL usage, and auto-generates a semantic model draft — identifying likely measures (numeric columns with aggregation patterns), dimensions (categorical columns used in GROUP BY), and primary/foreign key relationships. The engineer reviews and refines the draft — not building from scratch, but editing an 80%-correct proposal to 100%. This shifts the bottleneck from creation to review, making it practical to maintain semantic models for a much larger portion of the data estate.
-
-The two approaches are not opposed — they are sequential. The agent drafts; the engineer curates. For a table with high query volume and business criticality, human review is thorough. For a table queried twice a month by one analyst, an 80%-accurate agent-generated model is better than no model at all.
-
-## 5. Semantic model vs semantic view: the warehouse-native alternative
-
-A newer pattern, championed by Snowflake's **Semantic Views** and emerging BigQuery semantic features, embeds semantic definitions directly in the database:
-
-```sql
-CREATE OR REPLACE SEMANTIC VIEW orders_semantic
-AS SELECT * FROM prod.fact_orders
-WITH SEMANTIC METADATA (
-  measures: {
-    net_revenue: SUM(revenue_usd - refund_usd - chargeback_usd),
-    order_count: COUNT(order_id)
-  },
-  dimensions: {
-    region: dim_geo.region_name,
-    order_date: order_completed_at
-  }
-);
+```yaml
+relationships:
+  - name: orders_to_customers
+    from: orders
+    to: customers
+    from_columns: [customer_id]
+    to_columns: [customer_id]
 ```
 
-**Advantages of semantic views:** co-located with storage — no additional infrastructure; IAM and access control inherited from the database; no tool-chain fragmentation (everything lives in SQL, which data engineers already use).
+The direction describes how the datasets connect. It does not repair duplicate customer identifiers in the database. If a customer has multiple rows, joining its orders to all of them can multiply revenue. A reviewed relationship therefore needs a source-data check as well as a valid declaration.
 
-**Disadvantages of semantic views:** platform-locked — a Snowflake Semantic View is a Snowflake asset and does not travel to BigQuery or a lakehouse; less modeling expressiveness (no entity relationships, no composition across views, no metric derivation); no Git-native workflow (the definition lives in the database, not in version control — though you can manage the DDL in Git, the running definition can drift from the file).
+In the linked example's fictional records, completed revenue totals 330: East 250 and West 80. Those values belong to that sample, not a customer benchmark. The [semantic model examples walkthrough](/blog/semantic-model-examples/) provides the source records, generated query shape and expected results, so readers can follow the calculation rather than accepting a diagram as proof.
 
-**When to use which:**
+## The components of a semantic model
 
-| Use semantic models (MetricFlow / Cube) when… | Use semantic views when… |
-| --- | --- |
-| You run more than one data platform or plan to | Everything lives in one warehouse and will for the foreseeable future |
-| You need metrics that compose across models | Metrics are per-table and rarely cross schemas |
-| Multiple BI tools consume the same definitions | One BI tool, one warehouse — the integrated path is simpler |
-| You want Git-managed, reviewed, CI/CD-validated semantics | You prioritize operational simplicity over governance workflow |
-| You are building for AI agent consumption | You are building for human SQL consumers |
+The exact names vary across implementations. Some use measures as intermediate calculations and metrics as public definitions; others use a different vocabulary. Evaluate what is represented and how it is executed, rather than assuming that matching labels mean identical behavior.
 
-In practice, larger organizations often have both: semantic models for cross-platform, governed definitions, and semantic views for quick, warehouse-scoped use cases. The OSI standard (now Apache Ossie; see [Apache Ossie guide](/apache-ossie/)) aims to make both patterns interoperable — so a semantic view in Snowflake and a semantic model in MetricFlow can exchange definitions through a common format.
+| Component | Meaning in the example | What to review |
+| --- | --- | --- |
+| Datasets | Orders and customers mapped to source records | Source, row grain and coverage |
+| Entities and keys | Order and customer identities | Uniqueness and missing identifiers |
+| Metrics | Completed-order revenue | Eligible records, units and aggregation |
+| Dimensions | Customer region and order date | Valid grouping fields and time meaning |
+| Relationships | Order to customer through customer_id | Cardinality, unmatched rows and join behavior |
+| Descriptions and context | What completed revenue includes | Owner-approved meaning and exceptions |
 
-## 6. When you need more than ad-hoc semantic models
+**Metrics define calculations.** A number being stored in a numeric column does not make it a useful business metric. The model author still needs to choose the aggregation and population. Revenue may be additive, while average order value needs total revenue divided by the appropriate order count. Averages and percentages should be checked at the requested grain.
 
-Signals that informal modeling is insufficient:
+**Dimensions define perspectives.** Region, product category and month change how a quantity is grouped or filtered. A date field also has a meaning: creation, completion and payment are different events. Marking a field as a time dimension does not decide which event the business intended to report.
 
-- **The same table generates different numbers in different tools** — because each tool reinvents which columns are measures and which filters apply.
-- **New team members take weeks to understand a dataset** — because metadata lives in Slack threads and tribal knowledge, not in machine-readable models.
-- **AI agents produce inconsistent results from the same table** — because they see raw column names without business context.
-- **You are building Subagents or domain-scoped ChatBots** — because scoping context requires explicit model boundaries: which tables, which measures, which dimensions are in scope.
+**Relationships define paths.** The question determines which path is meaningful. A customer's current region might differ from the region recorded when an order was placed. Both fields can be technically reachable and still answer different questions. Descriptions and model structure should help a consumer recognize that distinction.
+
+**Context explains boundaries.** A description can state that a metric excludes test accounts or applies only to a particular business unit. An executable rule must actually implement the required scope, and the returned result must be checked. An instruction written next to a formula is not automatically a filter enforced by every runtime.
+
+## Semantic model vs data model vs semantic layer
+
+These terms describe related roles, not a universal hierarchy of products. A conceptual data model may already describe business concepts; a physical data model describes structures used to store them. A semantic model makes the meaning needed for analysis explicit, including calculations and supported relationships over those structures.
+
+| Term | Main role | Example |
+| --- | --- | --- |
+| Physical data model | Organize stored records | Orders table, customer key, amount column |
+| Semantic model | Describe analytical meaning | Completed revenue, customer region, valid relationship |
+| Semantic layer | Expose and operationalize definitions | A service that resolves supported metric requests |
+| Metric layer | Standardize metric calculations and access | Named KPIs served through an interface |
+
+A model file describes definitions, but a file alone does not answer a live query. A runtime must interpret it, plan the supported calculation, obtain authorized data and return a result. The wider system also needs a way to maintain the definition and understand which version consumers use.
+
+For the complete architecture and the distinction between source data and execution, read [what a semantic layer is](/blog/what-is-semantic-layer/). This article focuses on the contents of the model rather than repeating a platform comparison or a deployment guide.
+
+## What about Power BI models and warehouse semantic views?
+
+Product documentation uses “semantic model” for several implementation choices. In <a href="https://learn.microsoft.com/en-us/power-bi/connect-data/service-datasets-understand" rel="nofollow noopener">Power BI, a semantic model is the data model available for reporting</a>. Depending on its mode, it can contain imported data, query underlying sources, or combine approaches. The term therefore does not always mean a standalone YAML file.
+
+A semantic view is another way to represent business meaning. <a href="https://docs.snowflake.com/en/user-guide/views-semantic/overview" rel="nofollow noopener">Snowflake semantic views can define metrics, entities and relationships</a> as database objects, and they can support analytical and agent use. It would be misleading to say that semantic views cannot express relationships or are only for human SQL users.
+
+The useful comparison is architectural. Where is the definition stored, which engine interprets it, which interfaces can consume it, and how are changes reviewed? Versioning can be implemented around database definitions as well as file-based models. The existence of a database object does not by itself rule out a Git review process.
+
+Portability also needs a concrete test. An export may preserve a metric expression while leaving access policies, unsupported calculations or a dashboard-specific behavior behind. Inspect the supported mapping and execute representative requests in the target runtime. A shared format is a useful contract, not a promise that every product capability transfers unchanged.
+
+## How to build and validate the first model
+
+Start with a business question rather than a target number of tables. Identify the intended result, the person responsible for its meaning and the records needed to calculate it. For the completed-revenue question, that means agreeing on status treatment, units, date scope and the region mapping before creating more definitions.
+
+Next, inspect the sources and declare the datasets, dimensions and relationships. Write the calculation in a form that the chosen runtime understands. A reviewer should be able to trace a metric name to its expression and then to its inputs. If that path is opaque, adding more descriptions will not make the execution easier to verify.
+
+Test model structure and numerical behavior separately. Structural validation can identify missing references or compilation errors. It cannot show that the approved business policy is correct or that a source join preserves the intended grain. Compare a small set of outputs with an independent reference under the same dates, filters and identity.
+
+Use edge cases that make errors visible: a cancelled order, a missing customer, a duplicate key and a period with no records. Decide how null and zero should differ. Record the model revision and the expected result, so a later definition change can be checked against something more useful than whether a chart still renders.
+
+An agent can help inspect source evidence and propose definitions. The reviewer still decides whether a candidate rule should become authoritative. There is no general percentage of correctness that makes an unreviewed financial or operational metric safe to reuse. Review depth should follow the consequence of a wrong answer and the evidence available.
+
+## How Datus helps turn evidence into a reviewable model
+
+Datus helps teams work from existing documents, SQL and data structures toward semantic definitions they can inspect and refine. The aim is to preserve business knowledge in a form that people and agents can reuse, rather than leave each new analysis to reconstruct it from raw tables.
+
+DOSI provides an execution path for supported Apache Ossie models. Together, the model and runtime can make a named calculation available to different consumers, while keeping the definition open to inspection. Model approval, query scope, data access and numerical checks remain explicit responsibilities; generation does not eliminate them.
+
+Explore the [Datus semantic layer solution](/solutions/semantic-layer/) for the overall approach and the <a href="https://docs.datus.ai/dev/subagent/semantic_modeling/" rel="nofollow noopener">semantic-modeling documentation</a> for the workflow. For the execution engine, see the <a href="https://dosi.datus.ai/" rel="nofollow noopener">DOSI documentation</a>. Datus Agent is open source; DOSI is distributed under Elastic License 2.0, separately from the Apache Ossie open standard.
 
 ## Conclusion
 
-A semantic model is what turns "column `attrib_windows_30d_v2` in table `mktg_analytics.fact_attrib_daily`" into "30-day attribution window revenue, grouped by channel." It is, in one sense, straightforward — describe a data source in business language. But the scaling problem is the real one: a team with 500 tables and three analytics engineers cannot manually model every dataset, so they model the 20% that serves 80% of queries and leave the rest as raw schema. Agent-assisted generation changes that calculus — not by replacing the engineer's judgment, but by producing an 80%-correct draft in seconds instead of requiring a blank-page start. What still requires human judgment, and will for the foreseeable future, is the business rule that no schema inspection can surface: the test accounts that should be excluded from revenue, the column rename that changed meaning between March and April, the join path that technically works but produces misleading aggregates at certain grains. Semantic models are a collaboration between what machines can infer and what only humans know. The teams that treat them that way — agent proposes, engineer curates — will have model coverage that grows with their data estate rather than trailing it.
+A semantic model makes the choices behind an analytical answer inspectable: what is measured, which records count, how the result is grouped and how datasets connect. Its usefulness comes from those decisions being clear and executable, not from the number of fields annotated.
+
+Begin with one question, a small model and results a person can verify. Check the model under the actual runtime and consumer paths before expanding it. That gives analysts, business owners and agents a shared definition they can question, maintain and reuse.
 
 ## Frequently asked questions
 
-### What is a semantic model in one sentence?
+### What is a semantic model in simple terms?
 
-A **semantic model** is a machine-readable description of a data source that maps physical columns to business concepts — measures, dimensions, relationships, and rules — so tools can generate correct queries without re-deriving business logic.
+A semantic model explains the business meaning of data in a structured form. It names the metrics, dimensions and relationships needed to answer questions such as completed revenue by customer region.
 
-### How is a semantic model different from a data model?
+### Can a semantic model include more than one table?
 
-A **data model** (e.g. a dbt model, a SQL view) defines the **physical structure** of data — tables, columns, transformations. A **semantic model** adds the **business meaning** on top — which columns are measures, which are dimensions, what joins are valid, what filters apply. A data model says "this table has a column called `amount_usd`." A semantic model says "that column is `net_revenue`, aggregated as a sum, filtered to completed orders, sliced by region and date."
+Yes. A model can connect multiple related datasets, such as orders and customers. The model format and platform determine how definitions are organized; a model is not universally one table or one source.
 
-### How is a semantic model different from a semantic view?
+### How is a semantic model different from a semantic layer?
 
-A **semantic model** is tooling-layer metadata — defined in YAML (MetricFlow), JavaScript (Cube), or LookML (Looker), stored in version control, and consumed by a semantic layer engine. A **semantic view** is database-layer metadata — defined in SQL inside the database itself (Snowflake Semantic Views, BigQuery semantic features), inheriting IAM and storage co-location but with less modeling expressiveness and limited portability across platforms. See §5 for the full comparison.
+The model describes the definitions and relationships. The semantic layer is the surrounding system that makes those definitions available for use, including the relevant query and execution interfaces. Product terminology can overlap.
 
-### How many semantic models does a typical team need?
+### What is a semantic model in Power BI?
 
-Start with models for the 10-20 tables that generate 80% of queries — your core fact tables (orders, subscriptions, events) and their primary dimension tables (customers, products, geographies). Expand to secondary tables as analytics demand grows. The teams that fail try to model everything upfront; the teams that succeed model what matters and add models incrementally as dashboards, agents, and analysts demand them.
+It is a data model made available for reporting and analysis. Power BI models can use imported data or supported connections to underlying sources. Their storage and query modes differ from a standalone semantic-model file interpreted by another runtime.
 
-### Can a data engineering agent generate semantic models automatically?
+### Can an AI agent generate a semantic model?
 
-Partially — and that partial automation is the pragmatic sweet spot. A data engineering agent can inspect schema, analyze column statistics, and review historical SQL to generate an 80%-correct semantic model draft. The engineer reviews and corrects the remaining 20% — adding business rules ("always exclude test accounts"), verifying join paths, and confirming measure logic. This is materially faster than building from scratch, and it makes it practical to maintain semantic models for a much larger portion of the data estate than manual-only workflows allow.
+An agent can propose definitions using schema information, SQL and business context. Someone must still review the business meaning and verify representative results. Neither successful generation nor valid syntax proves that the model answers the intended question correctly.
 
 ## Related articles
 
-- [Semantic model examples](/blog/semantic-model-examples/) — a tested Apache Ossie model with source data and expected answers
-- [What is a semantic layer?](/blog/what-is-semantic-layer/) — the full business dictionary composed of semantic models
-- [What is a metric layer?](/blog/what-is-metric-layer/) — the KPI catalog built from semantic model measures
-- [What is a data catalog?](/blog/what-is-data-catalog/) — discovery metadata vs executable semantics
+- [Semantic layer requirements](/blog/semantic-layer-requirements/) — metric contracts and validation in a real running project.
+- [What is a metric layer?](/blog/what-is-metric-layer/) — the metrics-focused role in an analytical system.
+- [Business glossary vs semantic layer](/blog/business-glossary-vs-semantic-layer/) — where agreed terminology meets executable meaning.
