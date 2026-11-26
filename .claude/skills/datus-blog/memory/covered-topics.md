@@ -1063,3 +1063,15 @@ land on the new article by design.
 - Branch: blog/refresh-what-is-semantic-model. Operator approved PR submission; not merged or published.
 
 - Final review verification: desktop and direct mobile loads show the correct responsive model diagram, no broken images or page overflow; five FAQ schema entries and the downloadable model/related links return 200.
+
+## Data Ontology Example: A Retail Model for AI Agents
+- Slug: data-ontology-example; primary keyword: data ontology example. Type: Tutorial. Gate A: KEEP, distinct graph/mapping walkthrough linked to existing calculation-focused Northstar article.
+- Scope: eleven actual business concepts and eleven named relationships, separate ontology/mapping/model files, eight synthetic customer results, qualification versus approved membership, multi-hop record queries.
+- Validation: DOSI CLI 0.2.2 model validation and CSV database reconstruction; all eight results match saved expectations; A/B flags, multi-hop line query and membership query execute. Both diagrams checked against all eleven declared edges.
+- Sources: operator Northstar fixture, DOSI ontology reference, Datus OntologyAnalyst docs, SaaS ontology diff code/tests inspected. No production action workflow claimed.
+- Images: generated retail editorial cover and actual source-derived desktop/mobile ontology graphs. Category: Semantic Layer.
+- Links: what-is-ontology, dosi-semantic-layer-northstar-example, semantic-layer-based-ontology, ontology-for-ai-agents-five-approaches, data-context-layer-evaluation; solution hub /solutions/ontology/. Reciprocal from existing Northstar article. Preserve the ontology definition as the glossary destination.
+- Audit: full build/SEO passed (78 marketing pages, 125 articles); editorial checker 14 pass, 4 download route warnings, 0 failures. Local page/image/download checks recorded in research notes.
+- Branch: blog/data-ontology-example. Operator approved PR submission; not merged or published.
+- Date: 2026-11-26
+

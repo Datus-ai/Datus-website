@@ -158,3 +158,5 @@ No. It calculates eligibility under two declared policies. Business approval, me
 - [Apache Ossie and DOSI quickstart](/blog/apache-ossie-dosi-quickstart/)
 - [Semantic model examples](/blog/semantic-model-examples/)
 - [Why a semantic standard needs an execution engine](/blog/why-osi-needs-execution-engine/)
+
+For the concept identities, relationship diagram and separate mapping files, see the [retail data ontology example](/blog/data-ontology-example/).

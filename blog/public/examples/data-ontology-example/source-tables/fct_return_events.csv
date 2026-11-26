@@ -1,0 +1,7 @@
+return_event_id,order_line_id,received_at,status,returned_qty,recoverable_cogs_credit_cents,processing_cost_cents
+1,10008,2025-12-30,received,1,36457,2015
+2,10059,2026-01-02,received,1,40746,1220
+3,10066,2026-03-18,received,2,21176,3836
+4,10075,2026-06-23,received,1,40746,1572
+5,10085,2026-02-12,received,1,40746,888
+6,10093,2025-12-07,received,1,2418,1539

@@ -1,4 +1,8 @@
 {
+  "data-ontology-example": {
+    "image": "/images/data-ontology-example/cover.jpg",
+    "source": "reused"
+  },
   "semantic-layer-requirements": {
     "image": "/images/semantic-layer-requirements/cover-generated.jpg",
     "source": "reused"
