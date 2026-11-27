@@ -1,0 +1,5 @@
+order_id,region,status,amount_usd,refund_usd,completed_date
+A,West,completed,120,20,2026-10-02
+B,East,completed,80,0,2026-10-03
+C,East,completed,50,0,2026-10-04
+D,West,cancelled,200,0,

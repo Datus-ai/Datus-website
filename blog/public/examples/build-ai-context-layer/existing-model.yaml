@@ -1,0 +1,59 @@
+version: 0.2.0.dev0
+name: legacy_orders_model
+description: Fictional source comparison fixture. All amounts in USD, October 2026.
+datasets:
+  - name: orders
+    source: main.orders
+    primary_key:
+      - order_id
+    fields:
+      - name: order_id
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: order_id
+        dimension: {}
+      - name: region
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: region
+        dimension: {}
+      - name: status
+        datatype: String
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: status
+        dimension: {}
+      - name: amount_usd
+        datatype: Decimal
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: amount_usd
+        dimension: {}
+      - name: refund_usd
+        datatype: Decimal
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: refund_usd
+        dimension: {}
+      - name: completed_date
+        datatype: Date
+        expression:
+          dialects:
+            - dialect: ANSI_SQL
+              expression: completed_date
+        dimension:
+          is_time: true
+metrics:
+  - name: revenue
+    description: "Original model: gross order value, all statuses."
+    expression:
+      dialects:
+        - dialect: ANSI_SQL
+          expression: SUM(orders.amount_usd)

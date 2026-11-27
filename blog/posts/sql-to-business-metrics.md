@@ -163,3 +163,5 @@ It demonstrates agreement for the checked data and query scope. It does not esta
 - [Semantic Model Examples: A Working Apache Ossie Model](/blog/semantic-model-examples/)
 - [How Should AI Agents Validate Business Rules Before Reusing Them?](/blog/validate-business-rules-ai-agents/)
 - [Data Lineage for AI Analytics: From Answers to Sources](/blog/data-lineage-ai-analytics/)
+
+When a query disagrees with policy documents or an existing model, see [building an AI context layer from SQL, docs and data models](/blog/build-ai-context-layer/) for the source-comparison and review process.

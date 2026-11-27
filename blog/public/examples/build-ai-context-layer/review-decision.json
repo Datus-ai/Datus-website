@@ -1,0 +1,36 @@
+{
+  "artifact_type": "illustrative review record, not a Datus configuration schema",
+  "scope": "Operational net sales; USD; October 2026; completion-date attribution",
+  "decision_status": "Assumed policy choice for the fictional example, not a real approval",
+  "evidence": [
+    "finance-policy.md",
+    "legacy-report.sql",
+    "existing-model.yaml",
+    "orders.csv"
+  ],
+  "decisions": [
+    {
+      "original": "legacy revenue",
+      "retained_as": "legacy_completed_sales",
+      "reason": "Useful report logic, but before refunds."
+    },
+    {
+      "original": "model revenue",
+      "retained_as": "model_revenue",
+      "reason": "Gross order value including cancelled orders; not the requested operational metric."
+    },
+    {
+      "selected": "net_sales",
+      "reason": "Matches the explicitly chosen policy in finance-policy.md."
+    }
+  ],
+  "unresolved": [
+    "Production access identities and policy enforcement",
+    "Source document owners and actual effective dates",
+    "Cross-consumer integration tests"
+  ],
+  "outputs": [
+    "reviewed-model.yaml",
+    "comparison-model.yaml"
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "dosi_cli": "dosi 0.2.2",
+  "scope": "Fictional operational net-sales source-comparison example; all source material and review choices are illustrative.",
+  "checks": [
+    "Four synthetic records have explicit refund amounts",
+    "All three model files structurally validate",
+    "Alternative definitions yield 450,250,230",
+    "Separate reviewed model returns 230",
+    "Reviewed regional values are East 130 and West 100"
+  ],
+  "models": {
+    "comparison-model.yaml": {
+      "validation": {
+        "issues": [],
+        "compile_errors": [],
+        "warnings": []
+      },
+      "query": {
+        "dialect": "duckdb",
+        "sql": "SELECT SUM(orders.amount_usd) AS model_revenue, SUM(CASE WHEN orders.status = 'completed' THEN orders.amount_usd ELSE 0 END) AS legacy_completed_sales, SUM(CASE WHEN orders.status = 'completed' THEN orders.amount_usd - orders.refund_usd ELSE 0 END) AS net_sales FROM main.orders AS orders",
+        "outputs": [
+          {
+            "column": "model_revenue",
+            "metric": "model_revenue"
+          },
+          {
+            "column": "legacy_completed_sales",
+            "metric": "legacy_completed_sales"
+          },
+          {
+            "column": "net_sales",
+            "metric": "net_sales"
+          }
+        ],
+        "bindings": [],
+        "warnings": [],
+        "rows": [
+          {
+            "model_revenue": 450.0,
+            "legacy_completed_sales": 250.0,
+            "net_sales": 230.0
+          }
+        ]
+      }
+    },
+    "reviewed-model.yaml": {
+      "validation": {
+        "issues": [],
+        "compile_errors": [],
+        "warnings": []
+      },
+      "query": {
+        "dialect": "duckdb",
+        "sql": "SELECT SUM(CASE WHEN orders.status = 'completed' THEN orders.amount_usd - orders.refund_usd ELSE 0 END) AS net_sales FROM main.orders AS orders",
+        "outputs": [
+          {
+            "column": "net_sales",
+            "metric": "net_sales"
+          }
+        ],
+        "bindings": [],
+        "warnings": [],
+        "rows": [
+          {
+            "net_sales": 230.0
+          }
+        ]
+      }
+    },
+    "existing-model.yaml": {
+      "validation": {
+        "issues": [],
+        "compile_errors": [],
+        "warnings": [
+          {
+            "code": "underdeclared_field",
+            "location": "field 'orders.refund_usd'",
+            "message": "`orders.refund_usd` looks like a measurement no metric aggregates, so it is offered as a grouping dimension; write the metric it belongs to, or declare `is_dimension: false`"
+          }
+        ]
+      },
+      "query": {
+        "dialect": "duckdb",
+        "sql": "SELECT SUM(orders.amount_usd) AS revenue FROM main.orders AS orders",
+        "outputs": [
+          {
+            "column": "revenue",
+            "metric": "revenue"
+          }
+        ],
+        "bindings": [],
+        "warnings": [],
+        "rows": [
+          {
+            "revenue": 450.0
+          }
+        ]
+      }
+    }
+  },
+  "regional_query": {
+    "dialect": "duckdb",
+    "sql": "SELECT orders.region AS region, SUM(CASE WHEN orders.status = 'completed' THEN orders.amount_usd - orders.refund_usd ELSE 0 END) AS net_sales FROM main.orders AS orders GROUP BY orders.region",
+    "outputs": [
+      {
+        "column": "net_sales",
+        "metric": "net_sales"
+      }
+    ],
+    "bindings": [],
+    "warnings": [],
+    "rows": [
+      {
+        "region": "West",
+        "net_sales": 100.0
+      },
+      {
+        "region": "East",
+        "net_sales": 130.0
+      }
+    ]
+  },
+  "limits": [
+    "No LLM extraction session was executed",
+    "Review record is an illustrative method, not a Datus schema or a real approval",
+    "Single-user local fixture; no production data-access or cross-consumer certification"
+  ]
+}
