@@ -1075,3 +1075,15 @@ land on the new article by design.
 - Branch: blog/data-ontology-example. Operator approved PR submission; not merged or published.
 - Date: 2026-11-26
 
+
+
+## Building an AI Context Layer from SQL, Docs and Data Models
+- Slug: build-ai-context-layer; primary: AI context layer. Type: Tutorial. Gate A KEEP: multi-source evidence and meaning reconciliation; differs from SQL-to-business-metrics and procurement checklist.
+- Fictional sources: legacy completed-sales SQL, policy document and original gross-order-value model. Preserve original interpretations; illustrate explicit policy choice and a separate reviewed net-sales model. Review record is a suggested method, not product configuration or a real approval.
+- Project truth: current GitHub extract-knowledge, semantic-modeling and SQL-summary code; local SaaS Semantic Hub review code/docs. No automatic policy arbitration, production provenance, approval or LLM extraction claims.
+- Actual verification: DOSI CLI 0.2.2 on fresh synthetic DuckDB data; 450 / 250 / 230 totals, reviewed model agrees, regional East 130 and West 100. All models structurally validate; original legacy SQL retained as evidence, not executed as a raw analysis query.
+- Images: generated analyst/source illustration; responsive opening use-case, source-map and review-flow SVGs. Small downloadable source/review/verification fixture. Category: Semantic Layer.
+- Links: sql-to-business-metrics, data-context-layer-evaluation, data-ontology-example, semantic-layer-requirements, validate-business-rules-ai-agents; hub solutions/semantic-layer. Reciprocal from existing SQL-to-business-metrics article.
+- Checks: full build/SEO passed for 78 marketing routes and 126 articles; editorial 14 pass, 3 download-path warnings, 0 failures. Download paths checked separately.
+- Branch: blog/build-ai-context-layer. Operator approved PR submission; pending PR creation, not merged or published.
+- Date: 2026-11-26

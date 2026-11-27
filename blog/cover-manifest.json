@@ -1,4 +1,8 @@
 {
+  "build-ai-context-layer": {
+    "image": "/images/build-ai-context-layer/cover.jpg",
+    "source": "reused"
+  },
   "data-ontology-example": {
     "image": "/images/data-ontology-example/cover.jpg",
     "source": "reused"
