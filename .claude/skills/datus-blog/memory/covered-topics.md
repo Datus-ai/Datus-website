@@ -1085,5 +1085,5 @@ land on the new article by design.
 - Images: generated analyst/source illustration; responsive opening use-case, source-map and review-flow SVGs. Small downloadable source/review/verification fixture. Category: Semantic Layer.
 - Links: sql-to-business-metrics, data-context-layer-evaluation, data-ontology-example, semantic-layer-requirements, validate-business-rules-ai-agents; hub solutions/semantic-layer. Reciprocal from existing SQL-to-business-metrics article.
 - Checks: full build/SEO passed for 78 marketing routes and 126 articles; editorial 14 pass, 3 download-path warnings, 0 failures. Download paths checked separately.
-- Branch: blog/build-ai-context-layer. Operator approved PR submission; pending PR creation, not merged or published.
+- Branch: blog/build-ai-context-layer. PR: https://github.com/Datus-ai/Datus-website/pull/155. Status: open; not merged or published.
 - Date: 2026-11-26
